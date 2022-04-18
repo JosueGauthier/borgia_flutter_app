@@ -1,5 +1,3 @@
-import 'package:get/get.dart';
-
 class Product {
   //! this is private fields add _ to set private
   int? _totalSize;

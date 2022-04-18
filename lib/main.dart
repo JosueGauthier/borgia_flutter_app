@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'controllers/cart_controller.dart';
 import 'controllers/popular_product_controller.dart';
 import 'controllers/recommended_product_controller.dart';
+import 'controllers/shop_controller.dart';
 import 'helper/dependencies.dart' as dep;
 
 Future<void> main() async {
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.find<CartController>().getCartData();
+    Get.find<ShopController>().getShopList();
+    //Get.find<RecommendedProductController>().getRecomendedProductList();
     return GetBuilder<PopularProductController>(
       builder: (_) {
         return GetBuilder<RecommendedProductController>(builder: ((_) {
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             //home: SplashScreen(),
-            initialRoute: RouteHelper.getSplashPage(),
+            initialRoute: RouteHelper.getInitial(),
             getPages: RouteHelper.routes,
           );
         }));

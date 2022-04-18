@@ -10,7 +10,7 @@ class Shop {
   Shop.fromJson(Map<String, dynamic> json) {
     if (json['shops'] != null) {
       _shops = <ShopModel>[];
-      json['shop'].forEach((v) {
+      json['shops'].forEach((v) {
         _shops.add(ShopModel.fromJson(v));
       });
     }

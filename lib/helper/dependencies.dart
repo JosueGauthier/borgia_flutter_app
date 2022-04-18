@@ -1,3 +1,5 @@
+import 'package:borgiaflutterapp/controllers/shop_controller.dart';
+import 'package:borgiaflutterapp/data/repository/shop_repo.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,11 +22,15 @@ Future<void> init() async {
   Get.lazyPut(() => ApiClient(appBaseUrl: AppConstants.BASE_URL));
 
   //! repos
+  Get.lazyPut(() => ShopRepo(apiClient: Get.find()));
+
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
 
   //!controllers
+  Get.lazyPut(() => ShopController(shopRepo: Get.find()));
+
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
   Get.lazyPut(() => RecommendedProductController(recommendedRepo: Get.find()));
   Get.lazyPut(() => CartController(cartRepo: Get.find()));

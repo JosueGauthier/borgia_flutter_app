@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:borgiaflutterapp/controllers/shop_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -22,8 +23,12 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   late AnimationController animationController;
 
   Future<void> _loadRessources() async {
-    await Get.find<PopularProductController>().getPopularProductList();
-    await Get.find<RecommendedProductController>().getRecomendedProductList();
+    //await Get.find<PopularProductController>().getPopularProductList();
+    //await Get.find<RecommendedProductController>().getRecomendedProductList();
+    print("aaaa");
+    await Get.find<ShopController>().getShopList();
+
+    print("bbbbb");
   }
 
   @override

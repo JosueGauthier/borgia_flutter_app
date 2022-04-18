@@ -2,8 +2,6 @@ import 'package:borgiaflutterapp/data/repository/shop_repo.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:get/get.dart';
 
-import '../models/Popular_product_model.dart';
-
 class ShopController extends GetxController {
   final ShopRepo shopRepo;
 
@@ -18,6 +16,7 @@ class ShopController extends GetxController {
 
   Future<void> getShopList() async {
     Response response = await shopRepo.getShopList();
+    //print(response);
 
     print("Shop status code " + response.statusCode.toString());
 

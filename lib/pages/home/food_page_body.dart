@@ -1,3 +1,5 @@
+import 'package:borgiaflutterapp/controllers/shop_controller.dart';
+import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
@@ -56,7 +58,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       children: [
         //! sliderSection
 
-        GetBuilder<PopularProductController>(builder: (popularProductsController) {
+        /* GetBuilder<PopularProductController>(builder: (popularProductsController) {
           return popularProductsController.isLoaded
               ? Container(
                   //color: Colors.blue,
@@ -72,7 +74,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               : CircularProgressIndicator(
                   color: AppColors.mainColor,
                 );
-        }),
+        }), */
 
         //!Dots section
         GetBuilder<PopularProductController>(builder: (popularProductsController) {
@@ -99,26 +101,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         Container(
           margin: EdgeInsets.only(left: Dimensions.width30),
           child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-            BigText(text: "Recommended"),
-            SizedBox(
-              width: Dimensions.width10,
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 3),
-              child: BigText(
-                text: ".",
-                color: Color.fromARGB(255, 184, 183, 179),
-              ),
-            ),
-            SizedBox(
-              width: Dimensions.width10,
-            ),
-            Container(
-              child: SmallText(
-                text: "Food pairing",
-                color: Color.fromARGB(255, 184, 183, 179),
-              ),
-            ),
+            BigText(text: "List of shops"),
           ]),
         ),
         SizedBox(
@@ -126,14 +109,16 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         ),
 
         //! recommended food scroll view
-        GetBuilder<RecommendedProductController>(builder: (recommendedProductController) {
-          return recommendedProductController.isLoaded
+
+        GetBuilder<ShopController>(builder: (shopController) {
+          //print("reco1");
+          return shopController.isLoaded
               ? ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: recommendedProductController.recommendedProductList.length,
+                  itemCount: shopController.shopList.length,
                   itemBuilder: (context, index) {
-                    ProductModel recommendedProduct = recommendedProductController.recommendedProductList[index];
+                    ShopModel shopModel = shopController.shopList[index];
                     return GestureDetector(
                       onTap: () {
                         Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
@@ -144,6 +129,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             //crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               //! image section
+                              /*
                               Container(
                                 height: Dimensions.listviewimgSize,
                                 width: Dimensions.listviewimgSize,
@@ -155,6 +141,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                     ),
                                     borderRadius: BorderRadius.circular(Dimensions.width20)),
                               ),
+                              */
 
                               //! text section
 
@@ -174,13 +161,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                           height: Dimensions.height10,
                                         ),
                                         BigText(
-                                          text: recommendedProduct.name!,
+                                          text: shopModel.name!,
                                           size: Dimensions.height25,
                                         ),
                                         SizedBox(
                                           height: Dimensions.height10,
                                         ),
-                                        SmallText(allowOverFlow: true, maxLines: 2, text: recommendedProduct.description!),
+                                        SmallText(allowOverFlow: true, maxLines: 2, text: shopModel.description!),
                                         SizedBox(
                                           height: Dimensions.height10,
                                         ),
@@ -208,6 +195,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     );
                   })
               : CircularProgressIndicator(
+                  strokeWidth: 4,
                   color: AppColors.mainColor,
                 );
         })
