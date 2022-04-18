@@ -9,11 +9,7 @@ class Product {
 
   List<ProductModel> get products => _products;
 
-  Product(
-      {required totalSize,
-      required typeId,
-      required offset,
-      required products}) {
+  Product({required totalSize, required typeId, required offset, required products}) {
     this._totalSize = totalSize;
     this._typeId = typeId;
     this._offset = offset;
@@ -45,17 +41,7 @@ class ProductModel {
   String? updatedAt;
   int? typeId;
 
-  ProductModel(
-      {this.id,
-      this.name,
-      this.description,
-      this.price,
-      this.stars,
-      this.img,
-      this.location,
-      this.createdAt,
-      this.updatedAt,
-      this.typeId});
+  ProductModel({this.id, this.name, this.description, this.price, this.stars, this.img, this.location, this.createdAt, this.updatedAt, this.typeId});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

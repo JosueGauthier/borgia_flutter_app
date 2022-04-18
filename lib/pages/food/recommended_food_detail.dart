@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -7,19 +6,14 @@ import '../../controllers/cart_controller.dart';
 import '../../models/Popular_product_model.dart';
 import '../../widget/app_icon.dart';
 import '../../widget/expandable_text_widget.dart';
-import '../cart/cart_page.dart';
 
 import '../../controllers/popular_product_controller.dart';
 import '../../controllers/recommended_product_controller.dart';
-import '../../models/Popular_product_model.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../../widget/app_column.dart';
 import '../../widget/big_text.dart';
-import '../../widget/icon_and_text.dart';
-import '../../widget/small_text.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
   final int pageId;
