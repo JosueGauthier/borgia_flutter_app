@@ -1,22 +1,3 @@
-class Shop {
-  late List<ShopModel> _shops;
-
-  List<ShopModel> get shops => _shops;
-
-  Shop({required shops}) {
-    this._shops = shops;
-  }
-
-  Shop.fromJson(Map<String, dynamic> json) {
-    if (json['shops'] != null) {
-      _shops = <ShopModel>[];
-      json['shops'].forEach((v) {
-        _shops.add(ShopModel.fromJson(v));
-      });
-    }
-  }
-}
-
 class ShopModel {
   int? id;
   String? name;

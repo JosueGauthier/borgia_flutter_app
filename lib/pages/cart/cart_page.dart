@@ -101,7 +101,7 @@ class CartPage extends StatelessWidget {
                                               onTap: () {
                                                 int popularIndex = Get.find<PopularProductController>().popularProductList.indexOf(_cartList[index].aProduct);
 
-                                                print(popularIndex);
+                                                //print(popularIndex);
 
                                                 if (popularIndex >= 0) {
                                                   Get.toNamed(RouteHelper.getPopularFood(popularIndex, "cartpage"));

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/data/repository/shop_repo.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:get/get.dart';
@@ -22,9 +25,19 @@ class ShopController extends GetxController {
 
     if (response.statusCode == 200) {
       _shopList = [];
-      _shopList.addAll(Shop.fromJson(response.body).shops);
-      print(shopList);
+
+      print("response : " + response.body.toString());
+
+      List a = response.body;
+
+      print("the length is " + a.length.toString());
+
+      for (var i = 0; i < a.length; i++) {
+        _shopList.add(ShopModel.fromJson(a[i]));
+      }
       _isLoaded = true;
+
+      //inspect(_shopList);
 
       update();
     } else {}

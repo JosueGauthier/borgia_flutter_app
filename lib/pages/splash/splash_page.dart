@@ -25,10 +25,8 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   Future<void> _loadRessources() async {
     //await Get.find<PopularProductController>().getPopularProductList();
     //await Get.find<RecommendedProductController>().getRecomendedProductList();
-    print("aaaa");
-    await Get.find<ShopController>().getShopList();
 
-    print("bbbbb");
+    await Get.find<ShopController>().getShopList();
   }
 
   @override

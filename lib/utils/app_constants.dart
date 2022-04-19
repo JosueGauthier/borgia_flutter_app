@@ -1,5 +1,9 @@
 class AppConstants {
-  static const String SHOP_URI = "/b/625dd25abc312b30ebe8f9fa";
+  static const String SHOP_URI = "/b/625dc4f5c5284e31154ef250";
+
+  // 625dc4f5c5284e31154ef250 sans header
+
+  // 625dd25abc312b30ebe8f9fa avec header
 
   static const String APP_NAME = "DBFood";
   static const int APP_VERSION = 1;

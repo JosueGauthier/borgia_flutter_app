@@ -47,10 +47,10 @@ class CartController extends GetxController {
       // print("length of the item is " + _items.length.toString());
       //?ajoute si l'item n'existe pas encore
       _items.putIfAbsent(productModel.id!, () {
-        print("add item to cart " + productModel.id!.toString() + " quantity " + quantity.toString());
+        //print("add item to cart " + productModel.id!.toString() + " quantity " + quantity.toString());
 
         _items.forEach(((key, value) {
-          print(value.name! + "quantity is " + value.quantity.toString());
+          //print(value.name! + "quantity is " + value.quantity.toString());
         }));
 
         return CartModel(
@@ -141,7 +141,7 @@ class CartController extends GetxController {
   set setCart(List<CartModel> items) {
     storageItems = items;
 
-    print("Length of cart " + storageItems.length.toString());
+    //print("Length of cart " + storageItems.length.toString());
 
     for (int i = 0; i < storageItems.length; i++) {
       _items.putIfAbsent(storageItems[i].aProduct!.id!, () => storageItems[i]);

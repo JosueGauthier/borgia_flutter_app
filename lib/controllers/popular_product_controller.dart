@@ -53,7 +53,7 @@ class PopularProductController extends GetxController {
   }
 
   void setQuantity(bool isIncrement) {
-    print(_quantity);
+    //print(_quantity);
 
     if (isIncrement) {
       _quantity = checkQuantity(_quantity + 1);
@@ -99,7 +99,7 @@ class PopularProductController extends GetxController {
       _cartController.addItem(productModel, (_quantity));
       _quantity = 0;
       _cartController.items.forEach((key, value) {
-        print("the id is " + value.id.toString() + " the quantity is " + value.quantity.toString());
+        //print("the id is " + value.id.toString() + " the quantity is " + value.quantity.toString());
       });
     } else {
       Get.snackbar("Item count", "You should at least add one item to the cart !", backgroundColor: AppColors.mainColor, colorText: Colors.white);
