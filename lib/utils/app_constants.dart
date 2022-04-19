@@ -1,5 +1,5 @@
 class AppConstants {
-  static const String SHOP_URI = "/b/625dc4f5c5284e31154ef250";
+  static const String SHOP_URI = "/api-links/shops/?format=json";
 
   // 625dc4f5c5284e31154ef250 sans header
 
@@ -10,9 +10,9 @@ class AppConstants {
 
   //static const String BASE_URL = "http://mvs.bslmeiyu.com";
 
-  static const String BASE_URL = "https://api.jsonbin.io";
+  static const String BASE_URL = "http://192.168.158.169:8000";
 
-  //https://api.npoint.io
+  //"https://api.jsonbin.io" "/b/625dc4f5c5284e31154ef250"
 
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
 
