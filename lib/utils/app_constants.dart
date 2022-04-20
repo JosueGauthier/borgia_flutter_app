@@ -10,7 +10,7 @@ class AppConstants {
 
   //static const String BASE_URL = "http://mvs.bslmeiyu.com";
 
-  static const String BASE_URL = "http://192.168.158.169:8000";
+  static const String BASE_URL = "http://10.0.2.2:8000";
 
   //"https://api.jsonbin.io" "/b/625dc4f5c5284e31154ef250"
 

@@ -7,6 +7,7 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../../utils/colors.dart';
 import '../cart/cart_history.dart';
+import '../shop/shop_page_detail.dart';
 import 'main_full_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,7 +26,10 @@ class _HomePageState extends State<HomePage> {
     MainFoodPage(),
     AuthPage(),
     CartHistory(),
-    ProfilePage(),
+
+    ShopPageDetail(),
+
+    //ProfilePage(),
   ];
 
   void onTapNav(int index) {

@@ -62,6 +62,7 @@ class CartHistory extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
+          //! header
           Container(
             height: Dimensions.height100 * 1,
             width: double.maxFinite,
@@ -79,6 +80,7 @@ class CartHistory extends StatelessWidget {
               ],
             ),
           ),
+          //! list
           GetBuilder<CartController>(builder: (_cartController) {
             return _cartController.getCartHistoryList().length > 0
                 ? Expanded(

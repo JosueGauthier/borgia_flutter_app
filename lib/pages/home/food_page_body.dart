@@ -2,6 +2,7 @@ import 'package:borgiaflutterapp/controllers/shop_controller.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -58,7 +59,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       children: [
         //! sliderSection
 
-        /* GetBuilder<PopularProductController>(builder: (popularProductsController) {
+        GetBuilder<PopularProductController>(builder: (popularProductsController) {
           return popularProductsController.isLoaded
               ? Container(
                   //color: Colors.blue,
@@ -74,7 +75,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               : CircularProgressIndicator(
                   color: AppColors.mainColor,
                 );
-        }), */
+        }),
 
         //!Dots section
         GetBuilder<PopularProductController>(builder: (popularProductsController) {
@@ -129,19 +130,18 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             //crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               //! image section
-                              /*
+
                               Container(
-                                height: Dimensions.listviewimgSize,
+                                height: Dimensions.height100,
                                 width: Dimensions.listviewimgSize,
                                 decoration: BoxDecoration(
-                                    color: Colors.amber,
+                                    //color: Colors.amber,
                                     image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + recommendedProduct.img!),
+                                      fit: BoxFit.contain,
+                                      image: NetworkImage(shopModel.image!),
                                     ),
                                     borderRadius: BorderRadius.circular(Dimensions.width20)),
                               ),
-                              */
 
                               //! text section
 
@@ -150,12 +150,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                 child: Container(
                                   height: Dimensions.listviewTextHeigth + 10,
                                   decoration: BoxDecoration(
-                                      color: Color.fromARGB(255, 255, 255, 255),
+                                      color: Colors.white,
                                       borderRadius:
                                           BorderRadius.only(topRight: Radius.circular(Dimensions.height20), bottomRight: Radius.circular(Dimensions.height20))),
                                   child: Padding(
                                     padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
                                     child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         SizedBox(
                                           height: Dimensions.height10,
@@ -168,7 +169,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                           height: Dimensions.height10,
                                         ),
                                         SmallText(allowOverFlow: true, maxLines: 2, text: shopModel.description!),
-                                        SizedBox(
+                                        /* SizedBox(
                                           height: Dimensions.height10,
                                         ),
                                         Row(
@@ -184,7 +185,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                             ),
                                             IconAndTextWidget(icon: Icons.lock_clock, text: "16 min", iconcolor: Colors.pink),
                                           ],
-                                        )
+                                        ) */
                                       ],
                                     ),
                                   ),

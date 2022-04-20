@@ -19,14 +19,25 @@ class AppColors {
 */
 
 class AppColors {
-  static final Color mainColor = Color.fromARGB(255, 242, 46, 62);
+  //! theme boquette
+  static final Color mainColor = const Color(0xFFBF1725);
+  static final Color mainColorTranspa = const Color(0xFFBF1725);
+  static final Color secondColor = const Color(0xFF1B3659);
+  static final Color textColor = Color.fromARGB(255, 37, 37, 38);
+  static final Color altmainColor = Color.fromARGB(255, 242, 46, 46);
+  static final Color greyColor = Color.fromARGB(255, 242, 242, 242);
+  static final Color altgreyColor = Color.fromARGB(100, 242, 242, 242);
+  static final Color darkgrey = const Color(0xFF545759);
+
+//! theme vert fluo rose
+/*   static final Color mainColor = Color.fromARGB(255, 242, 46, 62);
   static final Color mainColorTranspa = Color.fromARGB(90, 242, 46, 62);
   static final Color secondColor = Color.fromARGB(255, 59, 217, 35);
   static final Color textColor = Color.fromARGB(255, 37, 37, 38);
   static final Color altmainColor = Color.fromARGB(255, 242, 46, 46);
   static final Color greyColor = Color.fromARGB(255, 242, 242, 242);
   static final Color altgreyColor = Color.fromARGB(100, 242, 242, 242);
-  static final Color darkgrey = const Color(0xFF545759);
+  static final Color darkgrey = const Color(0xFF545759); */
 
   //static final Color textColor = const Color(0xFFccc7c5);
   //static final Color mainColor = Color.fromARGB(97, 239, 33, 33);
