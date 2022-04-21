@@ -75,7 +75,7 @@ class PopularProductController extends GetxController {
     }
   }
 
-  void initProduct(ProductModel aProduct, CartController cartController) {
+  void initProduct(oldProductModel aProduct, CartController cartController) {
     _quantity = 0;
 
     _incartItem = 0;
@@ -94,9 +94,9 @@ class PopularProductController extends GetxController {
     //print("the quantity in the item cart is " + _incartItem.toString());
   }
 
-  void popular_addItem(ProductModel productModel) {
+  void popular_addItem(oldProductModel oldProductModel) {
     if ((_quantity) > 0) {
-      _cartController.addItem(productModel, (_quantity));
+      _cartController.addItem(oldProductModel, (_quantity));
       _quantity = 0;
       _cartController.items.forEach((key, value) {
         //print("the id is " + value.id.toString() + " the quantity is " + value.quantity.toString());

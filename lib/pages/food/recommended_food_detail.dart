@@ -23,7 +23,7 @@ class RecommendedFoodDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProductModel product = Get.find<RecommendedProductController>().recommendedProductList[pageId];
+    oldProductModel product = Get.find<RecommendedProductController>().recommendedProductList[pageId];
 
     Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
 

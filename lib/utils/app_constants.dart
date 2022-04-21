@@ -1,6 +1,8 @@
 class AppConstants {
   static const String SHOP_URI = "/api-links/shops/?format=json";
 
+  static const String PRODUCT_URI = "/api-links/products/?shop=1";
+
   // 625dc4f5c5284e31154ef250 sans header
 
   // 625dd25abc312b30ebe8f9fa avec header

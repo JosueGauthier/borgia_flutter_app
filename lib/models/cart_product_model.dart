@@ -10,7 +10,7 @@ class CartModel {
   int? quantity;
   bool? isExist;
   String? time;
-  ProductModel? aProduct;
+  oldProductModel? aProduct;
 
   CartModel({
     this.id,
@@ -31,7 +31,7 @@ class CartModel {
     quantity = json['quantity'];
     isExist = json['isexist'];
     time = json['time'];
-    aProduct = ProductModel.fromJson(json['product']);
+    aProduct = oldProductModel.fromJson(json['product']);
   }
 
   Map<String, dynamic> toJson() {

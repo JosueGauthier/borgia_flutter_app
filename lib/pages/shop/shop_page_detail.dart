@@ -1,18 +1,13 @@
+import 'package:borgiaflutterapp/controllers/product_controller.dart';
+import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../controllers/cart_controller.dart';
-import '../../controllers/shop_controller.dart';
-import '../../models/Popular_product_model.dart';
-import '../../models/shop_model.dart';
 import '../../widget/app_icon.dart';
-import '../../widget/expandable_text_widget.dart';
 
-import '../../controllers/popular_product_controller.dart';
-import '../../controllers/recommended_product_controller.dart';
 import '../../routes/route_helper.dart';
-import '../../utils/app_constants.dart';
+
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
@@ -30,7 +25,7 @@ class ShopPageDetail extends StatefulWidget {
 class _ShopPageDetailState extends State<ShopPageDetail> {
   @override
   Widget build(BuildContext context) {
-    //ProductModel product = Get.find<RecommendedProductController>().recommendedProductList[pageId];
+    //oldProductModel product = Get.find<RecommendedProductController>().recommendedProductList[pageId];
 
     //Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
 
@@ -47,7 +42,7 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 BigText(
-                  text: "Cart History",
+                  text: "Shop ...", //todo add name of the shop
                   size: Dimensions.height30,
                   color: Colors.white,
                 ),
@@ -55,15 +50,15 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
               ],
             ),
           ),
-          Expanded(child: SingleChildScrollView(child: GetBuilder<ShopController>(builder: (shopController) {
+          Expanded(child: SingleChildScrollView(child: GetBuilder<ProductController>(builder: (productController) {
             //print("reco1");
-            return shopController.isLoaded
+            return productController.isLoaded
                 ? ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: shopController.shopList.length,
+                    itemCount: productController.productList.length,
                     itemBuilder: (context, index) {
-                      ShopModel shopModel = shopController.shopList[index];
+                      ProductModel productModel = productController.productList[index];
                       return GestureDetector(
                         onTap: () {
                           Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
@@ -75,16 +70,36 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
                               children: [
                                 //! image section
 
-                                Container(
-                                  height: Dimensions.height100,
-                                  width: Dimensions.listviewimgSize,
-                                  decoration: BoxDecoration(
-                                      //color: Colors.amber,
-                                      image: DecorationImage(
-                                        fit: BoxFit.contain,
-                                        image: NetworkImage(shopModel.image!),
+                                Stack(
+                                  children: [
+                                    Container(
+                                      height: Dimensions.height100,
+                                      width: Dimensions.listviewimgSize,
+                                      decoration: BoxDecoration(
+                                          //color: Colors.amber,
+                                          image: DecorationImage(
+                                            fit: BoxFit.contain,
+                                            image: NetworkImage(productModel.productImage!),
+                                          ),
+                                          borderRadius: BorderRadius.circular(Dimensions.width20)),
+                                    ),
+                                    Positioned(
+                                      right: 0,
+                                      bottom: 0,
+                                      child: Container(
+                                        height: Dimensions.height20 * 2,
+                                        width: Dimensions.height20 * 2,
+                                        decoration: BoxDecoration(
+                                            color: Colors.transparent,
+                                            image: DecorationImage(
+                                              //colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.5), BlendMode.dstATop),
+                                              fit: BoxFit.contain,
+                                              image: AssetImage("assets/image/pinte_png8_fondblanc.png"), //todo add item in function of the name of the product
+                                            ),
+                                            borderRadius: BorderRadius.circular(Dimensions.width20)),
                                       ),
-                                      borderRadius: BorderRadius.circular(Dimensions.width20)),
+                                    ),
+                                  ],
                                 ),
 
                                 //! text section
@@ -105,13 +120,13 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
                                             height: Dimensions.height10,
                                           ),
                                           BigText(
-                                            text: shopModel.name!,
+                                            text: productModel.name!,
                                             size: Dimensions.height25,
                                           ),
                                           SizedBox(
                                             height: Dimensions.height10,
                                           ),
-                                          SmallText(allowOverFlow: true, maxLines: 2, text: shopModel.description!),
+                                          SmallText(allowOverFlow: true, maxLines: 2, text: productModel.manualPrice!),
                                           /* SizedBox(
                                           height: Dimensions.height10,
                                         ),

@@ -16,9 +16,9 @@ class CartController extends GetxController {
   //! only for storage and sharedpreferences
   List<CartModel> storageItems = [];
 
-  void addItem(ProductModel productModel, int quantity) {
-    if (_items.containsKey(productModel.id!)) {
-      _items.update(productModel.id!, (value) {
+  void addItem(oldProductModel oldProductModel, int quantity) {
+    if (_items.containsKey(oldProductModel.id!)) {
+      _items.update(oldProductModel.id!, (value) {
         if ((value.quantity! + quantity) > 0) {
           return CartModel(
             id: value.id,
@@ -28,7 +28,7 @@ class CartController extends GetxController {
             quantity: value.quantity! + quantity,
             isExist: true,
             time: DateTime.now().toString(),
-            aProduct: productModel,
+            aProduct: oldProductModel,
           );
         } else {
           return CartModel(
@@ -39,35 +39,35 @@ class CartController extends GetxController {
             quantity: 0,
             isExist: true,
             time: DateTime.now().toString(),
-            aProduct: productModel,
+            aProduct: oldProductModel,
           );
         }
       });
     } else {
       // print("length of the item is " + _items.length.toString());
       //?ajoute si l'item n'existe pas encore
-      _items.putIfAbsent(productModel.id!, () {
-        //print("add item to cart " + productModel.id!.toString() + " quantity " + quantity.toString());
+      _items.putIfAbsent(oldProductModel.id!, () {
+        //print("add item to cart " + oldProductModel.id!.toString() + " quantity " + quantity.toString());
 
         _items.forEach(((key, value) {
           //print(value.name! + "quantity is " + value.quantity.toString());
         }));
 
         return CartModel(
-          id: productModel.id,
-          name: productModel.name,
-          price: productModel.price,
-          img: productModel.img,
+          id: oldProductModel.id,
+          name: oldProductModel.name,
+          price: oldProductModel.price,
+          img: oldProductModel.img,
           quantity: quantity,
           isExist: true,
           time: DateTime.now().toString(),
-          aProduct: productModel,
+          aProduct: oldProductModel,
         );
       });
     }
 
-    if (_items[productModel.id]?.quantity! == 0) {
-      _items.remove(productModel.id!);
+    if (_items[oldProductModel.id]?.quantity! == 0) {
+      _items.remove(oldProductModel.id!);
     }
 
     cartRepo.addToCartList(getItems);
@@ -75,13 +75,13 @@ class CartController extends GetxController {
     update();
   }
 
-  void removeItem(ProductModel productModel) {
-    if (_items.containsKey(productModel.id!)) {
-      _items.remove(productModel.id!);
+  void removeItem(oldProductModel oldProductModel) {
+    if (_items.containsKey(oldProductModel.id!)) {
+      _items.remove(oldProductModel.id!);
     }
   }
 
-  bool existinCart(ProductModel aProduct) {
+  bool existinCart(oldProductModel aProduct) {
     if (_items.containsKey(aProduct.id)) {
       return true;
     } else {
@@ -89,7 +89,7 @@ class CartController extends GetxController {
     }
   }
 
-  int getQuantity(ProductModel aProduct) {
+  int getQuantity(oldProductModel aProduct) {
     var quantity = 0;
 
     if (_items.containsKey(aProduct.id)) {

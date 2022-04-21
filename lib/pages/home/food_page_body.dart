@@ -204,7 +204,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     );
   }
 
-  Widget _buildPageItem(int position, ProductModel popularProduct) {
+  Widget _buildPageItem(int position, oldProductModel popularProduct) {
     Matrix4 matrix = new Matrix4.identity();
 
     if (position == _currentPagevalue.floor()) {
