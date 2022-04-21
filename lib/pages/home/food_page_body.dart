@@ -2,13 +2,10 @@ import 'package:borgiaflutterapp/controllers/shop_controller.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 import '../../controllers/popular_product_controller.dart';
-import '../../controllers/recommended_product_controller.dart';
 import '../../models/Popular_product_model.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/app_constants.dart';
@@ -16,7 +13,6 @@ import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/app_column.dart';
 import '../../widget/big_text.dart';
-import '../../widget/icon_and_text.dart';
 import '../../widget/small_text.dart';
 
 class FoodPageBody extends StatefulWidget {
@@ -36,7 +32,6 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   @override
   void initState() {
     super.initState();
-    // TODO: implement initState
     pageController.addListener(() {
       setState(() {
         _currentPagevalue = pageController.page!;
@@ -47,8 +42,6 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
-
     pageController.dispose();
     super.dispose();
   }
@@ -59,7 +52,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       children: [
         //! sliderSection
 
-        GetBuilder<PopularProductController>(builder: (popularProductsController) {
+        /* GetBuilder<PopularProductController>(builder: (popularProductsController) {
           return popularProductsController.isLoaded
               ? Container(
                   //color: Colors.blue,
@@ -76,7 +69,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   color: AppColors.mainColor,
                 );
         }),
-
+ */
         //!Dots section
         GetBuilder<PopularProductController>(builder: (popularProductsController) {
           int dotsnumber = popularProductsController.popularProductList.length;
@@ -109,10 +102,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           height: Dimensions.height10,
         ),
 
-        //! recommended food scroll view
+        //! List of shops scroll view
 
         GetBuilder<ShopController>(builder: (shopController) {
-          //print("reco1");
           return shopController.isLoaded
               ? ListView.builder(
                   shrinkWrap: true,
@@ -122,7 +114,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     ShopModel shopModel = shopController.shopList[index];
                     return GestureDetector(
                       onTap: () {
-                        Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
+                        print(shopModel.id);
+                        Get.toNamed(RouteHelper.getShopDetail(shopModel.id!, "home"));
                       },
                       child: Container(
                         margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height15),

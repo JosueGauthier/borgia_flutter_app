@@ -14,8 +14,12 @@ import '../../widget/big_text.dart';
 import '../../widget/small_text.dart';
 
 class ShopPageDetail extends StatefulWidget {
+  final String pagefrom;
+  final int shopId;
   const ShopPageDetail({
     Key? key,
+    required this.shopId,
+    required this.pagefrom,
   }) : super(key: key);
 
   @override
@@ -25,9 +29,7 @@ class ShopPageDetail extends StatefulWidget {
 class _ShopPageDetailState extends State<ShopPageDetail> {
   @override
   Widget build(BuildContext context) {
-    //oldProductModel product = Get.find<RecommendedProductController>().recommendedProductList[pageId];
-
-    //Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
+    Get.find<ProductController>().getProductList(widget.shopId);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -61,7 +63,7 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
                       ProductModel productModel = productController.productList[index];
                       return GestureDetector(
                         onTap: () {
-                          Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
+                          //Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
                         },
                         child: Container(
                           margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height15),

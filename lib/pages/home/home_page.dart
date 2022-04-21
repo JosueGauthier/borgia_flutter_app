@@ -27,9 +27,9 @@ class _HomePageState extends State<HomePage> {
     AuthPage(),
     CartHistory(),
 
-    ShopPageDetail(),
+    //ShopPageDetail(),
 
-    //ProfilePage(),
+    ProfilePage(),
   ];
 
   void onTapNav(int index) {

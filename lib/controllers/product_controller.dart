@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:get/get.dart';
@@ -16,8 +18,8 @@ class ProductController extends GetxController {
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
-  Future<void> getProductList() async {
-    Response response = await productRepo.getProductList();
+  Future<void> getProductList(int shop_id) async {
+    Response response = await productRepo.getProductList(shop_id);
     //print(response);
 
     print("Product status code " + response.statusCode.toString());
@@ -30,13 +32,14 @@ class ProductController extends GetxController {
       List response_body = response.body;
 
       print("the length is " + response_body.length.toString());
+      //print("the shop number is " + response_body.length.toString());
 
       for (var i = 0; i < response_body.length; i++) {
         _productList.add(ProductModel.fromJson(response_body[i]));
       }
       _isLoaded = true;
 
-      //inspect(_shopList);
+      //inspect(_productList);
 
       update();
     } else {}

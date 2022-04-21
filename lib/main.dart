@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.find<CartController>().getCartData();
     Get.find<ShopController>().getShopList();
-    Get.find<ProductController>().getProductList();
+    //Get.find<ProductController>().getProductList();
     //Get.find<RecommendedProductController>().getRecomendedProductList();
     return GetBuilder<PopularProductController>(
       builder: (_) {
