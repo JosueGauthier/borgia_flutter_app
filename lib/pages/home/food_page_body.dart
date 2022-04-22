@@ -115,7 +115,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     return GestureDetector(
                       onTap: () {
                         print(shopModel.id);
-                        Get.toNamed(RouteHelper.getShopDetail(shopModel.id!, "home"));
+                        Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
                       },
                       child: Container(
                         margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height15),

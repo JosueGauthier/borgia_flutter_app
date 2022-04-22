@@ -1,5 +1,7 @@
+import 'package:borgiaflutterapp/controllers/category_controller.dart';
 import 'package:borgiaflutterapp/controllers/product_controller.dart';
 import 'package:borgiaflutterapp/controllers/shop_controller.dart';
+import 'package:borgiaflutterapp/data/repository/category_list_repo.dart';
 import 'package:borgiaflutterapp/data/repository/product_repo.dart';
 import 'package:borgiaflutterapp/data/repository/shop_repo.dart';
 import 'package:get/get.dart';
@@ -26,6 +28,7 @@ Future<void> init() async {
   //! repos
   Get.lazyPut(() => ShopRepo(apiClient: Get.find()));
   Get.lazyPut(() => ProductRepo(apiClient: Get.find()));
+  Get.lazyPut(() => CategoryOfShopRepo(apiClient: Get.find()));
 
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedProductRepo(apiClient: Get.find()));
@@ -34,6 +37,7 @@ Future<void> init() async {
   //!controllers
   Get.lazyPut(() => ShopController(shopRepo: Get.find()));
   Get.lazyPut(() => ProductController(productRepo: Get.find()), fenix: true);
+  Get.lazyPut(() => CategoryOfShopController(categoryOfShopRepo: Get.find()));
 
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
   Get.lazyPut(() => RecommendedProductController(recommendedRepo: Get.find()));

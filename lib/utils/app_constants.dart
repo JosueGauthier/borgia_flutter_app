@@ -1,11 +1,13 @@
 class AppConstants {
   static const String SHOP_URI = "/api-links/shops/shops/?format=json";
   static const String PRODUCT_URI = "/api-links/shops/products/?shop=";
-  static const String CATEGORY_URI = "/api-links/category/category/12/";
+  static const String CATEGORY_URI = "/api-links/category/category/?module_id=";
   static const String PRODUCT_FROM_CATEGORY_URI = "/api-links/category/category-products/?category=";
 
   //http://localhost:8000/api-links/category/category-products/?category=13
   //http://localhost:8000/api-links/category/category/12/
+
+  //http://localhost:8000/api-links/category/category/?module_id=3
 
   static const String APP_NAME = "BorgiaApp";
   static const int APP_VERSION = 1;
