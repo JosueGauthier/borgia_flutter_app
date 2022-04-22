@@ -6,7 +6,7 @@ class ApiClient extends GetConnect implements GetxService {
   late Map<String, String> _mainHeaders;
 
   ApiClient({required this.appBaseUrl}) {
-    baseUrl = appBaseUrl;
+    baseUrl = "";
     timeout = Duration(seconds: 30);
     token = "";
     _mainHeaders = {
@@ -21,7 +21,7 @@ class ApiClient extends GetConnect implements GetxService {
     String url = baseUrl! + uri;
     print(url);
     try {
-      Response response = await get(uri);
+      Response response = await get(appBaseUrl + uri);
 
       //print(response.body);
 
@@ -38,7 +38,7 @@ class ApiClient extends GetConnect implements GetxService {
     String url = uri;
     print("the url" + url);
     try {
-      Response response = await get("/api-links/shops/products/1/");
+      Response response = await get(url);
       print(response.body);
 
       return response;
