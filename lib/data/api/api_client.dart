@@ -31,4 +31,20 @@ class ApiClient extends GetConnect implements GetxService {
       return Response(statusCode: 1, statusText: e.toString());
     }
   }
+
+  Future<Response> getDataWithoutBaseUrl(
+    String uri,
+  ) async {
+    String url = uri;
+    print("the url" + url);
+    try {
+      Response response = await get("/api-links/shops/products/1/");
+      print(response.body);
+
+      return response;
+    } catch (e) {
+      print("error" + e.toString());
+      return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
 }

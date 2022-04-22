@@ -4,8 +4,9 @@ import '../pages/cart/cart_page.dart';
 import '../pages/food/popularfooddetail.dart';
 import '../pages/food/recommended_food_detail.dart';
 import '../pages/home/home_page.dart';
-import '../pages/shop/category_list_shop.dart';
-import '../pages/shop/shop_page_detail.dart';
+import '../pages/shop/category_list_shop_page.dart';
+import '../pages/shop/product_list_from_category_page.dart';
+import '../pages/shop/shop_page_detail_page.dart';
 import '../pages/splash/splash_page.dart';
 
 class RouteHelper {
@@ -22,6 +23,8 @@ class RouteHelper {
 
   static const String cartPage = "/cart-page";
 
+  static const String productListFromCategory = "/product";
+
   //? formalisme pour passer des paramètres
 
   static String getSplashPage() => '$splashPage';
@@ -34,6 +37,8 @@ class RouteHelper {
   static String getShopDetail(int shopId, String pagefrom) => '$shopDetail?shopId=$shopId&page=$pagefrom';
 
   static String getCategoryListPage(int shopId, String pagefrom) => '$categoryListPage?shopId=$shopId&page=$pagefrom';
+
+  static String getProductList(int categoryId, String pagefrom) => '$productListFromCategory?categoryId=$categoryId&page=$pagefrom';
 
   static List<GetPage> routes = [
     GetPage(name: splashPage, page: () => SplashScreen()),
@@ -90,6 +95,17 @@ class RouteHelper {
           var pagefrom = Get.parameters['page'];
           return CategoryShop(
             shopId: int.parse(shopId!),
+            pagefrom: pagefrom!,
+          );
+        },
+        transition: Transition.fadeIn),
+    GetPage(
+        name: productListFromCategory,
+        page: () {
+          var categoryId = Get.parameters['categoryId'];
+          var pagefrom = Get.parameters['page'];
+          return ProductListFromCategoryPage(
+            categoryId: int.parse(categoryId!),
             pagefrom: pagefrom!,
           );
         },

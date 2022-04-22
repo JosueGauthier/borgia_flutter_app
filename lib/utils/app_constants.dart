@@ -1,8 +1,10 @@
 class AppConstants {
   static const String SHOP_URI = "/api-links/shops/shops/?format=json";
   static const String PRODUCT_URI = "/api-links/shops/products/?shop=";
+
   static const String CATEGORY_URI = "/api-links/category/category/?module_id=";
   static const String PRODUCT_FROM_CATEGORY_URI = "/api-links/category/category-products/?category=";
+  static const String ONE_PRODUCT_URI = "/api-links/shops/products/";
 
   //http://localhost:8000/api-links/category/category-products/?category=13
   //http://localhost:8000/api-links/category/category/12/

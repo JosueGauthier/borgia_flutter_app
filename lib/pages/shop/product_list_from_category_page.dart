@@ -1,12 +1,11 @@
-import 'package:borgiaflutterapp/controllers/category_controller.dart';
-import 'package:borgiaflutterapp/controllers/product_controller.dart';
-import 'package:borgiaflutterapp/models/categories_shop_model.dart';
+import 'package:borgiaflutterapp/models/product_list_from_category_models.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../controllers/product_from_category_controller.dart';
 import '../../widget/app_icon.dart';
 
 import '../../routes/route_helper.dart';
@@ -16,28 +15,46 @@ import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
 import '../../widget/small_text.dart';
 
-class CategoryShop extends StatefulWidget {
+class ProductListFromCategoryPage extends StatefulWidget {
+  /*
+
+  Etapes
+  On arrive sur la page depuis page list categorie du magasin
+
+  On obtient la liste Product From Category List
+  -> http://localhost:8000/api-links/category/category-products/?category=12
+
+  On obtient un liste des liens des produits -> exemple de lien "http://localhost:8000/api-links/shops/products/1/",
+
+  On parcourt la liste pour obtenir les productModel de chaque lien
+
+  On affiche 
+
+  
+  
+  */
   final String pagefrom;
-  final int shopId;
-  const CategoryShop({
+  final int categoryId;
+  const ProductListFromCategoryPage({
     Key? key,
-    required this.shopId,
+    required this.categoryId,
     required this.pagefrom,
   }) : super(key: key);
 
   @override
-  State<CategoryShop> createState() => _CategoryShopState();
+  State<ProductListFromCategoryPage> createState() => _ProductListFromCategoryPageState();
 }
 
-class _CategoryShopState extends State<CategoryShop> {
+class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPage> {
   @override
   Widget build(BuildContext context) {
-    Get.find<CategoryOfShopController>().getCategoryList(widget.shopId);
+    Get.find<ProductFromCategoryController>().getProduct(widget.categoryId);
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         children: [
+          //! header Text  + cart
           Container(
             height: Dimensions.height100 * 1,
             width: double.maxFinite,
@@ -47,7 +64,7 @@ class _CategoryShopState extends State<CategoryShop> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 BigText(
-                  text: "Category of ShopX ...", //todo add name of the shop
+                  text: "Product list from categoryX", //todo add name of the shop
                   size: Dimensions.height30,
                   color: Colors.white,
                 ),
@@ -55,15 +72,17 @@ class _CategoryShopState extends State<CategoryShop> {
               ],
             ),
           ),
-          Expanded(child: SingleChildScrollView(child: GetBuilder<CategoryOfShopController>(builder: (categoryOfShopController) {
-            return categoryOfShopController.isLoaded
+          //! Scroll list des produits de la categorie asociée
+          Expanded(child: SingleChildScrollView(child: GetBuilder<ProductFromCategoryController>(builder: (productListController) {
+            print("the list is: " + productListController.productList.toString());
+            print("the link list is: " + productListController.productLinkList.toString());
+            return productListController.isLoaded
                 ? ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: categoryOfShopController.categoryOfShopList.length,
+                    itemCount: productListController.productList.length,
                     itemBuilder: (context, index) {
-                      CategoryOfShopModel categoryModel = categoryOfShopController.categoryOfShopList[index];
-
+                      ProductModel productModel = productListController.productList[index];
                       return GestureDetector(
                         onTap: () {
                           //Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
@@ -80,20 +99,34 @@ class _CategoryShopState extends State<CategoryShop> {
                                     Container(
                                       height: Dimensions.height100,
                                       width: Dimensions.listviewimgSize,
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
+                                      decoration: BoxDecoration(
+                                          //color: Colors.amber,
+                                          /*image: DecorationImage(
+                                            fit: BoxFit.contain,
+                                            image: NetworkImage(productModel.productImage!),
+                                          ),*/
+                                          borderRadius: BorderRadius.circular(Dimensions.width20)),
                                       child: CachedNetworkImage(
                                         fit: BoxFit.contain,
-                                        imageUrl: categoryModel.categoryImage!,
-                                        placeholder: (context, url) => Center(
-                                          child: SizedBox(
-                                            height: Dimensions.height45,
-                                            width: Dimensions.height45,
-                                            child: CircularProgressIndicator(
-                                              color: AppColors.secondColor,
-                                            ),
-                                          ),
-                                        ),
+                                        imageUrl: productModel.productImage!,
+                                        placeholder: (context, url) => CircularProgressIndicator(),
                                         errorWidget: (context, url, error) => Image(image: AssetImage("assets/image/errorimage.png")),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      left: 0,
+                                      top: 0,
+                                      child: Container(
+                                        height: Dimensions.height20 * 2,
+                                        width: Dimensions.height20 * 2,
+                                        decoration: BoxDecoration(
+                                            color: Colors.transparent,
+                                            image: DecorationImage(
+                                              //colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.5), BlendMode.dstATop),
+                                              fit: BoxFit.contain,
+                                              image: AssetImage("assets/image/pinte_png8_fondblanc.png"), //todo add item in function of the name of the product
+                                            ),
+                                            borderRadius: BorderRadius.circular(Dimensions.width20)),
                                       ),
                                     ),
                                   ],
@@ -117,13 +150,30 @@ class _CategoryShopState extends State<CategoryShop> {
                                             height: Dimensions.height10,
                                           ),
                                           BigText(
-                                            text: categoryModel.name!,
+                                            text: productModel.name!,
                                             size: Dimensions.height25,
                                           ),
                                           SizedBox(
                                             height: Dimensions.height10,
                                           ),
-                                          SmallText(allowOverFlow: true, maxLines: 2, text: categoryModel.order.toString()),
+                                          SmallText(allowOverFlow: true, maxLines: 2, text: productModel.manualPrice!),
+                                          /* SizedBox(
+                                          height: Dimensions.height10,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            IconAndTextWidget(icon: Icons.circle, text: "Normal", iconcolor: Colors.amber),
+                                            SizedBox(
+                                              width: 0,
+                                            ),
+                                            IconAndTextWidget(icon: Icons.location_pin, text: "1.7 km", iconcolor: AppColors.mainColor),
+                                            SizedBox(
+                                              width: 0,
+                                            ),
+                                            IconAndTextWidget(icon: Icons.lock_clock, text: "16 min", iconcolor: Colors.pink),
+                                          ],
+                                        ) */
                                         ],
                                       ),
                                     ),

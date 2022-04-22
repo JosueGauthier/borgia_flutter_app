@@ -26,7 +26,7 @@ class ShopController extends GetxController {
     if (response.statusCode == 200) {
       _shopList = [];
 
-      print("response : " + response.body.toString());
+      //print("response : " + response.body.toString());
 
       List a = response.body;
 

@@ -29,7 +29,7 @@ class CategoryOfShopController extends GetxController {
     if (response.statusCode == 200) {
       _categoryOfShopList = [];
 
-      print("response : " + response.body.toString());
+      //print("response : " + response.body.toString());
 
       List response_body = response.body;
 

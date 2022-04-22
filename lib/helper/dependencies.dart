@@ -1,7 +1,9 @@
 import 'package:borgiaflutterapp/controllers/category_controller.dart';
 import 'package:borgiaflutterapp/controllers/product_controller.dart';
+import 'package:borgiaflutterapp/controllers/product_from_category_controller.dart';
 import 'package:borgiaflutterapp/controllers/shop_controller.dart';
 import 'package:borgiaflutterapp/data/repository/category_list_repo.dart';
+import 'package:borgiaflutterapp/data/repository/product_list_from_category_repo.dart';
 import 'package:borgiaflutterapp/data/repository/product_repo.dart';
 import 'package:borgiaflutterapp/data/repository/shop_repo.dart';
 import 'package:get/get.dart';
@@ -26,20 +28,24 @@ Future<void> init() async {
   Get.lazyPut(() => ApiClient(appBaseUrl: AppConstants.BASE_URL));
 
   //! repos
-  Get.lazyPut(() => ShopRepo(apiClient: Get.find()));
-  Get.lazyPut(() => ProductRepo(apiClient: Get.find()));
-  Get.lazyPut(() => CategoryOfShopRepo(apiClient: Get.find()));
 
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
 
+  Get.lazyPut(() => ShopRepo(apiClient: Get.find()));
+  Get.lazyPut(() => ProductRepo(apiClient: Get.find()));
+  Get.lazyPut(() => CategoryOfShopRepo(apiClient: Get.find()));
+  Get.lazyPut(() => ProductFromCategoryRepo(apiClient: Get.find()));
+
   //!controllers
-  Get.lazyPut(() => ShopController(shopRepo: Get.find()));
-  Get.lazyPut(() => ProductController(productRepo: Get.find()), fenix: true); //, fenix = true permet de ne pas supprimer le controller
-  Get.lazyPut(() => CategoryOfShopController(categoryOfShopRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
   Get.lazyPut(() => RecommendedProductController(recommendedRepo: Get.find()));
   Get.lazyPut(() => CartController(cartRepo: Get.find()));
+
+  Get.lazyPut(() => ShopController(shopRepo: Get.find()));
+  Get.lazyPut(() => ProductController(productRepo: Get.find()), fenix: true); //, fenix = true permet de ne pas supprimer le controller
+  Get.lazyPut(() => CategoryOfShopController(categoryOfShopRepo: Get.find()), fenix: true);
+  Get.lazyPut(() => ProductFromCategoryController(productFromCategoryRepo: Get.find(), productRepo: Get.find()), fenix: true);
 }
