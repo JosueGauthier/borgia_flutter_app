@@ -36,8 +36,8 @@ Future<void> init() async {
 
   //!controllers
   Get.lazyPut(() => ShopController(shopRepo: Get.find()));
-  Get.lazyPut(() => ProductController(productRepo: Get.find()), fenix: true);
-  Get.lazyPut(() => CategoryOfShopController(categoryOfShopRepo: Get.find()));
+  Get.lazyPut(() => ProductController(productRepo: Get.find()), fenix: true); //, fenix = true permet de ne pas supprimer le controller
+  Get.lazyPut(() => CategoryOfShopController(categoryOfShopRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
   Get.lazyPut(() => RecommendedProductController(recommendedRepo: Get.find()));
