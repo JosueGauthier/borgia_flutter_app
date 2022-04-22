@@ -1,5 +1,6 @@
 import 'package:borgiaflutterapp/controllers/product_controller.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -61,6 +62,7 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
                     itemCount: productController.productList.length,
                     itemBuilder: (context, index) {
                       ProductModel productModel = productController.productList[index];
+                      var product_image = NetworkImage(productModel.productImage!);
                       return GestureDetector(
                         onTap: () {
                           //Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
@@ -79,15 +81,21 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
                                       width: Dimensions.listviewimgSize,
                                       decoration: BoxDecoration(
                                           //color: Colors.amber,
-                                          image: DecorationImage(
+                                          /*image: DecorationImage(
                                             fit: BoxFit.contain,
                                             image: NetworkImage(productModel.productImage!),
-                                          ),
+                                          ),*/
                                           borderRadius: BorderRadius.circular(Dimensions.width20)),
+                                      child: CachedNetworkImage(
+                                        fit: BoxFit.contain,
+                                        imageUrl: productModel.productImage!,
+                                        placeholder: (context, url) => CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) => Image(image: AssetImage("assets/image/errorimage.png")),
+                                      ),
                                     ),
                                     Positioned(
-                                      right: 0,
-                                      bottom: 0,
+                                      left: 0,
+                                      top: 0,
                                       child: Container(
                                         height: Dimensions.height20 * 2,
                                         width: Dimensions.height20 * 2,
