@@ -87,7 +87,12 @@ flutter:
           weight: 700
         - asset: assets/font/Roboto-Black.ttf
           weight: 900
-
+    - family: AnglicanText
+      fonts:
+        - asset: assets/font/AnglicanText.ttf
+    - family: OldEnglishFive
+      fonts:
+        - asset: assets/font/OldEnglishFive.ttf
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

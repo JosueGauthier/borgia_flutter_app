@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/widget/small_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,6 +15,8 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
+  TextEditingController nameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +53,7 @@ class _AuthPageState extends State<AuthPage> {
                 padding: EdgeInsets.only(left: Dimensions.width20 * 2, right: Dimensions.width20 * 2),
                 child: Column(children: <Widget>[
                   TextFormField(
+                    controller: nameController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.transparent),
@@ -121,7 +126,10 @@ class _AuthPageState extends State<AuthPage> {
                   color: AppColors.darkgrey,
                 ),
                 onPressed: () {
-                  Get.offNamed(RouteHelper.getInitial());
+                  print(nameController.text);
+                  inspect(nameController);
+                  Get.snackbar("Madeby Khalvin", "U can't test me");
+                  //Get.offNamed(RouteHelper.getInitial());
                 },
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(

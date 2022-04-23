@@ -71,11 +71,6 @@ class _WelcomePageState extends State<WelcomePage> {
       children: [
         //! sliderSection
 
-        /* GetBuilder<PopularProductController>(builder: (popularProductsController) {
-          return popularProductsController.isLoaded
-              ? Container() : CircularProgressIndicator(
-                  color: AppColors.mainColor,
-                ); */
         Container(
           //color: Colors.blue,
           height: Dimensions.height100 * 2.7,
@@ -89,16 +84,6 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
 
         //!Dots section
-        /* GetBuilder<PopularProductController>(builder: (popularProductsController) {
-          int dotsnumber = popularProductsController.popularProductList.length;
-
-
-          //print(popularProductsController.popularProductList.length);
-          return ...
-
-          }),
-          
-           */
 
         DotsIndicator(
           dotsCount: _nb_item_slider_section <= 0 ? 1 : _nb_item_slider_section,
@@ -138,7 +123,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     ShopModel shopModel = shopController.shopList[index];
                     return GestureDetector(
                       onTap: () {
-                        print(shopModel.id);
+                        //print(shopModel.id);
                         Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
                       },
                       child: Container(
@@ -313,10 +298,10 @@ class _WelcomePageState extends State<WelcomePage> {
             child: Container(
               height: Dimensions.height45 * 2,
               margin: EdgeInsets.only(left: Dimensions.width25, right: Dimensions.width25, bottom: Dimensions.height20),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.radius30), color: Colors.white, boxShadow: [
-                BoxShadow(color: Color.fromARGB(255, 221, 216, 216), blurRadius: 10, offset: Offset(2, 5)),
-                BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
-                BoxShadow(color: Colors.white, offset: Offset(5, 0)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.radius30), color: AppColors.greyColor.withOpacity(0.9), boxShadow: [
+                //BoxShadow(color: Color.fromARGB(255, 221, 216, 216), blurRadius: 10, offset: Offset(2, 5)),
+                //BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
+                //BoxShadow(color: Colors.white, offset: Offset(5, 0)),
               ]),
               child: Container(
                   padding: EdgeInsets.only(top: Dimensions.height45 / 2, left: Dimensions.width25, right: Dimensions.width15),

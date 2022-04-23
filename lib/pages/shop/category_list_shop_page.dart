@@ -36,11 +36,17 @@ class _CategoryShopState extends State<CategoryShop> {
       backgroundColor: Colors.white,
       body: Column(
         children: [
+          //! header
           Container(
+            decoration: BoxDecoration(
+                color: AppColors.mainColor,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(Dimensions.height20),
+                  bottomRight: Radius.circular(Dimensions.height20),
+                )),
             height: Dimensions.height100 * 1,
             width: double.maxFinite,
             padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height10),
-            color: AppColors.mainColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -64,7 +70,7 @@ class _CategoryShopState extends State<CategoryShop> {
 
                       return GestureDetector(
                         onTap: () {
-                          print(categoryModel.id);
+                          //print(categoryModel.id);
                           Get.toNamed(RouteHelper.getProductList(categoryModel.id!, "home"));
                         },
                         child: Container(

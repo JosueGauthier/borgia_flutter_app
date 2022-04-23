@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:borgiaflutterapp/models/product_list_from_category_models.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/widget/small_text_MaterialStateProperty.dart';
@@ -49,27 +51,6 @@ class ProductListFromCategoryPage extends StatefulWidget {
 class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPage> {
   bool pressed = true;
 
-  Widget _buildPopupDialog(BuildContext context) {
-    return new AlertDialog(
-      title: const Text('Popup example'),
-      content: new Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text("Hello"),
-        ],
-      ),
-      actions: <Widget>[
-        new ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text('Close'),
-        ),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     Get.find<ProductFromCategoryController>().getProduct(widget.categoryId);
@@ -107,6 +88,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                     itemCount: productListController.productList.length,
                     itemBuilder: (context, index) {
                       ProductModel productModel = productListController.productList[index];
+                      print(productModel.productImage!);
                       return GestureDetector(
                         onTap: () {
                           //Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
@@ -124,20 +106,22 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                       height: Dimensions.height100,
                                       width: Dimensions.height100,
                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
-                                      child: CachedNetworkImage(
-                                        fit: BoxFit.contain,
-                                        imageUrl: productModel.productImage!,
-                                        placeholder: (context, url) => Center(
-                                          child: SizedBox(
-                                            height: Dimensions.height45,
-                                            width: Dimensions.height45,
-                                            child: CircularProgressIndicator(
-                                              color: AppColors.secondColor,
+                                      child: (productModel.productImage == null)
+                                          ? Container()
+                                          : CachedNetworkImage(
+                                              fit: BoxFit.contain,
+                                              imageUrl: productModel.productImage!,
+                                              placeholder: (context, url) => Center(
+                                                child: SizedBox(
+                                                  height: Dimensions.height45,
+                                                  width: Dimensions.height45,
+                                                  child: CircularProgressIndicator(
+                                                    color: AppColors.secondColor,
+                                                  ),
+                                                ),
+                                              ),
+                                              errorWidget: (context, url, error) => const Image(image: AssetImage("assets/image/errorimage.png")),
                                             ),
-                                          ),
-                                        ),
-                                        errorWidget: (context, url, error) => Image(image: AssetImage("assets/image/errorimage.png")),
-                                      ),
                                     ),
                                   ],
                                 ),
@@ -191,8 +175,11 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                                                 setState(() {
                                                                   pressed = !pressed;
                                                                 });
-
-                                                                showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context));
+                                                                showDialog(
+                                                                    context: context,
+                                                                    builder: (_) {
+                                                                      return MyDialog(productModel: productModel, productListController: productListController);
+                                                                    });
 
                                                                 //Get.offNamed(RouteHelper.getInitial());
                                                               },
@@ -241,92 +228,140 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
   }
 }
 
+class MyDialog extends StatefulWidget {
+  final ProductModel productModel;
+  final ProductFromCategoryController productListController;
 
-/* bottomNavigationBar: GetBuilder<PopularProductController>(
-          builder: (controller) {
-            return Column(mainAxisSize: MainAxisSize.min, children: [
-              Container(
-                padding:
-                    EdgeInsets.only(left: Dimensions.width20 * 3.5, right: Dimensions.width20 * 3.5, top: Dimensions.height10, bottom: Dimensions.height10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        controller.setQuantity(false);
-                      },
-                      child: AppIcon(
-                        iconData: Icons.remove,
-                        backgroundColor: AppColors.mainColor,
-                        iconColor: Colors.white,
-                        iconSize: 30,
-                      ),
-                    ),
-                    BigText(
-                      text: "\$ ${product.price} x " + controller.inCartItem.toString(),
-                      color: AppColors.mainBlackColor,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        controller.setQuantity(true);
-                      },
-                      child: AppIcon(
-                        iconData: Icons.add,
-                        backgroundColor: AppColors.mainColor,
-                        iconColor: Colors.white,
-                        iconSize: 30,
-                      ),
-                    )
-                  ],
+  const MyDialog({
+    Key? key,
+    required this.productListController,
+    required this.productModel,
+  }) : super(key: key);
+
+  @override
+  _MyDialogState createState() => new _MyDialogState();
+}
+
+class _MyDialogState extends State<MyDialog> {
+  Color _AddRemoveColor = AppColors.secondColor;
+  int qty = 0;
+  bool txtbuttonpressed = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.height20)),
+      title: BigText(text: widget.productModel.name!, size: Dimensions.height30),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            //color: Colors.amber,
+            width: Dimensions.width45 * 6,
+            padding: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      widget.productListController.setQuantity(false);
+                      if (widget.productListController.quantity <= 0) {
+                        setState(() {
+                          _AddRemoveColor = AppColors.mainColor;
+                        });
+
+                        Timer(
+                            Duration(milliseconds: 500),
+                            (() => setState(() {
+                                  _AddRemoveColor = AppColors.secondColor;
+                                })));
+                      }
+                    });
+                  },
+                  child: AppIcon(
+                    iconData: Icons.remove,
+                    backgroundColor: _AddRemoveColor,
+                    iconColor: Colors.white,
+                    iconSize: 30,
+                  ),
                 ),
-              ),
-              Container(
-                padding: EdgeInsets.only(
-                  top: Dimensions.height20,
-                  bottom: Dimensions.height20,
-                  left: Dimensions.width20,
-                  right: Dimensions.width20,
+                BigText(
+                  text: "\$ 10 x " + widget.productListController.inCartItem.toString(),
+                  color: AppColors.mainBlackColor,
+                  size: 20,
                 ),
-                child: Container(
-                  margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 0, right: 0),
-                      padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
-                      decoration: BoxDecoration(color: Color.fromARGB(255, 230, 228, 228), borderRadius: BorderRadius.circular(Dimensions.radius20)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.favorite,
-                            color: AppColors.mainColor,
-                            size: 25,
-                          ),
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        controller.popular_addItem(product);
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      widget.productListController.setQuantity(true);
+                    });
+                  },
+                  child: AppIcon(
+                    iconData: Icons.add,
+                    backgroundColor: AppColors.secondColor,
+                    iconColor: Colors.white,
+                    iconSize: 30,
+                  ),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: Dimensions.height20,
+          ),
+          Container(
+            child: ElevatedButton(
+                child: SmallText(
+                  text: " Je me bucque !",
+                  size: Dimensions.height30,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  setState(() {
+                    txtbuttonpressed = !txtbuttonpressed;
+                  });
+
+                  Timer(
+                      Duration(seconds: 3),
+                      (() => setState(() {
+                            txtbuttonpressed = !txtbuttonpressed;
+                          })));
+
+                  /*  setState(() {
+                    final timer = Timer(
+                      const Duration(seconds: 1),
+                      () {
+                        txtbuttonpressed = !txtbuttonpressed;
+                        // Navigate to your favorite place
                       },
-                      child: Container(
-                        padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
-                        decoration: BoxDecoration(color: AppColors.mainColor, borderRadius: BorderRadius.circular(Dimensions.radius20)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            BigText(
-                              size: 22,
-                              text: "\$ ${product.price! * controller.inCartItem} | Add to cart",
-                              color: Colors.white,
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  ]),
-                ),
-              ),
-            ]);
+                    );
+
+                    txtbuttonpressed = !txtbuttonpressed;
+                  }); */
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
+                  )),
+                  padding: MaterialStateProperty.all(
+                      EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10)),
+                  backgroundColor:
+                      txtbuttonpressed ? MaterialStateProperty.all<Color>(AppColors.greyColormedium) : MaterialStateProperty.all<Color>(AppColors.mainColor),
+                )),
+          ),
+        ],
+      ),
+      actions: <Widget>[
+        ElevatedButton(
+          style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(AppColors.greyColormedium)),
+          onPressed: () {
+            Navigator.of(context).pop();
           },
-        ) */
+          child: const Text('Retour'),
+        ),
+      ],
+    );
+  }
+}

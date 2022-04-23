@@ -57,7 +57,7 @@ class ProductController extends GetxController {
 
       List response_body = response.body;
 
-      print("the length is " + response_body.length.toString());
+      //print("the length is " + response_body.length.toString());
       //print("the shop number is " + response_body.length.toString());
 
       for (var i = 0; i < response_body.length; i++) {

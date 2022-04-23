@@ -8,7 +8,7 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../../utils/colors.dart';
 import '../cart/cart_history.dart';
 import '../shop/shop_page_detail_page.dart';
-import 'main_full_page.dart';
+import 'welcome_page_with_header.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   late PersistentTabController _controller;
 
   List<Widget> pages = [
-    MainFoodPage(),
+    WelcomePageWithHeader(),
     AuthPage(),
     CartHistory(),
 

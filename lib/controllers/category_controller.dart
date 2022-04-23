@@ -18,7 +18,7 @@ class CategoryOfShopController extends GetxController {
     Response response = await categoryOfShopRepo.getProductList(shop_id);
     //print(response);
 
-    print("Category from shop status code " + response.statusCode.toString());
+    //print("Category from shop status code " + response.statusCode.toString());
 
     if (response.statusCode == 200) {
       _categoryOfShopList = [];
@@ -27,7 +27,7 @@ class CategoryOfShopController extends GetxController {
 
       List response_body = response.body;
 
-      print("the length is " + response_body.length.toString());
+      //print("the length is " + response_body.length.toString());
       //print("the shop number is " + response_body.length.toString());
 
       for (var i = 0; i < response_body.length; i++) {

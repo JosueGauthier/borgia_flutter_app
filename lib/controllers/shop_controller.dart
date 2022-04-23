@@ -30,7 +30,7 @@ class ShopController extends GetxController {
 
       List a = response.body;
 
-      print("the length is " + a.length.toString());
+      //print("the length is " + a.length.toString());
 
       for (var i = 0; i < a.length; i++) {
         _shopList.add(ShopModel.fromJson(a[i]));

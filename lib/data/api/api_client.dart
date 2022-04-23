@@ -19,7 +19,7 @@ class ApiClient extends GetConnect implements GetxService {
     String uri,
   ) async {
     String url = baseUrl! + uri;
-    print(url);
+    //print(url);
     try {
       Response response = await get(appBaseUrl + uri);
 
@@ -36,10 +36,10 @@ class ApiClient extends GetConnect implements GetxService {
     String uri,
   ) async {
     String url = uri;
-    print("the url" + url);
+    //print("the url" + url);
     try {
       Response response = await get(url);
-      print(response.body);
+      //print(response.body);
 
       return response;
     } catch (e) {
