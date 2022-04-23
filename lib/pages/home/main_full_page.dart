@@ -4,7 +4,7 @@ import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
 import '../../widget/small_text.dart';
-import 'food_page_body.dart';
+import 'welcome_page.dart';
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({Key? key}) : super(key: key);
@@ -58,7 +58,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
 
             Expanded(
                 child: SingleChildScrollView(
-              child: FoodPageBody(),
+              child: WelcomePage(),
             )),
           ],
         ));

@@ -99,34 +99,20 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                     Container(
                                       height: Dimensions.height100,
                                       width: Dimensions.listviewimgSize,
-                                      decoration: BoxDecoration(
-                                          //color: Colors.amber,
-                                          /*image: DecorationImage(
-                                            fit: BoxFit.contain,
-                                            image: NetworkImage(productModel.productImage!),
-                                          ),*/
-                                          borderRadius: BorderRadius.circular(Dimensions.width20)),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
                                       child: CachedNetworkImage(
                                         fit: BoxFit.contain,
                                         imageUrl: productModel.productImage!,
-                                        placeholder: (context, url) => CircularProgressIndicator(),
-                                        errorWidget: (context, url, error) => Image(image: AssetImage("assets/image/errorimage.png")),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 0,
-                                      top: 0,
-                                      child: Container(
-                                        height: Dimensions.height20 * 2,
-                                        width: Dimensions.height20 * 2,
-                                        decoration: BoxDecoration(
-                                            color: Colors.transparent,
-                                            image: DecorationImage(
-                                              //colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.5), BlendMode.dstATop),
-                                              fit: BoxFit.contain,
-                                              image: AssetImage("assets/image/pinte_png8_fondblanc.png"), //todo add item in function of the name of the product
+                                        placeholder: (context, url) => Center(
+                                          child: SizedBox(
+                                            height: Dimensions.height45,
+                                            width: Dimensions.height45,
+                                            child: CircularProgressIndicator(
+                                              color: AppColors.secondColor,
                                             ),
-                                            borderRadius: BorderRadius.circular(Dimensions.width20)),
+                                          ),
+                                        ),
+                                        errorWidget: (context, url, error) => Image(image: AssetImage("assets/image/errorimage.png")),
                                       ),
                                     ),
                                   ],

@@ -15,14 +15,14 @@ import '../../widget/app_column.dart';
 import '../../widget/big_text.dart';
 import '../../widget/small_text.dart';
 
-class FoodPageBody extends StatefulWidget {
-  const FoodPageBody({Key? key}) : super(key: key);
+class WelcomePage extends StatefulWidget {
+  const WelcomePage({Key? key}) : super(key: key);
 
   @override
-  State<FoodPageBody> createState() => _FoodPageBodyState();
+  State<WelcomePage> createState() => _WelcomePageState();
 }
 
-class _FoodPageBodyState extends State<FoodPageBody> {
+class _WelcomePageState extends State<WelcomePage> {
   PageController pageController = PageController(viewportFraction: 0.9);
 
   var _currentPagevalue = 0.0;

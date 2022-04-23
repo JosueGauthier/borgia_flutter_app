@@ -1,12 +1,6 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/data/repository/category_list_repo.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
-import 'package:borgiaflutterapp/models/product_model.dart';
-import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:get/get.dart';
-
-import '../data/repository/product_repo.dart';
 
 class CategoryOfShopController extends GetxController {
   final CategoryOfShopRepo categoryOfShopRepo;
