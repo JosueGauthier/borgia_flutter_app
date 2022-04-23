@@ -1,14 +1,9 @@
-import 'package:borgiaflutterapp/widget/icon_and_text.dart';
-import 'package:borgiaflutterapp/widget/profile_box.dart';
 import 'package:borgiaflutterapp/widget/small_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-
+import 'package:get/get.dart';
+import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../../widget/app_icon.dart';
-import '../../widget/big_text.dart';
-import '../../widget/textfieldform.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -20,8 +15,6 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle style = ElevatedButton.styleFrom(onPrimary: Colors.black, primary: Colors.blue, textStyle: const TextStyle(fontSize: 20));
-
     return Scaffold(
         body: Column(children: [
       Padding(
@@ -29,7 +22,7 @@ class _AuthPageState extends State<AuthPage> {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: Dimensions.height20 * 5,
+              height: Dimensions.height20 * 4,
             ),
             Container(
               height: Dimensions.height100 * 2.5,
@@ -111,7 +104,8 @@ class _AuthPageState extends State<AuthPage> {
                     onTap: () {},
                     child: SmallText(
                       text: "Mot de passe oublié ?",
-                      size: Dimensions.height20,
+                      color: AppColors.mainColor,
+                      size: Dimensions.height15,
                     ),
                   ),
                 ),
@@ -123,14 +117,19 @@ class _AuthPageState extends State<AuthPage> {
             ElevatedButton(
                 child: SmallText(
                   text: "Login",
-                  //size: 20,
+                  size: Dimensions.height20,
                   color: AppColors.darkgrey,
                 ),
-                onPressed: () {},
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-                  if (states.contains(MaterialState.pressed)) return Colors.green;
-                  return AppColors.greyColor;
-                })))
+                onPressed: () {
+                  Get.offNamed(RouteHelper.getInitial());
+                },
+                style: ButtonStyle(
+                    padding: MaterialStateProperty.all(
+                        EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) return AppColors.secondColor;
+                      return AppColors.greyColor;
+                    })))
           ],
         ),
       )

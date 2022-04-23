@@ -25,8 +25,6 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   Future<void> _loadRessources() async {
     //await Get.find<PopularProductController>().getPopularProductList();
     //await Get.find<RecommendedProductController>().getRecomendedProductList();
-
-    await Get.find<ShopController>().getShopList();
   }
 
   @override
@@ -51,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
     animation = new CurvedAnimation(parent: animationController, curve: Curves.bounceOut); //bounceOut
 
-    Timer(Duration(seconds: 3), (() => Get.offNamed(RouteHelper.getInitial())));
+    Timer(Duration(seconds: 3), (() => Get.offNamed(RouteHelper.getAuthPage())));
   }
 
   @override

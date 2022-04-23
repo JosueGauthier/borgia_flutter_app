@@ -27,7 +27,8 @@ class AppColors {
   static final Color altmainColor = Color.fromARGB(255, 242, 46, 46);
   static final Color greyColor = Color.fromARGB(255, 242, 242, 242);
   static final Color altgreyColor = Color.fromARGB(100, 242, 242, 242);
-  static final Color darkgrey = const Color(0xFF545759);
+  static final Color greyColormedium = Color.fromARGB(170, 242, 242, 242);
+  static final Color darkgrey = Color.fromARGB(255, 109, 111, 112);
 
 //! theme vert fluo rose
 /*   static final Color mainColor = Color.fromARGB(255, 242, 46, 62);

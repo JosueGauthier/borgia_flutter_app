@@ -1,5 +1,6 @@
 import 'package:borgiaflutterapp/models/product_list_from_category_models.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
+import 'package:borgiaflutterapp/widget/small_text_MaterialStateProperty.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -46,6 +47,29 @@ class ProductListFromCategoryPage extends StatefulWidget {
 }
 
 class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPage> {
+  bool pressed = true;
+
+  Widget _buildPopupDialog(BuildContext context) {
+    return new AlertDialog(
+      title: const Text('Popup example'),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Hello"),
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Get.find<ProductFromCategoryController>().getProduct(widget.categoryId);
@@ -64,7 +88,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 BigText(
-                  text: "Product list from categoryX", //todo add name of the shop
+                  text: "Liste des produits", //todo add name of the shop
                   size: Dimensions.height30,
                   color: Colors.white,
                 ),
@@ -74,8 +98,8 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
           ),
           //! Scroll list des produits de la categorie asociée
           Expanded(child: SingleChildScrollView(child: GetBuilder<ProductFromCategoryController>(builder: (productListController) {
-            print("the list is: " + productListController.productList.toString());
-            print("the link list is: " + productListController.productLinkList.toString());
+            //print("the list is: " + productListController.productList.toString());
+            //print("the link list is: " + productListController.productLinkList.toString());
             return productListController.isLoaded
                 ? ListView.builder(
                     shrinkWrap: true,
@@ -88,7 +112,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                           //Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
                         },
                         child: Container(
-                          margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height15),
+                          margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10, bottom: Dimensions.height15),
                           child: Row(
                               //crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -98,7 +122,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                   children: [
                                     Container(
                                       height: Dimensions.height100,
-                                      width: Dimensions.listviewimgSize,
+                                      width: Dimensions.height100,
                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
                                       child: CachedNetworkImage(
                                         fit: BoxFit.contain,
@@ -120,51 +144,88 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
 
                                 //! text section
 
-                                //? expanded widget force container to take all the available space
                                 Expanded(
                                   child: Container(
                                     height: Dimensions.listviewTextHeigth + 10,
                                     decoration: BoxDecoration(
-                                        color: Color.fromARGB(255, 255, 255, 255),
+                                        color: Colors.white,
                                         borderRadius: BorderRadius.only(
                                             topRight: Radius.circular(Dimensions.height20), bottomRight: Radius.circular(Dimensions.height20))),
                                     child: Padding(
                                       padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
                                       child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           SizedBox(
                                             height: Dimensions.height10,
                                           ),
                                           BigText(
-                                            text: productModel.name!,
+                                            text: (productModel.name)!.capitalize!,
                                             size: Dimensions.height25,
                                           ),
                                           SizedBox(
                                             height: Dimensions.height10,
                                           ),
-                                          SmallText(allowOverFlow: true, maxLines: 2, text: productModel.manualPrice!),
-                                          /* SizedBox(
-                                          height: Dimensions.height10,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            IconAndTextWidget(icon: Icons.circle, text: "Normal", iconcolor: Colors.amber),
-                                            SizedBox(
-                                              width: 0,
-                                            ),
-                                            IconAndTextWidget(icon: Icons.location_pin, text: "1.7 km", iconcolor: AppColors.mainColor),
-                                            SizedBox(
-                                              width: 0,
-                                            ),
-                                            IconAndTextWidget(icon: Icons.lock_clock, text: "16 min", iconcolor: Colors.pink),
-                                          ],
-                                        ) */
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              BigText(size: Dimensions.height30, text: productModel.manualPrice.toString() + " €"),
+                                              Container(
+                                                //color: Colors.green,
+
+                                                child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                                    children: [
+                                                      GestureDetector(
+                                                        onTap: () {},
+                                                        child: Container(
+                                                          child: ElevatedButton(
+                                                              child: SmallText(
+                                                                text: "Buque moi !",
+                                                                size: Dimensions.height20,
+                                                                color: pressed ? AppColors.secondColor : Colors.white,
+                                                              ),
+                                                              onPressed: () {
+                                                                setState(() {
+                                                                  pressed = !pressed;
+                                                                });
+
+                                                                showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context));
+
+                                                                //Get.offNamed(RouteHelper.getInitial());
+                                                              },
+                                                              style: ButtonStyle(
+                                                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
+                                                                )),
+                                                                padding: MaterialStateProperty.all(EdgeInsets.only(
+                                                                    left: Dimensions.width20,
+                                                                    right: Dimensions.width20,
+                                                                    top: Dimensions.height10,
+                                                                    bottom: Dimensions.height10)),
+                                                                backgroundColor: pressed
+                                                                    ? MaterialStateProperty.all<Color>(AppColors.greyColormedium)
+                                                                    : MaterialStateProperty.all<Color>(AppColors.secondColor),
+                                                              )),
+                                                        ),
+                                                      )
+                                                    ]),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: Dimensions.height10,
+                                          ),
                                         ],
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
+
+                                //? expanded widget force container to take all the available space
                               ]),
                         ),
                       );

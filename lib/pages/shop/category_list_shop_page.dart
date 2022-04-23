@@ -45,7 +45,7 @@ class _CategoryShopState extends State<CategoryShop> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 BigText(
-                  text: "Category of ShopX ...", //todo add name of the shop
+                  text: "Category list", //todo add name of the shop
                   size: Dimensions.height30,
                   color: Colors.white,
                 ),
@@ -68,7 +68,7 @@ class _CategoryShopState extends State<CategoryShop> {
                           Get.toNamed(RouteHelper.getProductList(categoryModel.id!, "home"));
                         },
                         child: Container(
-                          margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height15),
+                          margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width20, bottom: Dimensions.height15),
                           child: Row(
                               //crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -77,8 +77,8 @@ class _CategoryShopState extends State<CategoryShop> {
                                 Stack(
                                   children: [
                                     Container(
-                                      height: Dimensions.height100,
-                                      width: Dimensions.listviewimgSize,
+                                      height: Dimensions.height100 * 1.3,
+                                      width: Dimensions.height100 * 1.3,
                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
                                       child: CachedNetworkImage(
                                         fit: BoxFit.contain,
@@ -101,28 +101,29 @@ class _CategoryShopState extends State<CategoryShop> {
                                 //! text section
 
                                 //? expanded widget force container to take all the available space
+
                                 Expanded(
                                   child: Container(
                                     height: Dimensions.listviewTextHeigth + 10,
                                     decoration: BoxDecoration(
-                                        color: Color.fromARGB(255, 255, 255, 255),
+                                        color: Colors.white,
                                         borderRadius: BorderRadius.only(
                                             topRight: Radius.circular(Dimensions.height20), bottomRight: Radius.circular(Dimensions.height20))),
                                     child: Padding(
                                       padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
                                       child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           SizedBox(
                                             height: Dimensions.height10,
                                           ),
                                           BigText(
-                                            text: categoryModel.name!,
+                                            text: (categoryModel.name)!.capitalize!,
                                             size: Dimensions.height25,
                                           ),
                                           SizedBox(
                                             height: Dimensions.height10,
                                           ),
-                                          SmallText(allowOverFlow: true, maxLines: 2, text: categoryModel.order.toString()),
                                         ],
                                       ),
                                     ),

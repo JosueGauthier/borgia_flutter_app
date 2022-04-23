@@ -1,3 +1,4 @@
+import 'package:borgiaflutterapp/pages/auth/auth_page.dart';
 import 'package:get/get.dart';
 
 import '../pages/cart/cart_page.dart';
@@ -11,6 +12,8 @@ import '../pages/splash/splash_page.dart';
 
 class RouteHelper {
   static const String splashPage = "/splash-page";
+  static const String authPage = "/auth-page";
+
   static const String initial = "/";
 
   static const String popularFood = "/popular-food";
@@ -28,6 +31,7 @@ class RouteHelper {
   //? formalisme pour passer des paramètres
 
   static String getSplashPage() => '$splashPage';
+  static String getAuthPage() => '$authPage';
   static String getInitial() => '$initial';
   static String getPopularFood(int pageId, String pagefrom) => '$popularFood?pageId=$pageId&page=$pagefrom';
   static String getRecommendedFood(int pageId, String pagefrom) => '$recommendedFood?pageId=$pageId&page=$pagefrom';
@@ -41,74 +45,99 @@ class RouteHelper {
   static String getProductList(int categoryId, String pagefrom) => '$productListFromCategory?categoryId=$categoryId&page=$pagefrom';
 
   static List<GetPage> routes = [
-    GetPage(name: splashPage, page: () => SplashScreen()),
-    GetPage(name: initial, page: () => HomePage()),
     GetPage(
-        name: popularFood,
-        page: () {
-          var pageId = Get.parameters['pageId'];
-          var pagefrom = Get.parameters['page'];
+      name: splashPage,
+      page: () {
+        return SplashScreen();
+      },
+      //transition: Transition.fadeIn
+    ),
+    GetPage(
+      name: authPage,
+      page: () {
+        return AuthPage();
+      },
+      //transition: Transition.fadeIn
+    ),
+    GetPage(
+      name: initial,
+      page: () {
+        return HomePage();
+      },
+      //transition: Transition.fadeIn
+    ),
+    GetPage(
+      name: popularFood,
+      page: () {
+        var pageId = Get.parameters['pageId'];
+        var pagefrom = Get.parameters['page'];
 
-          return PopularFoodDetail(
-            pageId: int.parse(pageId!),
-            pagefrom: pagefrom!,
-          );
-        },
-        transition: Transition.fadeIn),
+        return PopularFoodDetail(
+          pageId: int.parse(pageId!),
+          pagefrom: pagefrom!,
+        );
+      },
+      //transition: Transition.fadeIn
+    ),
     GetPage(
-        name: recommendedFood,
-        page: () {
-          var pageId = Get.parameters['pageId'];
-          var pagefrom = Get.parameters['page'];
-          return RecommendedFoodDetail(
-            pageId: int.parse(pageId!),
-            pagefrom: pagefrom!,
-          );
-        },
-        transition: Transition.fadeIn),
+      name: recommendedFood,
+      page: () {
+        var pageId = Get.parameters['pageId'];
+        var pagefrom = Get.parameters['page'];
+        return RecommendedFoodDetail(
+          pageId: int.parse(pageId!),
+          pagefrom: pagefrom!,
+        );
+      },
+      //transition: Transition.fadeIn
+    ),
     GetPage(
-        name: cartPage,
-        page: () {
-          var pageId = Get.parameters['pageId'];
-          var pagefrom = Get.parameters['page'];
-          return CartPage(
-            pageId: int.parse(pageId!),
-            pagefrom: pagefrom!,
-          );
-        },
-        transition: Transition.fadeIn),
+      name: cartPage,
+      page: () {
+        var pageId = Get.parameters['pageId'];
+        var pagefrom = Get.parameters['page'];
+        return CartPage(
+          pageId: int.parse(pageId!),
+          pagefrom: pagefrom!,
+        );
+      },
+      //transition: Transition.fadeIn
+    ),
     GetPage(
-        name: shopDetail,
-        page: () {
-          var shopId = Get.parameters['shopId'];
-          var pagefrom = Get.parameters['page'];
-          return ShopPageDetail(
-            shopId: int.parse(shopId!),
-            pagefrom: pagefrom!,
-          );
-        },
-        transition: Transition.fadeIn),
+      name: shopDetail,
+      page: () {
+        var shopId = Get.parameters['shopId'];
+        var pagefrom = Get.parameters['page'];
+        return ShopPageDetail(
+          shopId: int.parse(shopId!),
+          pagefrom: pagefrom!,
+        );
+      },
+      //transition: Transition.fadeIn
+    ),
     GetPage(
-        name: categoryListPage,
-        page: () {
-          var shopId = Get.parameters['shopId'];
-          var pagefrom = Get.parameters['page'];
-          return CategoryShop(
-            shopId: int.parse(shopId!),
-            pagefrom: pagefrom!,
-          );
-        },
-        transition: Transition.fadeIn),
+      name: categoryListPage,
+      page: () {
+        var shopId = Get.parameters['shopId'];
+        var pagefrom = Get.parameters['page'];
+        return CategoryShop(
+          shopId: int.parse(shopId!),
+          pagefrom: pagefrom!,
+        );
+      },
+      //transition: Transition.fadeIn
+    ),
     GetPage(
-        name: productListFromCategory,
-        page: () {
-          var categoryId = Get.parameters['categoryId'];
-          var pagefrom = Get.parameters['page'];
-          return ProductListFromCategoryPage(
-            categoryId: int.parse(categoryId!),
-            pagefrom: pagefrom!,
-          );
-        },
-        transition: Transition.fadeIn),
+      name: productListFromCategory,
+      page: () {
+        var categoryId = Get.parameters['categoryId'];
+        var pagefrom = Get.parameters['page'];
+        return ProductListFromCategoryPage(
+          categoryId: int.parse(categoryId!),
+          pagefrom: pagefrom!,
+        );
+      },
+      //transition: Transition.fadeIn
+    ),
   ];
 }

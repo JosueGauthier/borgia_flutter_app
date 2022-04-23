@@ -29,10 +29,11 @@ class MyApp extends StatelessWidget {
       builder: (_) {
         return GetBuilder<RecommendedProductController>(builder: ((_) {
           return GetMaterialApp(
+            defaultTransition: Transition.fadeIn,
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             //home: SplashScreen(),
-            initialRoute: RouteHelper.getInitial(),
+            initialRoute: RouteHelper.getSplashPage(),
             getPages: RouteHelper.routes,
           );
         }));

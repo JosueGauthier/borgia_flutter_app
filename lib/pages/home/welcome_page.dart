@@ -2,6 +2,7 @@ import 'package:borgiaflutterapp/controllers/shop_controller.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import "string_extension.dart";
 
 import 'package:get/get.dart';
 
@@ -13,6 +14,7 @@ import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/app_column.dart';
 import '../../widget/big_text.dart';
+import '../../widget/slider_bottom_section.dart';
 import '../../widget/small_text.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -26,8 +28,25 @@ class _WelcomePageState extends State<WelcomePage> {
   PageController pageController = PageController(viewportFraction: 0.9);
 
   var _currentPagevalue = 0.0;
+  int _nb_item_slider_section = 5;
   double _scaleFactor = 0.8;
   double _height = Dimensions.pageViewContainer;
+
+  Map<String, dynamic> mapItemsSlider = {
+    'Solde actuel': "current-balance.png",
+    "Derniers achats": "last-purchase.png",
+    'Rechargement Lydia': "lydia-logo.jpeg",
+    'Rechargement stripe.com': "Stripe-Logo.png",
+    'Statistiques': "stat.jpg"
+  };
+
+  List<List<dynamic>> listItemsSlider = [
+    ['Solde actuel', "current-balance.png"],
+    ["Derniers achats", "last-purchase.png"],
+    ['Rechargement Lydia', "lydia-logo.jpeg"],
+    ['Rechargement stripe.com', "Stripe-Logo.png"],
+    ['Statistiques', "stat.jpg"]
+  ];
 
   @override
   void initState() {
@@ -54,39 +73,44 @@ class _WelcomePageState extends State<WelcomePage> {
 
         /* GetBuilder<PopularProductController>(builder: (popularProductsController) {
           return popularProductsController.isLoaded
-              ? Container(
-                  //color: Colors.blue,
-                  height: Dimensions.pageViewheight,
-
-                  child: PageView.builder(
-                      controller: pageController,
-                      itemCount: popularProductsController.popularProductList.length,
-                      itemBuilder: (context, position) {
-                        return _buildPageItem(position, popularProductsController.popularProductList[position]);
-                      }),
-                )
-              : CircularProgressIndicator(
+              ? Container() : CircularProgressIndicator(
                   color: AppColors.mainColor,
-                );
-        }),
- */
+                ); */
+        Container(
+          //color: Colors.blue,
+          height: Dimensions.height100 * 2.7,
+
+          child: PageView.builder(
+              controller: pageController,
+              itemCount: _nb_item_slider_section, //popularProductsController.popularProductList.length,
+              itemBuilder: (context, position) {
+                return _buildPageItem(position);
+              }),
+        ),
+
         //!Dots section
-        GetBuilder<PopularProductController>(builder: (popularProductsController) {
+        /* GetBuilder<PopularProductController>(builder: (popularProductsController) {
           int dotsnumber = popularProductsController.popularProductList.length;
 
+
           //print(popularProductsController.popularProductList.length);
-          return DotsIndicator(
-            dotsCount: dotsnumber <= 0 ? 1 : dotsnumber,
-            position: _currentPagevalue,
-            decorator: DotsDecorator(
-              activeColor: AppColors.mainColor,
-              color: AppColors.textColor,
-              size: const Size.square(9.0),
-              activeSize: const Size(18.0, 9.0),
-              activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            ),
-          );
-        }),
+          return ...
+
+          }),
+          
+           */
+
+        DotsIndicator(
+          dotsCount: _nb_item_slider_section <= 0 ? 1 : _nb_item_slider_section,
+          position: _currentPagevalue,
+          decorator: DotsDecorator(
+            activeColor: AppColors.mainColor,
+            color: Colors.grey,
+            size: const Size.square(9.0),
+            activeSize: const Size(18.0, 9.0),
+            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          ),
+        ),
 
         //!Recommended items
         SizedBox(
@@ -155,30 +179,13 @@ class _WelcomePageState extends State<WelcomePage> {
                                           height: Dimensions.height10,
                                         ),
                                         BigText(
-                                          text: shopModel.name!,
+                                          text: (shopModel.name)!.capitalize!,
                                           size: Dimensions.height25,
                                         ),
                                         SizedBox(
                                           height: Dimensions.height10,
                                         ),
-                                        SmallText(allowOverFlow: true, maxLines: 2, text: shopModel.description!),
-                                        /* SizedBox(
-                                          height: Dimensions.height10,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            IconAndTextWidget(icon: Icons.circle, text: "Normal", iconcolor: Colors.amber),
-                                            SizedBox(
-                                              width: 0,
-                                            ),
-                                            IconAndTextWidget(icon: Icons.location_pin, text: "1.7 km", iconcolor: AppColors.mainColor),
-                                            SizedBox(
-                                              width: 0,
-                                            ),
-                                            IconAndTextWidget(icon: Icons.lock_clock, text: "16 min", iconcolor: Colors.pink),
-                                          ],
-                                        ) */
+                                        SmallText(allowOverFlow: true, maxLines: 2, text: (shopModel.description)!.capitalize!),
                                       ],
                                     ),
                                   ),
@@ -197,7 +204,7 @@ class _WelcomePageState extends State<WelcomePage> {
     );
   }
 
-  Widget _buildPageItem(int position, oldProductModel popularProduct) {
+  Widget _buildPageItemOld(int position, oldProductModel popularProduct) {
     Matrix4 matrix = new Matrix4.identity();
 
     if (position == _currentPagevalue.floor()) {
@@ -250,6 +257,70 @@ class _WelcomePageState extends State<WelcomePage> {
               child: Container(
                   padding: EdgeInsets.only(top: Dimensions.height10, left: Dimensions.width15, right: Dimensions.width15),
                   child: AppColumn(titletext: popularProduct.name!)),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPageItem(int position) {
+    Matrix4 matrix = new Matrix4.identity();
+
+    if (position == _currentPagevalue.floor()) {
+      var currScale = 1 - (_currentPagevalue - position) * (1 - _scaleFactor);
+      var currTranslation = _height * (1 - currScale) / 2;
+
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTranslation, 0);
+    } else if (position == _currentPagevalue.floor() + 1) {
+      var currScale = _scaleFactor + (_currentPagevalue - position + 1) * (1 - _scaleFactor);
+      var currTranslation = _height * (1 - currScale) / 2;
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTranslation, 0);
+    } else if (position == _currentPagevalue.floor() - 1) {
+      var currScale = 1 - (_currentPagevalue - position) * (1 - _scaleFactor);
+      var currTranslation = _height * (1 - currScale) / 2;
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTranslation, 0);
+    } else {
+      var currScale = 0.8;
+      var currTranslation = _height * (1 - currScale) / 2;
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTranslation, 0);
+    }
+
+    //? mise en place d'un stack container pour que la hauteur désiree soit 220 et non 320.
+    return Transform(
+      transform: matrix,
+      child: Stack(
+        children: [
+          //! Partie image
+          GestureDetector(
+            onTap: () {
+              //Get.toNamed(RouteHelper.getPopularFood(position, "home"));
+            },
+            child: Container(
+              height: _height,
+              margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius30),
+                  //color: position.isEven ? Colors.red : Colors.amber,
+                  image: DecorationImage(image: AssetImage("assets/image/" + listItemsSlider[position][1].toString()), fit: BoxFit.cover)),
+              //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
+            ),
+          ),
+
+          //! Partie text
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Container(
+              height: Dimensions.height45 * 2,
+              margin: EdgeInsets.only(left: Dimensions.width25, right: Dimensions.width25, bottom: Dimensions.height20),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.radius30), color: Colors.white, boxShadow: [
+                BoxShadow(color: Color.fromARGB(255, 221, 216, 216), blurRadius: 10, offset: Offset(2, 5)),
+                BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
+                BoxShadow(color: Colors.white, offset: Offset(5, 0)),
+              ]),
+              child: Container(
+                  padding: EdgeInsets.only(top: Dimensions.height45 / 2, left: Dimensions.width25, right: Dimensions.width15),
+                  child: SliderBottomSectionWidget(titletext: listItemsSlider[position][0])),
             ),
           ),
         ],

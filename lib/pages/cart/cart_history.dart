@@ -131,7 +131,7 @@ class CartHistory extends StatelessWidget {
                                                     : Container();
                                               })),
                                           Container(
-                                            //color: Colors.green,
+                                            color: Colors.green,
                                             height: Dimensions.height20 * 5,
                                             child:
                                                 Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.end, children: [
