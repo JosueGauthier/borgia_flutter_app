@@ -127,9 +127,12 @@ class _AuthPageState extends State<AuthPage> {
                 ),
                 onPressed: () {
                   print(nameController.text);
-                  inspect(nameController);
-                  Get.snackbar("Madeby Khalvin", "U can't test me");
-                  //Get.offNamed(RouteHelper.getInitial());
+
+                  if (nameController.text == "josue") {
+                    Get.offNamed(RouteHelper.getInitial());
+                  } else {
+                    Get.snackbar("Madeby Khalvin", "U can't test me");
+                  }
                 },
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(
