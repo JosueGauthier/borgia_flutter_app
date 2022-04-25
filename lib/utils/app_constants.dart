@@ -1,28 +1,31 @@
+//http://localhost:8000/api-links/category/category-products/?category=13
+//http://localhost:8000/api-links/category/category/12/
+//http://localhost:8000/api-links/category/category/?module_id=3
+//http://localhost:8000/api-links/users/users/?username=josue
+
+//static const String BASE_URL = "http://mvs.bslmeiyu.com";
+//"https://api.jsonbin.io" "/b/625dc4f5c5284e31154ef250"
+//static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
+
 class AppConstants {
   static const String SHOP_URI = "/api-links/shops/shops/?format=json";
   static const String PRODUCT_URI = "/api-links/shops/products/?shop=";
+
+  static const String USER_URI = "/api-links/users/users/?username=";
 
   static const String CATEGORY_URI = "/api-links/category/category/?shop_id=";
   static const String PRODUCT_FROM_CATEGORY_URI = "/api-links/category/category-products/?category=";
   static const String ONE_PRODUCT_URI = "/api-links/shops/products/";
 
-  //http://localhost:8000/api-links/category/category-products/?category=13
-  //http://localhost:8000/api-links/category/category/12/
-
-  //http://localhost:8000/api-links/category/category/?module_id=3
+  //! auth end points
+  static const String REGISTRATION_URI = "/api-links/auth/";
 
   static const String APP_NAME = "BorgiaApp";
   static const int APP_VERSION = 1;
 
-  //static const String BASE_URL = "http://mvs.bslmeiyu.com";
-
   static const String BASE_URL = "http://10.0.2.2:8000";
 
-  //"https://api.jsonbin.io" "/b/625dc4f5c5284e31154ef250"
-
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
-
-  //static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
 
   static const String RECOMMENDED_PRODUCT_URI = "/ae4a7daedb41dd157811";
 

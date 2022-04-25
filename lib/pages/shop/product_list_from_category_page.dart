@@ -18,8 +18,7 @@ import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
 import '../../widget/small_text.dart';
 
-class ProductListFromCategoryPage extends StatefulWidget {
-  /*
+/*
 
   Etapes
   On arrive sur la page depuis page list categorie du magasin
@@ -36,6 +35,8 @@ class ProductListFromCategoryPage extends StatefulWidget {
   
   
   */
+
+class ProductListFromCategoryPage extends StatefulWidget {
   final String pagefrom;
   final int categoryId;
   const ProductListFromCategoryPage({

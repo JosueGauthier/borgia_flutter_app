@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:borgiaflutterapp/controllers/auth_controller.dart';
+import 'package:borgiaflutterapp/models/signup_body_model.dart';
 import 'package:borgiaflutterapp/models/user_model.dart';
 import 'package:borgiaflutterapp/widget/small_text.dart';
 import 'package:flutter/material.dart';
@@ -10,18 +12,19 @@ import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
-class AuthPage extends StatefulWidget {
-  const AuthPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  State<AuthPage> createState() => _AuthPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _AuthPageState extends State<AuthPage> {
+class _SignUpPageState extends State<SignUpPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   void _registration() {
+    var authController = Get.find<AuthController>();
     String name = nameController.text.trim();
     String password = passwordController.text.trim();
 
@@ -29,9 +32,17 @@ class _AuthPageState extends State<AuthPage> {
       Get.snackbar("Username error", "Enter a valid username");
     } else if (password.isEmpty) {
       Get.snackbar("Password error", "Enter a valid password");
-    } else {}
-
-    // 8h32
+    } else {
+      SignUpBodyModel signUpBodyModel = SignUpBodyModel(name: name, email: "jose@gmail.com", password: password, phone: "0123654789");
+      print(signUpBodyModel.toString());
+      authController.registration(signUpBodyModel).then((status) {
+        if (status.isSuccess) {
+          print("Sucess registration");
+        } else {
+          Get.snackbar("Error", status.message);
+        }
+      });
+    }
   }
 
   @override
@@ -96,6 +107,7 @@ class _AuthPageState extends State<AuthPage> {
                 padding: EdgeInsets.only(left: Dimensions.width20 * 2, right: Dimensions.width20 * 2),
                 child: Column(children: <Widget>[
                   TextFormField(
+                    controller: passwordController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.transparent),

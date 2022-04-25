@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.find<CartController>().getCartData();
+    //Get.find<CartController>().getCartData();
     Get.find<ShopController>().getShopList();
     //Get.find<ProductController>().getProductList();
     //Get.find<RecommendedProductController>().getRecomendedProductList();

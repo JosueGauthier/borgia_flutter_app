@@ -1,3 +1,4 @@
+import 'package:borgiaflutterapp/pages/auth/Sign_up_page.dart';
 import 'package:borgiaflutterapp/pages/auth/auth_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,7 +26,9 @@ class _HomePageState extends State<HomePage> {
   List<Widget> pages = [
     WelcomePageWithHeader(),
     AuthPage(),
-    CartHistory(),
+    //CartHistory(),
+
+    SignUpPage(),
 
     //ShopPageDetail(),
 
