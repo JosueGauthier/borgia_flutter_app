@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:borgiaflutterapp/data/repository/auth_repo.dart';
 import 'package:borgiaflutterapp/models/response_model.dart';
 import 'package:borgiaflutterapp/models/signup_body_model.dart';
+import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -46,6 +47,9 @@ class AuthController extends GetxController implements GetxService {
       print(response.headers);
 
       authRepo.saveUserToken(response.headers!["set-cookie"].toString());
+      authRepo.saveUserHeaders(response.headers);
+
+      print("the saved headers is : " + AppConstants.HEADERS.toString());
       responseModel = ResponseModel(true, response.headers!["set-cookie"].toString());
     } else {
       responseModel = ResponseModel(false, response.statusText!);

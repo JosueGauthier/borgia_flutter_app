@@ -30,7 +30,8 @@ class AppConstants {
 
   //! save user info
 
-  static const String TOKEN = "DBToken";
+  static String TOKEN = "DBToken";
+  static Map<String, String>? HEADERS = {};
   static const String USERNAME = "";
   static const String PASSWORD = "";
 

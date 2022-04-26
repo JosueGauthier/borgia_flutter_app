@@ -26,7 +26,13 @@ class AuthRepo {
     apiClient.token = token;
     apiClient.updateHeader(token);
 
+    AppConstants.TOKEN = token;
+
     return await sharedPreferences.setString(AppConstants.TOKEN, token);
+  }
+
+  saveUserHeaders(Map<String, String>? token) async {
+    AppConstants.HEADERS = token;
   }
 
   Future<void> saveUsernameAndPassword(String username, String password) async {
