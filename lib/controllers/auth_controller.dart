@@ -46,10 +46,40 @@ class AuthController extends GetxController implements GetxService {
     if (response.statusCode == 202) {
       print(response.headers);
 
+      print("the header set cookie " + response.headers!["set-cookie"].toString());
+
+      String setcookie = response.headers!["set-cookie"].toString();
+
+      List<String> list_setcookie = setcookie.split(';');
+
+      var list_list_setcookie = [];
+      var item_setcookie = "";
+
+      for (var i = 0; i < list_setcookie.length; i++) {
+        List<String> a = list_setcookie[i].split(',');
+
+        list_list_setcookie.add(a);
+      }
+
+      var csrftoken = "";
+      var sessionid = "";
+
+      sessionid = list_list_setcookie[4][1];
+      csrftoken = list_list_setcookie[0][0];
+
+      var cookie = "";
+
+      cookie = csrftoken + ";" + sessionid;
+
+      print(cookie);
+
+      AppConstants.COOKIE = cookie;
+
       authRepo.saveUserToken(response.headers!["set-cookie"].toString());
       authRepo.saveUserHeaders(response.headers);
 
-      print("the saved headers is : " + AppConstants.HEADERS.toString());
+      print("the saved cookie is : " + AppConstants.COOKIE);
+
       responseModel = ResponseModel(true, response.headers!["set-cookie"].toString());
     } else {
       responseModel = ResponseModel(false, response.statusText!);

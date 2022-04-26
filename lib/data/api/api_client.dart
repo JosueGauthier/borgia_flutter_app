@@ -22,8 +22,9 @@ class ApiClient extends GetConnect implements GetxService {
     String url = baseUrl! + uri;
     //print(url);
     try {
-      Response response = await get(appBaseUrl + uri,
-          headers: {"Cookie": "csrftoken=MZ8YuHN7GaGPId6XEoHOmLJGCj5FrJFU1lElphAxWJVwq366rPoAyI3fOhcEK6ks; sessionid=7cwighx7vbpcoszfl5ltxy2jf32psjeh"});
+      Response response = await get(appBaseUrl + uri, headers: {"Cookie": AppConstants.COOKIE});
+
+      //csrftoken=MZ8YuHN7GaGPId6XEoHOmLJGCj5FrJFU1lElphAxWJVwq366rPoAyI3fOhcEK6ks; sessionid=7cwighx7vbpcoszfl5ltxy2jf32psjeh
 
       print(response.body);
 
