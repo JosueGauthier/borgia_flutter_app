@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
     animation = new CurvedAnimation(parent: animationController, curve: Curves.bounceOut); //bounceOut
 
-    Timer(Duration(seconds: 3), (() => Get.offNamed(RouteHelper.getInitial())));
+    Timer(Duration(seconds: 3), (() => Get.offNamed(RouteHelper.getLoginPage())));
   }
 
   @override

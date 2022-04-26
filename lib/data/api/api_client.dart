@@ -1,3 +1,4 @@
+import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:get/get.dart';
 
 class ApiClient extends GetConnect implements GetxService {
@@ -49,8 +50,14 @@ class ApiClient extends GetConnect implements GetxService {
   }
 
   Future<Response> postData(String uri, dynamic body) async {
+    print(body.toString());
+    var url = AppConstants.BASE_URL + uri;
+
     try {
-      Response response = await post(uri, body, headers: _mainHeaders); // si le type de post est future et que le type a droit ne l'est pas on ajoute await
+      Response response = await post(url, body, headers: _mainHeaders); // si le type de post est future et que le type a droit ne l'est pas on ajoute await
+
+      print(response.toString());
+
       return response;
     } catch (e) {
       print(e.toString());

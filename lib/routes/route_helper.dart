@@ -1,4 +1,5 @@
 import 'package:borgiaflutterapp/pages/auth/auth_page.dart';
+import 'package:borgiaflutterapp/pages/auth/sign_in_page.dart';
 import 'package:get/get.dart';
 
 import '../pages/cart/cart_page.dart';
@@ -13,6 +14,7 @@ import '../pages/splash/splash_page.dart';
 class RouteHelper {
   static const String splashPage = "/splash-page";
   static const String authPage = "/auth-page";
+  static const String loginPage = "/login-page";
 
   static const String initial = "/";
 
@@ -32,6 +34,7 @@ class RouteHelper {
 
   static String getSplashPage() => '$splashPage';
   static String getAuthPage() => '$authPage';
+  static String getLoginPage() => '$loginPage';
   static String getInitial() => '$initial';
   static String getPopularFood(int pageId, String pagefrom) => '$popularFood?pageId=$pageId&page=$pagefrom';
   static String getRecommendedFood(int pageId, String pagefrom) => '$recommendedFood?pageId=$pageId&page=$pagefrom';
@@ -56,6 +59,13 @@ class RouteHelper {
       name: authPage,
       page: () {
         return AuthPage();
+      },
+      //transition: Transition.fadeIn
+    ),
+    GetPage(
+      name: loginPage,
+      page: () {
+        return LoginPage();
       },
       //transition: Transition.fadeIn
     ),

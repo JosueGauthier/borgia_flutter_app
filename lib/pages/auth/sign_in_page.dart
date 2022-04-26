@@ -2,42 +2,43 @@ import 'dart:developer';
 
 import 'package:borgiaflutterapp/controllers/auth_controller.dart';
 import 'package:borgiaflutterapp/models/signup_body_model.dart';
-import 'package:borgiaflutterapp/models/user_model.dart';
+import 'package:borgiaflutterapp/routes/route_helper.dart';
 import 'package:borgiaflutterapp/widget/small_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controllers/new_user_controller.dart';
-import '../../controllers/user_controller.dart';
-import '../../routes/route_helper.dart';
+
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  //10h09
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-  TextEditingController nameController = TextEditingController();
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void _registration() {
-    var authController = Get.find<AuthController>();
-    String name = nameController.text.trim();
+  void _login(AuthController authController) {
+    //var authController = Get.find<AuthController>();
+    String username = usernameController.text.trim();
     String password = passwordController.text.trim();
 
-    if (name.isEmpty) {
-      Get.snackbar("Username error", "Enter a valid username");
+    print(username);
+    print(password);
+
+    if (username.isEmpty) {
+      Get.snackbar("Username empty", "Enter a valid username");
     } else if (password.isEmpty) {
-      Get.snackbar("Password error", "Enter a valid password");
+      Get.snackbar("Password empty", "Enter a valid password");
     } else {
-      SignUpBodyModel signUpBodyModel = SignUpBodyModel(name: name, email: "jose@gmail.com", password: password, phone: "0123654789");
-      print(signUpBodyModel.toString());
-      authController.registration(signUpBodyModel).then((status) {
+      authController.login(username, password).then((status) {
         if (status.isSuccess) {
-          print("Sucess registration");
+          print("Sucess login");
+          Get.toNamed(RouteHelper.getInitial());
         } else {
           Get.snackbar("Error", status.message);
         }
@@ -50,7 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: GetBuilder<AuthController>(
-          builder: (_authcontroller) {
+          builder: (authcontroller) {
             return Column(children: [
               Padding(
                 padding: EdgeInsets.all(0),
@@ -84,7 +85,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         padding: EdgeInsets.only(left: Dimensions.width20 * 2, right: Dimensions.width20 * 2),
                         child: Column(children: <Widget>[
                           TextFormField(
-                            controller: nameController,
+                            obscureText: true,
+                            controller: usernameController,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.transparent),
@@ -158,7 +160,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           color: AppColors.darkgrey,
                         ),
                         onPressed: () {
-                          _registration();
+                          _login(authcontroller);
                         },
                         style: ButtonStyle(
                             padding: MaterialStateProperty.all(

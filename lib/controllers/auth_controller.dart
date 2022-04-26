@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/data/repository/auth_repo.dart';
 import 'package:borgiaflutterapp/models/response_model.dart';
 import 'package:borgiaflutterapp/models/signup_body_model.dart';
@@ -25,10 +27,38 @@ class AuthController extends GetxController implements GetxService {
       responseModel = ResponseModel(false, response.statusText!);
     }
 
-    _isLoading = true;
+    _isLoading = false;
 
     update();
 
     return responseModel;
+  }
+
+  Future<ResponseModel> login(String username, String password) async {
+    _isLoading = true;
+
+    update();
+
+    Response response = await authRepo.login(username, password);
+    late ResponseModel responseModel; //late => before we use it we need to initialize it
+
+    if (response.statusCode == 202) {
+      print(response.headers);
+
+      authRepo.saveUserToken(response.headers!["set-cookie"].toString());
+      responseModel = ResponseModel(true, response.headers!["set-cookie"].toString());
+    } else {
+      responseModel = ResponseModel(false, response.statusText!);
+    }
+
+    _isLoading = false;
+
+    update();
+
+    return responseModel;
+  }
+
+  saveUsernameAndPassword(String username, String password) {
+    authRepo.saveUsernameAndPassword(username, password);
   }
 }

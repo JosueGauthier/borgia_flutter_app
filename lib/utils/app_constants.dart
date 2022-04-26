@@ -18,7 +18,21 @@ class AppConstants {
   static const String ONE_PRODUCT_URI = "/api-links/shops/products/";
 
   //! auth end points
+
+  //http://localhost:8000/api-auth/login/
+
+  //http://localhost:8000/api-links/profile/
+
+  //http://localhost:8000/api-links/login/
+
   static const String REGISTRATION_URI = "/api-links/auth/";
+  static const String LOGIN_URI = "/api-links/login/";
+
+  //! save user info
+
+  static const String TOKEN = "DBToken";
+  static const String USERNAME = "";
+  static const String PASSWORD = "";
 
   static const String APP_NAME = "BorgiaApp";
   static const int APP_VERSION = 1;
@@ -30,8 +44,6 @@ class AppConstants {
   static const String RECOMMENDED_PRODUCT_URI = "/ae4a7daedb41dd157811";
 
   static const String UPLOAD_URL = "/uploads/";
-
-  static const String TOKEN = "DBToken";
 
   static const String CART_LIST = "Cart-list";
 

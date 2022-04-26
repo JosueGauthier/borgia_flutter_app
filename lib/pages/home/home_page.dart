@@ -3,9 +3,11 @@ import 'package:borgiaflutterapp/pages/auth/auth_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
+import '../../controllers/shop_controller.dart';
 import '../../utils/colors.dart';
 import '../cart/cart_history.dart';
 import '../shop/shop_page_detail_page.dart';
@@ -82,6 +84,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<ShopController>().getShopList();
     return PersistentTabView(
       context,
       controller: _controller,
