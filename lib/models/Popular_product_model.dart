@@ -1,33 +1,26 @@
+// ignore_for_file: file_names
+
 class Product {
   //! this is private fields add _ to set private
-  int? _totalSize;
-  int? _typeId;
-  int? _offset;
-  late List<oldProductModel> _products;
+  late List<OldProductModel> _products;
 
-  List<oldProductModel> get products => _products;
+  List<OldProductModel> get products => _products;
 
   Product({required totalSize, required typeId, required offset, required products}) {
-    this._totalSize = totalSize;
-    this._typeId = typeId;
-    this._offset = offset;
-    this._products = products;
+    _products = products;
   }
 
   Product.fromJson(Map<String, dynamic> json) {
-    _totalSize = json['total_size'];
-    _typeId = json['type_id'];
-    _offset = json['offset'];
     if (json['products'] != null) {
-      _products = <oldProductModel>[];
+      _products = <OldProductModel>[];
       json['products'].forEach((v) {
-        _products.add(oldProductModel.fromJson(v));
+        _products.add(OldProductModel.fromJson(v));
       });
     }
   }
 }
 
-class oldProductModel {
+class OldProductModel {
   int? id;
   String? name;
   String? description;
@@ -39,9 +32,9 @@ class oldProductModel {
   String? updatedAt;
   int? typeId;
 
-  oldProductModel({this.id, this.name, this.description, this.price, this.stars, this.img, this.location, this.createdAt, this.updatedAt, this.typeId});
+  OldProductModel({this.id, this.name, this.description, this.price, this.stars, this.img, this.location, this.createdAt, this.updatedAt, this.typeId});
 
-  oldProductModel.fromJson(Map<String, dynamic> json) {
+  OldProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];
@@ -58,14 +51,14 @@ class oldProductModel {
 
   Map<String, dynamic> toJson() {
     return {
-      "id": this.id,
-      "name": this.name,
-      "price": this.price,
-      "img": this.img,
-      "location": this.location,
-      "created_at": this.createdAt,
-      "updated_at": this.updatedAt,
-      "type_id": this.typeId,
+      "id": id,
+      "name": name,
+      "price": price,
+      "img": img,
+      "location": location,
+      "created_at": createdAt,
+      "updated_at": updatedAt,
+      "type_id": typeId,
     };
   }
 }

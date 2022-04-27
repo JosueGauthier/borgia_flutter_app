@@ -1,8 +1,6 @@
 import 'dart:async';
 
-import 'package:borgiaflutterapp/models/product_list_from_category_models.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
-import 'package:borgiaflutterapp/widget/small_text_MaterialStateProperty.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +8,6 @@ import 'package:get/get.dart';
 
 import '../../controllers/product_from_category_controller.dart';
 import '../../widget/app_icon.dart';
-
-import '../../routes/route_helper.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
@@ -74,7 +70,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                   size: Dimensions.height30,
                   color: Colors.white,
                 ),
-                AppIcon(iconData: Icons.shopping_bag, iconColor: AppColors.mainColor, backgroundColor: Colors.white),
+                const AppIcon(iconData: Icons.shopping_bag, iconColor: AppColors.mainColor, backgroundColor: Colors.white),
               ],
             ),
           ),
@@ -85,11 +81,11 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
             return productListController.isLoaded
                 ? ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: productListController.productList.length,
                     itemBuilder: (context, index) {
                       ProductModel productModel = productListController.productList[index];
-                      print(productModel.productImage!);
+                      //print(productModel.productImage!);
                       return GestureDetector(
                         onTap: () {
                           //Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
@@ -116,7 +112,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                                 child: SizedBox(
                                                   height: Dimensions.height45,
                                                   width: Dimensions.height45,
-                                                  child: CircularProgressIndicator(
+                                                  child: const CircularProgressIndicator(
                                                     color: AppColors.secondColor,
                                                   ),
                                                 ),
@@ -156,52 +152,42 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
                                               BigText(size: Dimensions.height30, text: productModel.manualPrice.toString() + " €"),
-                                              Container(
-                                                //color: Colors.green,
+                                              Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.end, children: [
+                                                GestureDetector(
+                                                  onTap: () {},
+                                                  child: ElevatedButton(
+                                                      child: SmallText(
+                                                        text: "Buque moi !",
+                                                        size: Dimensions.height20,
+                                                        color: pressed ? AppColors.secondColor : Colors.white,
+                                                      ),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          pressed = !pressed;
+                                                        });
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (_) {
+                                                              return MyDialog(productModel: productModel, productListController: productListController);
+                                                            });
 
-                                                child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                                    children: [
-                                                      GestureDetector(
-                                                        onTap: () {},
-                                                        child: Container(
-                                                          child: ElevatedButton(
-                                                              child: SmallText(
-                                                                text: "Buque moi !",
-                                                                size: Dimensions.height20,
-                                                                color: pressed ? AppColors.secondColor : Colors.white,
-                                                              ),
-                                                              onPressed: () {
-                                                                setState(() {
-                                                                  pressed = !pressed;
-                                                                });
-                                                                showDialog(
-                                                                    context: context,
-                                                                    builder: (_) {
-                                                                      return MyDialog(productModel: productModel, productListController: productListController);
-                                                                    });
-
-                                                                //Get.offNamed(RouteHelper.getInitial());
-                                                              },
-                                                              style: ButtonStyle(
-                                                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
-                                                                )),
-                                                                padding: MaterialStateProperty.all(EdgeInsets.only(
-                                                                    left: Dimensions.width20,
-                                                                    right: Dimensions.width20,
-                                                                    top: Dimensions.height10,
-                                                                    bottom: Dimensions.height10)),
-                                                                backgroundColor: pressed
-                                                                    ? MaterialStateProperty.all<Color>(AppColors.greyColormedium)
-                                                                    : MaterialStateProperty.all<Color>(AppColors.secondColor),
-                                                              )),
-                                                        ),
-                                                      )
-                                                    ]),
-                                              )
+                                                        //Get.offNamed(RouteHelper.getInitial());
+                                                      },
+                                                      style: ButtonStyle(
+                                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
+                                                        )),
+                                                        padding: MaterialStateProperty.all(EdgeInsets.only(
+                                                            left: Dimensions.width20,
+                                                            right: Dimensions.width20,
+                                                            top: Dimensions.height10,
+                                                            bottom: Dimensions.height10)),
+                                                        backgroundColor: pressed
+                                                            ? MaterialStateProperty.all<Color>(AppColors.greyColormedium)
+                                                            : MaterialStateProperty.all<Color>(AppColors.secondColor),
+                                                      )),
+                                                )
+                                              ])
                                             ],
                                           ),
                                           SizedBox(
@@ -218,7 +204,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                         ),
                       );
                     })
-                : CircularProgressIndicator(
+                : const CircularProgressIndicator(
                     strokeWidth: 4,
                     color: AppColors.mainColor,
                   );
@@ -240,11 +226,11 @@ class MyDialog extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MyDialogState createState() => new _MyDialogState();
+  _MyDialogState createState() => _MyDialogState();
 }
 
 class _MyDialogState extends State<MyDialog> {
-  Color _AddRemoveColor = AppColors.secondColor;
+  Color _addRemoveColor = AppColors.secondColor;
   int qty = 0;
   bool txtbuttonpressed = true;
 
@@ -270,20 +256,20 @@ class _MyDialogState extends State<MyDialog> {
                       widget.productListController.setQuantity(false);
                       if (widget.productListController.quantity <= 0) {
                         setState(() {
-                          _AddRemoveColor = AppColors.mainColor;
+                          _addRemoveColor = AppColors.mainColor;
                         });
 
                         Timer(
-                            Duration(milliseconds: 500),
+                            const Duration(milliseconds: 500),
                             (() => setState(() {
-                                  _AddRemoveColor = AppColors.secondColor;
+                                  _addRemoveColor = AppColors.secondColor;
                                 })));
                       }
                     });
                   },
                   child: AppIcon(
                     iconData: Icons.remove,
-                    backgroundColor: _AddRemoveColor,
+                    backgroundColor: _addRemoveColor,
                     iconColor: Colors.white,
                     iconSize: 30,
                   ),
@@ -299,7 +285,7 @@ class _MyDialogState extends State<MyDialog> {
                       widget.productListController.setQuantity(true);
                     });
                   },
-                  child: AppIcon(
+                  child: const AppIcon(
                     iconData: Icons.add,
                     backgroundColor: AppColors.secondColor,
                     iconColor: Colors.white,
@@ -312,46 +298,44 @@ class _MyDialogState extends State<MyDialog> {
           SizedBox(
             height: Dimensions.height20,
           ),
-          Container(
-            child: ElevatedButton(
-                child: SmallText(
-                  text: " Je me bucque !",
-                  size: Dimensions.height30,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  setState(() {
-                    txtbuttonpressed = !txtbuttonpressed;
-                  });
+          ElevatedButton(
+              child: SmallText(
+                text: " Je me bucque !",
+                size: Dimensions.height30,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                setState(() {
+                  txtbuttonpressed = !txtbuttonpressed;
+                });
 
-                  Timer(
-                      Duration(seconds: 3),
-                      (() => setState(() {
-                            txtbuttonpressed = !txtbuttonpressed;
-                          })));
+                Timer(
+                    const Duration(seconds: 3),
+                    (() => setState(() {
+                          txtbuttonpressed = !txtbuttonpressed;
+                        })));
 
-                  /*  setState(() {
-                    final timer = Timer(
-                      const Duration(seconds: 1),
-                      () {
-                        txtbuttonpressed = !txtbuttonpressed;
-                        // Navigate to your favorite place
-                      },
-                    );
+                /*  setState(() {
+                  final timer = Timer(
+                    const Duration(seconds: 1),
+                    () {
+                      txtbuttonpressed = !txtbuttonpressed;
+                      // Navigate to your favorite place
+                    },
+                  );
 
-                    txtbuttonpressed = !txtbuttonpressed;
-                  }); */
-                },
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
-                  )),
-                  padding: MaterialStateProperty.all(
-                      EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10)),
-                  backgroundColor:
-                      txtbuttonpressed ? MaterialStateProperty.all<Color>(AppColors.greyColormedium) : MaterialStateProperty.all<Color>(AppColors.mainColor),
+                  txtbuttonpressed = !txtbuttonpressed;
+                }); */
+              },
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
                 )),
-          ),
+                padding: MaterialStateProperty.all(
+                    EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10)),
+                backgroundColor:
+                    txtbuttonpressed ? MaterialStateProperty.all<Color>(AppColors.greyColormedium) : MaterialStateProperty.all<Color>(AppColors.mainColor),
+              )),
         ],
       ),
       actions: <Widget>[

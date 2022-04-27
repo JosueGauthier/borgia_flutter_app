@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:borgiaflutterapp/controllers/product_controller.dart';
 import 'package:borgiaflutterapp/routes/route_helper.dart';
 import 'package:flutter/material.dart';

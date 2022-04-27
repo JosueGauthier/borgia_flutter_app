@@ -16,7 +16,7 @@ class CartController extends GetxController {
   //! only for storage and sharedpreferences
   List<CartModel> storageItems = [];
 
-  void addItem(oldProductModel oldProductModel, int quantity) {
+  void addItem(OldProductModel oldProductModel, int quantity) {
     if (_items.containsKey(oldProductModel.id!)) {
       _items.update(oldProductModel.id!, (value) {
         if ((value.quantity! + quantity) > 0) {
@@ -75,13 +75,13 @@ class CartController extends GetxController {
     update();
   }
 
-  void removeItem(oldProductModel oldProductModel) {
+  void removeItem(OldProductModel oldProductModel) {
     if (_items.containsKey(oldProductModel.id!)) {
       _items.remove(oldProductModel.id!);
     }
   }
 
-  bool existinCart(oldProductModel aProduct) {
+  bool existinCart(OldProductModel aProduct) {
     if (_items.containsKey(aProduct.id)) {
       return true;
     } else {
@@ -89,7 +89,7 @@ class CartController extends GetxController {
     }
   }
 
-  int getQuantity(oldProductModel aProduct) {
+  int getQuantity(OldProductModel aProduct) {
     var quantity = 0;
 
     if (_items.containsKey(aProduct.id)) {

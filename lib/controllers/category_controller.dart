@@ -14,8 +14,8 @@ class CategoryOfShopController extends GetxController {
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
-  Future<void> getCategoryList(int shop_id) async {
-    Response response = await categoryOfShopRepo.getProductList(shop_id);
+  Future<void> getCategoryList(int shopId) async {
+    Response response = await categoryOfShopRepo.getProductList(shopId);
     //print(response);
 
     //print("Category from shop status code " + response.statusCode.toString());
@@ -25,13 +25,13 @@ class CategoryOfShopController extends GetxController {
 
       //print("response : " + response.body.toString());
 
-      List response_body = response.body;
+      List responseBody = response.body;
 
       //print("the length is " + response_body.length.toString());
       //print("the shop number is " + response_body.length.toString());
 
-      for (var i = 0; i < response_body.length; i++) {
-        _categoryOfShopList.add(CategoryOfShopModel.fromJson(response_body[i]));
+      for (var i = 0; i < responseBody.length; i++) {
+        _categoryOfShopList.add(CategoryOfShopModel.fromJson(responseBody[i]));
       }
       _isLoaded = true;
 

@@ -32,10 +32,10 @@ class RouteHelper {
 
   //? formalisme pour passer des paramètres
 
-  static String getSplashPage() => '$splashPage';
-  static String getAuthPage() => '$authPage';
-  static String getLoginPage() => '$loginPage';
-  static String getInitial() => '$initial';
+  static String getSplashPage() => splashPage;
+  static String getAuthPage() => authPage;
+  static String getLoginPage() => loginPage;
+  static String getInitial() => initial;
   static String getPopularFood(int pageId, String pagefrom) => '$popularFood?pageId=$pageId&page=$pagefrom';
   static String getRecommendedFood(int pageId, String pagefrom) => '$recommendedFood?pageId=$pageId&page=$pagefrom';
 
@@ -51,28 +51,28 @@ class RouteHelper {
     GetPage(
       name: splashPage,
       page: () {
-        return SplashScreen();
+        return const SplashScreen();
       },
       //transition: Transition.fadeIn
     ),
     GetPage(
       name: authPage,
       page: () {
-        return AuthPage();
+        return const AuthPage();
       },
       //transition: Transition.fadeIn
     ),
     GetPage(
       name: loginPage,
       page: () {
-        return LoginPage();
+        return const LoginPage();
       },
       //transition: Transition.fadeIn
     ),
     GetPage(
       name: initial,
       page: () {
-        return HomePage();
+        return const HomePage();
       },
       //transition: Transition.fadeIn
     ),

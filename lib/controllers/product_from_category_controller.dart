@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:borgiaflutterapp/controllers/product_controller.dart';
 import 'package:borgiaflutterapp/data/repository/product_list_from_category_repo.dart';
 import 'package:borgiaflutterapp/models/product_list_from_category_models.dart';
 import 'package:flutter/material.dart';
@@ -33,17 +30,17 @@ class ProductFromCategoryController extends GetxController {
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
-  Future<void> getProduct(int category_id) async {
-    Response response = await productFromCategoryRepo.getProductList(category_id);
+  Future<void> getProduct(int categoryId) async {
+    Response response = await productFromCategoryRepo.getProductList(categoryId);
 
     if (response.statusCode == 200) {
       _productLinkList = [];
       _productList = [];
 
-      List response_body = response.body;
+      List responseBody = response.body;
 
-      for (var i = 0; i < response_body.length; i++) {
-        _productLinkList.add(ProductListFromCategoryModel.fromJson(response_body[i]));
+      for (var i = 0; i < responseBody.length; i++) {
+        _productLinkList.add(ProductListFromCategoryModel.fromJson(responseBody[i]));
 
         //print(_productLinkList[i].product);
 
@@ -51,8 +48,8 @@ class ProductFromCategoryController extends GetxController {
         //print(responseGetOneProduct.body);
         //print("the status code is" + responseGetOneProduct.statusCode.toString());
         if (responseGetOneProduct.statusCode == 200) {
-          var responseGetOneProduct_body = responseGetOneProduct.body;
-          _productList.add(ProductModel.fromJson(responseGetOneProduct_body));
+          var responseGetOneProductBody = responseGetOneProduct.body;
+          _productList.add(ProductModel.fromJson(responseGetOneProductBody));
         } else {}
       }
 

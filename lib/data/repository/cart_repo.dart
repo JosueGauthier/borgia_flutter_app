@@ -28,10 +28,10 @@ class CartRepo {
     /*
     ?convert objects to string because shared pref only accept string*/
 
-    cartList.forEach((element) {
+    for (var element in cartList) {
       element.time = time.toString();
       return cart.add(jsonEncode(element));
-    });
+    }
 
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
     //print(sharedPreferences.getStringList(AppConstats.CART_LIST));
@@ -51,9 +51,9 @@ class CartRepo {
 
     //? les deux blocs realisent la meme chose.
 
-    carts.forEach((element) {
+    for (var element in carts) {
       cartList.add(CartModel.fromJson(jsonDecode(element)));
-    });
+    }
 
     //*carts.forEach((element) => CartModel.fromJson(jsonDecode(element)));
 
@@ -87,7 +87,9 @@ class CartRepo {
     }
 
     List<CartModel> cartListHistory = [];
-    cartHistory.forEach((element) => cartListHistory.add(CartModel.fromJson(jsonDecode(element))));
+    for (var element in cartHistory) {
+      cartListHistory.add(CartModel.fromJson(jsonDecode(element)));
+    }
     return cartListHistory;
   }
 }

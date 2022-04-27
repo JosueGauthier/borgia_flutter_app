@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -28,8 +30,6 @@ class PopularProductController extends GetxController {
   //! var for setQuantity
 
   int _quantity = 0;
-
-  int _totalquantity = 0;
 
   int get quantity => _quantity;
 
@@ -75,7 +75,7 @@ class PopularProductController extends GetxController {
     }
   }
 
-  void initProduct(oldProductModel aProduct, CartController cartController) {
+  void initProduct(OldProductModel aProduct, CartController cartController) {
     _quantity = 0;
 
     _incartItem = 0;
@@ -94,7 +94,7 @@ class PopularProductController extends GetxController {
     //print("the quantity in the item cart is " + _incartItem.toString());
   }
 
-  void popular_addItem(oldProductModel oldProductModel) {
+  void popular_addItem(OldProductModel oldProductModel) {
     if ((_quantity) > 0) {
       _cartController.addItem(oldProductModel, (_quantity));
       _quantity = 0;

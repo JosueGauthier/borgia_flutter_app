@@ -1,7 +1,5 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/models/product_model.dart';
-import 'package:borgiaflutterapp/models/shop_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/product_repo.dart';
@@ -18,23 +16,25 @@ class ProductController extends GetxController {
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
-  Future<void> getProductList(int shop_id) async {
-    Response response = await productRepo.getProductList(shop_id);
+  Future<void> getProductList(int shopId) async {
+    Response response = await productRepo.getProductList(shopId);
 
-    print("Product status code " + response.statusCode.toString());
+    if (kDebugMode) {
+      print("Product status code " + response.statusCode.toString());
+    }
 
     if (response.statusCode == 200) {
       _productList = [];
 
       //print("response : " + response.body.toString());
 
-      List response_body = response.body;
+      List responseBody = response.body;
 
       //print("the length is " + response_body.length.toString());
       //print("the shop number is " + response_body.length.toString());
 
-      for (var i = 0; i < response_body.length; i++) {
-        _productList.add(ProductModel.fromJson(response_body[i]));
+      for (var i = 0; i < responseBody.length; i++) {
+        _productList.add(ProductModel.fromJson(responseBody[i]));
       }
       _isLoaded = true;
 
@@ -44,24 +44,26 @@ class ProductController extends GetxController {
     } else {}
   }
 
-  Future<void> getOneProduct(String link_to_the_product) async {
-    Response response = await productRepo.getOneProduct(link_to_the_product);
+  Future<void> getOneProduct(String linkToTheProduct) async {
+    Response response = await productRepo.getOneProduct(linkToTheProduct);
     //print(response);
 
-    print("Product status code " + response.statusCode.toString());
+    if (kDebugMode) {
+      print("Product status code " + response.statusCode.toString());
+    }
 
     if (response.statusCode == 200) {
       _productList = [];
 
       //print("response : " + response.body.toString());
 
-      List response_body = response.body;
+      List responseBody = response.body;
 
       //print("the length is " + response_body.length.toString());
       //print("the shop number is " + response_body.length.toString());
 
-      for (var i = 0; i < response_body.length; i++) {
-        _productList.add(ProductModel.fromJson(response_body[i]));
+      for (var i = 0; i < responseBody.length; i++) {
+        _productList.add(ProductModel.fromJson(responseBody[i]));
       }
       _isLoaded = true;
 

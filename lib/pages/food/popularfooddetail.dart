@@ -4,39 +4,26 @@ import '../../controllers/cart_controller.dart';
 import '../../models/Popular_product_model.dart';
 import '../../widget/app_icon.dart';
 import '../../widget/expandable_text_widget.dart';
-import '../cart/cart_page.dart';
 
 import '../../controllers/popular_product_controller.dart';
-import '../../controllers/recommended_product_controller.dart';
-import '../../models/Popular_product_model.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/app_column.dart';
 import '../../widget/big_text.dart';
-import '../../widget/icon_and_text.dart';
-import '../../widget/small_text.dart';
 
 import 'package:get/get.dart';
-
-import '../../controllers/popular_product_controller.dart';
-import '../../models/Popular_product_model.dart';
-import '../../routes/route_helper.dart';
-import '../../utils/colors.dart';
-import '../../widget/big_text.dart';
-import '../../widget/icon_and_text.dart';
-import '../../widget/small_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   final int pageId;
   final String pagefrom;
 
-  PopularFoodDetail({Key? key, required this.pageId, required this.pagefrom}) : super(key: key);
+  const PopularFoodDetail({Key? key, required this.pageId, required this.pagefrom}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    oldProductModel product = Get.find<PopularProductController>().popularProductList[pageId];
+    OldProductModel product = Get.find<PopularProductController>().popularProductList[pageId];
 
     Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
 
@@ -74,7 +61,7 @@ class PopularFoodDetail extends StatelessWidget {
                         Get.toNamed(RouteHelper.getInitial());
                       }
                     },
-                    child: AppIcon(iconData: Icons.arrow_back)),
+                    child: const AppIcon(iconData: Icons.arrow_back)),
                 GetBuilder<PopularProductController>(builder: (controller) {
                   return GestureDetector(
                     onTap: () {
@@ -84,7 +71,7 @@ class PopularFoodDetail extends StatelessWidget {
                     },
                     child: Stack(
                       children: [
-                        AppIcon(iconData: Icons.shopping_bag),
+                        const AppIcon(iconData: Icons.shopping_bag),
                         controller.totalItems >= 1
                             ? Positioned(
                                 right: 0,
@@ -92,7 +79,7 @@ class PopularFoodDetail extends StatelessWidget {
                                 child: Stack(
                                   alignment: Alignment.center,
                                   children: [
-                                    AppIcon(
+                                    const AppIcon(
                                       iconData: Icons.circle,
                                       size: 20,
                                       backgroundColor: AppColors.mainColor,
@@ -136,7 +123,7 @@ class PopularFoodDetail extends StatelessWidget {
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      BigText(text: "Introduce"),
+                      const BigText(text: "Introduce"),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
@@ -155,7 +142,7 @@ class PopularFoodDetail extends StatelessWidget {
               height: Dimensions.bottomheightbar,
               padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
               decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 221, 220, 217),
+                  color: const Color.fromARGB(255, 221, 220, 217),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(Dimensions.radius20 * 2),
                     topRight: Radius.circular(Dimensions.radius20 * 2),
@@ -171,7 +158,7 @@ class PopularFoodDetail extends StatelessWidget {
                         onTap: () {
                           popularProductController.setQuantity(false);
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.remove,
                           color: AppColors.signColor,
                         ),
@@ -187,7 +174,7 @@ class PopularFoodDetail extends StatelessWidget {
                         onTap: () {
                           popularProductController.setQuantity(true);
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.add,
                           color: AppColors.signColor,
                         ),

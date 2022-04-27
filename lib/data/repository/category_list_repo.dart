@@ -8,8 +8,8 @@ class CategoryOfShopRepo extends GetxService {
 
   CategoryOfShopRepo({required this.apiClient});
 
-  Future<Response> getProductList(int shop_id) async {
-    String category_url = AppConstants.CATEGORY_URI + shop_id.toString();
-    return await apiClient.getData(category_url);
+  Future<Response> getProductList(int shopId) async {
+    String categoryUrl = AppConstants.CATEGORY_URI + shopId.toString();
+    return await apiClient.getData(categoryUrl);
   }
 }

@@ -14,11 +14,11 @@ class ProductListFromCategoryModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['category'] = this.category;
-    data['product'] = this.product;
-    data['quantity'] = this.quantity;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['category'] = category;
+    data['product'] = product;
+    data['quantity'] = quantity;
     return data;
   }
 }

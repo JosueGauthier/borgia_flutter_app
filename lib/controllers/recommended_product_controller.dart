@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/recommended_repo.dart';
@@ -8,9 +9,9 @@ class RecommendedProductController extends GetxController {
 
   RecommendedProductController({required this.recommendedRepo});
 
-  List<dynamic> _RecommendedProductList = [];
+  List<dynamic> _recommendedProductList = [];
 
-  List<dynamic> get recommendedProductList => _RecommendedProductList;
+  List<dynamic> get recommendedProductList => _recommendedProductList;
 
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
@@ -18,11 +19,13 @@ class RecommendedProductController extends GetxController {
   Future<void> getRecomendedProductList() async {
     Response response = await recommendedRepo.getRecommendedProductList();
 
-    print("Recommended status code " + response.statusCode.toString());
+    if (kDebugMode) {
+      print("Recommended status code " + response.statusCode.toString());
+    }
 
     if (response.statusCode == 200) {
-      _RecommendedProductList = [];
-      _RecommendedProductList.addAll(Product.fromJson(response.body).products);
+      _recommendedProductList = [];
+      _recommendedProductList.addAll(Product.fromJson(response.body).products);
       //print(recommendedProductList);
       _isLoaded = true;
 

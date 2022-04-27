@@ -1,8 +1,6 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/data/repository/shop_repo.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class ShopController extends GetxController {
@@ -21,7 +19,9 @@ class ShopController extends GetxController {
     Response response = await shopRepo.getShopList();
     //print(response);
 
-    print("Shop status code " + response.statusCode.toString());
+    if (kDebugMode) {
+      print("Shop status code " + response.statusCode.toString());
+    }
 
     if (response.statusCode == 200) {
       _shopList = [];

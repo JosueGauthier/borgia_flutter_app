@@ -1,12 +1,9 @@
 import 'dart:async';
 
-import 'package:borgiaflutterapp/controllers/shop_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../controllers/popular_product_controller.dart';
-import '../../controllers/recommended_product_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/dimensions.dart';
 
@@ -33,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
     _loadRessources();
 
-    animationController = new AnimationController(vsync: this, duration: Duration(seconds: 2))..forward();
+    animationController = AnimationController(vsync: this, duration: const Duration(seconds: 2))..forward();
 
     /*
 
@@ -47,9 +44,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
           
     */
 
-    animation = new CurvedAnimation(parent: animationController, curve: Curves.bounceOut); //bounceOut
+    animation = CurvedAnimation(parent: animationController, curve: Curves.bounceOut); //bounceOut
 
-    Timer(Duration(seconds: 3), (() => Get.offNamed(RouteHelper.getLoginPage())));
+    Timer(const Duration(seconds: 3), (() => Get.offNamed(RouteHelper.getLoginPage())));
   }
 
   @override

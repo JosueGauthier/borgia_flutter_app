@@ -1,4 +1,4 @@
-import 'dart:developer';
+// ignore_for_file: unused_import
 
 import 'package:borgiaflutterapp/data/repository/auth_repo.dart';
 import 'package:borgiaflutterapp/models/response_model.dart';
@@ -44,41 +44,40 @@ class AuthController extends GetxController implements GetxService {
     late ResponseModel responseModel; //late => before we use it we need to initialize it
 
     if (response.statusCode == 202) {
-      print(response.headers);
+      //print(response.headers);
 
-      print("the header set cookie " + response.headers!["set-cookie"].toString());
+      //print("the header set cookie " + response.headers!["set-cookie"].toString());
 
       String setcookie = response.headers!["set-cookie"].toString();
 
-      List<String> list_setcookie = setcookie.split(';');
+      List<String> listSetcookie = setcookie.split(';');
 
-      var list_list_setcookie = [];
-      var item_setcookie = "";
+      var listListSetcookie = [];
 
-      for (var i = 0; i < list_setcookie.length; i++) {
-        List<String> a = list_setcookie[i].split(',');
+      for (var i = 0; i < listSetcookie.length; i++) {
+        List<String> a = listSetcookie[i].split(',');
 
-        list_list_setcookie.add(a);
+        listListSetcookie.add(a);
       }
 
       var csrftoken = "";
       var sessionid = "";
 
-      sessionid = list_list_setcookie[4][1];
-      csrftoken = list_list_setcookie[0][0];
+      sessionid = listListSetcookie[4][1];
+      csrftoken = listListSetcookie[0][0];
 
       var cookie = "";
 
       cookie = csrftoken + ";" + sessionid;
 
-      print(cookie);
+      //print(cookie);
 
       AppConstants.COOKIE = cookie;
 
       authRepo.saveUserToken(response.headers!["set-cookie"].toString());
       authRepo.saveUserHeaders(response.headers);
 
-      print("the saved cookie is : " + AppConstants.COOKIE);
+      //print("the saved cookie is : " + AppConstants.COOKIE);
 
       responseModel = ResponseModel(true, response.headers!["set-cookie"].toString());
     } else {

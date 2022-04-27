@@ -1,6 +1,9 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: file_names
+
+/* 
+
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MaterialStatePropertysmall_text extends StatelessWidget {
   MaterialStateProperty<Color> color;
@@ -8,7 +11,7 @@ class MaterialStatePropertysmall_text extends StatelessWidget {
   double size;
   double height;
   TextOverflow? overFlow;
-  var maxLines;
+  int maxLines;
   bool allowOverFlow;
 
   MaterialStatePropertysmall_text({
@@ -18,7 +21,7 @@ class MaterialStatePropertysmall_text extends StatelessWidget {
     this.size = 12,
     this.height = 1.2,
     this.overFlow = TextOverflow.ellipsis,
-    this.maxLines = null,
+    this.maxLines = 1,
     this.allowOverFlow = false,
   }) : super(key: key);
 
@@ -37,3 +40,4 @@ class MaterialStatePropertysmall_text extends StatelessWidget {
     );
   }
 }
+ */

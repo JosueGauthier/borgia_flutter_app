@@ -23,7 +23,7 @@ class CartHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     var getCartHistoryList = Get.find<CartController>().getCartHistoryList().reversed.toList();
 
-    Map<String, int> cartItemsPerOrder = Map();
+    Map<String, int> cartItemsPerOrder = {};
 
     for (int i = 0; i < getCartHistoryList.length; i++) {
       if (cartItemsPerOrder.containsKey(getCartHistoryList[i].time)) {
@@ -50,8 +50,8 @@ class CartHistory extends StatelessWidget {
 
       if (index < getCartHistoryList.length) {
         DateTime parseDate = DateFormat("yyyy-MM-dd HH:mm:ss").parse(getCartHistoryList[listCounter].time!);
-        var output_format = DateFormat("dd/MM/yyyy hh:mm a");
-        outputData = output_format.format(parseDate);
+        var outputFormat = DateFormat("dd/MM/yyyy hh:mm a");
+        outputData = outputFormat.format(parseDate);
       }
       return BigText(
         text: outputData,
@@ -76,13 +76,13 @@ class CartHistory extends StatelessWidget {
                   size: Dimensions.height30,
                   color: Colors.white,
                 ),
-                AppIcon(iconData: Icons.shopping_bag, iconColor: AppColors.mainColor, backgroundColor: Colors.white),
+                const AppIcon(iconData: Icons.shopping_bag, iconColor: AppColors.mainColor, backgroundColor: Colors.white),
               ],
             ),
           ),
           //! list
           GetBuilder<CartController>(builder: (_cartController) {
-            return _cartController.getCartHistoryList().length > 0
+            return _cartController.getCartHistoryList().isNotEmpty
                 ? Expanded(
                     child: Container(
                       margin: EdgeInsets.only(top: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
@@ -135,7 +135,7 @@ class CartHistory extends StatelessWidget {
                                             height: Dimensions.height20 * 5,
                                             child:
                                                 Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.end, children: [
-                                              SmallText(text: "Total", color: AppColors.titleColor),
+                                              const SmallText(text: "Total", color: AppColors.titleColor),
                                               BigText(
                                                 text: itemsPerOrder[i].toString() + " items",
                                                 size: Dimensions.height20,
@@ -185,7 +185,7 @@ class CartHistory extends StatelessWidget {
                   )
                 : SizedBox(
                     height: MediaQuery.of(context).size.height / 1.5,
-                    child: NoDataPage(
+                    child: const NoDataPage(
                       text: "Your history is empty",
                       impgPath: "assets/image/empty_box.png",
                     ),

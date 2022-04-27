@@ -5,14 +5,14 @@ class UserModel {
   String? firstName;
   String? password;
   String? email;
-  Null? surname;
-  Null? family;
+  String? surname;
+  String? family;
   String? balance;
-  Null? year;
-  Null? campus;
-  Null? phone;
-  Null? avatar;
-  Null? theme;
+  String? year;
+  String? campus;
+  String? phone;
+  String? avatar;
+  String? theme;
 
   UserModel(
       {this.id,
@@ -48,21 +48,21 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['username'] = this.username;
-    data['last_name'] = this.lastName;
-    data['first_name'] = this.firstName;
-    data['password'] = this.password;
-    data['email'] = this.email;
-    data['surname'] = this.surname;
-    data['family'] = this.family;
-    data['balance'] = this.balance;
-    data['year'] = this.year;
-    data['campus'] = this.campus;
-    data['phone'] = this.phone;
-    data['avatar'] = this.avatar;
-    data['theme'] = this.theme;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['username'] = username;
+    data['last_name'] = lastName;
+    data['first_name'] = firstName;
+    data['password'] = password;
+    data['email'] = email;
+    data['surname'] = surname;
+    data['family'] = family;
+    data['balance'] = balance;
+    data['year'] = year;
+    data['campus'] = campus;
+    data['phone'] = phone;
+    data['avatar'] = avatar;
+    data['theme'] = theme;
     return data;
   }
 }

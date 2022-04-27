@@ -23,7 +23,7 @@ class RecommendedFoodDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    oldProductModel product = Get.find<RecommendedProductController>().recommendedProductList[pageId];
+    OldProductModel product = Get.find<RecommendedProductController>().recommendedProductList[pageId];
 
     Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
 
@@ -44,7 +44,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                         Get.toNamed(RouteHelper.getInitial());
                       }
                     },
-                    child: AppIcon(iconData: Icons.close)),
+                    child: const AppIcon(iconData: Icons.close)),
                 GetBuilder<PopularProductController>(builder: (controller) {
                   return GestureDetector(
                     onTap: () {
@@ -54,7 +54,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     },
                     child: Stack(
                       children: [
-                        AppIcon(iconData: Icons.shopping_bag),
+                        const AppIcon(iconData: Icons.shopping_bag),
                         Get.find<PopularProductController>().totalItems >= 1
                             ? Positioned(
                                 right: 0,
@@ -62,7 +62,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                                 child: Stack(
                                   alignment: Alignment.center,
                                   children: [
-                                    AppIcon(
+                                    const AppIcon(
                                       iconData: Icons.circle,
                                       size: 20,
                                       backgroundColor: AppColors.mainColor,
@@ -92,7 +92,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     size: Dimensions.height30,
                   )),
                   width: double.maxFinite,
-                  padding: EdgeInsets.only(top: 7, bottom: 7),
+                  padding: const EdgeInsets.only(top: 7, bottom: 7),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.width20), topRight: Radius.circular(Dimensions.width20))),
@@ -127,7 +127,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                       onTap: () {
                         controller.setQuantity(false);
                       },
-                      child: AppIcon(
+                      child: const AppIcon(
                         iconData: Icons.remove,
                         backgroundColor: AppColors.mainColor,
                         iconColor: Colors.white,
@@ -142,7 +142,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                       onTap: () {
                         controller.setQuantity(true);
                       },
-                      child: AppIcon(
+                      child: const AppIcon(
                         iconData: Icons.add,
                         backgroundColor: AppColors.mainColor,
                         iconColor: Colors.white,
@@ -163,12 +163,12 @@ class RecommendedFoodDetail extends StatelessWidget {
                   margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                     Container(
-                      margin: EdgeInsets.only(left: 0, right: 0),
+                      margin: const EdgeInsets.only(left: 0, right: 0),
                       padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
-                      decoration: BoxDecoration(color: Color.fromARGB(255, 230, 228, 228), borderRadius: BorderRadius.circular(Dimensions.radius20)),
+                      decoration: BoxDecoration(color: const Color.fromARGB(255, 230, 228, 228), borderRadius: BorderRadius.circular(Dimensions.radius20)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Icon(
                             Icons.favorite,
                             color: AppColors.mainColor,

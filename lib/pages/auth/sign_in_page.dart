@@ -1,9 +1,9 @@
-import 'dart:developer';
+// ignore_for_file: unnecessary_import
 
 import 'package:borgiaflutterapp/controllers/auth_controller.dart';
-import 'package:borgiaflutterapp/models/signup_body_model.dart';
 import 'package:borgiaflutterapp/routes/route_helper.dart';
 import 'package:borgiaflutterapp/widget/small_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,8 +27,9 @@ class _LoginPageState extends State<LoginPage> {
     String username = usernameController.text.trim();
     String password = passwordController.text.trim();
 
-    print(username);
-    print(password);
+    //print(username);
+
+    //print(password);
 
     if (username.isEmpty) {
       Get.snackbar("Username empty", "Enter a valid username");
@@ -37,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       authController.login(username, password).then((status) {
         if (status.isSuccess) {
-          print("Sucess login");
+          //print("Sucess login");
           Get.toNamed(RouteHelper.getInitial());
         } else {
           Get.snackbar("Error", status.message);
@@ -54,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
           builder: (authcontroller) {
             return Column(children: [
               Padding(
-                padding: EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 child: Column(
                   children: <Widget>[
                     SizedBox(
@@ -71,10 +72,10 @@ class _LoginPageState extends State<LoginPage> {
                           Container(
                               width: Dimensions.height100 * 2.5,
                               height: Dimensions.height100 * 2.5,
-                              decoration: new BoxDecoration(
+                              decoration: const BoxDecoration(
                                   color: Colors.white,
                                   shape: BoxShape.circle,
-                                  image: new DecorationImage(fit: BoxFit.contain, image: AssetImage("assets/image/logoborgia.png")))),
+                                  image: DecorationImage(fit: BoxFit.contain, image: AssetImage("assets/image/logoborgia.png")))),
                         ],
                       ),
                     ),
@@ -89,17 +90,17 @@ class _LoginPageState extends State<LoginPage> {
                             controller: usernameController,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.transparent),
+                                borderSide: const BorderSide(color: Colors.transparent),
                                 borderRadius: BorderRadius.circular(5.5),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.transparent),
+                                borderSide: const BorderSide(color: Colors.transparent),
                                 borderRadius: BorderRadius.circular(5.5),
                               ),
-                              prefixIcon: Icon(Icons.person, color: AppColors.darkgrey),
+                              prefixIcon: const Icon(Icons.person, color: AppColors.darkgrey),
                               hintText: "Enter your username",
                               //labelText: 'Name',
-                              hintStyle: TextStyle(color: AppColors.darkgrey),
+                              hintStyle: const TextStyle(color: AppColors.darkgrey),
                               filled: true,
                               fillColor: AppColors.greyColor,
                             ),
@@ -115,17 +116,17 @@ class _LoginPageState extends State<LoginPage> {
                             controller: passwordController,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.transparent),
+                                borderSide: const BorderSide(color: Colors.transparent),
                                 borderRadius: BorderRadius.circular(5.5),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.transparent),
+                                borderSide: const BorderSide(color: Colors.transparent),
                                 borderRadius: BorderRadius.circular(5.5),
                               ),
-                              prefixIcon: Icon(Icons.person, color: AppColors.darkgrey),
+                              prefixIcon: const Icon(Icons.person, color: AppColors.darkgrey),
                               hintText: "Enter your password",
                               //labelText: 'Name',
-                              hintStyle: TextStyle(color: AppColors.darkgrey),
+                              hintStyle: const TextStyle(color: AppColors.darkgrey),
                               filled: true,
                               fillColor: AppColors.greyColor,
                             ),

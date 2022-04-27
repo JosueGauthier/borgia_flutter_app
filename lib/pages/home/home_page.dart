@@ -9,8 +9,6 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../../controllers/shop_controller.dart';
 import '../../utils/colors.dart';
-import '../cart/cart_history.dart';
-import '../shop/shop_page_detail_page.dart';
 import 'welcome_page_with_header.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,26 +19,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
-
   late PersistentTabController _controller;
 
   List<Widget> pages = [
-    WelcomePageWithHeader(),
-    AuthPage(),
+    const WelcomePageWithHeader(),
+    const AuthPage(),
     //CartHistory(),
 
-    SignUpPage(),
+    const SignUpPage(),
 
     //ShopPageDetail(),
 
-    ProfilePage(),
+    const ProfilePage(),
   ];
 
   void onTapNav(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    setState(() {});
   }
 
   @override
@@ -56,25 +50,25 @@ class _HomePageState extends State<HomePage> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.home),
+        icon: const Icon(CupertinoIcons.home),
         title: ("Home"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.archivebox),
+        icon: const Icon(CupertinoIcons.archivebox),
         title: ("History"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.shopping_cart),
+        icon: const Icon(CupertinoIcons.shopping_cart),
         title: ("Cart"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.person),
+        icon: const Icon(CupertinoIcons.person),
         title: ("Me"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
@@ -102,12 +96,12 @@ class _HomePageState extends State<HomePage> {
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: ItemAnimationProperties(
+      itemAnimationProperties: const ItemAnimationProperties(
         // Navigation Bar's items animation properties.
         duration: Duration(milliseconds: 200),
         curve: Curves.ease,
       ),
-      screenTransitionAnimation: ScreenTransitionAnimation(
+      screenTransitionAnimation: const ScreenTransitionAnimation(
         // Screen transition animation on change of selected tab.
         animateTabTransition: true,
         curve: Curves.ease,

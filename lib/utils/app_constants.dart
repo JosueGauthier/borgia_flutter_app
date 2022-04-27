@@ -7,6 +7,8 @@
 //"https://api.jsonbin.io" "/b/625dc4f5c5284e31154ef250"
 //static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
 
+// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+
 class AppConstants {
   static const String SHOP_URI = "/api-links/shops/shops/?format=json";
   static const String PRODUCT_URI = "/api-links/shops/products/?shop=";

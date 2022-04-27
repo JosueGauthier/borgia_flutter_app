@@ -1,12 +1,8 @@
-import 'dart:developer';
+// ignore_for_file: prefer_const_constructors
 
-import 'package:borgiaflutterapp/models/user_model.dart';
 import 'package:borgiaflutterapp/widget/small_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controllers/new_user_controller.dart';
-import '../../controllers/user_controller.dart';
-import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
@@ -56,10 +52,10 @@ class _AuthPageState extends State<AuthPage> {
                   Container(
                       width: Dimensions.height100 * 2.5,
                       height: Dimensions.height100 * 2.5,
-                      decoration: new BoxDecoration(
+                      decoration: BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.circle,
-                          image: new DecorationImage(fit: BoxFit.contain, image: AssetImage("assets/image/logoborgia.png")))),
+                          image: DecorationImage(fit: BoxFit.contain, image: const AssetImage("assets/image/logoborgia.png")))),
                 ],
               ),
             ),

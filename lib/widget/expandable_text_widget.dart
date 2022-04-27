@@ -55,7 +55,7 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
                     });
                   },
                   child: Row(children: [
-                    SmallText(
+                    const SmallText(
                       text: "Show more",
                       color: AppColors.mainColor,
                     ),

@@ -28,7 +28,7 @@ class AppColumn extends StatelessWidget {
             Wrap(
               children: List.generate(
                   5,
-                  (index) => Icon(
+                  (index) => const Icon(
                         Icons.star,
                         color: AppColors.mainColor,
                         size: 15,
@@ -37,15 +37,15 @@ class AppColumn extends StatelessWidget {
             SizedBox(
               width: Dimensions.width10,
             ),
-            SmallText(text: "4.5"),
+            const SmallText(text: "4.5"),
             SizedBox(
               width: Dimensions.width10,
             ),
-            SmallText(text: "1287"),
+            const SmallText(text: "1287"),
             SizedBox(
               width: Dimensions.width10,
             ),
-            SmallText(text: "comments"),
+            const SmallText(text: "comments"),
           ],
         ),
         SizedBox(
@@ -54,15 +54,15 @@ class AppColumn extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconAndTextWidget(icon: Icons.circle, text: "Normal", iconcolor: Colors.amber),
+            const IconAndTextWidget(icon: Icons.circle, text: "Normal", iconcolor: Colors.amber),
             SizedBox(
               width: Dimensions.width20,
             ),
-            IconAndTextWidget(icon: Icons.location_pin, text: "1.7 km", iconcolor: AppColors.mainColor),
+            const IconAndTextWidget(icon: Icons.location_pin, text: "1.7 km", iconcolor: AppColors.mainColor),
             SizedBox(
               width: Dimensions.width20,
             ),
-            IconAndTextWidget(icon: Icons.lock_clock, text: "16 min", iconcolor: Colors.pink),
+            const IconAndTextWidget(icon: Icons.lock_clock, text: "16 min", iconcolor: Colors.pink),
           ],
         ),
       ],

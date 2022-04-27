@@ -8,8 +8,8 @@ class ProductFromCategoryRepo extends GetxService {
 
   ProductFromCategoryRepo({required this.apiClient});
 
-  Future<Response> getProductList(int category_id) async {
-    String productList_url = AppConstants.PRODUCT_FROM_CATEGORY_URI + category_id.toString();
-    return await apiClient.getData(productList_url);
+  Future<Response> getProductList(int categoryId) async {
+    String productListUrl = AppConstants.PRODUCT_FROM_CATEGORY_URI + categoryId.toString();
+    return await apiClient.getData(productListUrl);
   }
 }

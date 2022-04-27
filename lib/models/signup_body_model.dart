@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new
+
 class SignUpBodyModel {
   String name;
   String phone;
@@ -12,12 +14,12 @@ class SignUpBodyModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
 
-    data["username"] = this.name;
-    data["password"] = this.password;
-    data["email"] = this.email;
-    data["phone"] = this.phone;
+    data["username"] = name;
+    data["password"] = password;
+    data["email"] = email;
+    data["phone"] = phone;
 
     return data;
   }

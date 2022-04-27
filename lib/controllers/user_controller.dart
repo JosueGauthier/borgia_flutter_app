@@ -1,7 +1,9 @@
-import 'package:borgiaflutterapp/data/repository/shop_repo.dart';
+// ignore_for_file: unused_import
+
 import 'package:borgiaflutterapp/data/repository/user_repo.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:borgiaflutterapp/models/user_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController {
@@ -20,7 +22,9 @@ class UserController extends GetxController {
     Response response = await userRepo.getUserList(username);
     //print(response);
 
-    print("User status code " + response.statusCode.toString());
+    if (kDebugMode) {
+      print("User status code " + response.statusCode.toString());
+    }
 
     if (response.statusCode == 200) {
       _userList = [];

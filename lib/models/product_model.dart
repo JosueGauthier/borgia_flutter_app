@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new
+
 class ProductModel {
   int? id;
   String? name;
@@ -27,17 +29,17 @@ class ProductModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['unit'] = this.unit;
-    data['shop'] = this.shop;
-    data['is_manual'] = this.isManual;
-    data['manual_price'] = this.manualPrice;
-    data['correcting_factor'] = this.correctingFactor;
-    data['is_active'] = this.isActive;
-    data['is_removed'] = this.isRemoved;
-    data['product_image'] = this.productImage;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['unit'] = unit;
+    data['shop'] = shop;
+    data['is_manual'] = isManual;
+    data['manual_price'] = manualPrice;
+    data['correcting_factor'] = correctingFactor;
+    data['is_active'] = isActive;
+    data['is_removed'] = isRemoved;
+    data['product_image'] = productImage;
     return data;
   }
 }

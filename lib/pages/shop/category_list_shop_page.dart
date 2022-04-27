@@ -12,7 +12,6 @@ import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
-import '../../widget/small_text.dart';
 
 class CategoryShop extends StatefulWidget {
   final String pagefrom;
@@ -55,7 +54,7 @@ class _CategoryShopState extends State<CategoryShop> {
                   size: Dimensions.height30,
                   color: Colors.white,
                 ),
-                AppIcon(iconData: Icons.shopping_bag, iconColor: AppColors.mainColor, backgroundColor: Colors.white),
+                const AppIcon(iconData: Icons.shopping_bag, iconColor: AppColors.mainColor, backgroundColor: Colors.white),
               ],
             ),
           ),
@@ -63,7 +62,7 @@ class _CategoryShopState extends State<CategoryShop> {
             return categoryOfShopController.isLoaded
                 ? ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: categoryOfShopController.categoryOfShopList.length,
                     itemBuilder: (context, index) {
                       CategoryOfShopModel categoryModel = categoryOfShopController.categoryOfShopList[index];
@@ -93,12 +92,12 @@ class _CategoryShopState extends State<CategoryShop> {
                                           child: SizedBox(
                                             height: Dimensions.height45,
                                             width: Dimensions.height45,
-                                            child: CircularProgressIndicator(
+                                            child: const CircularProgressIndicator(
                                               color: AppColors.secondColor,
                                             ),
                                           ),
                                         ),
-                                        errorWidget: (context, url, error) => Image(image: AssetImage("assets/image/errorimage.png")),
+                                        errorWidget: (context, url, error) => const Image(image: AssetImage("assets/image/errorimage.png")),
                                       ),
                                     ),
                                   ],
@@ -139,7 +138,7 @@ class _CategoryShopState extends State<CategoryShop> {
                         ),
                       );
                     })
-                : CircularProgressIndicator(
+                : const CircularProgressIndicator(
                     strokeWidth: 4,
                     color: AppColors.mainColor,
                   );

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, unnecessary_this
+
 import 'package:get/get.dart';
 
 import 'Popular_product_model.dart';
@@ -10,7 +12,7 @@ class CartModel {
   int? quantity;
   bool? isExist;
   String? time;
-  oldProductModel? aProduct;
+  OldProductModel? aProduct;
 
   CartModel({
     this.id,
@@ -31,7 +33,7 @@ class CartModel {
     quantity = json['quantity'];
     isExist = json['isexist'];
     time = json['time'];
-    aProduct = oldProductModel.fromJson(json['product']);
+    aProduct = OldProductModel.fromJson(json['product']);
   }
 
   Map<String, dynamic> toJson() {

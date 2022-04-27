@@ -1,9 +1,7 @@
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:borgiaflutterapp/widget/small_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class ProfileBox extends StatelessWidget {
   final IconData icon;
@@ -13,7 +11,7 @@ class ProfileBox extends StatelessWidget {
   final Color textColor;
   final bool isEditable;
 
-  ProfileBox(
+  const ProfileBox(
       {Key? key,
       required this.icon,
       required this.textColor,
@@ -30,7 +28,7 @@ class ProfileBox extends StatelessWidget {
       margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
       height: Dimensions.height45 * 1.7,
       width: double.maxFinite,
-      decoration: BoxDecoration(color: backgroundcolor, borderRadius: BorderRadius.all(Radius.circular(10))),
+      decoration: BoxDecoration(color: backgroundcolor, borderRadius: const BorderRadius.all(Radius.circular(10))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -51,7 +49,7 @@ class ProfileBox extends StatelessWidget {
             ],
           ),
           isEditable == true
-              ? Icon(
+              ? const Icon(
                   Icons.edit,
                   color: AppColors.darkgrey,
                 )

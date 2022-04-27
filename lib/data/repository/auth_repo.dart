@@ -40,7 +40,7 @@ class AuthRepo {
       await sharedPreferences.setString(AppConstants.USERNAME, username);
       await sharedPreferences.setString(AppConstants.PASSWORD, password);
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget buildTextFields() => Padding(
       padding: const EdgeInsets.all(35),
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -22,7 +22,7 @@ Widget buildTextFields() => Padding(
     );
 
 Widget buildTextField1() => TextFormField(
-    decoration: InputDecoration(
+    decoration: const InputDecoration(
         border: InputBorder.none,
         prefixIcon: Icon(
           Icons.person,
@@ -32,7 +32,7 @@ Widget buildTextField1() => TextFormField(
         hintStyle: TextStyle(color: Colors.teal)));
 
 Widget buildTextField2() => TextFormField(
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.orange),
         ),
@@ -53,16 +53,16 @@ Widget buildTextField2() => TextFormField(
 Widget buildTextField3() => TextFormField(
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
+          borderSide: const BorderSide(color: Colors.transparent),
           borderRadius: BorderRadius.circular(5.5),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
+          borderSide: const BorderSide(color: Colors.transparent),
           borderRadius: BorderRadius.circular(5.5),
         ),
-        prefixIcon: Icon(Icons.person, color: Colors.blue),
+        prefixIcon: const Icon(Icons.person, color: Colors.blue),
         hintText: "Enter your Name",
-        hintStyle: TextStyle(color: Colors.blue),
+        hintStyle: const TextStyle(color: Colors.blue),
         filled: true,
         fillColor: Colors.blue[50],
       ),
@@ -70,44 +70,44 @@ Widget buildTextField3() => TextFormField(
 
 Widget buildTextField4() => TextFormField(
       decoration: InputDecoration(
-        focusedBorder: UnderlineInputBorder(
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.green),
         ),
-        enabledBorder: UnderlineInputBorder(
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: Colors.green,
           ),
         ),
-        prefixIcon: Icon(
+        prefixIcon: const Icon(
           Icons.person,
           color: Colors.green,
         ),
         filled: true,
         fillColor: Colors.green[50],
         labelText: "Enter your Name",
-        labelStyle: TextStyle(color: Colors.green),
+        labelStyle: const TextStyle(color: Colors.green),
       ),
     );
 
 Widget buildTextField5() => TextFormField(
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red),
+          borderSide: const BorderSide(color: Colors.red),
           borderRadius: BorderRadius.circular(5.5),
         ),
-        enabledBorder: OutlineInputBorder(
+        enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.red,
           ),
         ),
-        prefixIcon: Icon(
+        prefixIcon: const Icon(
           Icons.person,
           color: Colors.red,
         ),
         filled: true,
         fillColor: Colors.red[50],
         labelText: "Enter your Name",
-        labelStyle: TextStyle(color: Colors.red),
+        labelStyle: const TextStyle(color: Colors.red),
       ),
     );
 

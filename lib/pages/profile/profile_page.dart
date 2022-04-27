@@ -1,11 +1,8 @@
-import 'package:borgiaflutterapp/widget/icon_and_text.dart';
 import 'package:borgiaflutterapp/widget/profile_box.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../../widget/app_icon.dart';
 import '../../widget/big_text.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -48,18 +45,18 @@ class _ProfilePageState extends State<ProfilePage> {
                 Container(
                     width: Dimensions.height100 * 2.5,
                     height: Dimensions.height100 * 2.5,
-                    decoration: new BoxDecoration(
+                    decoration: BoxDecoration(
                         border: Border.all(width: 3, color: AppColors.greyColor),
                         color: Colors.white,
                         shape: BoxShape.circle,
-                        image: new DecorationImage(fit: BoxFit.fill, image: AssetImage("assets/image/logoAMAngers.jpg")))),
+                        image: const DecorationImage(fit: BoxFit.fill, image: AssetImage("assets/image/logoAMAngers.jpg")))),
               ],
             ),
           ),
-          Container(
+          SizedBox(
             height: 300,
             child: ListView(children: <Widget>[
-              ProfileBox(
+              const ProfileBox(
                   textColor: AppColors.darkgrey,
                   backgroundcolor: AppColors.greyColor,
                   icon: Icons.person,
@@ -69,7 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(
                 height: Dimensions.height20,
               ),
-              ProfileBox(
+              const ProfileBox(
                 textColor: AppColors.darkgrey,
                 backgroundcolor: AppColors.greyColor,
                 icon: Icons.group,
@@ -80,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(
                 height: Dimensions.height20,
               ),
-              ProfileBox(
+              const ProfileBox(
                 textColor: AppColors.darkgrey,
                 backgroundcolor: AppColors.greyColor,
                 icon: Icons.group_work,
@@ -91,7 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(
                 height: Dimensions.height20,
               ),
-              ProfileBox(
+              const ProfileBox(
                 textColor: Colors.white,
                 backgroundcolor: AppColors.mainColorTranspa,
                 icon: Icons.notifications,
@@ -102,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(
                 height: Dimensions.height20,
               ),
-              ProfileBox(
+              const ProfileBox(
                 textColor: Colors.white,
                 backgroundcolor: AppColors.mainColorTranspa,
                 icon: Icons.logout,
@@ -113,7 +110,7 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(
                 height: Dimensions.height20,
               ),
-              ProfileBox(
+              const ProfileBox(
                 textColor: Colors.white,
                 backgroundcolor: AppColors.mainColorTranspa,
                 icon: Icons.help,

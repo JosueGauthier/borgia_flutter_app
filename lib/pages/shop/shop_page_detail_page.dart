@@ -7,8 +7,6 @@ import 'package:get/get.dart';
 
 import '../../widget/app_icon.dart';
 
-import '../../routes/route_helper.dart';
-
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
@@ -49,7 +47,7 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
                   size: Dimensions.height30,
                   color: Colors.white,
                 ),
-                AppIcon(iconData: Icons.shopping_bag, iconColor: AppColors.mainColor, backgroundColor: Colors.white),
+                const AppIcon(iconData: Icons.shopping_bag, iconColor: AppColors.mainColor, backgroundColor: Colors.white),
               ],
             ),
           ),
@@ -58,11 +56,10 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
             return productController.isLoaded
                 ? ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: productController.productList.length,
                     itemBuilder: (context, index) {
                       ProductModel productModel = productController.productList[index];
-                      var product_image = NetworkImage(productModel.productImage!);
                       return GestureDetector(
                         onTap: () {
                           //Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
@@ -89,8 +86,8 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
                                       child: CachedNetworkImage(
                                         fit: BoxFit.contain,
                                         imageUrl: productModel.productImage!,
-                                        placeholder: (context, url) => CircularProgressIndicator(),
-                                        errorWidget: (context, url, error) => Image(image: AssetImage("assets/image/errorimage.png")),
+                                        placeholder: (context, url) => const CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) => const Image(image: AssetImage("assets/image/errorimage.png")),
                                       ),
                                     ),
                                     Positioned(
@@ -101,7 +98,7 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
                                         width: Dimensions.height20 * 2,
                                         decoration: BoxDecoration(
                                             color: Colors.transparent,
-                                            image: DecorationImage(
+                                            image: const DecorationImage(
                                               //colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.5), BlendMode.dstATop),
                                               fit: BoxFit.contain,
                                               image: AssetImage("assets/image/pinte_png8_fondblanc.png"), //todo add item in function of the name of the product
@@ -119,7 +116,7 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
                                   child: Container(
                                     height: Dimensions.listviewTextHeigth + 10,
                                     decoration: BoxDecoration(
-                                        color: Color.fromARGB(255, 255, 255, 255),
+                                        color: const Color.fromARGB(255, 255, 255, 255),
                                         borderRadius: BorderRadius.only(
                                             topRight: Radius.circular(Dimensions.height20), bottomRight: Radius.circular(Dimensions.height20))),
                                     child: Padding(
@@ -163,7 +160,7 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
                         ),
                       );
                     })
-                : CircularProgressIndicator(
+                : const CircularProgressIndicator(
                     strokeWidth: 4,
                     color: AppColors.mainColor,
                   );
