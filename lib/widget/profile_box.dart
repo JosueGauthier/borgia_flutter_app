@@ -51,7 +51,7 @@ class ProfileBox extends StatelessWidget {
           isEditable == true
               ? const Icon(
                   Icons.edit,
-                  color: AppColors.darkgrey,
+                  color: AppColors.darkGreyColor,
                 )
               : Container(),
         ],

@@ -123,7 +123,7 @@ class PopularFoodDetail extends StatelessWidget {
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      const BigText(text: "Introduce"),
+                      BigText(text: "Introduce"),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
@@ -160,7 +160,7 @@ class PopularFoodDetail extends StatelessWidget {
                         },
                         child: const Icon(
                           Icons.remove,
-                          color: AppColors.signColor,
+                          color: AppColors.darkGreyColor,
                         ),
                       ),
                       SizedBox(
@@ -176,7 +176,7 @@ class PopularFoodDetail extends StatelessWidget {
                         },
                         child: const Icon(
                           Icons.add,
-                          color: AppColors.signColor,
+                          color: AppColors.darkGreyColor,
                         ),
                       ),
                     ],

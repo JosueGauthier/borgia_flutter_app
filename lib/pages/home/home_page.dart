@@ -23,13 +23,15 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> pages = [
     const WelcomePageWithHeader(),
-    const AuthPage(),
+    //const AuthPage(),
     //CartHistory(),
 
-    const SignUpPage(),
+    //const SignUpPage(),
 
     //ShopPageDetail(),
 
+    const ProfilePage(),
+    const ProfilePage(),
     const ProfilePage(),
   ];
 
@@ -70,8 +72,8 @@ class _HomePageState extends State<HomePage> {
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.person),
         title: ("Me"),
-        activeColorPrimary: AppColors.mainColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: AppColors.secondColor,
+        inactiveColorPrimary: AppColors.greyColor,
       ),
     ];
   }
@@ -107,7 +109,7 @@ class _HomePageState extends State<HomePage> {
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
       ),
-      navBarStyle: NavBarStyle.style9, // Choose the nav bar style with this property.
+      navBarStyle: NavBarStyle.style12, // Choose the nav bar style with this property.
     );
   }
 

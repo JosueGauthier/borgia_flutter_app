@@ -86,7 +86,6 @@ class _LoginPageState extends State<LoginPage> {
                         padding: EdgeInsets.only(left: Dimensions.width20 * 2, right: Dimensions.width20 * 2),
                         child: Column(children: <Widget>[
                           TextFormField(
-                            obscureText: true,
                             controller: usernameController,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
@@ -97,12 +96,12 @@ class _LoginPageState extends State<LoginPage> {
                                 borderSide: const BorderSide(color: Colors.transparent),
                                 borderRadius: BorderRadius.circular(5.5),
                               ),
-                              prefixIcon: const Icon(Icons.person, color: AppColors.darkgrey),
+                              prefixIcon: const Icon(Icons.person, color: AppColors.greyColor),
                               hintText: "Enter your username",
                               //labelText: 'Name',
-                              hintStyle: const TextStyle(color: AppColors.darkgrey),
+                              hintStyle: const TextStyle(color: AppColors.greyColor),
                               filled: true,
-                              fillColor: AppColors.greyColor,
+                              fillColor: AppColors.whiteGreyColor,
                             ),
                           ),
                         ])),
@@ -113,6 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                         padding: EdgeInsets.only(left: Dimensions.width20 * 2, right: Dimensions.width20 * 2),
                         child: Column(children: <Widget>[
                           TextFormField(
+                            obscureText: true,
                             controller: passwordController,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
@@ -123,12 +123,12 @@ class _LoginPageState extends State<LoginPage> {
                                 borderSide: const BorderSide(color: Colors.transparent),
                                 borderRadius: BorderRadius.circular(5.5),
                               ),
-                              prefixIcon: const Icon(Icons.person, color: AppColors.darkgrey),
+                              prefixIcon: const Icon(Icons.person, color: AppColors.greyColor),
                               hintText: "Enter your password",
                               //labelText: 'Name',
-                              hintStyle: const TextStyle(color: AppColors.darkgrey),
+                              hintStyle: const TextStyle(color: AppColors.greyColor),
                               filled: true,
-                              fillColor: AppColors.greyColor,
+                              fillColor: AppColors.whiteGreyColor,
                             ),
                           ),
                         ])),
@@ -158,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: SmallText(
                           text: "Login",
                           size: Dimensions.height20,
-                          color: AppColors.darkgrey,
+                          color: AppColors.greyColor,
                         ),
                         onPressed: () {
                           _login(authcontroller);
@@ -168,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                                 EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
                             backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                               if (states.contains(MaterialState.pressed)) return AppColors.secondColor;
-                              return AppColors.greyColor;
+                              return AppColors.whiteGreyColor;
                             })))
                   ],
                 ),

@@ -165,7 +165,7 @@ class CartPage extends StatelessWidget {
                                                 children: [
                                                   BigText(
                                                     text: _cartList[index].name!,
-                                                    color: AppColors.mainBlackColor,
+                                                    color: AppColors.darkGreyColor,
                                                     size: Dimensions.height30,
                                                   ),
                                                   const SmallText(text: "Spicy"),
@@ -194,7 +194,7 @@ class CartPage extends StatelessWidget {
                                                               },
                                                               child: const Icon(
                                                                 Icons.remove,
-                                                                color: AppColors.signColor,
+                                                                color: AppColors.darkGreyColor,
                                                               ),
                                                             ),
                                                             SizedBox(
@@ -211,7 +211,7 @@ class CartPage extends StatelessWidget {
                                                               },
                                                               child: const Icon(
                                                                 Icons.add,
-                                                                color: AppColors.signColor,
+                                                                color: AppColors.darkGreyColor,
                                                               ),
                                                             ),
                                                           ],

@@ -56,9 +56,9 @@ class _PopUpSaleState extends State<PopUpSale> {
                     iconSize: 30,
                   ),
                 ),
-                const BigText(
+                BigText(
                   text: "\$ 10 x " "5",
-                  color: AppColors.mainBlackColor,
+                  color: AppColors.darkGreyColor,
                   size: 20,
                 ),
                 GestureDetector(
@@ -91,7 +91,7 @@ class _PopUpSaleState extends State<PopUpSale> {
                   decoration: BoxDecoration(color: AppColors.mainColor, borderRadius: BorderRadius.circular(Dimensions.radius20)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       BigText(
                         size: 20,
                         text: "\$ 15 | Add to cart",
@@ -125,7 +125,7 @@ class _PopUpSaleState extends State<PopUpSale> {
                 padding: MaterialStateProperty.all(
                     EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10)),
                 backgroundColor:
-                    txtbuttonpressed ? MaterialStateProperty.all<Color>(AppColors.greyColormedium) : MaterialStateProperty.all<Color>(AppColors.secondColor),
+                    txtbuttonpressed ? MaterialStateProperty.all<Color>(AppColors.greyColor) : MaterialStateProperty.all<Color>(AppColors.secondColor),
               )),
         ],
       ),

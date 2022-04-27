@@ -183,7 +183,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                                             top: Dimensions.height10,
                                                             bottom: Dimensions.height10)),
                                                         backgroundColor: pressed
-                                                            ? MaterialStateProperty.all<Color>(AppColors.greyColormedium)
+                                                            ? MaterialStateProperty.all<Color>(AppColors.greyColor)
                                                             : MaterialStateProperty.all<Color>(AppColors.secondColor),
                                                       )),
                                                 )
@@ -276,7 +276,7 @@ class _MyDialogState extends State<MyDialog> {
                 ),
                 BigText(
                   text: "\$ 10 x " + widget.productListController.inCartItem.toString(),
-                  color: AppColors.mainBlackColor,
+                  color: AppColors.darkGreyColor,
                   size: 20,
                 ),
                 GestureDetector(
@@ -334,13 +334,13 @@ class _MyDialogState extends State<MyDialog> {
                 padding: MaterialStateProperty.all(
                     EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10)),
                 backgroundColor:
-                    txtbuttonpressed ? MaterialStateProperty.all<Color>(AppColors.greyColormedium) : MaterialStateProperty.all<Color>(AppColors.mainColor),
+                    txtbuttonpressed ? MaterialStateProperty.all<Color>(AppColors.greyColor) : MaterialStateProperty.all<Color>(AppColors.mainColor),
               )),
         ],
       ),
       actions: <Widget>[
         ElevatedButton(
-          style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(AppColors.greyColormedium)),
+          style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(AppColors.greyColor)),
           onPressed: () {
             Navigator.of(context).pop();
           },

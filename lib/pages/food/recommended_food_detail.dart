@@ -100,7 +100,7 @@ class RecommendedFoodDetail extends StatelessWidget {
               ),
               expandedHeight: 300,
               pinned: true,
-              backgroundColor: AppColors.yellowColor,
+              backgroundColor: AppColors.greyColor,
               flexibleSpace: FlexibleSpaceBar(
                 //title: Text("title"),
                 background: Image(image: NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!), fit: BoxFit.cover),
@@ -136,7 +136,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     ),
                     BigText(
                       text: "\$ ${product.price} x " + controller.inCartItem.toString(),
-                      color: AppColors.mainBlackColor,
+                      color: AppColors.darkGreyColor,
                     ),
                     GestureDetector(
                       onTap: () {

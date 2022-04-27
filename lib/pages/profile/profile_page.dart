@@ -22,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
             height: Dimensions.height100 * 1.1,
             width: double.maxFinite,
             padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height10),
-            color: AppColors.mainColorTranspa,
+            color: AppColors.altMainColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -57,32 +57,32 @@ class _ProfilePageState extends State<ProfilePage> {
             height: 300,
             child: ListView(children: <Widget>[
               const ProfileBox(
-                  textColor: AppColors.darkgrey,
+                  textColor: AppColors.darkGreyColor,
                   backgroundcolor: AppColors.greyColor,
                   icon: Icons.person,
                   text: "Bucque : Khalvin",
                   isEditable: false,
-                  iconcolor: AppColors.mainColorTranspa),
+                  iconcolor: AppColors.altMainColor),
               SizedBox(
                 height: Dimensions.height20,
               ),
               const ProfileBox(
-                textColor: AppColors.darkgrey,
+                textColor: AppColors.darkGreyColor,
                 backgroundcolor: AppColors.greyColor,
                 icon: Icons.group,
                 text: "Fam'ss : 73-16",
-                iconcolor: AppColors.mainColorTranspa,
+                iconcolor: AppColors.altMainColor,
                 isEditable: false,
               ),
               SizedBox(
                 height: Dimensions.height20,
               ),
               const ProfileBox(
-                textColor: AppColors.darkgrey,
+                textColor: AppColors.darkGreyColor,
                 backgroundcolor: AppColors.greyColor,
                 icon: Icons.group_work,
                 text: "Prom'ss : An 220",
-                iconcolor: AppColors.mainColorTranspa,
+                iconcolor: AppColors.altMainColor,
                 isEditable: false,
               ),
               SizedBox(
@@ -90,7 +90,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const ProfileBox(
                 textColor: Colors.white,
-                backgroundcolor: AppColors.mainColorTranspa,
+                backgroundcolor: AppColors.altMainColor,
                 icon: Icons.notifications,
                 text: "Notifications",
                 iconcolor: Colors.white,
@@ -101,7 +101,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const ProfileBox(
                 textColor: Colors.white,
-                backgroundcolor: AppColors.mainColorTranspa,
+                backgroundcolor: AppColors.altMainColor,
                 icon: Icons.logout,
                 text: "Log out",
                 iconcolor: Colors.white,
@@ -112,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const ProfileBox(
                 textColor: Colors.white,
-                backgroundcolor: AppColors.mainColorTranspa,
+                backgroundcolor: AppColors.altMainColor,
                 icon: Icons.help,
                 text: "Send a problem or demand",
                 iconcolor: Colors.white,

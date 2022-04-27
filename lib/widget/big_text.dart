@@ -1,12 +1,13 @@
+import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/cupertino.dart';
 
 class BigText extends StatelessWidget {
-  final Color? color;
-  final String text;
-  final double size;
+  Color? color;
+  String text;
+  double? size = Dimensions.height30;
   final TextOverflow overFlow;
 
-  const BigText({Key? key, this.color = const Color(0xFF5c524f), required this.text, this.size = 28, this.overFlow = TextOverflow.ellipsis}) : super(key: key);
+  BigText({Key? key, this.color = const Color(0xFF404040), required this.text, this.size, this.overFlow = TextOverflow.ellipsis}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -68,7 +68,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
 
             //! Showing the body
 
-            const Expanded(
+            Expanded(
                 child: SingleChildScrollView(
               child: WelcomePage(),
             )),

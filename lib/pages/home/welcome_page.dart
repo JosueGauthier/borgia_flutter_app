@@ -13,7 +13,7 @@ import '../../widget/slider_bottom_section.dart';
 import '../../widget/small_text.dart';
 
 class WelcomePage extends StatefulWidget {
-  const WelcomePage({Key? key}) : super(key: key);
+  WelcomePage({Key? key}) : super(key: key);
 
   @override
   State<WelcomePage> createState() => _WelcomePageState();
@@ -68,7 +68,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
         SizedBox(
           //color: Colors.blue,
-          height: Dimensions.height100 * 2.7,
+          height: Dimensions.height100 * 2.5,
 
           child: PageView.builder(
               controller: pageController,
@@ -85,7 +85,7 @@ class _WelcomePageState extends State<WelcomePage> {
           position: _currentPagevalue,
           decorator: DotsDecorator(
             activeColor: AppColors.mainColor,
-            color: Colors.grey,
+            color: AppColors.lightGreyColor,
             size: const Size.square(9.0),
             activeSize: const Size(18.0, 9.0),
             activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -97,9 +97,13 @@ class _WelcomePageState extends State<WelcomePage> {
           height: Dimensions.height20,
         ),
         Container(
+          //color: Colors.amber,
           margin: EdgeInsets.only(left: Dimensions.width30),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: const [
-            BigText(text: "List of shops"),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            BigText(
+              text: "Liste des magasins",
+              size: Dimensions.height30,
+            )
           ]),
         ),
         SizedBox(
@@ -122,6 +126,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
                       },
                       child: Container(
+                        //color: Colors.amber,
                         margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height15),
                         child: Row(
                             //crossAxisAlignment: CrossAxisAlignment.center,
@@ -147,9 +152,12 @@ class _WelcomePageState extends State<WelcomePage> {
                                 child: Container(
                                   height: Dimensions.listviewTextHeigth + 10,
                                   decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius:
-                                          BorderRadius.only(topRight: Radius.circular(Dimensions.height20), bottomRight: Radius.circular(Dimensions.height20))),
+                                      color: (index.isEven) ? AppColors.mainColor : Colors.white,
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(Dimensions.height20),
+                                          bottomLeft: Radius.circular(Dimensions.height20),
+                                          topRight: Radius.circular(Dimensions.height20),
+                                          bottomRight: Radius.circular(Dimensions.height20))),
                                   child: Padding(
                                     padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
                                     child: Column(
@@ -161,6 +169,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                         BigText(
                                           text: (shopModel.name)!.capitalize!,
                                           size: Dimensions.height25,
+                                          color: (index.isEven) ? Colors.white : AppColors.mainColor,
                                         ),
                                         SizedBox(
                                           height: Dimensions.height10,
@@ -231,14 +240,16 @@ class _WelcomePageState extends State<WelcomePage> {
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
-              height: Dimensions.height45 * 2,
-              margin: EdgeInsets.only(left: Dimensions.width25, right: Dimensions.width25, bottom: Dimensions.height20),
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.radius30), color: AppColors.greyColor.withOpacity(0.9), boxShadow: const [
-                //BoxShadow(color: Color.fromARGB(255, 221, 216, 216), blurRadius: 10, offset: Offset(2, 5)),
-                //BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
-                //BoxShadow(color: Colors.white, offset: Offset(5, 0)),
-              ]),
+              height: Dimensions.height45 * 1.5,
+              margin: EdgeInsets.only(left: Dimensions.width25, right: Dimensions.width25, bottom: Dimensions.height30),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.radius30), topRight: Radius.circular(Dimensions.radius30)),
+                  color: AppColors.whiteGreyColor.withOpacity(0.9),
+                  boxShadow: const [
+                    //BoxShadow(color: Color.fromARGB(255, 221, 216, 216), blurRadius: 10, offset: Offset(2, 5)),
+                    //BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
+                    //BoxShadow(color: Colors.white, offset: Offset(5, 0)),
+                  ]),
               child: Container(
                   padding: EdgeInsets.only(top: Dimensions.height45 / 2, left: Dimensions.width25, right: Dimensions.width15),
                   child: SliderBottomSectionWidget(titletext: listItemsSlider[position][0])),
