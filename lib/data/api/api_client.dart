@@ -41,7 +41,7 @@ class ApiClient extends GetConnect implements GetxService {
     String url = uri;
     //print("the url" + url);
     try {
-      Response response = await get(url);
+      Response response = await get(url, headers: {"Cookie": AppConstants.COOKIE});
       //print(response.body);
 
       return response;
