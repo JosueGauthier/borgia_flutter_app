@@ -19,16 +19,21 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Column(
         children: [
           Container(
-            height: Dimensions.height100 * 1.1,
-            width: double.maxFinite,
-            padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height10),
-            color: AppColors.altMainColor,
+            height: Dimensions.height45 * 2.5,
+            decoration: BoxDecoration(
+                color: AppColors.mainColor,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(Dimensions.height20),
+                  bottomRight: Radius.circular(Dimensions.height20),
+                )),
+            margin: EdgeInsets.only(bottom: Dimensions.height15),
+            padding: EdgeInsets.only(bottom: Dimensions.height15, top: Dimensions.height30, left: Dimensions.width20, right: Dimensions.width20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 BigText(
-                  text: "Profile",
-                  size: Dimensions.height30,
+                  text: "Profil Borgia",
+                  size: Dimensions.height10 * 4,
                   color: Colors.white,
                 ),
               ],
@@ -58,20 +63,20 @@ class _ProfilePageState extends State<ProfilePage> {
             child: ListView(children: <Widget>[
               const ProfileBox(
                   textColor: AppColors.darkGreyColor,
-                  backgroundcolor: AppColors.greyColor,
+                  backgroundcolor: AppColors.whiteGreyColor,
                   icon: Icons.person,
                   text: "Bucque : Khalvin",
                   isEditable: false,
-                  iconcolor: AppColors.altMainColor),
+                  iconcolor: AppColors.mainColor),
               SizedBox(
                 height: Dimensions.height20,
               ),
               const ProfileBox(
                 textColor: AppColors.darkGreyColor,
-                backgroundcolor: AppColors.greyColor,
+                backgroundcolor: AppColors.whiteGreyColor,
                 icon: Icons.group,
                 text: "Fam'ss : 73-16",
-                iconcolor: AppColors.altMainColor,
+                iconcolor: AppColors.mainColor,
                 isEditable: false,
               ),
               SizedBox(
@@ -79,10 +84,10 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const ProfileBox(
                 textColor: AppColors.darkGreyColor,
-                backgroundcolor: AppColors.greyColor,
+                backgroundcolor: AppColors.whiteGreyColor,
                 icon: Icons.group_work,
                 text: "Prom'ss : An 220",
-                iconcolor: AppColors.altMainColor,
+                iconcolor: AppColors.mainColor,
                 isEditable: false,
               ),
               SizedBox(
@@ -90,7 +95,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const ProfileBox(
                 textColor: Colors.white,
-                backgroundcolor: AppColors.altMainColor,
+                backgroundcolor: AppColors.mainColor,
                 icon: Icons.notifications,
                 text: "Notifications",
                 iconcolor: Colors.white,
@@ -101,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const ProfileBox(
                 textColor: Colors.white,
-                backgroundcolor: AppColors.altMainColor,
+                backgroundcolor: AppColors.mainColor,
                 icon: Icons.logout,
                 text: "Log out",
                 iconcolor: Colors.white,
@@ -112,7 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const ProfileBox(
                 textColor: Colors.white,
-                backgroundcolor: AppColors.altMainColor,
+                backgroundcolor: AppColors.mainColor,
                 icon: Icons.help,
                 text: "Send a problem or demand",
                 iconcolor: Colors.white,

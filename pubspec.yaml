@@ -94,6 +94,9 @@ flutter:
     - family: OldEnglishFive
       fonts:
         - asset: assets/font/OldEnglishFive.ttf
+    - family: Helvetica
+      fonts:
+        - asset: assets/font/Helvetica.ttf
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

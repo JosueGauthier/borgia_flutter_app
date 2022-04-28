@@ -22,6 +22,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
           children: [
             //! Showing the header
             Container(
+              height: Dimensions.height45 * 2.5,
               decoration: BoxDecoration(
                   color: AppColors.mainColor,
                   borderRadius: BorderRadius.only(

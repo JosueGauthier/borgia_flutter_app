@@ -37,15 +37,15 @@ class _CategoryShopState extends State<CategoryShop> {
         children: [
           //! header
           Container(
+            height: Dimensions.height45 * 2.5,
             decoration: BoxDecoration(
                 color: AppColors.mainColor,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(Dimensions.height20),
                   bottomRight: Radius.circular(Dimensions.height20),
                 )),
-            height: Dimensions.height100 * 1,
-            width: double.maxFinite,
-            padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height10),
+            margin: EdgeInsets.only(bottom: Dimensions.height15),
+            padding: EdgeInsets.only(bottom: Dimensions.height15, top: Dimensions.height30, left: Dimensions.width20, right: Dimensions.width20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
