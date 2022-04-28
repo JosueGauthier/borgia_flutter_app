@@ -27,8 +27,6 @@ import '../../widget/small_text.dart';
   On parcourt la liste pour obtenir les productModel de chaque lien
 
   On affiche 
-
-  
   
   */
 
@@ -58,10 +56,15 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
         children: [
           //! header Text  + cart
           Container(
-            height: Dimensions.height100 * 1,
-            width: double.maxFinite,
-            padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height10),
-            color: AppColors.mainColor,
+            height: Dimensions.height45 * 2.5,
+            decoration: BoxDecoration(
+                color: AppColors.mainColor,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(Dimensions.height20),
+                  bottomRight: Radius.circular(Dimensions.height20),
+                )),
+            margin: EdgeInsets.only(bottom: Dimensions.height15),
+            padding: EdgeInsets.only(bottom: Dimensions.height15, top: Dimensions.height30, left: Dimensions.width20, right: Dimensions.width20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -157,7 +160,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                                   onTap: () {},
                                                   child: ElevatedButton(
                                                       child: SmallText(
-                                                        text: "Buque moi !",
+                                                        text: "Bucque moi !",
                                                         size: Dimensions.height20,
                                                         color: pressed ? AppColors.secondColor : Colors.white,
                                                       ),
@@ -165,11 +168,18 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                                         setState(() {
                                                           pressed = !pressed;
                                                         });
+
                                                         showDialog(
                                                             context: context,
                                                             builder: (_) {
                                                               return MyDialog(productModel: productModel, productListController: productListController);
                                                             });
+
+                                                        Timer(
+                                                            const Duration(seconds: 3),
+                                                            (() => setState(() {
+                                                                  pressed = !pressed;
+                                                                })));
 
                                                         //Get.offNamed(RouteHelper.getInitial());
                                                       },
@@ -183,7 +193,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                                             top: Dimensions.height10,
                                                             bottom: Dimensions.height10)),
                                                         backgroundColor: pressed
-                                                            ? MaterialStateProperty.all<Color>(AppColors.greyColor)
+                                                            ? MaterialStateProperty.all<Color>(AppColors.whiteGreyColor)
                                                             : MaterialStateProperty.all<Color>(AppColors.secondColor),
                                                       )),
                                                 )
@@ -275,9 +285,9 @@ class _MyDialogState extends State<MyDialog> {
                   ),
                 ),
                 BigText(
-                  text: "\$ 10 x " + widget.productListController.inCartItem.toString(),
+                  text: widget.productModel.manualPrice! + "\€" + " x " + widget.productListController.inCartItem.toString(),
                   color: AppColors.darkGreyColor,
-                  size: 20,
+                  size: Dimensions.height30,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -302,7 +312,7 @@ class _MyDialogState extends State<MyDialog> {
               child: SmallText(
                 text: " Je me bucque !",
                 size: Dimensions.height30,
-                color: Colors.white,
+                color: AppColors.darkGreyColor,
               ),
               onPressed: () {
                 setState(() {
@@ -334,17 +344,20 @@ class _MyDialogState extends State<MyDialog> {
                 padding: MaterialStateProperty.all(
                     EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10)),
                 backgroundColor:
-                    txtbuttonpressed ? MaterialStateProperty.all<Color>(AppColors.greyColor) : MaterialStateProperty.all<Color>(AppColors.mainColor),
+                    txtbuttonpressed ? MaterialStateProperty.all<Color>(AppColors.whiteGreyColor) : MaterialStateProperty.all<Color>(AppColors.mainColor),
               )),
         ],
       ),
       actions: <Widget>[
         ElevatedButton(
-          style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(AppColors.greyColor)),
+          style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(AppColors.whiteGreyColor)),
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: const Text('Retour'),
+          child: SmallText(
+            text: 'Retour',
+            size: Dimensions.height20,
+          ),
         ),
       ],
     );
