@@ -260,10 +260,10 @@ class _MyDialogState extends State<MyDialog> {
     int apiCategoryProductId = widget.productModel.mainid!;
 
     SalesModel _salesModel = SalesModel(
-        api_module_pk: apiModulePk,
-        api_shop_pk: apiShopPk,
-        api_ordered_quantity: apiOrderedQuantity,
-        api_category_product_id: apiCategoryProductId,
+        apiModulePk: apiModulePk,
+        apiShopPk: apiShopPk,
+        apiOrderedQuantity: apiOrderedQuantity,
+        apiCategoryProductId: apiCategoryProductId,
         username: username,
         password: password);
 
@@ -323,7 +323,7 @@ class _MyDialogState extends State<MyDialog> {
                       ),
                     ),
                     BigText(
-                      text: widget.productModel.manualPrice.toString() + "\€" + " x " + widget.productListController.inCartItem.toString(),
+                      text: widget.productModel.manualPrice.toString() + "€" + " x " + widget.productListController.inCartItem.toString(),
                       color: AppColors.darkGreyColor,
                       size: Dimensions.height30,
                     ),
@@ -354,7 +354,7 @@ class _MyDialogState extends State<MyDialog> {
                   ),
                   onPressed: () {
                     //produitchoisis = widget.productModel.id!;
-                    print("le main id est " + widget.productModel.mainid.toString());
+                    //print("le main id est " + widget.productModel.mainid.toString());
                     _order(salesController);
                     setState(() {
                       txtbuttonpressed = !txtbuttonpressed;

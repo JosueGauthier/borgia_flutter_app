@@ -1,6 +1,5 @@
-import 'package:borgiaflutterapp/pages/auth/Sign_up_page.dart';
-import 'package:borgiaflutterapp/pages/auth/auth_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +19,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late PersistentTabController _controller;
+
+  Future<void> _loadRessources() async {
+    await Get.find<ShopController>().getShopList();
+    //await Get.find<UserController>().getUserList(AppConstants.USERNAME);
+    //await Get.find<PopularProductController>().getPopularProductList();
+    //await Get.find<RecommendedProductController>().getRecomendedProductList();
+  }
 
   List<Widget> pages = [
     const WelcomePageWithHeader(),
@@ -42,7 +48,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+
     _controller = PersistentTabController(initialIndex: 0);
+    _loadRessources();
   }
 
   List<Widget> _buildScreens() {
@@ -52,21 +60,21 @@ class _HomePageState extends State<HomePage> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.home),
+        icon: const Icon(CupertinoIcons.house_alt),
         title: ("Home"),
-        activeColorPrimary: AppColors.mainColor,
+        activeColorPrimary: AppColors.secondColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.archivebox),
         title: ("History"),
-        activeColorPrimary: AppColors.mainColor,
+        activeColorPrimary: AppColors.secondColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.shopping_cart),
+        icon: const Icon(CupertinoIcons.heart),
         title: ("Cart"),
-        activeColorPrimary: AppColors.mainColor,
+        activeColorPrimary: AppColors.secondColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
@@ -80,7 +88,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<ShopController>().getShopList();
     return PersistentTabView(
       context,
       controller: _controller,
@@ -112,42 +119,4 @@ class _HomePageState extends State<HomePage> {
       navBarStyle: NavBarStyle.style12, // Choose the nav bar style with this property.
     );
   }
-
-  //! under is :  std bottom nav bar
-
-  /* @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: AppColors.mainColor,
-          unselectedItemColor: AppColors.textColor,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          //selectedfont size 0.0
-
-          currentIndex: _selectedIndex,
-          onTap: onTapNav,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.archive),
-              label: "history",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag),
-              label: "cart",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "me",
-            )
-          ]),
-    );
-  }
-
-*/
 }

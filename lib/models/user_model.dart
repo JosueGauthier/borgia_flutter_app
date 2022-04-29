@@ -8,7 +8,7 @@ class UserModel {
   String? surname;
   String? family;
   String? balance;
-  String? year;
+  int? year;
   String? campus;
   String? phone;
   String? avatar;

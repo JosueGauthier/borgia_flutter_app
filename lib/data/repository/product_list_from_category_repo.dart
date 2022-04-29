@@ -10,7 +10,7 @@ class ProductFromCategoryRepo extends GetxService {
 
   Future<Response> getProductList(int categoryId) async {
     String productListUrl = AppConstants.PRODUCT_FROM_CATEGORY_URI + categoryId.toString();
-    print(productListUrl);
+    //print(productListUrl);
     return await apiClient.getData(productListUrl);
   }
 }

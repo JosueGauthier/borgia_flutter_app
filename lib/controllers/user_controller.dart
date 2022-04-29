@@ -1,5 +1,7 @@
 // ignore_for_file: unused_import
 
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/data/repository/user_repo.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:borgiaflutterapp/models/user_model.dart';
@@ -21,6 +23,7 @@ class UserController extends GetxController {
   Future<void> getUserList(String username) async {
     Response response = await userRepo.getUserList(username);
     //print(response);
+    //inspect(response);
 
     if (kDebugMode) {
       print("User status code " + response.statusCode.toString());

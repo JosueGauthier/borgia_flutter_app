@@ -1,11 +1,15 @@
 import 'package:borgiaflutterapp/controllers/shop_controller.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
+import 'package:borgiaflutterapp/models/user_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:sa3_liquid/sa3_liquid.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 import 'package:get/get.dart';
 
+import '../../controllers/user_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
@@ -32,12 +36,12 @@ class _WelcomePageState extends State<WelcomePage> {
     'Solde actuel': "current-balance.png",
     "Derniers achats": "last-purchase.png",
     'Rechargement Lydia': "lydia-logo.jpeg",
-    'Rechargement stripe.com': "Stripe-Logo.png",
+    'Rechargement Stripe': "Stripe-Logo.png",
     'Statistiques': "stat.jpg"
   };
 
   List<List<dynamic>> listItemsSlider = [
-    ['Solde actuel', "current-balance.png"],
+    ['Solde actuel', null],
     ["Derniers achats", "last-purchase.png"],
     ['Rechargement Lydia', "lydia-logo.jpeg"],
     ['Rechargement stripe.com', "Stripe-Logo.png"],
@@ -63,21 +67,32 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<UserController>().getUserList(AppConstants.USERNAME);
     return Column(
       children: [
         //! sliderSection
 
-        SizedBox(
-          //color: Colors.blue,
-          height: Dimensions.height100 * 2.5,
+        GetBuilder<UserController>(builder: (userController) {
+          return userController.isLoaded
+              ? SizedBox(
+                  //color: Colors.blue,
+                  height: Dimensions.height100 * 2.5,
 
-          child: PageView.builder(
-              controller: pageController,
-              itemCount: _nbItemSliderSection, //popularProductsController.popularProductList.length,
-              itemBuilder: (context, position) {
-                return _buildPageItem(position);
-              }),
-        ),
+                  child: PageView.builder(
+                      controller: pageController,
+                      itemCount: _nbItemSliderSection, //popularProductsController.popularProductList.length,
+                      itemBuilder: (context, position) {
+                        UserModel userModel = userController.userList[0];
+                        //print("userbalance is " + userModel.balance.toString());
+                        //inspect(userModel);
+
+                        //CategoryOfShopModel categoryModel = categoryOfShopController.categoryOfShopList[index];
+
+                        return _buildPageItem(position, userModel);
+                      }),
+                )
+              : Container();
+        }),
 
         //!Dots section
 
@@ -154,10 +169,10 @@ class _WelcomePageState extends State<WelcomePage> {
                                 child: Container(
                                   height: Dimensions.listviewTextHeigth + 10,
                                   decoration: BoxDecoration(
-                                      color: (index.isEven) ? AppColors.mainColor : Colors.white,
+                                      color: Colors.white,
                                       borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(Dimensions.height20),
-                                          bottomLeft: Radius.circular(Dimensions.height20),
+                                          //topLeft: Radius.circular(Dimensions.height20),
+                                          //bottomLeft: Radius.circular(Dimensions.height20),
                                           topRight: Radius.circular(Dimensions.height20),
                                           bottomRight: Radius.circular(Dimensions.height20))),
                                   child: Padding(
@@ -171,7 +186,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                         BigText(
                                           text: (shopModel.name)!.capitalize!,
                                           size: Dimensions.height25,
-                                          color: (index.isEven) ? Colors.white : AppColors.mainColor,
+                                          color: AppColors.titleColor,
                                         ),
                                         SizedBox(
                                           height: Dimensions.height10,
@@ -195,7 +210,7 @@ class _WelcomePageState extends State<WelcomePage> {
     );
   }
 
-  Widget _buildPageItem(int position) {
+  Widget _buildPageItem(int position, UserModel userModel) {
     Matrix4 matrix = Matrix4.identity();
 
     if (position == _currentPagevalue.floor()) {
@@ -227,15 +242,77 @@ class _WelcomePageState extends State<WelcomePage> {
             onTap: () {
               //Get.toNamed(RouteHelper.getPopularFood(position, "home"));
             },
-            child: Container(
-              height: _height,
-              margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius30),
-                  //color: position.isEven ? Colors.red : Colors.amber,
-                  image: DecorationImage(image: AssetImage("assets/image/" + listItemsSlider[position][1].toString()), fit: BoxFit.cover)),
-              //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
-            ),
+            child: (listItemsSlider[position][1] == null)
+                ? Stack(
+                    children: [
+                      /* Container(
+                        height: _height,
+                        margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(Dimensions.radius30),
+                            //color: position.isEven ? Colors.red : Colors.amber,
+                            //color: AppColors.secondColor
+
+                            gradient:
+                                LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomRight, colors: [AppColors.mainColor, AppColors.secondColor])),
+
+                        //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
+                      ),
+                      
+                       */
+
+                      Container(
+                        height: _height,
+                        margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            //borderRadius: BorderRadius.circular(Dimensions.radius30),
+                            color: AppColors.secondColor,
+                            backgroundBlendMode: BlendMode.srcOver,
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: const PlasmaRenderer(
+                              type: PlasmaType.infinity,
+                              particles: 6,
+                              color: AppColors.mainColor, //Color(0x64d31418),
+                              blur: 0.9,
+                              size: 0.9,
+                              speed: 1,
+                              offset: 0,
+                              blendMode: BlendMode.srcOver,
+                              particleType: ParticleType.atlas,
+                              variation1: 0,
+                              variation2: 0,
+                              variation3: 0,
+                              rotation: 0,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Center(
+                        heightFactor: 1.5,
+                        child: BigText(
+                          fontTypo: 'OpenSansExtraBold',
+                          text: userModel.balance! + "€",
+                          color: Colors.white,
+                          size: Dimensions.height30 * 2.7,
+                        ),
+                      )
+                    ],
+                  )
+                : Container(
+                    height: _height,
+                    margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Dimensions.radius30),
+                        //color: position.isEven ? Colors.red : Colors.amber,
+
+                        image: DecorationImage(image: AssetImage("assets/image/" + listItemsSlider[position][1].toString()), fit: BoxFit.cover)),
+
+                    //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
+                  ),
           ),
 
           //! Partie text

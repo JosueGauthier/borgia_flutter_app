@@ -1,6 +1,5 @@
 import 'package:borgiaflutterapp/controllers/category_controller.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
-import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

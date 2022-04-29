@@ -28,6 +28,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   flutter_keyboard_visibility: ^5.2.0
+  simple_animations: ^4.0.2
+  sa3_liquid: ^1.0.1
   equatable: ^2.0.3
   #http: ^0.13.4
   cached_network_image: ^3.2.0
@@ -98,6 +100,9 @@ flutter:
     - family: Helvetica
       fonts:
         - asset: assets/font/Helvetica.ttf
+    - family: OpenSansExtraBold
+      fonts:
+        - asset: assets/font/OpenSansExtraBold.ttf
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -20,17 +20,11 @@ class ApiClient extends GetConnect implements GetxService {
   Future<Response> getData(
     String uri,
   ) async {
-    //print(url);
     try {
       Response response = await get(appBaseUrl + uri, headers: {"Cookie": AppConstants.COOKIE});
 
-      //csrftoken=MZ8YuHN7GaGPId6XEoHOmLJGCj5FrJFU1lElphAxWJVwq366rPoAyI3fOhcEK6ks; sessionid=7cwighx7vbpcoszfl5ltxy2jf32psjeh
-
-      //print(response.body);
-
       return response;
     } catch (e) {
-      //print("error" + e.toString());
       return Response(statusCode: 1, statusText: e.toString());
     }
   }
@@ -39,10 +33,9 @@ class ApiClient extends GetConnect implements GetxService {
     String uri,
   ) async {
     String url = uri;
-    //print("the url" + url);
+
     try {
       Response response = await get(url, headers: {"Cookie": AppConstants.COOKIE});
-      //print(response.body);
 
       return response;
     } catch (e) {
@@ -59,8 +52,6 @@ class ApiClient extends GetConnect implements GetxService {
     try {
       Response response = await post(url, body, headers: _mainHeaders); // si le type de post est future et que le type a droit ne l'est pas on ajoute await
 
-      //print(response.toString());
-
       return response;
     } catch (e) {
       if (kDebugMode) {
@@ -74,8 +65,6 @@ class ApiClient extends GetConnect implements GetxService {
     try {
       Response response = await get(appBaseUrl + uri,
           headers: {"Cookie": AppConstants.COOKIE}); // si le type de post est future et que le type a droit ne l'est pas on ajoute await
-
-      //print(response.toString());
 
       return response;
     } catch (e) {

@@ -54,7 +54,7 @@ class ProductFromCategoryController extends GetxController {
         //print(responseGetOneProduct.body);
         //print("the status code is" + responseGetOneProduct.statusCode.toString());
         if (responseGetOneProduct.statusCode == 200) {
-          print(responseBody[i]["id"]);
+          //print(responseBody[i]["id"]);
           var responseGetOneProductBody = responseGetOneProduct.body;
           _productList.add(ProductModel.fromJsonPlusMainId(responseGetOneProductBody, responseBody[i]["id"]));
           //_productList.add();

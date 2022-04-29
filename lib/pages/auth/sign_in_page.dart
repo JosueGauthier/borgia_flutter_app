@@ -42,6 +42,7 @@ class _LoginPageState extends State<LoginPage> {
           //print("Sucess login");
           AppConstants.USERNAME = username;
           AppConstants.PASSWORD = password;
+
           Get.toNamed(RouteHelper.getInitial());
         } else {
           Get.snackbar("Error", status.message);

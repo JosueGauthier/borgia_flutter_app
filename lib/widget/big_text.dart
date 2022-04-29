@@ -6,8 +6,10 @@ class BigText extends StatelessWidget {
   String text;
   double? size = Dimensions.height30;
   final TextOverflow overFlow;
+  String? fontTypo = 'Helvetica';
 
-  BigText({Key? key, this.color = const Color(0xFF404040), required this.text, this.size, this.overFlow = TextOverflow.ellipsis}) : super(key: key);
+  BigText({Key? key, this.color = const Color(0xFF404040), required this.text, this.fontTypo, this.size, this.overFlow = TextOverflow.ellipsis})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class BigText extends StatelessWidget {
       text,
       maxLines: 1,
       overflow: overFlow,
-      style: TextStyle(color: color, fontFamily: 'Helvetica', fontSize: size, fontWeight: FontWeight.w400),
+      style: TextStyle(color: color, fontFamily: fontTypo, fontSize: size, fontWeight: FontWeight.w400),
     );
   }
 }
