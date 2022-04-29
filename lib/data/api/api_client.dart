@@ -70,6 +70,22 @@ class ApiClient extends GetConnect implements GetxService {
     }
   }
 
+  Future<Response> postDataAuthenticated(String uri, dynamic body) async {
+    try {
+      Response response = await get(appBaseUrl + uri,
+          headers: {"Cookie": AppConstants.COOKIE}); // si le type de post est future et que le type a droit ne l'est pas on ajoute await
+
+      //print(response.toString());
+
+      return response;
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+      return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
+
   void updateHeader(String token) {
     _mainHeaders = {
       'Content-type': 'application/json; charset=UTF-8',

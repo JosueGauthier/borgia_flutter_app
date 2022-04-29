@@ -45,7 +45,8 @@ class RouteHelper {
 
   static String getCategoryListPage(int shopId, String pagefrom) => '$categoryListPage?shopId=$shopId&page=$pagefrom';
 
-  static String getProductList(int categoryId, String pagefrom) => '$productListFromCategory?categoryId=$categoryId&page=$pagefrom';
+  static String getProductList(int categoryId, int categoryModuleId, int shopId, String pagefrom) =>
+      '$productListFromCategory?categoryId=$categoryId&categoryModuleId=$categoryModuleId&shopId=$shopId&page=$pagefrom';
 
   static List<GetPage> routes = [
     GetPage(
@@ -141,9 +142,13 @@ class RouteHelper {
       name: productListFromCategory,
       page: () {
         var categoryId = Get.parameters['categoryId'];
+        var categoryModuleId = Get.parameters['categoryModuleId'];
+        var shopId = Get.parameters['shopId'];
         var pagefrom = Get.parameters['page'];
         return ProductListFromCategoryPage(
           categoryId: int.parse(categoryId!),
+          categoryModuleId: int.parse(categoryModuleId!),
+          shopId: int.parse(shopId!),
           pagefrom: pagefrom!,
         );
       },

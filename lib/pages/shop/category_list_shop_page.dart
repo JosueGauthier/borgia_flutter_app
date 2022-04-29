@@ -1,5 +1,6 @@
 import 'package:borgiaflutterapp/controllers/category_controller.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
+import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -70,7 +71,8 @@ class _CategoryShopState extends State<CategoryShop> {
                       return GestureDetector(
                         onTap: () {
                           //print(categoryModel.id);
-                          Get.toNamed(RouteHelper.getProductList(categoryModel.id!, "home"));
+
+                          Get.toNamed(RouteHelper.getProductList(categoryModel.id!, categoryModel.moduleId!, widget.shopId, "home"));
                         },
                         child: Container(
                           margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width20, bottom: Dimensions.height15),

@@ -29,14 +29,15 @@ class AppConstants {
 
   static const String REGISTRATION_URI = "/api-links/auth/";
   static const String LOGIN_URI = "/api-links/login/";
+  static const String SALES_URI = "/api-links/self-sale/";
 
   //! save user info
 
   static String TOKEN = "DBToken";
   static String COOKIE = "";
   static Map<String, String>? HEADERS = {};
-  static const String USERNAME = "";
-  static const String PASSWORD = "";
+  static String USERNAME = "";
+  static String PASSWORD = "";
 
   static const String APP_NAME = "BorgiaApp";
   static const int APP_VERSION = 1;
@@ -52,4 +53,8 @@ class AppConstants {
   static const String CART_LIST = "Cart-list";
 
   static const String CART_HISTORY_LIST = "Cart-history-list";
+
+  static int CAT_MODULE_ID = 1;
+
+  static int SHOP_ID = 1;
 }

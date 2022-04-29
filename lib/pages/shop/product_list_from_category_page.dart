@@ -1,12 +1,16 @@
 import 'dart:async';
 
 import 'package:borgiaflutterapp/models/product_model.dart';
+import 'package:borgiaflutterapp/models/sales_model.dart';
+import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../../controllers/product_from_category_controller.dart';
+import '../../controllers/sales_controller.dart';
+import '../../routes/route_helper.dart';
 import '../../widget/app_icon.dart';
 
 import '../../utils/colors.dart';
@@ -33,11 +37,10 @@ import '../../widget/small_text.dart';
 class ProductListFromCategoryPage extends StatefulWidget {
   final String pagefrom;
   final int categoryId;
-  const ProductListFromCategoryPage({
-    Key? key,
-    required this.categoryId,
-    required this.pagefrom,
-  }) : super(key: key);
+  final int categoryModuleId;
+  final int shopId;
+  const ProductListFromCategoryPage({Key? key, required this.categoryId, required this.pagefrom, required this.shopId, required this.categoryModuleId})
+      : super(key: key);
 
   @override
   State<ProductListFromCategoryPage> createState() => _ProductListFromCategoryPageState();
@@ -172,7 +175,12 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                                         showDialog(
                                                             context: context,
                                                             builder: (_) {
-                                                              return MyDialog(productModel: productModel, productListController: productListController);
+                                                              return MyDialog(
+                                                                productModel: productModel,
+                                                                productListController: productListController,
+                                                                categoryModuleId: widget.categoryModuleId,
+                                                                shopId: widget.shopId,
+                                                              );
                                                             });
 
                                                         Timer(
@@ -180,8 +188,6 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                                             (() => setState(() {
                                                                   pressed = !pressed;
                                                                 })));
-
-                                                        //Get.offNamed(RouteHelper.getInitial());
                                                       },
                                                       style: ButtonStyle(
                                                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
@@ -228,12 +234,11 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
 class MyDialog extends StatefulWidget {
   final ProductModel productModel;
   final ProductFromCategoryController productListController;
+  final int categoryModuleId;
+  final int shopId;
 
-  const MyDialog({
-    Key? key,
-    required this.productListController,
-    required this.productModel,
-  }) : super(key: key);
+  const MyDialog({Key? key, required this.productListController, required this.productModel, required this.categoryModuleId, required this.shopId})
+      : super(key: key);
 
   @override
   _MyDialogState createState() => _MyDialogState();
@@ -244,122 +249,150 @@ class _MyDialogState extends State<MyDialog> {
   int qty = 0;
   bool txtbuttonpressed = true;
 
+  void _order(
+    SalesController salesController,
+  ) {
+    String username = AppConstants.USERNAME;
+    String password = AppConstants.PASSWORD;
+    int apiModulePk = widget.categoryModuleId;
+    int apiShopPk = widget.shopId;
+    int apiOrderedQuantity = widget.productListController.inCartItem;
+    int apiCategoryProductId = widget.productModel.mainid!;
+
+    SalesModel _salesModel = SalesModel(
+        api_module_pk: apiModulePk,
+        api_shop_pk: apiShopPk,
+        api_ordered_quantity: apiOrderedQuantity,
+        api_category_product_id: apiCategoryProductId,
+        username: username,
+        password: password);
+
+    if (apiOrderedQuantity == 0) {
+      Get.snackbar("Username empty", "Enter a valid username");
+    } else {
+      salesController.order(_salesModel).then((status) {
+        if (status.isSuccess) {
+          //print("Sucess login");
+          Get.toNamed(RouteHelper.getInitial());
+        } else {
+          Get.snackbar("Error", status.message);
+        }
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.height20)),
-      title: BigText(text: widget.productModel.name!, size: Dimensions.height30),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            //color: Colors.amber,
-            width: Dimensions.width45 * 6,
-            padding: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      widget.productListController.setQuantity(false);
-                      if (widget.productListController.quantity <= 0) {
+    return GetBuilder<SalesController>(builder: (salesController) {
+      return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.height20)),
+          title: BigText(text: widget.productModel.name.toString(), size: Dimensions.height30),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                //color: Colors.amber,
+                width: Dimensions.width45 * 6,
+                padding: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
                         setState(() {
-                          _addRemoveColor = AppColors.mainColor;
+                          widget.productListController.setQuantity(false);
+                          if (widget.productListController.quantity <= 0) {
+                            setState(() {
+                              _addRemoveColor = AppColors.mainColor;
+                            });
+
+                            Timer(
+                                const Duration(milliseconds: 500),
+                                (() => setState(() {
+                                      _addRemoveColor = AppColors.secondColor;
+                                    })));
+                          }
                         });
-
-                        Timer(
-                            const Duration(milliseconds: 500),
-                            (() => setState(() {
-                                  _addRemoveColor = AppColors.secondColor;
-                                })));
-                      }
-                    });
-                  },
-                  child: AppIcon(
-                    iconData: Icons.remove,
-                    backgroundColor: _addRemoveColor,
-                    iconColor: Colors.white,
-                    iconSize: 30,
-                  ),
+                      },
+                      child: AppIcon(
+                        iconData: Icons.remove,
+                        backgroundColor: _addRemoveColor,
+                        iconColor: Colors.white,
+                        iconSize: 30,
+                      ),
+                    ),
+                    BigText(
+                      text: widget.productModel.manualPrice.toString() + "\€" + " x " + widget.productListController.inCartItem.toString(),
+                      color: AppColors.darkGreyColor,
+                      size: Dimensions.height30,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          widget.productListController.setQuantity(true);
+                        });
+                      },
+                      child: const AppIcon(
+                        iconData: Icons.add,
+                        backgroundColor: AppColors.secondColor,
+                        iconColor: Colors.white,
+                        iconSize: 30,
+                      ),
+                    )
+                  ],
                 ),
-                BigText(
-                  text: widget.productModel.manualPrice! + "\€" + " x " + widget.productListController.inCartItem.toString(),
-                  color: AppColors.darkGreyColor,
-                  size: Dimensions.height30,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      widget.productListController.setQuantity(true);
-                    });
-                  },
-                  child: const AppIcon(
-                    iconData: Icons.add,
-                    backgroundColor: AppColors.secondColor,
-                    iconColor: Colors.white,
-                    iconSize: 30,
-                  ),
-                )
-              ],
-            ),
-          ),
-          SizedBox(
-            height: Dimensions.height20,
-          ),
-          ElevatedButton(
-              child: SmallText(
-                text: " Je me bucque !",
-                size: Dimensions.height30,
-                color: AppColors.darkGreyColor,
               ),
-              onPressed: () {
-                setState(() {
-                  txtbuttonpressed = !txtbuttonpressed;
-                });
-
-                Timer(
-                    const Duration(seconds: 3),
-                    (() => setState(() {
-                          txtbuttonpressed = !txtbuttonpressed;
-                        })));
-
-                /*  setState(() {
-                  final timer = Timer(
-                    const Duration(seconds: 1),
-                    () {
+              SizedBox(
+                height: Dimensions.height20,
+              ),
+              ElevatedButton(
+                  child: SmallText(
+                    text: " Je me bucque !",
+                    size: Dimensions.height30,
+                    color: txtbuttonpressed ? AppColors.titleColor : Colors.white,
+                  ),
+                  onPressed: () {
+                    //produitchoisis = widget.productModel.id!;
+                    print("le main id est " + widget.productModel.mainid.toString());
+                    _order(salesController);
+                    setState(() {
                       txtbuttonpressed = !txtbuttonpressed;
-                      // Navigate to your favorite place
-                    },
-                  );
+                    });
 
-                  txtbuttonpressed = !txtbuttonpressed;
-                }); */
-              },
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
-                )),
-                padding: MaterialStateProperty.all(
-                    EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10)),
-                backgroundColor:
-                    txtbuttonpressed ? MaterialStateProperty.all<Color>(AppColors.whiteGreyColor) : MaterialStateProperty.all<Color>(AppColors.mainColor),
-              )),
-        ],
-      ),
-      actions: <Widget>[
-        ElevatedButton(
-          style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(AppColors.whiteGreyColor)),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: SmallText(
-            text: 'Retour',
-            size: Dimensions.height20,
+                    Timer(
+                        const Duration(seconds: 3),
+                        (() => setState(() {
+                              txtbuttonpressed = !txtbuttonpressed;
+                            })));
+                  },
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
+                    )),
+                    padding: MaterialStateProperty.all(
+                        EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10)),
+                    backgroundColor:
+                        txtbuttonpressed ? MaterialStateProperty.all<Color>(AppColors.whiteGreyColor) : MaterialStateProperty.all<Color>(AppColors.mainColor),
+                  )),
+            ],
           ),
-        ),
-      ],
-    );
+          actions: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(right: Dimensions.height10),
+              child: ElevatedButton(
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(AppColors.whiteGreyColor)),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: SmallText(
+                  text: 'Retour',
+                  size: Dimensions.height20,
+                  color: AppColors.mainColor,
+                ),
+              ),
+            ),
+          ]);
+    });
   }
 }

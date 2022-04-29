@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/data/repository/product_list_from_category_repo.dart';
 import 'package:borgiaflutterapp/models/product_list_from_category_models.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +42,10 @@ class ProductFromCategoryController extends GetxController {
       List responseBody = response.body;
 
       for (var i = 0; i < responseBody.length; i++) {
+        //print(responseBody[i][0]);
+        //inspect(responseBody);
+        //print(responseBody[i]["id"]);
+        //print(ProductListFromCategoryModel.fromJson(responseBody[i]));
         _productLinkList.add(ProductListFromCategoryModel.fromJson(responseBody[i]));
 
         //print(_productLinkList[i].product);
@@ -48,12 +54,17 @@ class ProductFromCategoryController extends GetxController {
         //print(responseGetOneProduct.body);
         //print("the status code is" + responseGetOneProduct.statusCode.toString());
         if (responseGetOneProduct.statusCode == 200) {
+          print(responseBody[i]["id"]);
           var responseGetOneProductBody = responseGetOneProduct.body;
-          _productList.add(ProductModel.fromJson(responseGetOneProductBody));
+          _productList.add(ProductModel.fromJsonPlusMainId(responseGetOneProductBody, responseBody[i]["id"]));
+          //_productList.add();
+          //inspect(_productList);
         } else {}
       }
 
       //print("the productlist is " + _productList.toString());
+
+      inspect(_productList);
 
       _isLoaded = true;
       update();

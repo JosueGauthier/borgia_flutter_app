@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter_keyboard_visibility: ^5.2.0
   equatable: ^2.0.3
   #http: ^0.13.4
   cached_network_image: ^3.2.0

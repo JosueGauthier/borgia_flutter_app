@@ -2,7 +2,6 @@
 
 import 'package:borgiaflutterapp/controllers/auth_controller.dart';
 import 'package:borgiaflutterapp/routes/route_helper.dart';
-import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:borgiaflutterapp/widget/small_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,15 +10,15 @@ import 'package:get/get.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
-class LoginPage extends StatefulWidget {
+class TheSalePage extends StatefulWidget {
   //10h09
-  const LoginPage({Key? key}) : super(key: key);
+  const TheSalePage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<TheSalePage> createState() => _TheSalePageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _TheSalePageState extends State<TheSalePage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -40,8 +39,6 @@ class _LoginPageState extends State<LoginPage> {
       authController.login(username, password).then((status) {
         if (status.isSuccess) {
           //print("Sucess login");
-          AppConstants.USERNAME = username;
-          AppConstants.PASSWORD = password;
           Get.toNamed(RouteHelper.getInitial());
         } else {
           Get.snackbar("Error", status.message);

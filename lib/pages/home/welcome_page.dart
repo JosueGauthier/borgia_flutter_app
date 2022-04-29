@@ -1,5 +1,6 @@
 import 'package:borgiaflutterapp/controllers/shop_controller.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
+import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
@@ -123,6 +124,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     return GestureDetector(
                       onTap: () {
                         //print(shopModel.id);
+                        AppConstants.SHOP_ID = shopModel.id!;
                         Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
                       },
                       child: Container(
