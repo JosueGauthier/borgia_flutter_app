@@ -96,7 +96,7 @@ class PopularProductController extends GetxController {
 
   void popular_addItem(OldProductModel oldProductModel) {
     if ((_quantity) > 0) {
-      _cartController.addItem(oldProductModel, (_quantity));
+      //_cartController.addItem(productModel, (_quantity));
       _quantity = 0;
       _cartController.items.forEach((key, value) {
         //print("the id is " + value.id.toString() + " the quantity is " + value.quantity.toString());

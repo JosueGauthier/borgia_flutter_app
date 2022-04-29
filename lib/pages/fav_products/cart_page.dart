@@ -8,8 +8,8 @@ import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
 
-class CartPage extends StatelessWidget {
-  const CartPage({
+class FavPage extends StatelessWidget {
+  const FavPage({
     Key? key,
   }) : super(key: key);
 
@@ -31,7 +31,7 @@ class CartPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               BigText(
-                text: "Derniers achats",
+                text: "Favoris",
                 size: Dimensions.height10 * 4,
                 color: Colors.white,
               ),

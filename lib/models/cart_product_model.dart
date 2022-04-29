@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import, unnecessary_this
 
+import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:get/get.dart';
 
 import 'Popular_product_model.dart';
@@ -7,12 +8,12 @@ import 'Popular_product_model.dart';
 class CartModel {
   int? id;
   String? name;
-  int? price;
+  String? price;
   String? img;
   int? quantity;
-  bool? isExist;
+  //bool? isExist;
   String? time;
-  OldProductModel? aProduct;
+  ProductModel? aProduct;
 
   CartModel({
     this.id,
@@ -20,7 +21,7 @@ class CartModel {
     this.price,
     this.img,
     this.quantity,
-    this.isExist,
+    //this.isExist,
     this.time,
     this.aProduct,
   });
@@ -31,9 +32,9 @@ class CartModel {
     price = json['price'];
     img = json['img'];
     quantity = json['quantity'];
-    isExist = json['isexist'];
+    //isExist = json['isexist'];
     time = json['time'];
-    aProduct = OldProductModel.fromJson(json['product']);
+    aProduct = ProductModel.fromJson(json['product']);
   }
 
   Map<String, dynamic> toJson() {
@@ -43,7 +44,7 @@ class CartModel {
       "price": this.price,
       "img": this.img,
       "quantity": this.quantity,
-      "isExist": this.isExist,
+      //"isExist": this.isExist,
       "time": this.time,
       "product": this.aProduct!.toJson(),
     };

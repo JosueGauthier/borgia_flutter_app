@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,6 +30,8 @@ Future<void> init() async {
   //! load shared_preferencies
 
   final sharedPreferences = await SharedPreferences.getInstance();
+  print(sharedPreferences);
+  inspect(sharedPreferences);
   Get.lazyPut(() => sharedPreferences);
 
   //! api client
@@ -52,7 +56,7 @@ Future<void> init() async {
 
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
   Get.lazyPut(() => RecommendedProductController(recommendedRepo: Get.find()));
-  Get.lazyPut(() => CartController(cartRepo: Get.find()));
+  Get.lazyPut(() => CartController(cartRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => ShopController(shopRepo: Get.find()));
   Get.lazyPut(() => ProductController(productRepo: Get.find()), fenix: true); //, fenix = true permet de ne pas supprimer le controller
@@ -61,4 +65,6 @@ Future<void> init() async {
   Get.lazyPut(() => UserController(userRepo: Get.find()));
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
   Get.lazyPut(() => SalesController(salesRepo: Get.find()));
+
+  //Get.find<ProductFromCategoryController>().initProduct(widget.productModel, Get.find<CartController>());
 }

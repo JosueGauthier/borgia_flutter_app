@@ -28,10 +28,10 @@ class CartRepo {
     /*
     ?convert objects to string because shared pref only accept string*/
 
-    for (var element in cartList) {
+    cartList.forEach((element) {
       element.time = time.toString();
       return cart.add(jsonEncode(element));
-    }
+    });
 
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
     //print(sharedPreferences.getStringList(AppConstats.CART_LIST));
@@ -40,11 +40,14 @@ class CartRepo {
 
   //! convertit une string json en objet CartModel
   List<CartModel> getCartList() {
+    //print("aaaa");
     List<String> carts = [];
+
+    print(sharedPreferences.containsKey(AppConstants.CART_LIST).toString());
 
     if (sharedPreferences.containsKey(AppConstants.CART_LIST)) {
       carts = sharedPreferences.getStringList(AppConstants.CART_LIST)!;
-      //print("inside getCartList" + carts.toString());
+      print("inside getCartList" + carts.toString());
     }
 
     List<CartModel> cartList = [];

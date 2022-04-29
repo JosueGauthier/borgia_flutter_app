@@ -1,3 +1,6 @@
+import 'package:borgiaflutterapp/pages/cart/cart_history.dart';
+import 'package:borgiaflutterapp/pages/cart/cart_page.dart';
+import 'package:borgiaflutterapp/pages/fav_products/cart_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -5,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../controllers/cart_controller.dart';
 import '../../controllers/shop_controller.dart';
 import '../../utils/colors.dart';
 import 'welcome_page_with_header.dart';
@@ -21,7 +26,11 @@ class _HomePageState extends State<HomePage> {
   late PersistentTabController _controller;
 
   Future<void> _loadRessources() async {
+    //! Use it to clean sharedpreferences
+    //SharedPreferences preferences = await SharedPreferences.getInstance();
+    //await preferences.clear();
     await Get.find<ShopController>().getShopList();
+
     //await Get.find<UserController>().getUserList(AppConstants.USERNAME);
     //await Get.find<PopularProductController>().getPopularProductList();
     //await Get.find<RecommendedProductController>().getRecomendedProductList();
@@ -36,8 +45,10 @@ class _HomePageState extends State<HomePage> {
 
     //ShopPageDetail(),
 
-    const ProfilePage(),
-    const ProfilePage(),
+    const CartPage(),
+
+    const FavPage(),
+
     const ProfilePage(),
   ];
 

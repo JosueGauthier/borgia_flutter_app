@@ -1,12 +1,3 @@
-//http://localhost:8000/api-links/category/category-products/?category=13
-//http://localhost:8000/api-links/category/category/12/
-//http://localhost:8000/api-links/category/category/?module_id=3
-//http://localhost:8000/api-links/users/users/?username=josue
-
-//static const String BASE_URL = "http://mvs.bslmeiyu.com";
-//"https://api.jsonbin.io" "/b/625dc4f5c5284e31154ef250"
-//static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
-
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 
 class AppConstants {

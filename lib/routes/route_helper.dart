@@ -39,7 +39,7 @@ class RouteHelper {
   static String getPopularFood(int pageId, String pagefrom) => '$popularFood?pageId=$pageId&page=$pagefrom';
   static String getRecommendedFood(int pageId, String pagefrom) => '$recommendedFood?pageId=$pageId&page=$pagefrom';
 
-  static String getCartPage(int pageId, String pagefrom) => '$cartPage?pageId=$pageId&page=$pagefrom';
+  static String getCartPage(int pageId, String pagefrom) => cartPage;
 
   static String getShopDetail(int shopId, String pagefrom) => '$shopDetail?shopId=$shopId&page=$pagefrom';
 
@@ -105,12 +105,7 @@ class RouteHelper {
     GetPage(
       name: cartPage,
       page: () {
-        var pageId = Get.parameters['pageId'];
-        var pagefrom = Get.parameters['page'];
-        return CartPage(
-          pageId: int.parse(pageId!),
-          pagefrom: pagefrom!,
-        );
+        return CartPage();
       },
       //transition: Transition.fadeIn
     ),

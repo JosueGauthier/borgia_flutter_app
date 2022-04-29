@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:developer';
 
+import 'package:borgiaflutterapp/controllers/product_controller.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/models/sales_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
@@ -8,6 +10,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../controllers/cart_controller.dart';
 import '../../controllers/product_from_category_controller.dart';
 import '../../controllers/sales_controller.dart';
 import '../../routes/route_helper.dart';
@@ -168,6 +171,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                                         color: pressed ? AppColors.secondColor : Colors.white,
                                                       ),
                                                       onPressed: () {
+                                                        Get.find<ProductFromCategoryController>().initProduct(productModel, Get.find<CartController>());
                                                         setState(() {
                                                           pressed = !pressed;
                                                         });
@@ -287,96 +291,109 @@ class _MyDialogState extends State<MyDialog> {
       return AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.height20)),
           title: BigText(text: widget.productModel.name.toString(), size: Dimensions.height30),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                //color: Colors.amber,
-                width: Dimensions.width45 * 6,
-                padding: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.productListController.setQuantity(false);
-                          if (widget.productListController.quantity <= 0) {
-                            setState(() {
-                              _addRemoveColor = AppColors.mainColor;
-                            });
+          content: GetBuilder<ProductController>(builder: (productcontroller) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  //color: Colors.amber,
+                  width: Dimensions.width45 * 6,
+                  padding: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          //productcontroller.setQuantity(false);
+                          setState(() {
+                            widget.productListController.setQuantity(false);
+                            if (widget.productListController.inCartItem <= 0) {
+                              setState(() {
+                                _addRemoveColor = AppColors.mainColor;
+                              });
 
-                            Timer(
-                                const Duration(milliseconds: 500),
-                                (() => setState(() {
-                                      _addRemoveColor = AppColors.secondColor;
-                                    })));
-                          }
-                        });
-                      },
-                      child: AppIcon(
-                        iconData: Icons.remove,
-                        backgroundColor: _addRemoveColor,
-                        iconColor: Colors.white,
-                        iconSize: 30,
+                              Timer(
+                                  const Duration(milliseconds: 500),
+                                  (() => setState(() {
+                                        _addRemoveColor = AppColors.secondColor;
+                                      })));
+                            }
+                          });
+                        },
+                        child: AppIcon(
+                          iconData: Icons.remove,
+                          backgroundColor: _addRemoveColor,
+                          iconColor: Colors.white,
+                          iconSize: 30,
+                        ),
                       ),
-                    ),
-                    BigText(
-                      text: widget.productModel.manualPrice.toString() + "€" + " x " + widget.productListController.inCartItem.toString(),
-                      color: AppColors.darkGreyColor,
-                      size: Dimensions.height30,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.productListController.setQuantity(true);
-                        });
-                      },
-                      child: const AppIcon(
-                        iconData: Icons.add,
-                        backgroundColor: AppColors.secondColor,
-                        iconColor: Colors.white,
-                        iconSize: 30,
+                      BigText(
+                        text: widget.productModel.manualPrice.toString() + "€" + " x " + widget.productListController.inCartItem.toString(),
+                        color: AppColors.darkGreyColor,
+                        size: Dimensions.height30,
                       ),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: Dimensions.height20,
-              ),
-              ElevatedButton(
-                  child: SmallText(
-                    text: " Je me bucque !",
-                    size: Dimensions.height30,
-                    color: txtbuttonpressed ? AppColors.titleColor : Colors.white,
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            //productcontroller.setQuantity(true);
+                            widget.productListController.setQuantity(true);
+                          });
+                        },
+                        child: const AppIcon(
+                          iconData: Icons.add,
+                          backgroundColor: AppColors.secondColor,
+                          iconColor: Colors.white,
+                          iconSize: 30,
+                        ),
+                      )
+                    ],
                   ),
-                  onPressed: () {
-                    //produitchoisis = widget.productModel.id!;
-                    //print("le main id est " + widget.productModel.mainid.toString());
-                    _order(salesController);
-                    setState(() {
-                      txtbuttonpressed = !txtbuttonpressed;
-                    });
+                ),
+                SizedBox(
+                  height: Dimensions.height20,
+                ),
+                ElevatedButton(
+                    child: SmallText(
+                      text: " Je me bucque !",
+                      size: Dimensions.height30,
+                      color: txtbuttonpressed ? AppColors.titleColor : Colors.white,
+                    ),
+                    onPressed: () {
+                      //! to put below _order !
 
-                    Timer(
-                        const Duration(seconds: 3),
-                        (() => setState(() {
-                              txtbuttonpressed = !txtbuttonpressed;
-                            })));
-                  },
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
+                      _order(salesController);
+
+                      print(widget.productListController.inCartItem);
+
+                      widget.productListController.sale_addItem(widget.productModel);
+
+                      inspect(widget.productListController.theCartController);
+
+                      setState(() {
+                        txtbuttonpressed = !txtbuttonpressed;
+                      });
+
+                      //widget.productListController.setQuantityToZero();
+
+                      Timer(
+                          const Duration(seconds: 3),
+                          (() => setState(() {
+                                txtbuttonpressed = !txtbuttonpressed;
+                              })));
+                    },
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
+                      )),
+                      padding: MaterialStateProperty.all(
+                          EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10)),
+                      backgroundColor:
+                          txtbuttonpressed ? MaterialStateProperty.all<Color>(AppColors.whiteGreyColor) : MaterialStateProperty.all<Color>(AppColors.mainColor),
                     )),
-                    padding: MaterialStateProperty.all(
-                        EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10)),
-                    backgroundColor:
-                        txtbuttonpressed ? MaterialStateProperty.all<Color>(AppColors.whiteGreyColor) : MaterialStateProperty.all<Color>(AppColors.mainColor),
-                  )),
-            ],
-          ),
+              ],
+            );
+          }),
           actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: Dimensions.height10),

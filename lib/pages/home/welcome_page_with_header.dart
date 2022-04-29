@@ -56,6 +56,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                   color: Colors.white,
                 ), */
                 Container(
+                  padding: EdgeInsets.only(top: Dimensions.height10),
                   width: Dimensions.height45,
                   height: Dimensions.height45,
                   child: const Icon(

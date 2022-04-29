@@ -1,3 +1,4 @@
+import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/cart_repo.dart';
@@ -16,9 +17,9 @@ class CartController extends GetxController {
   //! only for storage and sharedpreferences
   List<CartModel> storageItems = [];
 
-  void addItem(OldProductModel oldProductModel, int quantity) {
-    if (_items.containsKey(oldProductModel.id!)) {
-      _items.update(oldProductModel.id!, (value) {
+  void addItem(ProductModel productModel, int quantity) {
+    if (_items.containsKey(productModel.id!)) {
+      _items.update(productModel.id!, (value) {
         if ((value.quantity! + quantity) > 0) {
           return CartModel(
             id: value.id,
@@ -26,9 +27,9 @@ class CartController extends GetxController {
             price: value.price,
             img: value.img,
             quantity: value.quantity! + quantity,
-            isExist: true,
+            //isExist: true,
             time: DateTime.now().toString(),
-            aProduct: oldProductModel,
+            aProduct: productModel,
           );
         } else {
           return CartModel(
@@ -37,37 +38,32 @@ class CartController extends GetxController {
             price: value.price,
             img: value.img,
             quantity: 0,
-            isExist: true,
+            //isExist: true,
             time: DateTime.now().toString(),
-            aProduct: oldProductModel,
+            aProduct: productModel,
           );
         }
       });
     } else {
-      // print("length of the item is " + _items.length.toString());
       //?ajoute si l'item n'existe pas encore
-      _items.putIfAbsent(oldProductModel.id!, () {
-        //print("add item to cart " + oldProductModel.id!.toString() + " quantity " + quantity.toString());
-
-        _items.forEach(((key, value) {
-          //print(value.name! + "quantity is " + value.quantity.toString());
-        }));
+      _items.putIfAbsent(productModel.id!, () {
+        _items.forEach(((key, value) {}));
 
         return CartModel(
-          id: oldProductModel.id,
-          name: oldProductModel.name,
-          price: oldProductModel.price,
-          img: oldProductModel.img,
+          id: productModel.id,
+          name: productModel.name,
+          price: productModel.manualPrice,
+          img: productModel.productImage,
           quantity: quantity,
-          isExist: true,
+          //isExist: true,
           time: DateTime.now().toString(),
-          aProduct: oldProductModel,
+          aProduct: productModel,
         );
       });
     }
 
-    if (_items[oldProductModel.id]?.quantity! == 0) {
-      _items.remove(oldProductModel.id!);
+    if (_items[productModel.id]?.quantity! == 0) {
+      _items.remove(productModel.id!);
     }
 
     cartRepo.addToCartList(getItems);
@@ -121,15 +117,15 @@ class CartController extends GetxController {
   }
 
   //! keyword get doit retourner qqch
-  int get totalAmount {
+  /* int get totalAmount {
     var total = 0;
 
     _items.forEach((key, value) {
-      total += value.quantity! * value.price!;
+      total += value.quantity! * int.parse(value.price!);
     });
 
     return total;
-  }
+  } */
 
   List<CartModel> getCartData() {
     setCart = cartRepo.getCartList();

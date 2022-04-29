@@ -5,6 +5,7 @@ import 'package:borgiaflutterapp/routes/route_helper.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'controllers/cart_controller.dart';
 import 'controllers/popular_product_controller.dart';
 import 'controllers/recommended_product_controller.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    //Get.find<CartController>().getCartData();
+    Get.find<CartController>().getCartData();
     //Get.find<ShopController>().getShopList();
     //Get.find<ProductController>().getProductList();
     //Get.find<RecommendedProductController>().getRecomendedProductList();
