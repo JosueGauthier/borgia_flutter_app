@@ -6,6 +6,7 @@ import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/models/sales_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -79,7 +80,11 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                   size: Dimensions.height30,
                   color: Colors.white,
                 ),
-                const AppIcon(iconData: Icons.shopping_bag, iconColor: AppColors.mainColor, backgroundColor: Colors.white),
+                GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getInitial());
+                    },
+                    child: const AppIcon(iconData: CupertinoIcons.house_alt, iconColor: AppColors.mainColor, backgroundColor: Colors.white)),
               ],
             ),
           ),
@@ -88,142 +93,193 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
             //print("the list is: " + productListController.productList.toString());
             //print("the link list is: " + productListController.productLinkList.toString());
             return productListController.isLoaded
-                ? ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: productListController.productList.length,
-                    itemBuilder: (context, index) {
-                      ProductModel productModel = productListController.productList[index];
-                      //print(productModel.productImage!);
-                      return GestureDetector(
-                        onTap: () {
-                          //Get.toNamed(RouteHelper.getRecommendedFood(index, "home"));
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10, bottom: Dimensions.height15),
-                          child: Row(
-                              //crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                //! image section
+                ? Container(
+                    width: double.maxFinite,
+                    margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: productListController.productList.length,
+                        itemBuilder: (context, index) {
+                          ProductModel productModel = productListController.productList[index];
+                          //print(productModel.productImage!);
+                          return GestureDetector(
+                            onTap: () {
+                              Get.find<ProductFromCategoryController>().initProduct(productModel, Get.find<CartController>());
+                              setState(() {
+                                pressed = !pressed;
+                              });
 
-                                Stack(
-                                  children: [
-                                    Container(
-                                      height: Dimensions.height100,
-                                      width: Dimensions.height100,
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
-                                      child: (productModel.productImage == null)
-                                          ? Container()
-                                          : CachedNetworkImage(
-                                              fit: BoxFit.contain,
-                                              imageUrl: productModel.productImage!,
-                                              placeholder: (context, url) => Center(
-                                                child: SizedBox(
-                                                  height: Dimensions.height45,
-                                                  width: Dimensions.height45,
-                                                  child: const CircularProgressIndicator(
-                                                    color: AppColors.secondColor,
-                                                  ),
-                                                ),
-                                              ),
-                                              errorWidget: (context, url, error) => const Image(image: AssetImage("assets/image/errorimage.png")),
-                                            ),
-                                    ),
-                                  ],
-                                ),
+                              showDialog(
+                                  context: context,
+                                  builder: (_) {
+                                    return MyDialog(
+                                      productModel: productModel,
+                                      productListController: productListController,
+                                      categoryModuleId: widget.categoryModuleId,
+                                      shopId: widget.shopId,
+                                    );
+                                  });
 
-                                //! text section
+                              Timer(
+                                  const Duration(seconds: 3),
+                                  (() => setState(() {
+                                        pressed = !pressed;
+                                      })));
+                            },
+                            child: Card(
+                              elevation: 2,
+                              shadowColor: AppColors.secondColor,
+                              color: Colors.white,
+                              child: Container(
+                                margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10, bottom: Dimensions.height15),
+                                child: Row(
+                                    //crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      //! image section
 
-                                Expanded(
-                                  child: Container(
-                                    height: Dimensions.listviewTextHeigth + 10,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(Dimensions.height20), bottomRight: Radius.circular(Dimensions.height20))),
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                      Stack(
                                         children: [
-                                          SizedBox(
-                                            height: Dimensions.height10,
-                                          ),
-                                          BigText(
-                                            text: (productModel.name)!.capitalize!,
-                                            size: Dimensions.height25,
-                                          ),
-                                          SizedBox(
-                                            height: Dimensions.height10,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              BigText(size: Dimensions.height30, text: productModel.manualPrice.toString() + " €"),
-                                              Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.end, children: [
-                                                GestureDetector(
-                                                  onTap: () {},
-                                                  child: ElevatedButton(
-                                                      child: SmallText(
-                                                        text: "Bucque moi !",
-                                                        size: Dimensions.height20,
-                                                        color: pressed ? AppColors.secondColor : Colors.white,
+                                          Container(
+                                            height: Dimensions.height100,
+                                            width: Dimensions.height100,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
+                                            child: (productModel.productImage == null)
+                                                ? Container()
+                                                : CachedNetworkImage(
+                                                    fit: BoxFit.contain,
+                                                    imageUrl: productModel.productImage!,
+                                                    placeholder: (context, url) => Center(
+                                                      child: SizedBox(
+                                                        height: Dimensions.height45,
+                                                        width: Dimensions.height45,
+                                                        child: const CircularProgressIndicator(
+                                                          color: AppColors.secondColor,
+                                                        ),
                                                       ),
-                                                      onPressed: () {
-                                                        Get.find<ProductFromCategoryController>().initProduct(productModel, Get.find<CartController>());
-                                                        setState(() {
-                                                          pressed = !pressed;
-                                                        });
-
-                                                        showDialog(
-                                                            context: context,
-                                                            builder: (_) {
-                                                              return MyDialog(
-                                                                productModel: productModel,
-                                                                productListController: productListController,
-                                                                categoryModuleId: widget.categoryModuleId,
-                                                                shopId: widget.shopId,
-                                                              );
-                                                            });
-
-                                                        Timer(
-                                                            const Duration(seconds: 3),
-                                                            (() => setState(() {
-                                                                  pressed = !pressed;
-                                                                })));
-                                                      },
-                                                      style: ButtonStyle(
-                                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
-                                                        )),
-                                                        padding: MaterialStateProperty.all(EdgeInsets.only(
-                                                            left: Dimensions.width20,
-                                                            right: Dimensions.width20,
-                                                            top: Dimensions.height10,
-                                                            bottom: Dimensions.height10)),
-                                                        backgroundColor: pressed
-                                                            ? MaterialStateProperty.all<Color>(AppColors.whiteGreyColor)
-                                                            : MaterialStateProperty.all<Color>(AppColors.secondColor),
-                                                      )),
-                                                )
-                                              ])
-                                            ],
+                                                    ),
+                                                    errorWidget: (context, url, error) => const Image(image: AssetImage("assets/image/errorimage.png")),
+                                                  ),
                                           ),
-                                          SizedBox(
-                                            height: Dimensions.height10,
+                                          /* Positioned(
+                                          right: 0,
+                                          top: 0,
+                                          child: Container(
+                                            height: Dimensions.height20 * 2,
+                                            width: Dimensions.height20 * 2,
+                                            decoration: BoxDecoration(
+                                                color: Colors.transparent,
+                                                image: const DecorationImage(
+                                                  //colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.5), BlendMode.dstATop),
+                                                  fit: BoxFit.contain,
+                                                  image:
+                                                      AssetImage("assets/image/pinte_png8_fondblanc.png"), //todo add item in function of the name of the product
+                                                ),
+                                                borderRadius: BorderRadius.circular(Dimensions.width20)),
                                           ),
+                                        ), */
                                         ],
                                       ),
-                                    ),
-                                  ),
-                                ),
 
-                                //? expanded widget force container to take all the available space
-                              ]),
-                        ),
-                      );
-                    })
+                                      //! text section
+
+                                      Expanded(
+                                        child: Container(
+                                          height: Dimensions.listviewTextHeigth + 10,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.only(
+                                                  topRight: Radius.circular(Dimensions.height20), bottomRight: Radius.circular(Dimensions.height20))),
+                                          child: Padding(
+                                            padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                SizedBox(
+                                                  height: Dimensions.height10,
+                                                ),
+                                                BigText(
+                                                  text: (productModel.name)!.capitalize!,
+                                                  size: Dimensions.height25,
+                                                ),
+                                                SizedBox(
+                                                  height: Dimensions.height10,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    BigText(size: Dimensions.height30, text: productModel.manualPrice.toString() + " €"),
+                                                    Column(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                                        children: [
+                                                          GestureDetector(
+                                                            onTap: () {},
+                                                            child: ElevatedButton(
+                                                                child: SmallText(
+                                                                  text: "Bucque moi !",
+                                                                  size: Dimensions.height20,
+                                                                  color: pressed ? AppColors.secondColor : Colors.white,
+                                                                ),
+                                                                onPressed: () {
+                                                                  Get.find<ProductFromCategoryController>()
+                                                                      .initProduct(productModel, Get.find<CartController>());
+                                                                  setState(() {
+                                                                    pressed = !pressed;
+                                                                  });
+
+                                                                  showDialog(
+                                                                      context: context,
+                                                                      builder: (_) {
+                                                                        return MyDialog(
+                                                                          productModel: productModel,
+                                                                          productListController: productListController,
+                                                                          categoryModuleId: widget.categoryModuleId,
+                                                                          shopId: widget.shopId,
+                                                                        );
+                                                                      });
+
+                                                                  Timer(
+                                                                      const Duration(seconds: 3),
+                                                                      (() => setState(() {
+                                                                            pressed = !pressed;
+                                                                          })));
+                                                                },
+                                                                style: ButtonStyle(
+                                                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
+                                                                  )),
+                                                                  padding: MaterialStateProperty.all(EdgeInsets.only(
+                                                                      left: Dimensions.width20,
+                                                                      right: Dimensions.width20,
+                                                                      top: Dimensions.height10,
+                                                                      bottom: Dimensions.height10)),
+                                                                  backgroundColor: pressed
+                                                                      ? MaterialStateProperty.all<Color>(AppColors.whiteGreyColor)
+                                                                      : MaterialStateProperty.all<Color>(AppColors.secondColor),
+                                                                )),
+                                                          )
+                                                        ])
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: Dimensions.height10,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+
+                                      //? expanded widget force container to take all the available space
+                                    ]),
+                              ),
+                            ),
+                          );
+                        }),
+                  )
                 : const CircularProgressIndicator(
                     strokeWidth: 4,
                     color: AppColors.mainColor,

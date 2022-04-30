@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../controllers/cart_controller.dart';
 
@@ -12,6 +13,21 @@ class CartPage extends StatelessWidget {
   const CartPage({
     Key? key,
   }) : super(key: key);
+
+  Widget timeWidget(int index, int Listlength, var indexTime) {
+    var outputData = DateTime.now().toString();
+
+    if (index < Listlength) {
+      DateTime parseDate = DateFormat("yyyy-MM-dd HH:mm:ss").parse(indexTime!);
+      var outputFormat = DateFormat("dd/MM/yyyy hh:mm a");
+      outputData = outputFormat.format(parseDate);
+    }
+    return BigText(
+      text: outputData,
+      color: AppColors.greyColor,
+      size: Dimensions.height30 / 1.3,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +59,21 @@ class CartPage extends StatelessWidget {
             var _cartList = cartController.getItems;
 
             return Expanded(
-                child: ListView.builder(
-                    itemCount: _cartList.length,
-                    itemBuilder: ((context, index) {
-                      return Container(
-                        width: double.maxFinite,
-                        height: Dimensions.height20 * 7,
+                child: Container(
+              width: double.maxFinite,
+              margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+              child: ListView.builder(
+                  itemCount: _cartList.length,
+                  itemBuilder: ((context, index) {
+                    return Container(
+                      width: double.maxFinite,
+                      height: Dimensions.height20 * 8,
+                      color: Colors.white,
+                      margin: EdgeInsets.only(bottom: Dimensions.height20),
+                      child: Card(
+                        elevation: 2,
+                        shadowColor: AppColors.secondColor,
                         color: Colors.white,
-                        margin: EdgeInsets.only(bottom: Dimensions.height20),
                         child: Row(
                           children: [
                             GestureDetector(
@@ -78,11 +101,12 @@ class CartPage extends StatelessWidget {
                                   color: AppColors.darkGreyColor,
                                   size: Dimensions.height30,
                                 ),
+                                timeWidget(index, _cartList.length, _cartList[index].time!),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     BigText(
-                                      text: _cartList[index].price.toString(),
+                                      text: _cartList[index].price.toString() + " €",
                                       color: AppColors.mainColor,
                                       size: Dimensions.height30,
                                     ),
@@ -97,8 +121,10 @@ class CartPage extends StatelessWidget {
                             )),
                           ],
                         ),
-                      );
-                    })));
+                      ),
+                    );
+                  })),
+            ));
           },
         )
       ]),

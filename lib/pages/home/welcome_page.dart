@@ -9,6 +9,7 @@ import 'package:simple_animations/simple_animations.dart';
 
 import 'package:get/get.dart';
 
+import '../../controllers/cart_controller.dart';
 import '../../controllers/user_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
@@ -42,10 +43,10 @@ class _WelcomePageState extends State<WelcomePage> {
 
   List<List<dynamic>> listItemsSlider = [
     ['Solde actuel', null],
-    ["Derniers achats", "last-purchase.png"],
+    ["Derniers achats", "last"],
     ['Rechargement Lydia', "lydia-logo.jpeg"],
-    ['Rechargement stripe.com', "Stripe-Logo.png"],
-    ['Statistiques', "stat.jpg"]
+    ['Rechargement stripe', "Stripe-Logo.png"],
+    ['Statistiques ON WORK', "auto_label_full.png"]
   ];
 
   @override
@@ -130,77 +131,86 @@ class _WelcomePageState extends State<WelcomePage> {
 
         GetBuilder<ShopController>(builder: (shopController) {
           return shopController.isLoaded
-              ? ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: shopController.shopList.length,
-                  itemBuilder: (context, index) {
-                    ShopModel shopModel = shopController.shopList[index];
-                    return GestureDetector(
-                      onTap: () {
-                        //print(shopModel.id);
-                        AppConstants.SHOP_ID = shopModel.id!;
-                        Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
-                      },
-                      child: Container(
-                        //color: Colors.amber,
-                        margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height15),
-                        child: Row(
-                            //crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              //! image section
+              ? Container(
+                  width: double.maxFinite,
+                  margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: shopController.shopList.length,
+                      itemBuilder: (context, index) {
+                        ShopModel shopModel = shopController.shopList[index];
+                        return GestureDetector(
+                          onTap: () {
+                            //print(shopModel.id);
+                            AppConstants.SHOP_ID = shopModel.id!;
+                            Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
+                          },
+                          child: Card(
+                            elevation: 2,
+                            shadowColor: AppColors.secondColor,
+                            color: Colors.white,
+                            child: Container(
+                              //color: Colors.amber,
+                              margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height15),
+                              child: Row(
+                                  //crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    //! image section
 
-                              Container(
-                                height: Dimensions.height100,
-                                width: Dimensions.listviewimgSize,
-                                decoration: BoxDecoration(
-                                    //color: Colors.amber,
-                                    image: DecorationImage(
-                                      fit: BoxFit.contain,
-                                      image: NetworkImage(shopModel.image!),
+                                    Container(
+                                      height: Dimensions.height100,
+                                      width: Dimensions.listviewimgSize,
+                                      decoration: BoxDecoration(
+                                          //color: Colors.amber,
+                                          image: DecorationImage(
+                                            fit: BoxFit.contain,
+                                            image: NetworkImage(shopModel.image!),
+                                          ),
+                                          borderRadius: BorderRadius.circular(Dimensions.width20)),
                                     ),
-                                    borderRadius: BorderRadius.circular(Dimensions.width20)),
-                              ),
 
-                              //! text section
+                                    //! text section
 
-                              //? expanded widget force container to take all the available space
-                              Expanded(
-                                child: Container(
-                                  height: Dimensions.listviewTextHeigth + 10,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.only(
-                                          //topLeft: Radius.circular(Dimensions.height20),
-                                          //bottomLeft: Radius.circular(Dimensions.height20),
-                                          topRight: Radius.circular(Dimensions.height20),
-                                          bottomRight: Radius.circular(Dimensions.height20))),
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(
-                                          height: Dimensions.height10,
+                                    //? expanded widget force container to take all the available space
+                                    Expanded(
+                                      child: Container(
+                                        height: Dimensions.listviewTextHeigth + 10,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.only(
+                                                //topLeft: Radius.circular(Dimensions.height20),
+                                                //bottomLeft: Radius.circular(Dimensions.height20),
+                                                topRight: Radius.circular(Dimensions.height20),
+                                                bottomRight: Radius.circular(Dimensions.height20))),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              SizedBox(
+                                                height: Dimensions.height10,
+                                              ),
+                                              BigText(
+                                                text: (shopModel.name)!.capitalize!,
+                                                size: Dimensions.height25,
+                                                color: AppColors.titleColor,
+                                              ),
+                                              SizedBox(
+                                                height: Dimensions.height10,
+                                              ),
+                                              SmallText(allowOverFlow: true, maxLines: 2, text: (shopModel.description)!.capitalize!),
+                                            ],
+                                          ),
                                         ),
-                                        BigText(
-                                          text: (shopModel.name)!.capitalize!,
-                                          size: Dimensions.height25,
-                                          color: AppColors.titleColor,
-                                        ),
-                                        SizedBox(
-                                          height: Dimensions.height10,
-                                        ),
-                                        SmallText(allowOverFlow: true, maxLines: 2, text: (shopModel.description)!.capitalize!),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ]),
-                      ),
-                    );
-                  })
+                                      ),
+                                    )
+                                  ]),
+                            ),
+                          ),
+                        );
+                      }),
+                )
               : const CircularProgressIndicator(
                   strokeWidth: 4,
                   color: AppColors.mainColor,
@@ -239,81 +249,120 @@ class _WelcomePageState extends State<WelcomePage> {
         children: [
           //! Partie image
           GestureDetector(
-            onTap: () {
-              //Get.toNamed(RouteHelper.getPopularFood(position, "home"));
-            },
-            child: (listItemsSlider[position][1] == null)
-                ? Stack(
-                    children: [
-                      /* Container(
-                        height: _height,
-                        margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(Dimensions.radius30),
-                            //color: position.isEven ? Colors.red : Colors.amber,
-                            //color: AppColors.secondColor
-
-                            gradient:
-                                LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomRight, colors: [AppColors.mainColor, AppColors.secondColor])),
-
-                        //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
-                      ),
-                      
-                       */
-
-                      Container(
-                        height: _height,
-                        margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            //borderRadius: BorderRadius.circular(Dimensions.radius30),
-                            color: AppColors.secondColor,
-                            backgroundBlendMode: BlendMode.srcOver,
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
-                            child: const PlasmaRenderer(
-                              type: PlasmaType.infinity,
-                              particles: 6,
-                              color: AppColors.mainColor, //Color(0x64d31418),
-                              blur: 0.9,
-                              size: 0.9,
-                              speed: 1,
-                              offset: 0,
-                              blendMode: BlendMode.srcOver,
-                              particleType: ParticleType.atlas,
-                              variation1: 0,
-                              variation2: 0,
-                              variation3: 0,
-                              rotation: 0,
+              onTap: () {
+                //Get.toNamed(RouteHelper.getPopularFood(position, "home"));
+              },
+              child: (listItemsSlider[position][1] == null)
+                  ? Stack(
+                      children: [
+                        Container(
+                          height: _height,
+                          margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              //borderRadius: BorderRadius.circular(Dimensions.radius30),
+                              color: AppColors.secondColor,
+                              backgroundBlendMode: BlendMode.srcOver,
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: const PlasmaRenderer(
+                                type: PlasmaType.infinity,
+                                particles: 6,
+                                color: AppColors.mainColor, //Color(0x64d31418),
+                                blur: 0.9,
+                                size: 0.9,
+                                speed: 1,
+                                offset: 0,
+                                blendMode: BlendMode.srcOver,
+                                particleType: ParticleType.atlas,
+                                variation1: 0,
+                                variation2: 0,
+                                variation3: 0,
+                                rotation: 0,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Center(
-                        heightFactor: 1.5,
-                        child: BigText(
-                          fontTypo: 'OpenSansExtraBold',
-                          text: userModel.balance! + "€",
-                          color: Colors.white,
-                          size: Dimensions.height30 * 2.7,
-                        ),
-                      )
-                    ],
-                  )
-                : Container(
-                    height: _height,
-                    margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Dimensions.radius30),
-                        //color: position.isEven ? Colors.red : Colors.amber,
+                        Center(
+                          heightFactor: 1.5,
+                          child: BigText(
+                            fontTypo: 'OpenSansExtraBold',
+                            text: userModel.balance! + "€",
+                            color: Colors.white,
+                            size: Dimensions.height30 * 2.7,
+                          ),
+                        )
+                      ],
+                    )
+                  : Container(
+                      child: (listItemsSlider[position][1] == "last")
+                          ? Container(
+                              height: _height,
+                              margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(Dimensions.radius30),
+                                //color: position.isEven ? Colors.red : Colors.amber,
+                                color: AppColors.mainColor,
 
-                        image: DecorationImage(image: AssetImage("assets/image/" + listItemsSlider[position][1].toString()), fit: BoxFit.cover)),
+                                //image: DecorationImage(image: AssetImage("assets/image/" + listItemsSlider[position][1].toString()), fit: BoxFit.cover)),
 
-                    //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
-                  ),
-          ),
+                                //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
+                              ),
+                              child: GetBuilder<CartController>(builder: (cartController) {
+                                var _cartList = cartController.getItems;
+
+                                return ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: _cartList.length,
+                                    itemBuilder: ((context, index) {
+                                      return ClipRRect(
+                                        child: Align(
+                                          child: Container(
+                                            height: Dimensions.height45 * 4,
+                                            child: Card(
+                                              elevation: 2,
+                                              shadowColor: AppColors.secondColor,
+                                              color: Colors.white,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  //Get.toNamed(RouteHelper.getProductList(categoryModel.id!, categoryModel.moduleId!, widget.shopId, "home"));
+                                                },
+                                                child: Container(
+                                                  padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                                                  margin: EdgeInsets.only(
+                                                      top: Dimensions.height20,
+                                                      bottom: Dimensions.height20,
+                                                      left: Dimensions.width10,
+                                                      right: Dimensions.width10),
+                                                  width: Dimensions.width20 * 5,
+                                                  height: Dimensions.width20 * 2,
+                                                  decoration: BoxDecoration(
+                                                      image: DecorationImage(fit: BoxFit.contain, image: NetworkImage(_cartList[index].img!)),
+                                                      color: Colors.white,
+                                                      borderRadius: BorderRadius.circular(Dimensions.radius20)),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }));
+                              }),
+                            )
+                          : Container(
+                              height: _height,
+                              margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(Dimensions.radius30),
+                                  //color: position.isEven ? Colors.red : Colors.amber,
+
+                                  image: DecorationImage(image: AssetImage("assets/image/" + listItemsSlider[position][1].toString()), fit: BoxFit.cover)),
+
+                              //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
+                            ),
+                    )),
 
           //! Partie text
           Align(

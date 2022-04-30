@@ -1,6 +1,6 @@
 import 'package:borgiaflutterapp/pages/cart/cart_history.dart';
 import 'package:borgiaflutterapp/pages/cart/cart_page.dart';
-import 'package:borgiaflutterapp/pages/fav_products/cart_page.dart';
+import 'package:borgiaflutterapp/pages/fav_products/fav_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 
 import 'package:flutter/cupertino.dart';
