@@ -1,6 +1,7 @@
 import 'package:borgiaflutterapp/pages/cart/cart_history.dart';
 import 'package:borgiaflutterapp/pages/cart/cart_page.dart';
 import 'package:borgiaflutterapp/pages/fav_products/fav_page.dart';
+import 'package:borgiaflutterapp/pages/money/rechargement_Lydia_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -47,7 +48,7 @@ class _HomePageState extends State<HomePage> {
 
     const CartPage(),
 
-    const FavPage(),
+    const RefillLydiaPage(),
 
     const ProfilePage(),
   ];
