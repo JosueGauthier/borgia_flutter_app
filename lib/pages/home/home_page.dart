@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
 
     const CartPage(),
 
-    const RefillLydiaPage(),
+    const FavPage(),
 
     const ProfilePage(),
   ];
