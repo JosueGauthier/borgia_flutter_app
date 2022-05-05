@@ -199,7 +199,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                               SizedBox(
                                                 height: Dimensions.height10,
                                               ),
-                                              SmallText(allowOverFlow: true, maxLines: 2, text: (shopModel.description)!.capitalize!),
+                                              //SmallText(allowOverFlow: true, maxLines: 2, text: (shopModel.description)!.capitalize!),
                                             ],
                                           ),
                                         ),
@@ -253,48 +253,58 @@ class _WelcomePageState extends State<WelcomePage> {
                 //Get.toNamed(RouteHelper.getPopularFood(position, "home"));
               },
               child: (listItemsSlider[position][1] == null)
-                  ? Stack(
-                      children: [
-                        Container(
-                          height: _height,
-                          margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              //borderRadius: BorderRadius.circular(Dimensions.radius30),
-                              color: AppColors.secondColor,
-                              backgroundBlendMode: BlendMode.srcOver,
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: const PlasmaRenderer(
-                                type: PlasmaType.infinity,
-                                particles: 6,
-                                color: AppColors.mainColor, //Color(0x64d31418),
-                                blur: 0.9,
-                                size: 0.9,
-                                speed: 1,
-                                offset: 0,
-                                blendMode: BlendMode.srcOver,
-                                particleType: ParticleType.atlas,
-                                variation1: 0,
-                                variation2: 0,
-                                variation3: 0,
-                                rotation: 0,
+                  ? GestureDetector(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getLydiaPage());
+                      },
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.toNamed(RouteHelper.getLydiaPage());
+                        },
+                        child: Stack(
+                          children: [
+                            Container(
+                              height: _height,
+                              margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  //borderRadius: BorderRadius.circular(Dimensions.radius30),
+                                  color: AppColors.secondColor,
+                                  backgroundBlendMode: BlendMode.srcOver,
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: const PlasmaRenderer(
+                                    type: PlasmaType.infinity,
+                                    particles: 6,
+                                    color: AppColors.mainColor, //Color(0x64d31418),
+                                    blur: 0.9,
+                                    size: 0.9,
+                                    speed: 1,
+                                    offset: 0,
+                                    blendMode: BlendMode.srcOver,
+                                    particleType: ParticleType.atlas,
+                                    variation1: 0,
+                                    variation2: 0,
+                                    variation3: 0,
+                                    rotation: 0,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Center(
+                              heightFactor: 1.5,
+                              child: BigText(
+                                fontTypo: 'OpenSansExtraBold',
+                                text: userModel.balance! + "€",
+                                color: Colors.white,
+                                size: Dimensions.height30 * 2.7,
+                              ),
+                            )
+                          ],
                         ),
-                        Center(
-                          heightFactor: 1.5,
-                          child: BigText(
-                            fontTypo: 'OpenSansExtraBold',
-                            text: userModel.balance! + "€",
-                            color: Colors.white,
-                            size: Dimensions.height30 * 2.7,
-                          ),
-                        )
-                      ],
+                      ),
                     )
                   : Container(
                       child: (listItemsSlider[position][1] == "last")
@@ -352,17 +362,37 @@ class _WelcomePageState extends State<WelcomePage> {
                               }),
                             )
                           : Container(
-                              height: _height,
-                              margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(Dimensions.radius30),
-                                  //color: position.isEven ? Colors.red : Colors.amber,
+                              child: (listItemsSlider[position][1] == "lydia-logo.jpeg")
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        Get.toNamed(RouteHelper.getLydiaPage());
+                                      },
+                                      child: Container(
+                                        height: _height,
+                                        margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(Dimensions.radius30),
+                                            //color: position.isEven ? Colors.red : Colors.amber,
 
-                                  image: DecorationImage(image: AssetImage("assets/image/" + listItemsSlider[position][1].toString()), fit: BoxFit.cover)),
+                                            image: DecorationImage(
+                                                image: AssetImage("assets/image/" + listItemsSlider[position][1].toString()), fit: BoxFit.cover)),
 
-                              //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
-                            ),
-                    )),
+                                        //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
+                                      ),
+                                    )
+                                  : Container(
+                                      height: _height,
+                                      margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(Dimensions.radius30),
+                                          //color: position.isEven ? Colors.red : Colors.amber,
+
+                                          image:
+                                              DecorationImage(image: AssetImage("assets/image/" + listItemsSlider[position][1].toString()), fit: BoxFit.cover)),
+
+                                      //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
+                                    ),
+                            ))),
 
           //! Partie text
           Align(

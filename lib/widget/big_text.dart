@@ -6,9 +6,9 @@ class BigText extends StatelessWidget {
   String text;
   double? size = Dimensions.height30;
   final TextOverflow overFlow;
-  String? fontTypo = 'Helvetica';
+  String? fontTypo;
 
-  BigText({Key? key, this.color = const Color(0xFF404040), required this.text, this.fontTypo, this.size, this.overFlow = TextOverflow.ellipsis})
+  BigText({Key? key, this.color = const Color(0xFF404040), required this.text, this.fontTypo = 'Nunito', this.size, this.overFlow = TextOverflow.ellipsis})
       : super(key: key);
 
   @override

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../bottom/exhibition_bottom_sheet.dart';
 import '../../widget/app_icon.dart';
 
 import '../../routes/route_helper.dart';
@@ -38,20 +39,20 @@ class _CategoryShopState extends State<CategoryShop> {
         children: [
           //! header
           Container(
-            height: Dimensions.height45 * 2.5,
+            height: Dimensions.height45 * 2.7,
             decoration: BoxDecoration(
                 color: AppColors.mainColor,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(Dimensions.height20),
                   bottomRight: Radius.circular(Dimensions.height20),
                 )),
-            margin: EdgeInsets.only(bottom: Dimensions.height15),
-            padding: EdgeInsets.only(bottom: Dimensions.height15, top: Dimensions.height30, left: Dimensions.width20, right: Dimensions.width20),
+            margin: EdgeInsets.only(bottom: Dimensions.height10),
+            padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 BigText(
-                  text: "Category list", //todo add name of the shop
+                  text: "Catégorie", //todo add name of the shop
                   size: Dimensions.height30,
                   color: Colors.white,
                 ),
@@ -162,6 +163,8 @@ class _CategoryShopState extends State<CategoryShop> {
                     color: AppColors.mainColor,
                   );
           }))),
+
+          ExhibitionBottomSheet(),
         ],
       ),
     );

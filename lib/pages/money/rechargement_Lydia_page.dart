@@ -23,19 +23,20 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         //mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: Dimensions.height45 * 2.5,
+            height: Dimensions.height45 * 2.7,
             decoration: BoxDecoration(
                 color: AppColors.mainColor,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(Dimensions.height20),
                   bottomRight: Radius.circular(Dimensions.height20),
                 )),
-            margin: EdgeInsets.only(bottom: Dimensions.height15),
-            padding: EdgeInsets.only(bottom: Dimensions.height15, top: Dimensions.height30, left: Dimensions.width20, right: Dimensions.width20),
+            margin: EdgeInsets.only(bottom: Dimensions.height10),
+            padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

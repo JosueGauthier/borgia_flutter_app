@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
             defaultTransition: Transition.fadeIn,
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
+
             //home: SplashScreen(),
             initialRoute: RouteHelper.getSplashPage(),
             getPages: RouteHelper.routes,

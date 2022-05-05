@@ -46,7 +46,7 @@ class ProductFromCategoryController extends GetxController {
 
   //int get quantity => _quantity;
 
-  int _incartItem = 0;
+  /* int _incartItem = 0; */
 
   //int get inCartItem => _quantity;
 
@@ -126,9 +126,8 @@ class ProductFromCategoryController extends GetxController {
 
   //? not used
   void initProduct(ProductModel productModel, CartController cartController) {
-    _quantity = 0;
+    _quantity = 1;
 
-    _incartItem = 0;
     // get from storage
     _cartController = cartController;
 

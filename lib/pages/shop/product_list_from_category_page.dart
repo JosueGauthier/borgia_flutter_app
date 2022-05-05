@@ -63,15 +63,15 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
         children: [
           //! header Text  + cart
           Container(
-            height: Dimensions.height45 * 2.5,
+            height: Dimensions.height45 * 2.7,
             decoration: BoxDecoration(
                 color: AppColors.mainColor,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(Dimensions.height20),
                   bottomRight: Radius.circular(Dimensions.height20),
                 )),
-            margin: EdgeInsets.only(bottom: Dimensions.height15),
-            padding: EdgeInsets.only(bottom: Dimensions.height15, top: Dimensions.height30, left: Dimensions.width20, right: Dimensions.width20),
+            margin: EdgeInsets.only(bottom: Dimensions.height10),
+            padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -82,9 +82,9 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                 ),
                 GestureDetector(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getInitial());
+                      Get.toNamed(RouteHelper.getCategoryListPage(widget.shopId, "home"));
                     },
-                    child: const AppIcon(iconData: CupertinoIcons.house_alt, iconColor: AppColors.mainColor, backgroundColor: Colors.white)),
+                    child: const AppIcon(iconData: CupertinoIcons.back, iconColor: AppColors.mainColor, backgroundColor: Colors.white)),
               ],
             ),
           ),
@@ -132,149 +132,133 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                               shadowColor: AppColors.secondColor,
                               color: Colors.white,
                               child: Container(
-                                margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10, bottom: Dimensions.height15),
-                                child: Row(
-                                    //crossAxisAlignment: CrossAxisAlignment.center,
+                                height: Dimensions.height100 * 1.2,
+                                margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10, bottom: Dimensions.height10),
+                                child: Row(children: [
+                                  //! image section
+
+                                  Stack(
                                     children: [
-                                      //! image section
-
-                                      Stack(
-                                        children: [
-                                          Container(
-                                            height: Dimensions.height100,
-                                            width: Dimensions.height100,
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
-                                            child: (productModel.productImage == null)
-                                                ? Container()
-                                                : CachedNetworkImage(
-                                                    fit: BoxFit.contain,
-                                                    imageUrl: productModel.productImage!,
-                                                    placeholder: (context, url) => Center(
-                                                      child: SizedBox(
-                                                        height: Dimensions.height45,
-                                                        width: Dimensions.height45,
-                                                        child: const CircularProgressIndicator(
-                                                          color: AppColors.secondColor,
-                                                        ),
-                                                      ),
+                                      Container(
+                                        height: Dimensions.height100,
+                                        width: Dimensions.height100,
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
+                                        child: (productModel.productImage == null)
+                                            ? Container()
+                                            : CachedNetworkImage(
+                                                fit: BoxFit.contain,
+                                                imageUrl: productModel.productImage!,
+                                                placeholder: (context, url) => Center(
+                                                  child: SizedBox(
+                                                    height: Dimensions.height45,
+                                                    width: Dimensions.height45,
+                                                    child: const CircularProgressIndicator(
+                                                      color: AppColors.secondColor,
                                                     ),
-                                                    errorWidget: (context, url, error) => const Image(image: AssetImage("assets/image/errorimage.png")),
                                                   ),
-                                          ),
-                                          /* Positioned(
-                                          right: 0,
-                                          top: 0,
-                                          child: Container(
-                                            height: Dimensions.height20 * 2,
-                                            width: Dimensions.height20 * 2,
-                                            decoration: BoxDecoration(
-                                                color: Colors.transparent,
-                                                image: const DecorationImage(
-                                                  //colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.5), BlendMode.dstATop),
-                                                  fit: BoxFit.contain,
-                                                  image:
-                                                      AssetImage("assets/image/pinte_png8_fondblanc.png"), //todo add item in function of the name of the product
                                                 ),
-                                                borderRadius: BorderRadius.circular(Dimensions.width20)),
-                                          ),
-                                        ), */
-                                        ],
+                                                errorWidget: (context, url, error) => const Image(image: AssetImage("assets/image/errorimage.png")),
+                                              ),
                                       ),
+                                    ],
+                                  ),
 
-                                      //! text section
+                                  //! text section
 
-                                      Expanded(
-                                        child: Container(
-                                          height: Dimensions.listviewTextHeigth + 10,
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.only(
-                                                  topRight: Radius.circular(Dimensions.height20), bottomRight: Radius.circular(Dimensions.height20))),
-                                          child: Padding(
-                                            padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                            child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                  Expanded(
+                                    child: Container(
+                                      height: Dimensions.listviewTextHeigth + 20,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(Dimensions.height20), bottomRight: Radius.circular(Dimensions.height20))),
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              height: Dimensions.height10,
+                                            ),
+                                            BigText(
+                                              text: (productModel.name)!.capitalize!,
+                                              size: Dimensions.height25,
+                                            ),
+                                            SizedBox(
+                                              height: Dimensions.height10,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                SizedBox(
-                                                  height: Dimensions.height10,
-                                                ),
                                                 BigText(
-                                                  text: (productModel.name)!.capitalize!,
-                                                  size: Dimensions.height25,
+                                                  size: Dimensions.height30,
+                                                  text: productModel.manualPrice.toString() + " €",
+                                                  color: AppColors.mainColor,
                                                 ),
                                                 SizedBox(
-                                                  height: Dimensions.height10,
+                                                  width: Dimensions.width10,
                                                 ),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    BigText(size: Dimensions.height30, text: productModel.manualPrice.toString() + " €"),
-                                                    Column(
-                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                        crossAxisAlignment: CrossAxisAlignment.end,
-                                                        children: [
-                                                          GestureDetector(
-                                                            onTap: () {},
-                                                            child: ElevatedButton(
-                                                                child: SmallText(
-                                                                  text: "Bucque moi !",
-                                                                  size: Dimensions.height20,
-                                                                  color: pressed ? AppColors.secondColor : Colors.white,
-                                                                ),
-                                                                onPressed: () {
-                                                                  Get.find<ProductFromCategoryController>()
-                                                                      .initProduct(productModel, Get.find<CartController>());
-                                                                  setState(() {
+                                                Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.end, children: [
+                                                  GestureDetector(
+                                                    onTap: () {},
+                                                    child: ElevatedButton(
+                                                        child: SmallText(
+                                                          text: "Bucque moi !",
+                                                          size: Dimensions.height20 / 1.1,
+                                                          color: pressed ? AppColors.secondColor : Colors.white,
+                                                        ),
+                                                        onPressed: () {
+                                                          Get.find<ProductFromCategoryController>().initProduct(productModel, Get.find<CartController>());
+                                                          setState(() {
+                                                            pressed = !pressed;
+                                                          });
+
+                                                          showDialog(
+                                                              context: context,
+                                                              builder: (_) {
+                                                                return MyDialog(
+                                                                  productModel: productModel,
+                                                                  productListController: productListController,
+                                                                  categoryModuleId: widget.categoryModuleId,
+                                                                  shopId: widget.shopId,
+                                                                );
+                                                              });
+
+                                                          Timer(
+                                                              const Duration(seconds: 3),
+                                                              (() => setState(() {
                                                                     pressed = !pressed;
-                                                                  });
-
-                                                                  showDialog(
-                                                                      context: context,
-                                                                      builder: (_) {
-                                                                        return MyDialog(
-                                                                          productModel: productModel,
-                                                                          productListController: productListController,
-                                                                          categoryModuleId: widget.categoryModuleId,
-                                                                          shopId: widget.shopId,
-                                                                        );
-                                                                      });
-
-                                                                  Timer(
-                                                                      const Duration(seconds: 3),
-                                                                      (() => setState(() {
-                                                                            pressed = !pressed;
-                                                                          })));
-                                                                },
-                                                                style: ButtonStyle(
-                                                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
-                                                                  )),
-                                                                  padding: MaterialStateProperty.all(EdgeInsets.only(
-                                                                      left: Dimensions.width20,
-                                                                      right: Dimensions.width20,
-                                                                      top: Dimensions.height10,
-                                                                      bottom: Dimensions.height10)),
-                                                                  backgroundColor: pressed
-                                                                      ? MaterialStateProperty.all<Color>(AppColors.whiteGreyColor)
-                                                                      : MaterialStateProperty.all<Color>(AppColors.secondColor),
-                                                                )),
-                                                          )
-                                                        ])
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: Dimensions.height10,
-                                                ),
+                                                                  })));
+                                                        },
+                                                        style: ButtonStyle(
+                                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(5.0), /* side: BorderSide(color: AppColors.greyColormedium) */
+                                                          )),
+                                                          padding: MaterialStateProperty.all(EdgeInsets.only(
+                                                              left: Dimensions.width10 / 2,
+                                                              right: Dimensions.width10 / 2,
+                                                              top: Dimensions.height10,
+                                                              bottom: Dimensions.height10)),
+                                                          backgroundColor: pressed
+                                                              ? MaterialStateProperty.all<Color>(AppColors.whiteGreyColor)
+                                                              : MaterialStateProperty.all<Color>(AppColors.secondColor),
+                                                        )),
+                                                  )
+                                                ])
                                               ],
                                             ),
-                                          ),
+                                            SizedBox(
+                                              height: Dimensions.height10,
+                                            ),
+                                          ],
                                         ),
                                       ),
+                                    ),
+                                  ),
 
-                                      //? expanded widget force container to take all the available space
-                                    ]),
+                                  //? expanded widget force container to take all the available space
+                                ]),
                               ),
                             ),
                           );
@@ -306,6 +290,7 @@ class MyDialog extends StatefulWidget {
 
 class _MyDialogState extends State<MyDialog> {
   Color _addRemoveColor = AppColors.secondColor;
+  Color _quantityColor = AppColors.secondColor;
   int qty = 0;
   bool txtbuttonpressed = true;
 
@@ -355,7 +340,7 @@ class _MyDialogState extends State<MyDialog> {
                 Container(
                   //color: Colors.amber,
                   width: Dimensions.width45 * 6,
-                  padding: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height10, bottom: Dimensions.height10),
+                  padding: EdgeInsets.only(/* left: Dimensions.width10, right: Dimensions.width20, */ top: Dimensions.height10, bottom: Dimensions.height10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -364,6 +349,14 @@ class _MyDialogState extends State<MyDialog> {
                           //productcontroller.setQuantity(false);
                           setState(() {
                             widget.productListController.setQuantity(false);
+
+                            _quantityColor = AppColors.mainColor;
+
+                            Timer(
+                                const Duration(milliseconds: 200),
+                                (() => setState(() {
+                                      _quantityColor = AppColors.secondColor;
+                                    })));
                             if (widget.productListController.inCartItem <= 0) {
                               setState(() {
                                 _addRemoveColor = AppColors.mainColor;
@@ -381,26 +374,45 @@ class _MyDialogState extends State<MyDialog> {
                           iconData: Icons.remove,
                           backgroundColor: _addRemoveColor,
                           iconColor: Colors.white,
-                          iconSize: 30,
+                          iconSize: Dimensions.height30,
                         ),
                       ),
-                      BigText(
-                        text: widget.productModel.manualPrice.toString() + "€" + " x " + widget.productListController.inCartItem.toString(),
-                        color: AppColors.darkGreyColor,
-                        size: Dimensions.height30,
+                      Row(
+                        children: [
+                          BigText(
+                            text: widget.productModel.manualPrice.toString() + "€" + " x ",
+                            color: AppColors.darkGreyColor,
+                            size: Dimensions.height30,
+                            fontTypo: 'OpenSansExtraBold',
+                          ),
+                          BigText(
+                            text: widget.productListController.inCartItem.toString(),
+                            color: _quantityColor,
+                            size: Dimensions.height30,
+                            fontTypo: 'OpenSansExtraBold',
+                          ),
+                        ],
                       ),
                       GestureDetector(
                         onTap: () {
                           setState(() {
                             //productcontroller.setQuantity(true);
                             widget.productListController.setQuantity(true);
+
+                            _quantityColor = AppColors.mainColor;
+
+                            Timer(
+                                const Duration(milliseconds: 200),
+                                (() => setState(() {
+                                      _quantityColor = AppColors.secondColor;
+                                    })));
                           });
                         },
-                        child: const AppIcon(
+                        child: AppIcon(
                           iconData: Icons.add,
                           backgroundColor: AppColors.secondColor,
                           iconColor: Colors.white,
-                          iconSize: 30,
+                          iconSize: Dimensions.height30,
                         ),
                       )
                     ],

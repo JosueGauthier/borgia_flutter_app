@@ -30,8 +30,8 @@ Future<void> init() async {
   //! load shared_preferencies
 
   final sharedPreferences = await SharedPreferences.getInstance();
-  print(sharedPreferences);
-  inspect(sharedPreferences);
+  //print(sharedPreferences);
+  //inspect(sharedPreferences);
   Get.lazyPut(() => sharedPreferences);
 
   //! api client

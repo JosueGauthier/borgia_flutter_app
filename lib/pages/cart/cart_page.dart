@@ -14,10 +14,10 @@ class CartPage extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  Widget timeWidget(int index, int Listlength, var indexTime) {
+  Widget timeWidget(int index, int listlength, var indexTime) {
     var outputData = DateTime.now().toString();
 
-    if (index < Listlength) {
+    if (index < listlength) {
       DateTime parseDate = DateFormat("yyyy-MM-dd HH:mm:ss").parse(indexTime!);
       var outputFormat = DateFormat("dd/MM/yyyy hh:mm a");
       outputData = outputFormat.format(parseDate);
@@ -34,21 +34,21 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       body: Column(children: [
         Container(
-          height: Dimensions.height45 * 2.5,
+          height: Dimensions.height45 * 2.7,
           decoration: BoxDecoration(
               color: AppColors.mainColor,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(Dimensions.height20),
                 bottomRight: Radius.circular(Dimensions.height20),
               )),
-          margin: EdgeInsets.only(bottom: Dimensions.height15),
-          padding: EdgeInsets.only(bottom: Dimensions.height15, top: Dimensions.height30, left: Dimensions.width20, right: Dimensions.width20),
+          margin: EdgeInsets.only(bottom: Dimensions.height10),
+          padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               BigText(
                 text: "Derniers achats",
-                size: Dimensions.height10 * 4,
+                size: Dimensions.height10 * 3,
                 color: Colors.white,
               ),
             ],

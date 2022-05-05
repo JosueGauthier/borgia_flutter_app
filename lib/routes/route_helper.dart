@@ -1,5 +1,6 @@
 import 'package:borgiaflutterapp/pages/auth/auth_page.dart';
 import 'package:borgiaflutterapp/pages/auth/sign_in_page.dart';
+import 'package:borgiaflutterapp/pages/money/rechargement_Lydia_page.dart';
 import 'package:get/get.dart';
 
 import '../pages/cart/cart_page.dart';
@@ -28,11 +29,14 @@ class RouteHelper {
 
   static const String cartPage = "/cart-page";
 
+  static const String refillLydia = "/lydia-page";
+
   static const String productListFromCategory = "/product";
 
   //? formalisme pour passer des paramètres
 
   static String getSplashPage() => splashPage;
+  static String getLydiaPage() => refillLydia;
   static String getAuthPage() => authPage;
   static String getLoginPage() => loginPage;
   static String getInitial() => initial;
@@ -146,6 +150,13 @@ class RouteHelper {
           shopId: int.parse(shopId!),
           pagefrom: pagefrom!,
         );
+      },
+      //transition: Transition.fadeIn
+    ),
+    GetPage(
+      name: refillLydia,
+      page: () {
+        return const RefillLydiaPage();
       },
       //transition: Transition.fadeIn
     ),

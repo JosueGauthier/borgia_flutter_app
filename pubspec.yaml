@@ -103,6 +103,13 @@ flutter:
     - family: OpenSansExtraBold
       fonts:
         - asset: assets/font/OpenSansExtraBold.ttf
+    - family: Nunito
+      fonts:
+        - asset: fonts/Nunito-Regular.ttf
+          weight: 400
+        - asset: fonts/Nunito-ExtraBold.ttf
+          weight: 700
+    
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
