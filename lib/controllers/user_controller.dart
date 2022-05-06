@@ -15,6 +15,8 @@ class UserController extends GetxController {
 
   List<dynamic> _userList = [];
 
+  late UserModel welcomeUserModel;
+
   List<dynamic> get userList => _userList;
 
   bool _isLoaded = false;
@@ -41,6 +43,8 @@ class UserController extends GetxController {
       for (var i = 0; i < responseBody.length; i++) {
         _userList.add(UserModel.fromJson(responseBody[i]));
       }
+
+      welcomeUserModel = userList[0];
       _isLoaded = true;
 
       //inspect(_shopList);

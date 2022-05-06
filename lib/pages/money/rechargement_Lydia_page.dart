@@ -30,7 +30,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
           Container(
             height: Dimensions.height45 * 2.7,
             decoration: BoxDecoration(
-                color: AppColors.mainColor,
+                color: Colors.white,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(Dimensions.height20),
                   bottomRight: Radius.circular(Dimensions.height20),
@@ -40,16 +40,20 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                BigText(
-                  text: "Rechargement Lydia",
-                  size: Dimensions.height10 * 3,
-                  color: Colors.white,
-                ),
                 GestureDetector(
                     onTap: () {
                       Get.toNamed(RouteHelper.getInitial());
                     },
-                    child: const AppIcon(iconData: CupertinoIcons.house_alt, iconColor: AppColors.mainColor, backgroundColor: Colors.white)),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: AppColors.titleColor,
+                    )),
+                BigText(
+                  fontTypo: 'Montserrat-Bold',
+                  text: "Rechargement Lydia",
+                  size: Dimensions.height10 * 3,
+                  color: AppColors.titleColor,
+                ),
               ],
             ),
           ),

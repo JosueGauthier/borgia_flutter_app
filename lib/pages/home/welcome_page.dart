@@ -29,25 +29,17 @@ class _WelcomePageState extends State<WelcomePage> {
   PageController pageController = PageController(viewportFraction: 0.9);
 
   var _currentPagevalue = 0.0;
-  final int _nbItemSliderSection = 5;
+
   final double _scaleFactor = 0.8;
   final double _height = Dimensions.pageViewContainer;
 
-  Map<String, dynamic> mapItemsSlider = {
-    'Solde actuel': "current-balance.png",
-    "Derniers achats": "last-purchase.png",
-    'Rechargement Lydia': "lydia-logo.jpeg",
-    'Rechargement Stripe': "Stripe-Logo.png",
-    'Statistiques': "stat.jpg"
-  };
-
   List<List<dynamic>> listItemsSlider = [
     ['Solde actuel', null],
-    ["Derniers achats", "last"],
-    ['Rechargement Lydia', "lydia-logo.jpeg"],
-    ['Rechargement stripe', "Stripe-Logo.png"],
-    ['Statistiques ON WORK', "auto_label_full.png"]
+    ['Rechargement', "lydia-logo.jpeg"],
+    ['Statistiques', "auto_label_full.png"]
   ];
+
+  final int _nbItemSliderSection = 3;
 
   @override
   void initState() {
@@ -68,7 +60,6 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<UserController>().getUserList(AppConstants.USERNAME);
     return Column(
       children: [
         //! sliderSection
@@ -109,9 +100,9 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
         ),
 
-        //!Recommended items
+        //!Liste de magasins items
         SizedBox(
-          height: Dimensions.height20,
+          height: Dimensions.height10,
         ),
         Container(
           //color: Colors.amber,
@@ -123,18 +114,17 @@ class _WelcomePageState extends State<WelcomePage> {
             )
           ]),
         ),
-        SizedBox(
-          height: Dimensions.height10,
-        ),
 
         //! List of shops scroll view
 
         GetBuilder<ShopController>(builder: (shopController) {
           return shopController.isLoaded
               ? Container(
+                  //color: Colors.greenAccent,
                   width: double.maxFinite,
-                  margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                  margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20, top: 0),
                   child: ListView.builder(
+                      padding: EdgeInsets.zero,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: shopController.shopList.length,
@@ -142,71 +132,64 @@ class _WelcomePageState extends State<WelcomePage> {
                         ShopModel shopModel = shopController.shopList[index];
                         return GestureDetector(
                           onTap: () {
-                            //print(shopModel.id);
                             AppConstants.SHOP_ID = shopModel.id!;
                             Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
                           },
                           child: Card(
-                            elevation: 2,
+                            elevation: 0,
                             shadowColor: AppColors.secondColor,
                             color: Colors.white,
-                            child: Container(
-                              //color: Colors.amber,
-                              margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height15),
-                              child: Row(
-                                  //crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    //! image section
+                            child: Row(children: [
+                              //! image section
 
-                                    Container(
-                                      height: Dimensions.height100,
-                                      width: Dimensions.listviewimgSize,
-                                      decoration: BoxDecoration(
-                                          //color: Colors.amber,
-                                          image: DecorationImage(
-                                            fit: BoxFit.contain,
-                                            image: NetworkImage(shopModel.image!),
-                                          ),
-                                          borderRadius: BorderRadius.circular(Dimensions.width20)),
-                                    ),
+                              SizedBox(
+                                width: Dimensions.width20,
+                              ),
 
-                                    //! text section
-
-                                    //? expanded widget force container to take all the available space
-                                    Expanded(
-                                      child: Container(
-                                        height: Dimensions.listviewTextHeigth + 10,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.only(
-                                                //topLeft: Radius.circular(Dimensions.height20),
-                                                //bottomLeft: Radius.circular(Dimensions.height20),
-                                                topRight: Radius.circular(Dimensions.height20),
-                                                bottomRight: Radius.circular(Dimensions.height20))),
-                                        child: Padding(
-                                          padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              SizedBox(
-                                                height: Dimensions.height10,
-                                              ),
-                                              BigText(
-                                                text: (shopModel.name)!.capitalize!,
-                                                size: Dimensions.height25,
-                                                color: AppColors.titleColor,
-                                              ),
-                                              SizedBox(
-                                                height: Dimensions.height10,
-                                              ),
-                                              //SmallText(allowOverFlow: true, maxLines: 2, text: (shopModel.description)!.capitalize!),
-                                            ],
-                                          ),
-                                        ),
+                              Center(
+                                heightFactor: 1.5,
+                                child: Container(
+                                  height: Dimensions.height100 * 0.7,
+                                  width: Dimensions.listviewimgSize,
+                                  decoration: BoxDecoration(
+                                      //color: Colors.amber,
+                                      image: DecorationImage(
+                                        fit: BoxFit.scaleDown,
+                                        image: NetworkImage(shopModel.image!),
                                       ),
-                                    )
-                                  ]),
-                            ),
+                                      borderRadius: BorderRadius.circular(Dimensions.width20)),
+                                ),
+                              ),
+
+                              //! text section
+
+                              //? expanded widget force container to take all the available space
+                              Expanded(
+                                child: Center(
+                                  child: Container(
+                                    height: Dimensions.listviewTextHeigth * 0.8,
+                                    decoration: BoxDecoration(
+                                        //color: Colors.greenAccent,
+                                        ),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          BigText(
+                                            text: (shopModel.name)!.capitalize!,
+                                            size: Dimensions.height25,
+                                            color: AppColors.titleColor,
+                                          ),
+
+                                          //SmallText(allowOverFlow: true, maxLines: 2, text: (shopModel.description)!.capitalize!),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ]),
                           ),
                         );
                       }),
@@ -301,7 +284,19 @@ class _WelcomePageState extends State<WelcomePage> {
                                 color: Colors.white,
                                 size: Dimensions.height30 * 2.7,
                               ),
-                            )
+                            ),
+                            (double.parse(userModel.balance!) < 5)
+                                ? Positioned(
+                                    bottom: Dimensions.width10,
+                                    right: Dimensions.width10 * 3,
+                                    child: SmallText(
+                                      //fontTypo: 'OpenSansExtraBold',
+                                      text: "* Tap pour \n recharger",
+                                      color: Colors.white,
+                                      size: Dimensions.height30 / 2,
+                                    ),
+                                  )
+                                : Container(),
                           ],
                         ),
                       ),
@@ -399,7 +394,7 @@ class _WelcomePageState extends State<WelcomePage> {
             alignment: Alignment.bottomLeft,
             child: Container(
               height: Dimensions.height45 * 1.5,
-              margin: EdgeInsets.only(left: Dimensions.width25, right: Dimensions.width25, bottom: Dimensions.height30),
+              margin: EdgeInsets.only(left: Dimensions.width30 * 1.1, right: Dimensions.width25, bottom: Dimensions.height30),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.radius30), topRight: Radius.circular(Dimensions.radius30)),
                   color: AppColors.whiteGreyColor.withOpacity(0.9),

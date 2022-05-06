@@ -44,50 +44,57 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(children: [
         Container(
           height: Dimensions.height45 * 2.7,
           decoration: BoxDecoration(
-              color: AppColors.mainColor,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(Dimensions.height20),
-                bottomRight: Radius.circular(Dimensions.height20),
-              )),
+            color: Colors.white,
+          ),
           margin: EdgeInsets.only(bottom: Dimensions.height10),
           padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              BigText(
-                text: "Recherche",
+              Container(
+                height: Dimensions.height45 * 2.7,
+                width: Dimensions.height100 * 3.5,
+                child: TextFormField(
+                  controller: searchController,
+                  style: TextStyle(
+                    fontFamily: 'Montserrat-Bold',
+                    color: AppColors.titleColor,
+                    fontSize: Dimensions.height10 * 3,
+                  ),
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.transparent),
+                      borderRadius: BorderRadius.circular(5.5),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.transparent),
+                      borderRadius: BorderRadius.circular(5.5),
+                    ),
+                    prefixIcon: Icon(Icons.search, size: Dimensions.height10 * 3, color: AppColors.titleColor),
+                    hintText: "Recherche...",
+                    //labelText: 'Name',
+                    hintStyle: TextStyle(
+                      fontFamily: 'Montserrat-Bold',
+                      color: AppColors.titleColor,
+                      fontSize: Dimensions.height10 * 3,
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
+                ),
+              ),
+              /* BigText(
+                fontTypo: 'Montserrat-Bold',
+                text: ,
                 size: Dimensions.height10 * 3,
-                color: Colors.white,
-              ),
+                color: AppColors.titleColor,
+              ), */
             ],
-          ),
-        ),
-        Container(
-          height: Dimensions.height45 * 2.7,
-          margin: EdgeInsets.only(bottom: Dimensions.height10),
-          padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
-          child: TextFormField(
-            controller: searchController,
-            decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.circular(5.5),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.circular(5.5),
-              ),
-              prefixIcon: const Icon(Icons.search, color: AppColors.greyColor),
-              hintText: "Produits, magasins ou catégories...",
-              //labelText: 'Name',
-              hintStyle: const TextStyle(color: AppColors.greyColor),
-              filled: true,
-              fillColor: AppColors.whiteGreyColor,
-            ),
           ),
         ),
         GetBuilder<CartController>(
@@ -96,19 +103,23 @@ class SearchPage extends StatelessWidget {
 
             return Expanded(
                 child: ListView.builder(
+                    padding: EdgeInsets.zero,
                     itemCount: _cartList.length,
                     itemBuilder: ((context, index) {
                       return Container(
                         width: double.maxFinite,
-                        height: Dimensions.height20 * 7,
+                        height: Dimensions.width20 * 5,
                         color: Colors.white,
                         margin: EdgeInsets.only(bottom: Dimensions.height20),
                         child: Card(
-                          elevation: 2,
+                          elevation: 0,
                           shadowColor: AppColors.secondColor,
                           //color: Colors.blue,
                           child: Row(
                             children: [
+                              SizedBox(
+                                width: Dimensions.width20,
+                              ),
                               GestureDetector(
                                 onTap: () {},
                                 child: Container(
@@ -121,18 +132,18 @@ class SearchPage extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                width: Dimensions.width10,
+                                width: Dimensions.width20,
                               ),
                               //? an expanded widget take all space of the parent
                               Expanded(
                                   child: SizedBox(
                                 //color: Colors.redAccent,
-                                height: double.maxFinite,
+                                height: Dimensions.width20 * 5,
                                 child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.start, children: [
                                   BigText(
                                     text: _cartList[index].name!,
                                     color: AppColors.darkGreyColor,
-                                    size: Dimensions.height30,
+                                    size: Dimensions.height30 * 0.8,
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,12 +151,7 @@ class SearchPage extends StatelessWidget {
                                       BigText(
                                         text: _cartList[index].price.toString() + " €",
                                         color: AppColors.mainColor,
-                                        size: Dimensions.height30,
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.only(
-                                            top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
-                                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(Dimensions.radius20)),
+                                        size: Dimensions.height30 * 0.8,
                                       ),
                                     ],
                                   )

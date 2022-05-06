@@ -41,7 +41,7 @@ class _CategoryShopState extends State<CategoryShop> {
           Container(
             height: Dimensions.height45 * 2.7,
             decoration: BoxDecoration(
-                color: AppColors.mainColor,
+                color: Colors.white,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(Dimensions.height20),
                   bottomRight: Radius.circular(Dimensions.height20),
@@ -49,27 +49,45 @@ class _CategoryShopState extends State<CategoryShop> {
             margin: EdgeInsets.only(bottom: Dimensions.height10),
             padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BigText(
-                  text: "Catégorie", //todo add name of the shop
-                  size: Dimensions.height30,
-                  color: Colors.white,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    GestureDetector(
+                        onTap: () {
+                          Get.toNamed(RouteHelper.getInitial());
+                        },
+                        child: Container(
+                          width: Dimensions.width15 * 4,
+                          height: Dimensions.width15 * 4,
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: AppColors.titleColor,
+                          ),
+                        )),
+                  ],
                 ),
-                GestureDetector(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getInitial());
-                    },
-                    child: const AppIcon(iconData: CupertinoIcons.house_alt, iconColor: AppColors.mainColor, backgroundColor: Colors.white)),
+                Container(
+                  padding: EdgeInsets.only(right: Dimensions.width20),
+                  child: BigText(
+                    fontTypo: 'Montserrat-Bold',
+                    text: "Catégories",
+                    size: Dimensions.height10 * 3,
+                    color: AppColors.titleColor,
+                  ),
+                ),
               ],
             ),
           ),
           Expanded(child: SingleChildScrollView(child: GetBuilder<CategoryOfShopController>(builder: (categoryOfShopController) {
             return categoryOfShopController.isLoaded
                 ? Container(
+                    //color: Colors.redAccent,
                     width: double.maxFinite,
                     margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
                     child: ListView.builder(
+                        padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: categoryOfShopController.categoryOfShopList.length,
@@ -84,8 +102,8 @@ class _CategoryShopState extends State<CategoryShop> {
                             },
                             child: Card(
                               //borderOnForeground: true,
-                              elevation: 2,
-                              shadowColor: AppColors.secondColor,
+                              elevation: 0,
+                              //shadowColor: AppColors.secondColor,
                               color: Colors.white,
                               //shape: ShapeBorder.lerp(, b, t),
 
@@ -100,8 +118,8 @@ class _CategoryShopState extends State<CategoryShop> {
                                       Stack(
                                         children: [
                                           Container(
-                                            height: Dimensions.height100 * 1.3,
-                                            width: Dimensions.height100 * 1.3,
+                                            height: Dimensions.height100 * 0.6,
+                                            width: Dimensions.height100 * 0.6,
                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
                                             child: CachedNetworkImage(
                                               fit: BoxFit.contain,

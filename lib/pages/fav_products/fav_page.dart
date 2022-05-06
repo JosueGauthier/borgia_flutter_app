@@ -16,11 +16,12 @@ class FavPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(children: [
         Container(
           height: Dimensions.height45 * 2.7,
           decoration: BoxDecoration(
-              color: AppColors.mainColor,
+              color: Colors.white,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(Dimensions.height20),
                 bottomRight: Radius.circular(Dimensions.height20),
@@ -28,12 +29,13 @@ class FavPage extends StatelessWidget {
           margin: EdgeInsets.only(bottom: Dimensions.height10),
           padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               BigText(
-                text: "Favoris",
+                fontTypo: 'Montserrat-Bold',
+                text: "Produits favoris",
                 size: Dimensions.height10 * 3,
-                color: Colors.white,
+                color: AppColors.titleColor,
               ),
             ],
           ),
@@ -44,19 +46,23 @@ class FavPage extends StatelessWidget {
 
             return Expanded(
                 child: ListView.builder(
+                    padding: EdgeInsets.zero,
                     itemCount: _cartList.length,
                     itemBuilder: ((context, index) {
                       return Container(
                         width: double.maxFinite,
-                        height: Dimensions.height20 * 7,
+                        height: Dimensions.width20 * 5,
                         color: Colors.white,
                         margin: EdgeInsets.only(bottom: Dimensions.height20),
                         child: Card(
-                          elevation: 2,
+                          elevation: 0,
                           shadowColor: AppColors.secondColor,
                           //color: Colors.blue,
                           child: Row(
                             children: [
+                              SizedBox(
+                                width: Dimensions.width20,
+                              ),
                               GestureDetector(
                                 onTap: () {},
                                 child: Container(
@@ -69,18 +75,18 @@ class FavPage extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                width: Dimensions.width10,
+                                width: Dimensions.width20,
                               ),
                               //? an expanded widget take all space of the parent
                               Expanded(
                                   child: SizedBox(
                                 //color: Colors.redAccent,
-                                height: double.maxFinite,
+                                height: Dimensions.width20 * 5,
                                 child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.start, children: [
                                   BigText(
                                     text: _cartList[index].name!,
                                     color: AppColors.darkGreyColor,
-                                    size: Dimensions.height30,
+                                    size: Dimensions.height30 * 0.8,
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,12 +94,7 @@ class FavPage extends StatelessWidget {
                                       BigText(
                                         text: _cartList[index].price.toString() + " €",
                                         color: AppColors.mainColor,
-                                        size: Dimensions.height30,
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.only(
-                                            top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
-                                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(Dimensions.radius20)),
+                                        size: Dimensions.height30 * 0.8,
                                       ),
                                     ],
                                   )

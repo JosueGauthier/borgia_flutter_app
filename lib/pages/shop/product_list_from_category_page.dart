@@ -65,7 +65,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
           Container(
             height: Dimensions.height45 * 2.7,
             decoration: BoxDecoration(
-                color: AppColors.mainColor,
+                color: Colors.white,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(Dimensions.height20),
                   bottomRight: Radius.circular(Dimensions.height20),
@@ -73,18 +73,34 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
             margin: EdgeInsets.only(bottom: Dimensions.height10),
             padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BigText(
-                  text: "Liste des produits", //todo add name of the shop
-                  size: Dimensions.height30,
-                  color: Colors.white,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    GestureDetector(
+                        onTap: () {
+                          Get.toNamed(RouteHelper.getCategoryListPage(widget.shopId, "home"));
+                        },
+                        child: Container(
+                          width: Dimensions.width15 * 4,
+                          height: Dimensions.width15 * 4,
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: AppColors.titleColor,
+                          ),
+                        )),
+                  ],
                 ),
-                GestureDetector(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getCategoryListPage(widget.shopId, "home"));
-                    },
-                    child: const AppIcon(iconData: CupertinoIcons.back, iconColor: AppColors.mainColor, backgroundColor: Colors.white)),
+                Container(
+                  padding: EdgeInsets.only(right: Dimensions.width20),
+                  child: BigText(
+                    fontTypo: 'Montserrat-Bold',
+                    text: "Liste des produits",
+                    size: Dimensions.height10 * 3,
+                    color: AppColors.titleColor,
+                  ),
+                ),
               ],
             ),
           ),
@@ -128,7 +144,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                       })));
                             },
                             child: Card(
-                              elevation: 2,
+                              elevation: 0,
                               shadowColor: AppColors.secondColor,
                               color: Colors.white,
                               child: Container(
@@ -140,8 +156,8 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                   Stack(
                                     children: [
                                       Container(
-                                        height: Dimensions.height100,
-                                        width: Dimensions.height100,
+                                        height: Dimensions.height100 * 0.8,
+                                        width: Dimensions.height100 * 0.8,
                                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
                                         child: (productModel.productImage == null)
                                             ? Container()
@@ -189,18 +205,15 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                               height: Dimensions.height10,
                                             ),
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment: MainAxisAlignment.end,
                                               children: [
                                                 BigText(
-                                                  size: Dimensions.height30,
+                                                  size: Dimensions.height30 / 1.2,
                                                   text: productModel.manualPrice.toString() + " €",
                                                   color: AppColors.mainColor,
                                                 ),
-                                                SizedBox(
-                                                  width: Dimensions.width10,
-                                                ),
                                                 Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.end, children: [
-                                                  GestureDetector(
+                                                  /* GestureDetector(
                                                     onTap: () {},
                                                     child: ElevatedButton(
                                                         child: SmallText(
@@ -244,7 +257,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                                               ? MaterialStateProperty.all<Color>(AppColors.whiteGreyColor)
                                                               : MaterialStateProperty.all<Color>(AppColors.secondColor),
                                                         )),
-                                                  )
+                                                  ) */
                                                 ])
                                               ],
                                             ),

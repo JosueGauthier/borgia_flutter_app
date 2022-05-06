@@ -113,6 +113,9 @@ flutter:
     - family: Montserrat-Bold
       fonts:
         - asset: assets/font/Montserrat-Bold.ttf
+    - family: Montserrat-SemiBold.ttf
+      fonts:
+        - asset: assets/font/Montserrat-SemiBold.ttf
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

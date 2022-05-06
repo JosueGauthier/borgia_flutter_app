@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../controllers/cart_controller.dart';
 
+import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
@@ -25,31 +26,53 @@ class CartPage extends StatelessWidget {
     return BigText(
       text: outputData,
       color: AppColors.greyColor,
-      size: Dimensions.height30 / 1.3,
+      size: Dimensions.height30 * 0.8,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(children: [
         Container(
           height: Dimensions.height45 * 2.7,
           decoration: BoxDecoration(
-              color: AppColors.mainColor,
+              //color: Colors.green,
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(Dimensions.height20),
-                bottomRight: Radius.circular(Dimensions.height20),
-              )),
+            bottomLeft: Radius.circular(Dimensions.height20),
+            bottomRight: Radius.circular(Dimensions.height20),
+          )),
           margin: EdgeInsets.only(bottom: Dimensions.height10),
           padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              BigText(
-                text: "Derniers achats",
-                size: Dimensions.height10 * 3,
-                color: Colors.white,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getInitial());
+                      },
+                      child: Container(
+                        width: Dimensions.width15 * 4,
+                        height: Dimensions.width15 * 4,
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          color: AppColors.titleColor,
+                        ),
+                      )),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(right: Dimensions.width20),
+                child: BigText(
+                  fontTypo: 'Montserrat-Bold',
+                  text: "Derniers achats",
+                  size: Dimensions.height10 * 3,
+                  color: AppColors.titleColor,
+                ),
               ),
             ],
           ),
@@ -60,18 +83,20 @@ class CartPage extends StatelessWidget {
 
             return Expanded(
                 child: Container(
+              //color: Colors.redAccent,
               width: double.maxFinite,
               margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
               child: ListView.builder(
+                  padding: EdgeInsets.zero,
                   itemCount: _cartList.length,
                   itemBuilder: ((context, index) {
                     return Container(
                       width: double.maxFinite,
-                      height: Dimensions.height20 * 8,
+                      height: Dimensions.width20 * 5,
                       color: Colors.white,
                       margin: EdgeInsets.only(bottom: Dimensions.height20),
                       child: Card(
-                        elevation: 2,
+                        elevation: 0,
                         shadowColor: AppColors.secondColor,
                         color: Colors.white,
                         child: Row(
@@ -83,23 +108,23 @@ class CartPage extends StatelessWidget {
                                 height: Dimensions.width20 * 5,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(fit: BoxFit.contain, image: NetworkImage(_cartList[index].img!)),
-                                    color: Colors.white,
+                                    //color: Colors.green,
                                     borderRadius: BorderRadius.circular(Dimensions.radius20)),
                               ),
                             ),
                             SizedBox(
-                              width: Dimensions.width10,
+                              width: Dimensions.width20,
                             ),
                             //? an expanded widget take all space of the parent
                             Expanded(
-                                child: SizedBox(
+                                child: Container(
                               //color: Colors.redAccent,
-                              height: double.maxFinite,
+                              height: Dimensions.width20 * 5,
                               child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.start, children: [
                                 BigText(
                                   text: _cartList[index].name!,
                                   color: AppColors.darkGreyColor,
-                                  size: Dimensions.height30,
+                                  size: Dimensions.height30 * 0.8,
                                 ),
                                 timeWidget(index, _cartList.length, _cartList[index].time!),
                                 Row(
@@ -108,12 +133,7 @@ class CartPage extends StatelessWidget {
                                     BigText(
                                       text: _cartList[index].price.toString() + " €",
                                       color: AppColors.mainColor,
-                                      size: Dimensions.height30,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
-                                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(Dimensions.radius20)),
+                                      size: Dimensions.height30 * 0.8,
                                     ),
                                   ],
                                 )

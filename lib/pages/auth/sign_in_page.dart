@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/user_controller.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
@@ -43,6 +44,7 @@ class _LoginPageState extends State<LoginPage> {
           AppConstants.USERNAME = username;
           AppConstants.PASSWORD = password;
           AppConstants.isfinishedRotate = false;
+          Get.find<UserController>().getUserList(AppConstants.USERNAME);
 
           Get.toNamed(RouteHelper.getInitial());
         } else {
