@@ -3,6 +3,7 @@ import 'package:borgiaflutterapp/pages/cart/cart_page.dart';
 import 'package:borgiaflutterapp/pages/fav_products/fav_page.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_Lydia_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
+import 'package:borgiaflutterapp/pages/test/testparallax.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../controllers/cart_controller.dart';
 import '../../controllers/shop_controller.dart';
 import '../../utils/colors.dart';
+import '../search/searchpage.dart';
 import 'welcome_page_with_header.dart';
 
 class HomePage extends StatefulWidget {
@@ -46,15 +48,25 @@ class _HomePageState extends State<HomePage> {
 
     //ShopPageDetail(),
 
-    const CartPage(),
+    SearchPage(),
 
     const FavPage(),
 
-    const ProfilePage(),
+    //ParallaxPage(),
+
+    //const ProfilePage(),
   ];
+
+  var _selectedIndex = 0;
 
   void onTapNav(int index) {
     setState(() {});
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
@@ -100,35 +112,75 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
-      context,
-      controller: _controller,
-      screens: _buildScreens(),
-      items: _navBarsItems(),
-      confineInSafeArea: true,
-      backgroundColor: Colors.white, // Default is Colors.white.
-      handleAndroidBackButtonPress: true, // Default is true.
-      resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-      stateManagement: true, // Default is true.
-      hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-      decoration: NavBarDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        colorBehindNavBar: Colors.white,
-      ),
-      popAllScreensOnTapOfSelectedTab: true,
-      popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: const ItemAnimationProperties(
-        // Navigation Bar's items animation properties.
-        duration: Duration(milliseconds: 200),
-        curve: Curves.ease,
-      ),
-      screenTransitionAnimation: const ScreenTransitionAnimation(
-        // Screen transition animation on change of selected tab.
-        animateTabTransition: true,
-        curve: Curves.ease,
-        duration: Duration(milliseconds: 200),
-      ),
-      navBarStyle: NavBarStyle.style12, // Choose the nav bar style with this property.
-    );
+    return Scaffold(
+        extendBody: true,
+        backgroundColor: Colors.white,
+        body: Center(
+          child: pages.elementAt(_selectedIndex),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white.withOpacity(0.5), //here set your transparent level
+          elevation: 0,
+          selectedItemColor: AppColors.mainColor,
+          unselectedItemColor: Colors.black,
+          type: BottomNavigationBarType.fixed,
+
+          currentIndex: _selectedIndex,
+
+          onTap: _onItemTapped,
+
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          items: [
+            BottomNavigationBarItem(icon: Icon(CupertinoIcons.house_alt, size: 30), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.search, size: 30), label: 'Search'),
+            BottomNavigationBarItem(icon: Icon(CupertinoIcons.heart, size: 30), label: 'Cart'),
+            //BottomNavigationBarItem(icon: Icon(Icons.perm_identity, size: 30), label: 'Me')
+          ],
+        ));
   }
 }
+
+
+  
+
+
+
+
+
+/* @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      extendBody: true,
+      bottomNavigationBar: PersistentTabView(
+        context,
+        controller: _controller,
+        screens: _buildScreens(),
+        items: _navBarsItems(),
+        confineInSafeArea: true,
+        backgroundColor: Colors.white.withOpacity(0.1), // Default is Colors.white.
+        handleAndroidBackButtonPress: true, // Default is true.
+        resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+        stateManagement: true, // Default is true.
+        hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+        decoration: NavBarDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          colorBehindNavBar: Colors.white.withOpacity(0),
+        ),
+        popAllScreensOnTapOfSelectedTab: true,
+        popActionScreens: PopActionScreensType.all,
+        itemAnimationProperties: const ItemAnimationProperties(
+          // Navigation Bar's items animation properties.
+          duration: Duration(milliseconds: 200),
+          curve: Curves.ease,
+        ),
+        screenTransitionAnimation: const ScreenTransitionAnimation(
+          // Screen transition animation on change of selected tab.
+          animateTabTransition: true,
+          curve: Curves.ease,
+          duration: Duration(milliseconds: 200),
+        ),
+        navBarStyle: NavBarStyle.style12, // Choose the nav bar style with this property.
+      ),
+    );
+  } */

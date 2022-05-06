@@ -2,11 +2,9 @@ import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:borgiaflutterapp/utils/dimensions.dart';
-import 'package:borgiaflutterapp/widget/big_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-double minHeight = Dimensions.height10;
+double minHeight = Dimensions.height10 * 8;
 double iconStartSize = Dimensions.height10 * 4.4;
 double iconEndSize = Dimensions.height10 * 12;
 double iconStartMarginTop = Dimensions.height10 * 3.6;
@@ -14,15 +12,15 @@ double iconEndMarginTop = Dimensions.height10 * 8;
 double iconsVerticalSpacing = Dimensions.height10 * 2.4;
 double iconsHorizontalSpacing = Dimensions.height10 * 1.6;
 
-class ExhibitionBottomSheet extends StatefulWidget {
+class TestBottomSheet extends StatefulWidget {
   @override
-  _ExhibitionBottomSheetState createState() => _ExhibitionBottomSheetState();
+  _TestBottomSheetState createState() => _TestBottomSheetState();
 }
 
-class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with SingleTickerProviderStateMixin {
+class _TestBottomSheetState extends State<TestBottomSheet> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
-  double get maxHeight => MediaQuery.of(context).size.height - Dimensions.height20 * 10;
+  double get maxHeight => MediaQuery.of(context).size.height;
 
   double? get headerTopMargin => lerp(0, 10 + MediaQuery.of(context).padding.top);
 
@@ -36,11 +34,9 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with Sing
 
   double? get iconSize => lerp(iconStartSize, iconEndSize);
 
-  double? iconTopMargin(int index) => lerp(index * (iconsHorizontalSpacing + iconStartSize), Dimensions.height10);
+  double iconTopMargin(int index) => lerp(iconStartMarginTop, iconEndMarginTop + index * (iconsVerticalSpacing + iconEndSize))! + headerTopMargin!;
 
-  double? iconLeftMargin(int index) => lerp(0, 0.6 * (index) * (iconsVerticalSpacing + iconEndSize))!;
-
-  //lerp(iconStartMarginTop, iconEndMarginTop + index * (iconsVerticalSpacing + iconEndSize))! + headerTopMargin!
+  double? iconLeftMargin(int index) => lerp(index * (iconsHorizontalSpacing + iconStartSize), 0);
 
   @override
   void initState() {
@@ -77,31 +73,25 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with Sing
                   color: Colors.grey,
                   borderRadius: BorderRadius.only(topRight: Radius.circular(50)),
                 ),
-                child: GestureDetector(
-                  onTap: _toggle,
-                  onVerticalDragUpdate: _handleDragUpdate,
-                  onVerticalDragEnd: _handleDragEnd,
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned(
+                child: Stack(
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: _toggle,
+                      onVerticalDragUpdate: _handleDragUpdate,
+                      onVerticalDragEnd: _handleDragEnd,
+                      child: Positioned(
                         right: 0,
-                        bottom: 0,
-                        //bottom: 24,
-                        child: Container(
-                          height: Dimensions.height20 * 3,
-                          //color: Colors.greenAccent,
-                          width: Dimensions.height20 * 3,
-                          child: Icon(
-                            Icons.menu,
-                            color: Colors.black,
-                            size: 28,
-                          ),
+                        bottom: 240,
+                        child: Icon(
+                          Icons.menu,
+                          color: Colors.black,
+                          size: 28,
                         ),
                       ),
-                      //for (BottomNavigationBarItem icon in iconList) _buildFullItem(icon),
-                      for (BottomNavigationBarItem icon in iconList) _buildIcon(icon),
-                    ],
-                  ),
+                    ),
+                    for (Event event in events) _buildFullItem(event),
+                    for (Event event in events) _buildIcon(event),
+                  ],
                 ),
               ),
             ),
@@ -111,38 +101,37 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with Sing
     );
   }
 
-  Widget _buildIcon(BottomNavigationBarItem icon) {
-    int index = iconList.indexOf(icon);
-    return Stack(
-      children: [
-        //BigText(text: "aaaaa"),
-        Positioned(
-          //height: iconSize,
-          width: iconSize,
-          top: iconTopMargin(index),
-          left: iconLeftMargin(index),
-          child: ClipRRect(
-            /* borderRadius: BorderRadius.horizontal(
+  Widget _buildIcon(Event event) {
+    int index = events.indexOf(event);
+    return Positioned(
+      height: iconSize,
+      width: iconSize,
+      top: iconTopMargin(index),
+      left: iconLeftMargin(index),
+      child: ClipRRect(
+        borderRadius: BorderRadius.horizontal(
           left: Radius.circular(iconLeftBorderRadius!),
           right: Radius.circular(iconRightBorderRadius!),
-        ) ,*/
-            child: iList[index],
-          ),
-        )
-      ],
+        ),
+        child: Image.asset(
+          event.assetName,
+          fit: BoxFit.cover,
+          alignment: Alignment(lerp(1, 0)!, 0),
+        ),
+      ),
     );
   }
 
-  Widget _buildFullItem(BottomNavigationBarItem icon) {
-    int index = iconList.indexOf(icon);
+  Widget _buildFullItem(Event event) {
+    int index = events.indexOf(event);
     return ExpandedEventItem(
-      topMargin: iconTopMargin(index)!,
+      topMargin: iconTopMargin(index),
       leftMargin: iconLeftMargin(index)!,
       height: iconSize!,
       isVisible: _controller.status == AnimationStatus.completed,
       borderRadius: itemBorderRadius!,
-      //title: event.title,
-      //date: event.date,
+      title: event.title,
+      date: event.date,
     );
   }
 
@@ -174,8 +163,8 @@ class ExpandedEventItem extends StatelessWidget {
   final double height;
   final bool isVisible;
   final double borderRadius;
-  //final String title;
-  //final String date;
+  final String title;
+  final String date;
 
   const ExpandedEventItem(
       {Key? key,
@@ -183,8 +172,8 @@ class ExpandedEventItem extends StatelessWidget {
       required this.height,
       required this.isVisible,
       required this.borderRadius,
-      //required this.title,
-      //required this.date,
+      required this.title,
+      required this.date,
       required this.leftMargin})
       : super(key: key);
 
@@ -199,29 +188,59 @@ class ExpandedEventItem extends StatelessWidget {
         opacity: isVisible ? 1 : 0,
         duration: Duration(milliseconds: 200),
         child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(borderRadius),
+            color: Colors.white,
+          ),
           padding: EdgeInsets.only(left: height).add(EdgeInsets.all(8)),
-          child: Container(),
+          child: _buildContent(),
         ),
       ),
     );
   }
+
+  Widget _buildContent() {
+    return Column(
+      children: <Widget>[
+        Text(title, style: TextStyle(fontSize: 16)),
+        SizedBox(height: 8),
+        Row(
+          children: <Widget>[
+            Text(
+              '1 ticket',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 12,
+                color: Colors.grey.shade600,
+              ),
+            ),
+            SizedBox(width: 8),
+            Text(
+              date,
+              style: TextStyle(
+                fontWeight: FontWeight.w300,
+                fontSize: 12,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+        Spacer(),
+        Row(
+          children: <Widget>[
+            Icon(Icons.place, color: Colors.grey.shade400, size: 16),
+            Text(
+              'Science Park 10 25A',
+              style: TextStyle(color: Colors.grey.shade400, fontSize: 13),
+            )
+          ],
+        )
+      ],
+    );
+  }
 }
 
-final List<BottomNavigationBarItem> iconList = [
-  BottomNavigationBarItem(icon: Icon(CupertinoIcons.house_alt, size: 30), label: 'Home'),
-  BottomNavigationBarItem(icon: Icon(Icons.history, size: 30), label: 'History'),
-  BottomNavigationBarItem(icon: Icon(CupertinoIcons.heart, size: 30), label: 'Cart'),
-  BottomNavigationBarItem(icon: Icon(Icons.perm_identity, size: 30), label: 'Me')
-];
-
-final List<Icon> iList = [
-  Icon(CupertinoIcons.house_alt, size: 30),
-  Icon(Icons.history, size: 30),
-  Icon(CupertinoIcons.heart, size: 30),
-  Icon(Icons.perm_identity, size: 30)
-];
-
-List<Event> events = [
+final List<Event> events = [
   Event('assets/image/metzlogo.jpg', 'Shenzhen GLOBAL DESIGN AWARD 2018', '4.20-30'),
   Event('assets/image/bdxlogo.png', 'Shenzhen GLOBAL DESIGN AWARD 2018', '4.20-30'),
   Event('assets/image/aixlogo.png', 'Dawan District Guangdong Hong Kong', '4.28-31'),

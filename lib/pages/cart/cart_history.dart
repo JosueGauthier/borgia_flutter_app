@@ -164,7 +164,7 @@ class CartHistory extends StatelessWidget {
 
                                                   Get.find<CartController>().addToCartList();
 
-                                                  Get.toNamed(RouteHelper.getCartPage(1, "cart-history"));
+                                                  //Get.toNamed(RouteHelper.getCartPage());
                                                 },
                                                 child: Container(
                                                   child: SmallText(

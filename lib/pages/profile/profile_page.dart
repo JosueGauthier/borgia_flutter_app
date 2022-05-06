@@ -7,6 +7,7 @@ import '../../models/user_model.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
+import '../../widget/small_text.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -16,6 +17,18 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  String selectedTbk = "Boquette";
+  List<String> _listTbk = ["Boquette", "Kin", "Bordel'ss", "Siber'ss"];
+  Map<String, String> _map_tbk = {
+    "Boquette": "assets/image/logoAMAngers.jpg",
+    "Kin": "assets/image/aixlogo.png",
+    "Bordel'ss": "assets/image/bdxlogo.png",
+    "Siber'ss": "assets/image/metzlogo.jpg"
+  };
+  List<String> _logoTbk = ["assets/image/logoAMAngers.jpg", "assets/image/aixlogo.png", "assets/image/bdxlogo.png", "assets/image/metzlogo.jpg"];
+
+  String? _selectedColor;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: GetBuilder<UserController>(builder: (userController) {
@@ -68,6 +81,102 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               Expanded(
                 child: ListView(children: <Widget>[
+                  Container(
+                    //padding: EdgeInsets.only(right: Dimensions.width30 / 2),
+                    margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                    height: Dimensions.height45 * 1.7,
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(color: AppColors.whiteGreyColor, borderRadius: const BorderRadius.all(Radius.circular(10))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: Dimensions.width10,
+                            ),
+                            Stack(
+                              children: [
+                                Center(
+                                  child: SizedBox(
+                                    width: Dimensions.height10 * 5,
+                                    child: CircleAvatar(
+                                      backgroundImage: AssetImage(_map_tbk[selectedTbk]!),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: -Dimensions.height10 / 1.4,
+                                  right: -Dimensions.height10 / 1.2,
+                                  child: SizedBox(
+                                    width: Dimensions.height10 * 20,
+                                    child: DropdownButton<String>(
+                                      value: selectedTbk,
+                                      dropdownColor: Colors.white,
+
+                                      borderRadius: BorderRadius.circular(Dimensions.height10 * 2),
+                                      onChanged: (String? newValue) {
+                                        print(newValue);
+                                        setState(() {
+                                          selectedTbk = newValue!;
+                                        });
+                                      },
+
+                                      // Hide the default underline
+                                      underline: Container(),
+
+                                      icon: Icon(
+                                        Icons.arrow_drop_down_rounded,
+                                        color: Colors.transparent,
+                                        size: Dimensions.height10 * 5,
+                                      ),
+                                      isExpanded: true,
+
+                                      // The list of options
+                                      items: _map_tbk
+                                          .map((text, value) {
+                                            return MapEntry(
+                                                text,
+                                                DropdownMenuItem<String>(
+                                                    value: text,
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                          width: Dimensions.width10 * 4,
+                                                          decoration: BoxDecoration(image: DecorationImage(image: AssetImage(value))),
+                                                        ),
+                                                        SizedBox(
+                                                          width: Dimensions.height20,
+                                                        ),
+                                                        Text(
+                                                          text,
+                                                        )
+                                                      ],
+                                                    )));
+                                          })
+                                          .values
+                                          .toList(),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              width: Dimensions.width20,
+                            ),
+                            SmallText(
+                              text: "Changer de TBK",
+                              color: AppColors.darkGreyColor,
+                              size: Dimensions.height20,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: Dimensions.height20,
+                  ),
                   ProfileBox(
                       textColor: AppColors.darkGreyColor,
                       backgroundcolor: AppColors.whiteGreyColor,

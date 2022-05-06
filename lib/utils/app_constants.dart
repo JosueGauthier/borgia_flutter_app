@@ -10,6 +10,8 @@ class AppConstants {
   static const String PRODUCT_FROM_CATEGORY_URI = "/api-links/category/category-products/?category=";
   static const String ONE_PRODUCT_URI = "/api-links/shops/products/";
 
+  static bool isfinishedRotate = false;
+
   //! auth end points
 
   //http://localhost:8000/api-auth/login/

@@ -1,6 +1,7 @@
 import 'package:borgiaflutterapp/pages/auth/auth_page.dart';
 import 'package:borgiaflutterapp/pages/auth/sign_in_page.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_Lydia_page.dart';
+import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 import 'package:get/get.dart';
 
 import '../pages/cart/cart_page.dart';
@@ -30,6 +31,7 @@ class RouteHelper {
   static const String cartPage = "/cart-page";
 
   static const String refillLydia = "/lydia-page";
+  static const String profilePage = "/profile-page";
 
   static const String productListFromCategory = "/product";
 
@@ -38,12 +40,13 @@ class RouteHelper {
   static String getSplashPage() => splashPage;
   static String getLydiaPage() => refillLydia;
   static String getAuthPage() => authPage;
+  static String getProfilepage() => profilePage;
   static String getLoginPage() => loginPage;
   static String getInitial() => initial;
   static String getPopularFood(int pageId, String pagefrom) => '$popularFood?pageId=$pageId&page=$pagefrom';
   static String getRecommendedFood(int pageId, String pagefrom) => '$recommendedFood?pageId=$pageId&page=$pagefrom';
 
-  static String getCartPage(int pageId, String pagefrom) => cartPage;
+  static String getCartPage() => cartPage;
 
   static String getShopDetail(int shopId, String pagefrom) => '$shopDetail?shopId=$shopId&page=$pagefrom';
 
@@ -157,6 +160,13 @@ class RouteHelper {
       name: refillLydia,
       page: () {
         return const RefillLydiaPage();
+      },
+      //transition: Transition.fadeIn
+    ),
+    GetPage(
+      name: profilePage,
+      page: () {
+        return const ProfilePage();
       },
       //transition: Transition.fadeIn
     ),

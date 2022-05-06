@@ -39,7 +39,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 GestureDetector(
                     onTap: () {
                       if (pagefrom == "cartpage") {
-                        Get.toNamed(RouteHelper.getCartPage(pageId, "recommended_page"));
+                        //Get.toNamed(RouteHelper.getCartPage(pageId, "recommended_page"));
                       } else {
                         Get.toNamed(RouteHelper.getInitial());
                       }
@@ -49,7 +49,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   return GestureDetector(
                     onTap: () {
                       if (controller.totalItems >= 1) {
-                        Get.toNamed(RouteHelper.getCartPage(pageId, "recommended_page"));
+                        //Get.toNamed(RouteHelper.getCartPage(pageId, "recommended_page"));
                       }
                     },
                     child: Stack(

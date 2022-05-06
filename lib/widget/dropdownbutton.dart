@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
             underline: Container(),
             hint: Center(
                 child: Text(
-              'Select the aniaml you love',
+              'Select the animal you love',
               style: TextStyle(color: Colors.white),
             )),
             icon: Icon(
