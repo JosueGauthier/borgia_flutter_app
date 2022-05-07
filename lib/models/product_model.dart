@@ -10,7 +10,7 @@ class ProductModel {
   String? correctingFactor;
   bool? isActive;
   bool? isRemoved;
-  String? productImage;
+  String? image;
   int? mainid;
 
   ProductModel(
@@ -23,7 +23,7 @@ class ProductModel {
       this.correctingFactor,
       this.isActive,
       this.isRemoved,
-      this.productImage,
+      this.image,
       this.mainid});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
@@ -36,7 +36,7 @@ class ProductModel {
     correctingFactor = json['correcting_factor'];
     isActive = json['is_active'];
     isRemoved = json['is_removed'];
-    productImage = json['product_image'];
+    image = json['product_image'];
   }
 
   ProductModel.fromJsonPlusMainId(Map<String, dynamic> json, int mainId) {
@@ -49,7 +49,7 @@ class ProductModel {
     correctingFactor = json['correcting_factor'];
     isActive = json['is_active'];
     isRemoved = json['is_removed'];
-    productImage = json['product_image'];
+    image = json['product_image'];
     mainid = mainId;
   }
 
@@ -64,7 +64,7 @@ class ProductModel {
     data['correcting_factor'] = correctingFactor;
     data['is_active'] = isActive;
     data['is_removed'] = isRemoved;
-    data['product_image'] = productImage;
+    data['product_image'] = image;
     return data;
   }
 }

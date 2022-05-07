@@ -60,6 +60,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Get.toNamed(RouteHelper.getInitial());
                                 },
                                 child: Container(
+                                  //color: Colors.redAccent,
                                   width: Dimensions.width15 * 4,
                                   height: Dimensions.width15 * 4,
                                   child: Icon(
@@ -132,7 +133,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Positioned(
                                       bottom: -Dimensions.height10 / 1.4,
                                       right: -Dimensions.height10 / 1.2,
-                                      child: SizedBox(
+                                      child: Container(
+                                        color: Colors.redAccent,
                                         width: Dimensions.height10 * 20,
                                         child: DropdownButton<String>(
                                           value: selectedTbk,

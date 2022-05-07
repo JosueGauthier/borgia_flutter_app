@@ -116,6 +116,13 @@ flutter:
     - family: Montserrat-SemiBold.ttf
       fonts:
         - asset: assets/font/Montserrat-SemiBold.ttf
+    - family: Helvetica-Bold
+      fonts:
+        - asset: assets/font/Helvetica-Bold.ttf
+    - family: Nunito-SemiBold
+      fonts:
+        - asset: fonts/Nunito-SemiBold.ttf
+          
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -85,12 +85,12 @@ class _ShopPageDetailState extends State<ShopPageDetail> {
                                           //color: Colors.amber,
                                           /*image: DecorationImage(
                                             fit: BoxFit.contain,
-                                            image: NetworkImage(productModel.productImage!),
+                                            image: NetworkImage(productModel.image!),
                                           ),*/
                                           borderRadius: BorderRadius.circular(Dimensions.width20)),
                                       child: CachedNetworkImage(
                                         fit: BoxFit.contain,
-                                        imageUrl: productModel.productImage!,
+                                        imageUrl: productModel.image!,
                                         placeholder: (context, url) => const CircularProgressIndicator(),
                                         errorWidget: (context, url, error) => const Image(image: AssetImage("assets/image/errorimage.png")),
                                       ),

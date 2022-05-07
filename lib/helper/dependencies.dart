@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:borgiaflutterapp/controllers/search_controller.dart';
+import 'package:borgiaflutterapp/data/repository/search_repo.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -52,6 +54,8 @@ Future<void> init() async {
   Get.lazyPut(() => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find())); // Get.find() permet de trouver automatiquement l'api client....
   Get.lazyPut(() => SalesRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
+  Get.lazyPut(() => SearchRepo(apiClient: Get.find()));
+
   //!controllers
 
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
@@ -65,6 +69,8 @@ Future<void> init() async {
   Get.lazyPut(() => UserController(userRepo: Get.find()));
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
   Get.lazyPut(() => SalesController(salesRepo: Get.find()));
+
+  Get.lazyPut(() => SearchController(searchRepo: Get.find()), fenix: true);
 
   //Get.find<ProductFromCategoryController>().initProduct(widget.productModel, Get.find<CartController>());
 }

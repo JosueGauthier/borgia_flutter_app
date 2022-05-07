@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:borgiaflutterapp/controllers/search_controller.dart';
+import 'package:borgiaflutterapp/models/search_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -5,6 +9,8 @@ import 'package:get/get.dart';
 import '../../controllers/auth_controller.dart';
 import '../../controllers/cart_controller.dart';
 
+import '../../routes/route_helper.dart';
+import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
@@ -14,157 +20,135 @@ class SearchPage extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  TextEditingController searchController = TextEditingController();
+  TextEditingController searchTextController = TextEditingController();
 
-  void _login(AuthController authController) {
-    //var authController = Get.find<AuthController>();
-    String searchWord = searchController.text.trim();
-
-    //print(username);
-
-    //print(password);
+  void _search(SearchController searchController) {
+    var searchController = Get.find<SearchController>();
+    String searchWord = searchTextController.text.trim();
 
     if (searchWord.isEmpty) {
-      //Get.snackbar("Username empty", "Enter a valid username");
     } else {
-      /* authController.login(username, password).then((status) {
-        if (status.isSuccess) {
-          //print("Sucess login");
-          AppConstants.USERNAME = username;
-          AppConstants.PASSWORD = password;
-
-          Get.toNamed(RouteHelper.getInitial());
-        } else {
-          Get.snackbar("Error", status.message);
-        }
-      }); */
+      searchController.getSearchList(searchWord).then((status) {
+        print(searchController.getSearchList(searchWord));
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(children: [
-        Container(
-          height: Dimensions.height45 * 2.7,
-          decoration: BoxDecoration(
-            color: Colors.white,
-          ),
-          margin: EdgeInsets.only(bottom: Dimensions.height10),
-          padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                height: Dimensions.height45 * 2.7,
-                width: Dimensions.height100 * 3.5,
-                child: TextFormField(
-                  controller: searchController,
-                  style: TextStyle(
-                    fontFamily: 'Montserrat-Bold',
-                    color: AppColors.titleColor,
-                    fontSize: Dimensions.height10 * 3,
-                  ),
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.transparent),
-                      borderRadius: BorderRadius.circular(5.5),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.transparent),
-                      borderRadius: BorderRadius.circular(5.5),
-                    ),
-                    prefixIcon: Icon(Icons.search, size: Dimensions.height10 * 3, color: AppColors.titleColor),
-                    hintText: "Recherche...",
-                    //labelText: 'Name',
-                    hintStyle: TextStyle(
-                      fontFamily: 'Montserrat-Bold',
-                      color: AppColors.titleColor,
-                      fontSize: Dimensions.height10 * 3,
-                    ),
-                    filled: true,
-                    fillColor: Colors.white,
-                  ),
-                ),
+        backgroundColor: Colors.white,
+        body: GetBuilder<SearchController>(builder: (searchController) {
+          return Column(children: [
+            Container(
+              height: Dimensions.height45 * 2.7,
+              decoration: BoxDecoration(
+                color: Colors.white,
               ),
-              /* BigText(
-                fontTypo: 'Montserrat-Bold',
-                text: ,
-                size: Dimensions.height10 * 3,
-                color: AppColors.titleColor,
-              ), */
-            ],
-          ),
-        ),
-        GetBuilder<CartController>(
-          builder: (cartController) {
-            var _cartList = cartController.getItems;
-
-            return Expanded(
-                child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    itemCount: _cartList.length,
-                    itemBuilder: ((context, index) {
-                      return Container(
-                        width: double.maxFinite,
-                        height: Dimensions.width20 * 5,
-                        color: Colors.white,
-                        margin: EdgeInsets.only(bottom: Dimensions.height20),
-                        child: Card(
-                          elevation: 0,
-                          shadowColor: AppColors.secondColor,
-                          //color: Colors.blue,
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: Dimensions.width20,
-                              ),
-                              GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  width: Dimensions.width20 * 5,
-                                  height: Dimensions.width20 * 5,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(fit: BoxFit.contain, image: NetworkImage(_cartList[index].img!)),
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(Dimensions.radius20)),
-                                ),
-                              ),
-                              SizedBox(
-                                width: Dimensions.width20,
-                              ),
-                              //? an expanded widget take all space of the parent
-                              Expanded(
-                                  child: SizedBox(
-                                //color: Colors.redAccent,
-                                height: Dimensions.width20 * 5,
-                                child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                  BigText(
-                                    text: _cartList[index].name!,
-                                    color: AppColors.darkGreyColor,
-                                    size: Dimensions.height30 * 0.8,
+              margin: EdgeInsets.only(bottom: Dimensions.height10),
+              padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    height: Dimensions.height45 * 2.7,
+                    width: Dimensions.height100 * 3.5,
+                    child: TextFormField(
+                      onChanged: (value) {
+                        _search(searchController);
+                      },
+                      controller: searchTextController,
+                      style: TextStyle(
+                        fontFamily: 'Montserrat-Bold',
+                        color: AppColors.titleColor,
+                        fontSize: Dimensions.height10 * 3,
+                      ),
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.transparent),
+                          borderRadius: BorderRadius.circular(5.5),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.transparent),
+                          borderRadius: BorderRadius.circular(5.5),
+                        ),
+                        prefixIcon: Icon(Icons.search, size: Dimensions.height10 * 3, color: AppColors.titleColor),
+                        hintText: "Recherche...",
+                        hintStyle: TextStyle(
+                          fontFamily: 'Montserrat-Bold',
+                          color: AppColors.titleColor,
+                          fontSize: Dimensions.height10 * 3,
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            (searchController.isLoaded)
+                ? Expanded(
+                    child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount: searchController.searchList.length,
+                        itemBuilder: ((context, index) {
+                          inspect(searchController.searchList);
+                          //SearchModel searchModel = searchController.searchList[index];
+                          //SerachModel categoryModel = categoryOfShopController.categoryOfShopList[index];
+                          return Container(
+                            width: double.maxFinite,
+                            height: Dimensions.width20 * 5,
+                            color: Colors.white,
+                            margin: EdgeInsets.only(bottom: Dimensions.height20),
+                            child: Card(
+                              elevation: 0,
+                              shadowColor: AppColors.secondColor,
+                              //color: Colors.blue,
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: Dimensions.width20,
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: Dimensions.width20 * 5,
+                                      height: Dimensions.width20 * 5,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            fit: BoxFit.contain,
+                                            image: (searchController.searchList[index].image == null)
+                                                ? AssetImage("assets/image/dafaultuserimage.png") as ImageProvider
+                                                : NetworkImage(searchController.searchList[index].image!),
+                                          ),
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(Dimensions.radius20)),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: Dimensions.width20,
+                                  ),
+                                  //? an expanded widget take all space of the parent
+                                  Expanded(
+                                      child: Container(
+                                    //color: Colors.redAccent,
+                                    height: Dimensions.width20 * 5,
+                                    child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.center, children: [
                                       BigText(
-                                        text: _cartList[index].price.toString() + " €",
-                                        color: AppColors.mainColor,
+                                        text: (searchController.searchList[index].name.toString()).capitalize!,
+                                        color: AppColors.darkGreyColor,
                                         size: Dimensions.height30 * 0.8,
                                       ),
-                                    ],
-                                  )
-                                ]),
-                              )),
-                            ],
-                          ),
-                        ),
-                      );
-                    })));
-          },
-        )
-      ]),
-    );
+                                    ]),
+                                  )),
+                                ],
+                              ),
+                            ),
+                          );
+                        })))
+                : Container(),
+          ]);
+        }));
   }
 }

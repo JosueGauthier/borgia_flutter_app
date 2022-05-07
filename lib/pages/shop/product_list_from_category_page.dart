@@ -118,7 +118,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                         itemCount: productListController.productList.length,
                         itemBuilder: (context, index) {
                           ProductModel productModel = productListController.productList[index];
-                          //print(productModel.productImage!);
+                          //print(productModel.image!);
                           return GestureDetector(
                             onTap: () {
                               Get.find<ProductFromCategoryController>().initProduct(productModel, Get.find<CartController>());
@@ -159,11 +159,11 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                         height: Dimensions.height100 * 0.8,
                                         width: Dimensions.height100 * 0.8,
                                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
-                                        child: (productModel.productImage == null)
+                                        child: (productModel.image == null)
                                             ? Container()
                                             : CachedNetworkImage(
                                                 fit: BoxFit.contain,
-                                                imageUrl: productModel.productImage!,
+                                                imageUrl: productModel.image!,
                                                 placeholder: (context, url) => Center(
                                                   child: SizedBox(
                                                     height: Dimensions.height45,

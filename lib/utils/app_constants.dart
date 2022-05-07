@@ -10,6 +10,12 @@ class AppConstants {
   static const String PRODUCT_FROM_CATEGORY_URI = "/api-links/category/category-products/?category=";
   static const String ONE_PRODUCT_URI = "/api-links/shops/products/";
 
+  static const String SHOP_URI_NAME = "/api-links/searchshop/?search=";
+
+  static const String PRODUCT_URI_NAME = "/api-links/searchprod/?search=";
+
+  static const String USER_URI_NAME = "/api-links/searchuser/?search=";
+
   static bool isfinishedRotate = false;
 
   //! auth end points
