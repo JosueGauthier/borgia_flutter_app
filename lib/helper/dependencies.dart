@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:borgiaflutterapp/controllers/other_users_controller.dart';
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
+import 'package:borgiaflutterapp/data/repository/other_user_repo.dart';
 import 'package:borgiaflutterapp/data/repository/search_repo.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -55,6 +57,7 @@ Future<void> init() async {
   Get.lazyPut(() => SalesRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
   Get.lazyPut(() => SearchRepo(apiClient: Get.find()));
+  Get.lazyPut(() => OtherUserRepo(apiClient: Get.find()));
 
   //!controllers
 
@@ -66,11 +69,13 @@ Future<void> init() async {
   Get.lazyPut(() => ProductController(productRepo: Get.find()), fenix: true); //, fenix = true permet de ne pas supprimer le controller
   Get.lazyPut(() => CategoryOfShopController(categoryOfShopRepo: Get.find()), fenix: true);
   Get.lazyPut(() => ProductFromCategoryController(productFromCategoryRepo: Get.find(), productRepo: Get.find()), fenix: true);
-  Get.lazyPut(() => UserController(userRepo: Get.find()));
+  Get.lazyPut(() => UserController(userRepo: Get.find()), fenix: true);
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
   Get.lazyPut(() => SalesController(salesRepo: Get.find()));
 
   Get.lazyPut(() => SearchController(searchRepo: Get.find()), fenix: true);
+
+  Get.lazyPut(() => OtherUserController(userRepo: Get.find()), fenix: true);
 
   //Get.find<ProductFromCategoryController>().initProduct(widget.productModel, Get.find<CartController>());
 }

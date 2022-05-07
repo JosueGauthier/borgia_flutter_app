@@ -123,7 +123,7 @@ class _CategoryShopState extends State<CategoryShop> {
                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
                                             child: CachedNetworkImage(
                                               fit: BoxFit.contain,
-                                              imageUrl: categoryModel.categoryImage!,
+                                              imageUrl: categoryModel.image!,
                                               placeholder: (context, url) => Center(
                                                 child: SizedBox(
                                                   height: Dimensions.height45,

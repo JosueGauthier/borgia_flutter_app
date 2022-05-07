@@ -14,7 +14,7 @@ class SearchRepo extends GetxService {
   }
 
   Future<Response> getSearchListCategory(String keyword) async {
-    String catUrl = AppConstants.CATEGORY_URI + keyword;
+    String catUrl = AppConstants.CATEGORY_URI_NAME + keyword;
     return await apiClient.getData(catUrl);
   }
 

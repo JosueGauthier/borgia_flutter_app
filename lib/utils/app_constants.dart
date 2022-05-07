@@ -14,6 +14,8 @@ class AppConstants {
 
   static const String PRODUCT_URI_NAME = "/api-links/searchprod/?search=";
 
+  static const String CATEGORY_URI_NAME = "/api-links/searchcategory/?search=";
+
   static const String USER_URI_NAME = "/api-links/searchuser/?search=";
 
   static bool isfinishedRotate = false;

@@ -5,7 +5,13 @@ class ShopModel {
   String? color;
   String? image;
 
-  ShopModel({this.id, this.name, this.description, this.color, this.image});
+  ShopModel({
+    this.id,
+    this.name,
+    this.description,
+    this.color,
+    this.image,
+  });
 
   ShopModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

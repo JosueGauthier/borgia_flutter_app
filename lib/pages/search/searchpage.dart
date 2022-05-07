@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
 import 'package:borgiaflutterapp/models/search_model.dart';
+import 'package:borgiaflutterapp/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 import '../../controllers/auth_controller.dart';
 import '../../controllers/cart_controller.dart';
 
+import '../../controllers/other_users_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
@@ -105,14 +107,19 @@ class SearchPage extends StatelessWidget {
                               elevation: 0,
                               shadowColor: AppColors.secondColor,
                               //color: Colors.blue,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: Dimensions.width20,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Container(
+                              child: GestureDetector(
+                                onTap: () {
+                                  if (searchController.searchList[index].runtimeType == UserModel) {
+                                    Get.find<OtherUserController>().getUserList(searchController.searchList[index].name);
+                                    Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].name, "searchPage"));
+                                  }
+                                },
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: Dimensions.width20,
+                                    ),
+                                    Container(
                                       width: Dimensions.width20 * 5,
                                       height: Dimensions.width20 * 5,
                                       decoration: BoxDecoration(
@@ -125,24 +132,33 @@ class SearchPage extends StatelessWidget {
                                           color: Colors.white,
                                           borderRadius: BorderRadius.circular(Dimensions.radius20)),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: Dimensions.width20,
-                                  ),
-                                  //? an expanded widget take all space of the parent
-                                  Expanded(
-                                      child: Container(
-                                    //color: Colors.redAccent,
-                                    height: Dimensions.width20 * 5,
-                                    child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.center, children: [
-                                      BigText(
-                                        text: (searchController.searchList[index].name.toString()).capitalize!,
-                                        color: AppColors.darkGreyColor,
-                                        size: Dimensions.height30 * 0.8,
-                                      ),
-                                    ]),
-                                  )),
-                                ],
+                                    SizedBox(
+                                      width: Dimensions.width20,
+                                    ),
+                                    //? an expanded widget take all space of the parent
+                                    Expanded(
+                                        child: Container(
+                                      //color: Colors.redAccent,
+                                      height: Dimensions.width20 * 5,
+                                      child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.center, children: [
+                                        BigText(
+                                          text: (searchController.searchList[index].name.toString()).capitalize!,
+                                          color: AppColors.darkGreyColor,
+                                          size: Dimensions.height30 * 0.8,
+                                        ),
+                                        (searchController.searchList[index].runtimeType == UserModel)
+                                            ? BigText(
+                                                text: (searchController.searchList[index].firstName.toString()).capitalize! +
+                                                    " " +
+                                                    (searchController.searchList[index].lastName.toString()).capitalize!,
+                                                color: AppColors.darkGreyColor,
+                                                size: Dimensions.height30 * 0.8,
+                                              )
+                                            : Container(),
+                                      ]),
+                                    )),
+                                  ],
+                                ),
                               ),
                             ),
                           );

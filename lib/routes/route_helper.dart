@@ -2,6 +2,7 @@ import 'package:borgiaflutterapp/pages/auth/auth_page.dart';
 import 'package:borgiaflutterapp/pages/auth/sign_in_page.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_Lydia_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
+import 'package:borgiaflutterapp/pages/user/user_page.dart';
 import 'package:get/get.dart';
 
 import '../pages/cart/cart_page.dart';
@@ -33,6 +34,8 @@ class RouteHelper {
   static const String refillLydia = "/lydia-page";
   static const String profilePage = "/profile-page";
 
+  static const String userPage = "/user-page";
+
   static const String productListFromCategory = "/product";
 
   //? formalisme pour passer des paramètres
@@ -49,6 +52,8 @@ class RouteHelper {
   static String getCartPage() => cartPage;
 
   static String getShopDetail(int shopId, String pagefrom) => '$shopDetail?shopId=$shopId&page=$pagefrom';
+
+  static String getUserPage(String username, String pagefrom) => '$userPage?username=$username&page=$pagefrom';
 
   static String getCategoryListPage(int shopId, String pagefrom) => '$categoryListPage?shopId=$shopId&page=$pagefrom';
 
@@ -167,6 +172,18 @@ class RouteHelper {
       name: profilePage,
       page: () {
         return const ProfilePage();
+      },
+      //transition: Transition.fadeIn
+    ),
+    GetPage(
+      name: userPage,
+      page: () {
+        var username = Get.parameters['username'];
+        var pagefrom = Get.parameters['page'];
+        return UserPage(
+          userUsername: username!,
+          pagefrom: pagefrom!,
+        );
       },
       //transition: Transition.fadeIn
     ),
