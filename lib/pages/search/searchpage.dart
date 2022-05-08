@@ -1,21 +1,24 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
-import 'package:borgiaflutterapp/models/search_model.dart';
+import 'package:borgiaflutterapp/controllers/shop_controller.dart';
+import 'package:borgiaflutterapp/models/categories_shop_model.dart';
+import 'package:borgiaflutterapp/models/product_model.dart';
+import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:borgiaflutterapp/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../controllers/auth_controller.dart';
 import '../../controllers/cart_controller.dart';
-
 import '../../controllers/other_users_controller.dart';
+import '../../controllers/product_from_category_controller.dart';
 import '../../routes/route_helper.dart';
-import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
+import '../../widget/pop_up_vente.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({
@@ -112,6 +115,30 @@ class SearchPage extends StatelessWidget {
                                   if (searchController.searchList[index].runtimeType == UserModel) {
                                     Get.find<OtherUserController>().getUserList(searchController.searchList[index].name);
                                     Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].name, "searchPage"));
+                                  }
+                                  if (searchController.searchList[index].runtimeType == ShopModel) {
+                                    Get.toNamed(RouteHelper.getCategoryListPage(searchController.searchList[index].id, "searchPage"));
+                                  }
+                                  if (searchController.searchList[index].runtimeType == CategoryOfShopModel) {
+                                    //int categoryId, int categoryModuleId, int shopId, String pagefrom
+                                    Get.toNamed(RouteHelper.getProductList(searchController.searchList[index].id, searchController.searchList[index].moduleId,
+                                        searchController.searchList[index].shopId, "searchPage"));
+                                  }
+                                  if (searchController.searchList[index].runtimeType == ProductModel) {
+                                    /* ProductModel productModel = searchController.searchList[index];
+
+                                    Get.find<ProductFromCategoryController>().initProduct(productModel, Get.find<CartController>());
+
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) {
+                                          return MyDialog(
+                                            productModel: productModel,
+                                            productListController: productListController,
+                                            categoryModuleId: widget.categoryModuleId,
+                                            shopId: widget.shopId,
+                                          );
+                                        }); */
                                   }
                                 },
                                 child: Row(

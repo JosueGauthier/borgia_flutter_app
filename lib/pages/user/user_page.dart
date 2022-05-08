@@ -32,7 +32,7 @@ class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     //Get.find<OtherUserController>().getUserList(widget.userUsername);
-    print(widget.userUsername);
+
     return Scaffold(
         backgroundColor: Colors.white,
         body: GetBuilder<OtherUserController>(builder: (userController) {
@@ -72,14 +72,20 @@ class _UserPageState extends State<UserPage> {
                           ],
                         ),
                         Container(
-                          padding: EdgeInsets.only(right: Dimensions.width20),
-                          child: BigText(
-                            fontTypo: 'Montserrat-Bold',
-                            text: "Mon profil",
-                            size: Dimensions.height10 * 3,
-                            color: AppColors.titleColor,
-                          ),
-                        ),
+                            padding: EdgeInsets.only(right: Dimensions.width20),
+                            child: (userModel.surname == null || userModel.family == null || userModel.campus == null || userModel.year == null)
+                                ? BigText(
+                                    fontTypo: 'Montserrat-Bold',
+                                    text: "Profil",
+                                    size: Dimensions.height10 * 3,
+                                    color: AppColors.titleColor,
+                                  )
+                                : BigText(
+                                    fontTypo: 'Montserrat-Bold',
+                                    text: userModel.surname.toString().capitalize! + " " + userModel.family.toString(),
+                                    size: Dimensions.height10 * 3,
+                                    color: AppColors.titleColor,
+                                  )),
                       ],
                     ),
                   ),
@@ -107,6 +113,18 @@ class _UserPageState extends State<UserPage> {
                   ),
                   Expanded(
                     child: ListView(children: <Widget>[
+                      (userModel.surname == null)
+                          ? Container()
+                          : ProfileBox(
+                              textColor: Colors.white,
+                              backgroundcolor: AppColors.mainColor,
+                              icon: Icons.person,
+                              text: "Transfert vers : " + userModel.surname.toString(),
+                              isEditable: false,
+                              iconcolor: Colors.white),
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
                       (userModel.name == null)
                           ? Container()
                           : ProfileBox(
@@ -169,15 +187,6 @@ class _UserPageState extends State<UserPage> {
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      (userModel.surname == null)
-                          ? Container()
-                          : ProfileBox(
-                              textColor: AppColors.darkGreyColor,
-                              backgroundcolor: AppColors.whiteGreyColor,
-                              icon: Icons.person,
-                              text: "Transfert vers : " + userModel.surname.toString(),
-                              isEditable: false,
-                              iconcolor: AppColors.mainColor),
                     ]),
                   ),
                 ])

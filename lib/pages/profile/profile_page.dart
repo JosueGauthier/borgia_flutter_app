@@ -30,6 +30,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   String? _selectedColor;
 
+  bool isExpand = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,92 +113,110 @@ class _ProfilePageState extends State<ProfilePage> {
                         margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
                         height: Dimensions.height45 * 1.7,
                         width: double.maxFinite,
-                        decoration: BoxDecoration(color: AppColors.whiteGreyColor, borderRadius: const BorderRadius.all(Radius.circular(10))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        decoration: BoxDecoration(color: AppColors.mainColor, borderRadius: const BorderRadius.all(Radius.circular(10))),
+                        child: Stack(
                           children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: Dimensions.width10,
+                            Container(
+                              //color: Colors.redAccent,
+                              height: double.maxFinite,
+                              child: Center(
+                                child: DropdownButton<String>(
+                                  value: selectedTbk,
+                                  dropdownColor: AppColors.mainColor,
+
+                                  borderRadius: BorderRadius.circular(Dimensions.height10 * 2),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      selectedTbk = newValue!;
+                                    });
+                                  },
+
+                                  //disabledHint: Container(),
+
+                                  // Hide the default underline
+                                  underline: Container(),
+
+                                  icon: Icon(
+                                    Icons.arrow_drop_down_rounded,
+                                    color: Colors.transparent,
+                                    size: Dimensions.height10 * 5,
+                                  ),
+                                  isExpanded: true,
+
+                                  // The list of options
+                                  items: _map_tbk
+                                      .map((text, value) {
+                                        return MapEntry(
+                                            text,
+                                            DropdownMenuItem<String>(
+                                                value: text,
+                                                child: Row(
+                                                  //crossAxisAlignment: CrossAxisAlignment.center,
+                                                  //mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: Dimensions.width10,
+                                                    ),
+                                                    CircleAvatar(
+                                                      foregroundImage: AssetImage(value),
+                                                    ),
+                                                    SizedBox(
+                                                      width: Dimensions.height20,
+                                                    ),
+                                                    SmallText(
+                                                      text: text,
+                                                      color: Colors.white,
+                                                      size: Dimensions.height20,
+                                                    ),
+                                                  ],
+                                                )));
+                                      })
+                                      .values
+                                      .toList(),
                                 ),
-                                Stack(
+                              ),
+                            ),
+                            /* Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
                                   children: [
-                                    Center(
-                                      child: SizedBox(
-                                        width: Dimensions.height10 * 5,
-                                        child: CircleAvatar(
-                                          backgroundImage: AssetImage(_map_tbk[selectedTbk]!),
-                                        ),
-                                      ),
+                                    SizedBox(
+                                      width: Dimensions.width10,
                                     ),
-                                    Positioned(
-                                      bottom: -Dimensions.height10 / 1.4,
-                                      right: -Dimensions.height10 / 1.2,
-                                      child: Container(
-                                        color: Colors.redAccent,
-                                        width: Dimensions.height10 * 20,
-                                        child: DropdownButton<String>(
-                                          value: selectedTbk,
-                                          dropdownColor: Colors.white,
-
-                                          borderRadius: BorderRadius.circular(Dimensions.height10 * 2),
-                                          onChanged: (String? newValue) {
-                                            print(newValue);
-                                            setState(() {
-                                              selectedTbk = newValue!;
-                                            });
-                                          },
-
-                                          // Hide the default underline
-                                          underline: Container(),
-
-                                          icon: Icon(
-                                            Icons.arrow_drop_down_rounded,
-                                            color: Colors.transparent,
-                                            size: Dimensions.height10 * 5,
+                                    Stack(
+                                      children: [
+                                        Center(
+                                          child: Container(
+                                            //color: Colors.greenAccent,
+                                            width: Dimensions.height10 * 5,
+                                            child: CircleAvatar(
+                                              backgroundImage: AssetImage(_map_tbk[selectedTbk]!),
+                                            ),
                                           ),
-                                          isExpanded: true,
-
-                                          // The list of options
-                                          items: _map_tbk
-                                              .map((text, value) {
-                                                return MapEntry(
-                                                    text,
-                                                    DropdownMenuItem<String>(
-                                                        value: text,
-                                                        child: Row(
-                                                          children: [
-                                                            Container(
-                                                              width: Dimensions.width10 * 4,
-                                                              decoration: BoxDecoration(image: DecorationImage(image: AssetImage(value))),
-                                                            ),
-                                                            SizedBox(
-                                                              width: Dimensions.height20,
-                                                            ),
-                                                            Text(
-                                                              text,
-                                                            )
-                                                          ],
-                                                        )));
-                                              })
-                                              .values
-                                              .toList(),
                                         ),
-                                      ),
+                                        Positioned(
+                                          bottom: -Dimensions.height10 / 1.4,
+                                          right: -Dimensions.height10 / 1.2,
+                                          child: Container(
+                                            //color: Colors.redAccent,
+                                            width: Dimensions.height10 * 20,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: Dimensions.width20,
+                                    ),
+                                    SmallText(
+                                      text: "Changer de TBK",
+                                      color: Colors.white,
+                                      size: Dimensions.height20,
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  width: Dimensions.width20,
-                                ),
-                                SmallText(
-                                  text: "Changer de TBK",
-                                  color: AppColors.darkGreyColor,
-                                  size: Dimensions.height20,
-                                ),
                               ],
-                            ),
+                            ), */
                           ],
                         ),
                       ),

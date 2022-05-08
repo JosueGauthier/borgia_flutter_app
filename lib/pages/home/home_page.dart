@@ -112,32 +112,35 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        extendBody: true,
-        backgroundColor: Colors.white,
-        body: Center(
-          child: pages.elementAt(_selectedIndex),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.white.withOpacity(0.5), //here set your transparent level
-          elevation: 0,
-          selectedItemColor: AppColors.mainColor,
-          unselectedItemColor: Colors.black,
-          type: BottomNavigationBarType.fixed,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+          extendBody: true,
+          backgroundColor: Colors.white,
+          body: Center(
+            child: pages.elementAt(_selectedIndex),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Colors.white.withOpacity(0.5), //here set your transparent level
+            elevation: 0,
+            selectedItemColor: AppColors.mainColor,
+            unselectedItemColor: Colors.black,
+            type: BottomNavigationBarType.fixed,
 
-          currentIndex: _selectedIndex,
+            currentIndex: _selectedIndex,
 
-          onTap: _onItemTapped,
+            onTap: _onItemTapped,
 
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: [
-            BottomNavigationBarItem(icon: Icon(CupertinoIcons.house_alt, size: 30), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.search, size: 30), label: 'Search'),
-            BottomNavigationBarItem(icon: Icon(CupertinoIcons.heart, size: 30), label: 'Cart'),
-            //BottomNavigationBarItem(icon: Icon(Icons.perm_identity, size: 30), label: 'Me')
-          ],
-        ));
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            items: [
+              BottomNavigationBarItem(icon: Icon(CupertinoIcons.house_alt, size: 30), label: 'Home'),
+              BottomNavigationBarItem(icon: Icon(Icons.search, size: 30), label: 'Search'),
+              BottomNavigationBarItem(icon: Icon(CupertinoIcons.heart, size: 30), label: 'Cart'),
+              //BottomNavigationBarItem(icon: Icon(Icons.perm_identity, size: 30), label: 'Me')
+            ],
+          )),
+    );
   }
 }
 

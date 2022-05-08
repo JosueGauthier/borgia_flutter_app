@@ -26,7 +26,7 @@ class CartPage extends StatelessWidget {
     return BigText(
       text: outputData,
       color: AppColors.greyColor,
-      size: Dimensions.height30 * 0.8,
+      size: Dimensions.height30 * 0.6,
     );
   }
 
@@ -133,7 +133,7 @@ class CartPage extends StatelessWidget {
                                     BigText(
                                       text: _cartList[index].price.toString() + " €",
                                       color: AppColors.mainColor,
-                                      size: Dimensions.height30 * 0.8,
+                                      size: Dimensions.height30 * 0.7,
                                     ),
                                   ],
                                 )
