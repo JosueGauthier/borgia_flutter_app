@@ -3,8 +3,6 @@
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:get/get.dart';
 
-import 'Popular_product_model.dart';
-
 class CartModel {
   int? id;
   String? name;

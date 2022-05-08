@@ -4,7 +4,7 @@ class ProductModel {
   int? id;
   String? name;
   String? unit;
-  String? shop;
+  int? shop;
   bool? isManual;
   String? manualPrice;
   String? correctingFactor;

@@ -81,7 +81,7 @@ class SearchController extends GetxController {
     } else {}
 
     print("the search list is : " + _searchList.toString());
-    inspect(_searchList);
+    //inspect(_searchList);
     update();
   }
 

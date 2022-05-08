@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:borgiaflutterapp/data/repository/product_list_from_category_repo.dart';
 import 'package:borgiaflutterapp/models/product_list_from_category_models.dart';
+import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -73,6 +74,9 @@ class ProductFromCategoryController extends GetxController {
       }
 
       _isLoaded = true;
+
+      //AppConstants.PROD_LIST = _productList;
+
       update();
     } else {}
   }

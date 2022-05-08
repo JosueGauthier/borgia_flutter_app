@@ -18,6 +18,8 @@ class AppConstants {
 
   static const String USER_URI_NAME = "/api-links/searchuser/?search=";
 
+  static const String PROD_CAT_URI = "/api-links/category/category-products-model/?product=";
+
   static bool isfinishedRotate = false;
 
   //! auth end points
@@ -58,4 +60,8 @@ class AppConstants {
   static int CAT_MODULE_ID = 1;
 
   static int SHOP_ID = 1;
+
+  static List CAT_LIST = [];
+
+  static List CAT_LIST_MODULE = [];
 }

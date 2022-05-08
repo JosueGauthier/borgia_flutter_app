@@ -8,8 +8,8 @@ class ProductListFromCategoryModel {
 
   ProductListFromCategoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    category = json['category']; // lien http
-    product = json['product']; // lien http
+    category = json['category']; // int
+    product = json['product']; // int
     quantity = json['quantity'];
   }
 

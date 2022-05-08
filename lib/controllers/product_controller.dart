@@ -9,7 +9,6 @@ import '../data/repository/product_repo.dart';
 import 'package:flutter/material.dart';
 
 import '../data/repository/popular_product_repo.dart';
-import '../models/Popular_product_model.dart';
 import '../models/cart_product_model.dart';
 import '../utils/colors.dart';
 import 'cart_controller.dart';

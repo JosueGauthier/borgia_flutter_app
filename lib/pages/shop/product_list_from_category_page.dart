@@ -1,27 +1,20 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:borgiaflutterapp/controllers/product_controller.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
-import 'package:borgiaflutterapp/models/sales_model.dart';
-import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../../controllers/cart_controller.dart';
 import '../../controllers/product_from_category_controller.dart';
-import '../../controllers/sales_controller.dart';
 import '../../routes/route_helper.dart';
-import '../../widget/app_icon.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
 import '../../widget/pop_up_vente.dart';
-import '../../widget/small_text.dart';
 
 /*
 
@@ -126,6 +119,11 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                               setState(() {
                                 pressed = !pressed;
                               });
+
+                              inspect(productModel);
+                              inspect(productListController);
+                              inspect(widget.categoryModuleId);
+                              inspect(widget.shopId);
 
                               showDialog(
                                   context: context,

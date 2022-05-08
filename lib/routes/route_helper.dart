@@ -6,8 +6,6 @@ import 'package:borgiaflutterapp/pages/user/user_page.dart';
 import 'package:get/get.dart';
 
 import '../pages/cart/cart_page.dart';
-import '../pages/food/popularfooddetail.dart';
-import '../pages/food/recommended_food_detail.dart';
 import '../pages/home/home_page.dart';
 import '../pages/shop/category_list_shop_page.dart';
 import '../pages/shop/product_list_from_category_page.dart';
@@ -86,31 +84,6 @@ class RouteHelper {
       name: initial,
       page: () {
         return const HomePage();
-      },
-      //transition: Transition.fadeIn
-    ),
-    GetPage(
-      name: popularFood,
-      page: () {
-        var pageId = Get.parameters['pageId'];
-        var pagefrom = Get.parameters['page'];
-
-        return PopularFoodDetail(
-          pageId: int.parse(pageId!),
-          pagefrom: pagefrom!,
-        );
-      },
-      //transition: Transition.fadeIn
-    ),
-    GetPage(
-      name: recommendedFood,
-      page: () {
-        var pageId = Get.parameters['pageId'];
-        var pagefrom = Get.parameters['page'];
-        return RecommendedFoodDetail(
-          pageId: int.parse(pageId!),
-          pagefrom: pagefrom!,
-        );
       },
       //transition: Transition.fadeIn
     ),

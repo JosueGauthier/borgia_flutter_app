@@ -17,10 +17,6 @@ class CartRepo {
   //! convertit le contenu du panier en une chaine de caractère json
 
   void addToCartList(List<CartModel> cartList) {
-    //! permet de retirer le contenu sauvegarder localement sur le telephone
-    //sharedPreferences.remove(AppConstats.CART_LIST);
-    //sharedPreferences.remove(AppConstats.CART_HISTORY_LIST);
-
     cart = [];
 
     var time = DateTime.now();

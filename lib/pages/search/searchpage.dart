@@ -1,17 +1,21 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:borgiaflutterapp/controllers/prod_cat_controller.dart';
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
 import 'package:borgiaflutterapp/controllers/shop_controller.dart';
+import 'package:borgiaflutterapp/data/repository/product_list_from_category_repo.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:borgiaflutterapp/models/user_model.dart';
+import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../../controllers/cart_controller.dart';
+import '../../controllers/category_controller.dart';
 import '../../controllers/other_users_controller.dart';
 import '../../controllers/product_from_category_controller.dart';
 import '../../routes/route_helper.dart';
@@ -98,7 +102,7 @@ class SearchPage extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         itemCount: searchController.searchList.length,
                         itemBuilder: ((context, index) {
-                          inspect(searchController.searchList);
+                          //inspect(searchController.searchList);
                           //SearchModel searchModel = searchController.searchList[index];
                           //SerachModel categoryModel = categoryOfShopController.categoryOfShopList[index];
                           return Container(
@@ -125,20 +129,17 @@ class SearchPage extends StatelessWidget {
                                         searchController.searchList[index].shopId, "searchPage"));
                                   }
                                   if (searchController.searchList[index].runtimeType == ProductModel) {
-                                    /* ProductModel productModel = searchController.searchList[index];
+                                    ProductModel productModel = searchController.searchList[index];
 
-                                    Get.find<ProductFromCategoryController>().initProduct(productModel, Get.find<CartController>());
+                                    Get.find<CategoryFromProductController>().getCat(searchController.searchList[index].id);
 
-                                    showDialog(
-                                        context: context,
-                                        builder: (_) {
-                                          return MyDialog(
-                                            productModel: productModel,
-                                            productListController: productListController,
-                                            categoryModuleId: widget.categoryModuleId,
-                                            shopId: widget.shopId,
-                                          );
-                                        }); */
+                                    List catList = AppConstants.CAT_LIST;
+
+                                    Get.find<CategoryOfShopController>().getCategoryList(productModel.shop!);
+
+                                    List catListModule = AppConstants.CAT_LIST_MODULE;
+
+                                    Get.toNamed(RouteHelper.getProductList(catList[0].category, catListModule[0].moduleId, productModel.shop!, "search"));
                                   }
                                 },
                                 child: Row(

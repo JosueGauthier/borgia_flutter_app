@@ -2,7 +2,6 @@ import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/cart_repo.dart';
-import '../models/Popular_product_model.dart';
 import '../models/cart_product_model.dart';
 
 class CartController extends GetxController {
@@ -71,21 +70,21 @@ class CartController extends GetxController {
     update();
   }
 
-  void removeItem(OldProductModel oldProductModel) {
+  /* void removeItem(OldProductModel oldProductModel) {
     if (_items.containsKey(oldProductModel.id!)) {
       _items.remove(oldProductModel.id!);
     }
-  }
+  } */
 
-  bool existinCart(OldProductModel aProduct) {
+  /*  bool existinCart(OldProductModel aProduct) {
     if (_items.containsKey(aProduct.id)) {
       return true;
     } else {
       return false;
     }
-  }
+  } */
 
-  int getQuantity(OldProductModel aProduct) {
+  /*  int getQuantity(OldProductModel aProduct) {
     var quantity = 0;
 
     if (_items.containsKey(aProduct.id)) {
@@ -98,7 +97,7 @@ class CartController extends GetxController {
 
     return quantity;
   }
-
+ */
   int get totalItems {
     int totalQuantity = 0;
 

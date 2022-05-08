@@ -1,5 +1,6 @@
 import 'package:borgiaflutterapp/data/repository/category_list_repo.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
+import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:get/get.dart';
 
 class CategoryOfShopController extends GetxController {
@@ -36,6 +37,8 @@ class CategoryOfShopController extends GetxController {
       _isLoaded = true;
 
       //inspect(_productList);
+
+      AppConstants.CAT_LIST_MODULE = _categoryOfShopList;
 
       update();
     } else {}

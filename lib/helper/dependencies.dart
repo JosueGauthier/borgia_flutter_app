@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:borgiaflutterapp/controllers/other_users_controller.dart';
+import 'package:borgiaflutterapp/controllers/prod_cat_controller.dart';
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
 import 'package:borgiaflutterapp/data/repository/other_user_repo.dart';
+import 'package:borgiaflutterapp/data/repository/prodcat_repo.dart';
 import 'package:borgiaflutterapp/data/repository/search_repo.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,10 +12,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../controllers/auth_controller.dart';
 import '../controllers/cart_controller.dart';
 import '../controllers/category_controller.dart';
-import '../controllers/popular_product_controller.dart';
 import '../controllers/product_controller.dart';
 import '../controllers/product_from_category_controller.dart';
-import '../controllers/recommended_product_controller.dart';
 import '../controllers/sales_controller.dart';
 import '../controllers/shop_controller.dart';
 import '../controllers/user_controller.dart';
@@ -59,10 +59,10 @@ Future<void> init() async {
   Get.lazyPut(() => SearchRepo(apiClient: Get.find()));
   Get.lazyPut(() => OtherUserRepo(apiClient: Get.find()));
 
+  Get.lazyPut(() => CategoryFromProductRepo(apiClient: Get.find()));
+
   //!controllers
 
-  Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
-  Get.lazyPut(() => RecommendedProductController(recommendedRepo: Get.find()));
   Get.lazyPut(() => CartController(cartRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => ShopController(shopRepo: Get.find()));
@@ -76,6 +76,8 @@ Future<void> init() async {
   Get.lazyPut(() => SearchController(searchRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => OtherUserController(userRepo: Get.find()), fenix: true);
+
+  Get.lazyPut(() => CategoryFromProductController(categoryOfProductRepo: Get.find()), fenix: true);
 
   //Get.find<ProductFromCategoryController>().initProduct(widget.productModel, Get.find<CartController>());
 }
