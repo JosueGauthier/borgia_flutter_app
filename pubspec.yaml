@@ -40,6 +40,8 @@ dependencies:
   persistent_bottom_nav_bar: ^4.0.2
   intl : ^0.17.0
 
+  syncfusion_flutter_charts: ^20.1.52
+
   dots_indicator: ^2.1.0
   get: ^4.6.1
   flutter:

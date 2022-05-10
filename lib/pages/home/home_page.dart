@@ -3,6 +3,7 @@ import 'package:borgiaflutterapp/pages/cart/cart_page.dart';
 import 'package:borgiaflutterapp/pages/fav_products/fav_page.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_Lydia_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
+import 'package:borgiaflutterapp/pages/stats/stats_page.dart';
 import 'package:borgiaflutterapp/pages/test/testparallax.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -41,20 +42,12 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> pages = [
     const WelcomePageWithHeader(),
-    //const AuthPage(),
-    //CartHistory(),
-
-    //const SignUpPage(),
-
-    //ShopPageDetail(),
 
     SearchPage(),
 
-    const FavPage(),
+    //const FavPage(),
 
-    //ParallaxPage(),
-
-    //const ProfilePage(),
+    StatsPage()
   ];
 
   var _selectedIndex = 0;
@@ -81,7 +74,7 @@ class _HomePageState extends State<HomePage> {
     return pages;
   }
 
-  List<PersistentBottomNavBarItem> _navBarsItems() {
+  /* List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.house_alt),
@@ -108,7 +101,7 @@ class _HomePageState extends State<HomePage> {
         inactiveColorPrimary: AppColors.greyColor,
       ),
     ];
-  }
+  } */
 
   @override
   Widget build(BuildContext context) {

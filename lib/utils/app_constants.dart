@@ -20,6 +20,8 @@ class AppConstants {
 
   static const String PROD_CAT_URI = "/api-links/category/category-products-model/?product=";
 
+  static const String ALL_SALELIST_URI = "/api-links/sale/sale/";
+
   static bool isfinishedRotate = false;
 
   //! auth end points
