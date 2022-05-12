@@ -22,6 +22,8 @@ class AppConstants {
 
   static const String ALL_SALELIST_URI = "/api-links/sale/sale/";
 
+  static const String YEAR_SALELIST_URI = "/api-links/history/";
+
   static bool isfinishedRotate = false;
 
   //! auth end points

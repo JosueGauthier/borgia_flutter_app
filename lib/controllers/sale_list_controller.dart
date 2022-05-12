@@ -2,6 +2,7 @@ import 'package:borgiaflutterapp/models/sale_list_model.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/sale_list_repo.dart';
+import '../models/year_salelist_model.dart';
 
 class SaleListController extends GetxController {
   final SaleListRepo saleListRepo;
@@ -24,7 +25,7 @@ class SaleListController extends GetxController {
       List responseBody = response.body;
 
       for (var i = 0; i < responseBody.length; i++) {
-        _saleList.add(SaleListModel.fromJson(responseBody[i]));
+        _saleList.add(YearChartModel.fromJson(responseBody[i]));
       }
       _isLoaded = true;
 
