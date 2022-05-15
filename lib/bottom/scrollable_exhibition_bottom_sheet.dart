@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -39,7 +38,7 @@ class _ScrollableExhibitionSheetState extends State<ScrollableExhibitionSheet> {
                     Opacity(
                       opacity: percentage == 1 ? 1 : 0,
                       child: ListView.builder(
-                        padding: EdgeInsets.only(right: 32, top: 128),
+                        padding: const EdgeInsets.only(right: 32, top: 128),
                         controller: scrollController,
                         itemCount: 20,
                         itemBuilder: (context, index) {
@@ -97,7 +96,7 @@ class MyEventItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Transform.scale(
         alignment: Alignment.topLeft,
         scale: 1 / 3 + 2 / 3 * percentageCompleted,
@@ -107,7 +106,7 @@ class MyEventItem extends StatelessWidget {
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.horizontal(
-                  left: Radius.circular(16),
+                  left: const Radius.circular(16),
                   right: Radius.circular(16 * (1 - percentageCompleted)),
                 ),
                 child: Image.asset(
@@ -121,11 +120,11 @@ class MyEventItem extends StatelessWidget {
                 child: Opacity(
                   opacity: max(0, percentageCompleted * 2 - 1),
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.horizontal(right: Radius.circular(16)),
                       color: Colors.white,
                     ),
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     child: _buildContent(),
                   ),
                 ),
@@ -140,8 +139,8 @@ class MyEventItem extends StatelessWidget {
   Widget _buildContent() {
     return Column(
       children: <Widget>[
-        Text(event.title, style: TextStyle(fontSize: 16)),
-        SizedBox(height: 8),
+        Text(event.title, style: const TextStyle(fontSize: 16)),
+        const SizedBox(height: 8),
         Row(
           children: <Widget>[
             Text(
@@ -152,10 +151,10 @@ class MyEventItem extends StatelessWidget {
                 color: Colors.grey.shade600,
               ),
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Text(
               event.date,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.w300,
                 fontSize: 12,
                 color: Colors.grey,
@@ -163,7 +162,7 @@ class MyEventItem extends StatelessWidget {
             ),
           ],
         ),
-        Spacer(),
+        const Spacer(),
         Row(
           children: <Widget>[
             Icon(Icons.place, color: Colors.grey.shade400, size: 16),
@@ -241,7 +240,7 @@ class SheetHeader extends StatelessWidget {
 class MenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Positioned(
+    return const Positioned(
       right: 12,
       bottom: 24,
       child: Icon(

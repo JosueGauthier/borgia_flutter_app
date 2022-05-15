@@ -1,4 +1,3 @@
-import 'package:borgiaflutterapp/models/sale_list_model.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/sale_list_repo.dart';

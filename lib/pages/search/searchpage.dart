@@ -1,10 +1,6 @@
-import 'dart:async';
-import 'dart:developer';
 
 import 'package:borgiaflutterapp/controllers/prod_cat_controller.dart';
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
-import 'package:borgiaflutterapp/controllers/shop_controller.dart';
-import 'package:borgiaflutterapp/data/repository/product_list_from_category_repo.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
@@ -14,15 +10,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../controllers/cart_controller.dart';
 import '../../controllers/category_controller.dart';
 import '../../controllers/other_users_controller.dart';
-import '../../controllers/product_from_category_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
-import '../../widget/pop_up_vente.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({
@@ -51,7 +44,7 @@ class SearchPage extends StatelessWidget {
           return Column(children: [
             Container(
               height: Dimensions.height45 * 2.7,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
               ),
               margin: EdgeInsets.only(bottom: Dimensions.height10),
@@ -59,7 +52,7 @@ class SearchPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     height: Dimensions.height45 * 2.7,
                     width: Dimensions.height100 * 3.5,
                     child: TextFormField(
@@ -154,7 +147,7 @@ class SearchPage extends StatelessWidget {
                                           image: DecorationImage(
                                             fit: BoxFit.contain,
                                             image: (searchController.searchList[index].image == null)
-                                                ? AssetImage("assets/image/dafaultuserimage.png") as ImageProvider
+                                                ? const AssetImage("assets/image/dafaultuserimage.png") as ImageProvider
                                                 : NetworkImage(searchController.searchList[index].image!),
                                           ),
                                           color: Colors.white,
@@ -165,7 +158,7 @@ class SearchPage extends StatelessWidget {
                                     ),
                                     //? an expanded widget take all space of the parent
                                     Expanded(
-                                        child: Container(
+                                        child: SizedBox(
                                       //color: Colors.redAccent,
                                       height: Dimensions.width20 * 5,
                                       child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.center, children: [

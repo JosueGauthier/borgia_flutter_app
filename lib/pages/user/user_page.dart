@@ -1,13 +1,10 @@
 import 'package:borgiaflutterapp/controllers/other_users_controller.dart';
-import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 import 'package:borgiaflutterapp/widget/profile_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/user_controller.dart';
 import '../../models/user_model.dart';
 import '../../routes/route_helper.dart';
-import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
@@ -60,11 +57,11 @@ class _UserPageState extends State<UserPage> {
                                 onTap: () {
                                   Get.toNamed(RouteHelper.getInitial());
                                 },
-                                child: Container(
+                                child: SizedBox(
                                   //color: Colors.redAccent,
                                   width: Dimensions.width15 * 4,
                                   height: Dimensions.width15 * 4,
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.arrow_back_ios,
                                     color: AppColors.titleColor,
                                   ),
@@ -190,7 +187,7 @@ class _UserPageState extends State<UserPage> {
                     ]),
                   ),
                 ])
-              : CircularProgressIndicator(
+              : const CircularProgressIndicator(
                   color: AppColors.mainColor,
                 );
         }));

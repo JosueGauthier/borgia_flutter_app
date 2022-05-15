@@ -76,10 +76,10 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                         onTap: () {
                           Get.toNamed(RouteHelper.getCategoryListPage(widget.shopId, "home"));
                         },
-                        child: Container(
+                        child: SizedBox(
                           width: Dimensions.width15 * 4,
                           height: Dimensions.width15 * 4,
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_back_ios,
                             color: AppColors.titleColor,
                           ),
@@ -211,7 +211,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                                   text: productModel.manualPrice.toString() + " €",
                                                   color: AppColors.mainColor,
                                                 ),
-                                                Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.end, children: [
+                                                Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.end, children: const [
                                                   /* GestureDetector(
                                                     onTap: () {},
                                                     child: ElevatedButton(

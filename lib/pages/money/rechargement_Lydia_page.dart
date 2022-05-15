@@ -1,13 +1,11 @@
 // main.dart
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // import our custom number keyboard
 import '../../routes/route_helper.dart';
-import '../../widget/app_icon.dart';
 import '../../widget/big_text.dart';
 import '../../widget/custom_numpad.dart';
 
@@ -44,7 +42,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                     onTap: () {
                       Get.toNamed(RouteHelper.getInitial());
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.arrow_back_ios,
                       color: AppColors.titleColor,
                     )),
@@ -59,7 +57,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
           ),
           Expanded(
               child: Container(
-            decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.contain, image: const AssetImage("assets/image/lydiaRefill.png"))),
+            decoration: const BoxDecoration(image: DecorationImage(fit: BoxFit.contain, image: AssetImage("assets/image/lydiaRefill.png"))),
 
             //color: Colors.redAccent,
           ))
@@ -69,7 +67,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
           // implement the custom NumPad
         ],
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: Dimensions.height20 * 21,
         //color: Colors.blueAccent,
         child: Column(

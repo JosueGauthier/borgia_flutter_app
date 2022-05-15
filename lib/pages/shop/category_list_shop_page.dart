@@ -1,15 +1,11 @@
-import 'dart:developer';
 
 import 'package:borgiaflutterapp/controllers/category_controller.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../bottom/exhibition_bottom_sheet.dart';
-import '../../widget/app_icon.dart';
 
 import '../../routes/route_helper.dart';
 
@@ -60,10 +56,10 @@ class _CategoryShopState extends State<CategoryShop> {
                         onTap: () {
                           Get.toNamed(RouteHelper.getInitial());
                         },
-                        child: Container(
+                        child: SizedBox(
                           width: Dimensions.width15 * 4,
                           height: Dimensions.width15 * 4,
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_back_ios,
                             color: AppColors.titleColor,
                           ),

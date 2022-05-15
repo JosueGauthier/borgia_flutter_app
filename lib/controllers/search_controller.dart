@@ -1,11 +1,9 @@
-import 'dart:developer';
 
 import 'package:borgiaflutterapp/data/repository/search_repo.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:borgiaflutterapp/models/user_model.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class SearchController extends GetxController {

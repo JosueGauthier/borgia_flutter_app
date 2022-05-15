@@ -2,7 +2,6 @@ import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:borgiaflutterapp/utils/dimensions.dart';
-import 'package:borgiaflutterapp/widget/big_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -47,7 +46,7 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with Sing
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 600),
+      duration: const Duration(milliseconds: 600),
     );
   }
 
@@ -87,11 +86,11 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with Sing
                         right: 0,
                         bottom: 0,
                         //bottom: 24,
-                        child: Container(
+                        child: SizedBox(
                           height: Dimensions.height20 * 3,
                           //color: Colors.greenAccent,
                           width: Dimensions.height20 * 3,
-                          child: Icon(
+                          child: const Icon(
                             Icons.menu,
                             color: Colors.black,
                             size: 28,
@@ -159,12 +158,13 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with Sing
     if (_controller.isAnimating || _controller.status == AnimationStatus.completed) return;
 
     final double flingVelocity = details.velocity.pixelsPerSecond.dy / maxHeight;
-    if (flingVelocity < 0.0)
+    if (flingVelocity < 0.0) {
       _controller.fling(velocity: math.max(2.0, -flingVelocity));
-    else if (flingVelocity > 0.0)
+    } else if (flingVelocity > 0.0) {
       _controller.fling(velocity: math.min(-2.0, -flingVelocity));
-    else
+    } else {
       _controller.fling(velocity: _controller.value < 0.5 ? -2.0 : 2.0);
+    }
   }
 }
 
@@ -197,9 +197,9 @@ class ExpandedEventItem extends StatelessWidget {
       height: height,
       child: AnimatedOpacity(
         opacity: isVisible ? 1 : 0,
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
         child: Container(
-          padding: EdgeInsets.only(left: height).add(EdgeInsets.all(8)),
+          padding: EdgeInsets.only(left: height).add(const EdgeInsets.all(8)),
           child: Container(),
         ),
       ),
@@ -208,17 +208,17 @@ class ExpandedEventItem extends StatelessWidget {
 }
 
 final List<BottomNavigationBarItem> iconList = [
-  BottomNavigationBarItem(icon: Icon(CupertinoIcons.house_alt, size: 30), label: 'Home'),
-  BottomNavigationBarItem(icon: Icon(Icons.history, size: 30), label: 'History'),
-  BottomNavigationBarItem(icon: Icon(CupertinoIcons.heart, size: 30), label: 'Cart'),
-  BottomNavigationBarItem(icon: Icon(Icons.perm_identity, size: 30), label: 'Me')
+  const BottomNavigationBarItem(icon: Icon(CupertinoIcons.house_alt, size: 30), label: 'Home'),
+  const BottomNavigationBarItem(icon: Icon(Icons.history, size: 30), label: 'History'),
+  const BottomNavigationBarItem(icon: Icon(CupertinoIcons.heart, size: 30), label: 'Cart'),
+  const BottomNavigationBarItem(icon: Icon(Icons.perm_identity, size: 30), label: 'Me')
 ];
 
 final List<Icon> iList = [
-  Icon(CupertinoIcons.house_alt, size: 30),
-  Icon(Icons.history, size: 30),
-  Icon(CupertinoIcons.heart, size: 30),
-  Icon(Icons.perm_identity, size: 30)
+  const Icon(CupertinoIcons.house_alt, size: 30),
+  const Icon(Icons.history, size: 30),
+  const Icon(CupertinoIcons.heart, size: 30),
+  const Icon(Icons.perm_identity, size: 30)
 ];
 
 List<Event> events = [

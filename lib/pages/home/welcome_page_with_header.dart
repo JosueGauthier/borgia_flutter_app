@@ -1,12 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 import '../../controllers/user_controller.dart';
-import '../../models/user_model.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
@@ -66,10 +63,10 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                     fontSize: Dimensions.height45 * 0.8, fontFamily: 'Montserrat-Bold', letterSpacing: 2, color: AppColors.titleColor),
                                 child: AnimatedTextKit(
                                   animatedTexts: [
-                                    RotateAnimatedText('', duration: Duration(milliseconds: 500)),
+                                    RotateAnimatedText('', duration: const Duration(milliseconds: 500)),
                                     RotateAnimatedText('Bonjour'),
-                                    RotateAnimatedText(userController.welcomeUserModel.surname!, duration: Duration(seconds: 4)),
-                                    RotateAnimatedText('Boquette', rotateOut: false, duration: Duration(seconds: 2)),
+                                    RotateAnimatedText(userController.welcomeUserModel.surname!, duration: const Duration(seconds: 4)),
+                                    RotateAnimatedText('Boquette', rotateOut: false, duration: const Duration(seconds: 2)),
                                   ],
                                   isRepeatingAnimation: false,
                                   onFinished: () {
@@ -127,7 +124,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
 
                   //! Showing the body
 
-                  Expanded(
+                  const Expanded(
                       child: SingleChildScrollView(
                     child: WelcomePage(),
                   )),

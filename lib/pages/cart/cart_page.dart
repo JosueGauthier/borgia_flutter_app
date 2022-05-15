@@ -55,10 +55,10 @@ class CartPage extends StatelessWidget {
                       onTap: () {
                         Get.toNamed(RouteHelper.getInitial());
                       },
-                      child: Container(
+                      child: SizedBox(
                         width: Dimensions.width15 * 4,
                         height: Dimensions.width15 * 4,
-                        child: Icon(
+                        child: const Icon(
                           Icons.arrow_back_ios,
                           color: AppColors.titleColor,
                         ),
@@ -117,7 +117,7 @@ class CartPage extends StatelessWidget {
                             ),
                             //? an expanded widget take all space of the parent
                             Expanded(
-                                child: Container(
+                                child: SizedBox(
                               //color: Colors.redAccent,
                               height: Dimensions.width20 * 5,
                               child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.start, children: [

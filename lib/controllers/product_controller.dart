@@ -6,11 +6,7 @@ import '../data/repository/product_repo.dart';
 
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
 
-import '../data/repository/popular_product_repo.dart';
-import '../models/cart_product_model.dart';
-import '../utils/colors.dart';
 import 'cart_controller.dart';
 
 class ProductController extends GetxController {
@@ -33,11 +29,11 @@ class ProductController extends GetxController {
 
   //! var for setQuantity
 
-  int _quantity = 0;
+  final int _quantity = 0;
 
   int get quantity => _quantity;
 
-  int _incartItem = 0;
+  final int _incartItem = 0;
 
   int get inCartItem => _quantity;
 

@@ -90,7 +90,7 @@ class RouteHelper {
     GetPage(
       name: cartPage,
       page: () {
-        return CartPage();
+        return const CartPage();
       },
       //transition: Transition.fadeIn
     ),

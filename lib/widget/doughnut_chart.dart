@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+/* import 'package:flutter/material.dart';
 
 import 'package:flutter/cupertino.dart';
 
@@ -20,19 +19,7 @@ class DonutChart extends StatelessWidget {
     return listChartData;
   }
 
-/*   ChartData('David', 25),
-    ChartData(
-      'Steve',
-      38,
-    ),
-    ChartData(
-      'Jack',
-      34,
-    ),
-    ChartData(
-      'Others',
-      52,
-    ) */
+
 
   TooltipBehavior _tooltip = TooltipBehavior(enable: true);
 
@@ -70,3 +57,4 @@ class ChartData {
   final int y;
   //final Color color;
 }
+ */

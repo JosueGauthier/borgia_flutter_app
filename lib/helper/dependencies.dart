@@ -1,7 +1,5 @@
-import 'dart:developer';
 
 import 'package:borgiaflutterapp/controllers/other_users_controller.dart';
-import 'package:borgiaflutterapp/controllers/prod_cat_controller.dart';
 import 'package:borgiaflutterapp/controllers/sale_list_controller.dart';
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
 import 'package:borgiaflutterapp/data/repository/other_user_repo.dart';

@@ -43,7 +43,7 @@ class _TestBottomSheetState extends State<TestBottomSheet> with SingleTickerProv
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 600),
+      duration: const Duration(milliseconds: 600),
     );
   }
 
@@ -79,7 +79,7 @@ class _TestBottomSheetState extends State<TestBottomSheet> with SingleTickerProv
                       onTap: _toggle,
                       onVerticalDragUpdate: _handleDragUpdate,
                       onVerticalDragEnd: _handleDragEnd,
-                      child: Positioned(
+                      child: const Positioned(
                         right: 0,
                         bottom: 240,
                         child: Icon(
@@ -148,12 +148,13 @@ class _TestBottomSheetState extends State<TestBottomSheet> with SingleTickerProv
     if (_controller.isAnimating || _controller.status == AnimationStatus.completed) return;
 
     final double flingVelocity = details.velocity.pixelsPerSecond.dy / maxHeight;
-    if (flingVelocity < 0.0)
+    if (flingVelocity < 0.0) {
       _controller.fling(velocity: math.max(2.0, -flingVelocity));
-    else if (flingVelocity > 0.0)
+    } else if (flingVelocity > 0.0) {
       _controller.fling(velocity: math.min(-2.0, -flingVelocity));
-    else
+    } else {
       _controller.fling(velocity: _controller.value < 0.5 ? -2.0 : 2.0);
+    }
   }
 }
 
@@ -186,13 +187,13 @@ class ExpandedEventItem extends StatelessWidget {
       height: height,
       child: AnimatedOpacity(
         opacity: isVisible ? 1 : 0,
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(borderRadius),
             color: Colors.white,
           ),
-          padding: EdgeInsets.only(left: height).add(EdgeInsets.all(8)),
+          padding: EdgeInsets.only(left: height).add(const EdgeInsets.all(8)),
           child: _buildContent(),
         ),
       ),
@@ -202,8 +203,8 @@ class ExpandedEventItem extends StatelessWidget {
   Widget _buildContent() {
     return Column(
       children: <Widget>[
-        Text(title, style: TextStyle(fontSize: 16)),
-        SizedBox(height: 8),
+        Text(title, style: const TextStyle(fontSize: 16)),
+        const SizedBox(height: 8),
         Row(
           children: <Widget>[
             Text(
@@ -214,10 +215,10 @@ class ExpandedEventItem extends StatelessWidget {
                 color: Colors.grey.shade600,
               ),
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Text(
               date,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.w300,
                 fontSize: 12,
                 color: Colors.grey,
@@ -225,7 +226,7 @@ class ExpandedEventItem extends StatelessWidget {
             ),
           ],
         ),
-        Spacer(),
+        const Spacer(),
         Row(
           children: <Widget>[
             Icon(Icons.place, color: Colors.grey.shade400, size: 16),

@@ -2,10 +2,9 @@ import 'dart:developer';
 
 import 'package:borgiaflutterapp/controllers/sale_list_controller.dart';
 import 'package:borgiaflutterapp/controllers/shop_controller.dart';
-import 'package:borgiaflutterapp/models/sale_list_model.dart';
+import 'package:borgiaflutterapp/widget/line_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../models/year_salelist_model.dart';
 import '../../routes/route_helper.dart';
@@ -13,7 +12,7 @@ import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
-import '../../widget/doughnut_chart.dart';
+import '../../widget/line_chart_2.dart';
 
 class StatsPage extends StatefulWidget {
   const StatsPage({Key? key}) : super(key: key);
@@ -40,16 +39,22 @@ class _StatsPageState extends State<StatsPage> {
 
           //inspect(shopList);
 
-          Map shop_id_name_map = {for (var v in shopList) v.id: v.name};
+          Map shopIdNameMap = {for (var v in shopList) v.id: v.name};
+
+          bool deleteZeros = true;
 
           for (var i = 0; i < saleListController.saleList.length; i++) {
             var priceSum = saleListController.saleList[i].priceSum;
 
-            if (saleListController.saleList[i].priceSum == null) {
+            if (saleListController.saleList[i].priceSum == null && deleteZeros == false) {
               priceSum = 0.0;
+              saleListData.add(_SalesData(saleListController.saleList[i].startDay, priceSum));
             }
 
-            saleListData.add(_SalesData(saleListController.saleList[i].startDay, priceSum));
+            if (saleListController.saleList[i].priceSum != null) {
+              deleteZeros = false;
+              saleListData.add(_SalesData(saleListController.saleList[i].startDay, priceSum));
+            }
           }
 
           //inspect(saleListController.saleList);
@@ -62,13 +67,15 @@ class _StatsPageState extends State<StatsPage> {
             listeDesVentes.add(saleListModel);
           }
 
+          inspect(listeDesVentes);
+
           List nbOccurVenteShop = [];
 
           for (var i = 0; i < listeDesVentes.length; i++) {
             //nbOccurVenteShop.add(shop_id_name_map[listeDesVentes[i].shop]);
           }
 
-          Map mapOccurenceVenteShop = Map();
+          Map mapOccurenceVenteShop = {};
 
           /*  for (var shopId in nbOccurVenteShop) {
             if (!mapOccurenceVenteShop.containsKey(shopId)) {
@@ -99,7 +106,7 @@ class _StatsPageState extends State<StatsPage> {
                               onTap: () {
                                 Get.toNamed(RouteHelper.getInitial());
                               },
-                              child: Icon(
+                              child: const Icon(
                                 Icons.arrow_back_ios,
                                 color: AppColors.titleColor,
                               )),
@@ -113,38 +120,15 @@ class _StatsPageState extends State<StatsPage> {
                       ),
                     ),
                     //Initialize the chart widget
-                    Container(
+                    SizedBox(
                       height: Dimensions.height20 * 15,
-                      child: SfCartesianChart(
-                          primaryXAxis: CategoryAxis(),
-                          // Chart title
-                          title: ChartTitle(text: 'Half yearly sales analysis'),
-                          // Enable legend
-                          legend: Legend(isVisible: true),
-                          // Enable tooltip
-                          tooltipBehavior: TooltipBehavior(enable: true),
-                          series: <ChartSeries<_SalesData, String>>[
-                            LineSeries<_SalesData, String>(
-                                dataSource: saleListData,
-                                xValueMapper: (_SalesData sales, _) => sales.datetime,
-                                yValueMapper: (_SalesData sales, _) => sales.sales,
-                                name: 'Sales',
-                                // Enable data label
-                                dataLabelSettings: DataLabelSettings(isVisible: true))
-                          ]),
+                      child: LineChartWidget(),
                     ),
 
-                    Container(
-                        child: DonutChart(
-                      mapOccurenceVenteShop: mapOccurenceVenteShop,
-                    )),
-                    Container(
-                        child: DonutChart(
-                      mapOccurenceVenteShop: mapOccurenceVenteShop,
-                    )),
+                    Container(child: LineChartSample2()),
                   ]),
                 )
-              : CircularProgressIndicator(
+              : const CircularProgressIndicator(
                   color: AppColors.mainColor,
                 );
         }));

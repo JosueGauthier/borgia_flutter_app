@@ -5,7 +5,6 @@ import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:sa3_liquid/sa3_liquid.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 import 'package:get/get.dart';
 
@@ -19,7 +18,7 @@ import '../../widget/slider_bottom_section.dart';
 import '../../widget/small_text.dart';
 
 class WelcomePage extends StatefulWidget {
-  WelcomePage({Key? key}) : super(key: key);
+  const WelcomePage({Key? key}) : super(key: key);
 
   @override
   State<WelcomePage> createState() => _WelcomePageState();
@@ -168,7 +167,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                 child: Center(
                                   child: Container(
                                     height: Dimensions.listviewTextHeigth * 0.8,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         //color: Colors.greenAccent,
                                         ),
                                     child: Padding(
@@ -324,7 +323,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                     itemBuilder: ((context, index) {
                                       return ClipRRect(
                                         child: Align(
-                                          child: Container(
+                                          child: SizedBox(
                                             height: Dimensions.height45 * 4,
                                             child: Card(
                                               elevation: 2,

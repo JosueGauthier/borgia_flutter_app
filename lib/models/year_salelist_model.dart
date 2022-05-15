@@ -10,9 +10,9 @@ class YearChartModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['start_day'] = this.startDay;
-    data['price_sum'] = this.priceSum;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['start_day'] = startDay;
+    data['price_sum'] = priceSum;
     return data;
   }
 }
