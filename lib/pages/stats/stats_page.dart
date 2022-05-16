@@ -1,12 +1,13 @@
 import 'package:borgiaflutterapp/controllers/sale_list_controller.dart';
 import 'package:borgiaflutterapp/controllers/shop_controller.dart';
+import 'package:borgiaflutterapp/controllers/shop_stat_controller.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'dart:math' as math;
 
 import '../../routes/route_helper.dart';
-
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
@@ -24,6 +25,8 @@ class _StatsPageState extends State<StatsPage> {
   @override
   Widget build(BuildContext context) {
     Get.find<SaleListController>().getSaleList();
+
+    Get.find<ShopStatController>().getShopStatList();
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -217,20 +220,29 @@ class _StatsPageState extends State<StatsPage> {
                     )),
                 //!Pie chart
 
-                Container(
-                  //color: Colors.redAccent,
-                  height: 400,
-                  width: 400,
-                  child: PieChart(
-                    PieChartData(
-                        borderData: FlBorderData(
-                          show: false,
-                        ),
-                        sectionsSpace: 0,
-                        centerSpaceRadius: 0,
-                        sections: showingSections()),
-                  ),
-                ),
+                GetBuilder<ShopStatController>(builder: (shopStatController) {
+                  if (shopStatController.isLoaded) {
+                    return Container(
+                      //color: Colors.redAccent,
+                      height: 400,
+                      width: 400,
+                      child: PieChart(
+                        PieChartData(
+                            borderData: FlBorderData(
+                              show: false,
+                            ),
+                            sectionsSpace: 0,
+                            centerSpaceRadius: 0,
+                            sections: showingSections(shopStatController.shopStatList)),
+                      ),
+                    );
+                  } else {
+                    return Center(
+                        child: CircularProgressIndicator(
+                      color: AppColors.mainColor,
+                    ));
+                  }
+                }),
               ]),
             );
           } else {
@@ -279,8 +291,8 @@ Widget leftTitleWidgets(double value, TitleMeta meta) {
   return Padding(child: text, padding: const EdgeInsets.only(top: 8.0));
 }
 
-List<PieChartSectionData> showingSections() {
-  return List.generate(4, (i) {
+List<PieChartSectionData> showingSections(List shopStatList) {
+  return List.generate(shopStatList.length, (i) {
     /* final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 20.0 : 16.0;
       final radius = isTouched ? 110.0 : 100.0;
@@ -344,7 +356,19 @@ List<PieChartSectionData> showingSections() {
           badgePositionPercentageOffset: .98,
         );
       default:
-        throw 'Oh no';
+        return PieChartSectionData(
+          color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+          value: 15,
+          title: '15%',
+          radius: 100,
+          titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+          /* badgeWidget: _Badge(
+              'assets/worker-svgrepo-com.svg',
+              size: widgetSize,
+              borderColor: const Color(0xff13d38e),
+            ), */
+          badgePositionPercentageOffset: .98,
+        );
     }
   });
 }
