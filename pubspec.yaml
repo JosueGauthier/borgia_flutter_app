@@ -27,17 +27,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  flutter_keyboard_visibility: ^5.2.0
-  simple_animations: ^4.0.2
   sa3_liquid: ^1.0.1
-  equatable: ^2.0.3
   animated_text_kit: ^4.2.1
-  #http: ^0.13.4
   cached_network_image: ^3.2.0
-  flutter_svg: ^1.0.3
-  google_fonts: ^2.3.1
   shared_preferences : ^2.0.11
-  persistent_bottom_nav_bar: ^4.0.2
   intl : ^0.17.0
 
   syncfusion_flutter_charts: ^20.1.52
@@ -46,6 +39,8 @@ dependencies:
   get: ^4.6.1
   flutter:
     sdk: flutter
+
+  fl_chart: ^0.50.1
 
 
 

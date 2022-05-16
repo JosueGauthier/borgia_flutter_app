@@ -5,7 +5,6 @@ import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:sa3_liquid/sa3_liquid.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 import 'package:get/get.dart';
 

@@ -1,30 +1,26 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/controllers/sale_list_controller.dart';
 import 'package:borgiaflutterapp/controllers/shop_controller.dart';
-import 'package:borgiaflutterapp/models/sale_list_model.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:intl/intl.dart';
 
-import '../../models/year_salelist_model.dart';
 import '../../routes/route_helper.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
-import '../../widget/doughnut_chart.dart';
+
+Map datetimeMap = {};
 
 class StatsPage extends StatefulWidget {
-  const StatsPage({Key? key}) : super(key: key);
+  StatsPage({Key? key}) : super(key: key);
 
   @override
   State<StatsPage> createState() => _StatsPageState();
 }
 
 class _StatsPageState extends State<StatsPage> {
-  //List<_SalesData> data = [_SalesData('Jan', 35), _SalesData('Feb', 28), _SalesData('Mar', 34), _SalesData('Apr', 32), _SalesData('May', 40)];
-
   @override
   Widget build(BuildContext context) {
     Get.find<SaleListController>().getSaleList();
@@ -32,121 +28,177 @@ class _StatsPageState extends State<StatsPage> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: GetBuilder<SaleListController>(builder: (saleListController) {
-          List<_SalesData> saleListData = [];
+          if (saleListController.isLoaded) {
+            List<_SalesData> saleListData = [];
 
-          ShopController shopController = Get.find();
+            ShopController shopController = Get.find();
 
-          List shopList = shopController.shopList;
+            bool deleteZeros = true;
 
-          //inspect(shopList);
+            List<FlSpot>? listeDesVentes = [];
 
-          Map shop_id_name_map = {for (var v in shopList) v.id: v.name};
+            List listeVentes = [];
 
-          for (var i = 0; i < saleListController.saleList.length; i++) {
-            var priceSum = saleListController.saleList[i].priceSum;
+            List linspace = [];
 
-            if (saleListController.saleList[i].priceSum == null) {
-              priceSum = 0.0;
+            for (var i = 0; i < saleListController.saleList.length; i++) {
+              var priceSum = saleListController.saleList[i].priceSum;
+
+              if (saleListController.saleList[i].priceSum == null && deleteZeros == false) {
+                priceSum = 0.0;
+                //saleListData.add(_SalesData(saleListController.saleList[i].startDay, priceSum));
+
+                DateTime dt = DateTime.parse(saleListController.saleList[i].startDay);
+
+                double timeSecond = dt.millisecondsSinceEpoch.toDouble();
+
+                FlSpot flSpot = FlSpot(timeSecond / 100000, priceSum);
+
+                listeDesVentes.add(flSpot);
+                listeVentes.add(timeSecond / 100000);
+              }
+
+              if (saleListController.saleList[i].priceSum != null) {
+                deleteZeros = false;
+                //saleListData.add(_SalesData(saleListController.saleList[i].startDay, priceSum));
+
+                DateTime dt = DateTime.parse(saleListController.saleList[i].startDay);
+
+                double timeSecond = dt.millisecondsSinceEpoch.toDouble();
+
+                FlSpot flSpot = FlSpot(timeSecond / 100000, priceSum);
+
+                listeDesVentes.add(flSpot);
+                listeVentes.add(timeSecond / 100000);
+              }
             }
 
-            saleListData.add(_SalesData(saleListController.saleList[i].startDay, priceSum));
-          }
+            double delta;
 
-          //inspect(saleListController.saleList);
+            int nombreLegende = 5;
 
-          List listeDesVentes = [];
+            delta = (listeVentes[(listeVentes.length) - 1] - listeVentes[0]) / nombreLegende;
 
-          for (var i = 0; i < saleListController.saleList.length; i++) {
-            YearChartModel saleListModel = saleListController.saleList[i];
+            linspace = List<double>.generate(nombreLegende, (i) => listeVentes[0] + delta * i);
 
-            listeDesVentes.add(saleListModel);
-          }
+            for (var i = 0; i < linspace.length; i++) {
+              int lin = linspace[i].toInt();
+              DateTime date = DateTime.fromMillisecondsSinceEpoch(lin * 100000);
 
-          List nbOccurVenteShop = [];
+              var format = DateFormat('dd-MM');
+              var dateString = format.format(date);
 
-          for (var i = 0; i < listeDesVentes.length; i++) {
-            //nbOccurVenteShop.add(shop_id_name_map[listeDesVentes[i].shop]);
-          }
-
-          Map mapOccurenceVenteShop = Map();
-
-          /*  for (var shopId in nbOccurVenteShop) {
-            if (!mapOccurenceVenteShop.containsKey(shopId)) {
-              mapOccurenceVenteShop[shopId] = 1;
-            } else {
-              mapOccurenceVenteShop[shopId] += 1;
+              datetimeMap[linspace[i]] = dateString;
             }
-          } */
 
-          return saleListController.isLoaded
-              ? SingleChildScrollView(
-                  child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                    Container(
-                      height: Dimensions.height45 * 2.7,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(Dimensions.height20),
-                            bottomRight: Radius.circular(Dimensions.height20),
-                          )),
-                      margin: EdgeInsets.only(bottom: Dimensions.height10),
-                      padding:
-                          EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          GestureDetector(
-                              onTap: () {
-                                Get.toNamed(RouteHelper.getInitial());
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios,
-                                color: AppColors.titleColor,
-                              )),
-                          BigText(
-                            fontTypo: 'Montserrat-Bold',
-                            text: "Statistiques",
-                            size: Dimensions.height10 * 3,
+            return SingleChildScrollView(
+              child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                Container(
+                  height: Dimensions.height45 * 2.7,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(Dimensions.height20),
+                        bottomRight: Radius.circular(Dimensions.height20),
+                      )),
+                  margin: EdgeInsets.only(bottom: Dimensions.height10),
+                  padding:
+                      EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      GestureDetector(
+                          onTap: () {
+                            Get.toNamed(RouteHelper.getInitial());
+                          },
+                          child: Icon(
+                            Icons.arrow_back_ios,
                             color: AppColors.titleColor,
-                          ),
-                        ],
+                          )),
+                      BigText(
+                        fontTypo: 'Montserrat-Bold',
+                        text: "Statistiques",
+                        size: Dimensions.height10 * 3,
+                        color: AppColors.titleColor,
                       ),
-                    ),
-                    //Initialize the chart widget
-                    Container(
-                      height: Dimensions.height20 * 15,
-                      child: SfCartesianChart(
-                          primaryXAxis: CategoryAxis(),
-                          // Chart title
-                          title: ChartTitle(text: 'Half yearly sales analysis'),
-                          // Enable legend
-                          legend: Legend(isVisible: true),
-                          // Enable tooltip
-                          tooltipBehavior: TooltipBehavior(enable: true),
-                          series: <ChartSeries<_SalesData, String>>[
-                            LineSeries<_SalesData, String>(
-                                dataSource: saleListData,
-                                xValueMapper: (_SalesData sales, _) => sales.datetime,
-                                yValueMapper: (_SalesData sales, _) => sales.sales,
-                                name: 'Sales',
-                                // Enable data label
-                                dataLabelSettings: DataLabelSettings(isVisible: true))
-                          ]),
-                    ),
-
-                    Container(
-                        child: DonutChart(
-                      mapOccurenceVenteShop: mapOccurenceVenteShop,
-                    )),
-                    Container(
-                        child: DonutChart(
-                      mapOccurenceVenteShop: mapOccurenceVenteShop,
-                    )),
-                  ]),
-                )
-              : CircularProgressIndicator(
-                  color: AppColors.mainColor,
-                );
+                    ],
+                  ),
+                ),
+                Container(
+                    height: 400,
+                    width: 400,
+                    child: LineChart(LineChartData(
+                      titlesData: FlTitlesData(
+                        show: true,
+                        bottomTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: false,
+                            reservedSize: 30,
+                            //getTitlesWidget: bottomTitleWidgets,
+                            interval: 1,
+                          ),
+                        ),
+                        leftTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            //getTitlesWidget: leftTitleWidgets,
+                            reservedSize: 42,
+                            interval: 5,
+                          ),
+                        ),
+                        topTitles: AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
+                        ),
+                        rightTitles: AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
+                        ),
+                      ),
+                      gridData: FlGridData(
+                        show: true,
+                        drawVerticalLine: true,
+                        horizontalInterval: 1,
+                        verticalInterval: 1,
+                        getDrawingHorizontalLine: (value) {
+                          return FlLine(
+                            //color: const Color(0xff37434d),
+                            color: AppColors.whiteGreyColor,
+                            strokeWidth: 1,
+                          );
+                        },
+                        getDrawingVerticalLine: (value) {
+                          return FlLine(
+                            color: Colors.white,
+                            strokeWidth: 1,
+                          );
+                        },
+                      ),
+                      lineBarsData: [
+                        LineChartBarData(
+                          spots: listeDesVentes,
+                          isCurved: true,
+                          //curveSmoothness: 0.5,
+                          preventCurveOverShooting: true,
+                          barWidth: 5,
+                          dotData: FlDotData(
+                            show: false,
+                          ),
+                          isStrokeCapRound: true,
+                          isStrokeJoinRound: true,
+                          belowBarData: BarAreaData(
+                            show: true,
+                          ),
+                        ),
+                      ],
+                    ))),
+              ]),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(
+                color: AppColors.mainColor,
+              ),
+            );
+          }
         }));
   }
 }
@@ -156,4 +208,20 @@ class _SalesData {
 
   final String datetime;
   final double sales;
+}
+
+Widget bottomTitleWidgets(double value, TitleMeta meta) {
+  const style = TextStyle(
+    color: Color(0xff68737d),
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
+  );
+
+  Widget text = Text('', style: style);
+
+  if (datetimeMap.containsKey(value)) {
+    text = Text(datetimeMap[value], style: style);
+  }
+
+  return Padding(child: text, padding: const EdgeInsets.only(top: 8.0));
 }

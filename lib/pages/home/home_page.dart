@@ -1,19 +1,9 @@
-import 'package:borgiaflutterapp/pages/cart/cart_history.dart';
-import 'package:borgiaflutterapp/pages/cart/cart_page.dart';
-import 'package:borgiaflutterapp/pages/fav_products/fav_page.dart';
-import 'package:borgiaflutterapp/pages/money/rechargement_Lydia_page.dart';
-import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 import 'package:borgiaflutterapp/pages/stats/stats_page.dart';
-import 'package:borgiaflutterapp/pages/test/testparallax.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../controllers/cart_controller.dart';
 import '../../controllers/shop_controller.dart';
 import '../../utils/colors.dart';
 import '../search/searchpage.dart';
@@ -27,8 +17,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late PersistentTabController _controller;
-
   Future<void> _loadRessources() async {
     //! Use it to clean sharedpreferences
     //SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -66,7 +54,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    _controller = PersistentTabController(initialIndex: 0);
     _loadRessources();
   }
 
