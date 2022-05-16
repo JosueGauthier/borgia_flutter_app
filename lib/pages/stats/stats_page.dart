@@ -93,6 +93,7 @@ class _StatsPageState extends State<StatsPage> {
 
             return SingleChildScrollView(
               child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                //! header
                 Container(
                   height: Dimensions.height45 * 2.7,
                   decoration: BoxDecoration(
@@ -124,6 +125,7 @@ class _StatsPageState extends State<StatsPage> {
                     ],
                   ),
                 ),
+                //! Line graph
                 Container(
                     height: Dimensions.height100 * 3,
                     width: double.maxFinite,
@@ -213,6 +215,22 @@ class _StatsPageState extends State<StatsPage> {
                       //swapAnimationDuration: Duration(milliseconds: 1050), // Optional
                       //swapAnimationCurve: Curves.linear, // Optional
                     )),
+                //!Pie chart
+
+                Container(
+                  //color: Colors.redAccent,
+                  height: 400,
+                  width: 400,
+                  child: PieChart(
+                    PieChartData(
+                        borderData: FlBorderData(
+                          show: false,
+                        ),
+                        sectionsSpace: 0,
+                        centerSpaceRadius: 0,
+                        sections: showingSections()),
+                  ),
+                ),
               ]),
             );
           } else {
@@ -259,4 +277,74 @@ Widget leftTitleWidgets(double value, TitleMeta meta) {
   Widget text = Text(value.toString(), style: style);
 
   return Padding(child: text, padding: const EdgeInsets.only(top: 8.0));
+}
+
+List<PieChartSectionData> showingSections() {
+  return List.generate(4, (i) {
+    /* final isTouched = i == touchedIndex;
+      final fontSize = isTouched ? 20.0 : 16.0;
+      final radius = isTouched ? 110.0 : 100.0;
+      final widgetSize = isTouched ? 55.0 : 40.0; */
+
+    switch (i) {
+      case 0:
+        return PieChartSectionData(
+          color: const Color(0xff0293ee),
+          value: 40,
+          title: '40%',
+          radius: 100,
+          titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+          /* badgeWidget: _Badge(
+              'assets/ophthalmology-svgrepo-com.svg',
+              size: widgetSize,
+              borderColor: const Color(0xff0293ee),
+            ), */
+          badgePositionPercentageOffset: .98,
+        );
+      case 1:
+        return PieChartSectionData(
+          color: const Color(0xfff8b250),
+          value: 30,
+          title: '30%',
+          radius: 100,
+          titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+          /* badgeWidget: _Badge(
+              'assets/librarian-svgrepo-com.svg',
+              size: widgetSize,
+              borderColor: const Color(0xfff8b250),
+            ), */
+          badgePositionPercentageOffset: .98,
+        );
+      case 2:
+        return PieChartSectionData(
+          color: const Color(0xff845bef),
+          value: 16,
+          title: '16%',
+          radius: 100,
+          titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+          /* badgeWidget: _Badge(
+              'assets/fitness-svgrepo-com.svg',
+              size: widgetSize,
+              borderColor: const Color(0xff845bef),
+            ), */
+          badgePositionPercentageOffset: .98,
+        );
+      case 3:
+        return PieChartSectionData(
+          color: const Color(0xff13d38e),
+          value: 15,
+          title: '15%',
+          radius: 100,
+          titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+          /* badgeWidget: _Badge(
+              'assets/worker-svgrepo-com.svg',
+              size: widgetSize,
+              borderColor: const Color(0xff13d38e),
+            ), */
+          badgePositionPercentageOffset: .98,
+        );
+      default:
+        throw 'Oh no';
+    }
+  });
 }
