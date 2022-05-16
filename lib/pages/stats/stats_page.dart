@@ -125,71 +125,94 @@ class _StatsPageState extends State<StatsPage> {
                   ),
                 ),
                 Container(
-                    height: 400,
-                    width: 400,
-                    child: LineChart(LineChartData(
-                      titlesData: FlTitlesData(
-                        show: true,
-                        bottomTitles: AxisTitles(
-                          sideTitles: SideTitles(
-                            showTitles: false,
-                            reservedSize: 30,
-                            //getTitlesWidget: bottomTitleWidgets,
-                            interval: 1,
+                    height: Dimensions.height100 * 3,
+                    width: double.maxFinite,
+                    margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                    child: LineChart(
+                      LineChartData(
+                        borderData: FlBorderData(show: false),
+                        titlesData: FlTitlesData(
+                          show: true,
+                          bottomTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              reservedSize: 30,
+                              getTitlesWidget: bottomTitleWidgets,
+                              interval: 2,
+                            ),
+                          ),
+                          leftTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              getTitlesWidget: leftTitleWidgets,
+                              reservedSize: 42,
+                              interval: 5,
+                            ),
+                          ),
+                          topTitles: AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          rightTitles: AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
                           ),
                         ),
-                        leftTitles: AxisTitles(
-                          sideTitles: SideTitles(
-                            showTitles: true,
-                            //getTitlesWidget: leftTitleWidgets,
-                            reservedSize: 42,
-                            interval: 5,
+                        gridData: FlGridData(
+                          show: true,
+                          drawVerticalLine: true,
+                          horizontalInterval: 1,
+                          verticalInterval: 1,
+                          getDrawingHorizontalLine: (value) {
+                            return FlLine(
+                              //color: const Color(0xff37434d),
+                              color: AppColors.whiteGreyColor,
+                              strokeWidth: 1,
+                            );
+                          },
+                          getDrawingVerticalLine: (value) {
+                            return FlLine(
+                              color: Colors.white,
+                              strokeWidth: 1,
+                            );
+                          },
+                        ),
+                        lineBarsData: [
+                          LineChartBarData(
+                            gradient: LinearGradient(
+                              colors: [
+                                AppColors.secondColor,
+                                AppColors.mainColor,
+                              ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                            ),
+
+                            spots: listeDesVentes,
+                            isCurved: true,
+                            //curveSmoothness: 0.5,
+                            preventCurveOverShooting: true,
+                            barWidth: 0,
+                            dotData: FlDotData(
+                              show: false,
+                            ),
+                            isStrokeCapRound: true,
+                            isStrokeJoinRound: true,
+                            belowBarData: BarAreaData(
+                              show: true,
+                              gradient: LinearGradient(
+                                colors: [
+                                  AppColors.secondColor.withOpacity(0.5),
+                                  AppColors.mainColor,
+                                ],
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                              ),
+                            ),
                           ),
-                        ),
-                        topTitles: AxisTitles(
-                          sideTitles: SideTitles(showTitles: false),
-                        ),
-                        rightTitles: AxisTitles(
-                          sideTitles: SideTitles(showTitles: false),
-                        ),
+                        ],
                       ),
-                      gridData: FlGridData(
-                        show: true,
-                        drawVerticalLine: true,
-                        horizontalInterval: 1,
-                        verticalInterval: 1,
-                        getDrawingHorizontalLine: (value) {
-                          return FlLine(
-                            //color: const Color(0xff37434d),
-                            color: AppColors.whiteGreyColor,
-                            strokeWidth: 1,
-                          );
-                        },
-                        getDrawingVerticalLine: (value) {
-                          return FlLine(
-                            color: Colors.white,
-                            strokeWidth: 1,
-                          );
-                        },
-                      ),
-                      lineBarsData: [
-                        LineChartBarData(
-                          spots: listeDesVentes,
-                          isCurved: true,
-                          //curveSmoothness: 0.5,
-                          preventCurveOverShooting: true,
-                          barWidth: 5,
-                          dotData: FlDotData(
-                            show: false,
-                          ),
-                          isStrokeCapRound: true,
-                          isStrokeJoinRound: true,
-                          belowBarData: BarAreaData(
-                            show: true,
-                          ),
-                        ),
-                      ],
-                    ))),
+                      //swapAnimationDuration: Duration(milliseconds: 1050), // Optional
+                      //swapAnimationCurve: Curves.linear, // Optional
+                    )),
               ]),
             );
           } else {
@@ -222,6 +245,18 @@ Widget bottomTitleWidgets(double value, TitleMeta meta) {
   if (datetimeMap.containsKey(value)) {
     text = Text(datetimeMap[value], style: style);
   }
+
+  return Padding(child: text, padding: const EdgeInsets.only(top: 8.0));
+}
+
+Widget leftTitleWidgets(double value, TitleMeta meta) {
+  const style = TextStyle(
+    color: Color(0xff68737d),
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
+  );
+
+  Widget text = Text(value.toString(), style: style);
 
   return Padding(child: text, padding: const EdgeInsets.only(top: 8.0));
 }
