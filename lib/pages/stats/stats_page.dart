@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/controllers/sale_list_controller.dart';
 import 'package:borgiaflutterapp/controllers/shop_controller.dart';
 import 'package:borgiaflutterapp/controllers/shop_stat_controller.dart';
@@ -143,7 +145,7 @@ class _StatsPageState extends State<StatsPage> {
                               showTitles: true,
                               reservedSize: 30,
                               getTitlesWidget: bottomTitleWidgets,
-                              interval: 2,
+                              interval: 1,
                             ),
                           ),
                           leftTitles: AxisTitles(
@@ -215,26 +217,40 @@ class _StatsPageState extends State<StatsPage> {
                           ),
                         ],
                       ),
-                      //swapAnimationDuration: Duration(milliseconds: 1050), // Optional
-                      //swapAnimationCurve: Curves.linear, // Optional
                     )),
                 //!Pie chart
 
                 GetBuilder<ShopStatController>(builder: (shopStatController) {
                   if (shopStatController.isLoaded) {
-                    return Container(
-                      //color: Colors.redAccent,
-                      height: 400,
-                      width: 400,
-                      child: PieChart(
-                        PieChartData(
-                            borderData: FlBorderData(
-                              show: false,
-                            ),
-                            sectionsSpace: 0,
-                            centerSpaceRadius: 0,
-                            sections: showingSections(shopStatController.shopStatList)),
-                      ),
+                    return Column(
+                      children: [
+                        Container(
+                          height: Dimensions.height30 * 10,
+                          width: double.maxFinite,
+                          child: PieChart(
+                            PieChartData(
+                                borderData: FlBorderData(
+                                  show: false,
+                                ),
+                                sectionsSpace: 0,
+                                centerSpaceRadius: 0,
+                                sections: showingSectionsNumberSale(shopStatController.shopStatList)),
+                          ),
+                        ),
+                        Container(
+                          height: Dimensions.height30 * 10,
+                          width: double.maxFinite,
+                          child: PieChart(
+                            PieChartData(
+                                borderData: FlBorderData(
+                                  show: false,
+                                ),
+                                sectionsSpace: 0,
+                                centerSpaceRadius: 0,
+                                sections: showingSectionsAmountSale(shopStatController.shopStatList)),
+                          ),
+                        ),
+                      ],
                     );
                   } else {
                     return Center(
@@ -291,84 +307,42 @@ Widget leftTitleWidgets(double value, TitleMeta meta) {
   return Padding(child: text, padding: const EdgeInsets.only(top: 8.0));
 }
 
-List<PieChartSectionData> showingSections(List shopStatList) {
+List<PieChartSectionData> showingSectionsNumberSale(List shopStatList) {
   return List.generate(shopStatList.length, (i) {
-    /* final isTouched = i == touchedIndex;
-      final fontSize = isTouched ? 20.0 : 16.0;
-      final radius = isTouched ? 110.0 : 100.0;
-      final widgetSize = isTouched ? 55.0 : 40.0; */
-
-    switch (i) {
-      case 0:
-        return PieChartSectionData(
-          color: const Color(0xff0293ee),
-          value: 40,
-          title: '40%',
-          radius: 100,
-          titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-          /* badgeWidget: _Badge(
+    inspect(shopStatList);
+    return PieChartSectionData(
+      color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+      value: shopStatList[i].totalSaleOfShop.toDouble(),
+      title: shopStatList[i].name + "\n" + shopStatList[i].totalSaleOfShop.toString(),
+      radius: 100,
+      titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+      /* badgeWidget: _Badge(
               'assets/ophthalmology-svgrepo-com.svg',
               size: widgetSize,
               borderColor: const Color(0xff0293ee),
             ), */
-          badgePositionPercentageOffset: .98,
-        );
-      case 1:
-        return PieChartSectionData(
-          color: const Color(0xfff8b250),
-          value: 30,
-          title: '30%',
-          radius: 100,
-          titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-          /* badgeWidget: _Badge(
-              'assets/librarian-svgrepo-com.svg',
+      //badgePositionPercentageOffset: .98,
+    );
+  });
+}
+
+List<PieChartSectionData> showingSectionsAmountSale(List shopStatList) {
+  return List.generate(shopStatList.length, (i) {
+    inspect(shopStatList);
+    return PieChartSectionData(
+      color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+      value: (shopStatList[i].totalSaleAmountOfShop.priceSum == null) ? 0 : shopStatList[i].totalSaleAmountOfShop.priceSum.toDouble(),
+      title: (shopStatList[i].totalSaleAmountOfShop.priceSum == null)
+          ? shopStatList[i].name + "\n" + "0"
+          : shopStatList[i].name + "\n" + shopStatList[i].totalSaleAmountOfShop.priceSum.toString(),
+      radius: 100,
+      titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+      /* badgeWidget: _Badge(
+              'assets/ophthalmology-svgrepo-com.svg',
               size: widgetSize,
-              borderColor: const Color(0xfff8b250),
+              borderColor: const Color(0xff0293ee),
             ), */
-          badgePositionPercentageOffset: .98,
-        );
-      case 2:
-        return PieChartSectionData(
-          color: const Color(0xff845bef),
-          value: 16,
-          title: '16%',
-          radius: 100,
-          titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-          /* badgeWidget: _Badge(
-              'assets/fitness-svgrepo-com.svg',
-              size: widgetSize,
-              borderColor: const Color(0xff845bef),
-            ), */
-          badgePositionPercentageOffset: .98,
-        );
-      case 3:
-        return PieChartSectionData(
-          color: const Color(0xff13d38e),
-          value: 15,
-          title: '15%',
-          radius: 100,
-          titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-          /* badgeWidget: _Badge(
-              'assets/worker-svgrepo-com.svg',
-              size: widgetSize,
-              borderColor: const Color(0xff13d38e),
-            ), */
-          badgePositionPercentageOffset: .98,
-        );
-      default:
-        return PieChartSectionData(
-          color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
-          value: 15,
-          title: '15%',
-          radius: 100,
-          titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-          /* badgeWidget: _Badge(
-              'assets/worker-svgrepo-com.svg',
-              size: widgetSize,
-              borderColor: const Color(0xff13d38e),
-            ), */
-          badgePositionPercentageOffset: .98,
-        );
-    }
+      //badgePositionPercentageOffset: .98,
+    );
   });
 }
