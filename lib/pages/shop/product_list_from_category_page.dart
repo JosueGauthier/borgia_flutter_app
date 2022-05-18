@@ -120,11 +120,6 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                 pressed = !pressed;
                               });
 
-                              inspect(productModel);
-                              inspect(productListController);
-                              inspect(widget.categoryModuleId);
-                              inspect(widget.shopId);
-
                               showDialog(
                                   context: context,
                                   builder: (_) {

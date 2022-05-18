@@ -100,8 +100,6 @@ class _CategoryShopState extends State<CategoryShop> {
                             onTap: () {
                               //print(categoryModel.id);
 
-                              //inspect(categoryModel);
-
                               Get.toNamed(RouteHelper.getProductList(categoryModel.id!, categoryModel.moduleId!, widget.shopId, "home"));
                             },
                             child: Card(

@@ -25,7 +25,6 @@ class UserController extends GetxController {
   Future<void> getUserList(String username) async {
     Response response = await userRepo.getUserList(username);
     //print(response);
-    //inspect(response);
 
     if (kDebugMode) {
       print("User status code " + response.statusCode.toString());
@@ -46,8 +45,6 @@ class UserController extends GetxController {
 
       welcomeUserModel = userList[0];
       _isLoaded = true;
-
-      //inspect(_shopList);
 
       update();
     } else {}

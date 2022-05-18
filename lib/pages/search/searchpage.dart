@@ -102,9 +102,6 @@ class SearchPage extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         itemCount: searchController.searchList.length,
                         itemBuilder: ((context, index) {
-                          //inspect(searchController.searchList);
-                          //SearchModel searchModel = searchController.searchList[index];
-                          //SerachModel categoryModel = categoryOfShopController.categoryOfShopList[index];
                           return Container(
                             width: double.maxFinite,
                             height: Dimensions.width20 * 5,

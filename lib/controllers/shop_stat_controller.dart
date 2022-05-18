@@ -40,8 +40,6 @@ class ShopStatController extends GetxController {
       }
       _isLoaded = true;
 
-      //inspect(_shopList);
-
       update();
     } else {}
   }

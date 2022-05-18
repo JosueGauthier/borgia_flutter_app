@@ -36,8 +36,6 @@ class CategoryOfShopController extends GetxController {
       }
       _isLoaded = true;
 
-      //inspect(_productList);
-
       AppConstants.CAT_LIST_MODULE = _categoryOfShopList;
 
       update();

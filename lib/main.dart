@@ -2,6 +2,7 @@
 
 import 'package:borgiaflutterapp/controllers/product_controller.dart';
 import 'package:borgiaflutterapp/routes/route_helper.dart';
+import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -17,8 +18,8 @@ Future<void> main() async {
   await dep.init();
   runApp(const MyApp());
 
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  await preferences.clear();
+  //SharedPreferences preferences = await SharedPreferences.getInstance();
+  //await preferences.clear();
 }
 
 class MyApp extends StatelessWidget {
@@ -35,6 +36,14 @@ class MyApp extends StatelessWidget {
     //Get.find<RecommendedProductController>().getRecomendedProductList();
 
     return GetMaterialApp(
+      theme: ThemeData(
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: AppColors.mainColor,
+          selectionColor: AppColors.bluePastelColor,
+          selectionHandleColor: AppColors.bluePastelColor,
+        ),
+      ),
+
       defaultTransition: Transition.fadeIn,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

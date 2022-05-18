@@ -30,8 +30,6 @@ class CategoryFromProductController extends GetxController {
       }
       _isLoaded = true;
 
-      //inspect(_catList);
-
       AppConstants.CAT_LIST = _catList;
 
       update();

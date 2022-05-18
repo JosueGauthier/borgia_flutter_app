@@ -75,7 +75,6 @@ class _WelcomePageState extends State<WelcomePage> {
                       itemBuilder: (context, position) {
                         UserModel userModel = userController.userList[0];
                         //print("userbalance is " + userModel.balance.toString());
-                        //inspect(userModel);
 
                         //CategoryOfShopModel categoryModel = categoryOfShopController.categoryOfShopList[index];
 

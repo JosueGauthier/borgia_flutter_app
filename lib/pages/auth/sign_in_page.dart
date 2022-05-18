@@ -3,6 +3,7 @@
 import 'package:borgiaflutterapp/controllers/auth_controller.dart';
 import 'package:borgiaflutterapp/routes/route_helper.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
+import 'package:borgiaflutterapp/widget/big_text.dart';
 import 'package:borgiaflutterapp/widget/small_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -99,52 +100,70 @@ class _LoginPageState extends State<LoginPage> {
                               controller: usernameController,
                               decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(color: Colors.transparent),
-                                  borderRadius: BorderRadius.circular(5.5),
+                                  borderSide: const BorderSide(color: AppColors.titleColor),
+                                  borderRadius: BorderRadius.circular(50),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(color: Colors.transparent),
-                                  borderRadius: BorderRadius.circular(5.5),
+                                  borderSide: const BorderSide(color: AppColors.mainColor),
+                                  borderRadius: BorderRadius.circular(50),
                                 ),
-                                prefixIcon: const Icon(Icons.person, color: AppColors.greyColor),
+                                prefixIcon: const Icon(
+                                  Icons.person,
+                                  color: AppColors.titleColor,
+                                ),
                                 hintText: "Enter your username",
-                                //labelText: 'Name',
-                                hintStyle: const TextStyle(color: AppColors.greyColor),
+                                labelText: "Enter your username",
+                                labelStyle: TextStyle(
+                                  color: AppColors.titleColor,
+                                  fontSize: Dimensions.height20,
+                                ),
+                                hintStyle: const TextStyle(color: AppColors.titleColor),
                                 filled: true,
-                                fillColor: AppColors.whiteGreyColor,
+                                fillColor: Colors.white,
                               ),
                             ),
                           ])),
                       SizedBox(
-                        height: Dimensions.height10,
+                        height: Dimensions.height20,
                       ),
-                      Padding(
-                          padding: EdgeInsets.only(
-                            left: Dimensions.width20 * 2,
-                            right: Dimensions.width20 * 2,
-                          ),
-                          child: Column(children: <Widget>[
-                            TextFormField(
-                              obscureText: true,
-                              controller: passwordController,
-                              decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(color: Colors.transparent),
-                                  borderRadius: BorderRadius.circular(5.5),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(color: Colors.transparent),
-                                  borderRadius: BorderRadius.circular(5.5),
-                                ),
-                                prefixIcon: const Icon(Icons.person, color: AppColors.greyColor),
-                                hintText: "Enter your password",
-                                //labelText: 'Name',
-                                hintStyle: const TextStyle(color: AppColors.greyColor),
-                                filled: true,
-                                fillColor: AppColors.whiteGreyColor,
-                              ),
+                      Container(
+                        height: Dimensions.height20 * 3.4,
+                        width: Dimensions.width20 * 25,
+                        child: Padding(
+                            padding: EdgeInsets.only(
+                              left: Dimensions.width20 * 2,
+                              right: Dimensions.width20 * 2,
                             ),
-                          ])),
+                            child: Column(children: <Widget>[
+                              TextFormField(
+                                //style: TextStyle(),
+                                obscureText: true,
+                                controller: passwordController,
+                                decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(color: AppColors.titleColor),
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(color: AppColors.mainColor),
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  prefixIcon: const Icon(Icons.password, color: AppColors.titleColor),
+                                  //hintText: "Enter your password",
+                                  labelText: 'Enter your password',
+                                  //hintStyle: const TextStyle(color: AppColors.titleColor),
+
+                                  labelStyle: TextStyle(
+                                    color: AppColors.titleColor,
+                                    fontSize: Dimensions.height20,
+                                  ),
+
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                ),
+                              ),
+                            ])),
+                      ),
                       SizedBox(
                         height: Dimensions.height15,
                       ),
@@ -167,22 +186,33 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      ElevatedButton(
-                          child: SmallText(
-                            text: "Login",
-                            size: Dimensions.height20,
-                            color: AppColors.greyColor,
-                          ),
-                          onPressed: () {
-                            _login(authcontroller);
-                          },
-                          style: ButtonStyle(
-                              padding: MaterialStateProperty.all(
-                                  EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
-                              backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-                                if (states.contains(MaterialState.pressed)) return AppColors.secondColor;
-                                return AppColors.whiteGreyColor;
-                              })))
+                      Container(
+                        height: Dimensions.height20 * 3.3,
+                        width: double.maxFinite,
+                        padding: EdgeInsets.only(
+                          left: Dimensions.width20 * 2,
+                          right: Dimensions.width20 * 2,
+                        ),
+                        child: ElevatedButton(
+                            child: BigText(
+                              text: "Login",
+                              size: Dimensions.height20,
+                              color: Colors.white,
+                              fontTypo: 'Montserrat-Bold',
+                            ),
+                            onPressed: () {
+                              _login(authcontroller);
+                            },
+                            style: ButtonStyle(
+                                elevation: MaterialStateProperty.all(0),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: BorderSide(color: AppColors.whiteGreyColor))),
+                                padding: MaterialStateProperty.all(EdgeInsets.only(
+                                    left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
+                                backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                                  return AppColors.mainColor;
+                                }))),
+                      )
                     ],
                   ),
                 )

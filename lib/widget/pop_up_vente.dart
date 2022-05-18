@@ -176,11 +176,9 @@ class _MyDialogState extends State<MyDialog> {
 
                       _order(salesController);
 
-                      print(widget.productListController.inCartItem);
+                      //print(widget.productListController.inCartItem);
 
                       widget.productListController.sale_addItem(widget.productModel);
-
-                      inspect(widget.productListController.theCartController);
 
                       setState(() {
                         txtbuttonpressed = !txtbuttonpressed;

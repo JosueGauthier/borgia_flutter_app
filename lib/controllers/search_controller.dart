@@ -63,8 +63,6 @@ class SearchController extends GetxController {
       }
       _isLoaded = true;
 
-      //inspect(_productList);
-
       //update();
     } else {}
 
@@ -75,13 +73,9 @@ class SearchController extends GetxController {
         _searchList.add(UserModel.fromJson(responseBody[i]));
       }
       _isLoaded = true;
-
-      //inspect(_productList);
-
     } else {}
 
     print("the search list is : " + _searchList.toString());
-    //inspect(_searchList);
     update();
   }
 
@@ -96,19 +90,17 @@ class SearchController extends GetxController {
     if (response.statusCode == 200) {
       _searchList = [];
 
-      //print("response : " + response.body.toString());
+
 
       List responseBody = response.body;
 
-      //print("the length is " + response_body.length.toString());
-      //print("the shop number is " + response_body.length.toString());
+
 
       for (var i = 0; i < responseBody.length; i++) {
         _searchList.add(ProductModel.fromJson(responseBody[i]));
       }
       _isLoaded = true;
 
-      //inspect(_productList);
 
       update();
     } else {}

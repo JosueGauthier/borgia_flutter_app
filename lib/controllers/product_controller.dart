@@ -51,19 +51,12 @@ class ProductController extends GetxController {
     if (response.statusCode == 200) {
       _productList = [];
 
-      //print("response : " + response.body.toString());
-
       List responseBody = response.body;
-
-      //print("the length is " + response_body.length.toString());
-      //print("the shop number is " + response_body.length.toString());
 
       for (var i = 0; i < responseBody.length; i++) {
         _productList.add(ProductModel.fromJson(responseBody[i]));
       }
       _isLoaded = true;
-
-      //inspect(_productList);
 
       update();
     } else {}
@@ -91,8 +84,6 @@ class ProductController extends GetxController {
         _productList.add(ProductModel.fromJson(responseBody[i]));
       }
       _isLoaded = true;
-
-      //inspect(_productList);
 
       update();
     } else {}
