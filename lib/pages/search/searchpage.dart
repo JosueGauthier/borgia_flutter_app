@@ -114,8 +114,8 @@ class SearchPage extends StatelessWidget {
                               child: GestureDetector(
                                 onTap: () {
                                   if (searchController.searchList[index].runtimeType == UserModel) {
-                                    Get.find<OtherUserController>().getUserList(searchController.searchList[index].name);
-                                    Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].name, "searchPage"));
+                                    Get.find<OtherUserController>().getUserList(searchController.searchList[index].shopName);
+                                    Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].shopName, "searchPage"));
                                   }
                                   if (searchController.searchList[index].runtimeType == ShopModel) {
                                     Get.toNamed(RouteHelper.getCategoryListPage(searchController.searchList[index].id, "searchPage"));
@@ -167,7 +167,7 @@ class SearchPage extends StatelessWidget {
                                       height: Dimensions.width20 * 5,
                                       child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.center, children: [
                                         BigText(
-                                          text: (searchController.searchList[index].name.toString()).capitalize!,
+                                          text: (searchController.searchList[index].shopName.toString()).capitalize!,
                                           color: AppColors.darkGreyColor,
                                           size: Dimensions.height30 * 0.8,
                                         ),

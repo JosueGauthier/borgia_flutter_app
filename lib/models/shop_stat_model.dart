@@ -1,23 +1,23 @@
 class ShopStatModel {
   int? id;
-  String? name;
-  int? totalSaleOfShop;
+  String? shopName;
+  int? quantity;
   TotalSaleAmountOfShop? totalSaleAmountOfShop;
 
-  ShopStatModel({this.id, this.name, this.totalSaleOfShop, this.totalSaleAmountOfShop});
+  ShopStatModel({this.id, this.shopName, this.quantity, this.totalSaleAmountOfShop});
 
   ShopStatModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['name'];
-    totalSaleOfShop = json['total_sale_of_shop'];
+    shopName = json['name'];
+    quantity = json['total_sale_of_shop'];
     totalSaleAmountOfShop = json['total_sale_amount_of_shop'] != null ? new TotalSaleAmountOfShop.fromJson(json['total_sale_amount_of_shop']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['name'] = this.name;
-    data['total_sale_of_shop'] = this.totalSaleOfShop;
+    data['name'] = this.shopName;
+    data['total_sale_of_shop'] = this.quantity;
     if (this.totalSaleAmountOfShop != null) {
       data['total_sale_amount_of_shop'] = this.totalSaleAmountOfShop!.toJson();
     }

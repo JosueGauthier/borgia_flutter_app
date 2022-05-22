@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/controllers/user_shop_stat_controller.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +7,7 @@ import '../../controllers/sale_list_controller.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
-import 'dart:math' as math;
+import '../../widget/stat_widget/piechart.dart';
 
 Map datetimeMap = {};
 
@@ -31,11 +29,15 @@ class _MyStatPageState extends State<MyStatPage> {
 
             //!Pie chart
             GetBuilder<UserShopStatController>(builder: (userShopStatController) {
-              inspect(userShopStatController.userShopStatList);
-
               if (userShopStatController.isLoaded) {
+                List montantMagasins = userShopStatController.userShopStatList[0].montantMagasins;
                 return Column(
                   children: [
+                    CustomPiechartWigdet(
+                      statList: montantMagasins,
+                      colorList: ListStatColors.colorslist1,
+                      isImagePresent: true,
+                    ),
                     Container(
                       //color: Colors.greenAccent,
                       height: Dimensions.height30 * 10,
@@ -79,9 +81,10 @@ List<PieChartSectionData> showingSectionsNumberSale(List userShopStatList) {
 
   return List.generate(montantMagasins.length, (i) {
     return PieChartSectionData(
+      //Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
 
-      color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
-      value: montantMagasins[i].qteUserAchats.toDouble(), //userShopStatList[i].totalSaleOfShop.toDouble(),
+      color: ListStatColors.colorslist1[(ListStatColors.colorslist1.length / montantMagasins.length).toInt() * i],
+      value: montantMagasins[i].quantity.toDouble(), //userShopStatList[i].totalSaleOfShop.toDouble(),
       title: montantMagasins[i].shopName, //userShopStatList[i].name + "\n" + userShopStatList[i].totalSaleOfShop.toString(),
       radius: 100,
       titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),

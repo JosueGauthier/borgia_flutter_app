@@ -1,3 +1,4 @@
+import 'package:borgiaflutterapp/widget/stat_widget/piechart.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -183,6 +184,11 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
               if (shopStatController.isLoaded) {
                 return Column(
                   children: [
+                    CustomPiechartWigdet(
+                      statList: shopStatController.shopStatList,
+                      colorList: ListStatColors.colorslist3,
+                      isImagePresent: false,
+                    ),
                     Container(
                       height: Dimensions.height30 * 10,
                       width: double.maxFinite,
@@ -282,9 +288,11 @@ Widget leftTitleWidgets(double value, TitleMeta meta) {
 List<PieChartSectionData> showingSectionsNumberSale(List shopStatList) {
   return List.generate(shopStatList.length, (i) {
     return PieChartSectionData(
-      color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
-      value: shopStatList[i].totalSaleOfShop.toDouble(),
-      title: shopStatList[i].name + "\n" + shopStatList[i].totalSaleOfShop.toString(),
+      color: ListStatColors.colorslist5[(i.isEven)
+          ? (ListStatColors.colorslist5.length / shopStatList.length).toInt() * i
+          : (ListStatColors.colorslist5.length - (ListStatColors.colorslist5.length / shopStatList.length).toInt() * i)],
+      value: shopStatList[i].quantity.toDouble(),
+      title: shopStatList[i].shopName + "\n" + shopStatList[i].quantity.toString(),
       radius: 100,
       titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
       /* badgeWidget: _Badge(
@@ -300,11 +308,13 @@ List<PieChartSectionData> showingSectionsNumberSale(List shopStatList) {
 List<PieChartSectionData> showingSectionsAmountSale(List shopStatList) {
   return List.generate(shopStatList.length, (i) {
     return PieChartSectionData(
-      color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+      color: ListStatColors.colorslist10[(i.isEven)
+          ? (ListStatColors.colorslist10.length / shopStatList.length).toInt() * i
+          : (ListStatColors.colorslist10.length - (ListStatColors.colorslist10.length / shopStatList.length).toInt() * i)],
       value: (shopStatList[i].totalSaleAmountOfShop.priceSum == null) ? 0 : shopStatList[i].totalSaleAmountOfShop.priceSum.toDouble(),
       title: (shopStatList[i].totalSaleAmountOfShop.priceSum == null)
-          ? shopStatList[i].name + "\n" + "0"
-          : shopStatList[i].name + "\n" + shopStatList[i].totalSaleAmountOfShop.priceSum.toString(),
+          ? shopStatList[i].shopName + "\n" + "0"
+          : shopStatList[i].shopName + "\n" + shopStatList[i].totalSaleAmountOfShop.priceSum.toString(),
       radius: 100,
       titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
       /* badgeWidget: _Badge(
