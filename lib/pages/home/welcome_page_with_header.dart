@@ -25,95 +25,126 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
     return Scaffold(
         extendBody: true,
         backgroundColor: Colors.white,
-        body: GetBuilder<UserController>(builder: (userController) {
-          return (userController.isLoaded)
-              ? Column(children: [
-                  //! Showing the header
-                  Container(
-                    height: Dimensions.height45 * 2.7,
-                    decoration: BoxDecoration(
-                      //* without gradient
-
-                      color: Colors.white.withOpacity(0.1),
-                    ),
-                    margin: EdgeInsets.only(bottom: Dimensions.height10 / 10),
-                    padding:
-                        EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
-                    child: Center(
-                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                        (AppConstants.isfinishedRotate == false)
-                            ? DefaultTextStyle(
-                                style: TextStyle(
-                                    fontSize: Dimensions.height45 * 0.8, fontFamily: 'Montserrat-Bold', letterSpacing: 2, color: AppColors.titleColor),
-                                child: AnimatedTextKit(
-                                  animatedTexts: [
-                                    RotateAnimatedText('', duration: Duration(milliseconds: 200)),
-                                    RotateAnimatedText('Bonjour'),
-                                    RotateAnimatedText(userController.welcomeUserModel.surname!),
-                                    RotateAnimatedText('Boquette', rotateOut: false, duration: Duration(seconds: 2)),
-                                  ],
-                                  isRepeatingAnimation: false,
-                                  onFinished: () {
-                                    //print("aaaaa");
-                                    AppConstants.isfinishedRotate = true;
-                                    //isfinished = true;
-                                    setState(() {});
-                                  },
+        body: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: GetBuilder<UserController>(builder: (userController) {
+                  return (userController.isLoaded)
+                      ? Column(children: [
+                          Stack(
+                            children: [
+                              ShaderMask(
+                                shaderCallback: (rect) {
+                                  return LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [Colors.black, Colors.transparent],
+                                  ).createShader(Rect.fromLTRB(0, Dimensions.height20 * 7, rect.width, rect.height));
+                                },
+                                blendMode: BlendMode.dstIn,
+                                child: Image.asset(
+                                  "assets/image/cloitre.png",
+                                  fit: BoxFit.contain,
                                 ),
+                              ),
+
+                              //! Showing the header
+                              Container(
+                                height: Dimensions.height45 * 2.7,
+                                width: double.maxFinite,
+                                decoration: BoxDecoration(
+                                    //* without gradient
+
+                                    //color: Colors.greenAccent.withOpacity(1),
+                                    ),
+                                margin: EdgeInsets.only(bottom: Dimensions.height10 / 10),
+                                padding: EdgeInsets.only(
+                                    bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
+                                child: Center(
+                                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                                    (AppConstants.isfinishedRotate == false)
+                                        ? DefaultTextStyle(
+                                            style: TextStyle(
+                                                fontSize: Dimensions.height45 * 0.8, fontFamily: 'Montserrat-Bold', letterSpacing: 2, color: AppColors.white),
+                                            child: AnimatedTextKit(
+                                              animatedTexts: [
+                                                RotateAnimatedText('', duration: Duration(milliseconds: 200)),
+                                                RotateAnimatedText('Bonjour'),
+                                                RotateAnimatedText(userController.welcomeUserModel.surname!),
+                                                RotateAnimatedText('Boquette', rotateOut: false, duration: Duration(seconds: 2)),
+                                              ],
+                                              isRepeatingAnimation: false,
+                                              onFinished: () {
+                                                //print("aaaaa");
+                                                AppConstants.isfinishedRotate = true;
+                                                //isfinished = true;
+                                                setState(() {});
+                                              },
+                                            ),
+                                          )
+                                        : Text(
+                                            "Boquette",
+                                            style: TextStyle(
+                                                fontSize: Dimensions.height45 * 0.8, fontFamily: 'Montserrat-Bold', letterSpacing: 2, color: AppColors.white),
+                                          ),
+                                    Row(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            Get.toNamed(RouteHelper.getCartPage());
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.only(top: Dimensions.height10),
+                                            width: Dimensions.height45 * 1.2,
+                                            height: Dimensions.height45 * 1.2,
+                                            child: Icon(
+                                              Icons.history_rounded,
+                                              color: AppColors.white,
+                                              size: Dimensions.height20 * 1.5,
+                                            ),
+                                            //decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width15), color: AppColors.titleColor),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            Get.toNamed(RouteHelper.getProfilepage());
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.only(top: Dimensions.height10),
+                                            width: Dimensions.height45 * 1.2,
+                                            height: Dimensions.height45 * 1.2,
+                                            child: Icon(
+                                              Icons.settings_sharp,
+                                              color: AppColors.white,
+                                              size: Dimensions.height20 * 1.5,
+                                            ),
+                                            //decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width15), color: AppColors.titleColor),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ]),
+                                ),
+                              ),
+
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    height: Dimensions.height100 * 2.7,
+                                  ),
+                                  //! Showing the body
+                                  WelcomePage(),
+                                ],
                               )
-                            : Text(
-                                "Boquette",
-                                style: TextStyle(
-                                    fontSize: Dimensions.height45 * 0.8, fontFamily: 'Montserrat-Bold', letterSpacing: 2, color: AppColors.titleColor),
-                              ),
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Get.toNamed(RouteHelper.getCartPage());
-                              },
-                              child: Container(
-                                padding: EdgeInsets.only(top: Dimensions.height10),
-                                width: Dimensions.height45 * 1.2,
-                                height: Dimensions.height45 * 1.2,
-                                child: Icon(
-                                  Icons.history_rounded,
-                                  color: AppColors.titleColor,
-                                  size: Dimensions.height20 * 1.5,
-                                ),
-                                //decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width15), color: AppColors.titleColor),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Get.toNamed(RouteHelper.getProfilepage());
-                              },
-                              child: Container(
-                                padding: EdgeInsets.only(top: Dimensions.height10),
-                                width: Dimensions.height45 * 1.2,
-                                height: Dimensions.height45 * 1.2,
-                                child: Icon(
-                                  Icons.settings_sharp,
-                                  color: AppColors.titleColor,
-                                  size: Dimensions.height20 * 1.5,
-                                ),
-                                //decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width15), color: AppColors.titleColor),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ]),
-                    ),
-                  ),
-
-                  //! Showing the body
-
-                  Expanded(
-                      child: SingleChildScrollView(
-                    child: WelcomePage(),
-                  )),
-                ])
-              : Container();
-        }));
+                            ],
+                          ),
+                        ])
+                      : Center(child: CircularProgressIndicator());
+                }),
+              ),
+            ),
+          ],
+        ));
   }
 }

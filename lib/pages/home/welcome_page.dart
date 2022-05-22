@@ -238,65 +238,60 @@ class _WelcomePageState extends State<WelcomePage> {
                       onTap: () {
                         Get.toNamed(RouteHelper.getLydiaPage());
                       },
-                      child: GestureDetector(
-                        onTap: () {
-                          Get.toNamed(RouteHelper.getLydiaPage());
-                        },
-                        child: Stack(
-                          children: [
-                            Container(
-                              height: _height,
-                              margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  //borderRadius: BorderRadius.circular(Dimensions.radius30),
-                                  color: AppColors.secondColor,
-                                  backgroundBlendMode: BlendMode.srcOver,
+                      child: Stack(
+                        children: [
+                          Container(
+                            height: _height,
+                            margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                //borderRadius: BorderRadius.circular(Dimensions.radius30),
+                                color: AppColors.secondColor,
+                                backgroundBlendMode: BlendMode.srcOver,
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: const PlasmaRenderer(
+                                  type: PlasmaType.infinity,
+                                  particles: 6,
+                                  color: AppColors.mainColor, //Color(0x64d31418),
+                                  blur: 0.9,
+                                  size: 0.9,
+                                  speed: 1,
+                                  offset: 0,
+                                  blendMode: BlendMode.srcOver,
+                                  particleType: ParticleType.atlas,
+                                  variation1: 0,
+                                  variation2: 0,
+                                  variation3: 0,
+                                  rotation: 0,
                                 ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(30),
-                                  child: const PlasmaRenderer(
-                                    type: PlasmaType.infinity,
-                                    particles: 6,
-                                    color: AppColors.mainColor, //Color(0x64d31418),
-                                    blur: 0.9,
-                                    size: 0.9,
-                                    speed: 1,
-                                    offset: 0,
-                                    blendMode: BlendMode.srcOver,
-                                    particleType: ParticleType.atlas,
-                                    variation1: 0,
-                                    variation2: 0,
-                                    variation3: 0,
-                                    rotation: 0,
+                              ),
+                            ),
+                          ),
+                          Center(
+                            heightFactor: 1.9,
+                            child: BigText(
+                              fontTypo: 'OpenSansExtraBold',
+                              text: userModel.balance! + "€",
+                              color: Colors.white,
+                              size: Dimensions.height30 * 2.7,
+                            ),
+                          ),
+                          (double.parse(userModel.balance!) < 5)
+                              ? Positioned(
+                                  bottom: Dimensions.width10,
+                                  right: Dimensions.width10 * 3,
+                                  child: SmallText(
+                                    //fontTypo: 'OpenSansExtraBold',
+                                    text: "* Tap pour \n recharger",
+                                    color: Colors.white,
+                                    size: Dimensions.height30 / 2,
                                   ),
-                                ),
-                              ),
-                            ),
-                            Center(
-                              heightFactor: 1.5,
-                              child: BigText(
-                                fontTypo: 'OpenSansExtraBold',
-                                text: userModel.balance! + "€",
-                                color: Colors.white,
-                                size: Dimensions.height30 * 2.7,
-                              ),
-                            ),
-                            (double.parse(userModel.balance!) < 5)
-                                ? Positioned(
-                                    bottom: Dimensions.width10,
-                                    right: Dimensions.width10 * 3,
-                                    child: SmallText(
-                                      //fontTypo: 'OpenSansExtraBold',
-                                      text: "* Tap pour \n recharger",
-                                      color: Colors.white,
-                                      size: Dimensions.height30 / 2,
-                                    ),
-                                  )
-                                : Container(),
-                          ],
-                        ),
+                                )
+                              : Container(),
+                        ],
                       ),
                     )
                   : Container(
@@ -388,15 +383,15 @@ class _WelcomePageState extends State<WelcomePage> {
                             ))),
 
           //! Partie text
-          Align(
+          /* Align(
             alignment: Alignment.bottomLeft,
             child: Container(
               height: Dimensions.height45 * 1.5,
               margin: EdgeInsets.only(left: Dimensions.width30 * 1.1, right: Dimensions.width25, bottom: Dimensions.height30),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.radius30), topRight: Radius.circular(Dimensions.radius30)),
-                  color: AppColors.whiteGreyColor.withOpacity(0.9),
-                  boxShadow: const [
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.radius30), topRight: Radius.circular(Dimensions.radius30)),
+                      //color: AppColors.whiteGreyColor.withOpacity(0.9),
+                      boxShadow: const [
                     //BoxShadow(color: Color.fromARGB(255, 221, 216, 216), blurRadius: 10, offset: Offset(2, 5)),
                     //BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
                     //BoxShadow(color: Colors.white, offset: Offset(5, 0)),
@@ -405,7 +400,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   padding: EdgeInsets.only(top: Dimensions.height45 / 2, left: Dimensions.width25, right: Dimensions.width15),
                   child: SliderBottomSectionWidget(titletext: listItemsSlider[position][0])),
             ),
-          ),
+          ), */
         ],
       ),
     );
