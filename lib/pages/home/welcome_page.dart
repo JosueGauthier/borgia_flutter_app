@@ -14,7 +14,6 @@ import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
-import '../../widget/slider_bottom_section.dart';
 import '../../widget/small_text.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -35,7 +34,7 @@ class _WelcomePageState extends State<WelcomePage> {
   List<List<dynamic>> listItemsSlider = [
     ['Solde actuel', null],
     ['Rechargement', "lydia-logo.jpeg"],
-    ['Statistiques', "auto_label_full.png"]
+    ['Statistiques', "stat.png"]
   ];
 
   final int _nbItemSliderSection = 3;
@@ -65,10 +64,9 @@ class _WelcomePageState extends State<WelcomePage> {
 
         GetBuilder<UserController>(builder: (userController) {
           return userController.isLoaded
-              ? SizedBox(
+              ? Container(
                   //color: Colors.blue,
-                  height: Dimensions.height100 * 2.5,
-
+                  height: Dimensions.height100 * 2.2,
                   child: PageView.builder(
                       controller: pageController,
                       itemCount: _nbItemSliderSection, //popularProductsController.popularProductList.length,
@@ -86,6 +84,10 @@ class _WelcomePageState extends State<WelcomePage> {
 
         //!Dots section
 
+        SizedBox(
+          height: Dimensions.height10,
+        ),
+
         DotsIndicator(
           dotsCount: _nbItemSliderSection <= 0 ? 1 : _nbItemSliderSection,
           position: _currentPagevalue,
@@ -99,9 +101,9 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
 
         //!Liste de magasins items
-        SizedBox(
+        /*  SizedBox(
           height: Dimensions.height10,
-        ),
+        ), */
         Container(
           //color: Colors.amber,
           margin: EdgeInsets.only(left: Dimensions.width30),
@@ -241,6 +243,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       child: Stack(
                         children: [
                           Container(
+                            //color: Colors.greenAccent,
                             height: _height,
                             margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
                             child: Container(

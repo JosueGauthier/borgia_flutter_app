@@ -26,15 +26,11 @@ class AppConstants {
 
   static const String SHOP_STAT_URI = "/api-links/shops/shop-stat/";
 
+  static const String USER_SHOP_STAT_URI = "/api-links/sale/stat-user/?username=";
+
   static bool isfinishedRotate = false;
 
   //! auth end points
-
-  //http://localhost:8000/api-auth/login/
-
-  //http://localhost:8000/api-links/profile/
-
-  //http://localhost:8000/api-links/login/
 
   static const String REGISTRATION_URI = "/api-links/auth/";
   static const String LOGIN_URI = "/api-links/login/";
@@ -52,10 +48,6 @@ class AppConstants {
   static const int APP_VERSION = 1;
 
   static const String BASE_URL = "https://borgia.josue.to";
-
-  static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
-
-  static const String RECOMMENDED_PRODUCT_URI = "/ae4a7daedb41dd157811";
 
   static const String UPLOAD_URL = "/uploads/";
 

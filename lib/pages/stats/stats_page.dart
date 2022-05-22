@@ -1,9 +1,11 @@
 import 'package:borgiaflutterapp/controllers/sale_list_controller.dart';
 import 'package:borgiaflutterapp/controllers/shop_stat_controller.dart';
 import 'package:borgiaflutterapp/pages/stats/global_stat_page.dart';
+import 'package:borgiaflutterapp/pages/stats/personal_stat_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/user_shop_stat_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
@@ -23,6 +25,8 @@ class _StatsPageState extends State<StatsPage> {
 
     Get.find<ShopStatController>().getShopStatList();
 
+    Get.find<UserShopStatController>().getUserShopStatList();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
@@ -33,7 +37,7 @@ class _StatsPageState extends State<StatsPage> {
             //physics: ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
             children: [
               GlobalStatPage(),
-              Icon(Icons.directions_transit),
+              MyStatPage(),
               Icon(Icons.directions_bike),
             ],
           ),
