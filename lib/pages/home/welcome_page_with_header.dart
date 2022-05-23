@@ -135,6 +135,9 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                   ),
                                   //! Showing the body
                                   WelcomePage(),
+                                  SizedBox(
+                                    height: Dimensions.height100 * 0.5,
+                                  ),
                                 ],
                               )
                             ],

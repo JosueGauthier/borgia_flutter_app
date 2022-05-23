@@ -1,11 +1,9 @@
 import 'package:borgiaflutterapp/controllers/user_shop_stat_controller.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/sale_list_controller.dart';
 import '../../utils/colors.dart';
-import '../../utils/dimensions.dart';
 
 import '../../widget/stat_widget/piechart.dart';
 
@@ -41,9 +39,15 @@ class _MyStatPageState extends State<MyStatPage> {
                     ),
                     CustomPiechartWigdet(
                       statList: montantMagasins,
-                      colorList: ListStatColors.colorslist1,
+                      colorList: ListStatColors.colors_12_list13,
                       isImagePresent: true,
                       typeOfData: "amount",
+                    ),
+                    CustomPiechartWigdet(
+                      statList: montantMagasins,
+                      colorList: ListStatColors.colors_12_list14,
+                      isImagePresent: true,
+                      typeOfData: "percentage",
                     ),
                   ],
                 );

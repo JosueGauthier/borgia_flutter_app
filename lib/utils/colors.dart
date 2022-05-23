@@ -313,4 +313,117 @@ class ListStatColors {
     Color(0xFF1548DD),
     Color(0xFF0D41E1),
   ];
+
+  static List colors_12_list11 = [
+    Color(0xFF432371),
+    Color(0xFF543072),
+    Color(0xFF643C73),
+    Color(0xFF754974),
+    Color(0xFF865675),
+    Color(0xFF966276),
+    Color(0xFFA76F76),
+    Color(0xFFB77B77),
+    Color(0xFFC88878),
+    Color(0xFFD99579),
+    Color(0xFFE9A17A),
+    Color(0xFFFAAE7B),
+  ];
+
+  static List colors_12_list12 = [
+    Color(0xFF2D00F7),
+    Color(0xFF3F00ED),
+    Color(0xFF5100E3),
+    Color(0xFF6300D9),
+    Color(0xFF7500CF),
+    Color(0xFF8700C5),
+    Color(0xFF9800BB),
+    Color(0xFFAA00B1),
+    Color(0xFFBC00A7),
+    Color(0xFFCE009D),
+    Color(0xFFE00093),
+    Color(0xFFF20089),
+  ];
+
+  static List colors_12_list13 = [
+    Color(0xFF9381FF),
+    Color(0xFF9D89F9),
+    Color(0xFFA791F3),
+    Color(0xFFB099ED),
+    Color(0xFFBAA1E7),
+    Color(0xFFC4A9E1),
+    Color(0xFFCEB0DC),
+    Color(0xFFD8B8D6),
+    Color(0xFFE2C0D0),
+    Color(0xFFEBC8CA),
+    Color(0xFFF5D0C4),
+    Color(0xFFFFD8BE),
+  ];
+  static List colors_12_list14 = [
+    Color(0xFFFF6B6B),
+    Color(0xFFEA696A),
+    Color(0xFFD56768),
+    Color(0xFFC16467),
+    Color(0xFFAC6266),
+    Color(0xFF976064),
+    Color(0xFF825E63),
+    Color(0xFF6D5C61),
+    Color(0xFF585A60),
+    Color(0xFF44575F),
+    Color(0xFF2F555D),
+    Color(0xFF1A535C),
+  ];
+
+  static List colors_12_list15 = [
+    Color(0xFFFF6B6B),
+    Color(0xFFFF766B),
+    Color(0xFFFF816B),
+    Color(0xFFFF8D6C),
+    Color(0xFFFF986C),
+    Color(0xFFFFA36C),
+    Color(0xFFFFAE6C),
+    Color(0xFFFFB96C),
+    Color(0xFFFFC46C),
+    Color(0xFFFFD06D),
+    Color(0xFFFFDB6D),
+    Color(0xFFFFE66D),
+  ];
+
+  static List colors_10_list16 = [
+    Color(0xFFf72585),
+    Color(0xFFb5179e),
+    Color(0xFF7209b7),
+    Color(0xFF560bad),
+    Color(0xFF480ca8),
+    Color(0xFF3a0ca3),
+    Color(0xFF3f37c9),
+    Color(0xFF4361ee),
+    Color(0xFF4895ef),
+    Color(0xFF4cc9f0),
+  ];
+
+  static List colors_10_list17 = [
+    Color(0xFFf94144),
+    Color(0xFFf3722c),
+    Color(0xFFf8961e),
+    Color(0xFFf9844a),
+    Color(0xFFf9c74f),
+    Color(0xFF90be6d),
+    Color(0xFF43aa8b),
+    Color(0xFF4d908e),
+    Color(0xFF577590),
+    Color(0xFF277da1),
+  ];
+
+  static List colors_10_list18 = [
+    Color(0xFFfbf8cc),
+    Color(0xFFfde4cf),
+    Color(0xFFffcfd2),
+    Color(0xFFf1c0e8),
+    Color(0xFFcfbaf0),
+    Color(0xFFa3c4f3),
+    Color(0xFF90dbf4),
+    Color(0xFF8eecf5),
+    Color(0xFF98f5e1),
+    Color(0xFFb9fbc0),
+  ];
 }

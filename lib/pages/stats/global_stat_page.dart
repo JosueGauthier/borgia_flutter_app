@@ -184,15 +184,21 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                   children: [
                     CustomPiechartWigdet(
                       statList: shopStatController.shopStatList,
-                      colorList: ListStatColors.colorslist3,
+                      colorList: ListStatColors.colors_12_list14,
                       isImagePresent: true,
                       typeOfData: "quantity",
                     ),
                     CustomPiechartWigdet(
                       statList: shopStatController.shopStatList,
-                      colorList: ListStatColors.colorslist3,
+                      colorList: ListStatColors.colorslist5,
                       isImagePresent: true,
                       typeOfData: "amount",
+                    ),
+                    CustomPiechartWigdet(
+                      statList: shopStatController.shopStatList,
+                      colorList: ListStatColors.colorslist10,
+                      isImagePresent: true,
+                      typeOfData: "percent",
                     ),
                   ],
                 );

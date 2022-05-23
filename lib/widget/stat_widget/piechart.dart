@@ -32,7 +32,7 @@ class _CustomPiechartWigdetState extends State<CustomPiechartWigdet> {
             centerSpaceRadius: 0,
             sections: (widget.typeOfData == "quantity")
                 ? showingSectionsQuantity(widget.statList, widget.colorList, widget.isImagePresent)
-                : (widget.typeOfData == "quantity")
+                : (widget.typeOfData == "amount")
                     ? showingSectionsAmount(widget.statList, widget.colorList, widget.isImagePresent)
                     : showingSectionsPercentage(widget.statList, widget.colorList, widget.isImagePresent),
           ),
@@ -42,18 +42,22 @@ class _CustomPiechartWigdetState extends State<CustomPiechartWigdet> {
 
 List<PieChartSectionData> showingSectionsQuantity(List dataList, List colorList, bool isImagePresent) {
   return List.generate(dataList.length, (i) {
+    var coloor = colorList[colorList.length ~/ dataList.length * i];
+
+    var colourLuminance = coloor.computeLuminance();
     return PieChartSectionData(
-      color: ListStatColors.colorslist1[ListStatColors.colorslist1.length ~/ dataList.length * i],
+      color: coloor,
+      //colorList[colorList.length ~/ dataList.length * i],
       //colorList[(i.isEven) ? (colorList.length / dataList.length).toInt() * i : (colorList.length - (colorList.length / dataList.length).toInt() * i)],
       value: dataList[i].quantity.toDouble(),
       title: isImagePresent ? (dataList[i].quantity.toString()) : dataList[i].shopName + "\n" + dataList[i].quantity.toString(),
       radius: 100,
-      titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+      titleStyle: TextStyle(fontSize: Dimensions.height10 * 1.6, fontWeight: FontWeight.bold, color: Colors.white),
       badgeWidget: isImagePresent
           ? _Badge(
               dataList[i].shopImage,
               size: Dimensions.height45,
-              borderColor: ListStatColors.colorslist1[ListStatColors.colorslist1.length ~/ dataList.length * i],
+              borderColor: coloor,
             )
           : Container(),
       badgePositionPercentageOffset: .98,
@@ -63,18 +67,23 @@ List<PieChartSectionData> showingSectionsQuantity(List dataList, List colorList,
 
 List<PieChartSectionData> showingSectionsAmount(List dataList, List colorList, bool isImagePresent) {
   return List.generate(dataList.length, (i) {
-    return PieChartSectionData(
-      color: ListStatColors.colorslist1[ListStatColors.colorslist1.length ~/ dataList.length * i],
+    double valeur = (dataList[i].montantAchats == null) ? 0 : dataList[i].montantAchats.toDouble();
 
-      value: (dataList[i].montantAchats == null) ? 0 : dataList[i].montantAchats.toDouble(),
-      //title: dataList[i].shopName + "\n" + dataList[i].quantity.toString(),
+    var coloor = colorList[colorList.length ~/ dataList.length * i];
+    //color: (colourLuminance >= 0.5) ? AppColors.titleColor : Colors.white
+
+    var colourLuminance = coloor.computeLuminance();
+    return PieChartSectionData(
+      color: coloor,
+      value: valeur,
+      title: valeur.toString() + "€",
       radius: 100,
-      titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+      titleStyle: TextStyle(fontSize: Dimensions.height10 * 1.6, fontWeight: FontWeight.bold, color: Colors.white),
       badgeWidget: isImagePresent
           ? _Badge(
               dataList[i].shopImage,
               size: Dimensions.height45,
-              borderColor: ListStatColors.colorslist1[ListStatColors.colorslist1.length ~/ dataList.length * i],
+              borderColor: coloor,
             )
           : Container(),
       badgePositionPercentageOffset: .98,
@@ -90,18 +99,20 @@ List<PieChartSectionData> showingSectionsPercentage(List dataList, List colorLis
 
   return List.generate(dataList.length, (i) {
     int valeur = (dataList[i].montantAchats == null) ? 0 : (((dataList[i].montantAchats.toDouble()) / sum) * 100).toInt();
-    print(valeur);
+    var coloor = colorList[colorList.length ~/ dataList.length * i];
+
+    var colourLuminance = coloor.computeLuminance();
     return PieChartSectionData(
-      color: ListStatColors.colorslist1[ListStatColors.colorslist1.length ~/ dataList.length * i],
+      color: coloor,
       value: valeur.toDouble(),
       title: valeur.toString() + "%",
       radius: 100,
-      titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+      titleStyle: TextStyle(fontSize: Dimensions.height10 * 1.6, fontWeight: FontWeight.bold, color: Colors.white),
       badgeWidget: isImagePresent
           ? _Badge(
               dataList[i].shopImage,
               size: Dimensions.height45,
-              borderColor: ListStatColors.colorslist1[ListStatColors.colorslist1.length ~/ dataList.length * i],
+              borderColor: coloor,
             )
           : Container(),
       badgePositionPercentageOffset: .98,
