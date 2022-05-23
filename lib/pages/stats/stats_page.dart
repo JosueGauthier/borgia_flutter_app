@@ -23,6 +23,8 @@ class _StatsPageState extends State<StatsPage> {
   Widget build(BuildContext context) {
     Get.find<SaleListController>().getSaleList();
 
+    Get.find<SaleListController>().getMapList();
+
     Get.find<ShopStatController>().getShopStatList();
 
     Get.find<UserShopStatController>().getUserShopStatList();

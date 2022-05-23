@@ -118,8 +118,6 @@ class _MyStatPageState extends State<MyStatPage> {
                                         isImagePresent: true,
                                         typeOfData: "percentage",
                                       ),
-                            /* 
-                             */
                           ],
                         ),
                       ),

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../controllers/shop_controller.dart';
 import '../../utils/colors.dart';
 import '../search/searchpage.dart';
+import '../test/testgrzphc.dart';
 import 'welcome_page_with_header.dart';
 
 class HomePage extends StatefulWidget {
@@ -31,11 +32,13 @@ class _HomePageState extends State<HomePage> {
   List<Widget> pages = [
     const WelcomePageWithHeader(),
 
-    SearchPage(),
+    //SearchPage(),
 
     //const FavPage(),
 
-    StatsPage()
+    StatsPage(),
+
+    LineAreaPointPage(),
   ];
 
   var _selectedIndex = 0;
@@ -60,35 +63,6 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return pages;
   }
-
-  /* List<PersistentBottomNavBarItem> _navBarsItems() {
-    return [
-      PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.house_alt),
-        title: ("Home"),
-        activeColorPrimary: AppColors.secondColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.archivebox),
-        title: ("History"),
-        activeColorPrimary: AppColors.secondColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.heart),
-        title: ("Cart"),
-        activeColorPrimary: AppColors.secondColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.person),
-        title: ("Me"),
-        activeColorPrimary: AppColors.secondColor,
-        inactiveColorPrimary: AppColors.greyColor,
-      ),
-    ];
-  } */
 
   @override
   Widget build(BuildContext context) {
@@ -123,47 +97,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-  
-
-
-
-
-
-/* @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      bottomNavigationBar: PersistentTabView(
-        context,
-        controller: _controller,
-        screens: _buildScreens(),
-        items: _navBarsItems(),
-        confineInSafeArea: true,
-        backgroundColor: Colors.white.withOpacity(0.1), // Default is Colors.white.
-        handleAndroidBackButtonPress: true, // Default is true.
-        resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-        stateManagement: true, // Default is true.
-        hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-        decoration: NavBarDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          colorBehindNavBar: Colors.white.withOpacity(0),
-        ),
-        popAllScreensOnTapOfSelectedTab: true,
-        popActionScreens: PopActionScreensType.all,
-        itemAnimationProperties: const ItemAnimationProperties(
-          // Navigation Bar's items animation properties.
-          duration: Duration(milliseconds: 200),
-          curve: Curves.ease,
-        ),
-        screenTransitionAnimation: const ScreenTransitionAnimation(
-          // Screen transition animation on change of selected tab.
-          animateTabTransition: true,
-          curve: Curves.ease,
-          duration: Duration(milliseconds: 200),
-        ),
-        navBarStyle: NavBarStyle.style12, // Choose the nav bar style with this property.
-      ),
-    );
-  } */

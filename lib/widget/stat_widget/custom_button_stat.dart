@@ -1,3 +1,4 @@
+import 'package:borgiaflutterapp/pages/stats/global_stat_page.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +41,7 @@ class _CustomButtonStatState extends State<CustomButtonStat> {
         setState(() {
           widget.notifyParent();
           changeGraphState(widget.id);
+          changeGraphStateGlobal(widget.id);
         });
       },
       child: (widget.iconData == null)
