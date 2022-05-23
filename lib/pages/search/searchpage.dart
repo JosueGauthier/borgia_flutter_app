@@ -150,9 +150,9 @@ class SearchPage extends StatelessWidget {
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
                                             fit: BoxFit.contain,
-                                            image: (searchController.searchList[index].image == null)
+                                            image: (searchController.searchList[index].shopImage == null)
                                                 ? AssetImage("assets/image/dafaultuserimage.png") as ImageProvider
-                                                : NetworkImage(searchController.searchList[index].image!),
+                                                : NetworkImage(searchController.searchList[index].shopImage!),
                                           ),
                                           color: Colors.white,
                                           borderRadius: BorderRadius.circular(Dimensions.radius20)),

@@ -43,13 +43,15 @@ class MontantMagasins {
   String? shopName;
   String? shopImage;
   int? quantity;
+  double? montantAchats;
 
-  MontantMagasins({this.shopName, this.shopImage, this.quantity});
+  MontantMagasins({this.shopName, this.shopImage, this.quantity, this.montantAchats});
 
   MontantMagasins.fromJson(Map<String, dynamic> json) {
     shopName = json['shop_name'];
     shopImage = json['shop_image'];
     quantity = json['qte_user_achats'];
+    montantAchats = json['montant_achats'];
   }
 
   Map<String, dynamic> toJson() {
@@ -57,6 +59,7 @@ class MontantMagasins {
     data['shop_name'] = shopName;
     data['shop_image'] = shopImage;
     data['qte_user_achats'] = quantity;
+    data['montant_achats'] = montantAchats;
     return data;
   }
 }

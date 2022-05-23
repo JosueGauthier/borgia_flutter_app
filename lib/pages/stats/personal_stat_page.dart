@@ -37,20 +37,13 @@ class _MyStatPageState extends State<MyStatPage> {
                       statList: montantMagasins,
                       colorList: ListStatColors.colorslist1,
                       isImagePresent: true,
+                      typeOfData: "quantity",
                     ),
-                    Container(
-                      //color: Colors.greenAccent,
-                      height: Dimensions.height30 * 10,
-                      width: double.maxFinite,
-                      child: PieChart(
-                        PieChartData(
-                            borderData: FlBorderData(
-                              show: false,
-                            ),
-                            sectionsSpace: 0,
-                            centerSpaceRadius: 0,
-                            sections: showingSectionsNumberSale(userShopStatController.userShopStatList)),
-                      ),
+                    CustomPiechartWigdet(
+                      statList: montantMagasins,
+                      colorList: ListStatColors.colorslist1,
+                      isImagePresent: true,
+                      typeOfData: "amount",
                     ),
                   ],
                 );
@@ -72,28 +65,4 @@ class _MyStatPageState extends State<MyStatPage> {
       }
     });
   }
-}
-
-List<PieChartSectionData> showingSectionsNumberSale(List userShopStatList) {
-  List montantMagasins = userShopStatList[0].montantMagasins;
-
-  //inspect(montantMagasins);
-
-  return List.generate(montantMagasins.length, (i) {
-    return PieChartSectionData(
-      //Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
-
-      color: ListStatColors.colorslist1[(ListStatColors.colorslist1.length / montantMagasins.length).toInt() * i],
-      value: montantMagasins[i].quantity.toDouble(), //userShopStatList[i].totalSaleOfShop.toDouble(),
-      title: montantMagasins[i].shopName, //userShopStatList[i].name + "\n" + userShopStatList[i].totalSaleOfShop.toString(),
-      radius: 100,
-      titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-      /* badgeWidget: _Badge(
-              'assets/ophthalmology-svgrepo-com.svg',
-              size: widgetSize,
-              borderColor: const Color(0xff0293ee),
-            ), */
-      //badgePositionPercentageOffset: .98,
-    );
-  });
 }

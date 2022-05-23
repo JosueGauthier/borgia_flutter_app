@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,8 @@ class CustomPiechartWigdet extends StatefulWidget {
   List statList;
   List colorList;
   bool isImagePresent;
-  CustomPiechartWigdet({Key? key, required this.statList, required this.colorList, required this.isImagePresent}) : super(key: key);
+  String typeOfData;
+  CustomPiechartWigdet({Key? key, required this.statList, required this.colorList, required this.isImagePresent, required this.typeOfData}) : super(key: key);
 
   @override
   State<CustomPiechartWigdet> createState() => _CustomPiechartWigdetState();
@@ -18,27 +21,52 @@ class _CustomPiechartWigdetState extends State<CustomPiechartWigdet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Dimensions.height30 * 10,
-      width: double.maxFinite,
-      child: PieChart(
-        PieChartData(
+        height: Dimensions.height30 * 10,
+        width: double.maxFinite,
+        child: PieChart(
+          PieChartData(
             borderData: FlBorderData(
               show: false,
             ),
             sectionsSpace: 0,
             centerSpaceRadius: 0,
-            sections: showingSections(widget.statList, widget.colorList, widget.isImagePresent)),
-      ),
-    );
+            sections: (widget.typeOfData == "quantity")
+                ? showingSectionsQuantity(widget.statList, widget.colorList, widget.isImagePresent)
+                : (widget.typeOfData == "quantity")
+                    ? showingSectionsAmount(widget.statList, widget.colorList, widget.isImagePresent)
+                    : showingSectionsPercentage(widget.statList, widget.colorList, widget.isImagePresent),
+          ),
+        ));
   }
 }
 
-List<PieChartSectionData> showingSections(List dataList, List colorList, bool isImagePresent) {
+List<PieChartSectionData> showingSectionsQuantity(List dataList, List colorList, bool isImagePresent) {
   return List.generate(dataList.length, (i) {
     return PieChartSectionData(
-      color: ListStatColors.colorslist1[(ListStatColors.colorslist1.length / dataList.length).toInt() * i],
+      color: ListStatColors.colorslist1[ListStatColors.colorslist1.length ~/ dataList.length * i],
       //colorList[(i.isEven) ? (colorList.length / dataList.length).toInt() * i : (colorList.length - (colorList.length / dataList.length).toInt() * i)],
       value: dataList[i].quantity.toDouble(),
+      title: isImagePresent ? (dataList[i].quantity.toString()) : dataList[i].shopName + "\n" + dataList[i].quantity.toString(),
+      radius: 100,
+      titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+      badgeWidget: isImagePresent
+          ? _Badge(
+              dataList[i].shopImage,
+              size: Dimensions.height45,
+              borderColor: ListStatColors.colorslist1[ListStatColors.colorslist1.length ~/ dataList.length * i],
+            )
+          : Container(),
+      badgePositionPercentageOffset: .98,
+    );
+  });
+}
+
+List<PieChartSectionData> showingSectionsAmount(List dataList, List colorList, bool isImagePresent) {
+  return List.generate(dataList.length, (i) {
+    return PieChartSectionData(
+      color: ListStatColors.colorslist1[ListStatColors.colorslist1.length ~/ dataList.length * i],
+
+      value: (dataList[i].montantAchats == null) ? 0 : dataList[i].montantAchats.toDouble(),
       //title: dataList[i].shopName + "\n" + dataList[i].quantity.toString(),
       radius: 100,
       titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
@@ -46,7 +74,34 @@ List<PieChartSectionData> showingSections(List dataList, List colorList, bool is
           ? _Badge(
               dataList[i].shopImage,
               size: Dimensions.height45,
-              borderColor: const Color(0xff0293ee),
+              borderColor: ListStatColors.colorslist1[ListStatColors.colorslist1.length ~/ dataList.length * i],
+            )
+          : Container(),
+      badgePositionPercentageOffset: .98,
+    );
+  });
+}
+
+List<PieChartSectionData> showingSectionsPercentage(List dataList, List colorList, bool isImagePresent) {
+  double sum = 0;
+  for (var i = 0; i < dataList.length; i++) {
+    sum += (dataList[i].montantAchats == null) ? 0 : dataList[i].montantAchats;
+  }
+
+  return List.generate(dataList.length, (i) {
+    int valeur = (dataList[i].montantAchats == null) ? 0 : (((dataList[i].montantAchats.toDouble()) / sum) * 100).toInt();
+    print(valeur);
+    return PieChartSectionData(
+      color: ListStatColors.colorslist1[ListStatColors.colorslist1.length ~/ dataList.length * i],
+      value: valeur.toDouble(),
+      title: valeur.toString() + "%",
+      radius: 100,
+      titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+      badgeWidget: isImagePresent
+          ? _Badge(
+              dataList[i].shopImage,
+              size: Dimensions.height45,
+              borderColor: ListStatColors.colorslist1[ListStatColors.colorslist1.length ~/ dataList.length * i],
             )
           : Container(),
       badgePositionPercentageOffset: .98,

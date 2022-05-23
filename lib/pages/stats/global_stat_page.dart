@@ -10,8 +10,6 @@ import '../../controllers/shop_stat_controller.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
-import 'dart:math' as math;
-
 Map datetimeMap = {};
 
 class GlobalStatPage extends StatefulWidget {
@@ -187,46 +185,14 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                     CustomPiechartWigdet(
                       statList: shopStatController.shopStatList,
                       colorList: ListStatColors.colorslist3,
-                      isImagePresent: false,
+                      isImagePresent: true,
+                      typeOfData: "quantity",
                     ),
-                    Container(
-                      height: Dimensions.height30 * 10,
-                      width: double.maxFinite,
-                      child: PieChart(
-                        PieChartData(
-                            borderData: FlBorderData(
-                              show: false,
-                            ),
-                            sectionsSpace: 0,
-                            centerSpaceRadius: 0,
-                            sections: showingSectionsNumberSale(shopStatController.shopStatList)),
-                      ),
-                    ),
-                    Container(
-                      height: Dimensions.height30 * 10,
-                      width: double.maxFinite,
-                      child: PieChart(
-                        PieChartData(
-                            borderData: FlBorderData(
-                              show: false,
-                            ),
-                            sectionsSpace: 0,
-                            centerSpaceRadius: 0,
-                            sections: showingSectionsAmountSale(shopStatController.shopStatList)),
-                      ),
-                    ),
-                    Container(
-                      height: Dimensions.height30 * 10,
-                      width: double.maxFinite,
-                      child: PieChart(
-                        PieChartData(
-                            borderData: FlBorderData(
-                              show: false,
-                            ),
-                            sectionsSpace: 0,
-                            centerSpaceRadius: 0,
-                            sections: showingSectionsAmountSale(shopStatController.shopStatList)),
-                      ),
+                    CustomPiechartWigdet(
+                      statList: shopStatController.shopStatList,
+                      colorList: ListStatColors.colorslist3,
+                      isImagePresent: true,
+                      typeOfData: "amount",
                     ),
                   ],
                 );
@@ -283,46 +249,4 @@ Widget leftTitleWidgets(double value, TitleMeta meta) {
   Widget text = Text(value.toString(), style: style);
 
   return Padding(child: text, padding: const EdgeInsets.only(top: 8.0));
-}
-
-List<PieChartSectionData> showingSectionsNumberSale(List shopStatList) {
-  return List.generate(shopStatList.length, (i) {
-    return PieChartSectionData(
-      color: ListStatColors.colorslist5[(i.isEven)
-          ? (ListStatColors.colorslist5.length / shopStatList.length).toInt() * i
-          : (ListStatColors.colorslist5.length - (ListStatColors.colorslist5.length / shopStatList.length).toInt() * i)],
-      value: shopStatList[i].quantity.toDouble(),
-      title: shopStatList[i].shopName + "\n" + shopStatList[i].quantity.toString(),
-      radius: 100,
-      titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-      /* badgeWidget: _Badge(
-              'assets/ophthalmology-svgrepo-com.svg',
-              size: widgetSize,
-              borderColor: const Color(0xff0293ee),
-            ), */
-      //badgePositionPercentageOffset: .98,
-    );
-  });
-}
-
-List<PieChartSectionData> showingSectionsAmountSale(List shopStatList) {
-  return List.generate(shopStatList.length, (i) {
-    return PieChartSectionData(
-      color: ListStatColors.colorslist10[(i.isEven)
-          ? (ListStatColors.colorslist10.length / shopStatList.length).toInt() * i
-          : (ListStatColors.colorslist10.length - (ListStatColors.colorslist10.length / shopStatList.length).toInt() * i)],
-      value: (shopStatList[i].totalSaleAmountOfShop.priceSum == null) ? 0 : shopStatList[i].totalSaleAmountOfShop.priceSum.toDouble(),
-      title: (shopStatList[i].totalSaleAmountOfShop.priceSum == null)
-          ? shopStatList[i].shopName + "\n" + "0"
-          : shopStatList[i].shopName + "\n" + shopStatList[i].totalSaleAmountOfShop.priceSum.toString(),
-      radius: 100,
-      titleStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-      /* badgeWidget: _Badge(
-              'assets/ophthalmology-svgrepo-com.svg',
-              size: widgetSize,
-              borderColor: const Color(0xff0293ee),
-            ), */
-      //badgePositionPercentageOffset: .98,
-    );
-  });
 }
