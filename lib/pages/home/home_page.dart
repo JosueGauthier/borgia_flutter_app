@@ -32,13 +32,13 @@ class _HomePageState extends State<HomePage> {
   List<Widget> pages = [
     const WelcomePageWithHeader(),
 
-    //SearchPage(),
+    SearchPage(),
 
     //const FavPage(),
 
     StatsPage(),
 
-    LineAreaPointPage(),
+    //LineAreaPointPage(),
   ];
 
   var _selectedIndex = 0;
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
             child: pages.elementAt(_selectedIndex),
           ),
           bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: Colors.white.withOpacity(0.5), //here set your transparent level
+            backgroundColor: Colors.white.withOpacity(0.85), //here set your transparent level
             elevation: 0,
             selectedItemColor: AppColors.mainColor,
             unselectedItemColor: Colors.black,

@@ -25,6 +25,9 @@ class SaleListController extends GetxController {
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
+  bool _isLoadedaList = false;
+  bool get isLoadedaList => _isLoadedaList;
+
   bool _isLoadedUser = false;
   bool get isLoadedUser => _isLoadedUser;
 
@@ -55,13 +58,7 @@ class SaleListController extends GetxController {
 
       _aList = responseBody;
 
-      //inspect(responseBody);
-      //print(responseBody);
-
-      /* for (var i = 0; i < responseBody.length; i++) {
-        _saleList.add(YearChartModel.fromJson(responseBody[i]));
-      } */
-      _isLoaded = true;
+      _isLoadedaList = true;
 
       update();
     } else {}

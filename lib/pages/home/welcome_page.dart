@@ -101,16 +101,18 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
 
         //!Liste de magasins items
-        /*  SizedBox(
+        SizedBox(
           height: Dimensions.height10,
-        ), */
+        ),
         Container(
-          //color: Colors.amber,
+          //color: AppColors.titleColor,
           margin: EdgeInsets.only(left: Dimensions.width30),
           child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
             BigText(
+              color: AppColors.titleColor,
               text: "Liste des magasins",
-              size: Dimensions.height30,
+              size: Dimensions.height25,
+              fontTypo: 'Montserrat-Bold',
             )
           ]),
         ),
@@ -122,7 +124,7 @@ class _WelcomePageState extends State<WelcomePage> {
               ? Container(
                   //color: Colors.greenAccent,
                   width: double.maxFinite,
-                  margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20, top: 0),
+                  margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20, top: Dimensions.height10),
                   child: ListView.builder(
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
@@ -135,62 +137,45 @@ class _WelcomePageState extends State<WelcomePage> {
                             AppConstants.SHOP_ID = shopModel.id!;
                             Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
                           },
-                          child: Card(
-                            elevation: 0,
-                            shadowColor: AppColors.secondColor,
-                            color: Colors.white,
-                            child: Row(children: [
-                              //! image section
+                          child: Row(children: [
+                            //! image section
 
-                              SizedBox(
-                                width: Dimensions.width20,
+                            SizedBox(
+                              width: Dimensions.width20,
+                            ),
+
+                            Container(
+                              margin: EdgeInsets.only(bottom: Dimensions.height10),
+                              height: Dimensions.height100 * 0.6,
+                              width: Dimensions.height100 * 0.6,
+                              decoration: BoxDecoration(
+                                //color: Colors.amber,
+                                image: DecorationImage(
+                                  fit: BoxFit.fitWidth,
+                                  image: NetworkImage(shopModel.image!),
+                                ),
+                                //borderRadius: BorderRadius.circular(Dimensions.width20)
                               ),
+                            ),
 
-                              Center(
-                                heightFactor: 1.5,
-                                child: Container(
-                                  height: Dimensions.height100 * 0.7,
-                                  width: Dimensions.listviewimgSize,
-                                  decoration: BoxDecoration(
-                                      //color: Colors.amber,
-                                      image: DecorationImage(
-                                        fit: BoxFit.scaleDown,
-                                        image: NetworkImage(shopModel.image!),
-                                      ),
-                                      borderRadius: BorderRadius.circular(Dimensions.width20)),
+                            SizedBox(
+                              width: Dimensions.width20 * 5,
+                            ),
+
+                            //! text section
+
+                            //? expanded widget force container to take all the available space
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                                child: BigText(
+                                  text: (shopModel.name)!.capitalize!,
+                                  size: Dimensions.height25,
+                                  color: AppColors.titleColor,
                                 ),
                               ),
-
-                              //! text section
-
-                              //? expanded widget force container to take all the available space
-                              Expanded(
-                                child: Center(
-                                  child: Container(
-                                    height: Dimensions.listviewTextHeigth * 0.8,
-                                    decoration: BoxDecoration(
-                                        //color: Colors.greenAccent,
-                                        ),
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          BigText(
-                                            text: (shopModel.name)!.capitalize!,
-                                            size: Dimensions.height25,
-                                            color: AppColors.titleColor,
-                                          ),
-
-                                          //SmallText(allowOverFlow: true, maxLines: 2, text: (shopModel.description)!.capitalize!),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ]),
-                          ),
+                            )
+                          ]),
                         );
                       }),
                 )
