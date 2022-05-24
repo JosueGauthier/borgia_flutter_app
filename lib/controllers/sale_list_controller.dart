@@ -46,8 +46,10 @@ class SaleListController extends GetxController {
 
       List responseBody = response.body;
 
-      inspect(responseBody);
-      print(responseBody);
+      _aList = responseBody;
+
+      //inspect(responseBody);
+      //print(responseBody);
 
       /* for (var i = 0; i < responseBody.length; i++) {
         _saleList.add(YearChartModel.fromJson(responseBody[i]));
