@@ -25,6 +25,8 @@ class _StatsPageState extends State<StatsPage> {
 
     Get.find<SaleListController>().getMapList();
 
+    Get.find<SaleListController>().getUserSaleList();
+
     Get.find<ShopStatController>().getShopStatList();
 
     Get.find<UserShopStatController>().getUserShopStatList();

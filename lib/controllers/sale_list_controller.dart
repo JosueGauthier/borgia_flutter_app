@@ -18,8 +18,15 @@ class SaleListController extends GetxController {
 
   List<dynamic> get aList => _aList;
 
+  List<dynamic> _aListUser = [];
+
+  List<dynamic> get aListUser => _aListUser;
+
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
+
+  bool _isLoadedUser = false;
+  bool get isLoadedUser => _isLoadedUser;
 
   Future<void> getSaleList() async {
     Response response = await saleListRepo.getSaleList();
@@ -55,6 +62,22 @@ class SaleListController extends GetxController {
         _saleList.add(YearChartModel.fromJson(responseBody[i]));
       } */
       _isLoaded = true;
+
+      update();
+    } else {}
+  }
+
+  Future<void> getUserSaleList() async {
+    Response response = await saleListRepo.getSaleUserList();
+
+    if (response.statusCode == 200) {
+      _aListUser = [];
+
+      List responseBody = response.body;
+
+      _aListUser = responseBody;
+
+      _isLoadedUser = true;
 
       update();
     } else {}

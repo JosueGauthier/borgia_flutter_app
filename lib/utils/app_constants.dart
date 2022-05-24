@@ -24,6 +24,8 @@ class AppConstants {
 
   static const String YEAR_SALELIST_URI = "/api-links/history/";
 
+  static const String USER_SALELIST_URI = "/api-links/sale/user-history-allsale/?sender=";
+
   static const String SHOP_STAT_URI = "/api-links/shops/shop-stat/";
 
   static const String USER_SHOP_STAT_URI = "/api-links/sale/stat-user/?username=";
@@ -42,6 +44,7 @@ class AppConstants {
   static String COOKIE = "";
   static Map<String, String>? HEADERS = {};
   static String USERNAME = "";
+
   static String PASSWORD = "";
 
   static const String APP_NAME = "BorgiaApp";

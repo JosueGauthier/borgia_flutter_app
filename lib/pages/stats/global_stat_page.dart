@@ -68,17 +68,19 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
           }
         }
 
+        List colorTheme = ListStatColors.colors_12_list15;
+
         return SingleChildScrollView(
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             //! Line graph
 
             CustomLineChartWidget(
               listeDesVentes: listeDesVentes,
-              linecolor: Colors.blueAccent,
-              areacolor: Colors.blueAccent,
+              linecolor: colorTheme[0],
+              areacolor: colorTheme[0],
             ),
 
-            Container(
+            /* Container(
               margin: const EdgeInsets.only(top: 10),
               width: double.maxFinite,
               height: Dimensions.height30 * 10,
@@ -121,7 +123,7 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                 ),
                 crosshair: CrosshairGuide(followPointer: [false, true]),
               ),
-            ),
+            ), */
             //!Pie chart
 
             GetBuilder<ShopStatController>(builder: (shopStatController) {
@@ -144,21 +146,21 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                             notifyParent: refresh,
                             id: 1,
                             size: Size(50, 30),
-                            buttonColor: ListStatColors.colorslist1[0],
+                            buttonColor: colorTheme[0],
                           ),
                           CustomButtonStat(
                             notifyParent: refresh,
                             id: 2,
                             iconData: Icons.euro,
                             size: Size(50, 30),
-                            buttonColor: ListStatColors.colorslist1[12],
+                            buttonColor: colorTheme[6],
                           ),
                           CustomButtonStat(
                             notifyParent: refresh,
                             id: 3,
                             iconData: Icons.percent,
                             size: Size(50, 30),
-                            buttonColor: ListStatColors.colorslist1[20],
+                            buttonColor: colorTheme[9],
                           ),
                         ]),
                       ),
@@ -171,7 +173,7 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                                     //color: Colors.blueAccent,
                                     child: CustomPiechartWigdet(
                                       statList: shopStatController.shopStatList,
-                                      colorList: ListStatColors.colors_12_list14,
+                                      colorList: colorTheme,
                                       isImagePresent: true,
                                       typeOfData: "quantity",
                                     ),
@@ -179,13 +181,13 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                                 : (eurosButton == true)
                                     ? CustomPiechartWigdet(
                                         statList: shopStatController.shopStatList,
-                                        colorList: ListStatColors.colorslist5,
+                                        colorList: colorTheme,
                                         isImagePresent: true,
                                         typeOfData: "amount",
                                       )
                                     : CustomPiechartWigdet(
                                         statList: shopStatController.shopStatList,
-                                        colorList: ListStatColors.colorslist10,
+                                        colorList: colorTheme,
                                         isImagePresent: true,
                                         typeOfData: "percent",
                                       ),

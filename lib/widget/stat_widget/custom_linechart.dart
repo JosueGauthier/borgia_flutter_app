@@ -8,12 +8,14 @@ class CustomLineChartWidget extends StatelessWidget {
   List<Map<String, Object>> listeDesVentes;
   Color linecolor;
   Color areacolor;
+  int numberXTickCount;
 
   CustomLineChartWidget({
     Key? key,
     required this.listeDesVentes,
     this.linecolor = AppColors.mainColor,
     this.areacolor = AppColors.mainColor,
+    this.numberXTickCount = 5,
   }) : super(key: key);
 
   @override
@@ -27,7 +29,7 @@ class CustomLineChartWidget extends StatelessWidget {
         variables: {
           'Date': Variable(
             accessor: (Map map) => map['Date'] as String,
-            scale: OrdinalScale(tickCount: 5),
+            scale: OrdinalScale(tickCount: numberXTickCount),
           ),
           'Sale': Variable(
             accessor: (Map map) => (map['Sale'] ?? double.nan) as num,

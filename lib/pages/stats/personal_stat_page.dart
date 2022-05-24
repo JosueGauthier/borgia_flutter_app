@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/controllers/user_shop_stat_controller.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ import '../../controllers/sale_list_controller.dart';
 import '../../utils/colors.dart';
 
 import '../../widget/stat_widget/custom_button_stat.dart';
+import '../../widget/stat_widget/custom_linechart.dart';
 import '../../widget/stat_widget/piechart.dart';
 
 Map datetimeMap = {};
@@ -46,10 +49,29 @@ class _MyStatPageState extends State<MyStatPage> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SaleListController>(builder: (saleListController) {
-      if (saleListController.isLoaded) {
+      if (saleListController.isLoadedUser) {
+        bool deleteZeros = true;
+        List<Map<String, Object>> listeDesVentes = [];
+
+        for (var i = 0; i < saleListController.aListUser.length; i++) {
+          var priceSum = saleListController.aListUser[i]['tot_amount_per_sale'];
+
+          if (priceSum != null && priceSum != 0.0) {
+            deleteZeros = false;
+
+            listeDesVentes.add({"Date": saleListController.aListUser[i]['format_datetime'], "Sale": priceSum});
+          }
+        }
         return SingleChildScrollView(
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             //! Line graph
+
+            CustomLineChartWidget(
+              listeDesVentes: listeDesVentes,
+              linecolor: ListStatColors.colorslist1[20],
+              areacolor: ListStatColors.colorslist1[20],
+              numberXTickCount: 3,
+            ),
 
             //!Pie chart
             GetBuilder<UserShopStatController>(builder: (userShopStatController) {
