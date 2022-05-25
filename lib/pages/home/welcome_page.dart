@@ -62,7 +62,7 @@ class _WelcomePageState extends State<WelcomePage> {
       children: [
         //! sliderSection
 
-        GetBuilder<UserController>(builder: (userController) {
+        /*  GetBuilder<UserController>(builder: (userController) {
           return userController.isLoaded
               ? Container(
                   //color: Colors.blue,
@@ -98,7 +98,7 @@ class _WelcomePageState extends State<WelcomePage> {
             activeSize: const Size(18.0, 9.0),
             activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           ),
-        ),
+        ), */
 
         //!Liste de magasins items
         SizedBox(
@@ -369,26 +369,6 @@ class _WelcomePageState extends State<WelcomePage> {
                                       //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
                                     ),
                             ))),
-
-          //! Partie text
-          /* Align(
-            alignment: Alignment.bottomLeft,
-            child: Container(
-              height: Dimensions.height45 * 1.5,
-              margin: EdgeInsets.only(left: Dimensions.width30 * 1.1, right: Dimensions.width25, bottom: Dimensions.height30),
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.radius30), topRight: Radius.circular(Dimensions.radius30)),
-                      //color: AppColors.whiteGreyColor.withOpacity(0.9),
-                      boxShadow: const [
-                    //BoxShadow(color: Color.fromARGB(255, 221, 216, 216), blurRadius: 10, offset: Offset(2, 5)),
-                    //BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
-                    //BoxShadow(color: Colors.white, offset: Offset(5, 0)),
-                  ]),
-              child: Container(
-                  padding: EdgeInsets.only(top: Dimensions.height45 / 2, left: Dimensions.width25, right: Dimensions.width15),
-                  child: SliderBottomSectionWidget(titletext: listItemsSlider[position][0])),
-            ),
-          ), */
         ],
       ),
     );

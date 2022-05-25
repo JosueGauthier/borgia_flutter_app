@@ -1,4 +1,6 @@
+import 'package:borgiaflutterapp/pages/money/rechargement_Lydia_page.dart';
 import 'package:borgiaflutterapp/pages/stats/stats_page.dart';
+import 'package:borgiaflutterapp/utils/dimensions.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +8,8 @@ import 'package:get/get.dart';
 
 import '../../controllers/shop_controller.dart';
 import '../../utils/colors.dart';
+import '../fav_products/fav_page.dart';
 import '../search/searchpage.dart';
-import '../test/testgrzphc.dart';
 import 'welcome_page_with_header.dart';
 
 class HomePage extends StatefulWidget {
@@ -34,7 +36,9 @@ class _HomePageState extends State<HomePage> {
 
     SearchPage(),
 
-    //const FavPage(),
+    const FavPage(),
+
+    RefillLydiaPage(),
 
     StatsPage(),
 
@@ -85,12 +89,17 @@ class _HomePageState extends State<HomePage> {
 
             onTap: _onItemTapped,
 
+            iconSize: Dimensions.height30,
+
             showSelectedLabels: false,
             showUnselectedLabels: false,
             items: [
-              BottomNavigationBarItem(icon: Icon(CupertinoIcons.house_alt, size: 30), label: 'Home'),
-              BottomNavigationBarItem(icon: Icon(Icons.search, size: 30), label: 'Search'),
-              BottomNavigationBarItem(icon: Icon(CupertinoIcons.heart, size: 30), label: 'Cart'),
+              BottomNavigationBarItem(icon: Icon(CupertinoIcons.house_alt), label: 'Home'),
+              BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+              BottomNavigationBarItem(icon: Icon(CupertinoIcons.heart), label: 'Cart'),
+              BottomNavigationBarItem(icon: Icon(Icons.currency_exchange_sharp), label: 'Lydia'),
+              BottomNavigationBarItem(icon: Icon(Icons.show_chart), label: 'Stat'),
+
               //BottomNavigationBarItem(icon: Icon(Icons.perm_identity, size: 30), label: 'Me')
             ],
           )),

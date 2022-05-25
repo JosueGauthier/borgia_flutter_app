@@ -120,6 +120,9 @@ flutter:
     - family: Nunito-SemiBold
       fonts:
         - asset: fonts/Nunito-SemiBold.ttf
+    - family: Montserrat-ExtraBold
+      fonts:
+        - asset: assets/font/Montserrat-ExtraBold.ttf
           
 
 

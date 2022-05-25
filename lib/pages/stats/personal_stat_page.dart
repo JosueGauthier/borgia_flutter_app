@@ -47,7 +47,7 @@ class _MyStatPageState extends State<MyStatPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return GetBuilder<SaleListController>(builder: (saleListController) {
       if (saleListController.isLoadedUser) {
         bool deleteZeros = true;
