@@ -1,9 +1,7 @@
+import 'package:borgiaflutterapp/widget/productItemWidget.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../../controllers/cart_controller.dart';
-
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
@@ -27,7 +25,7 @@ class FavPage extends StatelessWidget {
                 bottomRight: Radius.circular(Dimensions.height20),
               )),
           margin: EdgeInsets.only(bottom: Dimensions.height10),
-          padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
+          padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20 * 2, right: Dimensions.width20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -53,12 +51,18 @@ class FavPage extends StatelessWidget {
                         width: double.maxFinite,
                         height: Dimensions.width20 * 5,
                         color: Colors.white,
-                        margin: EdgeInsets.only(bottom: Dimensions.height20),
+                        margin: EdgeInsets.only(bottom: Dimensions.height20, left: Dimensions.width20),
                         child: Card(
-                          elevation: 0,
-                          shadowColor: AppColors.secondColor,
-                          //color: Colors.blue,
-                          child: Row(
+                            elevation: 0,
+                            shadowColor: AppColors.secondColor,
+                            //color: Colors.blue,
+                            child: ProductItemWidget(
+                              illustImage: NetworkImage(_cartList[index].img!),
+                              titleText: _cartList[index].name!,
+                              priceProduct: _cartList[index].price.toString(),
+                            )
+
+                            /*   Row(
                             children: [
                               SizedBox(
                                 width: Dimensions.width20,
@@ -101,8 +105,8 @@ class FavPage extends StatelessWidget {
                                 ]),
                               )),
                             ],
-                          ),
-                        ),
+                          ), */
+                            ),
                       );
                     })));
           },

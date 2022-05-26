@@ -106,12 +106,12 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
         Container(
           //color: AppColors.titleColor,
-          margin: EdgeInsets.only(left: Dimensions.width20),
+          margin: EdgeInsets.only(left: Dimensions.width20 * 1.5),
           child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
             BigText(
               color: AppColors.titleColor,
               text: "Liste des magasins",
-              size: Dimensions.height25,
+              size: Dimensions.height25 * 1.1,
               fontTypo: 'Montserrat-Bold',
             )
           ]),
@@ -124,7 +124,7 @@ class _WelcomePageState extends State<WelcomePage> {
               ? Container(
                   //color: Colors.greenAccent,
                   width: double.maxFinite,
-                  margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20, top: Dimensions.height10),
+                  margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20 * 1.5, top: Dimensions.height10),
                   child: ListView.builder(
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
@@ -140,10 +140,6 @@ class _WelcomePageState extends State<WelcomePage> {
                           child: Row(children: [
                             //! image section
 
-                            SizedBox(
-                              width: Dimensions.width20,
-                            ),
-
                             Container(
                               margin: EdgeInsets.only(bottom: Dimensions.height10),
                               height: Dimensions.height100 * 0.6,
@@ -151,7 +147,7 @@ class _WelcomePageState extends State<WelcomePage> {
                               decoration: BoxDecoration(
                                 //color: Colors.amber,
                                 image: DecorationImage(
-                                  fit: BoxFit.fitWidth,
+                                  fit: BoxFit.contain,
                                   image: NetworkImage(shopModel.image!),
                                 ),
                                 //borderRadius: BorderRadius.circular(Dimensions.width20)
@@ -159,7 +155,7 @@ class _WelcomePageState extends State<WelcomePage> {
                             ),
 
                             SizedBox(
-                              width: Dimensions.width20 * 5,
+                              width: Dimensions.width20 * 3,
                             ),
 
                             //! text section
@@ -169,12 +165,13 @@ class _WelcomePageState extends State<WelcomePage> {
                               child: Padding(
                                 padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
                                 child: BigText(
+                                  fontTypo: 'Helvetica-Bold',
                                   text: (shopModel.name)!.capitalize!,
-                                  size: Dimensions.height25,
+                                  size: Dimensions.height25 * 0.8,
                                   color: AppColors.titleColor,
                                 ),
                               ),
-                            )
+                            ),
                           ]),
                         );
                       }),

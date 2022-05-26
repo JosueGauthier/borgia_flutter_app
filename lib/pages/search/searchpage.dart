@@ -47,149 +47,171 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: GetBuilder<SearchController>(builder: (searchController) {
-          return Column(children: [
-            Container(
-              height: Dimensions.height45 * 2.7,
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              margin: EdgeInsets.only(bottom: Dimensions.height10),
-              padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    height: Dimensions.height45 * 2.7,
-                    width: Dimensions.height100 * 3.5,
-                    child: TextFormField(
-                      onChanged: (value) {
-                        _search(searchController);
-                      },
-                      controller: searchTextController,
-                      style: TextStyle(
-                        fontFamily: 'Montserrat-Bold',
-                        color: AppColors.titleColor,
-                        fontSize: Dimensions.height10 * 3,
-                      ),
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.transparent),
-                          borderRadius: BorderRadius.circular(5.5),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.transparent),
-                          borderRadius: BorderRadius.circular(5.5),
-                        ),
-                        prefixIcon: Icon(Icons.search, size: Dimensions.height10 * 3, color: AppColors.titleColor),
-                        hintText: "Recherche...",
-                        hintStyle: TextStyle(
-                          fontFamily: 'Montserrat-Bold',
-                          color: AppColors.titleColor,
-                          fontSize: Dimensions.height10 * 3,
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
+        body: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                "assets/image/amtradsred.png",
+                scale: 14,
+                //color: Colors.white.withOpacity(0.5),
+                //fit: BoxFit.fitWidth,
+                repeat: ImageRepeat.repeat,
               ),
             ),
-            (searchController.isLoaded)
-                ? Expanded(
-                    child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        itemCount: searchController.searchList.length,
-                        itemBuilder: ((context, index) {
-                          return Container(
-                            width: double.maxFinite,
-                            height: Dimensions.width20 * 5,
-                            color: Colors.white,
-                            margin: EdgeInsets.only(bottom: Dimensions.height20),
-                            child: Card(
-                              elevation: 0,
-                              shadowColor: AppColors.secondColor,
-                              //color: Colors.blue,
-                              child: GestureDetector(
-                                onTap: () {
-                                  if (searchController.searchList[index].runtimeType == UserModel) {
-                                    Get.find<OtherUserController>().getUserList(searchController.searchList[index].shopName);
-                                    Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].shopName, "searchPage"));
-                                  }
-                                  if (searchController.searchList[index].runtimeType == ShopModel) {
-                                    Get.toNamed(RouteHelper.getCategoryListPage(searchController.searchList[index].id, "searchPage"));
-                                  }
-                                  if (searchController.searchList[index].runtimeType == CategoryOfShopModel) {
-                                    //int categoryId, int categoryModuleId, int shopId, String pagefrom
-                                    Get.toNamed(RouteHelper.getProductList(searchController.searchList[index].id, searchController.searchList[index].moduleId,
-                                        searchController.searchList[index].shopId, "searchPage"));
-                                  }
-                                  if (searchController.searchList[index].runtimeType == ProductModel) {
-                                    ProductModel productModel = searchController.searchList[index];
-
-                                    Get.find<CategoryFromProductController>().getCat(searchController.searchList[index].id);
-
-                                    List catList = AppConstants.CAT_LIST;
-
-                                    Get.find<CategoryOfShopController>().getCategoryList(productModel.shop!);
-
-                                    List catListModule = AppConstants.CAT_LIST_MODULE;
-
-                                    Get.toNamed(RouteHelper.getProductList(catList[0].category, catListModule[0].moduleId, productModel.shop!, "search"));
-                                  }
-                                },
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: Dimensions.width20,
-                                    ),
-                                    Container(
-                                      width: Dimensions.width20 * 5,
-                                      height: Dimensions.width20 * 5,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            fit: BoxFit.contain,
-                                            image: (searchController.searchList[index].shopImage == null)
-                                                ? AssetImage("assets/image/dafaultuserimage.png") as ImageProvider
-                                                : NetworkImage(searchController.searchList[index].shopImage!),
-                                          ),
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(Dimensions.radius20)),
-                                    ),
-                                    SizedBox(
-                                      width: Dimensions.width20,
-                                    ),
-                                    //? an expanded widget take all space of the parent
-                                    Expanded(
-                                        child: Container(
-                                      //color: Colors.redAccent,
-                                      height: Dimensions.width20 * 5,
-                                      child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.center, children: [
-                                        BigText(
-                                          text: (searchController.searchList[index].shopName.toString()).capitalize!,
-                                          color: AppColors.darkGreyColor,
-                                          size: Dimensions.height30 * 0.8,
-                                        ),
-                                        (searchController.searchList[index].runtimeType == UserModel)
-                                            ? BigText(
-                                                text: (searchController.searchList[index].firstName.toString()).capitalize! +
-                                                    " " +
-                                                    (searchController.searchList[index].lastName.toString()).capitalize!,
-                                                color: AppColors.darkGreyColor,
-                                                size: Dimensions.height30 * 0.8,
-                                              )
-                                            : Container(),
-                                      ]),
-                                    )),
-                                  ],
-                                ),
-                              ),
+            Container(
+              height: double.maxFinite,
+              width: double.maxFinite,
+              color: Colors.white.withOpacity(0.95),
+            ),
+            GetBuilder<SearchController>(builder: (searchController) {
+              return Column(children: [
+                Container(
+                  height: Dimensions.height45 * 2.7,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.7),
+                  ),
+                  margin: EdgeInsets.only(bottom: Dimensions.height10),
+                  padding:
+                      EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: Dimensions.height45 * 2.7,
+                        width: Dimensions.height100 * 3.5,
+                        child: TextFormField(
+                          onChanged: (value) {
+                            _search(searchController);
+                          },
+                          controller: searchTextController,
+                          style: TextStyle(
+                            fontFamily: 'Montserrat-Bold',
+                            color: AppColors.titleColor,
+                            fontSize: Dimensions.height10 * 3,
+                          ),
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.transparent),
+                              borderRadius: BorderRadius.circular(5.5),
                             ),
-                          );
-                        })))
-                : Container(),
-          ]);
-        }));
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.transparent),
+                              borderRadius: BorderRadius.circular(5.5),
+                            ),
+                            prefixIcon: Icon(Icons.search, size: Dimensions.height10 * 3, color: AppColors.titleColor),
+                            hintText: "Recherche...",
+                            hintStyle: TextStyle(
+                              fontFamily: 'Montserrat-Bold',
+                              color: AppColors.titleColor,
+                              fontSize: Dimensions.height10 * 3,
+                            ),
+                            filled: true,
+                            fillColor: Colors.transparent,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                (searchController.isLoaded)
+                    ? Expanded(
+                        child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            itemCount: searchController.searchList.length,
+                            itemBuilder: ((context, index) {
+                              return Container(
+                                width: double.maxFinite,
+                                height: Dimensions.width20 * 5,
+                                color: Colors.white,
+                                margin: EdgeInsets.only(bottom: Dimensions.height20),
+                                child: Card(
+                                  elevation: 0,
+                                  shadowColor: AppColors.secondColor,
+                                  //color: Colors.blue,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      if (searchController.searchList[index].runtimeType == UserModel) {
+                                        Get.find<OtherUserController>().getUserList(searchController.searchList[index].shopName);
+                                        Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].shopName, "searchPage"));
+                                      }
+                                      if (searchController.searchList[index].runtimeType == ShopModel) {
+                                        Get.toNamed(RouteHelper.getCategoryListPage(searchController.searchList[index].id, "searchPage"));
+                                      }
+                                      if (searchController.searchList[index].runtimeType == CategoryOfShopModel) {
+                                        //int categoryId, int categoryModuleId, int shopId, String pagefrom
+                                        Get.toNamed(RouteHelper.getProductList(searchController.searchList[index].id,
+                                            searchController.searchList[index].moduleId, searchController.searchList[index].shopId, "searchPage"));
+                                      }
+                                      if (searchController.searchList[index].runtimeType == ProductModel) {
+                                        ProductModel productModel = searchController.searchList[index];
+
+                                        Get.find<CategoryFromProductController>().getCat(searchController.searchList[index].id);
+
+                                        List catList = AppConstants.CAT_LIST;
+
+                                        Get.find<CategoryOfShopController>().getCategoryList(productModel.shop!);
+
+                                        List catListModule = AppConstants.CAT_LIST_MODULE;
+
+                                        Get.toNamed(RouteHelper.getProductList(catList[0].category, catListModule[0].moduleId, productModel.shop!, "search"));
+                                      }
+                                    },
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: Dimensions.width20,
+                                        ),
+                                        Container(
+                                          width: Dimensions.width20 * 5,
+                                          height: Dimensions.width20 * 5,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                fit: BoxFit.contain,
+                                                image: (searchController.searchList[index].shopImage == null)
+                                                    ? AssetImage("assets/image/dafaultuserimage.png") as ImageProvider
+                                                    : NetworkImage(searchController.searchList[index].shopImage!),
+                                              ),
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.circular(Dimensions.radius20)),
+                                        ),
+                                        SizedBox(
+                                          width: Dimensions.width20,
+                                        ),
+                                        //? an expanded widget take all space of the parent
+                                        Expanded(
+                                            child: Container(
+                                          //color: Colors.redAccent,
+                                          height: Dimensions.width20 * 5,
+                                          child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                BigText(
+                                                  text: (searchController.searchList[index].shopName.toString()).capitalize!,
+                                                  color: AppColors.darkGreyColor,
+                                                  size: Dimensions.height30 * 0.8,
+                                                ),
+                                                (searchController.searchList[index].runtimeType == UserModel)
+                                                    ? BigText(
+                                                        text: (searchController.searchList[index].firstName.toString()).capitalize! +
+                                                            " " +
+                                                            (searchController.searchList[index].lastName.toString()).capitalize!,
+                                                        color: AppColors.darkGreyColor,
+                                                        size: Dimensions.height30 * 0.8,
+                                                      )
+                                                    : Container(),
+                                              ]),
+                                        )),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            })))
+                    : Container(),
+              ]);
+            }),
+          ],
+        ));
   }
 }

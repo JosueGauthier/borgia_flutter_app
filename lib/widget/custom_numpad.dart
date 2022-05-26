@@ -1,3 +1,4 @@
+import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 
@@ -125,7 +126,7 @@ class NumPad extends StatelessWidget {
                 onPressed: () => onSubmit(),
                 icon: Icon(
                   Icons.done_rounded,
-                  color: iconColor,
+                  color: AppColors.greenEmerald,
                 ),
                 iconSize: buttonSize,
               ),

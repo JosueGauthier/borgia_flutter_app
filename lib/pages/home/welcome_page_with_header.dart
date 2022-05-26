@@ -64,7 +64,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
 
                                         //color: Colors.greenAccent.withOpacity(1),
                                         ),
-                                    padding: EdgeInsets.only(top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
+                                    padding: EdgeInsets.only(top: Dimensions.height30 * 1.3, left: Dimensions.width20 * 1.5, right: Dimensions.width20),
                                     child: Center(
                                       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                                         (AppConstants.isfinishedRotate == false)
@@ -76,10 +76,10 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                     color: AppColors.white),
                                                 child: AnimatedTextKit(
                                                   animatedTexts: [
-                                                    RotateAnimatedText('', duration: Duration(milliseconds: 200)),
-                                                    RotateAnimatedText('Bonjour'),
-                                                    RotateAnimatedText(userController.welcomeUserModel.surname!),
-                                                    RotateAnimatedText('Boquette', rotateOut: false, duration: Duration(seconds: 2)),
+                                                    RotateAnimatedText('', duration: Duration(milliseconds: 300)),
+                                                    RotateAnimatedText('Bonjour,'),
+                                                    RotateAnimatedText(userController.welcomeUserModel.surname!, rotateOut: false),
+                                                    //RotateAnimatedText('Boquette', rotateOut: false, duration: Duration(seconds: 2)),
                                                   ],
                                                   isRepeatingAnimation: false,
                                                   onFinished: () {
@@ -91,7 +91,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                 ),
                                               )
                                             : Text(
-                                                "Boquette",
+                                                userController.welcomeUserModel.surname!,
                                                 style: TextStyle(
                                                     fontSize: Dimensions.height45 * 0.8,
                                                     fontFamily: 'Montserrat-Bold',
@@ -157,7 +157,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                         ),
                                         Positioned(
                                           top: Dimensions.height10 * 1.5,
-                                          left: Dimensions.height10 * 2,
+                                          left: Dimensions.height10 * 2 * 1.5,
                                           child: Text(
                                             "Solde:",
                                             style: TextStyle(

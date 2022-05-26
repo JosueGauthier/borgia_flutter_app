@@ -38,6 +38,8 @@ class AppColors {
   static Color white = Colors.white;
   static const Color subtitleColor = Color(0xFF8B8B8C);
 
+  static const Color greenEmerald = Color.fromARGB(200, 1, 152, 117);
+
 //! theme vert fluo rose
 
 }

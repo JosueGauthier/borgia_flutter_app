@@ -111,7 +111,7 @@ flutter:
     - family: Montserrat-Bold
       fonts:
         - asset: assets/font/Montserrat-Bold.ttf
-    - family: Montserrat-SemiBold.ttf
+    - family: Montserrat-SemiBold
       fonts:
         - asset: assets/font/Montserrat-SemiBold.ttf
     - family: Helvetica-Bold

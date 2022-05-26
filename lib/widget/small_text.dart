@@ -8,6 +8,7 @@ class SmallText extends StatelessWidget {
   final TextOverflow? overFlow;
   final int maxLines;
   final bool allowOverFlow;
+  final String fontTypo;
 
   const SmallText({
     Key? key,
@@ -18,6 +19,7 @@ class SmallText extends StatelessWidget {
     this.overFlow = TextOverflow.ellipsis,
     this.maxLines = 1,
     this.allowOverFlow = false,
+    this.fontTypo = 'Roboto',
   }) : super(key: key);
 
   @override
@@ -28,7 +30,7 @@ class SmallText extends StatelessWidget {
       overflow: allowOverFlow == false ? null : overFlow,
       style: TextStyle(
         color: color,
-        fontFamily: 'Roboto',
+        fontFamily: fontTypo,
         fontSize: size,
         height: height,
       ),

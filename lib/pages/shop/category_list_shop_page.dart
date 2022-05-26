@@ -102,78 +102,101 @@ class _CategoryShopState extends State<CategoryShop> {
 
                               Get.toNamed(RouteHelper.getProductList(categoryModel.id!, categoryModel.moduleId!, widget.shopId, "home"));
                             },
-                            child: Card(
-                              //borderOnForeground: true,
-                              elevation: 0,
-                              //shadowColor: AppColors.secondColor,
-                              color: Colors.white,
-                              //shape: ShapeBorder.lerp(, b, t),
+                            child: Container(
+                              //color: Colors.redAccent,
+                              margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width20, bottom: Dimensions.height15),
+                              child: Row(
+                                  //crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: Dimensions.height10),
+                                      height: Dimensions.height100 * 0.6,
+                                      width: Dimensions.height100 * 0.6,
+                                      decoration: BoxDecoration(
+                                        //color: Colors.amber,
+                                        image: DecorationImage(
+                                          fit: BoxFit.contain,
+                                          image: NetworkImage(categoryModel.image!),
+                                        ),
+                                        //borderRadius: BorderRadius.circular(Dimensions.width20)
+                                      ),
+                                    ),
 
-                              child: Container(
-                                //color: Colors.redAccent,
-                                margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width20, bottom: Dimensions.height15),
-                                child: Row(
-                                    //crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      //! image section
+                                    SizedBox(
+                                      width: Dimensions.width20 * 3,
+                                    ),
 
-                                      Stack(
-                                        children: [
-                                          Container(
-                                            height: Dimensions.height100 * 0.6,
-                                            width: Dimensions.height100 * 0.6,
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
-                                            child: CachedNetworkImage(
-                                              fit: BoxFit.contain,
-                                              imageUrl: categoryModel.image!,
-                                              placeholder: (context, url) => Center(
-                                                child: SizedBox(
-                                                  height: Dimensions.height45,
-                                                  width: Dimensions.height45,
-                                                  child: const CircularProgressIndicator(
-                                                    color: AppColors.secondColor,
-                                                  ),
+                                    //! text section
+
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                                        child: BigText(
+                                          fontTypo: 'Helvetica-Bold',
+                                          text: (categoryModel.name)!.capitalize!,
+                                          size: Dimensions.height25 * 0.8,
+                                          color: AppColors.titleColor,
+                                        ),
+                                      ),
+                                    ),
+                                    //! image section
+
+                                    /* Stack(
+                                      children: [
+                                        Container(
+                                          height: Dimensions.height100 * 0.6,
+                                          width: Dimensions.height100 * 0.6,
+                                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width20)),
+                                          child: CachedNetworkImage(
+                                            fit: BoxFit.contain,
+                                            imageUrl: categoryModel.image!,
+                                            placeholder: (context, url) => Center(
+                                              child: SizedBox(
+                                                height: Dimensions.height45,
+                                                width: Dimensions.height45,
+                                                child: const CircularProgressIndicator(
+                                                  color: AppColors.secondColor,
                                                 ),
                                               ),
-                                              errorWidget: (context, url, error) => const Image(image: AssetImage("assets/image/errorimage.png")),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      //! text section
-
-                                      //? expanded widget force container to take all the available space
-
-                                      Expanded(
-                                        child: Container(
-                                          height: Dimensions.listviewTextHeigth + 10,
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.only(
-                                                  topRight: Radius.circular(Dimensions.height20), bottomRight: Radius.circular(Dimensions.height20))),
-                                          child: Padding(
-                                            padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                            child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                SizedBox(
-                                                  height: Dimensions.height10,
-                                                ),
-                                                BigText(
-                                                  text: (categoryModel.name)!.capitalize!,
-                                                  size: Dimensions.height25,
-                                                ),
-                                                SizedBox(
-                                                  height: Dimensions.height10,
-                                                ),
-                                              ],
-                                            ),
+                                            errorWidget: (context, url, error) => const Image(image: AssetImage("assets/image/errorimage.png")),
                                           ),
                                         ),
-                                      )
-                                    ]),
-                              ),
+                                      ],
+                                    ), */
+
+                                    //! text section
+
+                                    //? expanded widget force container to take all the available space
+
+                                    /* Expanded(
+                                      child: Container(
+                                        height: Dimensions.listviewTextHeigth + 10,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(Dimensions.height20), bottomRight: Radius.circular(Dimensions.height20))),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              SizedBox(
+                                                height: Dimensions.height10,
+                                              ),
+                                              BigText(
+                                                text: (categoryModel.name)!.capitalize!,
+                                                size: Dimensions.height25,
+                                              ),
+                                              SizedBox(
+                                                height: Dimensions.height10,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ) */
+                                  ]),
                             ),
                           );
                         }),

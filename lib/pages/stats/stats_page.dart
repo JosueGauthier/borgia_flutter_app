@@ -60,7 +60,7 @@ class _StatsPageState extends State<StatsPage> {
               margin: EdgeInsets.only(bottom: Dimensions.height10),
               padding: EdgeInsets.only(top: Dimensions.height30 * 0.5, left: Dimensions.width20, right: Dimensions.width20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   BigText(
                     fontTypo: 'Montserrat-Bold',

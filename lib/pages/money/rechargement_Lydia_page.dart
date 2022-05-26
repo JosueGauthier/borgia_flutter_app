@@ -1,13 +1,7 @@
 // main.dart
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-// import our custom number keyboard
-import '../../routes/route_helper.dart';
-import '../../widget/app_icon.dart';
 import '../../widget/big_text.dart';
 import '../../widget/custom_numpad.dart';
 
@@ -30,15 +24,15 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
           Container(
             height: Dimensions.height45 * 2.7,
             decoration: BoxDecoration(
-                color: Colors.white,
+                //color: Colors.greenAccent,
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(Dimensions.height20),
-                  bottomRight: Radius.circular(Dimensions.height20),
-                )),
+              bottomLeft: Radius.circular(Dimensions.height20),
+              bottomRight: Radius.circular(Dimensions.height20),
+            )),
             margin: EdgeInsets.only(bottom: Dimensions.height10),
-            padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
+            padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20 * 2, right: Dimensions.width20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 /* GestureDetector(
                     onTap: () {
@@ -59,7 +53,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
           ),
           Expanded(
               child: Container(
-            decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.contain, image: const AssetImage("assets/image/lydiaRefill.png"))),
+            decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.contain, image: const AssetImage("assets/image/lydia-logo.jpeg"))),
 
             //color: Colors.redAccent,
           ))
@@ -70,7 +64,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
         ],
       ),
       bottomNavigationBar: Container(
-        height: Dimensions.height20 * 21,
+        height: Dimensions.height20 * 23,
         //color: Colors.blueAccent,
         child: Column(
           children: [
@@ -86,7 +80,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                     controller: _myController,
                     textAlign: TextAlign.center,
                     showCursor: false,
-                    style: TextStyle(fontSize: Dimensions.height45, color: AppColors.mainColor, fontFamily: 'OpenSansExtraBold'),
+                    style: TextStyle(fontSize: Dimensions.height45, color: AppColors.titleColor, fontFamily: 'OpenSansExtraBold'),
                     // Disable the default soft keybaord
                     keyboardType: TextInputType.none,
                   )),
@@ -99,7 +93,9 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
               iconColor: AppColors.mainColor,
               controller: _myController,
               delete: () {
-                _myController.text = _myController.text.substring(0, _myController.text.length - 1);
+                if ((_myController.text).isNotEmpty) {
+                  _myController.text = _myController.text.substring(0, _myController.text.length - 1);
+                }
               },
               // do something with the input numbers
               onSubmit: () {
@@ -114,6 +110,9 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                         ));
               },
             ),
+            SizedBox(
+              height: Dimensions.height20,
+            )
           ],
         ),
       ),
