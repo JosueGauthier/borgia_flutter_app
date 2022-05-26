@@ -30,6 +30,8 @@ class AppConstants {
 
   static const String USER_SHOP_STAT_URI = "/api-links/sale/stat-user/?username=";
 
+  static const String RANK_USER_SHOP_STAT_URI = "/api-links/sale/rank-user-shop/";
+
   static bool isfinishedRotate = false;
 
   //! auth end points

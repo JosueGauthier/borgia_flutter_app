@@ -51,62 +51,12 @@ class FavPage extends StatelessWidget {
                         width: double.maxFinite,
                         height: Dimensions.width20 * 5,
                         color: Colors.white,
-                        margin: EdgeInsets.only(bottom: Dimensions.height20, left: Dimensions.width20),
-                        child: Card(
-                            elevation: 0,
-                            shadowColor: AppColors.secondColor,
-                            //color: Colors.blue,
-                            child: ProductItemWidget(
-                              illustImage: NetworkImage(_cartList[index].img!),
-                              titleText: _cartList[index].name!,
-                              priceProduct: _cartList[index].price.toString(),
-                            )
-
-                            /*   Row(
-                            children: [
-                              SizedBox(
-                                width: Dimensions.width20,
-                              ),
-                              GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  width: Dimensions.width20 * 5,
-                                  height: Dimensions.width20 * 5,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(fit: BoxFit.contain, image: NetworkImage(_cartList[index].img!)),
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(Dimensions.radius20)),
-                                ),
-                              ),
-                              SizedBox(
-                                width: Dimensions.width20,
-                              ),
-                              //? an expanded widget take all space of the parent
-                              Expanded(
-                                  child: SizedBox(
-                                //color: Colors.redAccent,
-                                height: Dimensions.width20 * 5,
-                                child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                  BigText(
-                                    text: _cartList[index].name!,
-                                    color: AppColors.darkGreyColor,
-                                    size: Dimensions.height30 * 0.8,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      BigText(
-                                        text: _cartList[index].price.toString() + " €",
-                                        color: AppColors.mainColor,
-                                        size: Dimensions.height30 * 0.8,
-                                      ),
-                                    ],
-                                  )
-                                ]),
-                              )),
-                            ],
-                          ), */
-                            ),
+                        margin: EdgeInsets.only(left: Dimensions.width20),
+                        child: ProductItemWidget(
+                          illustImage: NetworkImage(_cartList[index].img!),
+                          titleText: _cartList[index].name!,
+                          priceProduct: _cartList[index].price.toString(),
+                        ),
                       );
                     })));
           },

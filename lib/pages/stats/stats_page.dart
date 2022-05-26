@@ -2,11 +2,12 @@ import 'package:borgiaflutterapp/controllers/sale_list_controller.dart';
 import 'package:borgiaflutterapp/controllers/shop_stat_controller.dart';
 import 'package:borgiaflutterapp/pages/stats/global_stat_page.dart';
 import 'package:borgiaflutterapp/pages/stats/personal_stat_page.dart';
+import 'package:borgiaflutterapp/pages/stats/rank_user_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/rank_user_controller.dart';
 import '../../controllers/user_shop_stat_controller.dart';
-import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
@@ -22,6 +23,8 @@ class _StatsPageState extends State<StatsPage> {
   @override
   Widget build(BuildContext context) {
     Get.find<SaleListController>().getSaleList();
+
+    Get.find<RankUserStatController>().getRankUserList();
 
     Get.find<SaleListController>().getMapList();
 
@@ -42,7 +45,7 @@ class _StatsPageState extends State<StatsPage> {
             children: [
               GlobalStatPage(),
               MyStatPage(),
-              Icon(Icons.directions_bike),
+              RankUserPage(),
             ],
           ),
           appBar: AppBar(
@@ -71,14 +74,6 @@ class _StatsPageState extends State<StatsPage> {
                 ],
               ),
             ),
-            /* leading: GestureDetector(
-                onTap: () {
-                  Get.toNamed(RouteHelper.getInitial());
-                },
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  color: AppColors.titleColor,
-                )), */
             bottom: const TabBar(
               indicatorColor: AppColors.mainColor,
               labelColor: AppColors.mainColor,
