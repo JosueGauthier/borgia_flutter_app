@@ -106,7 +106,7 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
         Container(
           //color: AppColors.titleColor,
-          margin: EdgeInsets.only(left: Dimensions.width30),
+          margin: EdgeInsets.only(left: Dimensions.width20),
           child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
             BigText(
               color: AppColors.titleColor,

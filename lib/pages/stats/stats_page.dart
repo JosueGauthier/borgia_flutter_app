@@ -62,14 +62,6 @@ class _StatsPageState extends State<StatsPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(
-                      onTap: () {
-                        Get.toNamed(RouteHelper.getInitial());
-                      },
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: AppColors.titleColor,
-                      )),
                   BigText(
                     fontTypo: 'Montserrat-Bold',
                     text: "Statistiques",

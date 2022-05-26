@@ -40,14 +40,14 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                GestureDetector(
+                /* GestureDetector(
                     onTap: () {
                       Get.toNamed(RouteHelper.getInitial());
                     },
                     child: Icon(
                       Icons.arrow_back_ios,
                       color: AppColors.titleColor,
-                    )),
+                    )), */
                 BigText(
                   fontTypo: 'Montserrat-Bold',
                   text: "Rechargement Lydia",

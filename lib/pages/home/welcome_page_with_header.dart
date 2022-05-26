@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:borgiaflutterapp/pages/home/home_page.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:borgiaflutterapp/widget/big_text.dart';
 import 'package:flutter/material.dart';
@@ -137,84 +138,55 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: Dimensions.height10 * 10,
+                                    height: Dimensions.height10 * 14,
                                   ),
-                                  /* Container(
-                                    //color: Colors.white.withOpacity(0.5),
-                                    padding: EdgeInsets.only(left: Dimensions.width20),
-                                    height: Dimensions.height30 * 1.5,
-                                    child: Text(
-                                      "Solde:",
-                                      style: TextStyle(
-                                          fontSize: Dimensions.height45 * 0.8, fontFamily: 'Montserrat-ExtraBold', letterSpacing: 2, color: Colors.black),
-                                    ),
-                                  ), */
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        height: Dimensions.height30 * 3.7,
-                                        width: Dimensions.width10 * 30,
-                                        child: Stack(
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(30),
-                                                //borderRadius: BorderRadius.circular(Dimensions.radius30),
-                                                color: AppColors.white.withOpacity(0.8),
-                                                backgroundBlendMode: BlendMode.srcOver,
-                                              ),
-                                              /* child: ClipRRect(
-                                                borderRadius: BorderRadius.circular(30),
-                                                child: const PlasmaRenderer(
-                                                  type: PlasmaType.infinity,
-                                                  particles: 6,
-                                                  color: AppColors.mainColor, //Color(0x64d31418),
-                                                  blur: 0.9,
-                                                  size: 0.9,
-                                                  speed: 1,
-                                                  offset: 0,
-                                                  blendMode: BlendMode.srcOver,
-                                                  particleType: ParticleType.atlas,
-                                                  variation1: 0,
-                                                  variation2: 0,
-                                                  variation3: 0,
-                                                  rotation: 0,
-                                                ),
-                                              ), */
-                                            ),
-                                            Positioned(
-                                              top: Dimensions.height10,
-                                              left: Dimensions.height10 * 1.5,
-                                              child: Text(
-                                                "Solde:",
+                                  GestureDetector(
+                                    /* onTap: () {
+                                      Get.toNamed(RouteHelper.getLydiaPage());
+                                    }, */
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: Dimensions.height30 * 3,
+                                          width: double.maxFinite,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(Dimensions.width20),
+                                            color: AppColors.white.withOpacity(0.65),
+                                            backgroundBlendMode: BlendMode.srcOver,
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: Dimensions.height10 * 1.5,
+                                          left: Dimensions.height10 * 2,
+                                          child: Text(
+                                            "Solde:",
+                                            style: TextStyle(
+                                                fontSize: Dimensions.height45 * 0.4,
+                                                fontFamily: 'Montserrat-Bold',
+                                                letterSpacing: 2,
+                                                color: AppColors.titleColor),
+                                          ),
+                                        ),
+                                        Center(
+                                          //heightFactor: 10,
+                                          child: Column(
+                                            children: [
+                                              SizedBox(height: Dimensions.height20 * 1.1),
+                                              Text(
+                                                userController.userList[0].balance + "€",
                                                 style: TextStyle(
-                                                    fontSize: Dimensions.height45 * 0.4,
-                                                    fontFamily: 'Montserrat-Bold',
+                                                    fontSize: Dimensions.height45 * 1.3,
+                                                    fontFamily: 'OpenSansExtraBold',
                                                     letterSpacing: 2,
                                                     color: AppColors.titleColor),
+
+                                                //Color.fromARGB(200, 1, 152, 117)
                                               ),
-                                            ),
-                                            Center(
-                                              //heightFactor: 10,
-                                              child: Column(
-                                                children: [
-                                                  SizedBox(height: Dimensions.height20 * 1.1),
-                                                  Text(
-                                                    userController.userList[0].balance + "€",
-                                                    style: TextStyle(
-                                                        fontSize: Dimensions.height45 * 1.3,
-                                                        fontFamily: 'OpenSansExtraBold',
-                                                        letterSpacing: 2,
-                                                        color: AppColors.titleColor),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
@@ -222,7 +194,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                               Column(
                                 children: [
                                   SizedBox(
-                                    height: Dimensions.height100 * 3.5,
+                                    height: Dimensions.height100 * 3.7,
                                   ),
                                   //! Showing the body
                                   WelcomePage(),
