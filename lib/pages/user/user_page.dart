@@ -1,13 +1,10 @@
 import 'package:borgiaflutterapp/controllers/other_users_controller.dart';
-import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 import 'package:borgiaflutterapp/widget/profile_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/user_controller.dart';
 import '../../models/user_model.dart';
 import '../../routes/route_helper.dart';
-import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';

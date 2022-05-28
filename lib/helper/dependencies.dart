@@ -17,6 +17,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../controllers/auth_controller.dart';
 import '../controllers/cart_controller.dart';
 import '../controllers/category_controller.dart';
+import '../controllers/prod_cat_controller.dart';
 import '../controllers/product_controller.dart';
 import '../controllers/product_from_category_controller.dart';
 import '../controllers/sales_controller.dart';
@@ -93,4 +94,6 @@ Future<void> init() async {
   Get.lazyPut(() => UserShopStatController(userShopStatRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => RankUserStatController(rankUserStatRepo: Get.find()), fenix: true);
+
+  Get.lazyPut(() => CategoryFromProductController(categoryOfProductRepo: Get.find()), fenix: true);
 }
