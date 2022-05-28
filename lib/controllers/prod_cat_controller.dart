@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/data/repository/prodcat_repo.dart';
 import 'package:borgiaflutterapp/models/category_product_model.dart';
-import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:get/get.dart';
 
 class CategoryFromProductController extends GetxController {
@@ -18,7 +15,10 @@ class CategoryFromProductController extends GetxController {
   bool get isLoaded => _isLoaded;
 
   Future<void> getCat(int productId) async {
+    //print("aaa");
     Response response = await categoryOfProductRepo.getCatList(productId);
+
+    print(response.statusCode);
 
     if (response.statusCode == 200) {
       _catList = [];
@@ -30,7 +30,7 @@ class CategoryFromProductController extends GetxController {
       }
       _isLoaded = true;
 
-      AppConstants.CAT_LIST = _catList;
+      //AppConstants.CAT_LIST = _catList;
 
       update();
     } else {}
