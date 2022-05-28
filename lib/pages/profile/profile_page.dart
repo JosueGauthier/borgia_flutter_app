@@ -176,47 +176,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                             ),
-                            /* Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: Dimensions.width10,
-                                    ),
-                                    Stack(
-                                      children: [
-                                        Center(
-                                          child: Container(
-                                            //color: Colors.greenAccent,
-                                            width: Dimensions.height10 * 5,
-                                            child: CircleAvatar(
-                                              backgroundImage: AssetImage(_map_tbk[selectedTbk]!),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          bottom: -Dimensions.height10 / 1.4,
-                                          right: -Dimensions.height10 / 1.2,
-                                          child: Container(
-                                            //color: Colors.redAccent,
-                                            width: Dimensions.height10 * 20,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: Dimensions.width20,
-                                    ),
-                                    SmallText(
-                                      text: "Changer de TBK",
-                                      color: Colors.white,
-                                      size: Dimensions.height20,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ), */
                           ],
                         ),
                       ),
