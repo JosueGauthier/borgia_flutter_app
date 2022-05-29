@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/data/repository/product_list_from_category_repo.dart';
 import 'package:borgiaflutterapp/models/product_list_from_category_models.dart';
-import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -42,16 +39,6 @@ class ProductFromCategoryController extends GetxController {
   CartController get theCartController => _cartController;
 
   //! var for setQuantity
-
-  //int _quantity = 0;
-
-  //int get quantity => _quantity;
-
-  /* int _incartItem = 0; */
-
-  //int get inCartItem => _quantity;
-
-  //* var for cart control
 
   Future<void> getProduct(int categoryId) async {
     Response response = await productFromCategoryRepo.getProductList(categoryId);
@@ -112,10 +99,15 @@ class ProductFromCategoryController extends GetxController {
 
   //* below use for cart control
 
-  void sale_addItem(ProductModel productModel) {
+  void sale_addItem(
+    ProductModel productModel,
+    int categoryId,
+    int categoryModuleId,
+    int shopId,
+  ) {
     print(_quantity);
     if ((_quantity) > 0) {
-      _cartController.addItem(productModel, (_quantity));
+      _cartController.addItem(productModel, _quantity, categoryId, categoryModuleId, shopId);
       print(_cartController);
       _quantity = 0;
       _cartController.items.forEach((key, value) {

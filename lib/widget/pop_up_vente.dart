@@ -22,8 +22,15 @@ class MyDialog extends StatefulWidget {
   final ProductFromCategoryController productListController;
   final int categoryModuleId;
   final int shopId;
+  final int categoryId;
 
-  const MyDialog({Key? key, required this.productListController, required this.productModel, required this.categoryModuleId, required this.shopId})
+  const MyDialog(
+      {Key? key,
+      required this.productListController,
+      required this.productModel,
+      required this.categoryModuleId,
+      required this.shopId,
+      required this.categoryId})
       : super(key: key);
 
   @override
@@ -178,7 +185,7 @@ class _MyDialogState extends State<MyDialog> {
                     onPressed: () {
                       _order(salesController);
 
-                      widget.productListController.sale_addItem(widget.productModel);
+                      widget.productListController.sale_addItem(widget.productModel, widget.categoryId, widget.categoryModuleId, widget.shopId);
 
                       setState(() {
                         txtbuttonpressed = !txtbuttonpressed;

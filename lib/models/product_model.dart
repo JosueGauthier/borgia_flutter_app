@@ -12,19 +12,26 @@ class ProductModel {
   bool? isRemoved;
   String? image;
   int? mainid;
+  //int? categoryId;
+  //int? categoryModuleId;
+  //int? shopId;
 
-  ProductModel(
-      {this.id,
-      this.name,
-      this.unit,
-      this.shop,
-      this.isManual,
-      this.manualPrice,
-      this.correctingFactor,
-      this.isActive,
-      this.isRemoved,
-      this.image,
-      this.mainid});
+  ProductModel({
+    this.id,
+    this.name,
+    this.unit,
+    this.shop,
+    this.isManual,
+    this.manualPrice,
+    this.correctingFactor,
+    this.isActive,
+    this.isRemoved,
+    this.image,
+    this.mainid,
+    //this.categoryId,
+    //this.categoryModuleId,
+    //this.shopId,
+  });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -37,6 +44,9 @@ class ProductModel {
     isActive = json['is_active'];
     isRemoved = json['is_removed'];
     image = json['product_image'];
+    //categoryId = json['category_id'];
+    //categoryModuleId = json['category_module_id'];
+    //shopId = json['shop_id'];
   }
 
   ProductModel.fromJsonPlusMainId(Map<String, dynamic> json, int mainId) {

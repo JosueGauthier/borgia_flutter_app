@@ -145,6 +145,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                           productListController: productListController,
                                           categoryModuleId: widget.categoryModuleId,
                                           shopId: widget.shopId,
+                                          categoryId: widget.categoryId,
                                         );
                                       });
 

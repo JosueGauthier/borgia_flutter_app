@@ -16,7 +16,7 @@ class CartController extends GetxController {
   //! only for storage and sharedpreferences
   List<CartModel> storageItems = [];
 
-  void addItem(ProductModel productModel, int quantity) {
+  void addItem(ProductModel productModel, int quantity, int categoryId, int categoryModuleId, int shopId) {
     if (_items.containsKey(productModel.id!)) {
       _items.update(productModel.id!, (value) {
         if ((value.quantity! + quantity) > 0) {
@@ -26,9 +26,11 @@ class CartController extends GetxController {
             price: value.price,
             img: value.img,
             quantity: value.quantity! + quantity,
-            //isExist: true,
             time: DateTime.now().toString(),
             aProduct: productModel,
+            categoryId: categoryId,
+            categoryModuleId: categoryModuleId,
+            shopId: shopId,
           );
         } else {
           return CartModel(
@@ -37,9 +39,11 @@ class CartController extends GetxController {
             price: value.price,
             img: value.img,
             quantity: 0,
-            //isExist: true,
             time: DateTime.now().toString(),
             aProduct: productModel,
+            categoryId: categoryId,
+            categoryModuleId: categoryModuleId,
+            shopId: shopId,
           );
         }
       });
@@ -54,9 +58,11 @@ class CartController extends GetxController {
           price: productModel.manualPrice,
           img: productModel.image,
           quantity: quantity,
-          //isExist: true,
           time: DateTime.now().toString(),
           aProduct: productModel,
+          categoryId: categoryId,
+          categoryModuleId: categoryModuleId,
+          shopId: shopId,
         );
       });
     }
@@ -70,34 +76,6 @@ class CartController extends GetxController {
     update();
   }
 
-  /* void removeItem(OldProductModel oldProductModel) {
-    if (_items.containsKey(oldProductModel.id!)) {
-      _items.remove(oldProductModel.id!);
-    }
-  } */
-
-  /*  bool existinCart(OldProductModel aProduct) {
-    if (_items.containsKey(aProduct.id)) {
-      return true;
-    } else {
-      return false;
-    }
-  } */
-
-  /*  int getQuantity(OldProductModel aProduct) {
-    var quantity = 0;
-
-    if (_items.containsKey(aProduct.id)) {
-      _items.forEach((key, value) {
-        if (key == aProduct.id) {
-          quantity = value.quantity!;
-        }
-      });
-    }
-
-    return quantity;
-  }
- */
   int get totalItems {
     int totalQuantity = 0;
 
@@ -115,17 +93,6 @@ class CartController extends GetxController {
     }).toList();
   }
 
-  //! keyword get doit retourner qqch
-  /* int get totalAmount {
-    var total = 0;
-
-    _items.forEach((key, value) {
-      total += value.quantity! * int.parse(value.price!);
-    });
-
-    return total;
-  } */
-
   List<CartModel> getCartData() {
     setCart = cartRepo.getCartList();
 
@@ -135,8 +102,6 @@ class CartController extends GetxController {
   //! set fonction quand elle est appellé alloue une valeur a une variable
   set setCart(List<CartModel> items) {
     storageItems = items;
-
-    //print("Length of cart " + storageItems.length.toString());
 
     for (int i = 0; i < storageItems.length; i++) {
       _items.putIfAbsent(storageItems[i].aProduct!.id!, () => storageItems[i]);

@@ -1,20 +1,20 @@
-import 'package:borgiaflutterapp/controllers/rank_user_controller.dart';
-import 'package:borgiaflutterapp/models/rank_user_shop_model.dart';
-import 'package:borgiaflutterapp/utils/dimensions.dart';
-import 'package:borgiaflutterapp/widget/big_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/rank_user_controller.dart';
+import '../../models/rank_user_shop_model.dart';
 import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
+import '../../widget/big_text.dart';
 
-class RankUserPage extends StatefulWidget {
-  const RankUserPage({Key? key}) : super(key: key);
+class RankUserProductPage extends StatefulWidget {
+  const RankUserProductPage({Key? key}) : super(key: key);
 
   @override
-  State<RankUserPage> createState() => _RankUserPageState();
+  State<RankUserProductPage> createState() => _RankUserProductPageState();
 }
 
-class _RankUserPageState extends State<RankUserPage> {
+class _RankUserProductPageState extends State<RankUserProductPage> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RankUserStatController>(builder: (rankUserStatController) {
@@ -42,7 +42,7 @@ class _RankUserPageState extends State<RankUserPage> {
                     return GestureDetector(
                       onTap: () {},
                       child: Container(
-                        margin: EdgeInsets.only(bottom: Dimensions.height10),
+                        margin: EdgeInsets.only(bottom: Dimensions.height30),
                         //color: Colors.greenAccent,
                         child: Column(
                           children: [
@@ -66,13 +66,12 @@ class _RankUserPageState extends State<RankUserPage> {
 
                                 Container(
                                   height: Dimensions.height100 * 0.6,
-                                  //color: Colors.redAccent,
                                   child: Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
                                     //! text section
 
                                     //? expanded widget force container to take all the available space
                                     Container(
-                                      //color: Colors.blueAccent,
+                                      //color: Colors.greenAccent,
                                       padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
                                       child: BigText(
                                         size: Dimensions.height25 * 1.1,
@@ -86,7 +85,7 @@ class _RankUserPageState extends State<RankUserPage> {
                               ],
                             ),
                             Container(
-                              height: Dimensions.height100 * 2,
+                              height: Dimensions.height100 * 1.7,
                               //color: Colors.amber,
                               child: Stack(
                                 alignment: Alignment.bottomCenter,
@@ -100,13 +99,13 @@ class _RankUserPageState extends State<RankUserPage> {
                                     ),
                                   ),
                                   Positioned(
-                                    top: Dimensions.height10 * 5,
+                                    top: Dimensions.height10 * 4,
                                     left: Dimensions.width10 * 2,
                                     child: Column(
                                       children: [
                                         Container(
                                           //color: Colors.greenAccent,
-                                          height: Dimensions.height10 * 6,
+                                          height: Dimensions.height10 * 4,
                                           width: Dimensions.width10 * 7.2,
                                           child: Center(
                                             child: Column(
@@ -130,17 +129,8 @@ class _RankUserPageState extends State<RankUserPage> {
                                                           userTopTenList[1].campus!.toLowerCase().capitalize! +
                                                           (userTopTenList[1].promotion! - 1800).toString())
                                                       .capitalize!,
-                                                  size: Dimensions.height10 * 1.3,
-                                                  color: AppColors.titleColor,
-                                                ),
-                                                SizedBox(
-                                                  height: Dimensions.height10 / 2,
-                                                ),
-                                                BigText(
-                                                  fontTypo: 'Helvetica-Bold',
-                                                  text: userTopTenList[1].montantAchatsParShop.toString() + "€",
                                                   size: Dimensions.height10 * 1.5,
-                                                  color: AppColors.silverGrey, //Color.fromRGBO(105, 105, 105, 0),
+                                                  color: AppColors.titleColor,
                                                 ),
                                               ],
                                             ),
@@ -150,13 +140,13 @@ class _RankUserPageState extends State<RankUserPage> {
                                     ),
                                   ),
                                   Positioned(
-                                    top: Dimensions.height10, //Dimensions.height10 * 2,
+                                    top: 0,
                                     left: Dimensions.width10 * 9.5,
                                     child: Column(
                                       children: [
                                         Container(
                                           //color: Colors.greenAccent,
-                                          height: Dimensions.height10 * 6,
+                                          height: Dimensions.height10 * 4,
                                           width: Dimensions.width10 * 7.2,
                                           child: Center(
                                             child: Column(
@@ -180,17 +170,8 @@ class _RankUserPageState extends State<RankUserPage> {
                                                           userTopTenList[0].campus!.toLowerCase().capitalize! +
                                                           (userTopTenList[0].promotion! - 1800).toString())
                                                       .capitalize!,
-                                                  size: Dimensions.height10 * 1.3,
-                                                  color: AppColors.titleColor,
-                                                ),
-                                                SizedBox(
-                                                  height: Dimensions.height10 / 2,
-                                                ),
-                                                BigText(
-                                                  fontTypo: 'Helvetica-Bold',
-                                                  text: userTopTenList[0].montantAchatsParShop.toString() + "€",
                                                   size: Dimensions.height10 * 1.5,
-                                                  color: AppColors.silverGrey,
+                                                  color: AppColors.titleColor,
                                                 ),
                                               ],
                                             ),
@@ -200,13 +181,13 @@ class _RankUserPageState extends State<RankUserPage> {
                                     ),
                                   ),
                                   Positioned(
-                                    top: Dimensions.height10 * 8.5,
+                                    top: Dimensions.height10 * 7.5,
                                     left: Dimensions.width10 * 17,
                                     child: Column(
                                       children: [
                                         Container(
                                           //color: Colors.greenAccent,
-                                          height: Dimensions.height10 * 6,
+                                          height: Dimensions.height10 * 4,
                                           width: Dimensions.width10 * 7.2,
                                           child: Center(
                                             child: Column(
@@ -230,17 +211,8 @@ class _RankUserPageState extends State<RankUserPage> {
                                                           userTopTenList[2].campus!.toLowerCase().capitalize! +
                                                           (userTopTenList[2].promotion! - 1800).toString())
                                                       .capitalize!,
-                                                  size: Dimensions.height10 * 1.3,
-                                                  color: AppColors.titleColor,
-                                                ),
-                                                SizedBox(
-                                                  height: Dimensions.height10 / 2,
-                                                ),
-                                                BigText(
-                                                  fontTypo: 'Helvetica-Bold',
-                                                  text: userTopTenList[2].montantAchatsParShop.toString() + "€",
                                                   size: Dimensions.height10 * 1.5,
-                                                  color: AppColors.silverGrey,
+                                                  color: AppColors.titleColor,
                                                 ),
                                               ],
                                             ),
@@ -255,19 +227,6 @@ class _RankUserPageState extends State<RankUserPage> {
                             SizedBox(
                               height: Dimensions.height20,
                             ),
-                            /* ListView.builder(
-                                padding: EdgeInsets.zero,
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: userTopTenList.length,
-                                itemBuilder: (context, indexUser) {
-                                  UserTopTen userStatModel = userTopTenList[indexUser];
-                                  return Container(
-                                    child: Column(children: [
-                                      BigText(text: userStatModel.surname!),
-                                    ]),
-                                  );
-                                }), */
                           ],
                         ),
                       ),

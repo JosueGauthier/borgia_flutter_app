@@ -40,6 +40,8 @@ class AppColors {
 
   static const Color greenEmerald = Color.fromARGB(200, 1, 152, 117);
 
+  static const Color silverGrey = Color.fromARGB(255, 105, 105, 105);
+
 //! theme vert fluo rose
 
 }
