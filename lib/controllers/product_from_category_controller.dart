@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/data/repository/product_list_from_category_repo.dart';
 import 'package:borgiaflutterapp/models/product_list_from_category_models.dart';
 import 'package:flutter/material.dart';
@@ -99,22 +101,21 @@ class ProductFromCategoryController extends GetxController {
 
   //* below use for cart control
 
-  void sale_addItem(
+  void saleAddItem(
     ProductModel productModel,
     int categoryId,
     int categoryModuleId,
     int shopId,
   ) {
-    print(_quantity);
+    //print(_quantity);
     if ((_quantity) > 0) {
       _cartController.addItem(productModel, _quantity, categoryId, categoryModuleId, shopId);
-      print(_cartController);
+      //print(_cartController.getItems);
+      //inspect(_cartController.getItems);
       _quantity = 0;
-      _cartController.items.forEach((key, value) {
-        //print("the id is " + value.id.toString() + " the quantity is " + value.quantity.toString());
-      });
+      //_cartController.items.forEach((key, value) {});
     } else {
-      Get.snackbar("Item count", "You should at least add one item to the cart !", backgroundColor: AppColors.mainColor, colorText: Colors.white);
+      //Get.snackbar("Item count", "You should at least add one item to the cart !", backgroundColor: AppColors.mainColor, colorText: Colors.white);
     }
 
     update();

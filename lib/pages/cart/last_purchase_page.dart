@@ -9,9 +9,10 @@ import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
+import '../../widget/productItemWidget.dart';
 
-class CartPage extends StatelessWidget {
-  const CartPage({
+class LastPurchases extends StatelessWidget {
+  const LastPurchases({
     Key? key,
   }) : super(key: key);
 
@@ -79,16 +80,41 @@ class CartPage extends StatelessWidget {
         ),
         GetBuilder<CartController>(
           builder: (cartController) {
-            var _cartList = cartController.getItems;
+            List cartList = cartController.getItems;
+
+            cartList.sort((b, a) => (a.time).compareTo(b.time));
 
             return Expanded(
+                child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: cartList.length,
+                    itemBuilder: ((context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Get.toNamed(
+                              RouteHelper.getProductList(cartList[index].categoryId!, cartList[index].categoryModuleId!, cartList[index].shopId!, "favPage"));
+                        },
+                        child: Container(
+                          width: double.maxFinite,
+                          //color: Colors.green,
+                          margin: EdgeInsets.only(left: Dimensions.width20),
+                          child: ProductItemWidget(
+                            illustImage: NetworkImage(cartList[index].img!),
+                            titleText: cartList[index].name!,
+                            priceProduct: cartList[index].price.toString(),
+                          ),
+                        ),
+                      );
+                    })));
+
+            /*  return Expanded(
                 child: Container(
               //color: Colors.redAccent,
               width: double.maxFinite,
               margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
               child: ListView.builder(
                   padding: EdgeInsets.zero,
-                  itemCount: _cartList.length,
+                  itemCount: cartList.length,
                   itemBuilder: ((context, index) {
                     return Container(
                       width: double.maxFinite,
@@ -107,7 +133,7 @@ class CartPage extends StatelessWidget {
                                 width: Dimensions.width20 * 5,
                                 height: Dimensions.width20 * 5,
                                 decoration: BoxDecoration(
-                                    image: DecorationImage(fit: BoxFit.contain, image: NetworkImage(_cartList[index].img!)),
+                                    image: DecorationImage(fit: BoxFit.contain, image: NetworkImage(cartList[index].img!)),
                                     //color: Colors.green,
                                     borderRadius: BorderRadius.circular(Dimensions.radius20)),
                               ),
@@ -122,16 +148,16 @@ class CartPage extends StatelessWidget {
                               height: Dimensions.width20 * 5,
                               child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.start, children: [
                                 BigText(
-                                  text: _cartList[index].name!,
+                                  text: cartList[index].name!,
                                   color: AppColors.darkGreyColor,
                                   size: Dimensions.height30 * 0.8,
                                 ),
-                                timeWidget(index, _cartList.length, _cartList[index].time!),
+                                timeWidget(index, cartList.length, cartList[index].time!),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     BigText(
-                                      text: _cartList[index].price.toString() + " €",
+                                      text: cartList[index].price.toString() + " €",
                                       color: AppColors.mainColor,
                                       size: Dimensions.height30 * 0.7,
                                     ),
@@ -144,7 +170,7 @@ class CartPage extends StatelessWidget {
                       ),
                     );
                   })),
-            ));
+            )); */
           },
         )
       ]),

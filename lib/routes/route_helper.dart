@@ -5,7 +5,7 @@ import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 import 'package:borgiaflutterapp/pages/user/user_page.dart';
 import 'package:get/get.dart';
 
-import '../pages/cart/cart_page.dart';
+import '../pages/cart/last_purchase_page.dart';
 import '../pages/home/home_page.dart';
 import '../pages/shop/category_list_shop_page.dart';
 import '../pages/shop/product_list_from_category_page.dart';
@@ -90,7 +90,7 @@ class RouteHelper {
     GetPage(
       name: cartPage,
       page: () {
-        return CartPage();
+        return LastPurchases();
       },
       //transition: Transition.fadeIn
     ),

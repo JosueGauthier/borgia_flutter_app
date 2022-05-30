@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:get/get.dart';
 
@@ -19,37 +21,24 @@ class CartController extends GetxController {
   void addItem(ProductModel productModel, int quantity, int categoryId, int categoryModuleId, int shopId) {
     if (_items.containsKey(productModel.id!)) {
       _items.update(productModel.id!, (value) {
-        if ((value.quantity! + quantity) > 0) {
-          return CartModel(
-            id: value.id,
-            name: value.name,
-            price: value.price,
-            img: value.img,
-            quantity: value.quantity! + quantity,
-            time: DateTime.now().toString(),
-            aProduct: productModel,
-            categoryId: categoryId,
-            categoryModuleId: categoryModuleId,
-            shopId: shopId,
-          );
-        } else {
-          return CartModel(
-            id: value.id,
-            name: value.name,
-            price: value.price,
-            img: value.img,
-            quantity: 0,
-            time: DateTime.now().toString(),
-            aProduct: productModel,
-            categoryId: categoryId,
-            categoryModuleId: categoryModuleId,
-            shopId: shopId,
-          );
-        }
+        print("aaaa");
+        return CartModel(
+          id: value.id,
+          name: value.name,
+          price: value.price,
+          img: value.img,
+          quantity: value.quantity! + quantity,
+          time: DateTime.now().toString(),
+          aProduct: productModel,
+          categoryId: categoryId,
+          categoryModuleId: categoryModuleId,
+          shopId: shopId,
+        );
       });
     } else {
       //?ajoute si l'item n'existe pas encore
       _items.putIfAbsent(productModel.id!, () {
+        //print("zzzz");
         _items.forEach(((key, value) {}));
 
         return CartModel(
@@ -71,10 +60,13 @@ class CartController extends GetxController {
       _items.remove(productModel.id!);
     }
 
+    inspect(_items);
+
     cartRepo.addToCartList(getItems);
 
     update();
   }
+  //!
 
   int get totalItems {
     int totalQuantity = 0;

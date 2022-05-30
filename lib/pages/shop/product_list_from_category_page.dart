@@ -140,7 +140,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                                   showDialog(
                                       context: context,
                                       builder: (_) {
-                                        return MyDialog(
+                                        return DialogSalePage(
                                           productModel: productModel,
                                           productListController: productListController,
                                           categoryModuleId: widget.categoryModuleId,

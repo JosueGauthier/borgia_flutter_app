@@ -17,14 +17,14 @@ import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
 import '../models/sales_model.dart';
 
-class MyDialog extends StatefulWidget {
+class DialogSalePage extends StatefulWidget {
   final ProductModel productModel;
   final ProductFromCategoryController productListController;
   final int categoryModuleId;
   final int shopId;
   final int categoryId;
 
-  const MyDialog(
+  const DialogSalePage(
       {Key? key,
       required this.productListController,
       required this.productModel,
@@ -34,10 +34,10 @@ class MyDialog extends StatefulWidget {
       : super(key: key);
 
   @override
-  _MyDialogState createState() => _MyDialogState();
+  _DialogSalePageState createState() => _DialogSalePageState();
 }
 
-class _MyDialogState extends State<MyDialog> {
+class _DialogSalePageState extends State<DialogSalePage> {
   Color _addRemoveColor = AppColors.secondColor;
   Color _quantityColor = AppColors.secondColor;
   int qty = 0;
@@ -66,7 +66,8 @@ class _MyDialogState extends State<MyDialog> {
     } else {
       salesController.order(_salesModel).then((status) {
         if (status.isSuccess) {
-          //print("Sucess login");
+          widget.productListController.saleAddItem(widget.productModel, widget.categoryId, widget.categoryModuleId, widget.shopId);
+
           Get.toNamed(RouteHelper.getInitial());
         } else {
           Get.snackbar("Error", status.message);
@@ -150,7 +151,6 @@ class _MyDialogState extends State<MyDialog> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            //productcontroller.setQuantity(true);
                             widget.productListController.setQuantity(true);
 
                             _quantityColor = AppColors.greenEmerald;
@@ -184,8 +184,6 @@ class _MyDialogState extends State<MyDialog> {
                     ),
                     onPressed: () {
                       _order(salesController);
-
-                      widget.productListController.sale_addItem(widget.productModel, widget.categoryId, widget.categoryModuleId, widget.shopId);
 
                       setState(() {
                         txtbuttonpressed = !txtbuttonpressed;
