@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/widget/productItemWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,36 +42,30 @@ class FavPage extends StatelessWidget {
         ),
         GetBuilder<CartController>(
           builder: (cartController) {
-            var _cartList = cartController.getItems;
+            List favList = cartController.getItems;
+
+            favList.sort((b, a) => (a.quantity).compareTo(b.quantity));
+
+            //inspect(_cartList);
 
             return Expanded(
                 child: ListView.builder(
                     padding: EdgeInsets.zero,
-                    itemCount: _cartList.length,
+                    itemCount: favList.length,
                     itemBuilder: ((context, index) {
                       return GestureDetector(
                         onTap: () {
-                          /* ProductModel productModel = searchController.searchList[index];
-                          //Get.find<CategoryFromProductController>().getCat(productModel.id!);
-                          //List catList = AppConstants.CAT_LIST;
-                          CategoryFromProductController categoryFromProductController = Get.find();
-                          await Get.find<CategoryFromProductController>().getCat(productModel.id!);
-                          List catList = categoryFromProductController.catList;
-                          print(catList);
-                          Get.find<CategoryOfShopController>().getCategoryList(productModel.shop!);
-                          List catListModule = AppConstants.CAT_LIST_MODULE; */
-
-                          Get.toNamed(RouteHelper.getProductList(
-                              _cartList[index].categoryId!, _cartList[index].categoryModuleId!, _cartList[index].shopId!, "favPage"));
+                          Get.toNamed(
+                              RouteHelper.getProductList(favList[index].categoryId!, favList[index].categoryModuleId!, favList[index].shopId!, "favPage"));
                         },
                         child: Container(
                           width: double.maxFinite,
                           //color: Colors.green,
                           margin: EdgeInsets.only(left: Dimensions.width20),
                           child: ProductItemWidget(
-                            illustImage: NetworkImage(_cartList[index].img!),
-                            titleText: _cartList[index].name!,
-                            priceProduct: _cartList[index].price.toString(),
+                            illustImage: NetworkImage(favList[index].img!),
+                            titleText: favList[index].name!,
+                            priceProduct: favList[index].price.toString(),
                           ),
                         ),
                       );
