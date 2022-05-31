@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../routes/route_helper.dart';
 import '../utils/colors.dart';
 import '../utils/dimensions.dart';
 import 'big_text.dart';
@@ -12,7 +10,7 @@ class HeaderCustom extends StatelessWidget {
   final bool isIcon;
   final String route;
 
-  HeaderCustom({
+  const HeaderCustom({
     Key? key,
     this.icon = Icons.abc,
     required this.text,
@@ -39,7 +37,7 @@ class HeaderCustom extends StatelessWidget {
               onTap: () {
                 //Get.toNamed(RouteHelper.route)
               },
-              child: Icon(
+              child: const Icon(
                 Icons.arrow_back_ios,
                 color: AppColors.titleColor,
               )),

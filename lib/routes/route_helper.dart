@@ -1,6 +1,6 @@
 import 'package:borgiaflutterapp/pages/auth/auth_page.dart';
 import 'package:borgiaflutterapp/pages/auth/sign_in_page.dart';
-import 'package:borgiaflutterapp/pages/money/rechargement_Lydia_page.dart';
+import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 import 'package:borgiaflutterapp/pages/user/user_page.dart';
 import 'package:get/get.dart';
@@ -90,7 +90,7 @@ class RouteHelper {
     GetPage(
       name: cartPage,
       page: () {
-        return LastPurchases();
+        return const LastPurchases();
       },
       //transition: Transition.fadeIn
     ),

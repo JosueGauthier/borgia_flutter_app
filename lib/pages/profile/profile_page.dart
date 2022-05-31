@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:borgiaflutterapp/widget/profile_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,16 +21,12 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   String selectedTbk = "Boquette";
-  List<String> _listTbk = ["Boquette", "Kin", "Bordel'ss", "Siber'ss"];
-  Map<String, String> _map_tbk = {
+  Map<String, String> mapTbk = {
     "Boquette": "assets/image/logoAMAngers.jpg",
     "Kin": "assets/image/aixlogo.png",
     "Bordel'ss": "assets/image/bdxlogo.png",
     "Siber'ss": "assets/image/metzlogo.jpg"
   };
-  List<String> _logoTbk = ["assets/image/logoAMAngers.jpg", "assets/image/aixlogo.png", "assets/image/bdxlogo.png", "assets/image/metzlogo.jpg"];
-
-  String? _selectedColor;
 
   bool isExpand = false;
 
@@ -65,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   //color: Colors.redAccent,
                                   width: Dimensions.width15 * 4,
                                   height: Dimensions.width15 * 4,
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.arrow_back_ios,
                                     color: AppColors.titleColor,
                                   ),
@@ -113,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
                         height: Dimensions.height45 * 1.7,
                         width: double.maxFinite,
-                        decoration: BoxDecoration(color: AppColors.mainColor, borderRadius: const BorderRadius.all(Radius.circular(10))),
+                        decoration: const BoxDecoration(color: AppColors.mainColor, borderRadius: BorderRadius.all(Radius.circular(10))),
                         child: Stack(
                           children: [
                             Container(
@@ -144,7 +142,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   isExpanded: true,
 
                                   // The list of options
-                                  items: _map_tbk
+                                  items: mapTbk
                                       .map((text, value) {
                                         return MapEntry(
                                             text,
@@ -247,7 +245,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ]),
                   ),
                 ])
-              : CircularProgressIndicator(
+              : const CircularProgressIndicator(
                   color: AppColors.mainColor,
                 );
         }));

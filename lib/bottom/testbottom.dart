@@ -1,4 +1,4 @@
-import 'dart:math' as math;
+/* import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:borgiaflutterapp/utils/dimensions.dart';
@@ -234,7 +234,7 @@ class ExpandedEventItem extends StatelessWidget {
               style: TextStyle(color: Colors.grey.shade400, fontSize: 13),
             )
           ],
-        )
+        )s
       ],
     );
   }
@@ -253,3 +253,4 @@ class Event {
 
   Event(this.assetName, this.title, this.date);
 }
+ */

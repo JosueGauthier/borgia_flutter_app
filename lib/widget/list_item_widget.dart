@@ -6,9 +6,10 @@ import 'big_text.dart';
 
 class ListItemWidget extends StatelessWidget {
   //NetworkImage imageItem;
-  var imageUrl;
+  // ignore: prefer_typing_uninitialized_variables
+  final imageUrl;
 
-  ListItemWidget({Key? key, /* required this.imageItem, */ required this.imageUrl}) : super(key: key);
+  const ListItemWidget({Key? key, /* required this.imageItem, */ required this.imageUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class ListItemWidget extends StatelessWidget {
           //color: Colors.amber,
           image: DecorationImage(
             fit: BoxFit.contain,
-            image: (imageUrl == null) ? AssetImage("assets/image/dafaultuserimage.png") as ImageProvider : NetworkImage(imageUrl),
+            image: (imageUrl == null) ? const AssetImage("assets/image/dafaultuserimage.png") as ImageProvider : NetworkImage(imageUrl),
           ),
           //borderRadius: BorderRadius.circular(Dimensions.width20)
         ),

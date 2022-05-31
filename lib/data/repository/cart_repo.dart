@@ -21,9 +21,9 @@ class CartRepo {
 
     //?convert objects to string because shared pref only accept string*/
 
-    cartList.forEach((element) {
+    for (var element in cartList) {
       return cart.add(jsonEncode(element));
-    });
+    }
 
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
     //print(sharedPreferences.getStringList(AppConstats.CART_LIST));

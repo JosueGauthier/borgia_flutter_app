@@ -1,10 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:borgiaflutterapp/pages/home/home_page.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
-import 'package:borgiaflutterapp/widget/big_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sa3_liquid/liquid/plasma/plasma.dart';
 
 import '../../controllers/user_controller.dart';
 import '../../routes/route_helper.dart';
@@ -39,7 +36,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                             children: [
                               ShaderMask(
                                 shaderCallback: (rect) {
-                                  return LinearGradient(
+                                  return const LinearGradient(
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
                                     colors: [Colors.black, Colors.transparent],
@@ -59,7 +56,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                   Container(
                                     height: Dimensions.height45 * 2.7,
                                     width: double.maxFinite,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         //* without gradient
 
                                         //color: Colors.greenAccent.withOpacity(1),
@@ -76,7 +73,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                     color: AppColors.white),
                                                 child: AnimatedTextKit(
                                                   animatedTexts: [
-                                                    RotateAnimatedText('', duration: Duration(milliseconds: 300)),
+                                                    RotateAnimatedText('', duration: const Duration(milliseconds: 300)),
                                                     RotateAnimatedText('Bonjour,'),
                                                     RotateAnimatedText(userController.welcomeUserModel.surname!, rotateOut: false),
                                                     //RotateAnimatedText('Boquette', rotateOut: false, duration: Duration(seconds: 2)),
@@ -197,7 +194,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                     height: Dimensions.height100 * 3.7,
                                   ),
                                   //! Showing the body
-                                  WelcomePage(),
+                                  const WelcomePage(),
                                   SizedBox(
                                     height: Dimensions.height100 * 0.5,
                                   ),
@@ -206,7 +203,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                             ],
                           ),
                         ])
-                      : Center(child: CircularProgressIndicator());
+                      : const Center(child: CircularProgressIndicator());
                 }),
               ),
             ),

@@ -1,4 +1,3 @@
-import 'package:borgiaflutterapp/bottom/testbottom.dart';
 import 'package:flutter/material.dart';
 
 import '../../bottom/exhibition_bottom_sheet.dart';
@@ -16,7 +15,7 @@ class ParallaxPage extends StatelessWidget {
           SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: const <Widget>[
                 SizedBox(height: 8),
                 Header(),
                 SizedBox(height: 40),
@@ -26,7 +25,7 @@ class ParallaxPage extends StatelessWidget {
               ],
             ),
           ),
-          ExhibitionBottomSheet(), //use this or ScrollableExhibitionSheet
+          const ExhibitionBottomSheet(), //use this or ScrollableExhibitionSheet
         ],
       ),
     );
@@ -34,10 +33,12 @@ class ParallaxPage extends StatelessWidget {
 }
 
 class Header extends StatelessWidget {
+  const Header({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 32),
       child: Text(
         'Shenzhen',
         style: TextStyle(

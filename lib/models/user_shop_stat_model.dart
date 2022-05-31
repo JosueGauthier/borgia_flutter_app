@@ -25,7 +25,7 @@ class UserShopStatModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['username'] = username;
     data['surname'] = surname;
@@ -55,7 +55,7 @@ class MontantMagasins {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['shop_name'] = shopName;
     data['shop_image'] = shopImage;
     data['qte_user_achats'] = quantity;

@@ -20,10 +20,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          child: LineChart(
-            mainData(widget.listeDesVentes),
-          ),
+        LineChart(
+          mainData(widget.listeDesVentes),
         ),
       ],
     );

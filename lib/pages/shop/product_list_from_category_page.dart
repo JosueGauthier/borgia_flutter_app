@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:borgiaflutterapp/models/product_model.dart';
-import 'package:borgiaflutterapp/widget/productItemWidget.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:borgiaflutterapp/widget/product_item_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -93,10 +91,10 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                             onTap: () {
                               Get.toNamed(RouteHelper.getCategoryListPage(widget.shopId, "home"));
                             },
-                            child: Container(
+                            child: SizedBox(
                               width: Dimensions.width15 * 4,
                               height: Dimensions.width15 * 4,
-                              child: Icon(
+                              child: const Icon(
                                 Icons.arrow_back_ios,
                                 color: AppColors.titleColor,
                               ),

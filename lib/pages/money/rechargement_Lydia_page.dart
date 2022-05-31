@@ -1,4 +1,5 @@
-// main.dart
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
           ),
           Expanded(
               child: Container(
-            decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.contain, image: const AssetImage("assets/image/lydia-logo.jpeg"))),
+            decoration: const BoxDecoration(image: DecorationImage(fit: BoxFit.contain, image: AssetImage("assets/image/lydia-logo.jpeg"))),
 
             //color: Colors.redAccent,
           ))

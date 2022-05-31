@@ -1,4 +1,4 @@
-import 'dart:developer';
+// ignore_for_file: sized_box_for_whitespace
 
 import 'package:borgiaflutterapp/controllers/user_shop_stat_controller.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
@@ -47,18 +47,15 @@ class _MyStatPageState extends State<MyStatPage> {
   }
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     return GetBuilder<SaleListController>(builder: (saleListController) {
       if (saleListController.isLoadedUser) {
-        bool deleteZeros = true;
         List<Map<String, Object>> listeDesVentes = [];
 
         for (var i = 0; i < saleListController.aListUser.length; i++) {
           var priceSum = saleListController.aListUser[i]['tot_amount_per_sale'];
 
           if (priceSum != null && priceSum != 0.0) {
-            deleteZeros = false;
-
             listeDesVentes.add({"Date": saleListController.aListUser[i]['format_datetime'], "Sale": priceSum});
           }
         }
@@ -94,21 +91,21 @@ class _MyStatPageState extends State<MyStatPage> {
                           CustomButtonStat(
                             notifyParent: refresh,
                             id: 1,
-                            size: Size(50, 30),
+                            size: const Size(50, 30),
                             buttonColor: ListStatColors.colorslist1[0],
                           ),
                           CustomButtonStat(
                             notifyParent: refresh,
                             id: 2,
                             iconData: Icons.euro,
-                            size: Size(50, 30),
+                            size: const Size(50, 30),
                             buttonColor: ListStatColors.colorslist1[12],
                           ),
                           CustomButtonStat(
                             notifyParent: refresh,
                             id: 3,
                             iconData: Icons.percent,
-                            size: Size(50, 30),
+                            size: const Size(50, 30),
                             buttonColor: ListStatColors.colorslist1[20],
                           ),
                         ]),
@@ -118,14 +115,11 @@ class _MyStatPageState extends State<MyStatPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             (qtyButton == true)
-                                ? Container(
-                                    //color: Colors.blueAccent,
-                                    child: CustomPiechartWigdet(
-                                      statList: montantMagasins,
-                                      colorList: ListStatColors.colorslist1,
-                                      isImagePresent: true,
-                                      typeOfData: "quantity",
-                                    ),
+                                ? CustomPiechartWigdet(
+                                    statList: montantMagasins,
+                                    colorList: ListStatColors.colorslist1,
+                                    isImagePresent: true,
+                                    typeOfData: "quantity",
                                   )
                                 : (eurosButton == true)
                                     ? CustomPiechartWigdet(
@@ -147,7 +141,7 @@ class _MyStatPageState extends State<MyStatPage> {
                   ),
                 );
               } else {
-                return Center(
+                return const Center(
                     child: CircularProgressIndicator(
                   color: AppColors.mainColor,
                 ));
@@ -156,7 +150,7 @@ class _MyStatPageState extends State<MyStatPage> {
           ]),
         );
       } else {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(
             color: AppColors.mainColor,
           ),

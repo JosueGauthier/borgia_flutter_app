@@ -1,4 +1,4 @@
-// main.dart
+/* // main.dart
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.indigo,
         ),
-        home: HomePage());
+        home: const HomePage());
   }
 }
 
@@ -27,7 +27,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> _animals = ["Dog", "Cat", "Crocodile", "Dragon"];
+  final List<String> _animals = ["Dog", "Cat", "Crocodile", "Dragon"];
 
   String? _selectedColor;
 
@@ -35,12 +35,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kindacode.com'),
+        title: const Text('Kindacode.com'),
       ),
       body: Center(
         child: Container(
           width: 300,
-          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
           decoration: BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: BorderRadius.circular(30)),
           child: DropdownButton<String>(
             onChanged: (value) {
@@ -52,12 +52,12 @@ class _HomePageState extends State<HomePage> {
 
             // Hide the default underline
             underline: Container(),
-            hint: Center(
+            hint: const Center(
                 child: Text(
               'Select the animal you love',
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             )),
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_downward,
               color: Colors.yellow,
             ),
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           e,
-                          style: TextStyle(fontSize: 18),
+                          style: const TextStyle(fontSize: 18),
                         ),
                       ),
                       value: e,
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                 .map((e) => Center(
                       child: Text(
                         e,
-                        style: TextStyle(fontSize: 18, color: Colors.amber, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 18, color: Colors.amber, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
                       ),
                     ))
                 .toList(),
@@ -92,3 +92,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+ */

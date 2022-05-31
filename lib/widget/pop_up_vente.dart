@@ -198,7 +198,7 @@ class _DialogSalePageState extends State<DialogSalePage> {
                     style: ButtonStyle(
                         elevation: MaterialStateProperty.all(0),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: BorderSide(color: AppColors.whiteGreyColor))),
+                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: const BorderSide(color: AppColors.whiteGreyColor))),
                         padding: MaterialStateProperty.all(
                             EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
                         backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
@@ -223,7 +223,7 @@ class _DialogSalePageState extends State<DialogSalePage> {
                   style: ButtonStyle(
                       elevation: MaterialStateProperty.all(0),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: BorderSide(color: AppColors.whiteGreyColor))),
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: const BorderSide(color: AppColors.whiteGreyColor))),
                       padding: MaterialStateProperty.all(
                           EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
                       backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {

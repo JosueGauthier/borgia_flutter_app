@@ -1,23 +1,17 @@
 import 'package:borgiaflutterapp/controllers/shop_controller.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
-import 'package:borgiaflutterapp/models/user_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:sa3_liquid/sa3_liquid.dart';
 
 import 'package:get/get.dart';
 
-import '../../controllers/cart_controller.dart';
-import '../../controllers/user_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
-import '../../widget/small_text.dart';
 
 class WelcomePage extends StatefulWidget {
-  WelcomePage({Key? key}) : super(key: key);
+  const WelcomePage({Key? key}) : super(key: key);
 
   @override
   State<WelcomePage> createState() => _WelcomePageState();
@@ -26,25 +20,17 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   PageController pageController = PageController(viewportFraction: 0.9);
 
-  var _currentPagevalue = 0.0;
-
-  final double _scaleFactor = 0.8;
-  final double _height = Dimensions.pageViewContainer;
-
   List<List<dynamic>> listItemsSlider = [
     ['Solde actuel', null],
     ['Rechargement', "lydia-logo.jpeg"],
     ['Statistiques', "stat.png"]
   ];
 
-  final int _nbItemSliderSection = 3;
-
   @override
   void initState() {
     super.initState();
     pageController.addListener(() {
       setState(() {
-        _currentPagevalue = pageController.page!;
         //print(_currentPagevalue.toString());
       });
     });
@@ -182,192 +168,6 @@ class _WelcomePageState extends State<WelcomePage> {
                 );
         })
       ],
-    );
-  }
-
-  Widget _buildPageItem(int position, UserModel userModel) {
-    Matrix4 matrix = Matrix4.identity();
-
-    if (position == _currentPagevalue.floor()) {
-      var currScale = 1 - (_currentPagevalue - position) * (1 - _scaleFactor);
-      var currTranslation = _height * (1 - currScale) / 2;
-
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTranslation, 0);
-    } else if (position == _currentPagevalue.floor() + 1) {
-      var currScale = _scaleFactor + (_currentPagevalue - position + 1) * (1 - _scaleFactor);
-      var currTranslation = _height * (1 - currScale) / 2;
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTranslation, 0);
-    } else if (position == _currentPagevalue.floor() - 1) {
-      var currScale = 1 - (_currentPagevalue - position) * (1 - _scaleFactor);
-      var currTranslation = _height * (1 - currScale) / 2;
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTranslation, 0);
-    } else {
-      var currScale = 0.8;
-      var currTranslation = _height * (1 - currScale) / 2;
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTranslation, 0);
-    }
-
-    //? mise en place d'un stack container pour que la hauteur désiree soit 220 et non 320.
-    return Transform(
-      transform: matrix,
-      child: Stack(
-        children: [
-          //! Partie image
-          GestureDetector(
-              onTap: () {
-                //Get.toNamed(RouteHelper.getPopularFood(position, "home"));
-              },
-              child: (listItemsSlider[position][1] == null)
-                  ? GestureDetector(
-                      onTap: () {
-                        Get.toNamed(RouteHelper.getLydiaPage());
-                      },
-                      child: Stack(
-                        children: [
-                          Container(
-                            //color: Colors.greenAccent,
-                            height: _height,
-                            margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                //borderRadius: BorderRadius.circular(Dimensions.radius30),
-                                color: AppColors.secondColor,
-                                backgroundBlendMode: BlendMode.srcOver,
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: const PlasmaRenderer(
-                                  type: PlasmaType.infinity,
-                                  particles: 6,
-                                  color: AppColors.mainColor, //Color(0x64d31418),
-                                  blur: 0.9,
-                                  size: 0.9,
-                                  speed: 1,
-                                  offset: 0,
-                                  blendMode: BlendMode.srcOver,
-                                  particleType: ParticleType.atlas,
-                                  variation1: 0,
-                                  variation2: 0,
-                                  variation3: 0,
-                                  rotation: 0,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Center(
-                            heightFactor: 1.9,
-                            child: BigText(
-                              fontTypo: 'OpenSansExtraBold',
-                              text: userModel.balance! + "€",
-                              color: Colors.white,
-                              size: Dimensions.height30 * 2.7,
-                            ),
-                          ),
-                          (double.parse(userModel.balance!) < 5)
-                              ? Positioned(
-                                  bottom: Dimensions.width10,
-                                  right: Dimensions.width10 * 3,
-                                  child: SmallText(
-                                    //fontTypo: 'OpenSansExtraBold',
-                                    text: "* Tap pour \n recharger",
-                                    color: Colors.white,
-                                    size: Dimensions.height30 / 2,
-                                  ),
-                                )
-                              : Container(),
-                        ],
-                      ),
-                    )
-                  : Container(
-                      child: (listItemsSlider[position][1] == "last")
-                          ? Container(
-                              height: _height,
-                              margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(Dimensions.radius30),
-                                //color: position.isEven ? Colors.red : Colors.amber,
-                                color: AppColors.mainColor,
-
-                                //image: DecorationImage(image: AssetImage("assets/image/" + listItemsSlider[position][1].toString()), fit: BoxFit.cover)),
-
-                                //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
-                              ),
-                              child: GetBuilder<CartController>(builder: (cartController) {
-                                var _cartList = cartController.getItems;
-
-                                return ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: _cartList.length,
-                                    itemBuilder: ((context, index) {
-                                      return ClipRRect(
-                                        child: Align(
-                                          child: Container(
-                                            height: Dimensions.height45 * 4,
-                                            child: Card(
-                                              elevation: 2,
-                                              shadowColor: AppColors.secondColor,
-                                              color: Colors.white,
-                                              child: GestureDetector(
-                                                onTap: () {
-                                                  //Get.toNamed(RouteHelper.getProductList(categoryModel.id!, categoryModel.moduleId!, widget.shopId, "home"));
-                                                },
-                                                child: Container(
-                                                  padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                                  margin: EdgeInsets.only(
-                                                      top: Dimensions.height20,
-                                                      bottom: Dimensions.height20,
-                                                      left: Dimensions.width10,
-                                                      right: Dimensions.width10),
-                                                  width: Dimensions.width20 * 5,
-                                                  height: Dimensions.width20 * 2,
-                                                  decoration: BoxDecoration(
-                                                      image: DecorationImage(fit: BoxFit.contain, image: NetworkImage(_cartList[index].img!)),
-                                                      color: Colors.white,
-                                                      borderRadius: BorderRadius.circular(Dimensions.radius20)),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }));
-                              }),
-                            )
-                          : Container(
-                              child: (listItemsSlider[position][1] == "lydia-logo.jpeg")
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        Get.toNamed(RouteHelper.getLydiaPage());
-                                      },
-                                      child: Container(
-                                        height: _height,
-                                        margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(Dimensions.radius30),
-                                            //color: position.isEven ? Colors.red : Colors.amber,
-
-                                            image: DecorationImage(
-                                                image: AssetImage("assets/image/" + listItemsSlider[position][1].toString()), fit: BoxFit.cover)),
-
-                                        //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
-                                      ),
-                                    )
-                                  : Container(
-                                      height: _height,
-                                      margin: EdgeInsets.only(left: Dimensions.width5, right: Dimensions.width5),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(Dimensions.radius30),
-                                          //color: position.isEven ? Colors.red : Colors.amber,
-
-                                          image:
-                                              DecorationImage(image: AssetImage("assets/image/" + listItemsSlider[position][1].toString()), fit: BoxFit.cover)),
-
-                                      //NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + popularProduct.img!)
-                                    ),
-                            ))),
-        ],
-      ),
     );
   }
 }

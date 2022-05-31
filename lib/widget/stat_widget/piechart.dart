@@ -1,10 +1,8 @@
-import 'dart:developer';
+// ignore_for_file: sized_box_for_whitespace, must_be_immutable
 
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
-import '../../utils/colors.dart';
 
 class CustomPiechartWigdet extends StatefulWidget {
   List statList;
@@ -44,7 +42,6 @@ List<PieChartSectionData> showingSectionsQuantity(List dataList, List colorList,
   return List.generate(dataList.length, (i) {
     var coloor = colorList[colorList.length ~/ dataList.length * i];
 
-    var colourLuminance = coloor.computeLuminance();
     return PieChartSectionData(
       color: coloor,
       //colorList[colorList.length ~/ dataList.length * i],
@@ -72,7 +69,8 @@ List<PieChartSectionData> showingSectionsAmount(List dataList, List colorList, b
     var coloor = colorList[colorList.length ~/ dataList.length * i];
     //color: (colourLuminance >= 0.5) ? AppColors.titleColor : Colors.white
 
-    var colourLuminance = coloor.computeLuminance();
+    //var colourLuminance = coloor.computeLuminance();
+
     return PieChartSectionData(
       color: coloor,
       value: valeur,
@@ -101,7 +99,6 @@ List<PieChartSectionData> showingSectionsPercentage(List dataList, List colorLis
     int valeur = (dataList[i].montantAchats == null) ? 0 : (((dataList[i].montantAchats.toDouble()) / sum) * 100).toInt();
     var coloor = colorList[colorList.length ~/ dataList.length * i];
 
-    var colourLuminance = coloor.computeLuminance();
     return PieChartSectionData(
       color: coloor,
       value: valeur.toDouble(),

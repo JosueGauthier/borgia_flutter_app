@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -34,29 +36,24 @@ class DonutChart extends StatelessWidget {
       52,
     ) */
 
-  TooltipBehavior _tooltip = TooltipBehavior(enable: true);
-
   DonutChart({Key? key, required this.mapOccurenceVenteShop}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //List<ChartData> listChartData = mapToListChart(mapOccurenceVenteShop);
 
-    return Container(
-        child: Center(
-            child: Container(
-      child: SfCircularChart(legend: Legend(isVisible: true), series: <CircularSeries>[
-        // Renders doughnut chart
-        DoughnutSeries<ChartData, String>(
-            //onPointTap: (pointInteractionDetails) {},
-            dataSource: listChartData,
-            //pointColorMapper: (ChartData data, _) => data.color,
-            xValueMapper: (ChartData data, _) => data.x,
-            yValueMapper: (ChartData data, _) => data.y,
-            explode: true,
-            dataLabelSettings: DataLabelSettings(isVisible: true))
-      ]),
-    )));
+    return Center(
+        child: SfCircularChart(legend: Legend(isVisible: true), series: <CircularSeries>[
+      // Renders doughnut chart
+      DoughnutSeries<ChartData, String>(
+          //onPointTap: (pointInteractionDetails) {},
+          dataSource: listChartData,
+          //pointColorMapper: (ChartData data, _) => data.color,
+          xValueMapper: (ChartData data, _) => data.x,
+          yValueMapper: (ChartData data, _) => data.y,
+          explode: true,
+          dataLabelSettings: const DataLabelSettings(isVisible: true))
+    ]));
   }
 }
 

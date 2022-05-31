@@ -1,11 +1,10 @@
-import 'package:borgiaflutterapp/pages/money/rechargement_Lydia_page.dart';
+import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
 import 'package:borgiaflutterapp/pages/stats/stats_page.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../controllers/shop_controller.dart';
 import '../../utils/colors.dart';
@@ -39,9 +38,9 @@ class _HomePageState extends State<HomePage> {
 
     const FavPage(),
 
-    RefillLydiaPage(),
+    const RefillLydiaPage(),
 
-    StatsPage(),
+    const StatsPage(),
 
     //LineAreaPointPage(),
   ];
@@ -63,10 +62,6 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     _loadRessources();
-  }
-
-  List<Widget> _buildScreens() {
-    return pages;
   }
 
   @override
@@ -94,7 +89,7 @@ class _HomePageState extends State<HomePage> {
 
             showSelectedLabels: false,
             showUnselectedLabels: false,
-            items: [
+            items: const [
               BottomNavigationBarItem(icon: Icon(CupertinoIcons.house_alt), label: 'Home'),
               BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
               BottomNavigationBarItem(icon: Icon(CupertinoIcons.heart), label: 'Cart'),

@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,7 +11,7 @@ import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
-import '../../widget/productItemWidget.dart';
+import '../../widget/product_item_widget.dart';
 
 class LastPurchases extends StatelessWidget {
   const LastPurchases({
@@ -59,7 +61,7 @@ class LastPurchases extends StatelessWidget {
                       child: Container(
                         width: Dimensions.width15 * 4,
                         height: Dimensions.width15 * 4,
-                        child: Icon(
+                        child: const Icon(
                           Icons.arrow_back_ios,
                           color: AppColors.titleColor,
                         ),

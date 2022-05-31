@@ -54,10 +54,10 @@ class _CategoryShopState extends State<CategoryShop> {
                         onTap: () {
                           Get.toNamed(RouteHelper.getInitial());
                         },
-                        child: Container(
+                        child: SizedBox(
                           width: Dimensions.width15 * 4,
                           height: Dimensions.width15 * 4,
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_back_ios,
                             color: AppColors.titleColor,
                           ),

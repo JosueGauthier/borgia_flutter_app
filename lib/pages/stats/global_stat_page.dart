@@ -66,7 +66,7 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
           }
         }
 
-        List colorTheme = ListStatColors.colors_12_list15;
+        List colorTheme = ListStatColors.colors12list15;
 
         return SingleChildScrollView(
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -92,28 +92,28 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
+                      SizedBox(
                         height: double.maxFinite,
                         width: Dimensions.width10 * 12,
                         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                           CustomButtonStat(
                             notifyParent: refresh,
                             id: 1,
-                            size: Size(50, 30),
+                            size: const Size(50, 30),
                             buttonColor: colorTheme[0],
                           ),
                           CustomButtonStat(
                             notifyParent: refresh,
                             id: 2,
                             iconData: Icons.euro,
-                            size: Size(50, 30),
+                            size: const Size(50, 30),
                             buttonColor: colorTheme[6],
                           ),
                           CustomButtonStat(
                             notifyParent: refresh,
                             id: 3,
                             iconData: Icons.percent,
-                            size: Size(50, 30),
+                            size: const Size(50, 30),
                             buttonColor: colorTheme[9],
                           ),
                         ]),
@@ -123,14 +123,11 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             (qtyButton == true)
-                                ? Container(
-                                    //color: Colors.blueAccent,
-                                    child: CustomPiechartWigdet(
-                                      statList: shopStatController.shopStatList,
-                                      colorList: colorTheme,
-                                      isImagePresent: true,
-                                      typeOfData: "quantity",
-                                    ),
+                                ? CustomPiechartWigdet(
+                                    statList: shopStatController.shopStatList,
+                                    colorList: colorTheme,
+                                    isImagePresent: true,
+                                    typeOfData: "quantity",
                                   )
                                 : (eurosButton == true)
                                     ? CustomPiechartWigdet(
@@ -152,7 +149,7 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                   ),
                 );
               } else {
-                return Center(
+                return const Center(
                     child: CircularProgressIndicator(
                   color: AppColors.mainColor,
                 ));

@@ -18,8 +18,6 @@ class CategoryFromProductController extends GetxController {
     //print("aaa");
     Response response = await categoryOfProductRepo.getCatList(productId);
 
-    print(response.statusCode);
-
     if (response.statusCode == 200) {
       _catList = [];
 

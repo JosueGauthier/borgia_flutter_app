@@ -1,36 +1,29 @@
-import 'dart:async';
-import 'dart:developer';
+// ignore_for_file: sized_box_for_whitespace
 
 import 'package:borgiaflutterapp/controllers/prod_cat_controller.dart';
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
-import 'package:borgiaflutterapp/controllers/shop_controller.dart';
-import 'package:borgiaflutterapp/data/repository/product_list_from_category_repo.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:borgiaflutterapp/models/user_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
-import 'package:borgiaflutterapp/widget/listItem_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../controllers/cart_controller.dart';
 import '../../controllers/category_controller.dart';
 import '../../controllers/other_users_controller.dart';
-import '../../controllers/product_from_category_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
-import '../../widget/pop_up_vente.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({
     Key? key,
   }) : super(key: key);
 
-  TextEditingController searchTextController = TextEditingController();
+  final TextEditingController searchTextController = TextEditingController();
 
   void _search(SearchController searchController) {
     var searchController = Get.find<SearchController>();
@@ -39,7 +32,7 @@ class SearchPage extends StatelessWidget {
     if (searchWord.isEmpty) {
     } else {
       searchController.getSearchList(searchWord).then((status) {
-        print(searchController.getSearchList(searchWord));
+        //print(searchController.getSearchList(searchWord));
       });
     }
   }
@@ -149,7 +142,7 @@ class SearchPage extends StatelessWidget {
                                       await Get.find<CategoryFromProductController>().getCat(productModel.id!);
 
                                       List catList = categoryFromProductController.catList;
-                                      print(catList);
+                                      //print(catList);
 
                                       Get.find<CategoryOfShopController>().getCategoryList(productModel.shop!);
 
@@ -170,7 +163,7 @@ class SearchPage extends StatelessWidget {
                                           image: DecorationImage(
                                             fit: BoxFit.contain,
                                             image: (searchController.searchList[index].image == null)
-                                                ? AssetImage("assets/image/dafaultuserimage.png") as ImageProvider
+                                                ? const AssetImage("assets/image/dafaultuserimage.png") as ImageProvider
                                                 : NetworkImage(searchController.searchList[index].image),
                                           ),
                                         ),

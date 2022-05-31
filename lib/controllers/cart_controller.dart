@@ -21,7 +21,6 @@ class CartController extends GetxController {
   void addItem(ProductModel productModel, int quantity, int categoryId, int categoryModuleId, int shopId) {
     if (_items.containsKey(productModel.id!)) {
       _items.update(productModel.id!, (value) {
-        print("aaaa");
         return CartModel(
           id: value.id,
           name: value.name,

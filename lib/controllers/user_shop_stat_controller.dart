@@ -1,4 +1,3 @@
-import 'package:borgiaflutterapp/models/shop_stat_model.dart';
 import 'package:borgiaflutterapp/models/user_shop_stat_model.dart';
 import 'package:get/get.dart';
 

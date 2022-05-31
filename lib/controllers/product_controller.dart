@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 
 import '../data/repository/product_repo.dart';
 
-import 'cart_controller.dart';
-
 class ProductController extends GetxController {
   final ProductRepo productRepo;
 
@@ -22,15 +20,12 @@ class ProductController extends GetxController {
   //! var for getPopularProductList
 
   //!
-  late CartController _cartController;
 
   //! var for setQuantity
 
-  int _quantity = 0;
+  final int _quantity = 0;
 
   int get quantity => _quantity;
-
-  int _incartItem = 0;
 
   int get inCartItem => _quantity;
 

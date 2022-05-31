@@ -147,7 +147,7 @@ class _Badge extends StatelessWidget {
         ],
       ),
       padding: EdgeInsets.all(size * .15),
-      child: Center(
+      child: const Center(
           /* child: AssetImage(
           svgAsset,
           fit: BoxFit.contain,

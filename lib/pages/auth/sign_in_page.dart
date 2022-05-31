@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_import
+// ignore_for_file: unnecessary_import, sized_box_for_whitespace
 
 import 'package:borgiaflutterapp/controllers/auth_controller.dart';
 import 'package:borgiaflutterapp/routes/route_helper.dart';
@@ -280,7 +280,7 @@ class _LoginPageState extends State<LoginPage> {
                             style: ButtonStyle(
                                 elevation: MaterialStateProperty.all(0),
                                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: BorderSide(color: AppColors.whiteGreyColor))),
+                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: const BorderSide(color: AppColors.whiteGreyColor))),
                                 padding: MaterialStateProperty.all(EdgeInsets.only(
                                     left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
                                 backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {

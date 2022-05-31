@@ -1,6 +1,4 @@
-import 'package:get/get.dart';
-
-import '../controllers/shop_controller.dart';
+// ignore_for_file: file_names
 
 /* ShopController shopController = Get.find();
 

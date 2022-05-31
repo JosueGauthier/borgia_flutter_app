@@ -8,11 +8,9 @@ import 'package:intl/intl.dart';
 import '../../base/no_data_page.dart';
 import '../../controllers/cart_controller.dart';
 import '../../models/cart_product_model.dart';
-import '../../routes/route_helper.dart';
 import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../../widget/app_icon.dart';
 import '../../widget/big_text.dart';
 import '../../widget/small_text.dart';
 

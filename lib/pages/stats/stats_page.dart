@@ -13,7 +13,7 @@ import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
 
 class StatsPage extends StatefulWidget {
-  StatsPage({Key? key}) : super(key: key);
+  const StatsPage({Key? key}) : super(key: key);
 
   @override
   State<StatsPage> createState() => _StatsPageState();
@@ -57,7 +57,7 @@ class _StatsPageState extends State<StatsPage> {
             title: //! header
                 Container(
               height: Dimensions.height45 * 1.2,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
               ),
               margin: EdgeInsets.only(bottom: Dimensions.height10),

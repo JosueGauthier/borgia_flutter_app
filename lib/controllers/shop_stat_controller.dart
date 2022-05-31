@@ -1,5 +1,3 @@
-import 'package:borgiaflutterapp/data/repository/shop_repo.dart';
-import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:borgiaflutterapp/models/shop_stat_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
