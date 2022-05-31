@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/data/repository/other_user_repo.dart';
 import 'package:borgiaflutterapp/models/user_model.dart';
 import 'package:flutter/foundation.dart';
@@ -36,6 +38,8 @@ class OtherUserController extends GetxController {
       }
 
       welcomeUserModel = userList[0];
+
+      inspect(welcomeUserModel);
       _isLoaded = true;
       update();
     } else {}

@@ -1,29 +1,22 @@
-import 'dart:developer';
-
-import 'package:borgiaflutterapp/data/repository/product_list_from_category_repo.dart';
-import 'package:borgiaflutterapp/models/product_list_from_category_models.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../data/repository/product_list_repo.dart';
 import '../data/repository/product_repo.dart';
 import '../models/cart_product_model.dart';
 import '../models/product_model.dart';
 import '../utils/colors.dart';
 import 'cart_controller.dart';
 
-class ProductFromCategoryController extends GetxController {
-  final ProductFromCategoryRepo productFromCategoryRepo;
+class ProductListController extends GetxController {
+  final ProductListRepo productListRepo;
   final ProductRepo productRepo;
 
-  ProductFromCategoryController({required this.productFromCategoryRepo, required this.productRepo});
-
-  List<dynamic> _productLinkList = [];
+  ProductListController({required this.productListRepo, required this.productRepo});
 
   int _quantity = 0;
 
   int get inCartItem => _quantity;
-
-  List<dynamic> get productLinkList => _productLinkList;
 
   List<dynamic> _productList = [];
 
@@ -33,39 +26,24 @@ class ProductFromCategoryController extends GetxController {
   bool get isLoaded => _isLoaded;
 
   //* var for cart control
-  //! var for getPopularProductList
-
-  //!
   late CartController _cartController;
 
   CartController get theCartController => _cartController;
 
-  //! var for setQuantity
-
   Future<void> getProduct(int categoryId) async {
-    Response response = await productFromCategoryRepo.getProductList(categoryId);
+    Response response = await productListRepo.getProductList(categoryId);
 
     if (response.statusCode == 200) {
-      _productLinkList = [];
       _productList = [];
 
       List responseBody = response.body;
 
-      for (var i = 0; i < responseBody.length; i++) {
-        _productLinkList.add(ProductListFromCategoryModel.fromJson(responseBody[i]));
+      List listofProd = responseBody[0]["products"];
 
-        Response responseGetOneProduct = await productRepo.getOneProduct(_productLinkList[i].product);
-
-        if (responseGetOneProduct.statusCode == 200) {
-          var responseGetOneProductBody = responseGetOneProduct.body;
-          inspect(responseGetOneProductBody);
-          //_productList.add(ProductModel.fromJsonPlusMainId(responseGetOneProductBody, responseBody[i]["id"]));
-        } else {}
+      for (var i = 0; i < listofProd.length; i++) {
+        _productList.add(ProductModel.fromJson(listofProd[i]));
       }
-
       _isLoaded = true;
-
-      //AppConstants.PROD_LIST = _productList;
 
       update();
     } else {}
@@ -108,13 +86,11 @@ class ProductFromCategoryController extends GetxController {
     int categoryModuleId,
     int shopId,
   ) {
-    //print(_quantity);
     if ((_quantity) > 0) {
+      print("aaaa");
       _cartController.addItem(productModel, _quantity, shopId);
-      //print(_cartController.getItems);
-      //inspect(_cartController.getItems);
+
       _quantity = 0;
-      //_cartController.items.forEach((key, value) {});
     } else {
       //Get.snackbar("Item count", "You should at least add one item to the cart !", backgroundColor: AppColors.mainColor, colorText: Colors.white);
     }

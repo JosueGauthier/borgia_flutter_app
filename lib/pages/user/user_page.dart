@@ -3,7 +3,6 @@ import 'package:borgiaflutterapp/widget/profile_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../models/user_model.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
@@ -28,12 +27,13 @@ class _UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(OtherUserController);
+    Get.find<OtherUserController>().getUserList(widget.userUsername);
     //Get.find<OtherUserController>().getUserList(widget.userUsername);
 
     return Scaffold(
         backgroundColor: Colors.white,
         body: GetBuilder<OtherUserController>(builder: (userController) {
-          UserModel userModel = userController.userList[0];
           return userController.isLoaded
               ? Column(children: [
                   Container(
@@ -70,7 +70,10 @@ class _UserPageState extends State<UserPage> {
                         ),
                         Container(
                             padding: EdgeInsets.only(right: Dimensions.width20),
-                            child: (userModel.surname == null || userModel.family == null || userModel.campus == null || userModel.year == null)
+                            child: (userController.welcomeUserModel.surname == null ||
+                                    userController.welcomeUserModel.family == null ||
+                                    userController.welcomeUserModel.campus == null ||
+                                    userController.welcomeUserModel.year == null)
                                 ? BigText(
                                     fontTypo: 'Montserrat-Bold',
                                     text: "Profil",
@@ -79,7 +82,9 @@ class _UserPageState extends State<UserPage> {
                                   )
                                 : BigText(
                                     fontTypo: 'Montserrat-Bold',
-                                    text: userModel.surname.toString().capitalize! + " " + userModel.family.toString(),
+                                    text: userController.welcomeUserModel.surname.toString().capitalize! +
+                                        " " +
+                                        userController.welcomeUserModel.family.toString(),
                                     size: Dimensions.height10 * 3,
                                     color: AppColors.titleColor,
                                   )),
@@ -110,74 +115,74 @@ class _UserPageState extends State<UserPage> {
                   ),
                   Expanded(
                     child: ListView(children: <Widget>[
-                      (userModel.surname == null)
+                      (userController.welcomeUserModel.surname == null)
                           ? Container()
                           : ProfileBox(
                               textColor: Colors.white,
                               backgroundcolor: AppColors.mainColor,
                               icon: Icons.person,
-                              text: "Transfert vers : " + userModel.surname.toString(),
+                              text: "Transfert vers : " + userController.welcomeUserModel.surname.toString(),
                               isEditable: false,
                               iconcolor: Colors.white),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      (userModel.name == null)
+                      (userController.welcomeUserModel.name == null)
                           ? Container()
                           : ProfileBox(
                               textColor: AppColors.darkGreyColor,
                               backgroundcolor: AppColors.whiteGreyColor,
                               icon: Icons.person,
-                              text: "Identifiant : " + userModel.name.toString(),
+                              text: "Identifiant : " + userController.welcomeUserModel.name.toString(),
                               isEditable: false,
                               iconcolor: AppColors.mainColor),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      (userModel.firstName == null || userModel.lastName == null)
+                      (userController.welcomeUserModel.firstName == null || userController.welcomeUserModel.lastName == null)
                           ? Container()
                           : ProfileBox(
                               textColor: AppColors.darkGreyColor,
                               backgroundcolor: AppColors.whiteGreyColor,
                               icon: Icons.person,
-                              text: "Nom : " + userModel.firstName.toString() + " " + userModel.lastName.toString(),
+                              text: "Nom : " + userController.welcomeUserModel.firstName.toString() + " " + userController.welcomeUserModel.lastName.toString(),
                               isEditable: false,
                               iconcolor: AppColors.mainColor),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      (userModel.surname == null)
+                      (userController.welcomeUserModel.surname == null)
                           ? Container()
                           : ProfileBox(
                               textColor: AppColors.darkGreyColor,
                               backgroundcolor: AppColors.whiteGreyColor,
                               icon: Icons.person,
-                              text: "Bucque : " + userModel.surname.toString(),
+                              text: "Bucque : " + userController.welcomeUserModel.surname.toString(),
                               isEditable: false,
                               iconcolor: AppColors.mainColor),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      (userModel.family == null)
+                      (userController.welcomeUserModel.family == null)
                           ? Container()
                           : ProfileBox(
                               textColor: AppColors.darkGreyColor,
                               backgroundcolor: AppColors.whiteGreyColor,
                               icon: Icons.group,
-                              text: "Fam'ss : " + userModel.family.toString(),
+                              text: "Fam'ss : " + userController.welcomeUserModel.family.toString(),
                               iconcolor: AppColors.mainColor,
                               isEditable: false,
                             ),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      (userModel.campus == null || userModel.year == null)
+                      (userController.welcomeUserModel.campus == null || userController.welcomeUserModel.year == null)
                           ? Container()
                           : ProfileBox(
                               textColor: AppColors.darkGreyColor,
                               backgroundcolor: AppColors.whiteGreyColor,
                               icon: Icons.group_work,
-                              text: "Prom'ss : " + userModel.campus! + " " + (userModel.year! - 1800).toString(),
+                              text: "Prom'ss : " + userController.welcomeUserModel.campus! + " " + (userController.welcomeUserModel.year! - 1800).toString(),
                               iconcolor: AppColors.mainColor,
                               isEditable: false,
                             ),

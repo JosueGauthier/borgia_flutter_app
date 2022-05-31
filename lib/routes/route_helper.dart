@@ -8,8 +8,7 @@ import 'package:get/get.dart';
 import '../pages/cart/last_purchase_page.dart';
 import '../pages/home/home_page.dart';
 import '../pages/shop/category_list_shop_page.dart';
-import '../pages/shop/product_list_from_category_page.dart';
-import '../pages/shop/shop_page_detail_page.dart';
+import '../pages/shop/product_list_page.dart';
 import '../pages/splash/splash_page.dart';
 
 class RouteHelper {
@@ -95,18 +94,6 @@ class RouteHelper {
       //transition: Transition.fadeIn
     ),
     GetPage(
-      name: shopDetail,
-      page: () {
-        var shopId = Get.parameters['shopId'];
-        var pagefrom = Get.parameters['page'];
-        return ShopPageDetail(
-          shopId: int.parse(shopId!),
-          pagefrom: pagefrom!,
-        );
-      },
-      //transition: Transition.fadeIn
-    ),
-    GetPage(
       name: categoryListPage,
       page: () {
         var shopId = Get.parameters['shopId'];
@@ -125,7 +112,7 @@ class RouteHelper {
         var categoryModuleId = Get.parameters['categoryModuleId'];
         var shopId = Get.parameters['shopId'];
         var pagefrom = Get.parameters['page'];
-        return ProductListFromCategoryPage(
+        return ProductListPage(
           categoryId: int.parse(categoryId!),
           categoryModuleId: int.parse(categoryModuleId!),
           shopId: int.parse(shopId!),

@@ -52,21 +52,14 @@ class ProductController extends GetxController {
 
   Future<void> getOneProduct(String linkToTheProduct) async {
     Response response = await productRepo.getOneProduct(linkToTheProduct);
-    //print(response);
 
     if (kDebugMode) {
       print("Product status code " + response.statusCode.toString());
     }
-
     if (response.statusCode == 200) {
       _productList = [];
 
-      //print("response : " + response.body.toString());
-
       List responseBody = response.body;
-
-      //print("the length is " + response_body.length.toString());
-      //print("the shop number is " + response_body.length.toString());
 
       for (var i = 0; i < responseBody.length; i++) {
         _productList.add(ProductModel.fromJson(responseBody[i]));

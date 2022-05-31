@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_new
-
 class CategoryOfShopModel {
   int? id;
   String? name;

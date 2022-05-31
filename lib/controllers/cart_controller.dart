@@ -18,7 +18,7 @@ class CartController extends GetxController {
   //! only for storage and sharedpreferences
   List<CartModel> storageItems = [];
 
-  void addItem(ProductModel productModel, int quantity, int categoryId, int categoryModuleId, int shopId) {
+  void addItem(ProductModel productModel, int quantity, int shopId) {
     if (_items.containsKey(productModel.id!)) {
       _items.update(productModel.id!, (value) {
         return CartModel(
@@ -29,27 +29,22 @@ class CartController extends GetxController {
           quantity: value.quantity! + quantity,
           time: DateTime.now().toString(),
           aProduct: productModel,
-          categoryId: categoryId,
-          categoryModuleId: categoryModuleId,
           shopId: shopId,
         );
       });
     } else {
       //?ajoute si l'item n'existe pas encore
       _items.putIfAbsent(productModel.id!, () {
-        //print("zzzz");
         _items.forEach(((key, value) {}));
 
         return CartModel(
           id: productModel.id,
           name: productModel.name,
-          price: productModel.manualPrice,
+          price: productModel.manualPrice.toString(),
           img: productModel.image,
           quantity: quantity,
           time: DateTime.now().toString(),
           aProduct: productModel,
-          categoryId: categoryId,
-          categoryModuleId: categoryModuleId,
           shopId: shopId,
         );
       });
@@ -86,7 +81,6 @@ class CartController extends GetxController {
 
   List<CartModel> getCartData() {
     setCart = cartRepo.getCartList();
-
     return storageItems;
   }
 

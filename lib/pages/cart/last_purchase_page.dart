@@ -93,8 +93,8 @@ class LastPurchases extends StatelessWidget {
                     itemBuilder: ((context, index) {
                       return GestureDetector(
                         onTap: () {
-                          Get.toNamed(
-                              RouteHelper.getProductList(cartList[index].categoryId!, cartList[index].categoryModuleId!, cartList[index].shopId!, "favPage"));
+                          Get.toNamed(RouteHelper.getProductList(cartList[index].aProduct.categoryWhereProductIs!,
+                              cartList[index].aProduct.moduleIdWhereProductIs!, cartList[index].shopId!, "favPage"));
                         },
                         child: Container(
                           width: double.maxFinite,

@@ -2,17 +2,20 @@
 
 class AppConstants {
   static const String SHOP_URI = "/api-links/shops/shops/?format=json";
-  static const String PRODUCT_URI = "/api-links/shops/products/?shop=";
+  //static const String PRODUCT_URI = "/api-links/shops/products/?shop=";
+  static const String PRODUCT_URI = "/api-links/shops/productsv2/?shop=";
 
   static const String USER_URI = "/api-links/users/users/?username=";
 
   static const String CATEGORY_URI = "/api-links/category/category/?shop_id=";
   static const String PRODUCT_FROM_CATEGORY_URI = "/api-links/category/category-products/?category=";
+
+  static const String PRODUCT_LIST_URI = "/api-links/category/categoryv2/?id=";
   static const String ONE_PRODUCT_URI = "/api-links/shops/products/";
 
   static const String SHOP_URI_NAME = "/api-links/searchshop/?search=";
 
-  static const String PRODUCT_URI_NAME = "/api-links/searchprod/?search=";
+  static const String PRODUCT_URI_NAME = "/api-links/shops/productsv2/?name=";
 
   static const String CATEGORY_URI_NAME = "/api-links/searchcategory/?search=";
 

@@ -1,4 +1,5 @@
 import 'package:borgiaflutterapp/controllers/other_users_controller.dart';
+import 'package:borgiaflutterapp/controllers/product_list_controller.dart';
 import 'package:borgiaflutterapp/controllers/rank_user_controller.dart';
 import 'package:borgiaflutterapp/controllers/sale_list_controller.dart';
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
@@ -6,6 +7,7 @@ import 'package:borgiaflutterapp/controllers/shop_stat_controller.dart';
 import 'package:borgiaflutterapp/controllers/user_shop_stat_controller.dart';
 import 'package:borgiaflutterapp/data/repository/other_user_repo.dart';
 import 'package:borgiaflutterapp/data/repository/prodcat_repo.dart';
+import 'package:borgiaflutterapp/data/repository/product_list_repo.dart';
 import 'package:borgiaflutterapp/data/repository/rank_user_repo.dart';
 import 'package:borgiaflutterapp/data/repository/sale_list_repo.dart';
 import 'package:borgiaflutterapp/data/repository/search_repo.dart';
@@ -71,6 +73,8 @@ Future<void> init() async {
 
   Get.lazyPut(() => RankUserStatRepo(apiClient: Get.find()));
 
+  Get.lazyPut(() => ProductListRepo(apiClient: Get.find()));
+
   //!controllers
 
   Get.lazyPut(() => CartController(cartRepo: Get.find()), fenix: true);
@@ -96,4 +100,5 @@ Future<void> init() async {
   Get.lazyPut(() => RankUserStatController(rankUserStatRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => CategoryFromProductController(categoryOfProductRepo: Get.find()), fenix: true);
+  Get.lazyPut(() => ProductListController(productListRepo: Get.find(), productRepo: Get.find()), fenix: true);
 }

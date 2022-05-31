@@ -53,8 +53,8 @@ class FavPage extends StatelessWidget {
                     itemBuilder: ((context, index) {
                       return GestureDetector(
                         onTap: () {
-                          Get.toNamed(
-                              RouteHelper.getProductList(favList[index].categoryId!, favList[index].categoryModuleId!, favList[index].shopId!, "favPage"));
+                          Get.toNamed(RouteHelper.getProductList(favList[index].aProduct.categoryWhereProductIs!,
+                              favList[index].aProduct.moduleIdWhereProductIs!, favList[index].shopId!, "favPage"));
                         },
                         child: Container(
                           width: double.maxFinite,

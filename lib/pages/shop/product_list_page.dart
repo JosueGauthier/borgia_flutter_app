@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:borgiaflutterapp/controllers/product_list_controller.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/widget/product_item_widget.dart';
 import 'package:flutter/material.dart';
@@ -31,24 +32,23 @@ import '../../widget/pop_up_vente.dart';
   
   */
 
-class ProductListFromCategoryPage extends StatefulWidget {
+class ProductListPage extends StatefulWidget {
   final String pagefrom;
   final int categoryId;
   final int categoryModuleId;
   final int shopId;
-  const ProductListFromCategoryPage({Key? key, required this.categoryId, required this.pagefrom, required this.shopId, required this.categoryModuleId})
-      : super(key: key);
+  const ProductListPage({Key? key, required this.categoryId, required this.pagefrom, required this.shopId, required this.categoryModuleId}) : super(key: key);
 
   @override
-  State<ProductListFromCategoryPage> createState() => _ProductListFromCategoryPageState();
+  State<ProductListPage> createState() => _ProductListPageState();
 }
 
-class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPage> {
+class _ProductListPageState extends State<ProductListPage> {
   bool pressed = true;
 
   @override
   Widget build(BuildContext context) {
-    Get.find<ProductFromCategoryController>().getProduct(widget.categoryId);
+    Get.find<ProductListController>().getProduct(widget.categoryId);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -114,7 +114,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                 ),
               ),
               //! Scroll list des produits de la categorie asociée
-              Expanded(child: SingleChildScrollView(child: GetBuilder<ProductFromCategoryController>(builder: (productListController) {
+              Expanded(child: SingleChildScrollView(child: GetBuilder<ProductListController>(builder: (productListController) {
                 return productListController.isLoaded
                     ? Container(
                         //color: Colors.greenAccent,
@@ -130,7 +130,7 @@ class _ProductListFromCategoryPageState extends State<ProductListFromCategoryPag
                               //print(productModel.image!);
                               return GestureDetector(
                                 onTap: () {
-                                  Get.find<ProductFromCategoryController>().initProduct(productModel, Get.find<CartController>());
+                                  Get.find<ProductListController>().initProduct(productModel, Get.find<CartController>());
                                   setState(() {
                                     pressed = !pressed;
                                   });

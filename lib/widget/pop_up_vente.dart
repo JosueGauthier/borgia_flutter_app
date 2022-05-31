@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:borgiaflutterapp/controllers/product_controller.dart';
+import 'package:borgiaflutterapp/controllers/product_list_controller.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../controllers/product_from_category_controller.dart';
 import '../../controllers/sales_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../widget/app_icon.dart';
@@ -19,7 +19,7 @@ import '../models/sales_model.dart';
 
 class DialogSalePage extends StatefulWidget {
   final ProductModel productModel;
-  final ProductFromCategoryController productListController;
+  final ProductListController productListController;
   final int categoryModuleId;
   final int shopId;
   final int categoryId;
@@ -51,7 +51,7 @@ class _DialogSalePageState extends State<DialogSalePage> {
     int apiModulePk = widget.categoryModuleId;
     int apiShopPk = widget.shopId;
     int apiOrderedQuantity = widget.productListController.inCartItem;
-    int apiCategoryProductId = widget.productModel.mainid!;
+    int apiCategoryProductId = widget.productModel.catProdId!;
 
     SalesModel _salesModel = SalesModel(
         apiModulePk: apiModulePk,
@@ -66,7 +66,10 @@ class _DialogSalePageState extends State<DialogSalePage> {
     } else {
       salesController.order(_salesModel).then((status) {
         if (status.isSuccess) {
+          print(status.isSuccess);
           widget.productListController.saleAddItem(widget.productModel, widget.categoryId, widget.categoryModuleId, widget.shopId);
+
+          print("Bouuuuuuuuuuuuuu");
 
           Get.toNamed(RouteHelper.getInitial());
         } else {
@@ -95,13 +98,12 @@ class _DialogSalePageState extends State<DialogSalePage> {
                 Container(
                   //color: Colors.amber,
                   width: Dimensions.width45 * 6,
-                  padding: EdgeInsets.only(/* left: Dimensions.width10, right: Dimensions.width20, */ top: Dimensions.height10, bottom: Dimensions.height10),
+                  padding: EdgeInsets.only(top: Dimensions.height10, bottom: Dimensions.height10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       GestureDetector(
                         onTap: () {
-                          //productcontroller.setQuantity(false);
                           setState(() {
                             widget.productListController.setQuantity(false);
 

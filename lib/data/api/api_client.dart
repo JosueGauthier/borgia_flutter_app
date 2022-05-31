@@ -21,10 +21,15 @@ class ApiClient extends GetConnect implements GetxService {
     String uri,
   ) async {
     try {
+      //print(appBaseUrl + uri);
+
       Response response = await get(appBaseUrl + uri, headers: {"Cookie": AppConstants.COOKIE});
 
       return response;
     } catch (e) {
+      if (kDebugMode) {
+        print("error api_client");
+      }
       return Response(statusCode: 1, statusText: e.toString());
     }
   }
