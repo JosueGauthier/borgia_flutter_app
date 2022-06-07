@@ -82,7 +82,7 @@ class _MyStatPageState extends State<MyStatPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
+                      SizedBox(
                         height: double.maxFinite,
                         width: Dimensions.width10 * 12,
                         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [

@@ -33,7 +33,7 @@ class _AuthPageState extends State<AuthPage> {
     return Scaffold(
         body: Column(children: [
       Padding(
-        padding: EdgeInsets.all(0),
+        padding: const EdgeInsets.all(0),
         child: Column(
           children: <Widget>[
             SizedBox(
@@ -50,10 +50,10 @@ class _AuthPageState extends State<AuthPage> {
                   Container(
                       width: Dimensions.height100 * 2.5,
                       height: Dimensions.height100 * 2.5,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.circle,
-                          image: DecorationImage(fit: BoxFit.contain, image: const AssetImage("assets/image/logoborgia.png")))),
+                          image: DecorationImage(fit: BoxFit.contain, image: AssetImage("assets/image/logoborgia.png")))),
                 ],
               ),
             ),
@@ -67,17 +67,17 @@ class _AuthPageState extends State<AuthPage> {
                     controller: nameController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent),
+                        borderSide: const BorderSide(color: Colors.transparent),
                         borderRadius: BorderRadius.circular(5.5),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent),
+                        borderSide: const BorderSide(color: Colors.transparent),
                         borderRadius: BorderRadius.circular(5.5),
                       ),
-                      prefixIcon: Icon(Icons.person, color: AppColors.darkGreyColor),
+                      prefixIcon: const Icon(Icons.person, color: AppColors.darkGreyColor),
                       hintText: "Enter your username",
                       //labelText: 'Name',
-                      hintStyle: TextStyle(color: AppColors.darkGreyColor),
+                      hintStyle: const TextStyle(color: AppColors.darkGreyColor),
                       filled: true,
                       fillColor: AppColors.greyColor,
                     ),
@@ -92,17 +92,17 @@ class _AuthPageState extends State<AuthPage> {
                   TextFormField(
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent),
+                        borderSide: const BorderSide(color: Colors.transparent),
                         borderRadius: BorderRadius.circular(5.5),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent),
+                        borderSide: const BorderSide(color: Colors.transparent),
                         borderRadius: BorderRadius.circular(5.5),
                       ),
-                      prefixIcon: Icon(Icons.person, color: AppColors.darkGreyColor),
+                      prefixIcon: const Icon(Icons.person, color: AppColors.darkGreyColor),
                       hintText: "Enter your password",
                       //labelText: 'Name',
-                      hintStyle: TextStyle(color: AppColors.darkGreyColor),
+                      hintStyle: const TextStyle(color: AppColors.darkGreyColor),
                       filled: true,
                       fillColor: AppColors.greyColor,
                     ),

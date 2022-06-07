@@ -1,5 +1,4 @@
 import 'package:borgiaflutterapp/models/product_model.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/product_repo.dart';

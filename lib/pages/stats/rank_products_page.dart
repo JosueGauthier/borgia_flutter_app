@@ -62,7 +62,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                 ),
                               ),
 
-                              Container(
+                              SizedBox(
                                 height: Dimensions.height100 * 0.6,
                                 child: Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
                                   //! text section
@@ -82,7 +82,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                               ),
                             ],
                           ),
-                          Container(
+                          SizedBox(
                             height: Dimensions.height100 * 1.7,
                             //color: Colors.amber,
                             child: Stack(
@@ -101,7 +101,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                   left: Dimensions.width10 * 2,
                                   child: Column(
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         //color: Colors.greenAccent,
                                         height: Dimensions.height10 * 4,
                                         width: Dimensions.width10 * 7.2,
@@ -142,7 +142,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                   left: Dimensions.width10 * 9.5,
                                   child: Column(
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         //color: Colors.greenAccent,
                                         height: Dimensions.height10 * 4,
                                         width: Dimensions.width10 * 7.2,
@@ -183,7 +183,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                   left: Dimensions.width10 * 17,
                                   child: Column(
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         //color: Colors.greenAccent,
                                         height: Dimensions.height10 * 4,
                                         width: Dimensions.width10 * 7.2,

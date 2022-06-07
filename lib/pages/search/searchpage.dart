@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
@@ -64,7 +62,7 @@ class SearchPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         height: Dimensions.height45 * 2.7,
                         width: Dimensions.height100 * 3.5,
                         child: TextFormField(

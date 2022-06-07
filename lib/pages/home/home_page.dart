@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     //SharedPreferences preferences = await SharedPreferences.getInstance();
     //await preferences.clear();
     await Get.find<ShopController>().getShopList();
-    await Get.find<CartController>().getCartData();
+    Get.find<CartController>().getCartData();
   }
 
   List<Widget> pages = [

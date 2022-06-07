@@ -18,7 +18,7 @@ class NeonPage extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/image/V2Khalvin.png"),
                   fit: BoxFit.cover,
@@ -28,7 +28,7 @@ class NeonPage extends StatelessWidget {
             Positioned(
               top: Dimensions.height100 * 0.8,
               left: Dimensions.width10,
-              child: FlickerText(
+              child: const FlickerText(
                 color: Colors.purple,
                 shouldFlicker: true,
                 text: 'Made by Khalvin',
@@ -37,7 +37,7 @@ class NeonPage extends StatelessWidget {
             Positioned(
               top: Dimensions.height100 * 1.3,
               left: Dimensions.width10 * 10 * 2.5,
-              child: FlickerText(
+              child: const FlickerText(
                 color: Colors.purple,
                 shouldFlicker: true,
                 text: '73-16',
@@ -46,7 +46,7 @@ class NeonPage extends StatelessWidget {
             Positioned(
               top: Dimensions.height100 * 1.8,
               left: Dimensions.width10 * 10 * 2,
-              child: FlickerText(
+              child: const FlickerText(
                 color: Colors.purple,
                 shouldFlicker: true,
                 text: 'An 220',
@@ -59,7 +59,7 @@ class NeonPage extends StatelessWidget {
                 onTap: () {
                   Get.toNamed(RouteHelper.getInitial());
                 },
-                child: FlickerText(
+                child: const FlickerText(
                   color: Colors.purple,
                   shouldFlicker: true,
                   text: '←',

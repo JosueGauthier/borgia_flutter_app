@@ -56,7 +56,7 @@ class LastPurchases extends StatelessWidget {
                       onTap: () {
                         Get.toNamed(RouteHelper.getInitial());
                       },
-                      child: Container(
+                      child: SizedBox(
                         width: Dimensions.width15 * 4,
                         height: Dimensions.width15 * 4,
                         child: const Icon(

@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
                   child: Column(
                     children: <Widget>[
-                      Container(
+                      SizedBox(
                         height: Dimensions.height100 * 3.5,
                         width: double.maxFinite,
                         child: Stack(
@@ -188,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      Container(
+                      SizedBox(
                         height: Dimensions.height20 * 3.4,
                         width: Dimensions.width20 * 25,
                         child: Padding(

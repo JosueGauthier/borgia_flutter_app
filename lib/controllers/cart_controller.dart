@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:get/get.dart';
 import '../data/repository/cart_repo.dart';

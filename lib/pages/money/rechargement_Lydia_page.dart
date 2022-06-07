@@ -43,7 +43,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
             ),
           ),
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: double.maxFinite,
               width: double.maxFinite,
               child: ShaderMask(
@@ -64,7 +64,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
           )
         ],
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: Dimensions.height20 * 23,
         //color: Colors.blueAccent,
         child: Column(

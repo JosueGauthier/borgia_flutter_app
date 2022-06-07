@@ -16,7 +16,7 @@ class CustomPiechartWigdet extends StatefulWidget {
 class _CustomPiechartWigdetState extends State<CustomPiechartWigdet> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         height: Dimensions.height30 * 10,
         width: double.maxFinite,
         child: PieChart(

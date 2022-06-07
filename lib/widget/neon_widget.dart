@@ -20,7 +20,7 @@ class _FlickerTextState extends State<FlickerText> with TickerProviderStateMixin
     super.initState();
     animation = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
     );
     _fadeInFadeOut = Tween<double>(begin: 1.0, end: 0.2).animate(animation);
 
@@ -28,7 +28,7 @@ class _FlickerTextState extends State<FlickerText> with TickerProviderStateMixin
       if (status == AnimationStatus.completed) {
         animation.reverse();
       } else if (status == AnimationStatus.dismissed) {
-        sleep(Duration(milliseconds: 500));
+        sleep(const Duration(milliseconds: 500));
         animation.forward();
       }
     });

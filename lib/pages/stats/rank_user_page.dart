@@ -60,7 +60,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                   //borderRadius: BorderRadius.circular(Dimensions.width20)
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 height: Dimensions.height100 * 0.6,
                                 //color: Colors.redAccent,
                                 child: Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -79,7 +79,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                   ),
                                 ]),
                               ),
-                              Container(
+                              SizedBox(
                                 width: Dimensions.height100 * 0.6,
                                 height: Dimensions.height100 * 0.6,
                                 //color: Colors.redAccent,
@@ -89,7 +89,7 @@ class _RankUserPageState extends State<RankUserPage> {
                               ),
                             ],
                           ),
-                          Container(
+                          SizedBox(
                             height: Dimensions.height100 * 2,
                             //color: Colors.amber,
                             child: Stack(
@@ -108,7 +108,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                   left: Dimensions.width10 * 2,
                                   child: Column(
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         //color: Colors.greenAccent,
                                         height: Dimensions.height10 * 6,
                                         width: Dimensions.width10 * 7.2,
@@ -158,7 +158,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                   left: Dimensions.width10 * 9.5,
                                   child: Column(
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         //color: Colors.greenAccent,
                                         height: Dimensions.height10 * 6,
                                         width: Dimensions.width10 * 7.2,
@@ -208,7 +208,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                   left: Dimensions.width10 * 17,
                                   child: Column(
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         //color: Colors.greenAccent,
                                         height: Dimensions.height10 * 6,
                                         width: Dimensions.width10 * 7.2,

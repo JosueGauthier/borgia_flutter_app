@@ -57,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 onTap: () {
                                   Get.toNamed(RouteHelper.getInitial());
                                 },
-                                child: Container(
+                                child: SizedBox(
                                   //color: Colors.redAccent,
                                   width: Dimensions.width15 * 4,
                                   height: Dimensions.width15 * 4,
@@ -112,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         decoration: const BoxDecoration(color: AppColors.mainColor, borderRadius: BorderRadius.all(Radius.circular(10))),
                         child: Stack(
                           children: [
-                            Container(
+                            SizedBox(
                               //color: Colors.redAccent,
                               height: double.maxFinite,
                               child: Center(
