@@ -13,22 +13,10 @@ Future<Album> fetchAlbum() async {
   String responseBody = response.body;
 
   String responseBodyWithoutSquareBrackets = responseBody.substring(1, responseBody.length - 1);
-  //print(responseBodyWithoutSquareBrackets);
-
-  //https://jsonplaceholder.typicode.com/albums/1
-  //https://api.jsonbin.io/v3/b/62655a8f38be296761f76c0f
-
-  //works with this
-  // https://api.jsonbin.io/b/62655c68019db4679690ea84
 
   if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-
     return Album.fromJson(jsonDecode(responseBodyWithoutSquareBrackets));
   } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
     throw Exception('Failed to load album');
   }
 }

@@ -15,7 +15,6 @@ class CategoryFromProductController extends GetxController {
   bool get isLoaded => _isLoaded;
 
   Future<void> getCat(int productId) async {
-    //print("aaa");
     Response response = await categoryOfProductRepo.getCatList(productId);
 
     if (response.statusCode == 200) {

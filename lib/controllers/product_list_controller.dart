@@ -56,8 +56,6 @@ class ProductListController extends GetxController {
   }
 
   void setQuantity(bool isIncrement) {
-    //print(_quantity);
-
     if (isIncrement) {
       _quantity = checkQuantity(_quantity + 1);
     } else if (isIncrement == false && (_quantity) > 0) {
@@ -87,13 +85,10 @@ class ProductListController extends GetxController {
     int shopId,
   ) {
     if ((_quantity) > 0) {
-      print("aaaa");
       _cartController.addItem(productModel, _quantity, shopId);
 
       _quantity = 0;
-    } else {
-      //Get.snackbar("Item count", "You should at least add one item to the cart !", backgroundColor: AppColors.mainColor, colorText: Colors.white);
-    }
+    } else {}
 
     update();
   }

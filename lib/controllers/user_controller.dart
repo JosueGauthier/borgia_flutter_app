@@ -24,20 +24,11 @@ class UserController extends GetxController {
 
   Future<void> getUserList(String username) async {
     Response response = await userRepo.getUserList(username);
-    //print(response);
-
-    if (kDebugMode) {
-      print("User status code " + response.statusCode.toString());
-    }
 
     if (response.statusCode == 200) {
       _userList = [];
 
-      //print("response : " + response.body.toString());
-
       List responseBody = response.body;
-
-      //print("the length is " + a.length.toString());
 
       for (var i = 0; i < responseBody.length; i++) {
         _userList.add(UserModel.fromJson(responseBody[i]));

@@ -118,17 +118,11 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet> with Sing
     int index = iconList.indexOf(icon);
     return Stack(
       children: [
-        //BigText(text: "aaaaa"),
         Positioned(
-          //height: iconSize,
           width: iconSize,
           top: iconTopMargin(index),
           left: iconLeftMargin(index),
           child: ClipRRect(
-            /* borderRadius: BorderRadius.horizontal(
-          left: Radius.circular(iconLeftBorderRadius!),
-          right: Radius.circular(iconRightBorderRadius!),
-        ) ,*/
             child: iList[index],
           ),
         )

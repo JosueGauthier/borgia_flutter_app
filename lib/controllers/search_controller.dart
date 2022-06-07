@@ -23,11 +23,6 @@ class SearchController extends GetxController {
     Response responseShop = await searchRepo.getSearchListShop(keyword);
     Response responseUser = await searchRepo.getSearchListUser(keyword);
 
-    /* if (kDebugMode) {
-      print("Search status code " + response.statusCode.toString());
-    }
-    */
-
     _searchList = [];
 
     if (responseProduct.statusCode == 200) {
@@ -72,34 +67,6 @@ class SearchController extends GetxController {
       _isLoaded = true;
     } else {}
 
-    //print("the search list is : " + _searchList.toString());
     update();
   }
-
-/*   Future<void> getOneProduct(String linkToTheProduct) async {
-    Response response = await searchRepo.getOneProduct(linkToTheProduct);
-    //print(response);
-
-    if (kDebugMode) {
-      print("Product status code " + response.statusCode.toString());
-    }
-
-    if (response.statusCode == 200) {
-      _searchList = [];
-
-
-
-      List responseBody = response.body;
-
-
-
-      for (var i = 0; i < responseBody.length; i++) {
-        _searchList.add(ProductModel.fromJson(responseBody[i]));
-      }
-      _isLoaded = true;
-
-
-      update();
-    } else {}
-  } */
 }

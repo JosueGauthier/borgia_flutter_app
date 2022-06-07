@@ -1,8 +1,6 @@
 import 'dart:developer';
-
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:get/get.dart';
-
 import '../data/repository/cart_repo.dart';
 import '../models/cart_product_model.dart';
 
@@ -24,12 +22,9 @@ class CartController extends GetxController {
         return CartModel(
           id: value.id,
           name: value.name,
-          price: value.price,
-          img: value.img,
           quantity: value.quantity! + quantity,
           time: DateTime.now().toString(),
           aProduct: productModel,
-          shopId: shopId,
         );
       });
     } else {
@@ -40,12 +35,9 @@ class CartController extends GetxController {
         return CartModel(
           id: productModel.id,
           name: productModel.name,
-          price: productModel.manualPrice.toString(),
-          img: productModel.image,
           quantity: quantity,
           time: DateTime.now().toString(),
           aProduct: productModel,
-          shopId: shopId,
         );
       });
     }
@@ -81,6 +73,7 @@ class CartController extends GetxController {
 
   List<CartModel> getCartData() {
     setCart = cartRepo.getCartList();
+    print("aaa");
     return storageItems;
   }
 

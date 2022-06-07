@@ -17,20 +17,11 @@ class ShopController extends GetxController {
 
   Future<void> getShopList() async {
     Response response = await shopRepo.getShopList();
-    //print(response);
-
-    if (kDebugMode) {
-      print("Shop status code " + response.statusCode.toString());
-    }
 
     if (response.statusCode == 200) {
       _shopList = [];
 
-      //print("response : " + response.body.toString());
-
       List a = response.body;
-
-      //print("the length is " + a.length.toString());
 
       for (var i = 0; i < a.length; i++) {
         _shopList.add(ShopModel.fromJson(a[i]));

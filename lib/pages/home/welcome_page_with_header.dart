@@ -17,11 +17,8 @@ class WelcomePageWithHeader extends StatefulWidget {
 }
 
 class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
-  //bool isfinished = false;
   @override
   Widget build(BuildContext context) {
-    //print("height" + MediaQuery.of(context).size.height.toString());
-    //print("width" + MediaQuery.of(context).size.width.toString());
     return Scaffold(
         extendBody: true,
         backgroundColor: Colors.white,
@@ -65,11 +62,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                     Container(
                                       height: Dimensions.height45 * 2.7,
                                       width: double.maxFinite,
-                                      decoration: const BoxDecoration(
-                                          //* without gradient
-
-                                          //color: Colors.greenAccent.withOpacity(1),
-                                          ),
+                                      decoration: const BoxDecoration(),
                                       padding: EdgeInsets.only(top: Dimensions.height30 * 1.3, left: Dimensions.width20 * 1.5, right: Dimensions.width20),
                                       child: Center(
                                         child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -85,13 +78,10 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                       RotateAnimatedText('', duration: const Duration(milliseconds: 300)),
                                                       RotateAnimatedText('Bonjour,'),
                                                       RotateAnimatedText(userController.welcomeUserModel.surname!, rotateOut: false),
-                                                      //RotateAnimatedText('Boquette', rotateOut: false, duration: Duration(seconds: 2)),
                                                     ],
                                                     isRepeatingAnimation: false,
                                                     onFinished: () {
-                                                      //print("aaaaa");
                                                       AppConstants.isfinishedRotate = true;
-                                                      //isfinished = true;
                                                       setState(() {});
                                                     },
                                                   ),
@@ -119,7 +109,6 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                     color: AppColors.white,
                                                     size: Dimensions.height20 * 1.5,
                                                   ),
-                                                  //decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width15), color: AppColors.titleColor),
                                                 ),
                                               ),
                                               GestureDetector(
@@ -135,7 +124,6 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                     color: AppColors.white,
                                                     size: Dimensions.height20 * 1.5,
                                                   ),
-                                                  //decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.width15), color: AppColors.titleColor),
                                                 ),
                                               ),
                                             ],
@@ -147,9 +135,6 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                       height: Dimensions.height10 * 14,
                                     ),
                                     GestureDetector(
-                                      /* onTap: () {
-                                        Get.toNamed(RouteHelper.getLydiaPage());
-                                      }, */
                                       child: Stack(
                                         children: [
                                           Container(
@@ -174,7 +159,6 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                             ),
                                           ),
                                           Center(
-                                            //heightFactor: 10,
                                             child: Column(
                                               children: [
                                                 SizedBox(height: Dimensions.height20 * 1.1),
@@ -185,8 +169,6 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                       fontFamily: 'OpenSansExtraBold',
                                                       letterSpacing: 2,
                                                       color: AppColors.titleColor),
-
-                                                  //Color.fromARGB(200, 1, 152, 117)
                                                 ),
                                               ],
                                             ),

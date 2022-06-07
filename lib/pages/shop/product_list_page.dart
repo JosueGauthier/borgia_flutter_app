@@ -127,7 +127,6 @@ class _ProductListPageState extends State<ProductListPage> {
                             itemCount: productListController.productList.length,
                             itemBuilder: (context, index) {
                               ProductModel productModel = productListController.productList[index];
-                              //print(productModel.image!);
                               return GestureDetector(
                                 onTap: () {
                                   Get.find<ProductListController>().initProduct(productModel, Get.find<CartController>());

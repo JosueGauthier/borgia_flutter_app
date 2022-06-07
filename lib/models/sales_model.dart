@@ -15,10 +15,6 @@ class SalesModel {
       required this.password});
 
   Map<String, dynamic> toJson() {
-    //final Map<String, dynamic> data = <String, dynamic>{};
-
-    //print(apiModulePk);
-
     return {
       "username": username,
       "password": password,
@@ -27,24 +23,5 @@ class SalesModel {
       "api_ordered_quantity": apiOrderedQuantity,
       "api_category_product_id": apiCategoryProductId
     };
-
-/*      {
-      "username": "josue",
-      "password": "josue",
-      "api_module_pk": api_module_pk,
-      "api_shop_pk": api_shop_pk,
-      "api_ordered_quantity": api_ordered_quantity,
-      "api_category_product_id": api_category_product_id
-    }; */
-
-    /* 
-        data["username"] = username;
-    data["password"] = password;
-    data["api_module_pk"] = api_module_pk;
-    data["api_shop_pk"] = api_shop_pk;
-    data["api_ordered_quantity"] = api_ordered_quantity;
-    data["api_category_product_id"] = api_category_product_id; */
-
-    //return data;
   }
 }

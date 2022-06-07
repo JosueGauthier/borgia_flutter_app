@@ -18,20 +18,11 @@ class ShopStatController extends GetxController {
 
   Future<void> getShopStatList() async {
     Response response = await shopStatRepo.getShopStatList();
-    //print(response);
-
-    if (kDebugMode) {
-      print("Shop status code " + response.statusCode.toString());
-    }
 
     if (response.statusCode == 200) {
       _shopStatList = [];
 
-      //print("response : " + response.body.toString());
-
       List responseBody = response.body;
-
-      //print("the length is " + a.length.toString());
 
       for (var i = 0; i < responseBody.length; i++) {
         _shopStatList.add(ShopStatModel.fromJson(responseBody[i]));

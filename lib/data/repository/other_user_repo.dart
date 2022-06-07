@@ -9,7 +9,6 @@ class OtherUserRepo extends GetxService {
   OtherUserRepo({required this.apiClient});
 
   Future<Response> getUserList(String username) async {
-    //print(AppConstants.USER_URI + username);
     return await apiClient.getData(AppConstants.USER_URI + username);
   }
 }

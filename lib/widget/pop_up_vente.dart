@@ -66,10 +66,7 @@ class _DialogSalePageState extends State<DialogSalePage> {
     } else {
       salesController.order(_salesModel).then((status) {
         if (status.isSuccess) {
-          print(status.isSuccess);
           widget.productListController.saleAddItem(widget.productModel, widget.categoryId, widget.categoryModuleId, widget.shopId);
-
-          print("Bouuuuuuuuuuuuuu");
 
           Get.toNamed(RouteHelper.getInitial());
         } else {

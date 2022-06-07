@@ -29,34 +29,6 @@ class SalePage extends StatefulWidget {
 class _SalePageState extends State<SalePage> {
   int qty = 0;
   bool txtbuttonpressed = true;
-/* 
-  void _order(SalesController salesController) {
-    /* int apiOperatorPk = widget.apiOperatorPk;
-    int apiModulePk = widget.apiModulePk;
-    int apiShopPk = widget.apiShopPk;
-    int apiOrderedQuantity = widget.apiOrderedQuantity;
-    int apiCategoryProductId = widget.apiCategoryProductId; */
-
-    int apiOperatorPk = 7;
-    int apiModulePk = 7;
-    int apiShopPk = 7;
-    int apiOrderedQuantity = 7;
-    int apiCategoryProductId = 7;
-
-    if (apiOrderedQuantity == 0) {
-      Get.snackbar("Username empty", "Enter a valid username");
-    } else {
-      salesController.order(apiOperatorPk, apiModulePk, apiShopPk, apiOrderedQuantity, apiCategoryProductId).then((status) {
-        if (status.isSuccess) {
-          //print("Sucess login");
-          Get.toNamed(RouteHelper.getInitial());
-        } else {
-          Get.snackbar("Error", status.message);
-        }
-      });
-    }
-  }
- */
 
   @override
   Widget build(BuildContext context) {

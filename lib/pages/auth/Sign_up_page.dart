@@ -30,10 +30,9 @@ class _SignUpPageState extends State<SignUpPage> {
       Get.snackbar("Password error", "Enter a valid password");
     } else {
       SignUpBodyModel signUpBodyModel = SignUpBodyModel(name: name, email: "jose@gmail.com", password: password, phone: "0123654789");
-      //print(signUpBodyModel.toString());
+
       authController.registration(signUpBodyModel).then((status) {
         if (status.isSuccess) {
-          //print("Sucess registration");
         } else {
           Get.snackbar("Error", status.message);
         }

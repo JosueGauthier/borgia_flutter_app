@@ -15,8 +15,6 @@ class SalesRepo {
   });
 
   Future<Response> order(SalesModel salesModel) async {
-    //print(salesModel.toJson());
-
     return await apiClient.postData(AppConstants.SALES_URI, salesModel.toJson());
   }
 }

@@ -32,10 +32,6 @@ class ProductController extends GetxController {
   Future<void> getProductList(int shopId) async {
     Response response = await productRepo.getProductList(shopId);
 
-    if (kDebugMode) {
-      print("Product status code " + response.statusCode.toString());
-    }
-
     if (response.statusCode == 200) {
       _productList = [];
 
@@ -53,9 +49,6 @@ class ProductController extends GetxController {
   Future<void> getOneProduct(String linkToTheProduct) async {
     Response response = await productRepo.getOneProduct(linkToTheProduct);
 
-    if (kDebugMode) {
-      print("Product status code " + response.statusCode.toString());
-    }
     if (response.statusCode == 200) {
       _productList = [];
 

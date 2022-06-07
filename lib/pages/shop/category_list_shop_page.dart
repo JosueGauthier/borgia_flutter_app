@@ -92,8 +92,6 @@ class _CategoryShopState extends State<CategoryShop> {
 
                           return GestureDetector(
                             onTap: () {
-                              //print(categoryModel.id);
-
                               Get.toNamed(RouteHelper.getProductList(categoryModel.id!, categoryModel.moduleId!, widget.shopId, "home"));
                             },
                             child: Container(

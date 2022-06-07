@@ -30,9 +30,7 @@ class _WelcomePageState extends State<WelcomePage> {
   void initState() {
     super.initState();
     pageController.addListener(() {
-      setState(() {
-        //print(_currentPagevalue.toString());
-      });
+      setState(() {});
     });
   }
 
@@ -46,46 +44,6 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        //! sliderSection
-
-        /*  GetBuilder<UserController>(builder: (userController) {
-          return userController.isLoaded
-              ? Container(
-                  //color: Colors.blue,
-                  height: Dimensions.height100 * 2.2,
-                  child: PageView.builder(
-                      controller: pageController,
-                      itemCount: _nbItemSliderSection, //popularProductsController.popularProductList.length,
-                      itemBuilder: (context, position) {
-                        UserModel userModel = userController.userList[0];
-                        //print("userbalance is " + userModel.balance.toString());
-
-                        //CategoryOfShopModel categoryModel = categoryOfShopController.categoryOfShopList[index];
-
-                        return _buildPageItem(position, userModel);
-                      }),
-                )
-              : Container();
-        }),
-
-        //!Dots section
-
-        SizedBox(
-          height: Dimensions.height10,
-        ),
-
-        DotsIndicator(
-          dotsCount: _nbItemSliderSection <= 0 ? 1 : _nbItemSliderSection,
-          position: _currentPagevalue,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            color: AppColors.lightGreyColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          ),
-        ), */
-
         //!Liste de magasins items
         SizedBox(
           height: Dimensions.height10,

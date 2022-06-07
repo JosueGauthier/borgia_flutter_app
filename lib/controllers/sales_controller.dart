@@ -28,10 +28,6 @@ class SalesController extends GetxController implements GetxService {
     late ResponseModel responseModel; //late => before we use it we need to initialize it
 
     if (response.statusCode == 202) {
-      //print(response.headers);
-
-      //print("the header set cookie " + response.headers!["set-cookie"].toString());
-
       responseModel = ResponseModel(true, "Succes");
     } else {
       responseModel = ResponseModel(false, response.statusText!);

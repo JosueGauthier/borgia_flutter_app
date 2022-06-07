@@ -32,18 +32,6 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
     animationController = AnimationController(vsync: this, duration: const Duration(seconds: 2))..forward();
 
-    /*
-
-          ? method 1
-          ? animationController = new AnimationController(vsync: this, duration: Duration(seconds: 4))             
-          ? animationController = animationController.forward();
-
-          * method 2
-          * animationController = new AnimationController(vsync: this, duration: Duration(seconds: 4))..forward();             
-
-          
-    */
-
     animation = CurvedAnimation(parent: animationController, curve: Curves.bounceOut); //bounceOut
 
     Timer(const Duration(seconds: 3), (() => Get.offNamed(RouteHelper.getLoginPage())));

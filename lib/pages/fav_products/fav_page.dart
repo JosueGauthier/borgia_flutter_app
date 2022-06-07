@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/widget/product_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,6 +44,8 @@ class FavPage extends StatelessWidget {
           builder: (cartController) {
             List favList = cartController.getItems;
 
+            inspect(favList);
+
             favList.sort((b, a) => (a.quantity).compareTo(b.quantity));
 
             //inspect(_cartList);
@@ -61,9 +65,9 @@ class FavPage extends StatelessWidget {
                           //color: Colors.green,
                           margin: EdgeInsets.only(left: Dimensions.width20),
                           child: ProductItemWidget(
-                            illustImage: NetworkImage(favList[index].img!),
+                            illustImage: NetworkImage(favList[index].aProduct.image),
                             titleText: favList[index].name!,
-                            priceProduct: favList[index].price.toString(),
+                            priceProduct: favList[index].aProduct.manualPrice.toString(),
                           ),
                         ),
                       );

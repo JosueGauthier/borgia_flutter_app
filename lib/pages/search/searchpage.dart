@@ -29,9 +29,7 @@ class SearchPage extends StatelessWidget {
 
     if (searchWord.isEmpty) {
     } else {
-      searchController.getSearchList(searchWord).then((status) {
-        //print(searchController.getSearchList(searchWord));
-      });
+      searchController.getSearchList(searchWord).then((status) {});
     }
   }
 
@@ -136,22 +134,6 @@ class SearchPage extends StatelessWidget {
                                       ProductModel productModel = searchController.searchList[index];
 
                                       inspect(productModel);
-
-                                      //Get.find<CategoryFromProductController>().getCat(productModel.id!);
-
-                                      //List catList = AppConstants.CAT_LIST;
-
-                                      //CategoryFromProductController categoryFromProductController = Get.find();
-                                      //await Get.find<CategoryFromProductController>().getCat(productModel.id!);
-
-                                      //List catList = categoryFromProductController.catList;
-                                      //print(catList);
-
-                                      //Get.find<CategoryOfShopController>().getCategoryList(productModel.shop!);
-
-                                      //List catListModule = AppConstants.CAT_LIST_MODULE;
-
-                                      //Get.toNamed(RouteHelper.getProductList(catList[0].category, catListModule[0].moduleId, productModel.shop!, "search"));
                                     }
                                   },
                                   child: Row(
