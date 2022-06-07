@@ -14,17 +14,17 @@ class SearchRepo extends GetxService {
   }
 
   Future<Response> getSearchListCategory(String keyword) async {
-    String catUrl = AppConstants.CATEGORY_URI_NAME + keyword;
+    String catUrl = AppConstants.SEARCH_CATEGORY_URI + keyword;
     return await apiClient.getData(catUrl);
   }
 
   Future<Response> getSearchListUser(String keyword) async {
-    String userUrl = AppConstants.USER_URI_NAME + keyword;
+    String userUrl = AppConstants.SEARCH_USER_URI + keyword;
     return await apiClient.getData(userUrl);
   }
 
   Future<Response> getSearchListShop(String keyword) async {
-    String shopUrl = AppConstants.SHOP_URI_NAME + keyword;
+    String shopUrl = AppConstants.SEARCH_SHOP_URI + keyword;
     return await apiClient.getData(shopUrl);
   }
 }

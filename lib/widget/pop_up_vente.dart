@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:borgiaflutterapp/controllers/product_controller.dart';
 import 'package:borgiaflutterapp/controllers/product_list_controller.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
@@ -81,125 +80,123 @@ class _DialogSalePageState extends State<DialogSalePage> {
             size: Dimensions.height10 * 3,
             color: AppColors.titleColor,
           ),
-          content: GetBuilder<ProductController>(builder: (productcontroller) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  //color: Colors.amber,
-                  width: Dimensions.width45 * 6,
-                  padding: EdgeInsets.only(top: Dimensions.height10, bottom: Dimensions.height10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            widget.productListController.setQuantity(false);
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                //color: Colors.amber,
+                width: Dimensions.width45 * 6,
+                padding: EdgeInsets.only(top: Dimensions.height10, bottom: Dimensions.height10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          widget.productListController.setQuantity(false);
 
-                            _quantityColor = AppColors.mainColor;
+                          _quantityColor = AppColors.mainColor;
 
-                            Timer(
-                                const Duration(milliseconds: 200),
-                                (() => setState(() {
-                                      _quantityColor = AppColors.secondColor;
-                                    })));
-                            if (widget.productListController.inCartItem <= 0) {
-                              setState(() {
-                                _addRemoveColor = AppColors.mainColor;
-                              });
-
-                              Timer(
-                                  const Duration(milliseconds: 500),
-                                  (() => setState(() {
-                                        _addRemoveColor = AppColors.secondColor;
-                                      })));
-                            }
-                          });
-                        },
-                        child: AppIcon(
-                          iconData: Icons.remove,
-                          backgroundColor: _addRemoveColor,
-                          iconColor: Colors.white,
-                          iconSize: Dimensions.height30 * 1,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          BigText(
-                            text: widget.productModel.manualPrice.toString() + "€" + " x ",
-                            color: AppColors.darkGreyColor,
-                            size: Dimensions.height30,
-                            fontTypo: 'OpenSansExtraBold',
-                          ),
-                          BigText(
-                            text: widget.productListController.inCartItem.toString(),
-                            color: _quantityColor,
-                            size: Dimensions.height30,
-                            fontTypo: 'OpenSansExtraBold',
-                          ),
-                        ],
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            widget.productListController.setQuantity(true);
-
-                            _quantityColor = AppColors.greenEmerald;
+                          Timer(
+                              const Duration(milliseconds: 200),
+                              (() => setState(() {
+                                    _quantityColor = AppColors.secondColor;
+                                  })));
+                          if (widget.productListController.inCartItem <= 0) {
+                            setState(() {
+                              _addRemoveColor = AppColors.mainColor;
+                            });
 
                             Timer(
-                                const Duration(milliseconds: 200),
+                                const Duration(milliseconds: 500),
                                 (() => setState(() {
-                                      _quantityColor = AppColors.secondColor;
+                                      _addRemoveColor = AppColors.secondColor;
                                     })));
-                          });
-                        },
-                        child: AppIcon(
-                          iconData: Icons.add,
-                          backgroundColor: AppColors.secondColor,
-                          iconColor: Colors.white,
-                          iconSize: Dimensions.height30,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: Dimensions.height20,
-                ),
-                ElevatedButton(
-                    child: BigText(
-                      text: "Je me bucque !",
-                      size: Dimensions.height20 * 1,
-                      color: Colors.white,
-                      fontTypo: 'Montserrat-Bold',
+                          }
+                        });
+                      },
+                      child: AppIcon(
+                        iconData: Icons.remove,
+                        backgroundColor: _addRemoveColor,
+                        iconColor: Colors.white,
+                        iconSize: Dimensions.height30 * 1,
+                      ),
                     ),
-                    onPressed: () {
-                      _order(salesController);
+                    Row(
+                      children: [
+                        BigText(
+                          text: widget.productModel.manualPrice.toString() + "€" + " x ",
+                          color: AppColors.darkGreyColor,
+                          size: Dimensions.height30,
+                          fontTypo: 'OpenSansExtraBold',
+                        ),
+                        BigText(
+                          text: widget.productListController.inCartItem.toString(),
+                          color: _quantityColor,
+                          size: Dimensions.height30,
+                          fontTypo: 'OpenSansExtraBold',
+                        ),
+                      ],
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          widget.productListController.setQuantity(true);
 
-                      setState(() {
-                        txtbuttonpressed = !txtbuttonpressed;
-                      });
+                          _quantityColor = AppColors.greenEmerald;
 
-                      Timer(
-                          const Duration(seconds: 3),
-                          (() => setState(() {
-                                txtbuttonpressed = !txtbuttonpressed;
-                              })));
-                    },
-                    style: ButtonStyle(
-                        elevation: MaterialStateProperty.all(0),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: const BorderSide(color: AppColors.whiteGreyColor))),
-                        padding: MaterialStateProperty.all(
-                            EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
-                        backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-                          return AppColors.greenEmerald;
-                        }))),
-              ],
-            );
-          }),
+                          Timer(
+                              const Duration(milliseconds: 200),
+                              (() => setState(() {
+                                    _quantityColor = AppColors.secondColor;
+                                  })));
+                        });
+                      },
+                      child: AppIcon(
+                        iconData: Icons.add,
+                        backgroundColor: AppColors.secondColor,
+                        iconColor: Colors.white,
+                        iconSize: Dimensions.height30,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: Dimensions.height20,
+              ),
+              ElevatedButton(
+                  child: BigText(
+                    text: "Je me bucque !",
+                    size: Dimensions.height20 * 1,
+                    color: Colors.white,
+                    fontTypo: 'Montserrat-Bold',
+                  ),
+                  onPressed: () {
+                    _order(salesController);
+
+                    setState(() {
+                      txtbuttonpressed = !txtbuttonpressed;
+                    });
+
+                    Timer(
+                        const Duration(seconds: 3),
+                        (() => setState(() {
+                              txtbuttonpressed = !txtbuttonpressed;
+                            })));
+                  },
+                  style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(0),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: const BorderSide(color: AppColors.whiteGreyColor))),
+                      padding: MaterialStateProperty.all(
+                          EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                        return AppColors.greenEmerald;
+                      }))),
+            ],
+          ),
           actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: Dimensions.height10 * 2),

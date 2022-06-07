@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/product_list_repo.dart';
-import '../data/repository/product_repo.dart';
 import '../models/cart_product_model.dart';
 import '../models/product_model.dart';
 import '../utils/colors.dart';
@@ -10,9 +9,8 @@ import 'cart_controller.dart';
 
 class ProductListController extends GetxController {
   final ProductListRepo productListRepo;
-  final ProductRepo productRepo;
 
-  ProductListController({required this.productListRepo, required this.productRepo});
+  ProductListController({required this.productListRepo});
 
   int _quantity = 0;
 

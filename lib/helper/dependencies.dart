@@ -18,7 +18,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../controllers/auth_controller.dart';
 import '../controllers/cart_controller.dart';
 import '../controllers/category_controller.dart';
-import '../controllers/product_controller.dart';
 import '../controllers/sales_controller.dart';
 import '../controllers/shop_controller.dart';
 import '../controllers/user_controller.dart';
@@ -26,7 +25,6 @@ import '../data/api/api_client.dart';
 import '../data/repository/auth_repo.dart';
 import '../data/repository/cart_repo.dart';
 import '../data/repository/category_list_repo.dart';
-import '../data/repository/product_repo.dart';
 import '../data/repository/sales_repo.dart';
 import '../data/repository/shop_repo.dart';
 import '../data/repository/user_repo.dart';
@@ -48,7 +46,6 @@ Future<void> init() async {
   Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
 
   Get.lazyPut(() => ShopRepo(apiClient: Get.find()));
-  Get.lazyPut(() => ProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => CategoryOfShopRepo(apiClient: Get.find()));
   Get.lazyPut(() => UserRepo(apiClient: Get.find()));
 
@@ -73,7 +70,6 @@ Future<void> init() async {
   Get.lazyPut(() => CartController(cartRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => ShopController(shopRepo: Get.find()));
-  Get.lazyPut(() => ProductController(productRepo: Get.find()), fenix: true); //, fenix = true permet de ne pas supprimer le controller
   Get.lazyPut(() => CategoryOfShopController(categoryOfShopRepo: Get.find()), fenix: true);
   Get.lazyPut(() => UserController(userRepo: Get.find()), fenix: true);
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
@@ -91,5 +87,5 @@ Future<void> init() async {
 
   Get.lazyPut(() => RankUserStatController(rankUserStatRepo: Get.find()), fenix: true);
 
-  Get.lazyPut(() => ProductListController(productListRepo: Get.find(), productRepo: Get.find()), fenix: true);
+  Get.lazyPut(() => ProductListController(productListRepo: Get.find()), fenix: true);
 }
