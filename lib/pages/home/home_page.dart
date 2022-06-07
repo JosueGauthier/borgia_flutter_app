@@ -1,3 +1,4 @@
+import 'package:borgiaflutterapp/pages/content/neon.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
 import 'package:borgiaflutterapp/pages/stats/stats_page.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
@@ -34,16 +35,10 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> pages = [
     const WelcomePageWithHeader(),
-
     SearchPage(),
-
     const FavPage(),
-
     const RefillLydiaPage(),
-
     const StatsPage(),
-
-    //LineAreaPointPage(),
   ];
 
   var _selectedIndex = 0;

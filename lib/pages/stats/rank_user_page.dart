@@ -46,10 +46,9 @@ class _RankUserPageState extends State<RankUserPage> {
                       //color: Colors.greenAccent,
                       child: Column(
                         children: [
-                          Stack(
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              //! image section
-
                               Container(
                                 margin: EdgeInsets.only(left: Dimensions.width20, bottom: Dimensions.height10),
                                 height: Dimensions.height100 * 0.6,
@@ -63,7 +62,6 @@ class _RankUserPageState extends State<RankUserPage> {
                                   //borderRadius: BorderRadius.circular(Dimensions.width20)
                                 ),
                               ),
-
                               Container(
                                 height: Dimensions.height100 * 0.6,
                                 //color: Colors.redAccent,
@@ -82,6 +80,14 @@ class _RankUserPageState extends State<RankUserPage> {
                                     ),
                                   ),
                                 ]),
+                              ),
+                              Container(
+                                width: Dimensions.height100 * 0.6,
+                                height: Dimensions.height100 * 0.6,
+                                //color: Colors.redAccent,
+                                child: const Icon(
+                                  Icons.arrow_forward_rounded,
+                                ),
                               ),
                             ],
                           ),
@@ -255,19 +261,6 @@ class _RankUserPageState extends State<RankUserPage> {
                           SizedBox(
                             height: Dimensions.height20,
                           ),
-                          /* ListView.builder(
-                              padding: EdgeInsets.zero,
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: userTopTenList.length,
-                              itemBuilder: (context, indexUser) {
-                                UserTopTen userStatModel = userTopTenList[indexUser];
-                                return Container(
-                                  child: Column(children: [
-                                    BigText(text: userStatModel.surname!),
-                                  ]),
-                                );
-                              }), */
                         ],
                       ),
                     ),

@@ -35,14 +35,6 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                /* GestureDetector(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getInitial());
-                    },
-                    child: Icon(
-                      Icons.arrow_back_ios,
-                      color: AppColors.titleColor,
-                    )), */
                 BigText(
                   fontTypo: 'Montserrat-Bold',
                   text: "Rechargement Lydia",
@@ -53,15 +45,25 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
             ),
           ),
           Expanded(
-              child: Container(
-            decoration: const BoxDecoration(image: DecorationImage(fit: BoxFit.contain, image: AssetImage("assets/image/lydia-logo.jpeg"))),
-
-            //color: Colors.redAccent,
-          ))
-
-          // display the entered numbers
-
-          // implement the custom NumPad
+            child: Container(
+              height: double.maxFinite,
+              width: double.maxFinite,
+              child: ShaderMask(
+                shaderCallback: (rect) {
+                  return const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black, Colors.transparent],
+                  ).createShader(Rect.fromLTRB(0, Dimensions.height20 * 7, rect.width, rect.height));
+                },
+                blendMode: BlendMode.dstIn,
+                child: Image.asset(
+                  "assets/image/lydiaapp.jpg",
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          )
         ],
       ),
       bottomNavigationBar: Container(

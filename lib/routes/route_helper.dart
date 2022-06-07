@@ -1,5 +1,6 @@
 import 'package:borgiaflutterapp/pages/auth/auth_page.dart';
 import 'package:borgiaflutterapp/pages/auth/sign_in_page.dart';
+import 'package:borgiaflutterapp/pages/content/neon.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 import 'package:borgiaflutterapp/pages/user/user_page.dart';
@@ -35,11 +36,14 @@ class RouteHelper {
 
   static const String productListFromCategory = "/product";
 
+  static const String neonPage = "/madeby";
+
   //? formalisme pour passer des paramètres
 
   static String getSplashPage() => splashPage;
   static String getLydiaPage() => refillLydia;
   static String getAuthPage() => authPage;
+  static String getneonPage() => neonPage;
   static String getProfilepage() => profilePage;
   static String getLoginPage() => loginPage;
   static String getInitial() => initial;
@@ -146,6 +150,12 @@ class RouteHelper {
         );
       },
       //transition: Transition.fadeIn
+    ),
+    GetPage(
+      name: neonPage,
+      page: () {
+        return const NeonPage();
+      },
     ),
   ];
 }
