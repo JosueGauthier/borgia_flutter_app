@@ -12,8 +12,6 @@ class CartRepo {
 
   List<String> cart = [];
 
-  List<String> cartHistory = [];
-
   //! convertit le contenu du panier en une chaine de caractère json
   //! convert objects to string because shared pref only accept string
 
@@ -21,11 +19,9 @@ class CartRepo {
     cart = [];
 
     for (var element in cartList) {
-      return cart.add(jsonEncode(element));
+      cart.add(jsonEncode(element));
     }
-
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
-    print(sharedPreferences.getStringList(AppConstants.CART_LIST));
     getCartList();
   }
 
@@ -55,33 +51,8 @@ class CartRepo {
     return cartList;
   }
 
-  void addToCartHistoryList() {
-    if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
-      cartHistory = sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
-    }
-    for (int i = 0; i < cart.length; i++) {
-      cartHistory.add(cart[i]);
-    }
-
-    removeCart();
-
-    sharedPreferences.setStringList(AppConstants.CART_HISTORY_LIST, cartHistory);
-  }
-
   void removeCart() {
     cart = [];
     sharedPreferences.remove(AppConstants.CART_LIST);
-  }
-
-  List<CartModel> getCartHistoryList() {
-    if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
-      cartHistory = sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
-    }
-
-    List<CartModel> cartListHistory = [];
-    for (var element in cartHistory) {
-      cartListHistory.add(CartModel.fromJson(jsonDecode(element)));
-    }
-    return cartListHistory;
   }
 }

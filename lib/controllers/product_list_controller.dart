@@ -80,12 +80,9 @@ class ProductListController extends GetxController {
 
   void saleAddItem(
     ProductModel productModel,
-    int categoryId,
-    int categoryModuleId,
-    int shopId,
   ) {
     if ((_quantity) > 0) {
-      _cartController.addItem(productModel, _quantity, shopId);
+      _cartController.addItem(productModel, _quantity, productModel.shop!);
 
       _quantity = 0;
     } else {}

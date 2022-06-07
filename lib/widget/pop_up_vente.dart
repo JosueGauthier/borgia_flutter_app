@@ -20,18 +20,12 @@ import '../models/sales_model.dart';
 class DialogSalePage extends StatefulWidget {
   final ProductModel productModel;
   final ProductListController productListController;
-  final int categoryModuleId;
-  final int shopId;
-  final int categoryId;
 
-  const DialogSalePage(
-      {Key? key,
-      required this.productListController,
-      required this.productModel,
-      required this.categoryModuleId,
-      required this.shopId,
-      required this.categoryId})
-      : super(key: key);
+  const DialogSalePage({
+    Key? key,
+    required this.productListController,
+    required this.productModel,
+  }) : super(key: key);
 
   @override
   _DialogSalePageState createState() => _DialogSalePageState();
@@ -48,8 +42,8 @@ class _DialogSalePageState extends State<DialogSalePage> {
   ) {
     String username = AppConstants.USERNAME;
     String password = AppConstants.PASSWORD;
-    int apiModulePk = widget.categoryModuleId;
-    int apiShopPk = widget.shopId;
+    int apiModulePk = widget.productModel.moduleIdWhereProductIs!;
+    int apiShopPk = widget.productModel.shop!;
     int apiOrderedQuantity = widget.productListController.inCartItem;
     int apiCategoryProductId = widget.productModel.catProdId!;
 
@@ -66,7 +60,7 @@ class _DialogSalePageState extends State<DialogSalePage> {
     } else {
       salesController.order(_salesModel).then((status) {
         if (status.isSuccess) {
-          widget.productListController.saleAddItem(widget.productModel, widget.categoryId, widget.categoryModuleId, widget.shopId);
+          widget.productListController.saleAddItem(widget.productModel);
 
           Get.toNamed(RouteHelper.getInitial());
         } else {

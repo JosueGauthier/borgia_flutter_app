@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/cart_controller.dart';
-import '../../controllers/product_from_category_controller.dart';
 import '../../routes/route_helper.dart';
 
 import '../../utils/colors.dart';
@@ -140,9 +139,6 @@ class _ProductListPageState extends State<ProductListPage> {
                                         return DialogSalePage(
                                           productModel: productModel,
                                           productListController: productListController,
-                                          categoryModuleId: widget.categoryModuleId,
-                                          shopId: widget.shopId,
-                                          categoryId: widget.categoryId,
                                         );
                                       });
 

@@ -30,8 +30,6 @@ class CartController extends GetxController {
     } else {
       //?ajoute si l'item n'existe pas encore
       _items.putIfAbsent(productModel.id!, () {
-        _items.forEach(((key, value) {}));
-
         return CartModel(
           id: productModel.id,
           name: productModel.name,
@@ -41,15 +39,11 @@ class CartController extends GetxController {
         );
       });
     }
-
-    if (_items[productModel.id]?.quantity! == 0) {
+    /* if (_items[productModel.id]?.quantity! == 0) {
+      print("je suis la");
       _items.remove(productModel.id!);
-    }
-
-    inspect(_items);
-
+    } */
     cartRepo.addToCartList(getItems);
-
     update();
   }
   //!
@@ -73,7 +67,6 @@ class CartController extends GetxController {
 
   List<CartModel> getCartData() {
     setCart = cartRepo.getCartList();
-    print("aaa");
     return storageItems;
   }
 
@@ -86,18 +79,9 @@ class CartController extends GetxController {
     }
   }
 
-  void addToHistory() {
-    cartRepo.addToCartHistoryList();
-    clear();
-  }
-
   void clear() {
     _items = {};
     update();
-  }
-
-  List<CartModel> getCartHistoryList() {
-    return cartRepo.getCartHistoryList();
   }
 
   set setItems(Map<int, CartModel> setItems) {
