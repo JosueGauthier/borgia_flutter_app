@@ -1,13 +1,7 @@
-// ignore_for_file: unused_import
-
-import 'package:borgiaflutterapp/data/repository/auth_repo.dart';
 import 'package:borgiaflutterapp/data/repository/sales_repo.dart';
 import 'package:borgiaflutterapp/models/response_model.dart';
 import 'package:borgiaflutterapp/models/sales_model.dart';
-import 'package:borgiaflutterapp/models/signup_body_model.dart';
-import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SalesController extends GetxController implements GetxService {
   final SalesRepo salesRepo;

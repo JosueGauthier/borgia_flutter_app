@@ -1,10 +1,5 @@
-// ignore_for_file: unused_import
-
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 Future<Album> fetchAlbum() async {

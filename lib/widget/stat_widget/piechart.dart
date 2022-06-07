@@ -1,5 +1,3 @@
-// ignore_for_file: sized_box_for_whitespace, must_be_immutable
-
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,3 @@
-// ignore_for_file: sized_box_for_whitespace
-
 import 'package:borgiaflutterapp/controllers/user_shop_stat_controller.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/material.dart';

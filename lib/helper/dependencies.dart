@@ -8,7 +8,6 @@ import 'package:borgiaflutterapp/controllers/search_controller.dart';
 import 'package:borgiaflutterapp/controllers/shop_stat_controller.dart';
 import 'package:borgiaflutterapp/controllers/user_shop_stat_controller.dart';
 import 'package:borgiaflutterapp/data/repository/other_user_repo.dart';
-import 'package:borgiaflutterapp/data/repository/prodcat_repo.dart';
 import 'package:borgiaflutterapp/data/repository/product_list_repo.dart';
 import 'package:borgiaflutterapp/data/repository/rank_user_repo.dart';
 import 'package:borgiaflutterapp/data/repository/sale_list_repo.dart';
@@ -21,9 +20,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../controllers/auth_controller.dart';
 import '../controllers/cart_controller.dart';
 import '../controllers/category_controller.dart';
-import '../controllers/prod_cat_controller.dart';
 import '../controllers/product_controller.dart';
-import '../controllers/product_from_category_controller.dart';
 import '../controllers/sales_controller.dart';
 import '../controllers/shop_controller.dart';
 import '../controllers/user_controller.dart';
@@ -31,7 +28,6 @@ import '../data/api/api_client.dart';
 import '../data/repository/auth_repo.dart';
 import '../data/repository/cart_repo.dart';
 import '../data/repository/category_list_repo.dart';
-import '../data/repository/product_list_from_category_repo.dart';
 import '../data/repository/product_repo.dart';
 import '../data/repository/sales_repo.dart';
 import '../data/repository/shop_repo.dart';
@@ -56,7 +52,6 @@ Future<void> init() async {
   Get.lazyPut(() => ShopRepo(apiClient: Get.find()));
   Get.lazyPut(() => ProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => CategoryOfShopRepo(apiClient: Get.find()));
-  Get.lazyPut(() => ProductFromCategoryRepo(apiClient: Get.find()));
   Get.lazyPut(() => UserRepo(apiClient: Get.find()));
 
   Get.lazyPut(() => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find())); // Get.find() permet de trouver automatiquement l'api client....
@@ -66,8 +61,6 @@ Future<void> init() async {
   Get.lazyPut(() => OtherUserRepo(apiClient: Get.find()));
 
   Get.lazyPut(() => SaleListRepo(apiClient: Get.find()));
-
-  Get.lazyPut(() => CategoryFromProductRepo(apiClient: Get.find()));
 
   Get.lazyPut(() => ShopStatRepo(apiClient: Get.find()));
 
@@ -84,7 +77,6 @@ Future<void> init() async {
   Get.lazyPut(() => ShopController(shopRepo: Get.find()));
   Get.lazyPut(() => ProductController(productRepo: Get.find()), fenix: true); //, fenix = true permet de ne pas supprimer le controller
   Get.lazyPut(() => CategoryOfShopController(categoryOfShopRepo: Get.find()), fenix: true);
-  Get.lazyPut(() => ProductFromCategoryController(productFromCategoryRepo: Get.find(), productRepo: Get.find()), fenix: true);
   Get.lazyPut(() => UserController(userRepo: Get.find()), fenix: true);
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
   Get.lazyPut(() => SalesController(salesRepo: Get.find()));
@@ -101,6 +93,5 @@ Future<void> init() async {
 
   Get.lazyPut(() => RankUserStatController(rankUserStatRepo: Get.find()), fenix: true);
 
-  Get.lazyPut(() => CategoryFromProductController(categoryOfProductRepo: Get.find()), fenix: true);
   Get.lazyPut(() => ProductListController(productListRepo: Get.find(), productRepo: Get.find()), fenix: true);
 }

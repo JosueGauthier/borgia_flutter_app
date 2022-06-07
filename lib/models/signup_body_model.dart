@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_new
-
 class SignUpBodyModel {
   String name;
   String phone;

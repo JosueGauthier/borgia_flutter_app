@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 import '../pages/cart/last_purchase_page.dart';
 import '../pages/home/home_page.dart';
-import '../pages/shop/category_list_shop_page.dart';
+import '../pages/shop/category_shop_page.dart';
 import '../pages/shop/product_list_page.dart';
 import '../pages/splash/splash_page.dart';
 
@@ -102,7 +102,7 @@ class RouteHelper {
       page: () {
         var shopId = Get.parameters['shopId'];
         var pagefrom = Get.parameters['page'];
-        return CategoryShop(
+        return CategoryShopPage(
           shopId: int.parse(shopId!),
           pagefrom: pagefrom!,
         );

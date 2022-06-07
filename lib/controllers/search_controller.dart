@@ -32,8 +32,6 @@ class SearchController extends GetxController {
         _searchList.add(ProductModel.fromJson(responseBody[i]));
       }
       _isLoaded = true;
-
-      //update();
     } else {}
 
     if (responseCategory.statusCode == 200) {
@@ -43,8 +41,6 @@ class SearchController extends GetxController {
         _searchList.add(CategoryOfShopModel.fromJson(responseBody[i]));
       }
       _isLoaded = true;
-
-      //update();
     } else {}
 
     if (responseShop.statusCode == 200) {
@@ -54,8 +50,6 @@ class SearchController extends GetxController {
         _searchList.add(ShopModel.fromJson(responseBody[i]));
       }
       _isLoaded = true;
-
-      //update();
     } else {}
 
     if (responseUser.statusCode == 200) {

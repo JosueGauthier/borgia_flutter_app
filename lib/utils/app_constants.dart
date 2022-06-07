@@ -4,6 +4,7 @@ class AppConstants {
   static const String SHOP_URI = "/api-links/shops/shops/?format=json";
   //static const String PRODUCT_URI = "/api-links/shops/products/?shop=";
   static const String PRODUCT_URI = "/api-links/shops/productsv2/?shop=";
+  static const String SEARCH_PRODUCT_URI = "/api-links/shops/productsv2/";
 
   static const String USER_URI = "/api-links/users/users/?username=";
 

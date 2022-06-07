@@ -11,20 +11,20 @@ import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
 
-class CategoryShop extends StatefulWidget {
+class CategoryShopPage extends StatefulWidget {
   final String pagefrom;
   final int shopId;
-  const CategoryShop({
+  const CategoryShopPage({
     Key? key,
     required this.shopId,
     required this.pagefrom,
   }) : super(key: key);
 
   @override
-  State<CategoryShop> createState() => _CategoryShopState();
+  State<CategoryShopPage> createState() => _CategoryShopPageState();
 }
 
-class _CategoryShopState extends State<CategoryShop> {
+class _CategoryShopPageState extends State<CategoryShopPage> {
   @override
   Widget build(BuildContext context) {
     Get.find<CategoryOfShopController>().getCategoryList(widget.shopId);

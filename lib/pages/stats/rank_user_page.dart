@@ -1,5 +1,3 @@
-// ignore_for_file: sized_box_for_whitespace
-
 import 'package:borgiaflutterapp/controllers/rank_user_controller.dart';
 import 'package:borgiaflutterapp/models/rank_user_shop_model.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';

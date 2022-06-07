@@ -27,9 +27,4 @@ class SearchRepo extends GetxService {
     String shopUrl = AppConstants.SHOP_URI_NAME + keyword;
     return await apiClient.getData(shopUrl);
   }
-
-  /* Future<Response> getOneProduct(String linkToTheProduct) async {
-    String productUrl = linkToTheProduct;
-    return await apiClient.getDataWithoutBaseUrl(productUrl);
-  } */
 }

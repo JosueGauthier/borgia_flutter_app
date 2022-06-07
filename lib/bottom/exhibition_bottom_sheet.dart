@@ -1,5 +1,3 @@
-// ignore_for_file: sized_box_for_whitespace
-
 import 'dart:math' as math;
 import 'dart:ui';
 

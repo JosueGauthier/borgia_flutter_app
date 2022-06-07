@@ -1,5 +1,3 @@
-// ignore_for_file: sized_box_for_whitespace, file_names
-
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/material.dart';

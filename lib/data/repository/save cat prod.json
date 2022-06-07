@@ -1,0 +1,47 @@
+[
+    {
+    "id": 9,
+    "name": "papier A4",
+    
+    "category_where_product_is": 9,
+    "module_id_where_product_is": 9
+    },
+
+    {
+        "id": 9,
+        "name": "Barrette",
+        "module_id": 3,
+        "products": [
+            9,
+            10
+        ],
+        "order": 0
+
+    },
+
+    {
+        "id": 8,
+        "name": "Armoire",
+        "module_id": 2,
+        "products": [
+            7,
+            8
+        ]
+
+    
+    },
+    {
+        "id": 8,
+        "name": "kitkat",
+        "shop": 4,
+        "category_where_product_is": 8, 
+        "module_id_where_product_is": 8 
+    },
+    {
+        "id": 7,
+        "name": "Chips",
+        "category_where_product_is": 7,
+        "module_id_where_product_is": 8
+    }
+
+]

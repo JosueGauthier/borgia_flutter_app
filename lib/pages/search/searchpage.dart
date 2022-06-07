@@ -1,5 +1,3 @@
-// ignore_for_file: sized_box_for_whitespace
-
 import 'dart:developer';
 
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
@@ -118,7 +116,6 @@ class SearchPage extends StatelessWidget {
                                   onTap: () async {
                                     if (searchController.searchList[index].runtimeType == UserModel) {
                                       //!ok
-                                      //Get.find<OtherUserController>().getUserList(searchController.searchList[index].name);
                                       Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].name, "searchPage"));
                                     }
                                     if (searchController.searchList[index].runtimeType == ShopModel) {
@@ -127,13 +124,19 @@ class SearchPage extends StatelessWidget {
                                     }
                                     if (searchController.searchList[index].runtimeType == CategoryOfShopModel) {
                                       //!ok
+
+                                      print(searchController.searchList[index].id);
+                                      print(searchController.searchList[index].moduleId);
                                       Get.toNamed(RouteHelper.getProductList(searchController.searchList[index].id, searchController.searchList[index].moduleId,
                                           searchController.searchList[index].shopId, "searchPage"));
                                     }
                                     if (searchController.searchList[index].runtimeType == ProductModel) {
                                       ProductModel productModel = searchController.searchList[index];
-
-                                      inspect(productModel);
+                                      print("aa");
+                                      print(productModel.categoryWhereProductIs!);
+                                      print(productModel.moduleIdWhereProductIs!);
+                                      Get.toNamed(RouteHelper.getProductList(
+                                          productModel.categoryWhereProductIs!, productModel.moduleIdWhereProductIs!, productModel.shop!, "searchPage"));
                                     }
                                   },
                                   child: Row(

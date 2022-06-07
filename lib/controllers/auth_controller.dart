@@ -1,11 +1,8 @@
-// ignore_for_file: unused_import
-
 import 'package:borgiaflutterapp/data/repository/auth_repo.dart';
 import 'package:borgiaflutterapp/models/response_model.dart';
 import 'package:borgiaflutterapp/models/signup_body_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;

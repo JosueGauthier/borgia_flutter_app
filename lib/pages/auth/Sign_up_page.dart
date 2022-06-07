@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:borgiaflutterapp/controllers/auth_controller.dart';
 import 'package:borgiaflutterapp/models/signup_body_model.dart';
 import 'package:borgiaflutterapp/widget/small_text.dart';
