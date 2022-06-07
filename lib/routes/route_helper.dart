@@ -110,21 +110,20 @@ class RouteHelper {
       //transition: Transition.fadeIn
     ),
     GetPage(
-      name: productListFromCategory,
-      page: () {
-        var categoryId = Get.parameters['categoryId'];
-        var categoryModuleId = Get.parameters['categoryModuleId'];
-        var shopId = Get.parameters['shopId'];
-        var pagefrom = Get.parameters['page'];
-        return ProductListPage(
-          categoryId: int.parse(categoryId!),
-          categoryModuleId: int.parse(categoryModuleId!),
-          shopId: int.parse(shopId!),
-          pagefrom: pagefrom!,
-        );
-      },
-      //transition: Transition.fadeIn
-    ),
+        name: productListFromCategory,
+        page: () {
+          var categoryId = Get.parameters['categoryId'];
+          var categoryModuleId = Get.parameters['categoryModuleId'];
+          var shopId = Get.parameters['shopId'];
+          var pagefrom = Get.parameters['page'];
+          return ProductListPage(
+            categoryId: int.parse(categoryId!),
+            categoryModuleId: int.parse(categoryModuleId!),
+            shopId: int.parse(shopId!),
+            pagefrom: pagefrom!,
+          );
+        },
+        transition: Transition.fadeIn),
     GetPage(
       name: refillLydia,
       page: () {

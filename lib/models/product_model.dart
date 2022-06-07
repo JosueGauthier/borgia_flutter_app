@@ -9,25 +9,24 @@ class ProductModel {
   bool? isActive;
   bool? isRemoved;
   String? image;
-  int? categoryWhereProductIs;
-  int? moduleIdWhereProductIs;
-  int? catProdId;
+  int? idParentCategory;
+  int? moduleIdParentCategory;
+  int? idCategoryproductTable;
 
-  ProductModel({
-    this.id,
-    this.name,
-    this.unit,
-    this.shop,
-    this.isManual,
-    this.manualPrice,
-    this.correctingFactor,
-    this.isActive,
-    this.isRemoved,
-    this.image,
-    this.categoryWhereProductIs,
-    this.moduleIdWhereProductIs,
-    this.catProdId,
-  });
+  ProductModel(
+      {this.id,
+      this.name,
+      this.unit,
+      this.shop,
+      this.isManual,
+      this.manualPrice,
+      this.correctingFactor,
+      this.isActive,
+      this.isRemoved,
+      this.image,
+      this.idParentCategory,
+      this.moduleIdParentCategory,
+      this.idCategoryproductTable});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -40,9 +39,9 @@ class ProductModel {
     isActive = json['is_active'];
     isRemoved = json['is_removed'];
     image = json['product_image'];
-    categoryWhereProductIs = json['category_where_product_is'];
-    moduleIdWhereProductIs = json['module_id_where_product_is'];
-    catProdId = json['cat_prod_id'];
+    idParentCategory = json['id_parent_category'];
+    moduleIdParentCategory = json['module_id_parent_category'];
+    idCategoryproductTable = json['id_categoryproduct_table'];
   }
 
   Map<String, dynamic> toJson() {
@@ -57,9 +56,9 @@ class ProductModel {
     data['is_active'] = isActive;
     data['is_removed'] = isRemoved;
     data['product_image'] = image;
-    data['category_where_product_is'] = categoryWhereProductIs;
-    data['module_id_where_product_is'] = moduleIdWhereProductIs;
-    data['cat_prod_id'] = catProdId;
+    data['id_parent_category'] = this.idParentCategory;
+    data['module_id_parent_category'] = this.moduleIdParentCategory;
+    data['id_categoryproduct_table'] = this.idCategoryproductTable;
     return data;
   }
 }

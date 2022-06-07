@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:borgiaflutterapp/controllers/product_list_controller.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
@@ -132,6 +133,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                   setState(() {
                                     pressed = !pressed;
                                   });
+
+                                  inspect(productModel);
 
                                   showDialog(
                                       context: context,

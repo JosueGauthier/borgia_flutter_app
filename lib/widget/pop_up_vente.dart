@@ -41,10 +41,10 @@ class _DialogSalePageState extends State<DialogSalePage> {
   ) {
     String username = AppConstants.USERNAME;
     String password = AppConstants.PASSWORD;
-    int apiModulePk = widget.productModel.moduleIdWhereProductIs!;
+    int apiModulePk = widget.productModel.moduleIdParentCategory!;
     int apiShopPk = widget.productModel.shop!;
     int apiOrderedQuantity = widget.productListController.inCartItem;
-    int apiCategoryProductId = widget.productModel.catProdId!;
+    int apiCategoryProductId = widget.productModel.idCategoryproductTable!;
 
     SalesModel _salesModel = SalesModel(
         apiModulePk: apiModulePk,

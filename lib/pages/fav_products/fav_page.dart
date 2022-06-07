@@ -43,13 +43,7 @@ class FavPage extends StatelessWidget {
         GetBuilder<CartController>(
           builder: (cartController) {
             List favList = cartController.getItems;
-
-            inspect(favList);
-
             favList.sort((b, a) => (a.quantity).compareTo(b.quantity));
-
-            //inspect(_cartList);
-
             return Expanded(
                 child: ListView.builder(
                     padding: EdgeInsets.zero,
@@ -57,8 +51,8 @@ class FavPage extends StatelessWidget {
                     itemBuilder: ((context, index) {
                       return GestureDetector(
                         onTap: () {
-                          Get.toNamed(RouteHelper.getProductList(favList[index].aProduct.categoryWhereProductIs!,
-                              favList[index].aProduct.moduleIdWhereProductIs!, favList[index].aProduct.shop!, "favPage"));
+                          Get.toNamed(RouteHelper.getProductList(favList[index].aProduct.idParentCategory!, favList[index].aProduct.moduleIdParentCategory!,
+                              favList[index].aProduct.shop!, "favPage"));
                         },
                         child: Container(
                           width: double.maxFinite,

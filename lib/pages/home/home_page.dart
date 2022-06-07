@@ -5,6 +5,7 @@ import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../controllers/cart_controller.dart';
 import '../../controllers/shop_controller.dart';
@@ -23,8 +24,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Future<void> _loadRessources() async {
     //! Use it to clean sharedpreferences
-    //SharedPreferences preferences = await SharedPreferences.getInstance();
-    //await preferences.clear();
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.clear();
     await Get.find<ShopController>().getShopList();
     Get.find<CartController>().getCartData();
   }
