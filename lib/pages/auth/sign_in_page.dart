@@ -49,65 +49,67 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBody: true,
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: GetBuilder<AuthController>(
-            builder: (authcontroller) {
-              return Column(children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: Dimensions.height100 * 3.5,
-                        width: double.maxFinite,
-                        child: Stack(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(bottomRight: Radius.circular(Dimensions.height100 * 4)),
-                                color: AppColors.secondColor,
-                                backgroundBlendMode: BlendMode.srcOver,
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.only(bottomRight: Radius.circular(Dimensions.height100 * 4)),
-                                child: const PlasmaRenderer(
-                                  type: PlasmaType.infinity,
-                                  particles: 6,
-                                  color: AppColors.mainColor,
-                                  blur: 0.9,
-                                  size: 0.9,
-                                  speed: 1,
-                                  offset: 0,
-                                  blendMode: BlendMode.srcOver,
-                                  particleType: ParticleType.atlas,
-                                  variation1: 0,
-                                  variation2: 0,
-                                  variation3: 0,
-                                  rotation: 0,
-                                ),
+      extendBody: true,
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: GetBuilder<AuthController>(
+          builder: (authcontroller) {
+            return Column(children: [
+              Padding(
+                padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: Dimensions.height100 * 1.7,
+                      width: double.maxFinite,
+                      child: Stack(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(bottomRight: Radius.circular(Dimensions.height100 * 4)),
+                              color: AppColors.secondColor,
+                              backgroundBlendMode: BlendMode.srcOver,
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(bottomRight: Radius.circular(Dimensions.height100 * 4)),
+                              child: const PlasmaRenderer(
+                                type: PlasmaType.infinity,
+                                particles: 6,
+                                color: AppColors.mainColor,
+                                blur: 0.9,
+                                size: 0.9,
+                                speed: 1,
+                                offset: 0,
+                                blendMode: BlendMode.srcOver,
+                                particleType: ParticleType.atlas,
+                                variation1: 0,
+                                variation2: 0,
+                                variation3: 0,
+                                rotation: 0,
                               ),
                             ),
-                            Container(
-                              width: double.maxFinite,
-                              margin: EdgeInsets.only(left: Dimensions.width20),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: Dimensions.height100 * 0.8,
-                                  ),
-                                  Row(
-                                    children: [
-                                      BigText(
-                                        fontTypo: 'OpenSansExtraBold',
-                                        text: "Bienvenue sur ",
-                                        color: Colors.white,
-                                        size: Dimensions.height30 * 1.5,
-                                      )
-                                    ],
-                                  ),
-                                  Row(
+                          ),
+                          Container(
+                            width: double.maxFinite,
+                            margin: EdgeInsets.only(left: Dimensions.width20),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: Dimensions.height100 * 0.8,
+                                ),
+                                Row(
+                                  children: [
+                                    BigText(
+                                      fontTypo: 'OpenSansExtraBold',
+                                      text: "Bienvenue, ",
+                                      color: Colors.white,
+                                      size: Dimensions.height30 * 1.2,
+                                    )
+                                  ],
+                                ),
+
+                                /* Row(
                                     children: [
                                       BigText(
                                         fontTypo: 'OpenSansExtraBold',
@@ -122,8 +124,8 @@ class _LoginPageState extends State<LoginPage> {
                                         size: Dimensions.height30 * 1.5,
                                       ),
                                     ],
-                                  ),
-                                  /* Container(
+                                  ), */
+                                /* Container(
                                     color: Colors.greenAccent,
                                     height: 200,
                                     child: ClipPath(
@@ -134,12 +136,12 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                     ),
                                   ), */
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        /* child: Row(
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      /* child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(
@@ -151,15 +153,68 @@ class _LoginPageState extends State<LoginPage> {
                                     image: DecorationImage(fit: BoxFit.contain, image: AssetImage("assets/image/logoborgia.png")))),
                           ],
                         ), */
-                      ),
-                      SizedBox(
-                        height: Dimensions.height20 * 2,
-                      ),
-                      Padding(
-                          padding: EdgeInsets.only(left: Dimensions.width20 * 2, right: Dimensions.width20 * 2),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20 * 2,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: Dimensions.height100 * 2,
+                          width: Dimensions.height100 * 3,
+                          decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/image/logoImageText.png"))),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20 * 2,
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(left: Dimensions.width20 * 2, right: Dimensions.width20 * 2),
+                        child: Column(children: <Widget>[
+                          TextFormField(
+                            controller: usernameController,
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color: AppColors.titleColor),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color: AppColors.mainColor),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              prefixIcon: const Icon(
+                                Icons.person,
+                                color: AppColors.titleColor,
+                              ),
+                              hintText: "Enter your username",
+                              labelText: "Enter your username",
+                              labelStyle: TextStyle(
+                                color: AppColors.titleColor,
+                                fontSize: Dimensions.height20,
+                              ),
+                              hintStyle: const TextStyle(color: AppColors.titleColor),
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+                          ),
+                        ])),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20 * 3.4,
+                      width: Dimensions.width20 * 25,
+                      child: Padding(
+                          padding: EdgeInsets.only(
+                            left: Dimensions.width20 * 2,
+                            right: Dimensions.width20 * 2,
+                          ),
                           child: Column(children: <Widget>[
                             TextFormField(
-                              controller: usernameController,
+                              obscureText: true,
+                              controller: passwordController,
                               decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: const BorderSide(color: AppColors.titleColor),
@@ -169,113 +224,109 @@ class _LoginPageState extends State<LoginPage> {
                                   borderSide: const BorderSide(color: AppColors.mainColor),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
-                                prefixIcon: const Icon(
-                                  Icons.person,
-                                  color: AppColors.titleColor,
-                                ),
-                                hintText: "Enter your username",
-                                labelText: "Enter your username",
+                                prefixIcon: const Icon(Icons.password, color: AppColors.titleColor),
+                                labelText: 'Enter your password',
                                 labelStyle: TextStyle(
                                   color: AppColors.titleColor,
                                   fontSize: Dimensions.height20,
                                 ),
-                                hintStyle: const TextStyle(color: AppColors.titleColor),
                                 filled: true,
                                 fillColor: Colors.white,
                               ),
                             ),
                           ])),
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      SizedBox(
-                        height: Dimensions.height20 * 3.4,
-                        width: Dimensions.width20 * 25,
-                        child: Padding(
-                            padding: EdgeInsets.only(
-                              left: Dimensions.width20 * 2,
-                              right: Dimensions.width20 * 2,
-                            ),
-                            child: Column(children: <Widget>[
-                              TextFormField(
-                                obscureText: true,
-                                controller: passwordController,
-                                decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(color: AppColors.titleColor),
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(color: AppColors.mainColor),
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  prefixIcon: const Icon(Icons.password, color: AppColors.titleColor),
-                                  labelText: 'Enter your password',
-                                  labelStyle: TextStyle(
-                                    color: AppColors.titleColor,
-                                    fontSize: Dimensions.height20,
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                ),
-                              ),
-                            ])),
-                      ),
-                      SizedBox(
-                        height: Dimensions.height15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.only(right: Dimensions.width20 * 2),
-                            child: InkWell(
-                              onTap: () {},
-                              child: SmallText(
-                                text: "Mot de passe oublié ?",
-                                color: AppColors.mainColor,
-                                size: Dimensions.height15,
-                              ),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height15,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(right: Dimensions.width20 * 2),
+                          child: InkWell(
+                            onTap: () {},
+                            child: SmallText(
+                              text: "Mot de passe oublié ?",
+                              color: AppColors.mainColor,
+                              size: Dimensions.height15,
                             ),
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
-                      Container(
-                        height: Dimensions.height20 * 3.3,
-                        width: double.maxFinite,
-                        padding: EdgeInsets.only(
-                          left: Dimensions.width20 * 2,
-                          right: Dimensions.width20 * 2,
                         ),
-                        child: ElevatedButton(
-                            child: BigText(
-                              text: "Login",
-                              size: Dimensions.height20,
-                              color: Colors.white,
-                              fontTypo: 'Montserrat-Bold',
-                            ),
-                            onPressed: () {
-                              _login(authcontroller);
-                            },
-                            style: ButtonStyle(
-                                elevation: MaterialStateProperty.all(0),
-                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: const BorderSide(color: AppColors.whiteGreyColor))),
-                                padding: MaterialStateProperty.all(EdgeInsets.only(
-                                    left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
-                                backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-                                  return AppColors.mainColor;
-                                }))),
-                      )
-                    ],
-                  ),
-                )
-              ]);
-            },
-          ),
-        ));
+                      ],
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    Container(
+                      height: Dimensions.height20 * 3.3,
+                      width: double.maxFinite,
+                      padding: EdgeInsets.only(
+                        left: Dimensions.width20 * 2,
+                        right: Dimensions.width20 * 2,
+                      ),
+                      child: ElevatedButton(
+                          child: BigText(
+                            text: "Login",
+                            size: Dimensions.height20,
+                            color: Colors.white,
+                            fontTypo: 'Montserrat-Bold',
+                          ),
+                          onPressed: () {
+                            _login(authcontroller);
+                          },
+                          style: ButtonStyle(
+                              elevation: MaterialStateProperty.all(0),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: const BorderSide(color: AppColors.whiteGreyColor))),
+                              padding: MaterialStateProperty.all(
+                                  EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
+                              backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                                return AppColors.mainColor;
+                              }))),
+                    ),
+                  ],
+                ),
+              )
+            ]);
+          },
+        ),
+      ),
+      bottomNavigationBar: SizedBox(
+        height: Dimensions.height20 * 10,
+        //color: Colors.greenAccent.withOpacity(0.2),
+        child: CustomPaint(
+          size: Size(Dimensions.height20 * 20, Dimensions.height20 * 20),
+          painter: CurvedPainter(),
+        ),
+      ),
+    );
+  }
+}
+
+final rect = Rect.fromCircle(center: Offset.zero, radius: 10);
+
+class CurvedPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint()
+      ..color = AppColors.secondColor
+      ..blendMode = BlendMode.srcOver
+      ..strokeWidth = 15;
+
+    var path = Path();
+
+    path.moveTo(0, size.height * 0.7);
+    path.quadraticBezierTo(size.width * 0.25, size.height * 0.7, size.width * 0.5, size.height * 0.8);
+    path.quadraticBezierTo(size.width * 0.75, size.height * 0.9, size.width * 1.0, size.height * 0.8);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
   }
 }

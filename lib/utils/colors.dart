@@ -33,7 +33,7 @@ class AppColors {
   static const Color bluePastelColor = Color(0xFFB0E7F5);
 
   static const Color titleColor = Color(0xFF404040);
-  static Color white = Colors.white;
+  static const Color white = Colors.white;
   static const Color subtitleColor = Color(0xFF8B8B8C);
 
   static const Color greenEmerald = Color.fromARGB(200, 1, 152, 117);

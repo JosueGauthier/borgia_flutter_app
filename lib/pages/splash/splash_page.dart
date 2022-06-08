@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
           scale: animation,
           child: Center(
             child: Image.asset(
-              "assets/image/logoborgia.png",
+              "assets/image/logoImage.png",
               width: Dimensions.width20 * 5,
             ),
           ),
@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
           scale: animation,
           child: Center(
             child: Image.asset(
-              "assets/image/textlogoBorgia.png",
+              "assets/image/logoText.png",
               width: Dimensions.width20 * 7,
             ),
           ),

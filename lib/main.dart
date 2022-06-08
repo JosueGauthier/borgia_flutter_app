@@ -1,4 +1,5 @@
 import 'package:borgiaflutterapp/routes/route_helper.dart';
+import 'package:borgiaflutterapp/theme/theme.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,8 +27,11 @@ class MyApp extends StatelessWidget {
           selectionHandleColor: AppColors.bluePastelColor,
         ),
       ),
-      defaultTransition: Transition.fadeIn,
       debugShowCheckedModeBanner: false,
+      // themeMode: ThemeMode.system,
+      // theme: ThemeClass.lightTheme,
+      // darkTheme: ThemeClass.darkTheme,
+      defaultTransition: Transition.fadeIn,
       title: 'Flutter Demo',
       initialRoute: RouteHelper.getSplashPage(),
       getPages: RouteHelper.routes,

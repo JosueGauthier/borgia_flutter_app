@@ -159,7 +159,7 @@ class NumberButton extends StatelessWidget {
     return SizedBox(
       width: size,
       height: size,
-      child: ElevatedButton(
+      child: TextButton(
         style: ElevatedButton.styleFrom(
           primary: color,
           shape: RoundedRectangleBorder(

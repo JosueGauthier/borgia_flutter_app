@@ -48,7 +48,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
               width: double.maxFinite,
               child: ShaderMask(
                 shaderCallback: (rect) {
-                  return const LinearGradient(
+                  return LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [Colors.black, Colors.transparent],
