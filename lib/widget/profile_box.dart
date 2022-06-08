@@ -3,6 +3,8 @@ import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:borgiaflutterapp/widget/small_text.dart';
 import 'package:flutter/material.dart';
 
+import 'big_text.dart';
+
 class ProfileBox extends StatelessWidget {
   final IconData icon;
   final Color backgroundcolor;
@@ -28,7 +30,7 @@ class ProfileBox extends StatelessWidget {
       margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
       height: Dimensions.height45 * 1.7,
       width: double.maxFinite,
-      decoration: BoxDecoration(color: backgroundcolor, borderRadius: const BorderRadius.all(Radius.circular(10))),
+      decoration: BoxDecoration(color: backgroundcolor, borderRadius: BorderRadius.all(Radius.circular(Dimensions.height10 * 5))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -41,10 +43,11 @@ class ProfileBox extends StatelessWidget {
               SizedBox(
                 width: Dimensions.width20,
               ),
-              SmallText(
+              BigText(
+                fontTypo: 'Helvetica-Bold',
                 text: text,
+                size: Dimensions.height25 * 0.8,
                 color: textColor,
-                size: Dimensions.height20,
               ),
             ],
           ),

@@ -8,7 +8,6 @@ import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
-import '../../widget/small_text.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -39,12 +38,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   Container(
                     height: Dimensions.height45 * 2.7,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        //color: Colors.green,
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(Dimensions.height20),
-                          bottomRight: Radius.circular(Dimensions.height20),
-                        )),
-                    margin: EdgeInsets.only(bottom: Dimensions.height10),
+                      bottomLeft: Radius.circular(Dimensions.height20),
+                      bottomRight: Radius.circular(Dimensions.height20),
+                    )),
                     padding:
                         EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
                     child: Row(
@@ -99,101 +97,24 @@ class _ProfilePageState extends State<ProfilePage> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: Dimensions.height10,
-                  ),
                   Expanded(
                     child: ListView(children: <Widget>[
-                      Container(
-                        //padding: EdgeInsets.only(right: Dimensions.width30 / 2),
-                        margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
-                        height: Dimensions.height45 * 1.7,
-                        width: double.maxFinite,
-                        decoration: const BoxDecoration(color: AppColors.mainColor, borderRadius: BorderRadius.all(Radius.circular(10))),
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                              //color: Colors.redAccent,
-                              height: double.maxFinite,
-                              child: Center(
-                                child: DropdownButton<String>(
-                                  value: selectedTbk,
-                                  dropdownColor: AppColors.mainColor,
-
-                                  borderRadius: BorderRadius.circular(Dimensions.height10 * 2),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      selectedTbk = newValue!;
-                                    });
-                                  },
-
-                                  //disabledHint: Container(),
-
-                                  // Hide the default underline
-                                  underline: Container(),
-
-                                  icon: Icon(
-                                    Icons.arrow_drop_down_rounded,
-                                    color: Colors.transparent,
-                                    size: Dimensions.height10 * 5,
-                                  ),
-                                  isExpanded: true,
-
-                                  // The list of options
-                                  items: mapTbk
-                                      .map((text, value) {
-                                        return MapEntry(
-                                            text,
-                                            DropdownMenuItem<String>(
-                                                value: text,
-                                                child: Row(
-                                                  //crossAxisAlignment: CrossAxisAlignment.center,
-                                                  //mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    SizedBox(
-                                                      width: Dimensions.width10,
-                                                    ),
-                                                    CircleAvatar(
-                                                      foregroundImage: AssetImage(value),
-                                                    ),
-                                                    SizedBox(
-                                                      width: Dimensions.height20,
-                                                    ),
-                                                    SmallText(
-                                                      text: text,
-                                                      color: Colors.white,
-                                                      size: Dimensions.height20,
-                                                    ),
-                                                  ],
-                                                )));
-                                      })
-                                      .values
-                                      .toList(),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: Dimensions.height20,
-                      ),
                       ProfileBox(
                           textColor: AppColors.darkGreyColor,
                           backgroundcolor: AppColors.whiteGreyColor,
                           icon: Icons.person,
                           text: "Bucque : " + userModel.surname.toString(),
                           isEditable: false,
-                          iconcolor: AppColors.mainColor),
+                          iconcolor: AppColors.darkGreyColor),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
                       ProfileBox(
                         textColor: AppColors.darkGreyColor,
-                        backgroundcolor: AppColors.whiteGreyColor,
+                        backgroundcolor: Color.fromARGB(255, 243, 243, 243),
                         icon: Icons.group,
                         text: "Fam'ss : " + userModel.family.toString(),
-                        iconcolor: AppColors.mainColor,
+                        iconcolor: AppColors.darkGreyColor,
                         isEditable: false,
                       ),
                       SizedBox(
@@ -204,7 +125,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         backgroundcolor: AppColors.whiteGreyColor,
                         icon: Icons.group_work,
                         text: "Prom'ss : " + userModel.campus! + " " + (userModel.year! - 1800).toString(),
-                        iconcolor: AppColors.mainColor,
+                        iconcolor: AppColors.darkGreyColor,
                         isEditable: false,
                       ),
                       SizedBox(
@@ -239,6 +160,82 @@ class _ProfilePageState extends State<ProfilePage> {
                         text: "Send a problem or request",
                         iconcolor: Colors.white,
                         isEditable: false,
+                      ),
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      Container(
+                        //padding: EdgeInsets.only(right: Dimensions.width30 / 2),
+                        margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                        height: Dimensions.height45 * 1.7,
+                        width: double.maxFinite,
+                        decoration: BoxDecoration(color: AppColors.mainColor, borderRadius: BorderRadius.all(Radius.circular(Dimensions.height10 * 5))),
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              //color: Colors.redAccent,
+                              height: double.maxFinite,
+                              child: Center(
+                                child: DropdownButton<String>(
+                                  value: selectedTbk,
+                                  dropdownColor: AppColors.mainColor,
+
+                                  borderRadius: BorderRadius.circular(Dimensions.height10 * 2),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      selectedTbk = newValue!;
+                                    });
+                                  },
+
+                                  // Hide the default underline
+                                  underline: Container(),
+
+                                  icon: Icon(
+                                    Icons.arrow_drop_down_rounded,
+                                    color: Colors.transparent,
+                                    size: Dimensions.height10 * 5,
+                                  ),
+                                  isExpanded: true,
+
+                                  // The list of options
+                                  items: mapTbk
+                                      .map((text, value) {
+                                        return MapEntry(
+                                            text,
+                                            DropdownMenuItem<String>(
+                                                value: text,
+                                                child: Row(
+                                                  //crossAxisAlignment: CrossAxisAlignment.center,
+                                                  //mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: Dimensions.width10,
+                                                    ),
+                                                    CircleAvatar(
+                                                      foregroundImage: AssetImage(value),
+                                                    ),
+                                                    SizedBox(
+                                                      width: Dimensions.height20,
+                                                    ),
+                                                    BigText(
+                                                      fontTypo: 'Helvetica-Bold',
+                                                      text: text,
+                                                      size: Dimensions.height25 * 0.8,
+                                                      color: AppColors.white,
+                                                    ),
+                                                  ],
+                                                )));
+                                      })
+                                      .values
+                                      .toList(),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: Dimensions.height20 * 2,
                       ),
                     ]),
                   ),
