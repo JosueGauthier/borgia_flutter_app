@@ -5,12 +5,12 @@ import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
 class CustomLineChartWidget extends StatelessWidget {
-  List<Map<String, Object>> listeDesVentes;
-  Color linecolor;
-  Color areacolor;
-  int numberXTickCount;
+  final List<Map<String, Object>> listeDesVentes;
+  final Color linecolor;
+  final Color areacolor;
+  final int numberXTickCount;
 
-  CustomLineChartWidget({
+  const CustomLineChartWidget({
     Key? key,
     required this.listeDesVentes,
     this.linecolor = AppColors.mainColor,

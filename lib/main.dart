@@ -8,9 +8,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dep.init();
   runApp(const MyApp());
-
-  //SharedPreferences preferences = await SharedPreferences.getInstance();
-  //await preferences.clear();
 }
 
 class MyApp extends StatelessWidget {
@@ -29,12 +26,9 @@ class MyApp extends StatelessWidget {
           selectionHandleColor: AppColors.bluePastelColor,
         ),
       ),
-
       defaultTransition: Transition.fadeIn,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-
-      //home: SplashScreen(),
       initialRoute: RouteHelper.getSplashPage(),
       getPages: RouteHelper.routes,
     );

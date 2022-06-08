@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
@@ -125,17 +123,12 @@ class SearchPage extends StatelessWidget {
                                     if (searchController.searchList[index].runtimeType == CategoryOfShopModel) {
                                       //!ok
 
-                                      print(searchController.searchList[index].id.toString());
-                                      print(searchController.searchList[index].moduleId.toString());
                                       Get.toNamed(RouteHelper.getProductList(searchController.searchList[index].id, searchController.searchList[index].moduleId,
                                           searchController.searchList[index].shopId, "searchPage"));
                                     }
                                     if (searchController.searchList[index].runtimeType == ProductModel) {
                                       //!ok
                                       ProductModel productModel = searchController.searchList[index];
-
-                                      print(productModel.moduleIdParentCategory.toString());
-                                      print(productModel.moduleIdParentCategory.toString());
 
                                       Get.toNamed(RouteHelper.getProductList(
                                           productModel.idParentCategory!, productModel.moduleIdParentCategory!, productModel.shop!, "searchPage"));

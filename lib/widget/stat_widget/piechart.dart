@@ -3,11 +3,12 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class CustomPiechartWigdet extends StatefulWidget {
-  List statList;
-  List colorList;
-  bool isImagePresent;
-  String typeOfData;
-  CustomPiechartWigdet({Key? key, required this.statList, required this.colorList, required this.isImagePresent, required this.typeOfData}) : super(key: key);
+  final List statList;
+  final List colorList;
+  final bool isImagePresent;
+  final String typeOfData;
+  const CustomPiechartWigdet({Key? key, required this.statList, required this.colorList, required this.isImagePresent, required this.typeOfData})
+      : super(key: key);
 
   @override
   State<CustomPiechartWigdet> createState() => _CustomPiechartWigdetState();

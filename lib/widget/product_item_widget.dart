@@ -6,11 +6,11 @@ import '../utils/dimensions.dart';
 import 'big_text.dart';
 
 class ProductItemWidget extends StatelessWidget {
-  NetworkImage illustImage;
-  String titleText;
-  String priceProduct;
+  final NetworkImage illustImage;
+  final String titleText;
+  final String priceProduct;
 
-  ProductItemWidget({Key? key, required this.illustImage, required this.priceProduct, required this.titleText}) : super(key: key);
+  const ProductItemWidget({Key? key, required this.illustImage, required this.priceProduct, required this.titleText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -56,9 +56,9 @@ class ProductModel {
     data['is_active'] = isActive;
     data['is_removed'] = isRemoved;
     data['product_image'] = image;
-    data['id_parent_category'] = this.idParentCategory;
-    data['module_id_parent_category'] = this.moduleIdParentCategory;
-    data['id_categoryproduct_table'] = this.idCategoryproductTable;
+    data['id_parent_category'] = idParentCategory;
+    data['module_id_parent_category'] = moduleIdParentCategory;
+    data['id_categoryproduct_table'] = idCategoryproductTable;
     return data;
   }
 }

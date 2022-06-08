@@ -85,13 +85,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  dots_indicator:
-    dependency: "direct main"
-    description:
-      name: dots_indicator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.0"
   equatable:
     dependency: transitive
     description:
@@ -176,7 +169,7 @@ packages:
       name: graphic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.4"
+    version: "0.10.5"
   http:
     dependency: transitive
     description:
@@ -469,20 +462,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
-  syncfusion_flutter_charts:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_charts
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "20.1.59"
-  syncfusion_flutter_core:
-    dependency: transitive
-    description:
-      name: syncfusion_flutter_core
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "20.1.59"
   synchronized:
     dependency: transitive
     description:
