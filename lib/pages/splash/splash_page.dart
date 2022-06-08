@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../controllers/cart_controller.dart';
@@ -22,8 +21,8 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   late AnimationController animationController;
 
   Future<void> _loadRessources() async {
-    await Get.find<ShopController>().getShopList();
-    Get.find<CartController>().getCartData();
+    //await Get.find<ShopController>().getShopList();
+    //Get.find<CartController>().getCartData();
   }
 
   @override
