@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../controllers/cart_controller.dart';
+import '../../controllers/shop_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/dimensions.dart';
 
@@ -20,8 +22,8 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   late AnimationController animationController;
 
   Future<void> _loadRessources() async {
-    //await Get.find<PopularProductController>().getPopularProductList();
-    //await Get.find<RecommendedProductController>().getRecomendedProductList();
+    await Get.find<ShopController>().getShopList();
+    Get.find<CartController>().getCartData();
   }
 
   @override
