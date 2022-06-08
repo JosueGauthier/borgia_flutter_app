@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: Dimensions.height100 * 1.7,
+                      height: Dimensions.height100 * 1.6,
                       width: double.maxFinite,
                       child: Stack(
                         children: [
@@ -94,9 +94,10 @@ class _LoginPageState extends State<LoginPage> {
                             width: double.maxFinite,
                             margin: EdgeInsets.only(left: Dimensions.width20),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 SizedBox(
-                                  height: Dimensions.height100 * 0.8,
+                                  height: Dimensions.height20,
                                 ),
                                 Row(
                                   children: [
@@ -108,51 +109,11 @@ class _LoginPageState extends State<LoginPage> {
                                     )
                                   ],
                                 ),
-
-                                /* Row(
-                                    children: [
-                                      BigText(
-                                        fontTypo: 'OpenSansExtraBold',
-                                        text: "Borgia",
-                                        color: Colors.white,
-                                        size: Dimensions.height30 * 1.5,
-                                      ),
-                                      BigText(
-                                        fontTypo: 'OpenSansExtraBold',
-                                        text: ".",
-                                        color: Colors.greenAccent,
-                                        size: Dimensions.height30 * 1.5,
-                                      ),
-                                    ],
-                                  ), */
-                                /* Container(
-                                    color: Colors.greenAccent,
-                                    height: 200,
-                                    child: ClipPath(
-                                      clipper: MariasClipper(),
-                                      child: Container(
-                                        //height: 200,
-                                        color: Colors.pink,
-                                      ),
-                                    ),
-                                  ), */
                               ],
                             ),
                           )
                         ],
                       ),
-                      /* child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                                width: Dimensions.height100 * 2.5,
-                                height: Dimensions.height100 * 2.5,
-                                decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(fit: BoxFit.contain, image: AssetImage("assets/image/logoborgia.png")))),
-                          ],
-                        ), */
                     ),
                     SizedBox(
                       height: Dimensions.height20 * 2,
@@ -162,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         Container(
                           height: Dimensions.height100 * 2,
-                          width: Dimensions.height100 * 3,
+                          width: Dimensions.screenWidth - Dimensions.width20 * 4,
                           decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/image/logoImageText.png"))),
                         )
                       ],
@@ -292,11 +253,10 @@ class _LoginPageState extends State<LoginPage> {
           },
         ),
       ),
-      bottomNavigationBar: SizedBox(
-        height: Dimensions.height20 * 10,
-        //color: Colors.greenAccent.withOpacity(0.2),
+      bottomNavigationBar: Container(
+        //  color: Colors.greenAccent,
+        height: Dimensions.height20 * 3,
         child: CustomPaint(
-          size: Size(Dimensions.height20 * 20, Dimensions.height20 * 20),
           painter: CurvedPainter(),
         ),
       ),
@@ -304,21 +264,22 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-final rect = Rect.fromCircle(center: Offset.zero, radius: 10);
-
 class CurvedPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
       ..color = AppColors.secondColor
-      ..blendMode = BlendMode.srcOver
       ..strokeWidth = 15;
 
     var path = Path();
 
-    path.moveTo(0, size.height * 0.7);
-    path.quadraticBezierTo(size.width * 0.25, size.height * 0.7, size.width * 0.5, size.height * 0.8);
-    path.quadraticBezierTo(size.width * 0.75, size.height * 0.9, size.width * 1.0, size.height * 0.8);
+    path.moveTo(0, size.height * 0.4);
+    path.quadraticBezierTo(size.width * 0.25, size.height * 0.9, size.width * 0.5, size.height * 0.5);
+    path.quadraticBezierTo(size.width * 0.75, size.height * 0.1, size.width * 1.0, size.height * .2);
+
+    //path.quadraticBezierTo(size.width * 0.25, size.height * 0.1, size.width * 0.5, size.height * 0.5);
+    //path.quadraticBezierTo(size.width * 0.75, size.height * 0.9, size.width * 1.0, size.height * 0.4);
+
     path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
 
