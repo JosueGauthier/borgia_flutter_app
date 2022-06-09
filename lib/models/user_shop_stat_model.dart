@@ -5,9 +5,20 @@ class UserShopStatModel {
   double? balance;
   double? montantAchats;
   int? quantiteAchatsTotal;
+  int? nbRefAchetee;
+  int? nbRefTotale;
   List<MontantMagasins>? montantMagasins;
 
-  UserShopStatModel({this.id, this.username, this.surname, this.balance, this.montantAchats, this.quantiteAchatsTotal, this.montantMagasins});
+  UserShopStatModel(
+      {this.id,
+      this.username,
+      this.surname,
+      this.balance,
+      this.montantAchats,
+      this.quantiteAchatsTotal,
+      this.nbRefAchetee,
+      this.nbRefTotale,
+      this.montantMagasins});
 
   UserShopStatModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -16,6 +27,8 @@ class UserShopStatModel {
     balance = json['balance'];
     montantAchats = json['montant_achats'];
     quantiteAchatsTotal = json['qte_achats'];
+    nbRefAchetee = json['nb_ref_achetee'];
+    nbRefTotale = json['nb_ref_totale'];
     if (json['montant_magasins'] != null) {
       montantMagasins = <MontantMagasins>[];
       json['montant_magasins'].forEach((v) {
@@ -32,6 +45,8 @@ class UserShopStatModel {
     data['balance'] = balance;
     data['montant_achats'] = montantAchats;
     data['qte_achats'] = quantiteAchatsTotal;
+    data['nb_ref_achetee'] = nbRefAchetee;
+    data['nb_ref_totale'] = nbRefTotale;
     if (montantMagasins != null) {
       data['montant_magasins'] = montantMagasins!.map((v) => v.toJson()).toList();
     }

@@ -43,7 +43,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: GetBuilder<AuthController>(
-          builder: (_authcontroller) {
+          builder: (authcontroller) {
             return Column(children: [
               Padding(
                 padding: const EdgeInsets.all(0),

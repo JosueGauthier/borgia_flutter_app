@@ -1,14 +1,20 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/controllers/user_shop_stat_controller.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
+import 'package:borgiaflutterapp/widget/stat_widget/circular_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/sale_list_controller.dart';
 import '../../utils/colors.dart';
 
+import '../../widget/big_text.dart';
 import '../../widget/stat_widget/custom_button_stat.dart';
 import '../../widget/stat_widget/custom_linechart.dart';
 import '../../widget/stat_widget/piechart.dart';
+
+import 'package:percent_indicator/percent_indicator.dart';
 
 Map datetimeMap = {};
 
@@ -39,6 +45,56 @@ changeGraphState(int buttonId) {
   }
 }
 
+double calculatePercent(var number) {
+  int intNumber = number.toInt();
+
+  String stringNumber = intNumber.toString();
+  if (stringNumber.length > 1) {
+    String newString = stringNumber.substring(stringNumber.length - 2);
+    int numberTransformed = int.parse(newString);
+    double percent = numberTransformed / 100;
+    return percent;
+  } else {
+    String newString = stringNumber;
+    int numberTransformed = int.parse(newString);
+    double percent = numberTransformed / 100;
+    return percent;
+  }
+}
+
+int countHundredStep(var number) {
+  int intNumber = number.toInt();
+
+  String stringNumber = intNumber.toString();
+  if (stringNumber.length > 2) {
+    String newString = stringNumber.substring(0, stringNumber.length - 2);
+    int numberTransformed = int.parse(newString);
+    return numberTransformed;
+  } else if (stringNumber.length > 19) {
+    return 19;
+  } else {
+    return 0;
+  }
+}
+
+String emojiTrailling(int nbRefAchetee, int nbRefTotale) {
+  double ratio = nbRefAchetee / nbRefTotale;
+
+  if (ratio >= 0.9) {
+    return "👑";
+  } else if (ratio >= 0.7 && ratio < 0.9) {
+    return "🚀";
+  } else if (ratio >= 0.3 && ratio < 0.7) {
+    return "🤩";
+  } else if (ratio >= 0.1 && ratio < 0.3) {
+    return "👏";
+  } else if (ratio < 0.1) {
+    return "💪";
+  } else {
+    return "🦑";
+  }
+}
+
 class _MyStatPageState extends State<MyStatPage> {
   refresh() {
     setState(() {});
@@ -57,22 +113,111 @@ class _MyStatPageState extends State<MyStatPage> {
             listeDesVentes.add({"Date": saleListController.aListUser[i]['format_datetime'], "Sale": priceSum});
           }
         }
-        return SingleChildScrollView(
-          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            //! Line graph
 
-            CustomLineChartWidget(
-              listeDesVentes: listeDesVentes,
-              linecolor: ListStatColors.colorslist1[20],
-              areacolor: ListStatColors.colorslist1[20],
-              numberXTickCount: 3,
-            ),
+        return GetBuilder<UserShopStatController>(builder: (userShopStatController) {
+          if (userShopStatController.isLoaded) {
+            List montantMagasins = userShopStatController.userShopStatList[0].montantMagasins;
 
-            //!Pie chart
-            GetBuilder<UserShopStatController>(builder: (userShopStatController) {
-              if (userShopStatController.isLoaded) {
-                List montantMagasins = userShopStatController.userShopStatList[0].montantMagasins;
-                return Container(
+            double montantAchats = userShopStatController.userShopStatList[0].montantAchats;
+            double montantAchatsPercent = calculatePercent(montantAchats);
+            int numberofHundredsmontantAchats = countHundredStep(montantAchats);
+
+            int qtyAchats = userShopStatController.userShopStatList[0].quantiteAchatsTotal;
+            double qtyAchatsPercent = calculatePercent(qtyAchats);
+            int numberofHundredsqtyAchats = countHundredStep(qtyAchats);
+            return SingleChildScrollView(
+              child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                Container(
+                  margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20),
+                  //color: Colors.greenAccent,
+                  height: Dimensions.height100 * 2.8,
+                  width: double.maxFinite,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          CustomCircularIndicator(
+                              text: montantAchats.toString() + "€",
+                              progressColor: ListStatColors.colorslist1[numberofHundredsmontantAchats],
+                              percent: montantAchatsPercent),
+                          CustomCircularIndicator(
+                              text: qtyAchats.toString() + " prod.",
+                              progressColor: ListStatColors.colorslist1[numberofHundredsqtyAchats],
+                              percent: qtyAchatsPercent)
+                        ],
+                      ),
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            height: Dimensions.height20 * 4,
+                            width: Dimensions.width20 * 8,
+                            decoration: BoxDecoration(color: ListStatColors.colorslist1[0], borderRadius: BorderRadius.circular(Dimensions.width20)),
+                            child: Center(
+                              child: BigText(
+                                fontTypo: 'Helvetica-Bold',
+                                text: "# 12 / 250 ",
+                                size: Dimensions.height25 * 1,
+                                color: AppColors.white,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: Dimensions.width20,
+                          ),
+                          Column(
+                            children: [
+                              BigText(
+                                fontTypo: 'Helvetica-Bold',
+                                text: userShopStatController.userShopStatList[0].nbRefAchetee.toString() +
+                                    " / " +
+                                    userShopStatController.userShopStatList[0].nbRefTotale.toString() +
+                                    " refs",
+                                size: Dimensions.height25 * 0.8,
+                                color: AppColors.titleColor,
+                              ),
+                              SizedBox(
+                                height: Dimensions.height20,
+                              ),
+                              LinearPercentIndicator(
+                                width: Dimensions.width20 * 8,
+                                animation: true,
+                                lineHeight: 20.0,
+                                trailing: Text(emojiTrailling(
+                                    userShopStatController.userShopStatList[0].nbRefAchetee, userShopStatController.userShopStatList[0].nbRefTotale)),
+                                animationDuration: 2000,
+                                percent: userShopStatController.userShopStatList[0].nbRefAchetee / userShopStatController.userShopStatList[0].nbRefTotale,
+                                barRadius: Radius.circular(50),
+                                backgroundColor: AppColors.whiteGreyColor,
+                                progressColor: ListStatColors.colorslist2[0],
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+
+                //! Line graph
+
+                CustomLineChartWidget(
+                  listeDesVentes: listeDesVentes,
+                  linecolor: ListStatColors.colorslist1[20],
+                  areacolor: ListStatColors.colorslist1[20],
+                  numberXTickCount: 3,
+                ),
+
+                //!Pie chart
+
+                Container(
                   margin: EdgeInsets.only(
                     right: Dimensions.width10,
                     left: Dimensions.width10,
@@ -137,16 +282,16 @@ class _MyStatPageState extends State<MyStatPage> {
                       ),
                     ],
                   ),
-                );
-              } else {
-                return const Center(
-                    child: CircularProgressIndicator(
-                  color: AppColors.mainColor,
-                ));
-              }
-            }),
-          ]),
-        );
+                ),
+              ]),
+            );
+          } else {
+            return const Center(
+                child: CircularProgressIndicator(
+              color: AppColors.mainColor,
+            ));
+          }
+        });
       } else {
         return const Center(
           child: CircularProgressIndicator(
