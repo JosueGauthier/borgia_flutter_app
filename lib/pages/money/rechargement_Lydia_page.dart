@@ -43,7 +43,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
             ),
           ),
           Expanded(
-            child: SizedBox(
+            child: Container(
               height: double.maxFinite,
               width: double.maxFinite,
               child: ShaderMask(
@@ -55,9 +55,16 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                   ).createShader(Rect.fromLTRB(0, Dimensions.height20 * 7, rect.width, rect.height));
                 },
                 blendMode: BlendMode.dstIn,
-                child: Image.asset(
-                  "assets/image/lydiaapp.jpg",
-                  fit: BoxFit.cover,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.height20 * 2.5),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                        "assets/image/lydiaapp.jpg",
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),

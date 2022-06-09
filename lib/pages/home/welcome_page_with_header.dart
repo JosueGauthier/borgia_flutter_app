@@ -27,15 +27,6 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
             Expanded(
               child: Stack(
                 children: [
-                  /* Positioned.fill(
-                    child: Image.asset(
-                      "assets/image/amtradsred.png",
-                      scale: 14,
-                      //color: Colors.white.withOpacity(0.5),
-                      //fit: BoxFit.fitWidth,
-                      repeat: ImageRepeat.repeat,
-                    ),
-                  ), */
                   Container(
                     //color: Colors.white.withOpacity(0.95),
                     child: SingleChildScrollView(
@@ -56,9 +47,9 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                       ShaderMask(
                                         shaderCallback: (rect) {
                                           return const LinearGradient(
-                                            begin: Alignment.topCenter,
+                                            begin: Alignment.center,
                                             end: Alignment.bottomCenter,
-                                            colors: [Colors.black, Colors.transparent],
+                                            colors: [Colors.white, Colors.transparent],
                                           ).createShader(Rect.fromLTRB(0, Dimensions.height20 * 7, rect.width, rect.height));
                                         },
                                         blendMode: BlendMode.dstIn,
@@ -146,21 +137,30 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                           ),
                                           SizedBox(
                                             height: Dimensions.height10 * 14,
+                                            //height: Dimensions.height10 * 14,
                                           ),
                                           GestureDetector(
                                             child: Stack(
                                               children: [
                                                 Container(
+                                                  //color: Colors.greenAccent,
+                                                  height: Dimensions.height20 * 5,
+                                                  width: double.maxFinite,
+                                                  child: CustomPaint(
+                                                    painter: CurvedPainter(),
+                                                  ),
+                                                ),
+                                                /* Container(
                                                   height: Dimensions.height30 * 3,
                                                   width: double.maxFinite,
                                                   decoration: BoxDecoration(
                                                     borderRadius: BorderRadius.only(topRight: Radius.circular(Dimensions.width20 * 2)),
-                                                    color: AppColors.white.withOpacity(0.65),
+                                                    color: AppColors.greenEmerald.withOpacity(0.65),
                                                     backgroundBlendMode: BlendMode.srcOver,
                                                   ),
-                                                ),
+                                                ), */
                                                 Positioned(
-                                                  top: Dimensions.height10 * 1.5,
+                                                  top: Dimensions.height10 * 2.5,
                                                   left: Dimensions.height10 * 2 * 1.5,
                                                   child: Text(
                                                     "Solde:",
@@ -174,7 +174,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                 Center(
                                                   child: Column(
                                                     children: [
-                                                      SizedBox(height: Dimensions.height20 * 1.1),
+                                                      SizedBox(height: Dimensions.height20 * 2),
                                                       Text(
                                                         userController.userList[0].balance + "€",
                                                         style: TextStyle(
@@ -217,5 +217,35 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
             ),
           ],
         ));
+  }
+}
+
+class CurvedPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint()
+      ..color = AppColors.white.withOpacity(1)
+      ..strokeWidth = 15;
+
+    var path = Path();
+
+    path.moveTo(0, size.height * 0.1);
+
+    path.quadraticBezierTo(size.width * 0.25, size.height * 0.1, size.width * 0.5, size.height * 0.35);
+    path.quadraticBezierTo(size.width * 0.75, size.height * 0.6, size.width * 1.0, size.height * 0.2);
+
+    //path.moveTo(0, size.height * 0.4);
+    //path.quadraticBezierTo(size.width * 0.25, size.height * 0.9, size.width * 0.5, size.height * 0.5);
+    //path.quadraticBezierTo(size.width * 0.75, size.height * 0.1, size.width * 1.0, size.height * .2);
+
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
   }
 }
