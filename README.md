@@ -1,5 +1,10 @@
 # borgiaflutterapp
 
+
+
+
+https://josue-gauthier.notion.site/Roadmap-Borgia-dd0bb947f5444ea198af76f6c90f2aee
+
 A new Flutter project.
 
 ## Getting Started
