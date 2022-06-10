@@ -11,6 +11,7 @@ class ProfileBox extends StatelessWidget {
   final Color iconcolor;
   final Color textColor;
   final bool isEditable;
+  final double radius;
 
   const ProfileBox(
       {Key? key,
@@ -19,7 +20,8 @@ class ProfileBox extends StatelessWidget {
       required this.backgroundcolor,
       required this.text,
       required this.iconcolor,
-      this.isEditable = true})
+      this.isEditable = true,
+      this.radius = 50})
       : super(key: key);
 
   @override
@@ -29,7 +31,7 @@ class ProfileBox extends StatelessWidget {
       margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
       height: Dimensions.height45 * 1.7,
       width: double.maxFinite,
-      decoration: BoxDecoration(color: backgroundcolor, borderRadius: BorderRadius.all(Radius.circular(Dimensions.height10 * 5))),
+      decoration: BoxDecoration(color: backgroundcolor, borderRadius: BorderRadius.all(Radius.circular(radius))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
