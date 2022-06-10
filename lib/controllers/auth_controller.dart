@@ -1,6 +1,5 @@
 import 'package:borgiaflutterapp/data/repository/auth_repo.dart';
 import 'package:borgiaflutterapp/models/response_model.dart';
-import 'package:borgiaflutterapp/models/signup_body_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:get/get.dart';
 
@@ -11,26 +10,6 @@ class AuthController extends GetxController implements GetxService {
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
-
-  Future<ResponseModel> registration(SignUpBodyModel signUpBodyModel) async {
-    _isLoading = true;
-
-    Response response = await authRepo.registration(signUpBodyModel);
-    late ResponseModel responseModel; //late => before we use it we need to initialize it
-
-    if (response.statusCode == 200) {
-      authRepo.saveUserToken(response.body["token"]);
-      responseModel = ResponseModel(true, response.body["token"]);
-    } else {
-      responseModel = ResponseModel(false, response.statusText!);
-    }
-
-    _isLoading = false;
-
-    update();
-
-    return responseModel;
-  }
 
   Future<ResponseModel> login(String username, String password) async {
     _isLoading = true;

@@ -1,5 +1,4 @@
 import 'package:borgiaflutterapp/data/api/api_client.dart';
-import 'package:borgiaflutterapp/models/signup_body_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,10 +12,6 @@ class AuthRepo {
     required this.apiClient,
     required this.sharedPreferences,
   });
-
-  Future<Response> registration(SignUpBodyModel signUpBodyModel) async {
-    return await apiClient.postData(AppConstants.REGISTRATION_URI, signUpBodyModel.toJson());
-  }
 
   Future<Response> login(String username, String password) async {
     return await apiClient.postData(AppConstants.LOGIN_URI, {"username": username, "password": password});

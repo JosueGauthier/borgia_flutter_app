@@ -38,14 +38,9 @@ class CartController extends GetxController {
         );
       });
     }
-    /* if (_items[productModel.id]?.quantity! == 0) {
-      print("je suis la");
-      _items.remove(productModel.id!);
-    } */
     cartRepo.addToCartList(getItems);
     update();
   }
-  //!
 
   int get totalItems {
     int totalQuantity = 0;

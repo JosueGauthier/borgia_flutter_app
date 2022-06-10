@@ -6,13 +6,16 @@ import 'package:borgiaflutterapp/widget/small_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sa3_liquid/liquid/plasma/plasma.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../controllers/user_controller.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -21,6 +24,12 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  addToSharedPref(String username, String password) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> identifiersList = [username, password];
+    prefs.setStringList(AppConstants.IDENTIFIERS_LIST, identifiersList);
+  }
 
   void _login(AuthController authController) {
     String username = usernameController.text.trim();
@@ -35,6 +44,9 @@ class _LoginPageState extends State<LoginPage> {
         if (status.isSuccess) {
           AppConstants.USERNAME = username;
           AppConstants.PASSWORD = password;
+
+          addToSharedPref(username, password);
+
           AppConstants.isfinishedRotate = false;
           Get.find<UserController>().getUserList(AppConstants.USERNAME);
 

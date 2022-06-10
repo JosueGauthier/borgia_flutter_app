@@ -43,7 +43,7 @@ class AppConstants {
   static const String BASE_URL = "https://borgia.josue.to";
   static const String UPLOAD_URL = "/uploads/";
   static const String CART_LIST = "Cart-list";
-  static const String CART_HISTORY_LIST = "Cart-history-list";
+  static const String IDENTIFIERS_LIST = "Identifiers-list";
 
   static int CAT_MODULE_ID = 1;
   static int SHOP_ID = 1;
