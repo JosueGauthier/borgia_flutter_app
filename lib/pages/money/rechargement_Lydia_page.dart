@@ -43,12 +43,12 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
             ),
           ),
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: double.maxFinite,
               width: double.maxFinite,
               child: ShaderMask(
                 shaderCallback: (rect) {
-                  return LinearGradient(
+                  return const LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [Colors.black, Colors.transparent],
@@ -58,7 +58,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.height20 * 2.5),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage(
                         "assets/image/lydiaapp.jpg",

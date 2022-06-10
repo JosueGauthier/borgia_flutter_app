@@ -131,11 +131,6 @@ class _AuthPageState extends State<AuthPage> {
               height: Dimensions.height20,
             ),
             ElevatedButton(
-                child: SmallText(
-                  text: "Login",
-                  size: Dimensions.height20,
-                  color: AppColors.darkGreyColor,
-                ),
                 onPressed: () {
                   _registration();
                 },
@@ -145,7 +140,12 @@ class _AuthPageState extends State<AuthPage> {
                     backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                       if (states.contains(MaterialState.pressed)) return AppColors.secondColor;
                       return AppColors.greyColor;
-                    })))
+                    })),
+                child: SmallText(
+                  text: "Login",
+                  size: Dimensions.height20,
+                  color: AppColors.darkGreyColor,
+                ))
           ],
         ),
       )

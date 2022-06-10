@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/cart_controller.dart';
-import '../../controllers/shop_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/dimensions.dart';
 

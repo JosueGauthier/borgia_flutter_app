@@ -25,7 +25,7 @@ class OtherUserController extends GetxController {
     Response response = await userRepo.getUserList(username);
 
     if (kDebugMode) {
-      print("User status code " + response.statusCode.toString());
+      print("User status code ${response.statusCode}");
     }
 
     if (response.statusCode == 200) {
@@ -39,7 +39,6 @@ class OtherUserController extends GetxController {
 
       welcomeUserModel = userList[0];
 
-      inspect(welcomeUserModel);
       _isLoaded = true;
       update();
     } else {}

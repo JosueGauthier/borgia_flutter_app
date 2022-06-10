@@ -73,7 +73,7 @@ List<PieChartSectionData> showingSectionsAmount(List dataList, List colorList, b
     return PieChartSectionData(
       color: coloor,
       value: valeur,
-      title: valeur.toString() + "€",
+      title: "$valeur€",
       radius: 100,
       titleStyle: TextStyle(fontSize: Dimensions.height10 * 1.6, fontWeight: FontWeight.bold, color: Colors.white),
       badgeWidget: isImagePresent
@@ -101,7 +101,7 @@ List<PieChartSectionData> showingSectionsPercentage(List dataList, List colorLis
     return PieChartSectionData(
       color: coloor,
       value: valeur.toDouble(),
-      title: valeur.toString() + "%",
+      title: "$valeur%",
       radius: 100,
       titleStyle: TextStyle(fontSize: Dimensions.height10 * 1.6, fontWeight: FontWeight.bold, color: Colors.white),
       badgeWidget: isImagePresent

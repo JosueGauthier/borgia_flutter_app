@@ -89,7 +89,7 @@ class _ProductListPageState extends State<ProductListPage> {
                       children: [
                         GestureDetector(
                             onTap: () {
-                              Get.toNamed(RouteHelper.getCategoryListPage(widget.shopId, "home"));
+                              Get.back();
                             },
                             child: SizedBox(
                               width: Dimensions.width15 * 4,
@@ -133,8 +133,6 @@ class _ProductListPageState extends State<ProductListPage> {
                                   setState(() {
                                     pressed = !pressed;
                                   });
-
-                                  inspect(productModel);
 
                                   showDialog(
                                       context: context,

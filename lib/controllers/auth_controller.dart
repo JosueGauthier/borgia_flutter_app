@@ -61,7 +61,7 @@ class AuthController extends GetxController implements GetxService {
 
       var cookie = "";
 
-      cookie = csrftoken + ";" + sessionid;
+      cookie = "$csrftoken;$sessionid";
 
       AppConstants.COOKIE = cookie;
 

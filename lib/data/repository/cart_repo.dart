@@ -37,7 +37,7 @@ class CartRepo {
     if (sharedPreferences.containsKey(AppConstants.CART_LIST)) {
       carts = sharedPreferences.getStringList(AppConstants.CART_LIST)!;
       if (kDebugMode) {
-        print("inside cart" + carts.toString());
+        print("inside cart$carts");
       }
     }
 

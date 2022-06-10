@@ -8,10 +8,10 @@ class FlickerText extends StatefulWidget {
   final bool shouldFlicker;
   const FlickerText({Key? key, required this.color, required this.text, required this.shouldFlicker}) : super(key: key);
   @override
-  _FlickerTextState createState() => _FlickerTextState();
+  FlickerTextState createState() => FlickerTextState();
 }
 
-class _FlickerTextState extends State<FlickerText> with TickerProviderStateMixin {
+class FlickerTextState extends State<FlickerText> with TickerProviderStateMixin {
   late AnimationController animation;
   late Animation<double> _fadeInFadeOut;
 

@@ -53,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           children: [
                             GestureDetector(
                                 onTap: () {
-                                  Get.toNamed(RouteHelper.getInitial());
+                                  Get.back();
                                 },
                                 child: SizedBox(
                                   //color: Colors.redAccent,
@@ -103,7 +103,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           textColor: AppColors.darkGreyColor,
                           backgroundcolor: AppColors.whiteGreyColor,
                           icon: Icons.person,
-                          text: "Bucque : " + userModel.surname.toString(),
+                          text: "Bucque : ${userModel.surname}",
                           isEditable: false,
                           iconcolor: AppColors.darkGreyColor),
                       SizedBox(
@@ -111,9 +111,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       ProfileBox(
                         textColor: AppColors.darkGreyColor,
-                        backgroundcolor: Color.fromARGB(255, 243, 243, 243),
+                        backgroundcolor: const Color.fromARGB(255, 243, 243, 243),
                         icon: Icons.group,
-                        text: "Fam'ss : " + userModel.family.toString(),
+                        text: "Fam'ss : ${userModel.family}",
                         iconcolor: AppColors.darkGreyColor,
                         isEditable: false,
                       ),
@@ -124,7 +124,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         textColor: AppColors.darkGreyColor,
                         backgroundcolor: AppColors.whiteGreyColor,
                         icon: Icons.group_work,
-                        text: "Prom'ss : " + userModel.campus! + " " + (userModel.year! - 1800).toString(),
+                        text: "Prom'ss : ${userModel.campus!} ${userModel.year! - 1800}",
                         iconcolor: AppColors.darkGreyColor,
                         isEditable: false,
                       ),

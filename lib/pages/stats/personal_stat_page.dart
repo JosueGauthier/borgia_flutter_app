@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/controllers/user_shop_stat_controller.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:borgiaflutterapp/widget/stat_widget/circular_indicator.dart';
@@ -141,13 +139,9 @@ class _MyStatPageState extends State<MyStatPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           CustomCircularIndicator(
-                              text: montantAchats.toString() + "€",
-                              progressColor: ListStatColors.colorslist1[numberofHundredsmontantAchats],
-                              percent: montantAchatsPercent),
+                              text: "$montantAchats€", progressColor: ListStatColors.colorslist1[numberofHundredsmontantAchats], percent: montantAchatsPercent),
                           CustomCircularIndicator(
-                              text: qtyAchats.toString() + " prod.",
-                              progressColor: ListStatColors.colorslist1[numberofHundredsqtyAchats],
-                              percent: qtyAchatsPercent)
+                              text: "$qtyAchats prod.", progressColor: ListStatColors.colorslist1[numberofHundredsqtyAchats], percent: qtyAchatsPercent)
                         ],
                       ),
                       SizedBox(
@@ -176,10 +170,8 @@ class _MyStatPageState extends State<MyStatPage> {
                             children: [
                               BigText(
                                 fontTypo: 'Helvetica-Bold',
-                                text: userShopStatController.userShopStatList[0].nbRefAchetee.toString() +
-                                    " / " +
-                                    userShopStatController.userShopStatList[0].nbRefTotale.toString() +
-                                    " refs",
+                                text:
+                                    "${userShopStatController.userShopStatList[0].nbRefAchetee} / ${userShopStatController.userShopStatList[0].nbRefTotale} refs",
                                 size: Dimensions.height25 * 0.8,
                                 color: AppColors.titleColor,
                               ),
@@ -194,7 +186,7 @@ class _MyStatPageState extends State<MyStatPage> {
                                     userShopStatController.userShopStatList[0].nbRefAchetee, userShopStatController.userShopStatList[0].nbRefTotale)),
                                 animationDuration: 2000,
                                 percent: userShopStatController.userShopStatList[0].nbRefAchetee / userShopStatController.userShopStatList[0].nbRefTotale,
-                                barRadius: Radius.circular(50),
+                                barRadius: const Radius.circular(50),
                                 backgroundColor: AppColors.whiteGreyColor,
                                 progressColor: ListStatColors.colorslist2[0],
                               ),
@@ -282,6 +274,10 @@ class _MyStatPageState extends State<MyStatPage> {
                       ),
                     ],
                   ),
+                ),
+
+                SizedBox(
+                  height: Dimensions.width20 * 2,
                 ),
               ]),
             );

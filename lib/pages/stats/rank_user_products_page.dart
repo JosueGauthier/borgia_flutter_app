@@ -1,48 +1,91 @@
-import 'package:borgiaflutterapp/controllers/rank_user_controller.dart';
-import 'package:borgiaflutterapp/models/rank_user_shop_model.dart';
-import 'package:borgiaflutterapp/routes/route_helper.dart';
-import 'package:borgiaflutterapp/utils/dimensions.dart';
-import 'package:borgiaflutterapp/widget/big_text.dart';
+import 'dart:developer';
+
+import 'package:borgiaflutterapp/controllers/rank_user_product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../models/rank_user_product_model.dart';
+import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
+import '../../widget/big_text.dart';
 
-class RankUserPage extends StatefulWidget {
-  const RankUserPage({Key? key}) : super(key: key);
+class RankUserProductPage extends StatefulWidget {
+  final int shopId;
+  const RankUserProductPage({Key? key, required this.shopId}) : super(key: key);
 
   @override
-  State<RankUserPage> createState() => _RankUserPageState();
+  State<RankUserProductPage> createState() => _RankUserProductPageState();
 }
 
-class _RankUserPageState extends State<RankUserPage> {
+class _RankUserProductPageState extends State<RankUserProductPage> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<RankUserStatController>(builder: (rankUserStatController) {
-      if (rankUserStatController.isLoaded) {
-        return SingleChildScrollView(
-          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            //! Podium
+    Get.find<RankUserProductController>().getRankUserList(widget.shopId);
 
-            //! List
+    return GetBuilder<RankUserProductController>(builder: (rankUserProductController) {
+      if (rankUserProductController.isLoaded) {
+        List<ListOfProd>? listOfProd = rankUserProductController.productStatList[0].listOfProd;
 
-            SizedBox(
-              height: Dimensions.height20,
-            ),
+        inspect(rankUserProductController.productStatList[0]);
 
-            ListView.builder(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: rankUserStatController.statList.length,
-                itemBuilder: (context, indexShop) {
-                  RankUserShopModel rankUserShopModel = rankUserStatController.statList[indexShop];
-                  List<UserTopTen>? userTopTenList = rankUserShopModel.userTopTen;
-                  return GestureDetector(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getProductRankUserPage(indexShop + 1));
-                    },
-                    child: Container(
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: SingleChildScrollView(
+            child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              //! Podium
+              Container(
+                height: Dimensions.height45 * 2.7,
+                decoration: BoxDecoration(
+                    //color: Colors.green,
+                    borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(Dimensions.height20),
+                  bottomRight: Radius.circular(Dimensions.height20),
+                )),
+                margin: EdgeInsets.only(bottom: Dimensions.height10),
+                padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: SizedBox(
+                              width: Dimensions.width15 * 4,
+                              height: Dimensions.width15 * 4,
+                              child: const Icon(
+                                Icons.arrow_back_ios,
+                                color: AppColors.titleColor,
+                              ),
+                            )),
+                      ],
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(right: Dimensions.width20),
+                      child: BigText(
+                        fontTypo: 'Montserrat-Bold',
+                        text: "Classement " + (rankUserProductController.productStatList[0].name).toString().capitalize!,
+                        size: Dimensions.height10 * 3,
+                        color: AppColors.titleColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              ListView.builder(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: listOfProd?.length,
+                  itemBuilder: (context, indexProduct) {
+                    List<UserTopTenProduct>? userTopTenListOfaProduct = listOfProd![indexProduct].userTopTen;
+
+                    return Container(
                       margin: EdgeInsets.only(bottom: Dimensions.height10),
                       //color: Colors.greenAccent,
                       child: Column(
@@ -58,7 +101,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                   //color: Colors.amber,
                                   image: DecorationImage(
                                     fit: BoxFit.contain,
-                                    image: NetworkImage(rankUserShopModel.image!),
+                                    image: NetworkImage(listOfProd[indexProduct].image!),
                                   ),
                                   //borderRadius: BorderRadius.circular(Dimensions.width20)
                                 ),
@@ -76,7 +119,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                     child: BigText(
                                       size: Dimensions.height25 * 1.1,
                                       fontTypo: 'Montserrat-Bold',
-                                      text: (rankUserShopModel.name)!.capitalize!,
+                                      text: (listOfProd[indexProduct].name)!.capitalize!,
                                       color: AppColors.titleColor,
                                     ),
                                   ),
@@ -86,9 +129,6 @@ class _RankUserPageState extends State<RankUserPage> {
                                 width: Dimensions.height100 * 0.6,
                                 height: Dimensions.height100 * 0.6,
                                 //color: Colors.redAccent,
-                                child: const Icon(
-                                  Icons.arrow_forward_rounded,
-                                ),
                               ),
                             ],
                           ),
@@ -120,11 +160,13 @@ class _RankUserPageState extends State<RankUserPage> {
                                             children: [
                                               BigText(
                                                 fontTypo: 'Helvetica-Bold',
-                                                text: (userTopTenList![1].surname)!.capitalize!,
-                                                size: ((Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[1].surname!.length)) * 0.14) >=
+                                                text: (userTopTenListOfaProduct![1].surname)!.capitalize!,
+                                                size: ((Dimensions.height10 *
+                                                            ((Dimensions.width10 * 7.2) / (userTopTenListOfaProduct[1].surname!.length)) *
+                                                            0.14) >=
                                                         Dimensions.height10)
                                                     ? Dimensions.height10 * 1.7
-                                                    : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[1].surname!.length)) * 0.14,
+                                                    : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenListOfaProduct[1].surname!.length)) * 0.14,
                                                 color: AppColors.titleColor,
                                               ),
                                               SizedBox(
@@ -133,7 +175,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                               BigText(
                                                 fontTypo: 'Helvetica-Bold',
                                                 text:
-                                                    ("${userTopTenList[1].family!} ${userTopTenList[1].campus!.toLowerCase().capitalize!}${userTopTenList[1].promotion! - 1800}")
+                                                    ("${userTopTenListOfaProduct[1].family!} ${userTopTenListOfaProduct[1].campus!.toLowerCase().capitalize!}${userTopTenListOfaProduct[1].promotion! - 1800}")
                                                         .capitalize!,
                                                 size: Dimensions.height10 * 1.3,
                                                 color: AppColors.titleColor,
@@ -143,7 +185,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                               ),
                                               BigText(
                                                 fontTypo: 'Helvetica-Bold',
-                                                text: "${userTopTenList[1].montantAchatsParShop}€",
+                                                text: "${userTopTenListOfaProduct[1].montantAchatsParProduit}€",
                                                 size: Dimensions.height10 * 1.5,
                                                 color: AppColors.silverGrey, //Color.fromRGBO(105, 105, 105, 0),
                                               ),
@@ -168,11 +210,13 @@ class _RankUserPageState extends State<RankUserPage> {
                                             children: [
                                               BigText(
                                                 fontTypo: 'Helvetica-Bold',
-                                                text: (userTopTenList[0].surname)!.capitalize!,
-                                                size: ((Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[0].surname!.length)) * 0.14) >=
+                                                text: (userTopTenListOfaProduct[0].surname)!.capitalize!,
+                                                size: ((Dimensions.height10 *
+                                                            ((Dimensions.width10 * 7.2) / (userTopTenListOfaProduct[0].surname!.length)) *
+                                                            0.14) >=
                                                         Dimensions.height10)
                                                     ? Dimensions.height10 * 1.7
-                                                    : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[0].surname!.length)) * 0.14,
+                                                    : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenListOfaProduct[0].surname!.length)) * 0.14,
                                                 color: AppColors.titleColor,
                                               ),
                                               SizedBox(
@@ -181,7 +225,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                               BigText(
                                                 fontTypo: 'Helvetica-Bold',
                                                 text:
-                                                    ("${userTopTenList[0].family!} ${userTopTenList[0].campus!.toLowerCase().capitalize!}${userTopTenList[0].promotion! - 1800}")
+                                                    ("${userTopTenListOfaProduct[0].family!} ${userTopTenListOfaProduct[0].campus!.toLowerCase().capitalize!}${userTopTenListOfaProduct[0].promotion! - 1800}")
                                                         .capitalize!,
                                                 size: Dimensions.height10 * 1.3,
                                                 color: AppColors.titleColor,
@@ -191,7 +235,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                               ),
                                               BigText(
                                                 fontTypo: 'Helvetica-Bold',
-                                                text: "${userTopTenList[0].montantAchatsParShop}€",
+                                                text: "${userTopTenListOfaProduct[0].montantAchatsParProduit}€",
                                                 size: Dimensions.height10 * 1.5,
                                                 color: AppColors.silverGrey,
                                               ),
@@ -216,11 +260,13 @@ class _RankUserPageState extends State<RankUserPage> {
                                             children: [
                                               BigText(
                                                 fontTypo: 'Helvetica-Bold',
-                                                text: (userTopTenList[2].surname)!.capitalize!,
-                                                size: ((Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[2].surname!.length)) * 0.14) >=
+                                                text: (userTopTenListOfaProduct[2].surname)!.capitalize!,
+                                                size: ((Dimensions.height10 *
+                                                            ((Dimensions.width10 * 7.2) / (userTopTenListOfaProduct[2].surname!.length)) *
+                                                            0.14) >=
                                                         Dimensions.height10)
                                                     ? Dimensions.height10 * 1.7
-                                                    : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[2].surname!.length)) * 0.14,
+                                                    : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenListOfaProduct[2].surname!.length)) * 0.14,
                                                 color: AppColors.titleColor,
                                               ),
                                               SizedBox(
@@ -229,7 +275,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                               BigText(
                                                 fontTypo: 'Helvetica-Bold',
                                                 text:
-                                                    ("${userTopTenList[2].family!} ${userTopTenList[2].campus!.toLowerCase().capitalize!}${userTopTenList[2].promotion! - 1800}")
+                                                    ("${userTopTenListOfaProduct[2].family!} ${userTopTenListOfaProduct[2].campus!.toLowerCase().capitalize!}${userTopTenListOfaProduct[2].promotion! - 1800}")
                                                         .capitalize!,
                                                 size: Dimensions.height10 * 1.3,
                                                 color: AppColors.titleColor,
@@ -239,7 +285,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                               ),
                                               BigText(
                                                 fontTypo: 'Helvetica-Bold',
-                                                text: "${userTopTenList[2].montantAchatsParShop}€",
+                                                text: "${userTopTenListOfaProduct[2].montantAchatsParProduit}€",
                                                 size: Dimensions.height10 * 1.5,
                                                 color: AppColors.silverGrey,
                                               ),
@@ -258,14 +304,14 @@ class _RankUserPageState extends State<RankUserPage> {
                           ),
                         ],
                       ),
-                    ),
-                  );
-                }),
+                    );
+                  }),
 
-            SizedBox(
-              height: Dimensions.height10 * 5,
-            )
-          ]),
+              SizedBox(
+                height: Dimensions.height10 * 5,
+              )
+            ]),
+          ),
         );
       } else {
         return const Center(

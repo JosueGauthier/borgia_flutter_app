@@ -82,9 +82,7 @@ class _UserPageState extends State<UserPage> {
                                   )
                                 : BigText(
                                     fontTypo: 'Montserrat-Bold',
-                                    text: userController.welcomeUserModel.surname.toString().capitalize! +
-                                        " " +
-                                        userController.welcomeUserModel.family.toString(),
+                                    text: "${userController.welcomeUserModel.surname.toString().capitalize!} ${userController.welcomeUserModel.family}",
                                     size: Dimensions.height10 * 3,
                                     color: AppColors.titleColor,
                                   )),
@@ -121,7 +119,7 @@ class _UserPageState extends State<UserPage> {
                               textColor: Colors.white,
                               backgroundcolor: AppColors.mainColor,
                               icon: Icons.person,
-                              text: "Transfert vers : " + userController.welcomeUserModel.surname.toString(),
+                              text: "Transfert vers : ${userController.welcomeUserModel.surname}",
                               isEditable: false,
                               iconcolor: Colors.white),
                       SizedBox(
@@ -133,7 +131,7 @@ class _UserPageState extends State<UserPage> {
                               textColor: AppColors.darkGreyColor,
                               backgroundcolor: AppColors.whiteGreyColor,
                               icon: Icons.person,
-                              text: "Identifiant : " + userController.welcomeUserModel.name.toString(),
+                              text: "Identifiant : ${userController.welcomeUserModel.name}",
                               isEditable: false,
                               iconcolor: AppColors.mainColor),
                       SizedBox(
@@ -145,7 +143,7 @@ class _UserPageState extends State<UserPage> {
                               textColor: AppColors.darkGreyColor,
                               backgroundcolor: AppColors.whiteGreyColor,
                               icon: Icons.person,
-                              text: "Nom : " + userController.welcomeUserModel.firstName.toString() + " " + userController.welcomeUserModel.lastName.toString(),
+                              text: "Nom : ${userController.welcomeUserModel.firstName} ${userController.welcomeUserModel.lastName}",
                               isEditable: false,
                               iconcolor: AppColors.mainColor),
                       SizedBox(
@@ -157,7 +155,7 @@ class _UserPageState extends State<UserPage> {
                               textColor: AppColors.darkGreyColor,
                               backgroundcolor: AppColors.whiteGreyColor,
                               icon: Icons.person,
-                              text: "Bucque : " + userController.welcomeUserModel.surname.toString(),
+                              text: "Bucque : ${userController.welcomeUserModel.surname}",
                               isEditable: false,
                               iconcolor: AppColors.mainColor),
                       SizedBox(
@@ -169,7 +167,7 @@ class _UserPageState extends State<UserPage> {
                               textColor: AppColors.darkGreyColor,
                               backgroundcolor: AppColors.whiteGreyColor,
                               icon: Icons.group,
-                              text: "Fam'ss : " + userController.welcomeUserModel.family.toString(),
+                              text: "Fam'ss : ${userController.welcomeUserModel.family}",
                               iconcolor: AppColors.mainColor,
                               isEditable: false,
                             ),
@@ -182,7 +180,7 @@ class _UserPageState extends State<UserPage> {
                               textColor: AppColors.darkGreyColor,
                               backgroundcolor: AppColors.whiteGreyColor,
                               icon: Icons.group_work,
-                              text: "Prom'ss : " + userController.welcomeUserModel.campus! + " " + (userController.welcomeUserModel.year! - 1800).toString(),
+                              text: "Prom'ss : ${userController.welcomeUserModel.campus!} ${userController.welcomeUserModel.year! - 1800}",
                               iconcolor: AppColors.mainColor,
                               isEditable: false,
                             ),

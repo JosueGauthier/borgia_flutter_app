@@ -171,9 +171,8 @@ class SearchPage extends StatelessWidget {
                                                 fontTypo: 'Helvetica-Bold',
                                                 size: Dimensions.height25 * 0.8,
                                                 color: AppColors.titleColor,
-                                                text: (searchController.searchList[index].firstName.toString()).capitalize! +
-                                                    " " +
-                                                    (searchController.searchList[index].lastName.toString()).capitalize!,
+                                                text:
+                                                    "${(searchController.searchList[index].firstName.toString()).capitalize!} ${(searchController.searchList[index].lastName.toString()).capitalize!}",
                                               )
                                             : Container(),
                                       ]),

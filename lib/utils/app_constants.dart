@@ -19,6 +19,7 @@ class AppConstants {
   static const String SHOP_STAT_URI = "/api-links/shops/shop-stat/";
   static const String USER_SHOP_STAT_URI = "/api-links/sale/stat-user/?username=";
   static const String RANK_USER_SHOP_STAT_URI = "/api-links/sale/rank-user-shop/";
+  static const String RANK_USER_PRODUCT_STAT_URI = "/api-links/sale/rank-user-product/?id=";
 
   // ? what is this
   static bool isfinishedRotate = false;

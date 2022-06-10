@@ -1,5 +1,4 @@
 import 'package:borgiaflutterapp/routes/route_helper.dart';
-import 'package:borgiaflutterapp/theme/theme.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

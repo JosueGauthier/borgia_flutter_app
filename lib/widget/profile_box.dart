@@ -1,6 +1,5 @@
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
-import 'package:borgiaflutterapp/widget/small_text.dart';
 import 'package:flutter/material.dart';
 
 import 'big_text.dart';

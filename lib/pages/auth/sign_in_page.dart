@@ -124,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                         Container(
                           height: Dimensions.height100 * 2,
                           width: Dimensions.screenWidth - Dimensions.width20 * 4,
-                          decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/image/logoImageText.png"))),
+                          decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/image/logoImageText.png"))),
                         )
                       ],
                     ),
@@ -227,12 +227,6 @@ class _LoginPageState extends State<LoginPage> {
                         right: Dimensions.width20 * 2,
                       ),
                       child: ElevatedButton(
-                          child: BigText(
-                            text: "Login",
-                            size: Dimensions.height20,
-                            color: Colors.white,
-                            fontTypo: 'Montserrat-Bold',
-                          ),
                           onPressed: () {
                             _login(authcontroller);
                           },
@@ -244,7 +238,13 @@ class _LoginPageState extends State<LoginPage> {
                                   EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
                               backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                                 return AppColors.mainColor;
-                              }))),
+                              })),
+                          child: BigText(
+                            text: "Login",
+                            size: Dimensions.height20,
+                            color: Colors.white,
+                            fontTypo: 'Montserrat-Bold',
+                          )),
                     ),
                   ],
                 ),
@@ -253,7 +253,7 @@ class _LoginPageState extends State<LoginPage> {
           },
         ),
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         //  color: Colors.greenAccent,
         height: Dimensions.height20 * 3,
         child: CustomPaint(

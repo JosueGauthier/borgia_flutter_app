@@ -62,7 +62,7 @@ class ProductItemWidget extends StatelessWidget {
                 BigText(
                   fontTypo: 'Montserrat-Bold',
                   size: Dimensions.height20 * 1.2,
-                  text: priceProduct + " €",
+                  text: "$priceProduct €",
                   color: AppColors.secondColor,
                 ),
               ],

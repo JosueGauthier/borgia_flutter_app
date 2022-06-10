@@ -43,7 +43,7 @@ class ApiClient extends GetConnect implements GetxService {
       return response;
     } catch (e) {
       if (kDebugMode) {
-        print("error" + e.toString());
+        print("error$e");
       }
       return Response(statusCode: 1, statusText: e.toString());
     }

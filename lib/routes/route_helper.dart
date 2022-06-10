@@ -3,6 +3,7 @@ import 'package:borgiaflutterapp/pages/auth/sign_in_page.dart';
 import 'package:borgiaflutterapp/pages/content/neon.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
+import 'package:borgiaflutterapp/pages/stats/rank_user_products_page.dart';
 import 'package:borgiaflutterapp/pages/user/user_page.dart';
 import 'package:get/get.dart';
 
@@ -38,6 +39,8 @@ class RouteHelper {
 
   static const String neonPage = "/madeby";
 
+  static const String productRankUserPage = "/product-rank-user-page";
+
   //? formalisme pour passer des paramètres
 
   static String getSplashPage() => splashPage;
@@ -60,6 +63,8 @@ class RouteHelper {
 
   static String getProductList(int categoryId, int categoryModuleId, int shopId, String pagefrom) =>
       '$productListFromCategory?categoryId=$categoryId&categoryModuleId=$categoryModuleId&shopId=$shopId&page=$pagefrom';
+
+  static String getProductRankUserPage(int shopId) => '$productRankUserPage?shopId=$shopId';
 
   static List<GetPage> routes = [
     GetPage(
@@ -155,6 +160,16 @@ class RouteHelper {
       page: () {
         return const NeonPage();
       },
+    ),
+    GetPage(
+      name: productRankUserPage,
+      page: () {
+        var shopId = Get.parameters['shopId'];
+        return RankUserProductPage(
+          shopId: int.parse(shopId!),
+        );
+      },
+      //transition: Transition.fadeIn
     ),
   ];
 }

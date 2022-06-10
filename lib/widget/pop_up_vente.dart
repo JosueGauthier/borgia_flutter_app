@@ -27,10 +27,10 @@ class DialogSalePage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _DialogSalePageState createState() => _DialogSalePageState();
+  DialogSalePageState createState() => DialogSalePageState();
 }
 
-class _DialogSalePageState extends State<DialogSalePage> {
+class DialogSalePageState extends State<DialogSalePage> {
   Color _addRemoveColor = AppColors.secondColor;
   Color _quantityColor = AppColors.secondColor;
   int qty = 0;
@@ -46,7 +46,7 @@ class _DialogSalePageState extends State<DialogSalePage> {
     int apiOrderedQuantity = widget.productListController.inCartItem;
     int apiCategoryProductId = widget.productModel.idCategoryproductTable!;
 
-    SalesModel _salesModel = SalesModel(
+    SalesModel salesModel = SalesModel(
         apiModulePk: apiModulePk,
         apiShopPk: apiShopPk,
         apiOrderedQuantity: apiOrderedQuantity,
@@ -57,7 +57,7 @@ class _DialogSalePageState extends State<DialogSalePage> {
     if (apiOrderedQuantity == 0) {
       Get.snackbar("Quantité", "Entrer une quantité supérieure à 0");
     } else {
-      salesController.order(_salesModel).then((status) {
+      salesController.order(salesModel).then((status) {
         if (status.isSuccess) {
           widget.productListController.saleAddItem(widget.productModel);
 
@@ -126,7 +126,7 @@ class _DialogSalePageState extends State<DialogSalePage> {
                     Row(
                       children: [
                         BigText(
-                          text: widget.productModel.manualPrice.toString() + "€" + " x ",
+                          text: "${widget.productModel.manualPrice}€ x ",
                           color: AppColors.darkGreyColor,
                           size: Dimensions.height30,
                           fontTypo: 'OpenSansExtraBold',
@@ -167,12 +167,6 @@ class _DialogSalePageState extends State<DialogSalePage> {
                 height: Dimensions.height20,
               ),
               ElevatedButton(
-                  child: BigText(
-                    text: "Je me bucque !",
-                    size: Dimensions.height20 * 1,
-                    color: Colors.white,
-                    fontTypo: 'Montserrat-Bold',
-                  ),
                   onPressed: () {
                     _order(salesController);
 
@@ -194,19 +188,19 @@ class _DialogSalePageState extends State<DialogSalePage> {
                           EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
                       backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                         return AppColors.greenEmerald;
-                      }))),
+                      })),
+                  child: BigText(
+                    text: "Je me bucque !",
+                    size: Dimensions.height20 * 1,
+                    color: Colors.white,
+                    fontTypo: 'Montserrat-Bold',
+                  )),
             ],
           ),
           actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: Dimensions.height10 * 2),
               child: ElevatedButton(
-                  child: BigText(
-                    text: "Retour",
-                    size: Dimensions.height20,
-                    color: Colors.white,
-                    fontTypo: 'Montserrat-Bold',
-                  ),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -218,7 +212,13 @@ class _DialogSalePageState extends State<DialogSalePage> {
                           EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
                       backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                         return AppColors.greyColor;
-                      }))),
+                      })),
+                  child: BigText(
+                    text: "Retour",
+                    size: Dimensions.height20,
+                    color: Colors.white,
+                    fontTypo: 'Montserrat-Bold',
+                  )),
             ),
           ]);
     });

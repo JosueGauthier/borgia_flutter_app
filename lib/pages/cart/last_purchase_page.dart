@@ -54,7 +54,7 @@ class LastPurchases extends StatelessWidget {
                 children: [
                   GestureDetector(
                       onTap: () {
-                        Get.toNamed(RouteHelper.getInitial());
+                        Get.back();
                       },
                       child: SizedBox(
                         width: Dimensions.width15 * 4,
