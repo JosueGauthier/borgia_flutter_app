@@ -315,7 +315,8 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
         );
       } else {
         return const Center(
-          child: CircularProgressIndicator(
+          child: const CircularProgressIndicator(
+            strokeWidth: 4,
             color: AppColors.mainColor,
           ),
         );

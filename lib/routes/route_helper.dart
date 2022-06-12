@@ -1,4 +1,3 @@
-import 'package:borgiaflutterapp/pages/auth/auth_page.dart';
 import 'package:borgiaflutterapp/pages/auth/sign_in_page.dart';
 import 'package:borgiaflutterapp/pages/content/neon.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
@@ -15,16 +14,9 @@ import '../pages/splash/splash_page.dart';
 
 class RouteHelper {
   static const String splashPage = "/splash-page";
-  static const String authPage = "/auth-page";
   static const String loginPage = "/login-page";
 
   static const String initial = "/";
-
-  static const String popularFood = "/popular-food";
-
-  static const String recommendedFood = "/reccommended-food";
-
-  static const String shopDetail = "/shop-detail";
 
   static const String categoryListPage = "/category-list-page";
 
@@ -45,17 +37,12 @@ class RouteHelper {
 
   static String getSplashPage() => splashPage;
   static String getLydiaPage() => refillLydia;
-  static String getAuthPage() => authPage;
   static String getneonPage() => neonPage;
   static String getProfilepage() => profilePage;
   static String getLoginPage() => loginPage;
   static String getInitial() => initial;
-  static String getPopularFood(int pageId, String pagefrom) => '$popularFood?pageId=$pageId&page=$pagefrom';
-  static String getRecommendedFood(int pageId, String pagefrom) => '$recommendedFood?pageId=$pageId&page=$pagefrom';
 
   static String getCartPage() => cartPage;
-
-  static String getShopDetail(int shopId, String pagefrom) => '$shopDetail?shopId=$shopId&page=$pagefrom';
 
   static String getUserPage(String username, String pagefrom) => '$userPage?username=$username&page=$pagefrom';
 
@@ -72,21 +59,12 @@ class RouteHelper {
       page: () {
         return const SplashScreen();
       },
-      //transition: Transition.fadeIn
-    ),
-    GetPage(
-      name: authPage,
-      page: () {
-        return const AuthPage();
-      },
-      //transition: Transition.fadeIn
     ),
     GetPage(
       name: loginPage,
       page: () {
         return const LoginPage();
       },
-      //transition: Transition.fadeIn
     ),
     GetPage(
       name: initial,

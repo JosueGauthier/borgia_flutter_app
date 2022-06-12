@@ -20,7 +20,7 @@ class NeonPage extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/image/V2Khalvin.png"),
+                  image: AssetImage("assets/image/image1.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -57,7 +57,7 @@ class NeonPage extends StatelessWidget {
               left: Dimensions.width10 * 2,
               child: GestureDetector(
                 onTap: () {
-                  Get.toNamed(RouteHelper.getInitial());
+                  Get.back();
                 },
                 child: const FlickerText(
                   color: Colors.purple,

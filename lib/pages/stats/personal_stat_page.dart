@@ -313,14 +313,16 @@ class _MyStatPageState extends State<MyStatPage> {
             );
           } else {
             return const Center(
-                child: CircularProgressIndicator(
+                child: const CircularProgressIndicator(
+              strokeWidth: 4,
               color: AppColors.mainColor,
             ));
           }
         });
       } else {
         return const Center(
-          child: CircularProgressIndicator(
+          child: const CircularProgressIndicator(
+            strokeWidth: 4,
             color: AppColors.mainColor,
           ),
         );

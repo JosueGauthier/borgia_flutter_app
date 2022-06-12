@@ -19,6 +19,7 @@ class WelcomePageWithHeader extends StatefulWidget {
 class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
   @override
   Widget build(BuildContext context) {
+    Get.find<UserController>().getUserList(AppConstants.USERNAME);
     return Scaffold(
         extendBody: true,
         backgroundColor: Colors.white,
@@ -134,58 +135,44 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                           ),
                                         ),
                                         SizedBox(
-                                          height: Dimensions.height10 * 14,
-                                          //height: Dimensions.height10 * 14,
+                                          height: Dimensions.height10 * 17,
                                         ),
-                                        GestureDetector(
-                                          child: Stack(
-                                            children: [
-                                              SizedBox(
-                                                //color: Colors.greenAccent,
-                                                height: Dimensions.height20 * 5,
-                                                width: double.maxFinite,
-                                                child: CustomPaint(
-                                                  painter: CurvedPainter(),
-                                                ),
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              height: Dimensions.height20 * 10,
+                                              width: double.maxFinite,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white.withOpacity(0.9), borderRadius: BorderRadius.only(topRight: Radius.circular(50))),
+                                            ),
+                                            Positioned(
+                                              top: Dimensions.height10 * 2,
+                                              left: Dimensions.height10 * 2 * 1.5,
+                                              child: Text(
+                                                "Solde:",
+                                                style: TextStyle(
+                                                    fontSize: Dimensions.height45 * 0.4,
+                                                    fontFamily: 'Montserrat-Bold',
+                                                    letterSpacing: 2,
+                                                    color: AppColors.titleColor),
                                               ),
-                                              /* Container(
-                                                height: Dimensions.height30 * 3,
-                                                width: double.maxFinite,
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.only(topRight: Radius.circular(Dimensions.width20 * 2)),
-                                                  color: AppColors.greenEmerald.withOpacity(0.65),
-                                                  backgroundBlendMode: BlendMode.srcOver,
-                                                ),
-                                              ), */
-                                              Positioned(
-                                                top: Dimensions.height10 * 2.5,
-                                                left: Dimensions.height10 * 2 * 1.5,
-                                                child: Text(
-                                                  "Solde:",
-                                                  style: TextStyle(
-                                                      fontSize: Dimensions.height45 * 0.4,
-                                                      fontFamily: 'Montserrat-Bold',
-                                                      letterSpacing: 2,
-                                                      color: AppColors.titleColor),
-                                                ),
+                                            ),
+                                            Center(
+                                              child: Column(
+                                                children: [
+                                                  SizedBox(height: Dimensions.height20 * 1.8),
+                                                  Text(
+                                                    userController.userList[0].balance + "€",
+                                                    style: TextStyle(
+                                                        fontSize: Dimensions.height45 * 1.3,
+                                                        fontFamily: 'OpenSansExtraBold',
+                                                        letterSpacing: 2,
+                                                        color: AppColors.titleColor),
+                                                  ),
+                                                ],
                                               ),
-                                              Center(
-                                                child: Column(
-                                                  children: [
-                                                    SizedBox(height: Dimensions.height20 * 2),
-                                                    Text(
-                                                      userController.userList[0].balance + "€",
-                                                      style: TextStyle(
-                                                          fontSize: Dimensions.height45 * 1.3,
-                                                          fontFamily: 'OpenSansExtraBold',
-                                                          letterSpacing: 2,
-                                                          color: AppColors.titleColor),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
@@ -193,7 +180,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                     Column(
                                       children: [
                                         SizedBox(
-                                          height: Dimensions.height100 * 3.7,
+                                          height: Dimensions.height100 * 4,
                                         ),
                                         //! Showing the body
                                         const WelcomePage(),
@@ -206,7 +193,12 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                 ),
                               ),
                             ])
-                          : const Center(child: CircularProgressIndicator());
+                          : Center(
+                              child: const CircularProgressIndicator(
+                                strokeWidth: 4,
+                                color: AppColors.mainColor,
+                              ),
+                            );
                     }),
                   ),
                 ],
@@ -214,35 +206,5 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
             ),
           ],
         ));
-  }
-}
-
-class CurvedPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    var paint = Paint()
-      ..color = AppColors.white.withOpacity(1)
-      ..strokeWidth = 15;
-
-    var path = Path();
-
-    path.moveTo(0, size.height * 0.1);
-
-    path.quadraticBezierTo(size.width * 0.25, size.height * 0.1, size.width * 0.5, size.height * 0.35);
-    path.quadraticBezierTo(size.width * 0.75, size.height * 0.6, size.width * 1.0, size.height * 0.2);
-
-    //path.moveTo(0, size.height * 0.4);
-    //path.quadraticBezierTo(size.width * 0.25, size.height * 0.9, size.width * 0.5, size.height * 0.5);
-    //path.quadraticBezierTo(size.width * 0.75, size.height * 0.1, size.width * 1.0, size.height * .2);
-
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
   }
 }

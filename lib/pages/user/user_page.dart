@@ -190,8 +190,11 @@ class _UserPageState extends State<UserPage> {
                     ]),
                   ),
                 ])
-              : const CircularProgressIndicator(
-                  color: AppColors.mainColor,
+              : Center(
+                  child: const CircularProgressIndicator(
+                    strokeWidth: 4,
+                    color: AppColors.mainColor,
+                  ),
                 );
         }));
   }

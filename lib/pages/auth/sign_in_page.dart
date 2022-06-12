@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
 
           Get.toNamed(RouteHelper.getInitial());
         } else {
-          Get.snackbar("Error", status.message);
+          Get.snackbar("Error", "Mot de passe erroné");
         }
       });
     }

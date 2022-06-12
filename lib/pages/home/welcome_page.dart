@@ -119,9 +119,11 @@ class _WelcomePageState extends State<WelcomePage> {
                         );
                       }),
                 )
-              : const CircularProgressIndicator(
-                  strokeWidth: 4,
-                  color: AppColors.mainColor,
+              : Center(
+                  child: const CircularProgressIndicator(
+                    strokeWidth: 4,
+                    color: AppColors.mainColor,
+                  ),
                 );
         })
       ],

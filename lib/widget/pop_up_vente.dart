@@ -60,10 +60,9 @@ class DialogSalePageState extends State<DialogSalePage> {
       salesController.order(salesModel).then((status) {
         if (status.isSuccess) {
           widget.productListController.saleAddItem(widget.productModel);
-
           Get.toNamed(RouteHelper.getInitial());
         } else {
-          Get.snackbar("Error", status.message);
+          Get.snackbar("Error", "Vente non effectuée. Vous n'avez pas été débité.", backgroundColor: Colors.redAccent);
         }
       });
     }

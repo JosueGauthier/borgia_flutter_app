@@ -157,9 +157,11 @@ class _ProductListPageState extends State<ProductListPage> {
                               );
                             }),
                       )
-                    : const CircularProgressIndicator(
-                        strokeWidth: 4,
-                        color: AppColors.mainColor,
+                    : Center(
+                        child: const CircularProgressIndicator(
+                          strokeWidth: 4,
+                          color: AppColors.mainColor,
+                        ),
                       );
               }))),
             ],

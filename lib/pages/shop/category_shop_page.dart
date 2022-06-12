@@ -130,9 +130,11 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                           );
                         }),
                   )
-                : const CircularProgressIndicator(
-                    strokeWidth: 4,
-                    color: AppColors.mainColor,
+                : Center(
+                    child: const CircularProgressIndicator(
+                      strokeWidth: 4,
+                      color: AppColors.mainColor,
+                    ),
                   );
           }))),
         ],
