@@ -1,62 +1,55 @@
 import 'package:get/get.dart';
 
 import '../data/repository/sale_list_repo.dart';
-import '../models/year_salelist_model.dart';
 
 class SaleListController extends GetxController {
   final SaleListRepo saleListRepo;
 
   SaleListController({required this.saleListRepo});
 
-  List<dynamic> _saleList = [];
-
-  List<dynamic> get saleList => _saleList;
-
-  List<dynamic> _aList = [];
-
-  List<dynamic> get aList => _aList;
-
   List<dynamic> _aListUser = [];
 
   List<dynamic> get aListUser => _aListUser;
 
-  bool _isLoaded = false;
-  bool get isLoaded => _isLoaded;
+  bool _isLoadedYearList = false;
+  bool get isLoadedYearList => _isLoadedYearList;
+  List<dynamic> _yearList = [];
+  List<dynamic> get yearList => _yearList;
 
-  bool _isLoadedaList = false;
-  bool get isLoadedaList => _isLoadedaList;
+  bool _isLoadedHourList = false;
+  bool get isLoadedHourList => _isLoadedHourList;
+  List<dynamic> _hourList = [];
+  List<dynamic> get hourList => _hourList;
 
   bool _isLoadedUser = false;
   bool get isLoadedUser => _isLoadedUser;
 
-  Future<void> getSaleList() async {
-    Response response = await saleListRepo.getSaleList();
+  Future<void> getMapListYearHistory() async {
+    Response response = await saleListRepo.getYearSaleList();
 
     if (response.statusCode == 200) {
-      _saleList = [];
+      _yearList = [];
 
       List responseBody = response.body;
 
-      for (var i = 0; i < responseBody.length; i++) {
-        _saleList.add(YearChartModel.fromJson(responseBody[i]));
-      }
-      _isLoaded = true;
+      _yearList = responseBody;
+
+      _isLoadedYearList = true;
 
       update();
     } else {}
   }
 
-  Future<void> getMapList() async {
-    Response response = await saleListRepo.getSaleList();
+  Future<void> getMapListTwoHours() async {
+    Response responseLive = await saleListRepo.getHourSaleList();
 
-    if (response.statusCode == 200) {
-      _aList = [];
+    if (responseLive.statusCode == 200) {
+      _hourList = [];
+      List responseBody = responseLive.body;
 
-      List responseBody = response.body;
+      _hourList = responseBody;
 
-      _aList = responseBody;
-
-      _isLoadedaList = true;
+      _isLoadedHourList = true;
 
       update();
     } else {}

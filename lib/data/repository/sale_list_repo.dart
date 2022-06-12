@@ -8,8 +8,12 @@ class SaleListRepo extends GetxService {
 
   SaleListRepo({required this.apiClient});
 
-  Future<Response> getSaleList() async {
+  Future<Response> getYearSaleList() async {
     return await apiClient.getData(AppConstants.YEAR_SALELIST_URI);
+  }
+
+  Future<Response> getHourSaleList() async {
+    return await apiClient.getData(AppConstants.HOUR_SALELIST_URI);
   }
 
   Future<Response> getSaleUserList() async {

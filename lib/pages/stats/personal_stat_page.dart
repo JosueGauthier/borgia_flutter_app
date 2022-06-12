@@ -200,6 +200,21 @@ class _MyStatPageState extends State<MyStatPage> {
 
                 //! Line graph
 
+                Container(
+                  //color: AppColors.titleColor,
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(left: Dimensions.width20),
+                  child: BigText(
+                    color: AppColors.titleColor,
+                    text: "Mon historique",
+                    size: Dimensions.height25 * 1.1,
+                    fontTypo: 'Montserrat-Bold',
+                  ),
+                ),
+                SizedBox(
+                  height: Dimensions.height20,
+                ),
+
                 CustomLineChartWidget(
                   listeDesVentes: listeDesVentes,
                   linecolor: ListStatColors.colorslist1[20],
@@ -208,6 +223,21 @@ class _MyStatPageState extends State<MyStatPage> {
                 ),
 
                 //!Pie chart
+                SizedBox(
+                  height: Dimensions.height20 * 2,
+                ),
+
+                Container(
+                  //color: AppColors.titleColor,
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(left: Dimensions.width20),
+                  child: BigText(
+                    color: AppColors.titleColor,
+                    text: "Mes achats",
+                    size: Dimensions.height25 * 1.1,
+                    fontTypo: 'Montserrat-Bold',
+                  ),
+                ),
 
                 Container(
                   margin: EdgeInsets.only(

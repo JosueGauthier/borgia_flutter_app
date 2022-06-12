@@ -22,11 +22,11 @@ class StatsPage extends StatefulWidget {
 class _StatsPageState extends State<StatsPage> {
   @override
   Widget build(BuildContext context) {
-    Get.find<SaleListController>().getSaleList();
-
     Get.find<RankUserStatController>().getRankUserList();
 
-    Get.find<SaleListController>().getMapList();
+    Get.find<SaleListController>().getMapListYearHistory();
+
+    Get.find<SaleListController>().getMapListTwoHours();
 
     Get.find<SaleListController>().getUserSaleList();
 
@@ -41,7 +41,6 @@ class _StatsPageState extends State<StatsPage> {
         child: Scaffold(
           backgroundColor: Colors.white,
           body: const TabBarView(
-            //physics: ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
             children: [
               GlobalStatPage(),
               MyStatPage(),

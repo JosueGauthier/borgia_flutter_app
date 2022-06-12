@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../controllers/user_controller.dart';
 import '../../models/user_model.dart';
-import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
@@ -101,61 +100,69 @@ class _ProfilePageState extends State<ProfilePage> {
                     SizedBox(
                       height: Dimensions.height20,
                     ),
-                    ProfileBox(
-                      textColor: AppColors.darkGreyColor,
-                      backgroundcolor: AppColors.whiteGreyColor,
-                      icon: Icons.person,
-                      text: "Bucque : ${userModel.surname}",
-                      isEditable: false,
-                      iconcolor: AppColors.darkGreyColor,
-                      radius: 0, //Dimensions.width20,
-                    ),
-                    SizedBox(height: 0 //,Dimensions.height10,
-                        ),
-                    ProfileBox(
-                      textColor: AppColors.darkGreyColor,
-                      backgroundcolor: const Color.fromARGB(255, 243, 243, 243),
-                      icon: Icons.group,
-                      text: "Fam'ss : ${userModel.family}",
-                      iconcolor: AppColors.darkGreyColor,
-                      radius: 0, //Dimensions.width20,
-                      isEditable: false,
-                    ),
-                    SizedBox(
-                      height: 0,
-                    ),
-                    ProfileBox(
-                      textColor: AppColors.darkGreyColor,
-                      backgroundcolor: AppColors.whiteGreyColor,
-                      icon: Icons.group_work,
-                      text: "Prom'ss : ${(userModel.campus!).toLowerCase().capitalize} ${userModel.year! - 1800}",
-                      iconcolor: AppColors.darkGreyColor,
-                      radius: 0,
-                      isEditable: false,
-                    ),
-                    SizedBox(
-                      height: 0,
-                    ),
-                    ProfileBox(
-                      textColor: AppColors.darkGreyColor,
-                      backgroundcolor: AppColors.whiteGreyColor,
-                      icon: Icons.email,
-                      text: userModel.email.toString(),
-                      iconcolor: AppColors.darkGreyColor,
-                      radius: 0,
-                      isEditable: false,
-                    ),
-                    SizedBox(
-                      height: 0,
-                    ),
-                    ProfileBox(
-                      textColor: AppColors.darkGreyColor,
-                      backgroundcolor: AppColors.whiteGreyColor,
-                      icon: Icons.phone,
-                      text: userModel.phone.toString(),
-                      iconcolor: AppColors.darkGreyColor,
-                      radius: 0,
-                      isEditable: false,
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
+                      decoration: BoxDecoration(color: AppColors.whiteGreyColor, borderRadius: BorderRadius.circular(Dimensions.width20)),
+                      child: Column(
+                        children: [
+                          ProfileBox(
+                            textColor: AppColors.darkGreyColor,
+                            backgroundcolor: AppColors.whiteGreyColor,
+                            icon: Icons.person,
+                            text: "Bucque : ${userModel.surname}",
+                            isEditable: false,
+                            iconcolor: AppColors.darkGreyColor,
+                            radius: 0, //Dimensions.width20,
+                          ),
+                          SizedBox(height: 0 //,Dimensions.height10,
+                              ),
+                          ProfileBox(
+                            textColor: AppColors.darkGreyColor,
+                            backgroundcolor: const Color.fromARGB(255, 243, 243, 243),
+                            icon: Icons.group,
+                            text: "Fam'ss : ${userModel.family}",
+                            iconcolor: AppColors.darkGreyColor,
+                            radius: 0, //Dimensions.width20,
+                            isEditable: false,
+                          ),
+                          SizedBox(
+                            height: 0,
+                          ),
+                          ProfileBox(
+                            textColor: AppColors.darkGreyColor,
+                            backgroundcolor: AppColors.whiteGreyColor,
+                            icon: Icons.group_work,
+                            text: "Prom'ss : ${(userModel.campus!).toLowerCase().capitalize} ${userModel.year! - 1800}",
+                            iconcolor: AppColors.darkGreyColor,
+                            radius: 0,
+                            isEditable: false,
+                          ),
+                          SizedBox(
+                            height: 0,
+                          ),
+                          /* ProfileBox(
+                            textColor: AppColors.darkGreyColor,
+                            backgroundcolor: AppColors.whiteGreyColor,
+                            icon: Icons.email,
+                            text: userModel.email.toString(),
+                            iconcolor: AppColors.darkGreyColor,
+                            radius: 0,
+                            isEditable: false,
+                          ),
+                          SizedBox(
+                            height: 0,
+                          ), */
+                          ProfileBox(
+                            textColor: AppColors.darkGreyColor,
+                            backgroundcolor: AppColors.whiteGreyColor,
+                            icon: Icons.phone,
+                            text: userModel.phone.toString(),
+                            iconcolor: AppColors.darkGreyColor,
+                            radius: 0,
+                            isEditable: false,
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: Dimensions.height20,
@@ -269,6 +276,17 @@ class _ProfilePageState extends State<ProfilePage> {
                       backgroundcolor: AppColors.mainColor,
                       icon: Icons.help,
                       text: "Send a problem or request",
+                      iconcolor: Colors.white,
+                      isEditable: false,
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    const ProfileBox(
+                      textColor: Colors.white,
+                      backgroundcolor: AppColors.mainColor,
+                      icon: Icons.handyman_rounded,
+                      text: "Crédits",
                       iconcolor: Colors.white,
                       isEditable: false,
                     ),

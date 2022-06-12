@@ -50,15 +50,14 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
         Container(
           //color: AppColors.titleColor,
+          alignment: Alignment.centerLeft,
           margin: EdgeInsets.only(left: Dimensions.width20 * 1.5),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-            BigText(
-              color: AppColors.titleColor,
-              text: "Liste des magasins",
-              size: Dimensions.height25 * 1.1,
-              fontTypo: 'Montserrat-Bold',
-            )
-          ]),
+          child: BigText(
+            color: AppColors.titleColor,
+            text: "Liste des magasins",
+            size: Dimensions.height25 * 1.1,
+            fontTypo: 'Montserrat-Bold',
+          ),
         ),
 
         //! List of shops scroll view

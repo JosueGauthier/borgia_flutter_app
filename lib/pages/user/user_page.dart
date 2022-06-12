@@ -55,7 +55,7 @@ class _UserPageState extends State<UserPage> {
                           children: [
                             GestureDetector(
                                 onTap: () {
-                                  Get.toNamed(RouteHelper.getInitial());
+                                  Get.back();
                                 },
                                 child: SizedBox(
                                   //color: Colors.redAccent,
