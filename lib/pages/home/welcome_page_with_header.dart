@@ -38,7 +38,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                   compteur += 1;
 
                                   if (compteur > 3) {
-                                    Get.toNamed(RouteHelper.getneonPage());
+                                    Get.toNamed(RouteHelper.getNeonPage());
                                   }
                                 },
                                 child: Stack(

@@ -1,9 +1,12 @@
 import 'package:borgiaflutterapp/widget/profile_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../controllers/user_controller.dart';
 import '../../models/user_model.dart';
+import '../../routes/route_helper.dart';
+import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
@@ -25,6 +28,11 @@ class _ProfilePageState extends State<ProfilePage> {
   };
 
   bool isExpand = false;
+
+  clearIdentifSharedPref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList(AppConstants.IDENTIFIERS_LIST, ["None", "None"]);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -268,24 +276,35 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(
                   height: Dimensions.height20,
                 ),
-                const ProfileBox(
-                  textColor: Colors.white,
-                  backgroundcolor: AppColors.mainColor,
-                  icon: Icons.handyman_rounded,
-                  text: "Crédits",
-                  iconcolor: Colors.white,
-                  isEditable: false,
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.getCreditsPage());
+                  },
+                  child: const ProfileBox(
+                    textColor: Colors.white,
+                    backgroundcolor: AppColors.mainColor,
+                    icon: Icons.handyman_rounded,
+                    text: "Crédits",
+                    iconcolor: Colors.white,
+                    isEditable: false,
+                  ),
                 ),
                 SizedBox(
                   height: Dimensions.height20,
                 ),
-                const ProfileBox(
-                  textColor: Colors.white,
-                  backgroundcolor: AppColors.mainColor,
-                  icon: Icons.logout,
-                  text: "Log out",
-                  iconcolor: Colors.white,
-                  isEditable: false,
+                GestureDetector(
+                  onTap: () async {
+                    clearIdentifSharedPref();
+                    Get.toNamed(RouteHelper.getSplashPage());
+                  },
+                  child: const ProfileBox(
+                    textColor: Colors.white,
+                    backgroundcolor: AppColors.mainColor,
+                    icon: Icons.logout,
+                    text: "Log out",
+                    iconcolor: Colors.white,
+                    isEditable: false,
+                  ),
                 ),
                 SizedBox(
                   height: Dimensions.height20,

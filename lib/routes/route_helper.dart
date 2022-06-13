@@ -1,4 +1,4 @@
-import 'package:borgiaflutterapp/pages/auth/sign_in_page.dart';
+import 'package:borgiaflutterapp/pages/auth/login_page.dart';
 import 'package:borgiaflutterapp/pages/content/neon.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
@@ -7,6 +7,7 @@ import 'package:borgiaflutterapp/pages/user/user_page.dart';
 import 'package:get/get.dart';
 
 import '../pages/cart/last_purchase_page.dart';
+import '../pages/credits/credits_page.dart';
 import '../pages/home/home_page.dart';
 import '../pages/shop/category_shop_page.dart';
 import '../pages/shop/product_list_page.dart';
@@ -30,6 +31,7 @@ class RouteHelper {
   static const String productListFromCategory = "/product";
 
   static const String neonPage = "/madeby";
+  static const String creditsPage = "/credits";
 
   static const String productRankUserPage = "/product-rank-user-page";
 
@@ -37,7 +39,8 @@ class RouteHelper {
 
   static String getSplashPage() => splashPage;
   static String getLydiaPage() => refillLydia;
-  static String getneonPage() => neonPage;
+  static String getNeonPage() => neonPage;
+  static String getCreditsPage() => creditsPage;
   static String getProfilepage() => profilePage;
   static String getLoginPage() => loginPage;
   static String getInitial() => initial;
@@ -137,6 +140,12 @@ class RouteHelper {
       name: neonPage,
       page: () {
         return const NeonPage();
+      },
+    ),
+    GetPage(
+      name: creditsPage,
+      page: () {
+        return const CreditsPage();
       },
     ),
     GetPage(
