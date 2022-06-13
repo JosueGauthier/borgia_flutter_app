@@ -56,7 +56,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                 Get.back();
                               },
                               child: SizedBox(
-                                //color: Colors.redAccent,
                                 width: Dimensions.width15 * 4,
                                 height: Dimensions.width15 * 4,
                                 child: const Icon(
@@ -82,7 +81,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   height: Dimensions.height100 * 2,
                   width: double.maxFinite,
                   padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height10),
-                  //color: AppColors.mainColor,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -114,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         iconcolor: AppColors.darkGreyColor,
                         radius: 0, //Dimensions.width20,
                       ),
-                      SizedBox(height: 0 //,Dimensions.height10,
+                      const SizedBox(height: 0 //,Dimensions.height10,
                           ),
                       ProfileBox(
                         textColor: AppColors.darkGreyColor,
@@ -125,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         radius: 0, //Dimensions.width20,
                         isEditable: false,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 0,
                       ),
                       ProfileBox(
@@ -137,7 +135,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         radius: 0,
                         isEditable: false,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 0,
                       ),
                       /* ProfileBox(
@@ -178,8 +176,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(
                   height: Dimensions.height20,
                 ),
-                Container(
-                  //padding: EdgeInsets.only(right: Dimensions.width30 / 2),
+                /* Container(
                   margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
                   height: Dimensions.height45 * 1.7,
                   width: double.maxFinite,
@@ -259,18 +256,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 SizedBox(
                   height: Dimensions.height20,
-                ),
-                const ProfileBox(
-                  textColor: Colors.white,
-                  backgroundcolor: AppColors.mainColor,
-                  icon: Icons.logout,
-                  text: "Log out",
-                  iconcolor: Colors.white,
-                  isEditable: false,
-                ),
-                SizedBox(
-                  height: Dimensions.height20,
-                ),
+                ), */
                 const ProfileBox(
                   textColor: Colors.white,
                   backgroundcolor: AppColors.mainColor,
@@ -293,11 +279,22 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(
                   height: Dimensions.height20,
                 ),
+                const ProfileBox(
+                  textColor: Colors.white,
+                  backgroundcolor: AppColors.mainColor,
+                  icon: Icons.logout,
+                  text: "Log out",
+                  iconcolor: Colors.white,
+                  isEditable: false,
+                ),
+                SizedBox(
+                  height: Dimensions.height20,
+                ),
               ]),
             );
           } else {
-            return Center(
-              child: const CircularProgressIndicator(
+            return const Center(
+              child: CircularProgressIndicator(
                 strokeWidth: 4,
                 color: AppColors.mainColor,
               ),

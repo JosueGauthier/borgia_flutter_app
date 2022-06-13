@@ -143,7 +143,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                               height: Dimensions.height20 * 10,
                                               width: double.maxFinite,
                                               decoration: BoxDecoration(
-                                                  color: Colors.white.withOpacity(0.9), borderRadius: BorderRadius.only(topRight: Radius.circular(50))),
+                                                  color: Colors.white.withOpacity(0.9), borderRadius: const BorderRadius.only(topRight: Radius.circular(50))),
                                             ),
                                             Positioned(
                                               top: Dimensions.height10 * 2,
@@ -193,8 +193,8 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                 ),
                               ),
                             ])
-                          : Center(
-                              child: const CircularProgressIndicator(
+                          : const Center(
+                              child: CircularProgressIndicator(
                                 strokeWidth: 4,
                                 color: AppColors.mainColor,
                               ),

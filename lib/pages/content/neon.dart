@@ -2,7 +2,6 @@ import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../routes/route_helper.dart';
 import '../../widget/neon_widget.dart';
 
 class NeonPage extends StatelessWidget {

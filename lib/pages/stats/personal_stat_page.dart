@@ -313,7 +313,7 @@ class _MyStatPageState extends State<MyStatPage> {
             );
           } else {
             return const Center(
-                child: const CircularProgressIndicator(
+                child: CircularProgressIndicator(
               strokeWidth: 4,
               color: AppColors.mainColor,
             ));
@@ -321,7 +321,7 @@ class _MyStatPageState extends State<MyStatPage> {
         });
       } else {
         return const Center(
-          child: const CircularProgressIndicator(
+          child: CircularProgressIndicator(
             strokeWidth: 4,
             color: AppColors.mainColor,
           ),

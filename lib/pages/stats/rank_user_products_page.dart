@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../models/rank_user_product_model.dart';
-import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
@@ -68,7 +67,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                       padding: EdgeInsets.only(right: Dimensions.width20),
                       child: BigText(
                         fontTypo: 'Montserrat-Bold',
-                        text: "Classement " + (rankUserProductController.productStatList[0].name).toString().capitalize!,
+                        text: "Classement ${(rankUserProductController.productStatList[0].name).toString().capitalize!}",
                         size: Dimensions.height10 * 3,
                         color: AppColors.titleColor,
                       ),
@@ -315,7 +314,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
         );
       } else {
         return const Center(
-          child: const CircularProgressIndicator(
+          child: CircularProgressIndicator(
             strokeWidth: 4,
             color: AppColors.mainColor,
           ),

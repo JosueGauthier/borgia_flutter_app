@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:borgiaflutterapp/controllers/product_list_controller.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
@@ -9,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/cart_controller.dart';
-import '../../routes/route_helper.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
@@ -149,16 +147,18 @@ class _ProductListPageState extends State<ProductListPage> {
                                             pressed = !pressed;
                                           })));
                                 },
-                                child: ProductItemWidget(
-                                  titleText: (productModel.name)!.capitalize!,
-                                  illustImage: NetworkImage(productModel.image!),
-                                  priceProduct: productModel.manualPrice.toString(),
-                                ),
+                                child: (productModel.isActive == true)
+                                    ? ProductItemWidget(
+                                        titleText: (productModel.name)!.capitalize!,
+                                        illustImage: NetworkImage(productModel.image!),
+                                        priceProduct: productModel.manualPrice.toString(),
+                                      )
+                                    : Container(),
                               );
                             }),
                       )
-                    : Center(
-                        child: const CircularProgressIndicator(
+                    : const Center(
+                        child: CircularProgressIndicator(
                           strokeWidth: 4,
                           color: AppColors.mainColor,
                         ),

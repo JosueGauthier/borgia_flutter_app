@@ -40,8 +40,6 @@ class SearchPage extends StatelessWidget {
               child: Image.asset(
                 "assets/image/amtradsred.png",
                 scale: 14,
-                //color: Colors.white.withOpacity(0.5),
-                //fit: BoxFit.fitWidth,
                 repeat: ImageRepeat.repeat,
               ),
             ),
@@ -108,8 +106,6 @@ class SearchPage extends StatelessWidget {
                             itemBuilder: ((context, index) {
                               return Container(
                                 width: double.maxFinite,
-                                //height: Dimensions.width20 * 5,
-                                //color: Colors.green,
                                 margin: EdgeInsets.only(left: Dimensions.width20, bottom: Dimensions.height20),
                                 child: GestureDetector(
                                   onTap: () async {
@@ -139,19 +135,21 @@ class SearchPage extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      Container(
-                                        margin: EdgeInsets.only(bottom: Dimensions.height10),
-                                        height: Dimensions.height100 * 0.6,
-                                        width: Dimensions.height100 * 0.6,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            fit: BoxFit.contain,
-                                            image: (searchController.searchList[index].image == null)
-                                                ? const AssetImage("assets/image/dafaultuserimage.png") as ImageProvider
-                                                : NetworkImage(searchController.searchList[index].image),
-                                          ),
-                                        ),
-                                      ),
+                                      (searchController.searchList[index].runtimeType == ProductModel && searchController.searchList[index].isActive == false)
+                                          ? Container()
+                                          : Container(
+                                              margin: EdgeInsets.only(bottom: Dimensions.height10),
+                                              height: Dimensions.height100 * 0.6,
+                                              width: Dimensions.height100 * 0.6,
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  fit: BoxFit.contain,
+                                                  image: (searchController.searchList[index].image == null)
+                                                      ? const AssetImage("assets/image/defaultuserimage.png") as ImageProvider
+                                                      : NetworkImage(searchController.searchList[index].image),
+                                                ),
+                                              ),
+                                            ),
 
                                       SizedBox(
                                         width: Dimensions.width20 * 3,
@@ -159,23 +157,25 @@ class SearchPage extends StatelessWidget {
 
                                       //! text section
 
-                                      Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                        BigText(
-                                          fontTypo: 'Helvetica-Bold',
-                                          size: Dimensions.height25 * 0.8,
-                                          color: AppColors.titleColor,
-                                          text: (searchController.searchList[index].name.toString()).capitalize!,
-                                        ),
-                                        (searchController.searchList[index].runtimeType == UserModel)
-                                            ? BigText(
+                                      (searchController.searchList[index].runtimeType == ProductModel && searchController.searchList[index].isActive == false)
+                                          ? Container()
+                                          : Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                              BigText(
                                                 fontTypo: 'Helvetica-Bold',
                                                 size: Dimensions.height25 * 0.8,
                                                 color: AppColors.titleColor,
-                                                text:
-                                                    "${(searchController.searchList[index].firstName.toString()).capitalize!} ${(searchController.searchList[index].lastName.toString()).capitalize!}",
-                                              )
-                                            : Container(),
-                                      ]),
+                                                text: (searchController.searchList[index].name.toString()).capitalize!,
+                                              ),
+                                              (searchController.searchList[index].runtimeType == UserModel)
+                                                  ? BigText(
+                                                      fontTypo: 'Helvetica-Bold',
+                                                      size: Dimensions.height25 * 0.8,
+                                                      color: AppColors.titleColor,
+                                                      text:
+                                                          "${(searchController.searchList[index].firstName.toString()).capitalize!} ${(searchController.searchList[index].lastName.toString()).capitalize!}",
+                                                    )
+                                                  : Container(),
+                                            ]),
                                     ],
                                   ),
                                 ),

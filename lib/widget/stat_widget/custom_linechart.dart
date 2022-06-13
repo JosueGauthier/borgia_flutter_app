@@ -20,7 +20,7 @@ class CustomLineChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.maxFinite,
       height: Dimensions.height30 * 10,
       child: Chart(

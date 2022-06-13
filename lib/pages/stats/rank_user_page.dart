@@ -269,7 +269,7 @@ class _RankUserPageState extends State<RankUserPage> {
         );
       } else {
         return const Center(
-          child: const CircularProgressIndicator(
+          child: CircularProgressIndicator(
             strokeWidth: 4,
             color: AppColors.mainColor,
           ),

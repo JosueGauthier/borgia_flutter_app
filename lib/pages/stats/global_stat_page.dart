@@ -212,8 +212,8 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                   ),
                 );
               } else {
-                return Center(
-                  child: const CircularProgressIndicator(
+                return const Center(
+                  child: CircularProgressIndicator(
                     strokeWidth: 4,
                     color: AppColors.mainColor,
                   ),
@@ -228,7 +228,7 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
         );
       } else {
         return const Center(
-          child: const CircularProgressIndicator(
+          child: CircularProgressIndicator(
             strokeWidth: 4,
             color: AppColors.mainColor,
           ),

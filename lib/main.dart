@@ -26,9 +26,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(
         textSelectionTheme: const TextSelectionThemeData(
-          cursorColor: AppColors.mainColor,
-          selectionColor: AppColors.bluePastelColor,
-          selectionHandleColor: AppColors.bluePastelColor,
+          cursorColor: AppColors.greenEmerald,
+          selectionColor: AppColors.greenEmerald,
+          selectionHandleColor: AppColors.greenEmerald,
         ),
       ),
       debugShowCheckedModeBanner: false,
