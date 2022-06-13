@@ -159,7 +159,7 @@ class _MyStatPageState extends State<MyStatPage> {
                                 fontTypo: 'Helvetica-Bold',
                                 text: "# 12 / 250 ",
                                 size: Dimensions.height25 * 1,
-                                color: AppColors.white,
+                                color: Colors.white,
                               ),
                             ),
                           ),

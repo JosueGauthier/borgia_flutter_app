@@ -129,7 +129,7 @@ class _UserPageState extends State<UserPage> {
                           (userController.welcomeUserModel.name == null)
                               ? Container()
                               : ProfileBox(
-                                  textColor: AppColors.darkGreyColor,
+                                  textColor: AppColors.titleColor,
                                   backgroundcolor: AppColors.whiteGreyColor,
                                   icon: Icons.login,
                                   text: "Identifiant : ${userController.welcomeUserModel.name}",
@@ -141,7 +141,7 @@ class _UserPageState extends State<UserPage> {
                           (userController.welcomeUserModel.firstName == null || userController.welcomeUserModel.lastName == null)
                               ? Container()
                               : ProfileBox(
-                                  textColor: AppColors.darkGreyColor,
+                                  textColor: AppColors.titleColor,
                                   backgroundcolor: AppColors.whiteGreyColor,
                                   icon: Icons.person,
                                   text:
@@ -154,7 +154,7 @@ class _UserPageState extends State<UserPage> {
                           (userController.welcomeUserModel.surname == null)
                               ? Container()
                               : ProfileBox(
-                                  textColor: AppColors.darkGreyColor,
+                                  textColor: AppColors.titleColor,
                                   backgroundcolor: AppColors.whiteGreyColor,
                                   icon: Icons.person_pin,
                                   text: "Bucque : ${userController.welcomeUserModel.surname?.capitalize}",
@@ -166,7 +166,7 @@ class _UserPageState extends State<UserPage> {
                           (userController.welcomeUserModel.family == null)
                               ? Container()
                               : ProfileBox(
-                                  textColor: AppColors.darkGreyColor,
+                                  textColor: AppColors.titleColor,
                                   backgroundcolor: AppColors.whiteGreyColor,
                                   icon: Icons.group,
                                   text: "Fam'ss : ${userController.welcomeUserModel.family}",
@@ -179,7 +179,7 @@ class _UserPageState extends State<UserPage> {
                           (userController.welcomeUserModel.campus == null || userController.welcomeUserModel.year == null)
                               ? Container()
                               : ProfileBox(
-                                  textColor: AppColors.darkGreyColor,
+                                  textColor: AppColors.titleColor,
                                   backgroundcolor: AppColors.whiteGreyColor,
                                   icon: Icons.group_work,
                                   text:

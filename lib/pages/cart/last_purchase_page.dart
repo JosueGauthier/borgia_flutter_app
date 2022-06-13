@@ -1,3 +1,4 @@
+import 'package:borgiaflutterapp/widget/custom_header.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -36,48 +37,7 @@ class LastPurchases extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(children: [
-        Container(
-          height: Dimensions.height45 * 2.7,
-          decoration: BoxDecoration(
-              //color: Colors.green,
-              borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(Dimensions.height20),
-            bottomRight: Radius.circular(Dimensions.height20),
-          )),
-          margin: EdgeInsets.only(bottom: Dimensions.height10),
-          padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: SizedBox(
-                        width: Dimensions.width15 * 4,
-                        height: Dimensions.width15 * 4,
-                        child: const Icon(
-                          Icons.arrow_back_ios,
-                          color: AppColors.titleColor,
-                        ),
-                      )),
-                ],
-              ),
-              Container(
-                padding: EdgeInsets.only(right: Dimensions.width20),
-                child: BigText(
-                  fontTypo: 'Montserrat-Bold',
-                  text: "Derniers achats",
-                  size: Dimensions.height10 * 3,
-                  color: AppColors.titleColor,
-                ),
-              ),
-            ],
-          ),
-        ),
+        const CustomHeader(text: "Derniers achats"),
         GetBuilder<CartController>(
           builder: (cartController) {
             List cartList = cartController.getItems;
@@ -96,7 +56,6 @@ class LastPurchases extends StatelessWidget {
                         },
                         child: Container(
                           width: double.maxFinite,
-                          //color: Colors.green,
                           margin: EdgeInsets.only(left: Dimensions.width20),
                           child: ProductItemWidget(
                             illustImage: NetworkImage(cartList[index].aProduct.image!),

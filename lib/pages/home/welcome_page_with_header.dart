@@ -75,7 +75,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                           fontSize: Dimensions.height45 * 0.8,
                                                           fontFamily: 'Montserrat-Bold',
                                                           letterSpacing: 2,
-                                                          color: AppColors.white),
+                                                          color: Colors.white),
                                                       child: AnimatedTextKit(
                                                         animatedTexts: [
                                                           RotateAnimatedText('', duration: const Duration(milliseconds: 300)),
@@ -95,7 +95,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                           fontSize: Dimensions.height45 * 0.8,
                                                           fontFamily: 'Montserrat-Bold',
                                                           letterSpacing: 2,
-                                                          color: AppColors.white),
+                                                          color: Colors.white),
                                                     ),
                                               Row(
                                                 children: [
@@ -109,7 +109,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                       height: Dimensions.height45 * 1.2,
                                                       child: Icon(
                                                         Icons.history_rounded,
-                                                        color: AppColors.white,
+                                                        color: Colors.white,
                                                         size: Dimensions.height20 * 1.5,
                                                       ),
                                                     ),
@@ -124,7 +124,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                       height: Dimensions.height45 * 1.2,
                                                       child: Icon(
                                                         Icons.settings_sharp,
-                                                        color: AppColors.white,
+                                                        color: Colors.white,
                                                         size: Dimensions.height20 * 1.5,
                                                       ),
                                                     ),

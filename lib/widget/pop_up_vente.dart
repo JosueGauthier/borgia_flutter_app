@@ -126,7 +126,7 @@ class DialogSalePageState extends State<DialogSalePage> {
                       children: [
                         BigText(
                           text: "${widget.productModel.manualPrice}€ x ",
-                          color: AppColors.darkGreyColor,
+                          color: AppColors.titleColor,
                           size: Dimensions.height30,
                           fontTypo: 'OpenSansExtraBold',
                         ),

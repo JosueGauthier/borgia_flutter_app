@@ -1,5 +1,6 @@
 import 'package:borgiaflutterapp/controllers/category_controller.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
+import 'package:borgiaflutterapp/widget/custom_header.dart';
 
 import 'package:flutter/material.dart';
 
@@ -34,48 +35,9 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
       body: Column(
         children: [
           //! header
-          Container(
-            height: Dimensions.height45 * 2.7,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(Dimensions.height20),
-                  bottomRight: Radius.circular(Dimensions.height20),
-                )),
-            margin: EdgeInsets.only(bottom: Dimensions.height10),
-            padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: SizedBox(
-                          width: Dimensions.width15 * 4,
-                          height: Dimensions.width15 * 4,
-                          child: const Icon(
-                            Icons.arrow_back_ios,
-                            color: AppColors.titleColor,
-                          ),
-                        )),
-                  ],
-                ),
-                Container(
-                  padding: EdgeInsets.only(right: Dimensions.width20),
-                  child: BigText(
-                    fontTypo: 'Montserrat-Bold',
-                    text: "Catégories",
-                    size: Dimensions.height10 * 3,
-                    color: AppColors.titleColor,
-                  ),
-                ),
-              ],
-            ),
-          ),
+
+          const CustomHeader(text: "Catégories"),
+
           Expanded(child: SingleChildScrollView(child: GetBuilder<CategoryOfShopController>(builder: (categoryOfShopController) {
             return categoryOfShopController.isLoaded
                 ? Container(

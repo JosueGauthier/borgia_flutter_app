@@ -1,3 +1,4 @@
+import 'package:borgiaflutterapp/widget/custom_header.dart';
 import 'package:borgiaflutterapp/widget/profile_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,48 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
           if (userController.isLoaded) {
             return SingleChildScrollView(
               child: Column(children: [
-                Container(
-                  height: Dimensions.height45 * 2.7,
-                  decoration: BoxDecoration(
-                      //color: Colors.green,
-                      borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(Dimensions.height20),
-                    bottomRight: Radius.circular(Dimensions.height20),
-                  )),
-                  padding:
-                      EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: SizedBox(
-                                width: Dimensions.width15 * 4,
-                                height: Dimensions.width15 * 4,
-                                child: const Icon(
-                                  Icons.arrow_back_ios,
-                                  color: AppColors.titleColor,
-                                ),
-                              )),
-                        ],
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(right: Dimensions.width20),
-                        child: BigText(
-                          fontTypo: 'Montserrat-Bold',
-                          text: "Mon profil",
-                          size: Dimensions.height10 * 3,
-                          color: AppColors.titleColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                CustomHeader(text: "Mon profil"),
                 Container(
                   height: Dimensions.height100 * 2,
                   width: double.maxFinite,
@@ -112,22 +72,22 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Column(
                     children: [
                       ProfileBox(
-                        textColor: AppColors.darkGreyColor,
+                        textColor: AppColors.titleColor,
                         backgroundcolor: AppColors.whiteGreyColor,
                         icon: Icons.person,
                         text: "Bucque : ${userModel.surname}",
                         isEditable: false,
-                        iconcolor: AppColors.darkGreyColor,
+                        iconcolor: AppColors.titleColor,
                         radius: 0, //Dimensions.width20,
                       ),
                       const SizedBox(height: 0 //,Dimensions.height10,
                           ),
                       ProfileBox(
-                        textColor: AppColors.darkGreyColor,
+                        textColor: AppColors.titleColor,
                         backgroundcolor: const Color.fromARGB(255, 243, 243, 243),
                         icon: Icons.group,
                         text: "Fam'ss : ${userModel.family}",
-                        iconcolor: AppColors.darkGreyColor,
+                        iconcolor: AppColors.titleColor,
                         radius: 0, //Dimensions.width20,
                         isEditable: false,
                       ),
@@ -135,11 +95,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 0,
                       ),
                       ProfileBox(
-                        textColor: AppColors.darkGreyColor,
+                        textColor: AppColors.titleColor,
                         backgroundcolor: AppColors.whiteGreyColor,
                         icon: Icons.group_work,
                         text: "Prom'ss : ${(userModel.campus!).toLowerCase().capitalize} ${userModel.year! - 1800}",
-                        iconcolor: AppColors.darkGreyColor,
+                        iconcolor: AppColors.titleColor,
                         radius: 0,
                         isEditable: false,
                       ),
@@ -147,11 +107,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 0,
                       ),
                       /* ProfileBox(
-                            textColor: AppColors.darkGreyColor,
+                            textColor: AppColors.titleColor,
                             backgroundcolor: AppColors.whiteGreyColor,
                             icon: Icons.email,
                             text: userModel.email.toString(),
-                            iconcolor: AppColors.darkGreyColor,
+                            iconcolor: AppColors.titleColor,
                             radius: 0,
                             isEditable: false,
                           ),
@@ -159,11 +119,11 @@ class _ProfilePageState extends State<ProfilePage> {
                             height: 0,
                           ), */
                       ProfileBox(
-                        textColor: AppColors.darkGreyColor,
+                        textColor: AppColors.titleColor,
                         backgroundcolor: AppColors.whiteGreyColor,
                         icon: Icons.phone,
                         text: userModel.phone.toString(),
-                        iconcolor: AppColors.darkGreyColor,
+                        iconcolor: AppColors.titleColor,
                         radius: 0,
                         isEditable: false,
                       ),

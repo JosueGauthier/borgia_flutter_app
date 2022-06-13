@@ -82,11 +82,6 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
             hourList.add({"Date": saleListController.hourList[i]['time'], "Sale": priceSum});
           }
         }
-
-        inspect(hourList);
-
-        inspect(listeDesVentes);
-
         List colorTheme = ListStatColors.colors12list15;
 
         return SingleChildScrollView(
