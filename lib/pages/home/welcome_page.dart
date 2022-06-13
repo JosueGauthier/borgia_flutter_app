@@ -1,6 +1,5 @@
 import 'package:borgiaflutterapp/controllers/shop_controller.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
-import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -18,38 +17,15 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-  PageController pageController = PageController(viewportFraction: 0.9);
-
-  List<List<dynamic>> listItemsSlider = [
-    ['Solde actuel', null],
-    ['Rechargement', "lydia-logo.jpeg"],
-    ['Statistiques', "stat.png"]
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    pageController.addListener(() {
-      setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    pageController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        //!Liste de magasins items
+        //!Liste des magasins
         SizedBox(
           height: Dimensions.height10,
         ),
         Container(
-          //color: AppColors.titleColor,
           alignment: Alignment.centerLeft,
           margin: EdgeInsets.only(left: Dimensions.width20 * 1.5),
           child: BigText(
@@ -65,7 +41,6 @@ class _WelcomePageState extends State<WelcomePage> {
         GetBuilder<ShopController>(builder: (shopController) {
           return shopController.isLoaded
               ? Container(
-                  //color: Colors.greenAccent,
                   width: double.maxFinite,
                   margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20 * 1.5, top: Dimensions.height10),
                   child: ListView.builder(
@@ -77,7 +52,6 @@ class _WelcomePageState extends State<WelcomePage> {
                         ShopModel shopModel = shopController.shopList[index];
                         return GestureDetector(
                           onTap: () {
-                            AppConstants.SHOP_ID = shopModel.id!;
                             Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
                           },
                           child: Row(children: [
@@ -88,12 +62,10 @@ class _WelcomePageState extends State<WelcomePage> {
                               height: Dimensions.height100 * 0.6,
                               width: Dimensions.height100 * 0.6,
                               decoration: BoxDecoration(
-                                //color: Colors.amber,
                                 image: DecorationImage(
                                   fit: BoxFit.contain,
                                   image: NetworkImage(shopModel.image!),
                                 ),
-                                //borderRadius: BorderRadius.circular(Dimensions.width20)
                               ),
                             ),
 
@@ -103,10 +75,9 @@ class _WelcomePageState extends State<WelcomePage> {
 
                             //! text section
 
-                            //? expanded widget force container to take all the available space
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                                padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
                                 child: BigText(
                                   fontTypo: 'Helvetica-Bold',
                                   text: (shopModel.name)!.capitalize!,

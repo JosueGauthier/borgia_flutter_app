@@ -10,7 +10,6 @@ import '../../controllers/cart_controller.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../../widget/big_text.dart';
 import '../../widget/pop_up_vente.dart';
 
 class ProductListPage extends StatefulWidget {

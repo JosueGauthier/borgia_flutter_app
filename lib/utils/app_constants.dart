@@ -46,8 +46,6 @@ class AppConstants {
   static const String CART_LIST = "Cart-list";
   static const String IDENTIFIERS_LIST = "Identifiers-list";
 
-  static int CAT_MODULE_ID = 1;
-  static int SHOP_ID = 1;
   static List CAT_LIST = [];
   static List CAT_LIST_MODULE = [];
 }

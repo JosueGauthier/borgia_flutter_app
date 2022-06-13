@@ -84,7 +84,6 @@ class DialogSalePageState extends State<DialogSalePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                //color: Colors.amber,
                 width: Dimensions.width45 * 6,
                 padding: EdgeInsets.only(top: Dimensions.height10, bottom: Dimensions.height10),
                 child: Row(

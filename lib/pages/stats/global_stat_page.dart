@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/widget/stat_widget/piechart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

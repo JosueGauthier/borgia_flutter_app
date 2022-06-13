@@ -18,12 +18,10 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
-        //mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             height: Dimensions.height45 * 2.7,
             decoration: BoxDecoration(
-                //color: Colors.greenAccent,
                 borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(Dimensions.height20),
               bottomRight: Radius.circular(Dimensions.height20),
@@ -73,7 +71,6 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
       ),
       bottomNavigationBar: SizedBox(
         height: Dimensions.height20 * 23,
-        //color: Colors.blueAccent,
         child: Column(
           children: [
             Container(
@@ -89,7 +86,6 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                     textAlign: TextAlign.center,
                     showCursor: false,
                     style: TextStyle(fontSize: Dimensions.height45, color: AppColors.titleColor, fontFamily: 'OpenSansExtraBold'),
-                    // Disable the default soft keybaord
                     keyboardType: TextInputType.none,
                   )),
                 ),
@@ -105,7 +101,6 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                   _myController.text = _myController.text.substring(0, _myController.text.length - 1);
                 }
               },
-              // do something with the input numbers
               onSubmit: () {
                 debugPrint('Your code: ${_myController.text}');
                 showDialog(

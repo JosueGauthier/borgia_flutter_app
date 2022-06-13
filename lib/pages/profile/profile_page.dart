@@ -10,7 +10,6 @@ import '../../routes/route_helper.dart';
 import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../../widget/big_text.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -44,7 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
           if (userController.isLoaded) {
             return SingleChildScrollView(
               child: Column(children: [
-                CustomHeader(text: "Mon profil"),
+                const CustomHeader(text: "Mon profil"),
                 Container(
                   height: Dimensions.height100 * 2,
                   width: double.maxFinite,
