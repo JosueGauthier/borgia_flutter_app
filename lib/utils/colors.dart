@@ -1,58 +1,57 @@
 import 'package:flutter/material.dart';
 
 const TextTheme customTextLightTheme = TextTheme(
-  //* for money amount
-  titleLarge: TextStyle(color: Color(0xFF404040), fontFamily: 'OpenSansExtraBold', fontSize: 60, letterSpacing: 2),
+//* for money amount
+  titleLarge: TextStyle(color: Color(0xFF404040), fontFamily: 'OpenSansExtraBold', fontSize: 50, letterSpacing: 2),
 
   //* for Bonjour, white
-  labelLarge: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 36, letterSpacing: 2),
+  labelLarge: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 2),
 
   //* for Liste des magasins
-  titleMedium: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 25),
+  titleMedium: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 20),
 
-  //* for Solde
-  bodySmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 18),
+  //* for all title of page -> Recherche..., Statistiques ...
+  headlineMedium: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 1.5),
+
+  //* for Solde, item List
+  bodySmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 16),
 
   //* for price
-  labelSmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 22),
+  labelSmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 20),
 
   //* for mdp and other very small text
   displaySmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 12),
-
-/*   displayLarge, displayMedium, displaySmall 
-headlineMedium, headlineSmall 
-titleLarge, titleMedium, titleSmall 
-bodyLarge, bodyMedium, bodySmall 
-labelLarge, labelSmall */
 );
 
 const TextTheme customTextDarkTheme = TextTheme(
   //* for money amount
-  titleLarge: TextStyle(color: Colors.white, fontFamily: 'OpenSansExtraBold', fontSize: 60, letterSpacing: 2),
+  titleLarge: TextStyle(
+    color: Color.fromARGB(255, 230, 230, 230),
+    fontFamily: 'OpenSansExtraBold',
+    fontSize: 50,
+    letterSpacing: 2,
+    overflow: TextOverflow.ellipsis,
+  ),
 
   //* for Bonjour, white
-  labelLarge: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 36, letterSpacing: 2),
+  labelLarge:
+      TextStyle(color: Color.fromARGB(255, 230, 230, 230), fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 2, overflow: TextOverflow.ellipsis),
 
   //* for Liste des magasins
-  titleMedium: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 25),
+  titleMedium: TextStyle(color: Color.fromARGB(255, 230, 230, 230), fontFamily: 'Montserrat-Bold', fontSize: 20, overflow: TextOverflow.ellipsis),
 
   //* for all title of page -> Recherche..., Statistiques ...
-  headlineMedium: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 30, letterSpacing: 2),
+  headlineMedium:
+      TextStyle(color: Color.fromARGB(255, 230, 230, 230), fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 1.5, overflow: TextOverflow.ellipsis),
 
   //* for Solde, item List
-  bodySmall: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 18),
+  bodySmall: TextStyle(color: Color.fromARGB(255, 230, 230, 230), fontFamily: 'Montserrat-Bold', fontSize: 16, overflow: TextOverflow.ellipsis),
 
   //* for price
-  labelSmall: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 22),
+  labelSmall: TextStyle(color: Color.fromARGB(255, 230, 230, 230), fontFamily: 'Montserrat-Bold', fontSize: 20, overflow: TextOverflow.ellipsis),
 
   //* for mdp and other very small text
-  displaySmall: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 12),
-
-/*   displayLarge, displayMedium, displaySmall 
-headlineMedium, headlineSmall 
-titleLarge, titleMedium, titleSmall 
-bodyLarge, bodyMedium, bodySmall 
-labelLarge, labelSmall */
+  displaySmall: TextStyle(color: Color.fromARGB(255, 230, 230, 230), fontFamily: 'Montserrat-Bold', fontSize: 12, overflow: TextOverflow.ellipsis),
 );
 
 final ColorScheme customLightTheme = const ColorScheme.dark().copyWith(
@@ -60,8 +59,7 @@ final ColorScheme customLightTheme = const ColorScheme.dark().copyWith(
   secondary: const Color(0xFF012E40),
   tertiary: const Color.fromARGB(200, 1, 152, 117),
   onPrimary: const Color(0xFF404040),
-  onPrimaryContainer: Colors.white,
-  //surface : Color(0xFF404040)
+  onPrimaryContainer: const Color.fromARGB(255, 243, 243, 243),
 );
 
 final ColorScheme customDarkTheme = const ColorScheme.dark().copyWith(

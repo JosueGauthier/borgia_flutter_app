@@ -33,9 +33,11 @@ class CustomHeader extends StatelessWidget {
                   )),
             ],
           ),
-          Container(
-            padding: EdgeInsets.only(right: Dimensions.width20),
-            child: Text(text, style: Theme.of(context).textTheme.headlineMedium),
+          Flexible(
+            child: Container(
+              padding: EdgeInsets.only(right: Dimensions.width20),
+              child: Text(text, style: Theme.of(context).textTheme.headlineMedium),
+            ),
           ),
         ],
       ),

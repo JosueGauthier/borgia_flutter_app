@@ -25,12 +25,7 @@ class FavPage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              BigText(
-                fontTypo: 'Montserrat-Bold',
-                text: "Produits favoris",
-                size: Dimensions.height10 * 3,
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
+              Text("Produits favoris", style: Theme.of(context).textTheme.headlineMedium),
             ],
           ),
         ),

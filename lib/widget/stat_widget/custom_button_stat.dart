@@ -47,7 +47,7 @@ class _CustomButtonStatState extends State<CustomButtonStat> {
       child: (widget.iconData == null)
           ? Text(
               "qty",
-              style: Theme.of(context).textTheme.bodySmall,
+              style: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 18),
             )
           : Icon(
               widget.iconData,

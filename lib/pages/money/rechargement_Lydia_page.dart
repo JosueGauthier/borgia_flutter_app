@@ -25,12 +25,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                BigText(
-                  fontTypo: 'Montserrat-Bold',
-                  text: "Rechargement Lydia",
-                  size: Dimensions.height10 * 3,
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
+                Text("Lydia", style: Theme.of(context).textTheme.headlineMedium),
               ],
             ),
           ),

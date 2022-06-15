@@ -1,3 +1,4 @@
+import 'package:borgiaflutterapp/widget/custom_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,48 +14,7 @@ class CreditsPage extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(children: [
-          Container(
-            height: Dimensions.height45 * 2.7,
-            decoration: BoxDecoration(
-                //color: Colors.green,
-                borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(Dimensions.height20),
-              bottomRight: Radius.circular(Dimensions.height20),
-            )),
-            margin: EdgeInsets.only(bottom: Dimensions.height10),
-            padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: SizedBox(
-                          width: Dimensions.width15 * 4,
-                          height: Dimensions.width15 * 4,
-                          child: const Icon(
-                            Icons.arrow_back_ios,
-                            color: AppColors.titleColor,
-                          ),
-                        )),
-                  ],
-                ),
-                Container(
-                  padding: EdgeInsets.only(right: Dimensions.width20),
-                  child: BigText(
-                    fontTypo: 'Montserrat-Bold',
-                    text: "Crédits",
-                    size: Dimensions.height10 * 3,
-                    color: AppColors.titleColor,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          CustomHeader(text: "Crédits"),
           Container(
             //height: Dimensions.height100 * 1.2,
             width: double.maxFinite,
@@ -70,7 +30,7 @@ class CreditsPage extends StatelessWidget {
                 height: Dimensions.height10,
               ),
               BigText(
-                color: AppColors.titleColor,
+                color: Theme.of(context).colorScheme.onPrimary,
                 text: "Khalvin 73-16 An220",
                 size: Dimensions.height20 * 1.1,
                 fontTypo: 'Montserrat-Bold',
@@ -111,7 +71,7 @@ class CreditsPage extends StatelessWidget {
                 height: Dimensions.height10,
               ),
               BigText(
-                color: AppColors.titleColor,
+                color: Theme.of(context).colorScheme.onPrimary,
                 text: "[D]keur 148-22 An221",
                 size: Dimensions.height20 * 1.1,
                 fontTypo: 'Montserrat-Bold',
@@ -152,7 +112,7 @@ class CreditsPage extends StatelessWidget {
                 height: Dimensions.height10,
               ),
               BigText(
-                color: AppColors.titleColor,
+                color: Theme.of(context).colorScheme.onPrimary,
                 text: "Past'ys 101-99 Me 214",
                 size: Dimensions.height20 * 1.1,
                 fontTypo: 'Montserrat-Bold',
@@ -167,7 +127,7 @@ class CreditsPage extends StatelessWidget {
                 height: Dimensions.height10,
               ),
               BigText(
-                color: AppColors.titleColor,
+                color: Theme.of(context).colorScheme.onPrimary,
                 text: "Eyap 53 Me 215",
                 size: Dimensions.height20 * 1.1,
                 fontTypo: 'Montserrat-Bold',
@@ -182,7 +142,7 @@ class CreditsPage extends StatelessWidget {
                 height: Dimensions.height10,
               ),
               BigText(
-                color: AppColors.titleColor,
+                color: Theme.of(context).colorScheme.onPrimary,
                 text: "Rowsky 144 Me 215",
                 size: Dimensions.height20 * 1.1,
                 fontTypo: 'Montserrat-Bold',
@@ -197,7 +157,7 @@ class CreditsPage extends StatelessWidget {
                 height: Dimensions.height10,
               ),
               BigText(
-                color: AppColors.titleColor,
+                color: Theme.of(context).colorScheme.onPrimary,
                 text: "Leyphay's 87 Me 215 ",
                 size: Dimensions.height20 * 1.1,
                 fontTypo: 'Montserrat-Bold',
