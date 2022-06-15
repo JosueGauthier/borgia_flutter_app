@@ -27,11 +27,9 @@ class CustomCircularIndicator extends StatelessWidget {
       animationDuration: 1200,
       circularStrokeCap: CircularStrokeCap.round,
       percent: percent,
-      center: BigText(
-        fontTypo: 'Helvetica-Bold',
-        text: text,
-        size: Dimensions.height25 * 0.8,
-        color: AppColors.titleColor,
+      center: Text(
+        text,
+        style: Theme.of(context).textTheme.bodySmall,
       ),
       progressColor: progressColor,
       //linearGradient: LinearGradient(colors: [ListStatColors.colorslist1[0], ListStatColors.colorslist1[20]]),

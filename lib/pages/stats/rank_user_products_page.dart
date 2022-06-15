@@ -26,7 +26,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
         List<ListOfProd>? listOfProd = rankUserProductController.productStatList[0].listOfProd;
 
         return Scaffold(
-          backgroundColor: Colors.white,
+          //backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
               //! Podium
@@ -63,11 +63,9 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                   //! text section
                                   Container(
                                     padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                    child: BigText(
-                                      size: Dimensions.height25 * 1.1,
-                                      fontTypo: 'Montserrat-Bold',
-                                      text: (listOfProd[indexProduct].name)!.capitalize!,
-                                      color: AppColors.titleColor,
+                                    child: Text(
+                                      (listOfProd[indexProduct].name)!.capitalize!,
+                                      style: Theme.of(context).textTheme.titleMedium,
                                     ),
                                   ),
                                 ]),
@@ -111,7 +109,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                                         Dimensions.height10)
                                                     ? Dimensions.height10 * 1.7
                                                     : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenListOfaProduct[1].surname!.length)) * 0.14,
-                                                color: AppColors.titleColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                               SizedBox(
                                                 height: Dimensions.height10 / 2,
@@ -122,7 +120,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                                     ("${userTopTenListOfaProduct[1].family!} ${userTopTenListOfaProduct[1].campus!.toLowerCase().capitalize!}${userTopTenListOfaProduct[1].promotion! - 1800}")
                                                         .capitalize!,
                                                 size: Dimensions.height10 * 1.3,
-                                                color: AppColors.titleColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                               SizedBox(
                                                 height: Dimensions.height10 / 2,
@@ -131,7 +129,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                                 fontTypo: 'Helvetica-Bold',
                                                 text: "${userTopTenListOfaProduct[1].montantAchatsParProduit}€",
                                                 size: Dimensions.height10 * 1.5,
-                                                color: AppColors.greyColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                             ],
                                           ),
@@ -160,7 +158,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                                         Dimensions.height10)
                                                     ? Dimensions.height10 * 1.7
                                                     : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenListOfaProduct[0].surname!.length)) * 0.14,
-                                                color: AppColors.titleColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                               SizedBox(
                                                 height: Dimensions.height10 / 2,
@@ -171,7 +169,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                                     ("${userTopTenListOfaProduct[0].family!} ${userTopTenListOfaProduct[0].campus!.toLowerCase().capitalize!}${userTopTenListOfaProduct[0].promotion! - 1800}")
                                                         .capitalize!,
                                                 size: Dimensions.height10 * 1.3,
-                                                color: AppColors.titleColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                               SizedBox(
                                                 height: Dimensions.height10 / 2,
@@ -180,7 +178,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                                 fontTypo: 'Helvetica-Bold',
                                                 text: "${userTopTenListOfaProduct[0].montantAchatsParProduit}€",
                                                 size: Dimensions.height10 * 1.5,
-                                                color: AppColors.greyColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                             ],
                                           ),
@@ -209,7 +207,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                                         Dimensions.height10)
                                                     ? Dimensions.height10 * 1.7
                                                     : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenListOfaProduct[2].surname!.length)) * 0.14,
-                                                color: AppColors.titleColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                               SizedBox(
                                                 height: Dimensions.height10 / 2,
@@ -220,7 +218,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                                     ("${userTopTenListOfaProduct[2].family!} ${userTopTenListOfaProduct[2].campus!.toLowerCase().capitalize!}${userTopTenListOfaProduct[2].promotion! - 1800}")
                                                         .capitalize!,
                                                 size: Dimensions.height10 * 1.3,
-                                                color: AppColors.titleColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                               SizedBox(
                                                 height: Dimensions.height10 / 2,
@@ -229,7 +227,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                                                 fontTypo: 'Helvetica-Bold',
                                                 text: "${userTopTenListOfaProduct[2].montantAchatsParProduit}€",
                                                 size: Dimensions.height10 * 1.5,
-                                                color: AppColors.greyColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                             ],
                                           ),

@@ -16,18 +16,12 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       body: Column(
         children: [
           Container(
             height: Dimensions.height45 * 2.7,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(Dimensions.height20),
-              bottomRight: Radius.circular(Dimensions.height20),
-            )),
-            margin: EdgeInsets.only(bottom: Dimensions.height10),
-            padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20 * 2, right: Dimensions.width20),
+            padding: EdgeInsets.only(top: Dimensions.height30 * 1.3, left: Dimensions.width20 * 2, right: Dimensions.width20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -35,7 +29,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                   fontTypo: 'Montserrat-Bold',
                   text: "Rechargement Lydia",
                   size: Dimensions.height10 * 3,
-                  color: AppColors.titleColor,
+                  color: Theme.of(context).colorScheme.onPrimary,
                 ),
               ],
             ),
@@ -59,7 +53,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                     image: const DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage(
-                        "assets/image/lydiaapp.jpg",
+                        "assets/image/lydiaapp_bg.png",
                       ),
                     ),
                   ),
@@ -75,7 +69,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
           children: [
             Container(
               height: Dimensions.height20 * 3,
-              color: Colors.white.withOpacity(0.8),
+              color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
               child: Padding(
                 padding: EdgeInsets.all(Dimensions.height10),
                 child: SizedBox(
@@ -85,7 +79,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                     controller: _myController,
                     textAlign: TextAlign.center,
                     showCursor: false,
-                    style: TextStyle(fontSize: Dimensions.height45, color: AppColors.titleColor, fontFamily: 'OpenSansExtraBold'),
+                    style: Theme.of(context).textTheme.labelLarge,
                     keyboardType: TextInputType.none,
                   )),
                 ),

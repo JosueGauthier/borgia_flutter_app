@@ -29,12 +29,12 @@ class _ProductListPageState extends State<ProductListPage> {
     Get.find<ProductListController>().getProduct(widget.categoryId);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       body: Column(
         children: [
           //! header Text  + cart
 
-          const CustomHeader(text: "Liste des produits"),
+          const CustomHeader(text: "Produits"),
 
           //! Scroll list des produits de la categorie asociée
           Expanded(child: SingleChildScrollView(child: GetBuilder<ProductListController>(builder: (productListController) {

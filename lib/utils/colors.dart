@@ -17,6 +17,12 @@ final TextTheme customTextLightTheme = TextTheme(
   //* for Solde
   bodySmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 18),
 
+  //* for price
+  labelSmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 22),
+
+  //* for mdp and other very small text
+  displaySmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 12),
+
 /*   displayLarge, displayMedium, displaySmall 
 headlineMedium, headlineSmall 
 titleLarge, titleMedium, titleSmall 
@@ -43,6 +49,9 @@ final TextTheme customTextDarkTheme = TextTheme(
   //* for price
   labelSmall: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 22),
 
+  //* for mdp and other very small text
+  displaySmall: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 12),
+
 /*   displayLarge, displayMedium, displaySmall 
 headlineMedium, headlineSmall 
 titleLarge, titleMedium, titleSmall 
@@ -55,6 +64,8 @@ final ColorScheme customLightTheme = ColorScheme.dark().copyWith(
   secondary: Color(0xFF012E40),
   tertiary: Color.fromARGB(200, 1, 152, 117),
   onPrimary: Color(0xFF404040),
+  onPrimaryContainer: Colors.white,
+  //surface : Color(0xFF404040)
 );
 
 final ColorScheme customDarkTheme = ColorScheme.dark().copyWith(
@@ -62,6 +73,7 @@ final ColorScheme customDarkTheme = ColorScheme.dark().copyWith(
   secondary: Color(0xFF012E40),
   tertiary: Color.fromARGB(200, 1, 152, 117),
   onPrimary: Colors.white,
+  onPrimaryContainer: Color(0xFF404040),
 );
 
 class ThemeClass {

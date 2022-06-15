@@ -45,7 +45,10 @@ class _CustomButtonStatState extends State<CustomButtonStat> {
         });
       },
       child: (widget.iconData == null)
-          ? Text(widget.text)
+          ? Text(
+              "qty",
+              style: Theme.of(context).textTheme.bodySmall,
+            )
           : Icon(
               widget.iconData,
               color: widget.foregroundColor,

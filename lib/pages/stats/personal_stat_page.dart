@@ -167,12 +167,9 @@ class _MyStatPageState extends State<MyStatPage> {
                           ),
                           Column(
                             children: [
-                              BigText(
-                                fontTypo: 'Helvetica-Bold',
-                                text:
-                                    "${userShopStatController.userShopStatList[0].nbRefAchetee} / ${userShopStatController.userShopStatList[0].nbRefTotale} refs",
-                                size: Dimensions.height25 * 0.8,
-                                color: AppColors.titleColor,
+                              Text(
+                                "${userShopStatController.userShopStatList[0].nbRefAchetee} / ${userShopStatController.userShopStatList[0].nbRefTotale} refs",
+                                style: Theme.of(context).textTheme.bodySmall,
                               ),
                               SizedBox(
                                 height: Dimensions.height20,
@@ -203,11 +200,9 @@ class _MyStatPageState extends State<MyStatPage> {
                   //color: AppColors.titleColor,
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.only(left: Dimensions.width20),
-                  child: BigText(
-                    color: AppColors.titleColor,
-                    text: "Mon historique",
-                    size: Dimensions.height25 * 1.1,
-                    fontTypo: 'Montserrat-Bold',
+                  child: Text(
+                    "Mon historique",
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
                 SizedBox(
@@ -230,11 +225,9 @@ class _MyStatPageState extends State<MyStatPage> {
                   //color: AppColors.titleColor,
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.only(left: Dimensions.width20),
-                  child: BigText(
-                    color: AppColors.titleColor,
-                    text: "Mes achats",
-                    size: Dimensions.height25 * 1.1,
-                    fontTypo: 'Montserrat-Bold',
+                  child: Text(
+                    "Mes achats",
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
 

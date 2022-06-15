@@ -73,11 +73,9 @@ class _RankUserPageState extends State<RankUserPage> {
                                   Container(
                                     //color: Colors.blueAccent,
                                     padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                    child: BigText(
-                                      size: Dimensions.height25 * 1.1,
-                                      fontTypo: 'Montserrat-Bold',
-                                      text: (rankUserShopModel.name)!.capitalize!,
-                                      color: AppColors.titleColor,
+                                    child: Text(
+                                      (rankUserShopModel.name)!.capitalize!,
+                                      style: Theme.of(context).textTheme.titleMedium,
                                     ),
                                   ),
                                 ]),
@@ -119,14 +117,13 @@ class _RankUserPageState extends State<RankUserPage> {
                                           child: Column(
                                             children: [
                                               BigText(
-                                                fontTypo: 'Helvetica-Bold',
-                                                text: (userTopTenList![1].surname)!.capitalize!,
-                                                size: ((Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[1].surname!.length)) * 0.14) >=
-                                                        Dimensions.height10)
-                                                    ? Dimensions.height10 * 1.7
-                                                    : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[1].surname!.length)) * 0.14,
-                                                color: AppColors.titleColor,
-                                              ),
+                                                  fontTypo: 'Helvetica-Bold',
+                                                  text: (userTopTenList![1].surname)!.capitalize!,
+                                                  size: ((Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[1].surname!.length)) * 0.14) >=
+                                                          Dimensions.height10)
+                                                      ? Dimensions.height10 * 1.7
+                                                      : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[1].surname!.length)) * 0.14,
+                                                  color: Theme.of(context).colorScheme.onPrimary),
                                               SizedBox(
                                                 height: Dimensions.height10 / 2,
                                               ),
@@ -136,7 +133,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                                     ("${userTopTenList[1].family!} ${userTopTenList[1].campus!.toLowerCase().capitalize!}${userTopTenList[1].promotion! - 1800}")
                                                         .capitalize!,
                                                 size: Dimensions.height10 * 1.3,
-                                                color: AppColors.titleColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                               SizedBox(
                                                 height: Dimensions.height10 / 2,
@@ -145,7 +142,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                                 fontTypo: 'Helvetica-Bold',
                                                 text: "${userTopTenList[1].montantAchatsParShop}€",
                                                 size: Dimensions.height10 * 1.5,
-                                                color: AppColors.greyColor, //Color.fromRGBO(105, 105, 105, 0),
+                                                color: Theme.of(context).colorScheme.tertiary, //Color.fromRGBO(105, 105, 105, 0),
                                               ),
                                             ],
                                           ),
@@ -173,7 +170,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                                         Dimensions.height10)
                                                     ? Dimensions.height10 * 1.7
                                                     : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[0].surname!.length)) * 0.14,
-                                                color: AppColors.titleColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                               SizedBox(
                                                 height: Dimensions.height10 / 2,
@@ -184,7 +181,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                                     ("${userTopTenList[0].family!} ${userTopTenList[0].campus!.toLowerCase().capitalize!}${userTopTenList[0].promotion! - 1800}")
                                                         .capitalize!,
                                                 size: Dimensions.height10 * 1.3,
-                                                color: AppColors.titleColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                               SizedBox(
                                                 height: Dimensions.height10 / 2,
@@ -193,7 +190,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                                 fontTypo: 'Helvetica-Bold',
                                                 text: "${userTopTenList[0].montantAchatsParShop}€",
                                                 size: Dimensions.height10 * 1.5,
-                                                color: AppColors.greyColor,
+                                                color: Theme.of(context).colorScheme.tertiary,
                                               ),
                                             ],
                                           ),
@@ -221,7 +218,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                                         Dimensions.height10)
                                                     ? Dimensions.height10 * 1.7
                                                     : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[2].surname!.length)) * 0.14,
-                                                color: AppColors.titleColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                               SizedBox(
                                                 height: Dimensions.height10 / 2,
@@ -232,7 +229,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                                     ("${userTopTenList[2].family!} ${userTopTenList[2].campus!.toLowerCase().capitalize!}${userTopTenList[2].promotion! - 1800}")
                                                         .capitalize!,
                                                 size: Dimensions.height10 * 1.3,
-                                                color: AppColors.titleColor,
+                                                color: Theme.of(context).colorScheme.onPrimary,
                                               ),
                                               SizedBox(
                                                 height: Dimensions.height10 / 2,
@@ -241,7 +238,7 @@ class _RankUserPageState extends State<RankUserPage> {
                                                 fontTypo: 'Helvetica-Bold',
                                                 text: "${userTopTenList[2].montantAchatsParShop}€",
                                                 size: Dimensions.height10 * 1.5,
-                                                color: AppColors.greyColor,
+                                                color: Theme.of(context).colorScheme.tertiary,
                                               ),
                                             ],
                                           ),

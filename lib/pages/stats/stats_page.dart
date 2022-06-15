@@ -35,11 +35,13 @@ class _StatsPageState extends State<StatsPage> {
     Get.find<UserShopStatController>().getUserShopStatList();
 
     return MaterialApp(
+      themeMode: ThemeMode.system,
+      theme: ThemeClass.lightTheme,
+      darkTheme: ThemeClass.darkTheme,
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
-          backgroundColor: Colors.white,
           body: const TabBarView(
             children: [
               GlobalStatPage(),
@@ -50,51 +52,40 @@ class _StatsPageState extends State<StatsPage> {
           appBar: AppBar(
             elevation: 0,
             toolbarHeight: Dimensions.height20 * 3,
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.white,
-            shadowColor: Colors.white,
             title: //! header
                 Container(
               height: Dimensions.height45 * 1.2,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
               margin: EdgeInsets.only(bottom: Dimensions.height10),
               padding: EdgeInsets.only(top: Dimensions.height30 * 0.5, left: Dimensions.width20, right: Dimensions.width20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  BigText(
-                    fontTypo: 'Montserrat-Bold',
-                    text: "Statistiques",
-                    size: Dimensions.height10 * 3,
-                    color: AppColors.titleColor,
-                  ),
+                  Text("Statistiques", style: Theme.of(context).textTheme.headlineMedium),
                 ],
               ),
             ),
-            bottom: const TabBar(
+            bottom: TabBar(
               indicatorColor: AppColors.mainColor,
               labelColor: AppColors.mainColor,
-              unselectedLabelColor: AppColors.titleColor,
+              unselectedLabelColor: Theme.of(context).colorScheme.onPrimary,
               tabs: [
                 Tab(
                     text: "Global",
                     icon: Icon(
                       Icons.people_rounded,
-                      color: AppColors.titleColor,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     )),
                 Tab(
                     text: "Moi",
                     icon: Icon(
                       Icons.person_sharp,
-                      color: AppColors.titleColor,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     )),
                 Tab(
                     text: "Podium",
                     icon: Icon(
                       Icons.emoji_events,
-                      color: AppColors.titleColor,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     )),
               ],
             ),

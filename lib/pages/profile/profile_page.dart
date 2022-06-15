@@ -37,75 +37,76 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         body: GetBuilder<UserController>(builder: (userController) {
-          UserModel userModel = userController.userList[0];
-          if (userController.isLoaded) {
-            return SingleChildScrollView(
-              child: Column(children: [
-                const CustomHeader(text: "Mon profil"),
-                Container(
-                  height: Dimensions.height100 * 2,
-                  width: double.maxFinite,
-                  padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                          width: Dimensions.height100 * 2.5,
-                          height: Dimensions.height100 * 2.5,
-                          decoration: BoxDecoration(
-                              border: Border.all(width: 3, color: AppColors.secondColor),
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                              image: const DecorationImage(fit: BoxFit.contain, image: AssetImage("assets/image/logoAMAngers.jpg")))),
-                    ],
+      UserModel userModel = userController.userList[0];
+      if (userController.isLoaded) {
+        return SingleChildScrollView(
+          child: Column(children: [
+            const CustomHeader(text: "Mon profil"),
+            Container(
+              height: Dimensions.height100 * 2,
+              width: double.maxFinite,
+              padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                      width: Dimensions.height100 * 2.5,
+                      height: Dimensions.height100 * 2.5,
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 3, color: Theme.of(context).colorScheme.onPrimary),
+                          //color: Theme.of(context).colorScheme.onPrimary,
+                          shape: BoxShape.circle,
+                          image: const DecorationImage(fit: BoxFit.contain, image: AssetImage("assets/image/logoAMAngers.jpg")))),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: Dimensions.height20,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
+              decoration: BoxDecoration(color: Theme.of(context).colorScheme.onPrimaryContainer, borderRadius: BorderRadius.circular(Dimensions.width20)),
+              child: Column(
+                children: [
+                  ProfileBox(
+                    textColor: Theme.of(context).colorScheme.onPrimary,
+                    backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                    iconcolor: Theme.of(context).colorScheme.onPrimary,
+                    icon: Icons.person,
+                    text: "Bucque : ${userModel.surname}",
+                    isEditable: false,
+
+                    radius: 0, //Dimensions.width20,
                   ),
-                ),
-                SizedBox(
-                  height: Dimensions.height20,
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
-                  decoration: BoxDecoration(color: AppColors.whiteGreyColor, borderRadius: BorderRadius.circular(Dimensions.width20)),
-                  child: Column(
-                    children: [
-                      ProfileBox(
-                        textColor: AppColors.titleColor,
-                        backgroundcolor: AppColors.whiteGreyColor,
-                        icon: Icons.person,
-                        text: "Bucque : ${userModel.surname}",
-                        isEditable: false,
-                        iconcolor: AppColors.titleColor,
-                        radius: 0, //Dimensions.width20,
+                  const SizedBox(height: 0 //,Dimensions.height10,
                       ),
-                      const SizedBox(height: 0 //,Dimensions.height10,
-                          ),
-                      ProfileBox(
-                        textColor: AppColors.titleColor,
-                        backgroundcolor: const Color.fromARGB(255, 243, 243, 243),
-                        icon: Icons.group,
-                        text: "Fam'ss : ${userModel.family}",
-                        iconcolor: AppColors.titleColor,
-                        radius: 0, //Dimensions.width20,
-                        isEditable: false,
-                      ),
-                      const SizedBox(
-                        height: 0,
-                      ),
-                      ProfileBox(
-                        textColor: AppColors.titleColor,
-                        backgroundcolor: AppColors.whiteGreyColor,
-                        icon: Icons.group_work,
-                        text: "Prom'ss : ${(userModel.campus!).toLowerCase().capitalize} ${userModel.year! - 1800}",
-                        iconcolor: AppColors.titleColor,
-                        radius: 0,
-                        isEditable: false,
-                      ),
-                      const SizedBox(
-                        height: 0,
-                      ),
-                      /* ProfileBox(
+                  ProfileBox(
+                    textColor: Theme.of(context).colorScheme.onPrimary,
+                    backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                    icon: Icons.group,
+                    text: "Fam'ss : ${userModel.family}",
+                    iconcolor: Theme.of(context).colorScheme.onPrimary,
+                    radius: 0, //Dimensions.width20,
+                    isEditable: false,
+                  ),
+                  const SizedBox(
+                    height: 0,
+                  ),
+                  ProfileBox(
+                    textColor: Theme.of(context).colorScheme.onPrimary,
+                    backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                    icon: Icons.group_work,
+                    text: "Prom'ss : ${(userModel.campus!).toLowerCase().capitalize} ${userModel.year! - 1800}",
+                    iconcolor: Theme.of(context).colorScheme.onPrimary,
+                    radius: 0,
+                    isEditable: false,
+                  ),
+                  const SizedBox(
+                    height: 0,
+                  ),
+                  /* ProfileBox(
                             textColor: AppColors.titleColor,
                             backgroundcolor: AppColors.whiteGreyColor,
                             icon: Icons.email,
@@ -117,33 +118,33 @@ class _ProfilePageState extends State<ProfilePage> {
                           SizedBox(
                             height: 0,
                           ), */
-                      ProfileBox(
-                        textColor: AppColors.titleColor,
-                        backgroundcolor: AppColors.whiteGreyColor,
-                        icon: Icons.phone,
-                        text: userModel.phone.toString(),
-                        iconcolor: AppColors.titleColor,
-                        radius: 0,
-                        isEditable: false,
-                      ),
-                    ],
+                  ProfileBox(
+                    textColor: Theme.of(context).colorScheme.onPrimary,
+                    backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                    icon: Icons.phone,
+                    text: userModel.phone.toString(),
+                    iconcolor: Theme.of(context).colorScheme.onPrimary,
+                    radius: 0,
+                    isEditable: false,
                   ),
-                ),
-                SizedBox(
-                  height: Dimensions.height20,
-                ),
-                ProfileBox(
-                  textColor: Colors.white,
-                  backgroundcolor: (userModel.theme.toString() == "dark") ? AppColors.titleColor : AppColors.mainColor,
-                  icon: (userModel.theme.toString() == "dark") ? Icons.dark_mode : Icons.light_mode,
-                  text: userModel.theme.toString().capitalize!,
-                  iconcolor: Colors.white,
-                  isEditable: false,
-                ),
-                SizedBox(
-                  height: Dimensions.height20,
-                ),
-                /* Container(
+                ],
+              ),
+            ),
+            SizedBox(
+              height: Dimensions.height20,
+            ),
+            ProfileBox(
+              textColor: Colors.white,
+              backgroundcolor: (userModel.theme.toString() == "dark") ? AppColors.titleColor : AppColors.mainColor,
+              icon: (userModel.theme.toString() == "dark") ? Icons.dark_mode : Icons.light_mode,
+              text: userModel.theme.toString().capitalize!,
+              iconcolor: Colors.white,
+              isEditable: false,
+            ),
+            SizedBox(
+              height: Dimensions.height20,
+            ),
+            /* Container(
                   margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
                   height: Dimensions.height45 * 1.7,
                   width: double.maxFinite,
@@ -224,60 +225,60 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(
                   height: Dimensions.height20,
                 ), */
-                const ProfileBox(
-                  textColor: Colors.white,
-                  backgroundcolor: AppColors.mainColor,
-                  icon: Icons.help,
-                  text: "Send a problem or request",
-                  iconcolor: Colors.white,
-                  isEditable: false,
-                ),
-                SizedBox(
-                  height: Dimensions.height20,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Get.toNamed(RouteHelper.getCreditsPage());
-                  },
-                  child: const ProfileBox(
-                    textColor: Colors.white,
-                    backgroundcolor: AppColors.mainColor,
-                    icon: Icons.handyman_rounded,
-                    text: "Crédits",
-                    iconcolor: Colors.white,
-                    isEditable: false,
-                  ),
-                ),
-                SizedBox(
-                  height: Dimensions.height20,
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    clearIdentifSharedPref();
-                    Get.toNamed(RouteHelper.getSplashPage());
-                  },
-                  child: const ProfileBox(
-                    textColor: Colors.white,
-                    backgroundcolor: AppColors.mainColor,
-                    icon: Icons.logout,
-                    text: "Log out",
-                    iconcolor: Colors.white,
-                    isEditable: false,
-                  ),
-                ),
-                SizedBox(
-                  height: Dimensions.height20,
-                ),
-              ]),
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(
-                strokeWidth: 4,
-                color: AppColors.mainColor,
+            const ProfileBox(
+              textColor: Colors.white,
+              backgroundcolor: AppColors.mainColor,
+              icon: Icons.help,
+              text: "Send a problem or request",
+              iconcolor: Colors.white,
+              isEditable: false,
+            ),
+            SizedBox(
+              height: Dimensions.height20,
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(RouteHelper.getCreditsPage());
+              },
+              child: const ProfileBox(
+                textColor: Colors.white,
+                backgroundcolor: AppColors.mainColor,
+                icon: Icons.handyman_rounded,
+                text: "Crédits",
+                iconcolor: Colors.white,
+                isEditable: false,
               ),
-            );
-          }
-        }));
+            ),
+            SizedBox(
+              height: Dimensions.height20,
+            ),
+            GestureDetector(
+              onTap: () async {
+                clearIdentifSharedPref();
+                Get.toNamed(RouteHelper.getSplashPage());
+              },
+              child: const ProfileBox(
+                textColor: Colors.white,
+                backgroundcolor: AppColors.mainColor,
+                icon: Icons.logout,
+                text: "Log out",
+                iconcolor: Colors.white,
+                isEditable: false,
+              ),
+            ),
+            SizedBox(
+              height: Dimensions.height20,
+            ),
+          ]),
+        );
+      } else {
+        return const Center(
+          child: CircularProgressIndicator(
+            strokeWidth: 4,
+            color: AppColors.mainColor,
+          ),
+        );
+      }
+    }));
   }
 }

@@ -54,11 +54,7 @@ class SearchPage extends StatelessWidget {
                         _search(searchController);
                       },
                       controller: searchTextController,
-                      style: TextStyle(
-                        fontFamily: 'Montserrat-Bold',
-                        color: AppColors.titleColor,
-                        fontSize: Dimensions.height10 * 3,
-                      ),
+                      style: Theme.of(context).textTheme.headlineMedium,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(color: Colors.transparent),

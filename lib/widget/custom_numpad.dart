@@ -31,8 +31,6 @@ class NumPad extends StatelessWidget {
           SizedBox(height: Dimensions.width10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            // implement the number keys (from 0 to 9) with the NumberButton widget
-            // the NumberButton widget is defined in the bottom of this file
             children: [
               NumberButton(
                 number: 1,
@@ -172,7 +170,7 @@ class NumberButton extends StatelessWidget {
         child: Center(
           child: Text(
             number.toString(),
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: Dimensions.width10 * 3),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
       ),

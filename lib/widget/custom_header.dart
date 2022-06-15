@@ -28,21 +28,16 @@ class CustomHeader extends StatelessWidget {
                   child: SizedBox(
                     width: Dimensions.width15 * 4,
                     height: Dimensions.width15 * 4,
-                    child: const Icon(
+                    child: Icon(
                       Icons.arrow_back_ios,
-                      color: AppColors.titleColor,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   )),
             ],
           ),
           Container(
             padding: EdgeInsets.only(right: Dimensions.width20),
-            child: BigText(
-              fontTypo: 'Montserrat-Bold',
-              text: text,
-              size: Dimensions.height10 * 3,
-              color: AppColors.titleColor,
-            ),
+            child: Text(text, style: Theme.of(context).textTheme.headlineMedium),
           ),
         ],
       ),

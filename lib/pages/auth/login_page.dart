@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: GetBuilder<AuthController>(
           builder: (authcontroller) {
@@ -147,6 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                         padding: EdgeInsets.only(left: Dimensions.width20 * 2, right: Dimensions.width20 * 2),
                         child: Column(children: <Widget>[
                           TextFormField(
+                            scrollPadding: EdgeInsets.only(bottom: Dimensions.height100),
                             controller: usernameController,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
@@ -157,19 +158,16 @@ class _LoginPageState extends State<LoginPage> {
                                 borderSide: const BorderSide(color: AppColors.mainColor),
                                 borderRadius: BorderRadius.circular(50),
                               ),
-                              prefixIcon: const Icon(
+                              prefixIcon: Icon(
                                 Icons.person,
-                                color: AppColors.titleColor,
+                                color: Theme.of(context).colorScheme.onPrimary,
                               ),
                               hintText: "Enter your username",
                               labelText: "Enter your username",
-                              labelStyle: TextStyle(
-                                color: AppColors.titleColor,
-                                fontSize: Dimensions.height20,
-                              ),
-                              hintStyle: const TextStyle(color: AppColors.titleColor),
+                              labelStyle: Theme.of(context).textTheme.bodySmall,
+                              hintStyle: Theme.of(context).textTheme.bodySmall,
                               filled: true,
-                              fillColor: Colors.white,
+                              fillColor: Colors.transparent,
                             ),
                           ),
                         ])),
@@ -177,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: Dimensions.height20,
                     ),
                     SizedBox(
-                      height: Dimensions.height20 * 3.4,
+                      //height: Dimensions.height20 * 3.4,
                       width: Dimensions.width20 * 25,
                       child: Padding(
                           padding: EdgeInsets.only(
@@ -186,6 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           child: Column(children: <Widget>[
                             TextFormField(
+                              scrollPadding: EdgeInsets.only(bottom: Dimensions.height100),
                               obscureText: true,
                               controller: passwordController,
                               decoration: InputDecoration(
@@ -197,34 +196,29 @@ class _LoginPageState extends State<LoginPage> {
                                   borderSide: const BorderSide(color: AppColors.mainColor),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
-                                prefixIcon: const Icon(Icons.password, color: AppColors.titleColor),
-                                labelText: 'Enter your password',
-                                labelStyle: TextStyle(
-                                  color: AppColors.titleColor,
-                                  fontSize: Dimensions.height20,
+                                prefixIcon: Icon(
+                                  Icons.password,
+                                  color: Theme.of(context).colorScheme.onPrimary,
                                 ),
+                                labelText: 'Enter your password',
+                                hintText: "Enter your password",
+                                labelStyle: Theme.of(context).textTheme.bodySmall,
+                                hintStyle: Theme.of(context).textTheme.bodySmall,
                                 filled: true,
-                                fillColor: Colors.white,
+                                fillColor: Colors.transparent,
                               ),
                             ),
                           ])),
                     ),
                     SizedBox(
-                      height: Dimensions.height15,
+                      height: Dimensions.height15 * 1.2,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
                           padding: EdgeInsets.only(right: Dimensions.width20 * 2),
-                          child: InkWell(
-                            onTap: () {},
-                            child: SmallText(
-                              text: "Mot de passe oublié ?",
-                              color: AppColors.mainColor,
-                              size: Dimensions.height15,
-                            ),
-                          ),
+                          child: InkWell(onTap: () {}, child: Text("Mot de passe oublié ?", style: Theme.of(context).textTheme.displaySmall)),
                         ),
                       ],
                     ),
@@ -244,8 +238,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           style: ButtonStyle(
                               elevation: MaterialStateProperty.all(0),
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: const BorderSide(color: AppColors.whiteGreyColor))),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
                               padding: MaterialStateProperty.all(
                                   EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
                               backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {

@@ -31,7 +31,7 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
     Get.find<CategoryOfShopController>().getCategoryList(widget.shopId);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       body: Column(
         children: [
           //! header
@@ -78,14 +78,8 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
 
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                    child: BigText(
-                                      fontTypo: 'Helvetica-Bold',
-                                      text: (categoryModel.name)!.capitalize!,
-                                      size: Dimensions.height25 * 0.8,
-                                      color: AppColors.titleColor,
-                                    ),
-                                  ),
+                                      padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                                      child: Text((categoryModel.name)!.capitalize!, style: Theme.of(context).textTheme.bodySmall)),
                                 ),
                               ]),
                             ),

@@ -91,16 +91,10 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
               height: Dimensions.height20,
             ),
             Container(
-              //color: AppColors.titleColor,
-              alignment: Alignment.centerLeft,
-              margin: EdgeInsets.only(left: Dimensions.width20),
-              child: BigText(
-                color: AppColors.titleColor,
-                text: "Live des ventes",
-                size: Dimensions.height25 * 1.1,
-                fontTypo: 'Montserrat-Bold',
-              ),
-            ),
+                //color: AppColors.titleColor,
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.only(left: Dimensions.width20),
+                child: Text("Live des ventes", style: Theme.of(context).textTheme.titleMedium)),
             SizedBox(
               height: Dimensions.height20,
             ),
@@ -118,11 +112,9 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
               //color: AppColors.titleColor,
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.only(left: Dimensions.width20),
-              child: BigText(
-                color: AppColors.titleColor,
-                text: "Historique des ventes",
-                size: Dimensions.height25 * 1.1,
-                fontTypo: 'Montserrat-Bold',
+              child: Text(
+                "Historique des ventes",
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
             SizedBox(
