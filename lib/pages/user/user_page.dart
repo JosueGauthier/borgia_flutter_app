@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:borgiaflutterapp/controllers/other_users_controller.dart';
 import 'package:borgiaflutterapp/widget/profile_box.dart';
 import 'package:flutter/material.dart';

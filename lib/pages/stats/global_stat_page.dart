@@ -6,7 +6,6 @@ import '../../controllers/sale_list_controller.dart';
 import '../../controllers/shop_stat_controller.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../../widget/big_text.dart';
 import '../../widget/stat_widget/custom_button_stat.dart';
 import '../../widget/stat_widget/custom_linechart.dart';
 

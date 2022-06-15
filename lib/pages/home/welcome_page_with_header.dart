@@ -30,7 +30,6 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                   SingleChildScrollView(
                     child: GetBuilder<UserController>(builder: (userController) {
                       int compteur = 0;
-                      print(Theme.of(context).colorScheme.brightness);
 
                       bool isLightTheme = false;
                       if (Theme.of(context).scaffoldBackgroundColor == Colors.white) {

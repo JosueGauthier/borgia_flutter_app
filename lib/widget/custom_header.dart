@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../utils/colors.dart';
 import '../utils/dimensions.dart';
-import 'big_text.dart';
 
 class CustomHeader extends StatelessWidget {
   final String text;

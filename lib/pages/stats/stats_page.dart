@@ -10,7 +10,6 @@ import '../../controllers/rank_user_controller.dart';
 import '../../controllers/user_shop_stat_controller.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../../widget/big_text.dart';
 
 class StatsPage extends StatefulWidget {
   const StatsPage({Key? key}) : super(key: key);

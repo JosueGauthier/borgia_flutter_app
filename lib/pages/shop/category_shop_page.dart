@@ -10,7 +10,6 @@ import '../../routes/route_helper.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../../widget/big_text.dart';
 
 class CategoryShopPage extends StatefulWidget {
   final String pagefrom;

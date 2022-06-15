@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:borgiaflutterapp/widget/product_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

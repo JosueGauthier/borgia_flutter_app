@@ -1,9 +1,6 @@
-import 'package:borgiaflutterapp/widget/small_text.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/colors.dart';
 import '../utils/dimensions.dart';
-import 'big_text.dart';
 
 class ProductItemWidget extends StatelessWidget {
   final NetworkImage illustImage;

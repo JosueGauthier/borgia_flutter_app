@@ -1,10 +1,6 @@
-import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 
-import 'package:borgiaflutterapp/utils/colors.dart';
-import 'package:flutter/material.dart';
-
-final TextTheme customTextLightTheme = TextTheme(
+const TextTheme customTextLightTheme = TextTheme(
   //* for money amount
   titleLarge: TextStyle(color: Color(0xFF404040), fontFamily: 'OpenSansExtraBold', fontSize: 60, letterSpacing: 2),
 
@@ -30,7 +26,7 @@ bodyLarge, bodyMedium, bodySmall
 labelLarge, labelSmall */
 );
 
-final TextTheme customTextDarkTheme = TextTheme(
+const TextTheme customTextDarkTheme = TextTheme(
   //* for money amount
   titleLarge: TextStyle(color: Colors.white, fontFamily: 'OpenSansExtraBold', fontSize: 60, letterSpacing: 2),
 
@@ -59,21 +55,21 @@ bodyLarge, bodyMedium, bodySmall
 labelLarge, labelSmall */
 );
 
-final ColorScheme customLightTheme = ColorScheme.dark().copyWith(
-  primary: Color(0xFFCD5C5C),
-  secondary: Color(0xFF012E40),
-  tertiary: Color.fromARGB(200, 1, 152, 117),
-  onPrimary: Color(0xFF404040),
+final ColorScheme customLightTheme = const ColorScheme.dark().copyWith(
+  primary: const Color(0xFFCD5C5C),
+  secondary: const Color(0xFF012E40),
+  tertiary: const Color.fromARGB(200, 1, 152, 117),
+  onPrimary: const Color(0xFF404040),
   onPrimaryContainer: Colors.white,
   //surface : Color(0xFF404040)
 );
 
-final ColorScheme customDarkTheme = ColorScheme.dark().copyWith(
-  primary: Color(0xFFCD5C5C),
-  secondary: Color(0xFF012E40),
-  tertiary: Color.fromARGB(200, 1, 152, 117),
+final ColorScheme customDarkTheme = const ColorScheme.dark().copyWith(
+  primary: const Color(0xFFCD5C5C),
+  secondary: const Color(0xFF012E40),
+  tertiary: const Color.fromARGB(200, 1, 152, 117),
   onPrimary: Colors.white,
-  onPrimaryContainer: Color(0xFF404040),
+  onPrimaryContainer: const Color(0xFF404040),
 );
 
 class ThemeClass {
