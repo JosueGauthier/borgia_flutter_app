@@ -33,13 +33,13 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBody: true,
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         body: GetBuilder<SearchController>(builder: (searchController) {
           return Column(children: [
             Container(
               height: Dimensions.height45 * 2.7,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.7),
+                color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7),
               ),
               margin: EdgeInsets.only(bottom: Dimensions.height10),
               padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
@@ -68,13 +68,9 @@ class SearchPage extends StatelessWidget {
                           borderSide: const BorderSide(color: Colors.transparent),
                           borderRadius: BorderRadius.circular(5.5),
                         ),
-                        prefixIcon: Icon(Icons.search, size: Dimensions.height10 * 3, color: AppColors.titleColor),
+                        prefixIcon: Icon(Icons.search, size: Dimensions.height10 * 3, color: Theme.of(context).colorScheme.onPrimary),
                         hintText: "Recherche...",
-                        hintStyle: TextStyle(
-                          fontFamily: 'Montserrat-Bold',
-                          color: AppColors.titleColor,
-                          fontSize: Dimensions.height10 * 3,
-                        ),
+                        hintStyle: Theme.of(context).textTheme.headlineMedium,
                         filled: true,
                         fillColor: Colors.transparent,
                       ),

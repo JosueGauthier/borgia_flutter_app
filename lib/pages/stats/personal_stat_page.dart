@@ -127,7 +127,6 @@ class _MyStatPageState extends State<MyStatPage> {
               child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
                 Container(
                   margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20),
-                  //color: Colors.greenAccent,
                   height: Dimensions.height100 * 2.8,
                   width: double.maxFinite,
                   child: Column(

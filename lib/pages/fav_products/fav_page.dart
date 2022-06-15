@@ -15,16 +15,10 @@ class FavPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       body: Column(children: [
         Container(
           height: Dimensions.height45 * 2.7,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(Dimensions.height20),
-                bottomRight: Radius.circular(Dimensions.height20),
-              )),
           padding: EdgeInsets.only(top: Dimensions.height30 * 1.3, left: Dimensions.width20 * 2, right: Dimensions.width20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -33,7 +27,7 @@ class FavPage extends StatelessWidget {
                 fontTypo: 'Montserrat-Bold',
                 text: "Produits favoris",
                 size: Dimensions.height10 * 3,
-                color: AppColors.titleColor,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
             ],
           ),

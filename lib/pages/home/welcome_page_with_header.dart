@@ -22,7 +22,6 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
     Get.find<UserController>().getUserList(AppConstants.USERNAME);
     return Scaffold(
         extendBody: true,
-        backgroundColor: Colors.white,
         body: Column(
           children: [
             Expanded(
@@ -31,6 +30,12 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                   SingleChildScrollView(
                     child: GetBuilder<UserController>(builder: (userController) {
                       int compteur = 0;
+                      print(Theme.of(context).colorScheme.brightness);
+
+                      bool isLightTheme = false;
+                      if (Theme.of(context).scaffoldBackgroundColor == Colors.white) {
+                        isLightTheme = true;
+                      }
                       return (userController.isLoaded)
                           ? GestureDetector(
                               onTap: () {
@@ -51,10 +56,15 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                       ).createShader(Rect.fromLTRB(0, Dimensions.height20 * 7, rect.width, rect.height));
                                     },
                                     blendMode: BlendMode.dstIn,
-                                    child: Image.asset(
-                                      "assets/image/cloitre.png",
-                                      fit: BoxFit.contain,
-                                    ),
+                                    child: (isLightTheme == false)
+                                        ? Image.asset(
+                                            "assets/image/cloitreNuit.png",
+                                            fit: BoxFit.contain,
+                                          )
+                                        : Image.asset(
+                                            "assets/image/cloitre.png",
+                                            fit: BoxFit.contain,
+                                          ),
                                   ),
 
                                   //! Showing the header
@@ -70,11 +80,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                           child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                                             (AppConstants.isfinishedRotate == false)
                                                 ? DefaultTextStyle(
-                                                    style: TextStyle(
-                                                        fontSize: Dimensions.height45 * 0.8,
-                                                        fontFamily: 'Montserrat-Bold',
-                                                        letterSpacing: 2,
-                                                        color: Colors.white),
+                                                    style: Theme.of(context).textTheme.labelLarge!,
                                                     child: AnimatedTextKit(
                                                       animatedTexts: [
                                                         RotateAnimatedText('', duration: const Duration(milliseconds: 300)),
@@ -88,14 +94,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                       },
                                                     ),
                                                   )
-                                                : Text(
-                                                    userController.welcomeUserModel.surname!,
-                                                    style: TextStyle(
-                                                        fontSize: Dimensions.height45 * 0.8,
-                                                        fontFamily: 'Montserrat-Bold',
-                                                        letterSpacing: 2,
-                                                        color: Colors.white),
-                                                  ),
+                                                : Text(userController.welcomeUserModel.surname!, style: Theme.of(context).textTheme.labelLarge),
                                             Row(
                                               children: [
                                                 GestureDetector(
@@ -142,18 +141,15 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                             height: Dimensions.height20 * 10,
                                             width: double.maxFinite,
                                             decoration: BoxDecoration(
-                                                color: Colors.white.withOpacity(0.9), borderRadius: const BorderRadius.only(topRight: Radius.circular(50))),
+                                                color: Theme.of(context).scaffoldBackgroundColor,
+                                                borderRadius: const BorderRadius.only(topRight: Radius.circular(50))),
                                           ),
                                           Positioned(
                                             top: Dimensions.height10 * 2,
                                             left: Dimensions.height10 * 2 * 1.5,
                                             child: Text(
                                               "Solde:",
-                                              style: TextStyle(
-                                                  fontSize: Dimensions.height45 * 0.4,
-                                                  fontFamily: 'Montserrat-Bold',
-                                                  letterSpacing: 2,
-                                                  color: AppColors.titleColor),
+                                              style: Theme.of(context).textTheme.bodySmall,
                                             ),
                                           ),
                                           Center(
@@ -162,11 +158,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                 SizedBox(height: Dimensions.height20 * 1.8),
                                                 Text(
                                                   userController.userList[0].balance + "€",
-                                                  style: TextStyle(
-                                                      fontSize: Dimensions.height45 * 1.3,
-                                                      fontFamily: 'OpenSansExtraBold',
-                                                      letterSpacing: 2,
-                                                      color: AppColors.titleColor),
+                                                  style: Theme.of(context).textTheme.titleLarge,
                                                 ),
                                               ],
                                             ),
@@ -179,7 +171,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                   Column(
                                     children: [
                                       SizedBox(
-                                        height: Dimensions.height100 * 4,
+                                        height: Dimensions.height100 * 4.2,
                                       ),
                                       //! Showing the body
                                       const WelcomePage(),

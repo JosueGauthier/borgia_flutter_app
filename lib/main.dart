@@ -1,6 +1,8 @@
 import 'package:borgiaflutterapp/routes/route_helper.dart';
+import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
@@ -23,18 +25,19 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
     return GetMaterialApp(
-      theme: ThemeData(
-        textSelectionTheme: const TextSelectionThemeData(
-          cursorColor: AppColors.greenEmerald,
-          selectionColor: AppColors.greenEmerald,
-          selectionHandleColor: AppColors.greenEmerald,
-        ),
-      ),
+      //theme: ThemeData(
+      //  textSelectionTheme: const TextSelectionThemeData(
+      //    cursorColor: AppColors.greenEmerald,
+      //    selectionColor: AppColors.greenEmerald,
+      //    selectionHandleColor: AppColors.greenEmerald,
+      //  ),
+      //),
       debugShowCheckedModeBanner: false,
-      // themeMode: ThemeMode.system,
-      // theme: ThemeClass.lightTheme,
-      // darkTheme: ThemeClass.darkTheme,
+      themeMode: ThemeMode.system,
+      theme: ThemeClass.lightTheme,
+      darkTheme: ThemeClass.darkTheme,
       defaultTransition: Transition.fadeIn,
       title: 'Flutter Demo',
       initialRoute: RouteHelper.getSplashPage(),

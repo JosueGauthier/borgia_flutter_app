@@ -28,11 +28,9 @@ class _WelcomePageState extends State<WelcomePage> {
         Container(
           alignment: Alignment.centerLeft,
           margin: EdgeInsets.only(left: Dimensions.width20 * 1.5),
-          child: BigText(
-            color: AppColors.titleColor,
-            text: "Liste des magasins",
-            size: Dimensions.height25 * 1.1,
-            fontTypo: 'Montserrat-Bold',
+          child: Text(
+            "Liste des magasins",
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
 
@@ -77,14 +75,11 @@ class _WelcomePageState extends State<WelcomePage> {
 
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
-                                child: BigText(
-                                  fontTypo: 'Helvetica-Bold',
-                                  text: (shopModel.name)!.capitalize!,
-                                  size: Dimensions.height25 * 0.8,
-                                  color: AppColors.titleColor,
-                                ),
-                              ),
+                                  padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
+                                  child: Text(
+                                    (shopModel.name)!.capitalize!,
+                                    style: Theme.of(context).textTheme.bodySmall,
+                                  )),
                             ),
                           ]),
                         );

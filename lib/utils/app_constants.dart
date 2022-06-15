@@ -13,7 +13,6 @@ class AppConstants {
   static const String PRODUCT_URI_NAME = "/api-links/shops/productsv2/?name="; //via name
 
   //* Stat uri
-  static const String ALL_SALELIST_URI = "/api-links/sale/sale/";
   static const String YEAR_SALELIST_URI = "/api-links/history/";
   static const String HOUR_SALELIST_URI = "/api-links/live-sales/";
   static const String USER_SALELIST_URI = "/api-links/sale/user-history-allsale/?sender=";
@@ -22,7 +21,7 @@ class AppConstants {
   static const String RANK_USER_SHOP_STAT_URI = "/api-links/sale/rank-user-shop/";
   static const String RANK_USER_PRODUCT_STAT_URI = "/api-links/sale/rank-user-product/?id=";
 
-  // ? what is this
+  //* for end rotation of name on WelcomePageWithHeader
   static bool isfinishedRotate = false;
 
   //* auth end points
@@ -42,10 +41,8 @@ class AppConstants {
   static const String APP_NAME = "BorgiaApp";
   static const int APP_VERSION = 1;
   static const String BASE_URL = "https://borgia.josue.to";
-  static const String UPLOAD_URL = "/uploads/";
   static const String CART_LIST = "Cart-list";
   static const String IDENTIFIERS_LIST = "Identifiers-list";
 
-  static List CAT_LIST = [];
   static List CAT_LIST_MODULE = [];
 }

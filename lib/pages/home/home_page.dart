@@ -68,10 +68,11 @@ class _HomePageState extends State<HomePage> {
             child: pages.elementAt(_selectedIndex),
           ),
           bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: Colors.white.withOpacity(0.85),
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            //Colors.white.withOpacity(0.85),
             elevation: 0,
             selectedItemColor: AppColors.mainColor,
-            unselectedItemColor: Colors.black,
+            unselectedItemColor: Theme.of(context).colorScheme.onPrimary,
             type: BottomNavigationBarType.fixed,
             currentIndex: _selectedIndex,
             onTap: _onItemTapped,

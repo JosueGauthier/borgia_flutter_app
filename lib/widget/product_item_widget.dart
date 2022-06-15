@@ -47,24 +47,33 @@ class ProductItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Flexible(
-                  child: SmallText(
+                  child: Text(
+                    titleText,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+
+                  /* SmallText(
                     fontTypo: 'Helvetica-Bold',
                     text: titleText,
                     size: Dimensions.height25 * 0.8,
                     color: AppColors.titleColor,
                     allowOverFlow: true,
                     maxLines: 1,
-                  ),
+                  ), */
                 ),
                 SizedBox(
                   height: Dimensions.height10,
                 ),
-                BigText(
+                Text(
+                  "$priceProduct €",
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
+                /* BigText(
                   fontTypo: 'Montserrat-Bold',
                   size: Dimensions.height20 * 1.2,
                   text: "$priceProduct €",
                   color: AppColors.secondColor,
-                ),
+                ), */
               ],
             ),
           ),

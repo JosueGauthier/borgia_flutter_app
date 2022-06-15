@@ -1,4 +1,88 @@
+import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/material.dart';
+
+import 'package:borgiaflutterapp/utils/colors.dart';
+import 'package:flutter/material.dart';
+
+final TextTheme customTextLightTheme = TextTheme(
+  //* for money amount
+  titleLarge: TextStyle(color: Color(0xFF404040), fontFamily: 'OpenSansExtraBold', fontSize: 60, letterSpacing: 2),
+
+  //* for Bonjour, white
+  labelLarge: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 36, letterSpacing: 2),
+
+  //* for Liste des magasins
+  titleMedium: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 25),
+
+  //* for Solde
+  bodySmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 18),
+
+/*   displayLarge, displayMedium, displaySmall 
+headlineMedium, headlineSmall 
+titleLarge, titleMedium, titleSmall 
+bodyLarge, bodyMedium, bodySmall 
+labelLarge, labelSmall */
+);
+
+final TextTheme customTextDarkTheme = TextTheme(
+  //* for money amount
+  titleLarge: TextStyle(color: Colors.white, fontFamily: 'OpenSansExtraBold', fontSize: 60, letterSpacing: 2),
+
+  //* for Bonjour, white
+  labelLarge: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 36, letterSpacing: 2),
+
+  //* for Liste des magasins
+  titleMedium: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 25),
+
+  //* for all title of page -> Recherche..., Statistiques ...
+  headlineMedium: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 30, letterSpacing: 2),
+
+  //* for Solde, item List
+  bodySmall: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 18),
+
+  //* for price
+  labelSmall: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 22),
+
+/*   displayLarge, displayMedium, displaySmall 
+headlineMedium, headlineSmall 
+titleLarge, titleMedium, titleSmall 
+bodyLarge, bodyMedium, bodySmall 
+labelLarge, labelSmall */
+);
+
+final ColorScheme customLightTheme = ColorScheme.dark().copyWith(
+  primary: Color(0xFFCD5C5C),
+  secondary: Color(0xFF012E40),
+  tertiary: Color.fromARGB(200, 1, 152, 117),
+  onPrimary: Color(0xFF404040),
+);
+
+final ColorScheme customDarkTheme = ColorScheme.dark().copyWith(
+  primary: Color(0xFFCD5C5C),
+  secondary: Color(0xFF012E40),
+  tertiary: Color.fromARGB(200, 1, 152, 117),
+  onPrimary: Colors.white,
+);
+
+class ThemeClass {
+  static ThemeData lightTheme = ThemeData(
+    scaffoldBackgroundColor: Colors.white,
+    colorScheme: customLightTheme,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.white,
+    ),
+    textTheme: customTextLightTheme,
+  );
+
+  static ThemeData darkTheme = ThemeData(
+    scaffoldBackgroundColor: AppColors.darkBackGroundColor,
+    colorScheme: customDarkTheme,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.darkBackGroundColor,
+    ),
+    textTheme: customTextDarkTheme,
+  );
+}
 
 class AppColors {
   static const Color mainColor = Color(0xFFCD5C5C);
@@ -7,6 +91,8 @@ class AppColors {
   static const Color titleColor = Color(0xFF404040);
   static const Color greyColor = Color(0xFF8B8B8C);
   static const Color whiteGreyColor = Color.fromARGB(255, 243, 243, 243);
+
+  static const Color darkBackGroundColor = Color(0xFF121212);
 }
 
 class ListStatColors {
