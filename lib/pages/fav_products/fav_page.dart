@@ -17,7 +17,6 @@ class FavPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.white,
       body: Column(children: [
         Container(
           height: Dimensions.height45 * 2.7,

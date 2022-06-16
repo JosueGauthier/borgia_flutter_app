@@ -12,7 +12,6 @@ class ProductItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //color: Colors.white,
       margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10, bottom: Dimensions.height10),
       child: Row(children: [
         //! image section
@@ -22,7 +21,6 @@ class ProductItemWidget extends StatelessWidget {
           height: Dimensions.height100 * 0.6,
           width: Dimensions.height100 * 0.6,
           decoration: BoxDecoration(
-            //color: Colors.amber,
             image: DecorationImage(
               fit: BoxFit.contain,
               image: illustImage,

@@ -33,7 +33,6 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBody: true,
-        //backgroundColor: Colors.white,
         body: GetBuilder<SearchController>(builder: (searchController) {
           return Column(children: [
             Container(

@@ -63,13 +63,11 @@ class _HomePageState extends State<HomePage> {
       onWillPop: () async => false,
       child: Scaffold(
           extendBody: true,
-          //backgroundColor: Colors.white,
           body: Center(
             child: pages.elementAt(_selectedIndex),
           ),
           bottomNavigationBar: BottomNavigationBar(
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor!.withOpacity(0.85),
-            //Colors.white.withOpacity(0.85),
             elevation: 0,
             selectedItemColor: AppColors.mainColor,
             unselectedItemColor: Theme.of(context).colorScheme.onPrimary,

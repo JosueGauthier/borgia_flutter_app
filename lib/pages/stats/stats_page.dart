@@ -33,6 +33,8 @@ class _StatsPageState extends State<StatsPage> {
 
     Get.find<UserShopStatController>().getUserShopStatList();
 
+    Get.find<UserShopStatController>().getUserRank();
+
     return MaterialApp(
       themeMode: ThemeMode.system,
       theme: ThemeClass.lightTheme,

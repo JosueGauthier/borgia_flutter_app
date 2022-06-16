@@ -11,4 +11,8 @@ class UserShopStatRepo extends GetxService {
   Future<Response> getUserShopStatList() async {
     return await apiClient.getData(AppConstants.USER_SHOP_STAT_URI + AppConstants.USERNAME);
   }
+
+  Future<Response> getUserRank() async {
+    return await apiClient.getData(AppConstants.RANK_USER_URI);
+  }
 }

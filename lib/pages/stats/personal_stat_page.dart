@@ -1,4 +1,5 @@
 import 'package:borgiaflutterapp/controllers/user_shop_stat_controller.dart';
+import 'package:borgiaflutterapp/models/user_rank_models.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:borgiaflutterapp/widget/stat_widget/circular_indicator.dart';
 import 'package:flutter/material.dart';
@@ -115,14 +116,16 @@ class _MyStatPageState extends State<MyStatPage> {
         return GetBuilder<UserShopStatController>(builder: (userShopStatController) {
           if (userShopStatController.isLoaded) {
             List montantMagasins = userShopStatController.userShopStatList[0].montantMagasins;
-
             double montantAchats = userShopStatController.userShopStatList[0].montantAchats;
             double montantAchatsPercent = calculatePercent(montantAchats);
             int numberofHundredsmontantAchats = countHundredStep(montantAchats);
-
             int qtyAchats = userShopStatController.userShopStatList[0].quantiteAchatsTotal;
             double qtyAchatsPercent = calculatePercent(qtyAchats);
             int numberofHundredsqtyAchats = countHundredStep(qtyAchats);
+
+            int numberOfUsers = userShopStatController.numberOfUsers;
+            List userRank = userShopStatController.userRank;
+
             return SingleChildScrollView(
               child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
                 Container(
@@ -156,7 +159,7 @@ class _MyStatPageState extends State<MyStatPage> {
                             child: Center(
                               child: BigText(
                                 fontTypo: 'Helvetica-Bold',
-                                text: "# 12 / 250 ",
+                                text: "# ${userRank[0].index} / $numberOfUsers",
                                 size: Dimensions.height25 * 1,
                                 color: Colors.white,
                               ),

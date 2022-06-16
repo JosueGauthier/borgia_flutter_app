@@ -26,7 +26,6 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
         List<ListOfProd>? listOfProd = rankUserProductController.productStatList[0].listOfProd;
 
         return Scaffold(
-          //backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
               //! Podium

@@ -31,8 +31,6 @@ class DialogSalePage extends StatefulWidget {
 }
 
 class DialogSalePageState extends State<DialogSalePage> {
-  Color _addRemoveColor = AppColors.secondColor;
-  Color _quantityColor = AppColors.secondColor;
   int qty = 0;
   bool txtbuttonpressed = true;
 
@@ -69,16 +67,19 @@ class DialogSalePageState extends State<DialogSalePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Color addRemoveColor = AppColors.secondColor;
+    Color quantityColor = Theme.of(context).colorScheme.onPrimary;
     return GetBuilder<SalesController>(builder: (salesController) {
       return AlertDialog(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.height20)),
-          title: BigText(
-            text: widget.productModel.name.toString(),
-            fontTypo: 'Montserrat-Bold',
-            size: Dimensions.height10 * 3,
-            color: AppColors.titleColor,
-          ),
+          title: Text(widget.productModel.name.toString(), style: Theme.of(context).textTheme.labelSmall),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,47 +95,38 @@ class DialogSalePageState extends State<DialogSalePage> {
                         setState(() {
                           widget.productListController.setQuantity(false);
 
-                          _quantityColor = AppColors.mainColor;
+                          quantityColor = AppColors.mainColor;
 
                           Timer(
                               const Duration(milliseconds: 200),
                               (() => setState(() {
-                                    _quantityColor = AppColors.secondColor;
+                                    quantityColor = AppColors.secondColor;
                                   })));
                           if (widget.productListController.inCartItem <= 0) {
                             setState(() {
-                              _addRemoveColor = AppColors.mainColor;
+                              addRemoveColor = AppColors.mainColor;
                             });
 
                             Timer(
                                 const Duration(milliseconds: 500),
                                 (() => setState(() {
-                                      _addRemoveColor = AppColors.secondColor;
+                                      addRemoveColor = AppColors.secondColor;
                                     })));
                           }
                         });
                       },
                       child: AppIcon(
                         iconData: Icons.remove,
-                        backgroundColor: _addRemoveColor,
+                        backgroundColor: addRemoveColor,
                         iconColor: Colors.white,
                         iconSize: Dimensions.height30 * 1,
                       ),
                     ),
                     Row(
                       children: [
-                        BigText(
-                          text: "${widget.productModel.manualPrice}€ x ",
-                          color: AppColors.titleColor,
-                          size: Dimensions.height30,
-                          fontTypo: 'OpenSansExtraBold',
-                        ),
-                        BigText(
-                          text: widget.productListController.inCartItem.toString(),
-                          color: _quantityColor,
-                          size: Dimensions.height30,
-                          fontTypo: 'OpenSansExtraBold',
-                        ),
+                        Text("${widget.productModel.manualPrice}€ x ", style: Theme.of(context).textTheme.labelSmall),
+                        Text(widget.productListController.inCartItem.toString(),
+                            style: TextStyle(color: quantityColor, fontFamily: 'Montserrat-Bold', fontSize: 20, overflow: TextOverflow.ellipsis)),
                       ],
                     ),
                     GestureDetector(
@@ -142,12 +134,12 @@ class DialogSalePageState extends State<DialogSalePage> {
                         setState(() {
                           widget.productListController.setQuantity(true);
 
-                          _quantityColor = AppColors.greenEmerald;
+                          quantityColor = AppColors.greenEmerald;
 
                           Timer(
                               const Duration(milliseconds: 200),
                               (() => setState(() {
-                                    _quantityColor = AppColors.secondColor;
+                                    quantityColor = AppColors.secondColor;
                                   })));
                         });
                       },
@@ -165,58 +157,52 @@ class DialogSalePageState extends State<DialogSalePage> {
                 height: Dimensions.height20,
               ),
               ElevatedButton(
-                  onPressed: () {
-                    _order(salesController);
+                onPressed: () {
+                  _order(salesController);
 
-                    setState(() {
-                      txtbuttonpressed = !txtbuttonpressed;
-                    });
+                  setState(() {
+                    txtbuttonpressed = !txtbuttonpressed;
+                  });
 
-                    Timer(
-                        const Duration(seconds: 3),
-                        (() => setState(() {
-                              txtbuttonpressed = !txtbuttonpressed;
-                            })));
-                  },
-                  style: ButtonStyle(
-                      elevation: MaterialStateProperty.all(0),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: const BorderSide(color: AppColors.whiteGreyColor))),
-                      padding: MaterialStateProperty.all(
-                          EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-                        return AppColors.greenEmerald;
-                      })),
-                  child: BigText(
-                    text: "Je me bucque !",
-                    size: Dimensions.height20 * 1,
-                    color: Colors.white,
-                    fontTypo: 'Montserrat-Bold',
-                  )),
+                  Timer(
+                      const Duration(seconds: 3),
+                      (() => setState(() {
+                            txtbuttonpressed = !txtbuttonpressed;
+                          })));
+                },
+                style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                      return AppColors.greenEmerald;
+                    })),
+                child: Text(
+                  "Je me bucque !",
+                  style: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 16, letterSpacing: 1, overflow: TextOverflow.ellipsis),
+                ),
+              ),
             ],
           ),
           actions: <Widget>[
             Padding(
-              padding: EdgeInsets.only(right: Dimensions.height10 * 2),
+              padding: EdgeInsets.only(right: Dimensions.height10 * 3),
               child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  style: ButtonStyle(
-                      elevation: MaterialStateProperty.all(0),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(50), side: const BorderSide(color: AppColors.whiteGreyColor))),
-                      padding: MaterialStateProperty.all(
-                          EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-                        return AppColors.greyColor;
-                      })),
-                  child: BigText(
-                    text: "Retour",
-                    size: Dimensions.height20,
-                    color: Colors.white,
-                    fontTypo: 'Montserrat-Bold',
-                  )),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+                    padding: MaterialStateProperty.all(
+                        EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                      return AppColors.greyColor;
+                    })),
+                child: Text(
+                  "Retour",
+                  style: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 16, overflow: TextOverflow.ellipsis, letterSpacing: 1),
+                ),
+              ),
             ),
           ]);
     });

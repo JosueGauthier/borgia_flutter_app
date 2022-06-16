@@ -36,9 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        //backgroundColor: Colors.white,
-        body: GetBuilder<UserController>(builder: (userController) {
+    return Scaffold(body: GetBuilder<UserController>(builder: (userController) {
       UserModel userModel = userController.userList[0];
       if (userController.isLoaded) {
         return SingleChildScrollView(

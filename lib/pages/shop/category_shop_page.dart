@@ -30,7 +30,6 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
     Get.find<CategoryOfShopController>().getCategoryList(widget.shopId);
 
     return Scaffold(
-      //backgroundColor: Colors.white,
       body: Column(
         children: [
           //! header

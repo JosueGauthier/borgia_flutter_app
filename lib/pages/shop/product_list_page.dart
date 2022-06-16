@@ -29,7 +29,6 @@ class _ProductListPageState extends State<ProductListPage> {
     Get.find<ProductListController>().getProduct(widget.categoryId);
 
     return Scaffold(
-      //backgroundColor: Colors.white,
       body: Column(
         children: [
           //! header Text  + cart

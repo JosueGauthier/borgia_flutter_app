@@ -64,7 +64,6 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      //backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: GetBuilder<AuthController>(
           builder: (authcontroller) {

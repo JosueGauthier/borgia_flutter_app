@@ -35,7 +35,6 @@ class LastPurchases extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.white,
       body: Column(children: [
         const CustomHeader(text: "Historique"),
         GetBuilder<CartController>(

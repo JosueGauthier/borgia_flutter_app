@@ -31,16 +31,13 @@ class _UserPageState extends State<UserPage> {
     Get.put(OtherUserController);
     Get.find<OtherUserController>().getUserList(widget.userUsername);
 
-    return Scaffold(
-        //backgroundColor: Colors.white,
-        body: GetBuilder<OtherUserController>(builder: (userController) {
+    return Scaffold(body: GetBuilder<OtherUserController>(builder: (userController) {
       return userController.isLoaded
           ? SingleChildScrollView(
               child: Column(children: [
                 Container(
                   height: Dimensions.height45 * 2.7,
                   decoration: BoxDecoration(
-                      //color: Colors.white,
                       borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(Dimensions.height20),
                     bottomRight: Radius.circular(Dimensions.height20),
