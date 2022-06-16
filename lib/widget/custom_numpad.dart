@@ -170,7 +170,7 @@ class NumberButton extends StatelessWidget {
         child: Center(
           child: Text(
             number.toString(),
-            style: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 25),
+            style: TextStyle(color: Theme.of(context).colorScheme.surface, fontFamily: 'Montserrat-Bold', fontSize: 25),
           ),
         ),
       ),

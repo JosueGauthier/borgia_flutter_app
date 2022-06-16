@@ -77,7 +77,7 @@ class FlickerTextState extends State<FlickerText> with TickerProviderStateMixin 
           spreadRadius: 200.0,
         ),
       ],
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.surface,
       fontFamily: "RetroSignature",
     );
     return widget.shouldFlicker

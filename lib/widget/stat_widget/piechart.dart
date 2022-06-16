@@ -135,7 +135,7 @@ class _Badge extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         shape: BoxShape.circle,
         border: Border.all(
           color: borderColor,

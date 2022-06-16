@@ -118,7 +118,7 @@ class DialogSalePageState extends State<DialogSalePage> {
                       child: AppIcon(
                         iconData: Icons.remove,
                         backgroundColor: addRemoveColor,
-                        iconColor: Colors.white,
+                        iconColor: Theme.of(context).colorScheme.surface,
                         iconSize: Dimensions.height30 * 1,
                       ),
                     ),
@@ -146,7 +146,7 @@ class DialogSalePageState extends State<DialogSalePage> {
                       child: AppIcon(
                         iconData: Icons.add,
                         backgroundColor: AppColors.secondColor,
-                        iconColor: Colors.white,
+                        iconColor: Theme.of(context).colorScheme.surface,
                         iconSize: Dimensions.height30,
                       ),
                     )
@@ -178,7 +178,12 @@ class DialogSalePageState extends State<DialogSalePage> {
                     })),
                 child: Text(
                   "Je me bucque !",
-                  style: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 16, letterSpacing: 1, overflow: TextOverflow.ellipsis),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.surface,
+                      fontFamily: 'Montserrat-Bold',
+                      fontSize: 16,
+                      letterSpacing: 1,
+                      overflow: TextOverflow.ellipsis),
                 ),
               ),
             ],
@@ -200,7 +205,12 @@ class DialogSalePageState extends State<DialogSalePage> {
                     })),
                 child: Text(
                   "Retour",
-                  style: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 16, overflow: TextOverflow.ellipsis, letterSpacing: 1),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.surface,
+                      fontFamily: 'Montserrat-Bold',
+                      fontSize: 16,
+                      overflow: TextOverflow.ellipsis,
+                      letterSpacing: 1),
                 ),
               ),
             ),

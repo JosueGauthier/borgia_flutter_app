@@ -21,9 +21,7 @@ class _WelcomePageState extends State<WelcomePage> {
     return Column(
       children: [
         //!Liste des magasins
-        SizedBox(
-          height: Dimensions.height10,
-        ),
+
         Container(
           alignment: Alignment.centerLeft,
           margin: EdgeInsets.only(left: Dimensions.width20 * 1.5),
@@ -31,6 +29,10 @@ class _WelcomePageState extends State<WelcomePage> {
             "Liste des magasins",
             style: Theme.of(context).textTheme.titleMedium,
           ),
+        ),
+
+        SizedBox(
+          height: Dimensions.height10,
         ),
 
         //! List of shops scroll view
@@ -56,9 +58,11 @@ class _WelcomePageState extends State<WelcomePage> {
 
                             Container(
                               margin: EdgeInsets.only(bottom: Dimensions.height10),
-                              height: Dimensions.height100 * 0.6,
-                              width: Dimensions.height100 * 0.6,
+                              height: Dimensions.height100 * 0.7,
+                              width: Dimensions.height100 * 0.7,
                               decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).colorScheme.surface,
                                 image: DecorationImage(
                                   fit: BoxFit.contain,
                                   image: NetworkImage(shopModel.image!),

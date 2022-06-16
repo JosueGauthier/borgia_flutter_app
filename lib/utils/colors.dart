@@ -26,7 +26,7 @@ const TextTheme customTextLightTheme = TextTheme(
 const TextTheme customTextDarkTheme = TextTheme(
   //* for money amount
   titleLarge: TextStyle(
-    color: Color.fromARGB(255, 230, 230, 230),
+    color: Color.fromARGB(255, 220, 220, 220),
     fontFamily: 'OpenSansExtraBold',
     fontSize: 50,
     letterSpacing: 2,
@@ -35,23 +35,23 @@ const TextTheme customTextDarkTheme = TextTheme(
 
   //* for Bonjour, white
   labelLarge:
-      TextStyle(color: Color.fromARGB(255, 230, 230, 230), fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 2, overflow: TextOverflow.ellipsis),
+      TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 2, overflow: TextOverflow.ellipsis),
 
   //* for Liste des magasins
-  titleMedium: TextStyle(color: Color.fromARGB(255, 230, 230, 230), fontFamily: 'Montserrat-Bold', fontSize: 20, overflow: TextOverflow.ellipsis),
+  titleMedium: TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 20, overflow: TextOverflow.ellipsis),
 
   //* for all title of page -> Recherche..., Statistiques ...
   headlineMedium:
-      TextStyle(color: Color.fromARGB(255, 230, 230, 230), fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 1.5, overflow: TextOverflow.ellipsis),
+      TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 1.5, overflow: TextOverflow.ellipsis),
 
   //* for Solde, item List
-  bodySmall: TextStyle(color: Color.fromARGB(255, 230, 230, 230), fontFamily: 'Montserrat-Bold', fontSize: 16, overflow: TextOverflow.ellipsis),
+  bodySmall: TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 16, overflow: TextOverflow.ellipsis),
 
   //* for price
-  labelSmall: TextStyle(color: Color.fromARGB(255, 230, 230, 230), fontFamily: 'Montserrat-Bold', fontSize: 20, overflow: TextOverflow.ellipsis),
+  labelSmall: TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 20, overflow: TextOverflow.ellipsis),
 
   //* for mdp and other very small text
-  displaySmall: TextStyle(color: Color.fromARGB(255, 230, 230, 230), fontFamily: 'Montserrat-Bold', fontSize: 12, overflow: TextOverflow.ellipsis),
+  displaySmall: TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 12, overflow: TextOverflow.ellipsis),
 );
 
 final ColorScheme customLightTheme = const ColorScheme.dark().copyWith(
@@ -59,15 +59,17 @@ final ColorScheme customLightTheme = const ColorScheme.dark().copyWith(
   secondary: const Color(0xFF012E40),
   tertiary: const Color.fromARGB(200, 1, 152, 117),
   onPrimary: const Color(0xFF404040),
-  onPrimaryContainer: const Color.fromARGB(255, 243, 243, 243),
+  onPrimaryContainer: Colors.white,
+  surface: Colors.white,
 );
 
 final ColorScheme customDarkTheme = const ColorScheme.dark().copyWith(
   primary: const Color(0xFFCD5C5C),
   secondary: const Color(0xFF012E40),
   tertiary: const Color.fromARGB(200, 1, 152, 117),
-  onPrimary: Colors.white,
+  onPrimary: Color.fromARGB(255, 220, 220, 220),
   onPrimaryContainer: const Color(0xFF404040),
+  surface: Color.fromARGB(255, 220, 220, 220),
 );
 
 class ThemeClass {

@@ -90,7 +90,7 @@ class _UserPageState extends State<UserPage> {
                           height: Dimensions.height100 * 2.5,
                           decoration: BoxDecoration(
                               border: Border.all(width: 3, color: AppColors.secondColor),
-                              color: Colors.white,
+                              color: Theme.of(context).colorScheme.surface,
                               shape: BoxShape.circle,
                               image: const DecorationImage(fit: BoxFit.contain, image: AssetImage("assets/image/logoAMAngers.jpg")))),
                     ],
@@ -102,12 +102,12 @@ class _UserPageState extends State<UserPage> {
                 (userController.welcomeUserModel.surname == null)
                     ? Container()
                     : ProfileBox(
-                        textColor: Colors.white,
+                        textColor: Theme.of(context).colorScheme.surface,
                         backgroundcolor: AppColors.mainColor,
                         icon: Icons.attach_money,
                         text: "Transfert vers : ${(userController.welcomeUserModel.surname)?.capitalize!}",
                         isEditable: false,
-                        iconcolor: Colors.white),
+                        iconcolor: Theme.of(context).colorScheme.surface),
                 SizedBox(
                   height: Dimensions.height20,
                 ),

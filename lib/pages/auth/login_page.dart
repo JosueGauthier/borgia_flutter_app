@@ -117,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                                     BigText(
                                       fontTypo: 'OpenSansExtraBold',
                                       text: "Bienvenue, ",
-                                      color: Colors.white,
+                                      color: Theme.of(context).colorScheme.surface,
                                       size: Dimensions.height30 * 1.2,
                                     )
                                   ],
@@ -248,7 +248,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: BigText(
                             text: "Login",
                             size: Dimensions.height20,
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.surface,
                             fontTypo: 'Montserrat-Bold',
                           )),
                     ),

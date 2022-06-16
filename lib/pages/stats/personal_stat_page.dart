@@ -161,7 +161,7 @@ class _MyStatPageState extends State<MyStatPage> {
                                 fontTypo: 'Helvetica-Bold',
                                 text: "# ${userRank[0].index} / $numberOfUsers",
                                 size: Dimensions.height25 * 1,
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.surface,
                               ),
                             ),
                           ),

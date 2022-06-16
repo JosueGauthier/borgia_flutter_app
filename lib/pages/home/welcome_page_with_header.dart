@@ -32,7 +32,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                       int compteur = 0;
 
                       bool isLightTheme = false;
-                      if (Theme.of(context).scaffoldBackgroundColor == Colors.white) {
+                      if (Theme.of(context).scaffoldBackgroundColor == Theme.of(context).colorScheme.surface) {
                         isLightTheme = true;
                       }
                       return (userController.isLoaded)
@@ -48,10 +48,10 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                 children: [
                                   ShaderMask(
                                     shaderCallback: (rect) {
-                                      return const LinearGradient(
+                                      return LinearGradient(
                                         begin: Alignment.center,
                                         end: Alignment.bottomCenter,
-                                        colors: [Colors.white, Colors.transparent],
+                                        colors: [Theme.of(context).colorScheme.surface, Colors.transparent],
                                       ).createShader(Rect.fromLTRB(0, Dimensions.height20 * 7, rect.width, rect.height));
                                     },
                                     blendMode: BlendMode.dstIn,
@@ -106,7 +106,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                     height: Dimensions.height45 * 1.2,
                                                     child: Icon(
                                                       Icons.history_rounded,
-                                                      color: Colors.white,
+                                                      color: Theme.of(context).colorScheme.surface,
                                                       size: Dimensions.height20 * 1.5,
                                                     ),
                                                   ),
@@ -121,7 +121,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                     height: Dimensions.height45 * 1.2,
                                                     child: Icon(
                                                       Icons.settings_sharp,
-                                                      color: Colors.white,
+                                                      color: Theme.of(context).colorScheme.surface,
                                                       size: Dimensions.height20 * 1.5,
                                                     ),
                                                   ),

@@ -54,13 +54,17 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                               Get.toNamed(RouteHelper.getProductList(categoryModel.id!, categoryModel.moduleId!, widget.shopId, "home"));
                             },
                             child: Container(
-                              margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width20, bottom: Dimensions.height15),
+                              margin: EdgeInsets.only(right: Dimensions.width20, bottom: Dimensions.height15),
                               child: Row(children: [
+                                //! image
+
                                 Container(
                                   margin: EdgeInsets.only(bottom: Dimensions.height10),
-                                  height: Dimensions.height100 * 0.6,
-                                  width: Dimensions.height100 * 0.6,
+                                  height: Dimensions.height100 * 0.7,
+                                  width: Dimensions.height100 * 0.7,
                                   decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Theme.of(context).colorScheme.surface,
                                     image: DecorationImage(
                                       fit: BoxFit.contain,
                                       image: NetworkImage(categoryModel.image!),

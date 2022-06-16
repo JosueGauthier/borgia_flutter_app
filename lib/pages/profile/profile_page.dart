@@ -106,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   /* ProfileBox(
                             textColor: AppColors.titleColor,
-                            backgroundcolor: AppColors.whiteGreyColor,
+                            backgroundcolor: AppTheme.of(context).colorScheme.surfaceGreyColor,
                             icon: Icons.email,
                             text: userModel.email.toString(),
                             iconcolor: AppColors.titleColor,
@@ -131,14 +131,14 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(
               height: Dimensions.height20,
             ),
-            ProfileBox(
-              textColor: Colors.white,
+            /* ProfileBox(
+              textColor: Theme.of(context).colorScheme.surface,
               backgroundcolor: (userModel.theme.toString() == "dark") ? AppColors.titleColor : AppColors.mainColor,
               icon: (userModel.theme.toString() == "dark") ? Icons.dark_mode : Icons.light_mode,
               text: userModel.theme.toString().capitalize!,
-              iconcolor: Colors.white,
+              iconcolor: Theme.of(context).colorScheme.surface,
               isEditable: false,
-            ),
+            ), */
             SizedBox(
               height: Dimensions.height20,
             ),
@@ -196,7 +196,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                 fontTypo: 'Helvetica-Bold',
                                                 text: text,
                                                 size: Dimensions.height25 * 0.8,
-                                                color: AppColors.white,
+                                                color: AppTheme.of(context).colorScheme.surface,
                                               ),
                                             ],
                                           )));
@@ -213,22 +213,22 @@ class _ProfilePageState extends State<ProfilePage> {
                   height: Dimensions.height20 * 1,
                 ),
                 const ProfileBox(
-                  textColor: Colors.white,
+                  textColor: Theme.of(context).colorScheme.surface,
                   backgroundcolor: AppColors.mainColor,
                   icon: Icons.notifications,
                   text: "Notifications",
-                  iconcolor: Colors.white,
+                  iconcolor: Theme.of(context).colorScheme.surface,
                   isEditable: false,
                 ),
                 SizedBox(
                   height: Dimensions.height20,
                 ), */
-            const ProfileBox(
-              textColor: Colors.white,
+            ProfileBox(
+              textColor: Theme.of(context).colorScheme.surface,
               backgroundcolor: AppColors.mainColor,
               icon: Icons.help,
               text: "Send a problem or request",
-              iconcolor: Colors.white,
+              iconcolor: Theme.of(context).colorScheme.surface,
               isEditable: false,
             ),
             SizedBox(
@@ -238,12 +238,12 @@ class _ProfilePageState extends State<ProfilePage> {
               onTap: () {
                 Get.toNamed(RouteHelper.getCreditsPage());
               },
-              child: const ProfileBox(
-                textColor: Colors.white,
+              child: ProfileBox(
+                textColor: Theme.of(context).colorScheme.surface,
                 backgroundcolor: AppColors.mainColor,
                 icon: Icons.handyman_rounded,
                 text: "Crédits",
-                iconcolor: Colors.white,
+                iconcolor: Theme.of(context).colorScheme.surface,
                 isEditable: false,
               ),
             ),
@@ -255,12 +255,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 clearIdentifSharedPref();
                 Get.toNamed(RouteHelper.getSplashPage());
               },
-              child: const ProfileBox(
-                textColor: Colors.white,
+              child: ProfileBox(
+                textColor: Theme.of(context).colorScheme.surface,
                 backgroundcolor: AppColors.mainColor,
                 icon: Icons.logout,
                 text: "Log out",
-                iconcolor: Colors.white,
+                iconcolor: Theme.of(context).colorScheme.surface,
                 isEditable: false,
               ),
             ),
