@@ -52,17 +52,14 @@ class _RankUserPageState extends State<RankUserPage> {
                               height: Dimensions.height100 * 0.6,
                               width: Dimensions.height100 * 0.6,
                               decoration: BoxDecoration(
-                                //color: Colors.amber,
                                 image: DecorationImage(
                                   fit: BoxFit.contain,
                                   image: NetworkImage(rankUserShopModel.image!),
                                 ),
-                                //borderRadius: BorderRadius.circular(Dimensions.width20)
                               ),
                             ),
                             Flexible(
                               child: Container(
-                                //color: Colors.blueAccent,
                                 margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
                                 child: Text(
                                   (rankUserShopModel.name)!.capitalize!,

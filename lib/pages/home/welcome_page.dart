@@ -53,38 +53,47 @@ class _WelcomePageState extends State<WelcomePage> {
                           onTap: () {
                             Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
                           },
-                          child: Row(children: [
-                            //! image section
+                          child: Container(
+                            margin: EdgeInsets.only(bottom: Dimensions.height15),
+                            child: Row(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.center, children: [
+                              //! image section
 
-                            Container(
-                              margin: EdgeInsets.only(bottom: Dimensions.height10),
-                              height: Dimensions.height100 * 0.7,
-                              width: Dimensions.height100 * 0.7,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).colorScheme.surface,
-                                image: DecorationImage(
-                                  fit: BoxFit.contain,
-                                  image: NetworkImage(shopModel.image!),
+                              Container(
+                                //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
+                                height: Dimensions.height100 * 0.7,
+                                width: Dimensions.height100 * 0.7,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.white,
+                                ),
+                                alignment: Alignment.center,
+                                child: Container(
+                                  height: Dimensions.height100 * 0.5,
+                                  width: Dimensions.height100 * 0.5,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.contain,
+                                      image: NetworkImage(shopModel.image!),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
+                              SizedBox(
+                                width: Dimensions.width20 * 3,
+                              ),
 
-                            SizedBox(
-                              width: Dimensions.width20 * 3,
-                            ),
+                              //! text section
 
-                            //! text section
-
-                            Expanded(
-                              child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
-                                  child: Text(
-                                    (shopModel.name)!.capitalize!,
-                                    style: Theme.of(context).textTheme.bodySmall,
-                                  )),
-                            ),
-                          ]),
+                              Container(
+                                //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  (shopModel.name)!.capitalize!,
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                ),
+                              ),
+                            ]),
+                          ),
                         );
                       }),
                 )

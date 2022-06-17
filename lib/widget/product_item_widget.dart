@@ -12,11 +12,31 @@ class ProductItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: Dimensions.width10, bottom: Dimensions.height10),
+      margin: EdgeInsets.only(right: Dimensions.width10, bottom: Dimensions.height15),
       child: Row(children: [
         //! image section
 
         Container(
+          height: Dimensions.height100 * 0.7,
+          width: Dimensions.height100 * 0.7,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.white,
+          ),
+          alignment: Alignment.center,
+          child: Container(
+            height: Dimensions.height100 * 0.5,
+            width: Dimensions.height100 * 0.5,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.contain,
+                image: illustImage,
+              ),
+            ),
+          ),
+        ),
+
+        /* Container(
           margin: EdgeInsets.only(bottom: Dimensions.height10),
           height: Dimensions.height100 * 0.7,
           width: Dimensions.height100 * 0.7,
@@ -28,7 +48,7 @@ class ProductItemWidget extends StatelessWidget {
               image: illustImage,
             ),
           ),
-        ),
+        ), */
 
         SizedBox(
           width: Dimensions.width20 * 1,

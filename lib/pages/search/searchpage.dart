@@ -8,9 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../routes/route_helper.dart';
-import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../../widget/big_text.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({
@@ -111,18 +109,28 @@ class SearchPage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
+                                  //! image section
+
                                   (searchController.searchList[index].runtimeType == ProductModel && searchController.searchList[index].isActive == false)
                                       ? Container()
                                       : Container(
-                                          margin: EdgeInsets.only(bottom: Dimensions.height10),
-                                          height: Dimensions.height100 * 0.6,
-                                          width: Dimensions.height100 * 0.6,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              fit: BoxFit.contain,
-                                              image: (searchController.searchList[index].image == null)
-                                                  ? const AssetImage("assets/image/defaultuserimage.png") as ImageProvider
-                                                  : NetworkImage(searchController.searchList[index].image),
+                                          height: Dimensions.height100 * 0.7,
+                                          width: Dimensions.height100 * 0.7,
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.white,
+                                          ),
+                                          alignment: Alignment.center,
+                                          child: Container(
+                                            height: Dimensions.height100 * 0.5,
+                                            width: Dimensions.height100 * 0.5,
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                fit: BoxFit.contain,
+                                                image: (searchController.searchList[index].image == null)
+                                                    ? const AssetImage("assets/image/defaultuserimage.png") as ImageProvider
+                                                    : NetworkImage(searchController.searchList[index].image),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -136,19 +144,14 @@ class SearchPage extends StatelessWidget {
                                   (searchController.searchList[index].runtimeType == ProductModel && searchController.searchList[index].isActive == false)
                                       ? Container()
                                       : Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                          BigText(
-                                            fontTypo: 'Helvetica-Bold',
-                                            size: Dimensions.height25 * 0.8,
-                                            color: AppColors.titleColor,
-                                            text: (searchController.searchList[index].name.toString()).capitalize!,
+                                          Text(
+                                            (searchController.searchList[index].name.toString()).capitalize!,
+                                            style: Theme.of(context).textTheme.bodySmall,
                                           ),
                                           (searchController.searchList[index].runtimeType == UserModel)
-                                              ? BigText(
-                                                  fontTypo: 'Helvetica-Bold',
-                                                  size: Dimensions.height25 * 0.8,
-                                                  color: AppColors.titleColor,
-                                                  text:
-                                                      "${(searchController.searchList[index].firstName.toString()).capitalize!} ${(searchController.searchList[index].lastName.toString()).capitalize!}",
+                                              ? Text(
+                                                  "${(searchController.searchList[index].firstName.toString()).capitalize!} ${(searchController.searchList[index].lastName.toString()).capitalize!}",
+                                                  style: Theme.of(context).textTheme.bodySmall,
                                                 )
                                               : Container(),
                                         ]),

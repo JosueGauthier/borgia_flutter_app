@@ -3,6 +3,7 @@ import 'package:borgiaflutterapp/widget/profile_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../controllers/user_controller.dart';
 import '../../models/user_model.dart';
@@ -223,13 +224,28 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(
                   height: Dimensions.height20,
                 ), */
-            ProfileBox(
-              textColor: Theme.of(context).colorScheme.surface,
-              backgroundcolor: AppColors.mainColor,
-              icon: Icons.help,
-              text: "Send a problem or request",
-              iconcolor: Theme.of(context).colorScheme.surface,
-              isEditable: false,
+            GestureDetector(
+              onTap: () async {
+                String email = 'josue.gauthier@gmail.com';
+                String subject = 'Problem/Request';
+                String body = 'Entrez ci dessous votre problème/demande. \n \n N\'hésitez pas à ajouter des captures d\'écrans pour illustrer';
+
+                Uri emailUrl = Uri.parse("mailto:$email?subject=$subject&body=$body");
+
+                if (await canLaunchUrl(emailUrl)) {
+                  await launchUrl(emailUrl);
+                } else {
+                  throw "Error occured sending an email";
+                }
+              },
+              child: ProfileBox(
+                textColor: Theme.of(context).colorScheme.surface,
+                backgroundcolor: AppColors.mainColor,
+                icon: Icons.help,
+                text: "Send a problem or request",
+                iconcolor: Theme.of(context).colorScheme.surface,
+                isEditable: false,
+              ),
             ),
             SizedBox(
               height: Dimensions.height20,

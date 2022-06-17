@@ -1,9 +1,6 @@
-// ignore_for_file: unused_import
-
 import 'package:borgiaflutterapp/routes/route_helper.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
@@ -28,13 +25,6 @@ class MyApp extends StatelessWidget {
     ]);
 
     return GetMaterialApp(
-      //theme: ThemeData(
-      //  textSelectionTheme: const TextSelectionThemeData(
-      //    cursorColor: AppColors.greenEmerald,
-      //    selectionColor: AppColors.greenEmerald,
-      //    selectionHandleColor: AppColors.greenEmerald,
-      //  ),
-      //),
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       theme: ThemeClass.lightTheme,

@@ -59,15 +59,22 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                                 //! image
 
                                 Container(
-                                  margin: EdgeInsets.only(bottom: Dimensions.height10),
+                                  //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
                                   height: Dimensions.height100 * 0.7,
                                   width: Dimensions.height100 * 0.7,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Theme.of(context).colorScheme.surface,
-                                    image: DecorationImage(
-                                      fit: BoxFit.contain,
-                                      image: NetworkImage(categoryModel.image!),
+                                    color: Colors.white,
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    height: Dimensions.height100 * 0.5,
+                                    width: Dimensions.height100 * 0.5,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.contain,
+                                        image: NetworkImage(categoryModel.image!),
+                                      ),
                                     ),
                                   ),
                                 ),
