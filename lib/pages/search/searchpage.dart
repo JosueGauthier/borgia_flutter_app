@@ -3,6 +3,7 @@ import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:borgiaflutterapp/models/user_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -121,17 +122,17 @@ class SearchPage extends StatelessWidget {
                                             color: Colors.white,
                                           ),
                                           alignment: Alignment.center,
-                                          child: Container(
+                                          child: SizedBox(
                                             height: Dimensions.height100 * 0.5,
                                             width: Dimensions.height100 * 0.5,
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                fit: BoxFit.contain,
-                                                image: (searchController.searchList[index].image == null)
-                                                    ? const AssetImage("assets/image/defaultuserimage.png") as ImageProvider
-                                                    : NetworkImage(searchController.searchList[index].image),
-                                              ),
-                                            ),
+                                            child: (searchController.searchList[index].image == null)
+                                                ? Image.asset("assets/image/defaultuserimage.png")
+                                                : CachedNetworkImage(
+                                                    imageUrl: searchController.searchList[index].image,
+                                                    progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                        CircularProgressIndicator(value: downloadProgress.progress),
+                                                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                                                  ),
                                           ),
                                         ),
 

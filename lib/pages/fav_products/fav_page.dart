@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:borgiaflutterapp/widget/product_item_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/cart_controller.dart';
@@ -47,7 +48,11 @@ class FavPage extends StatelessWidget {
                           //color: Colors.green,
                           margin: EdgeInsets.only(left: Dimensions.width20),
                           child: ProductItemWidget(
-                            illustImage: NetworkImage(favList[index].aProduct.image),
+                            illustImage: CachedNetworkImage(
+                              imageUrl: favList[index].aProduct.image,
+                              progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                            ),
                             titleText: favList[index].name!,
                             priceProduct: favList[index].aProduct.manualPrice.toString(),
                           ),

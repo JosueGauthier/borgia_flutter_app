@@ -1,7 +1,7 @@
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/material.dart';
-import '../../widget/big_text.dart';
+// ignore: unused_import
 import '../../widget/custom_numpad.dart';
 
 class RefillLydiaPage extends StatefulWidget {

@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:borgiaflutterapp/controllers/shop_controller.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -67,14 +70,13 @@ class _WelcomePageState extends State<WelcomePage> {
                                   color: Colors.white,
                                 ),
                                 alignment: Alignment.center,
-                                child: Container(
+                                child: SizedBox(
                                   height: Dimensions.height100 * 0.5,
                                   width: Dimensions.height100 * 0.5,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.contain,
-                                      image: NetworkImage(shopModel.image!),
-                                    ),
+                                  child: CachedNetworkImage(
+                                    imageUrl: shopModel.image!,
+                                    progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                                    errorWidget: (context, url, error) => Icon(Icons.error),
                                   ),
                                 ),
                               ),

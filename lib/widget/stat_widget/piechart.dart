@@ -1,4 +1,5 @@
 import 'package:borgiaflutterapp/utils/dimensions.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -135,7 +136,7 @@ class _Badge extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
+        color: Colors.white,
         shape: BoxShape.circle,
         border: Border.all(
           color: borderColor,
@@ -150,7 +151,13 @@ class _Badge extends StatelessWidget {
         ],
       ),
       padding: EdgeInsets.all(size * .15),
-      child: Center(child: Image(image: NetworkImage(asset))),
+      child: Center(
+        child: CachedNetworkImage(
+          imageUrl: asset,
+          progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        ),
+      ),
     );
   }
 }

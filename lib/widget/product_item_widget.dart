@@ -1,9 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/dimensions.dart';
 
 class ProductItemWidget extends StatelessWidget {
-  final NetworkImage illustImage;
+  final CachedNetworkImage illustImage;
   final String titleText;
   final String priceProduct;
 
@@ -24,31 +25,12 @@ class ProductItemWidget extends StatelessWidget {
             color: Colors.white,
           ),
           alignment: Alignment.center,
-          child: Container(
+          child: SizedBox(
             height: Dimensions.height100 * 0.5,
             width: Dimensions.height100 * 0.5,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.contain,
-                image: illustImage,
-              ),
-            ),
+            child: illustImage,
           ),
         ),
-
-        /* Container(
-          margin: EdgeInsets.only(bottom: Dimensions.height10),
-          height: Dimensions.height100 * 0.7,
-          width: Dimensions.height100 * 0.7,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Theme.of(context).colorScheme.surface,
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: illustImage,
-            ),
-          ),
-        ), */
 
         SizedBox(
           width: Dimensions.width20 * 1,

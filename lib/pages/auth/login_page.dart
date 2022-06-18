@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sa3_liquid/liquid/plasma/plasma.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../controllers/user_controller.dart';
 import '../../utils/colors.dart';
@@ -24,6 +25,18 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  Future<void>? _launched;
+
+  Future<void> _launchInBrowser(Uri url) async {
+    print("aaa");
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw 'Could not launch $url';
+    }
+  }
+
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -217,9 +230,19 @@ class _LoginPageState extends State<LoginPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Container(
-                          padding: EdgeInsets.only(right: Dimensions.width20 * 2),
-                          child: InkWell(onTap: () {}, child: Text("Mot de passe oublié ?", style: Theme.of(context).textTheme.displaySmall)),
+                        GestureDetector(
+                          child: Container(
+                            padding: EdgeInsets.only(right: Dimensions.width20 * 2),
+                            child: Center(
+                                child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        Uri url = Uri.parse(AppConstants.BASE_URL + "/auth/password_reset/");
+                                        _launchInBrowser(url);
+                                      });
+                                    },
+                                    child: Text("Mot de passe oublié ?", style: Theme.of(context).textTheme.displaySmall))),
+                          ),
                         ),
                       ],
                     ),

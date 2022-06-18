@@ -1,5 +1,6 @@
 import 'package:borgiaflutterapp/controllers/rank_user_product_controller.dart';
 import 'package:borgiaflutterapp/widget/custom_header.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,7 +30,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
           body: SingleChildScrollView(
             child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
               //! Podium
-              CustomHeader(text: "${(rankUserProductController.productStatList[0].name).toString().capitalize!}"),
+              CustomHeader(text: (rankUserProductController.productStatList[0].name).toString().capitalize!),
               ListView.builder(
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
@@ -47,11 +48,10 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                               margin: EdgeInsets.only(left: Dimensions.width20, bottom: Dimensions.height10),
                               height: Dimensions.height100 * 0.6,
                               width: Dimensions.height100 * 0.6,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.contain,
-                                  image: NetworkImage(listOfProd[indexProduct].image!),
-                                ),
+                              child: CachedNetworkImage(
+                                imageUrl: listOfProd[indexProduct].image!,
+                                progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                                errorWidget: (context, url, error) => const Icon(Icons.error),
                               ),
                             ),
                             //! text section

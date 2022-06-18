@@ -2,6 +2,7 @@ import 'package:borgiaflutterapp/controllers/product_list_controller.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/widget/custom_header.dart';
 import 'package:borgiaflutterapp/widget/product_item_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -64,7 +65,11 @@ class _ProductListPageState extends State<ProductListPage> {
                             child: (productModel.isActive == true)
                                 ? ProductItemWidget(
                                     titleText: (productModel.name)!.capitalize!,
-                                    illustImage: NetworkImage(productModel.image!),
+                                    illustImage: CachedNetworkImage(
+                                      imageUrl: productModel.image!,
+                                      progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                                    ),
                                     priceProduct: productModel.manualPrice.toString(),
                                   )
                                 : Container(),

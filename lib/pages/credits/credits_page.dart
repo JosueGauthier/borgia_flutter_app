@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:borgiaflutterapp/widget/custom_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +16,7 @@ class CreditsPage extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(children: [
-          CustomHeader(text: "Crédits"),
+          const CustomHeader(text: "Crédits"),
           Container(
             //height: Dimensions.height100 * 1.2,
             width: double.maxFinite,

@@ -1,6 +1,7 @@
 import 'package:borgiaflutterapp/controllers/category_controller.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/widget/custom_header.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
 
@@ -67,14 +68,13 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                                     color: Colors.white,
                                   ),
                                   alignment: Alignment.center,
-                                  child: Container(
+                                  child: SizedBox(
                                     height: Dimensions.height100 * 0.5,
                                     width: Dimensions.height100 * 0.5,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        fit: BoxFit.contain,
-                                        image: NetworkImage(categoryModel.image!),
-                                      ),
+                                    child: CachedNetworkImage(
+                                      imageUrl: categoryModel.image!,
+                                      progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                                      errorWidget: (context, url, error) => const Icon(Icons.error),
                                     ),
                                   ),
                                 ),

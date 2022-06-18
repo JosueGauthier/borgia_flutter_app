@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 import '../../controllers/cart_controller.dart';
 import '../../controllers/shop_controller.dart';
 import '../../utils/colors.dart';
-import '../../widget/test_url.dart';
 import '../fav_products/fav_page.dart';
 import '../search/searchpage.dart';
 import 'welcome_page_with_header.dart';

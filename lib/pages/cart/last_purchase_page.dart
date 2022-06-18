@@ -1,4 +1,5 @@
 import 'package:borgiaflutterapp/widget/custom_header.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -57,7 +58,11 @@ class LastPurchases extends StatelessWidget {
                           width: double.maxFinite,
                           margin: EdgeInsets.only(left: Dimensions.width20),
                           child: ProductItemWidget(
-                            illustImage: NetworkImage(cartList[index].aProduct.image!),
+                            illustImage: CachedNetworkImage(
+                              imageUrl: cartList[index].aProduct.image!,
+                              progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                            ),
                             titleText: cartList[index].name!,
                             priceProduct: cartList[index].aProduct.manualPrice.toString(),
                           ),

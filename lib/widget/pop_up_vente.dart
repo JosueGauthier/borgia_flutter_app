@@ -13,7 +13,6 @@ import '../../widget/app_icon.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../../widget/big_text.dart';
 import '../models/sales_model.dart';
 
 class DialogSalePage extends StatefulWidget {

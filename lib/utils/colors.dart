@@ -67,9 +67,9 @@ final ColorScheme customDarkTheme = const ColorScheme.dark().copyWith(
   primary: const Color(0xFFCD5C5C),
   secondary: const Color(0xFF012E40),
   tertiary: const Color.fromARGB(200, 1, 152, 117),
-  onPrimary: Color.fromARGB(255, 220, 220, 220),
+  onPrimary: const Color.fromARGB(255, 220, 220, 220),
   onPrimaryContainer: const Color(0xFF404040),
-  surface: Color.fromARGB(255, 220, 220, 220),
+  surface: const Color.fromARGB(255, 220, 220, 220),
 );
 
 class ThemeClass {

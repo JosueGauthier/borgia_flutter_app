@@ -3,6 +3,7 @@ import 'package:borgiaflutterapp/models/rank_user_shop_model.dart';
 import 'package:borgiaflutterapp/routes/route_helper.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:borgiaflutterapp/widget/big_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -51,11 +52,10 @@ class _RankUserPageState extends State<RankUserPage> {
                               margin: EdgeInsets.only(left: Dimensions.width20, bottom: Dimensions.height10),
                               height: Dimensions.height100 * 0.6,
                               width: Dimensions.height100 * 0.6,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.contain,
-                                  image: NetworkImage(rankUserShopModel.image!),
-                                ),
+                              child: CachedNetworkImage(
+                                imageUrl: rankUserShopModel.image!,
+                                progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                                errorWidget: (context, url, error) => const Icon(Icons.error),
                               ),
                             ),
                             Flexible(
