@@ -13,11 +13,26 @@ Current Version : 1.0.x
 Licence : [GNU GPL version 3](./license.txt)  
 Master branch: ![Build Status](https://github.com/borgia-app/Borgia/actions/workflows/main.yml/badge.svg?branch=master)  
 
-# Introduction
-
 Borgia is a software to help you manage your student association. 
 With it, you can sell products, organize events, keep track of your stocks, etc...
 It will be your best ally to develop your possibilities for your student association.
+
+Fonctionnalités vente : 
+
+Borgia dispose d’un système de vente de produits spécifique. 
+Dans un premier temps il est nécessaire de recharger votre solde Borgia via l’application Lydia. Une fois votre solde crédité. 
+Plusieurs possibilités s’offrent à vous : 
+
+-	Vente libre : Mettre de produits en libre accès, basé sur la confiance, où chaque utilisateur s’inscrit via l’application et décompte la valeur marchande du produit de son solde. 
+-	Vente par opérateur : Un opérateur responsable inscrit sur l’application la personne achetant et le produit acheté. (Fonctionnalité en cours de déploiement). 
+
+- Un panneau de statistiques globale est disponible avec les ventes pour l’association toute entière
+- Un panneau de statistiques des achats de l’utilisateur est également disponible. 
+- Un système de podium par magasin et par produit a été ajouté.
+- Une liste de favoris est disponible prenant en compte les produits achetés les plus nombreux.
+- Une liste des derniers achats effectués dans l’application. 
+- Un système de recherche permettant de rechercher utilisateurs, produits, magasins, …
+
 
 # Installation
 
