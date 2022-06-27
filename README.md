@@ -42,13 +42,10 @@ Plusieurs possibilités s’offrent à vous :
 # Documentation
 
 
-[![Example](https://user-images.githubusercontent.com/20337589/175976110-09a1718b-78cb-4316-ac4f-560b2d168a69.png)](https://user-images.githubusercontent.com/20337589/175973686-dc7cb745-832b-4948-a60f-bd0ca4d71bc5.mp4)
 
-
-![Example]()
-
-
-
+<p align="center" width="100%">
+    <video width="33%" src="https://user-images.githubusercontent.com/20337589/175973686-dc7cb745-832b-4948-a60f-bd0ca4d71bc5.mp4"></video>
+</p>
 
 
 
