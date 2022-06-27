@@ -1,56 +1,72 @@
 # Borgia App
 
-![Illustration](https://user-images.githubusercontent.com/20337589/175976110-09a1718b-78cb-4316-ac4f-560b2d168a69.png)
+<p align="center" width="100%">
+    <img src="https://user-images.githubusercontent.com/20337589/175979211-e7f35077-a3cc-4b78-8966-e3cbc05c1a4c.png" alt="logoborgia" width="50%"/>
+</p>
 
+# ![Illustration](https://user-images.githubusercontent.com/20337589/175976110-09a1718b-78cb-4316-ac4f-560b2d168a69.png)
 
 
 The roadmap of Borgia app : https://josue-gauthier.notion.site/Roadmap-Borgia-dd0bb947f5444ea198af76f6c90f2aee
 
-
-# ![Borgia](./borgia/static/static_dirs/img/borgia-logo-light.png 'Borgia')
-
 Current Version : 1.0.x   
-Licence : [GNU GPL version 3](./license.txt)  
-Master branch: ![Build Status](https://github.com/borgia-app/Borgia/actions/workflows/main.yml/badge.svg?branch=master)  
+Licence : [GNU GPL version 3](./license.txt)
+
+#### Here is the frontend part (Flutter) of the Borgia app project 
+#### The backend part (Django) can be found [here.](https://github.com/JosueGauthier/borgia-serv)
+
 
 Borgia is a software to help you manage your student association. 
 With it, you can sell products, organize events, keep track of your stocks, etc...
 It will be your best ally to develop your possibilities for your student association.
 
-Fonctionnalités vente : 
+https://user-images.githubusercontent.com/20337589/175973686-dc7cb745-832b-4948-a60f-bd0ca4d71bc5.mp4
+Sales features: 
 
-Borgia dispose d’un système de vente de produits spécifique. 
-Dans un premier temps il est nécessaire de recharger votre solde Borgia via l’application Lydia. Une fois votre solde crédité. 
-Plusieurs possibilités s’offrent à vous : 
+Borgia has a specific product sales system. 
+First, it is necessary to recharge your Borgia balance via the Lydia application. Once your balance is credited. 
 
--	Vente libre : Mettre de produits en libre accès, basé sur la confiance, où chaque utilisateur s’inscrit via l’application et décompte la valeur marchande du produit de son solde. 
--	Vente par opérateur : Un opérateur responsable inscrit sur l’application la personne achetant et le produit acheté. (Fonctionnalité en cours de déploiement). 
+Several possibilities are available to you: 
+    - Free sale: Put products in free access, based on trust, where each user registers via the application and deducts the market value of the product from his balance. 
+    - Sale by operator: A responsible operator registers on the application the person buying and the product purchased. (Functionality under deployment). 
 
-- Un panneau de statistiques globale est disponible avec les ventes pour l’association toute entière
-- Un panneau de statistiques des achats de l’utilisateur est également disponible. 
-- Un système de podium par magasin et par produit a été ajouté.
-- Une liste de favoris est disponible prenant en compte les produits achetés les plus nombreux.
-- Une liste des derniers achats effectués dans l’application. 
-- Un système de recherche permettant de rechercher utilisateurs, produits, magasins, …
+![borgiatradesysyt](https://user-images.githubusercontent.com/20337589/175981298-09230652-1a3d-4558-bda6-2598f3321de7.png)
+
+
+but also : 
+
+- A global statistics panel is available with the sales for the whole association
+- A panel of statistics of the user's purchases is also available. 
+- A podium system by store and by product has been added.
+- A list of favorites is available taking into account the most purchased products.
+- A list of the last purchases made in the application. 
+- A search system allowing to search users, products, stores, ...
 
 
 # Installation
 
--   Development : [here](https://github.com/borgia-app/Borgia-docs/blob/master/tutorials/dev_install.md)
--   Production : [here](https://github.com/borgia-app/Borgia-docs/blob/master/tutorials/prod_install.md)
+This flutter app works with Django Borgia backend who can be found [here.](https://github.com/JosueGauthier/borgia-serv)
+
+You first need to install a production or developpement server to use this app.
+
+###### Do not use Borgia-app original repository, no endpoints are configured.
+
 
 # Documentation
 
-
-
-<p align="center" width="100%">
-    <video width="33%" src="https://user-images.githubusercontent.com/20337589/175973686-dc7cb745-832b-4948-a60f-bd0ca4d71bc5.mp4"></video>
-</p>
-
-
-
 Documentation are currently in writing-phase. Some ressources are available
 [here](https://github.com/borgia-app/Borgia-docs).
+
+
+# Acknowledgements
+
+A big thank you to the Borgia team for the development of the original Borgia application: 
+- Vincent Keppens
+- Alexandre Palo
+- Mael Lacour
+- Wassim Belmezouar
+
+And to Mael Bourreau for the illustrations. 
 
 # Dependency
 
@@ -62,32 +78,3 @@ Borgia base dependency :
 -   openpyxl : For excel manipulation
 -   Pillow : For users images
 
-# Developing and Contributing
-
-We'd love to get contributions from you! For a quick guide to getting your
-system setup for developing, take a look at the section "To Start".
-Once you are up and running, take a look at the
-[CONTRIBUTING.md](https://github.com/borgia-app/Borgia/CONTRIBUTING.md) to see
-how to get your changes merged in.
-
-# End note (French)
-
-Borgia est un outil qui permet de construire, gérer et organiser votre vie
-étudiante ! De la vente de produits à l'organisation d'évènements en passant
-par la gestion de porte-monnaies virtuels, Borgia est votre meilleur allié pour
-développer votre association d'étudiants.
-
-L'équipe qui s'occupe de Borgia travaille tous les jours pour assurer un
-logiciel de qualité. Nous sommes à l'écoute de vos remarques et nous essayons
-d'améliorer Borgia de manière continue.
-
-Borgia est actuellement utilisé par plusieurs milliers d'étudiants depuis plus
-de 5 ns, notamment dans les centres [Arts et Métiers] (https://artsetmetiers.fr/).
-
-Nous cherchons activement des personnes pour participer à cette belle aventure,
-n'hésite pas à nous contacter directement. Nous avons de grands projets pour Borgia
-(De nouvelles fonctionnalités, une sécurité accrue, une application mobile pour gerer l'administration ...) !
-
-Enfin, si tu as une idée ou que tu as constaté un bug, n'hésite pas à ouvrir
-une [issue](https://github.com/borgia-app/Borgia/issues) ou même un
-[pull request](https://github.com/borgia-app/Borgia/pulls).
