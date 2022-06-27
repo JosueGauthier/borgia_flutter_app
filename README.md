@@ -1,10 +1,10 @@
 # Borgia App
 
-Wel
+![Illustration](https://user-images.githubusercontent.com/20337589/175976110-09a1718b-78cb-4316-ac4f-560b2d168a69.png)
 
 
 
-https://josue-gauthier.notion.site/Roadmap-Borgia-dd0bb947f5444ea198af76f6c90f2aee
+The roadmap of Borgia app : https://josue-gauthier.notion.site/Roadmap-Borgia-dd0bb947f5444ea198af76f6c90f2aee
 
 
 # ![Borgia](./borgia/static/static_dirs/img/borgia-logo-light.png 'Borgia')
@@ -41,11 +41,11 @@ Plusieurs possibilités s’offrent à vous :
 
 # Documentation
 
-<p align="center">
 
-</p>
 
-https://user-images.githubusercontent.com/20337589/175973686-dc7cb745-832b-4948-a60f-bd0ca4d71bc5.mp4
+![Example](https://user-images.githubusercontent.com/20337589/175973686-dc7cb745-832b-4948-a60f-bd0ca4d71bc5.mp4)
+
+
 
 
 
