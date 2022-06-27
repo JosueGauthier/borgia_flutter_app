@@ -77,4 +77,5 @@ Borgia base dependency :
 -   django-static-precompiler : For static files
 -   openpyxl : For excel manipulation
 -   Pillow : For users images
+-   Django Rest Framework : For REST API endpoints
 
