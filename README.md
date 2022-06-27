@@ -26,8 +26,11 @@ It will be your best ally to develop your possibilities for your student associa
 
 # Documentation
 
+<p align="center">
+  https://user-images.githubusercontent.com/20337589/175973686-dc7cb745-832b-4948-a60f-bd0ca4d71bc5.mp4
+</p>
 
-https://user-images.githubusercontent.com/20337589/175973686-dc7cb745-832b-4948-a60f-bd0ca4d71bc5.mp4
+
 
 
 Documentation are currently in writing-phase. Some ressources are available
