@@ -22,33 +22,32 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
   late AnimationController animationController;
 
-  Future<void> _loadRessources() async {
-    //await Get.find<ShopController>().getShopList();
-    //Get.find<CartController>().getCartData();
-  }
+  Future<void> _loadRessources() async {}
 
   bool indentifiersProvided = false;
 
   getIdentifiersSharedpref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List? list = prefs.getStringList(AppConstants.IDENTIFIERS_LIST);
-
     final AuthController authController;
 
     Get.find<AuthController>();
 
     authController = Get.find<AuthController>();
 
-    authController.login(list![0], list[1]).then((status) {
-      if (status.isSuccess) {
-        AppConstants.USERNAME = list[0];
-        AppConstants.PASSWORD = list[1];
-        AppConstants.isfinishedRotate = false;
-        Get.find<UserController>().getUserList(AppConstants.USERNAME);
+    if (list == null) {
+    } else {
+      authController.login(list[0], list[1]).then((status) {
+        if (status.isSuccess) {
+          AppConstants.USERNAME = list[0];
+          AppConstants.PASSWORD = list[1];
+          AppConstants.isfinishedRotate = false;
+          Get.find<UserController>().getUserList(AppConstants.USERNAME);
 
-        indentifiersProvided = true;
-      } else {}
-    });
+          indentifiersProvided = true;
+        } else {}
+      });
+    }
   }
 
   @override

@@ -21,8 +21,7 @@ class SearchController extends GetxController {
     Response responseProduct = await searchRepo.getSearchListProduct(keyword);
     Response responseCategory = await searchRepo.getSearchListCategory(keyword);
     Response responseShop = await searchRepo.getSearchListShop(keyword);
-    Response responseUser = await searchRepo.getSearchListUser(keyword);
-
+    Response responseUsername = await searchRepo.getSearchListUser(keyword);
     _searchList = [];
 
     if (responseProduct.statusCode == 200) {
@@ -52,8 +51,8 @@ class SearchController extends GetxController {
       _isLoaded = true;
     } else {}
 
-    if (responseUser.statusCode == 200) {
-      List responseBody = responseUser.body;
+    if (responseUsername.statusCode == 200) {
+      List responseBody = responseUsername.body;
 
       for (var i = 0; i < responseBody.length; i++) {
         _searchList.add(UserModel.fromJson(responseBody[i]));

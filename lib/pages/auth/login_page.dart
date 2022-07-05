@@ -25,10 +25,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  Future<void>? _launched;
-
   Future<void> _launchInBrowser(Uri url) async {
-    print("aaa");
     if (!await launchUrl(
       url,
       mode: LaunchMode.externalApplication,
@@ -237,7 +234,7 @@ class _LoginPageState extends State<LoginPage> {
                                 child: InkWell(
                                     onTap: () {
                                       setState(() {
-                                        Uri url = Uri.parse(AppConstants.BASE_URL + "/auth/password_reset/");
+                                        Uri url = Uri.parse("${AppConstants.BASE_URL}/auth/password_reset/");
                                         _launchInBrowser(url);
                                       });
                                     },

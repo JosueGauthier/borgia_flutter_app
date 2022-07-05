@@ -24,7 +24,11 @@ class CategoryOfShopController extends GetxController {
       List responseBody = response.body;
 
       for (var i = 0; i < responseBody.length; i++) {
-        _categoryOfShopList.add(CategoryOfShopModel.fromJson(responseBody[i]));
+        var a = CategoryOfShopModel.fromJson(responseBody[i]);
+
+        if (a.contentType == 21) {
+          _categoryOfShopList.add(CategoryOfShopModel.fromJson(responseBody[i]));
+        }
       }
       _isLoaded = true;
 

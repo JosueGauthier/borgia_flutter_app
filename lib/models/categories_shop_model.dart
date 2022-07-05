@@ -6,6 +6,7 @@ class CategoryOfShopModel {
   int? order;
   String? image;
   int? shopId;
+  int? contentType;
 
   CategoryOfShopModel({
     this.id,
@@ -15,6 +16,7 @@ class CategoryOfShopModel {
     this.order,
     this.image,
     this.shopId,
+    this.contentType,
   });
 
   CategoryOfShopModel.fromJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class CategoryOfShopModel {
     order = json['order'];
     image = json['category_image'];
     shopId = json['shop_id'];
+    contentType = json['content_type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -36,6 +39,7 @@ class CategoryOfShopModel {
     data['order'] = order;
     data['category_image'] = image;
     data['shop_id'] = shopId;
+    data['content_type'] = contentType;
     return data;
   }
 }

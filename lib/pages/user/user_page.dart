@@ -116,14 +116,14 @@ class _UserPageState extends State<UserPage> {
                   decoration: BoxDecoration(color: Theme.of(context).colorScheme.onPrimaryContainer, borderRadius: BorderRadius.circular(Dimensions.width20)),
                   child: Column(
                     children: [
-                      (userController.welcomeUserModel.name == null)
+                      (userController.welcomeUserModel.username == null)
                           ? Container()
                           : ProfileBox(
                               textColor: Theme.of(context).colorScheme.onPrimary,
                               backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
                               iconcolor: Theme.of(context).colorScheme.onPrimary,
                               icon: Icons.login,
-                              text: "Identifiant : ${userController.welcomeUserModel.name}",
+                              text: "Identifiant : ${userController.welcomeUserModel.username}",
                               isEditable: false,
                             ),
                       const SizedBox(
