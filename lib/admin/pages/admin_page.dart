@@ -1,21 +1,18 @@
-/*
+import 'dart:developer';
 
-  - page avec 
-
-  
-
-
- */
-
-import 'package:borgiaflutterapp/utils/app_constants.dart';
+import 'package:borgiaflutterapp/models/user_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/shop_controller.dart';
 import '../../controllers/user_controller.dart';
+import '../../models/shop_model.dart';
 import '../../pages/home/welcome_page.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
+import '../../widget/custom_header.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({Key? key}) : super(key: key);
@@ -25,126 +22,119 @@ class AdminPage extends StatefulWidget {
 }
 
 class _AdminPageState extends State<AdminPage> {
+  List isChiefIn = [];
+
   @override
   Widget build(BuildContext context) {
-    Get.find<UserController>().getUserList(AppConstants.USERNAME);
     return Scaffold(
         extendBody: true,
         body: Column(
           children: [
+            CustomHeader(text: "Admin"),
             Expanded(
               child: Stack(
                 children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(left: Dimensions.width20 * 1.5),
+                    child: Text(
+                      "Actions",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                  SizedBox(
+                    height: Dimensions.height10,
+                  ),
                   SingleChildScrollView(
                     child: GetBuilder<UserController>(builder: (userController) {
-                      if (Theme.of(context).scaffoldBackgroundColor == Theme.of(context).colorScheme.surface) {}
-                      return (userController.isLoaded)
-                          ? Stack(
-                              children: [
-                                //! Showing the header
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: Dimensions.height45 * 2.7,
-                                      width: double.maxFinite,
-                                      decoration: const BoxDecoration(),
-                                      padding: EdgeInsets.only(top: Dimensions.height30 * 1.3, left: Dimensions.width20 * 1.5, right: Dimensions.width20),
-                                      child: Center(
-                                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                          Row(
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  Get.toNamed(RouteHelper.getCartPage());
-                                                },
-                                                child: Container(
-                                                  padding: EdgeInsets.only(top: Dimensions.height10),
-                                                  width: Dimensions.height45 * 1.2,
-                                                  height: Dimensions.height45 * 1.2,
-                                                  child: Icon(
-                                                    Icons.history_rounded,
-                                                    color: Theme.of(context).colorScheme.surface,
-                                                    size: Dimensions.height20 * 1.5,
-                                                  ),
-                                                ),
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  Get.toNamed(RouteHelper.getProfilepage());
-                                                },
-                                                child: Container(
-                                                  padding: EdgeInsets.only(top: Dimensions.height10),
-                                                  width: Dimensions.height45 * 1.2,
-                                                  height: Dimensions.height45 * 1.2,
-                                                  child: Icon(
-                                                    Icons.settings_sharp,
-                                                    color: Theme.of(context).colorScheme.surface,
-                                                    size: Dimensions.height20 * 1.5,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ]),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: Dimensions.height10 * 17,
-                                    ),
-                                    Stack(
-                                      children: [
-                                        Container(
-                                          height: Dimensions.height20 * 10,
-                                          width: double.maxFinite,
-                                          decoration: BoxDecoration(
-                                              color: Theme.of(context).scaffoldBackgroundColor,
-                                              borderRadius: const BorderRadius.only(topRight: Radius.circular(50))),
-                                        ),
-                                        Positioned(
-                                          top: Dimensions.height10 * 2,
-                                          left: Dimensions.height10 * 2 * 1.5,
-                                          child: Text(
-                                            "Solde:",
-                                            style: Theme.of(context).textTheme.bodySmall,
-                                          ),
-                                        ),
-                                        Center(
-                                          child: Column(
-                                            children: [
-                                              SizedBox(height: Dimensions.height20 * 1.8),
-                                              Text(
-                                                userController.userList[0].balance + "€",
-                                                style: Theme.of(context).textTheme.titleLarge,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                      UserModel userModel = userController.userModelController;
 
-                                Column(
-                                  children: [
-                                    SizedBox(
-                                      height: Dimensions.height100 * 4.2,
-                                    ),
-                                    //! Showing the body
-                                    const WelcomePage(),
-                                    SizedBox(
-                                      height: Dimensions.height100 * 0.5,
-                                    ),
-                                  ],
-                                )
-                              ],
+                      return (userController.isLoaded)
+                          ? Container(
+                              width: double.maxFinite,
+                              margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20 * 1.5, top: Dimensions.height10),
+                              child: ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: userModel.groups!.length,
+                                  itemBuilder: (context, index) {
+                                    if (userModel.groups![index].name!.contains("chiefs") || userModel.groups![index].name!.contains("associates")) {
+                                      String? nameString = userModel.groups![index].name;
+
+                                      List nameStringSplit = nameString!.split("-");
+
+                                      if (isChiefIn.contains(nameStringSplit[1])) {
+                                      } else {
+                                        isChiefIn.add(nameStringSplit[1]);
+                                      }
+
+                                      print(isChiefIn);
+
+                                      return GetBuilder<ShopController>(builder: (shopController) {
+                                        inspect(shopController.shopList);
+                                        print(isChiefIn[isChiefIn.length - 1]);
+
+                                        ShopModel shopModel =
+                                            shopController.shopList.firstWhere((element) => (element.name == isChiefIn[isChiefIn.length - 1]));
+
+                                        inspect(shopModel);
+
+                                        return GestureDetector(
+                                          onTap: () {
+                                            Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
+                                          },
+                                          child: Container(
+                                            margin: EdgeInsets.only(bottom: Dimensions.height15),
+                                            child: Row(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.center, children: [
+                                              //! image section
+
+                                              Container(
+                                                //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
+                                                height: Dimensions.height100 * 0.7,
+                                                width: Dimensions.height100 * 0.7,
+                                                decoration: const BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Colors.white,
+                                                ),
+                                                alignment: Alignment.center,
+                                                child: SizedBox(
+                                                  height: Dimensions.height100 * 0.5,
+                                                  width: Dimensions.height100 * 0.5,
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: shopModel.image!,
+                                                    progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                        CircularProgressIndicator(value: downloadProgress.progress),
+                                                    errorWidget: (context, url, error) => Icon(Icons.error),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: Dimensions.width20 * 3,
+                                              ),
+
+                                              //! text section
+
+                                              Container(
+                                                //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "Gestion " + nameStringSplit[0] + " " + (shopModel.name)!,
+                                                  style: Theme.of(context).textTheme.bodySmall,
+                                                ),
+                                              ),
+                                            ]),
+                                          ),
+                                        );
+
+                                        //ShopModel shopModel = shopController.shopList[];
+                                      });
+                                    } else {
+                                      return Container();
+                                    }
+                                  }),
                             )
-                          : const Center(
-                              child: CircularProgressIndicator(
-                                strokeWidth: 4,
-                                color: AppColors.mainColor,
-                              ),
-                            );
+                          : Container();
                     }),
                   ),
                 ],

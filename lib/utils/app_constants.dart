@@ -25,9 +25,11 @@ class AppConstants {
   //* for end rotation of name on WelcomePageWithHeader
   static bool isfinishedRotate = false;
 
-  //* auth end points
+  //* auth endpoints
   static const String REGISTRATION_URI = "/api-links/auth/";
   static const String LOGIN_URI = "/api-links/login/";
+
+  //* self-sale endpoint
   static const String SALES_URI = "/api-links/self-sale/";
 
   //* save user info

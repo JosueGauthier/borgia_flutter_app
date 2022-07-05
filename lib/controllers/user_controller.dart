@@ -9,7 +9,7 @@ class UserController extends GetxController {
 
   List<dynamic> _userList = [];
 
-  late UserModel welcomeUserModel;
+  late UserModel userModelController;
 
   List<dynamic> get userList => _userList;
 
@@ -28,7 +28,7 @@ class UserController extends GetxController {
         _userList.add(UserModel.fromJson(responseBody[i]));
       }
 
-      welcomeUserModel = userList[0];
+      userModelController = userList[0];
       _isLoaded = true;
 
       update();

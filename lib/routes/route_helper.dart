@@ -1,3 +1,4 @@
+import 'package:borgiaflutterapp/admin/pages/admin_page.dart';
 import 'package:borgiaflutterapp/pages/auth/login_page.dart';
 import 'package:borgiaflutterapp/pages/content/neon.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
@@ -35,6 +36,8 @@ class RouteHelper {
 
   static const String productRankUserPage = "/product-rank-user-page";
 
+  static const String adminPage = "/admin-page";
+
   //? formalisme pour passer des paramètres
 
   static String getSplashPage() => splashPage;
@@ -55,6 +58,8 @@ class RouteHelper {
       '$productListFromCategory?categoryId=$categoryId&categoryModuleId=$categoryModuleId&shopId=$shopId&page=$pagefrom';
 
   static String getProductRankUserPage(int shopId) => '$productRankUserPage?shopId=$shopId';
+
+  static String getAdminPage() => adminPage;
 
   static List<GetPage> routes = [
     GetPage(
@@ -157,6 +162,12 @@ class RouteHelper {
         );
       },
       //transition: Transition.fadeIn
+    ),
+    GetPage(
+      name: adminPage,
+      page: () {
+        return const AdminPage();
+      },
     ),
   ];
 }

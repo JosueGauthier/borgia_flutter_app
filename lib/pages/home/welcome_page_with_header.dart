@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +86,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                       animatedTexts: [
                                                         RotateAnimatedText('', duration: const Duration(milliseconds: 300)),
                                                         RotateAnimatedText('Bonjour,'),
-                                                        RotateAnimatedText(userController.welcomeUserModel.surname!, rotateOut: false),
+                                                        RotateAnimatedText(userController.userModelController.surname!, rotateOut: false),
                                                       ],
                                                       isRepeatingAnimation: false,
                                                       onFinished: () {
@@ -93,9 +95,29 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                       },
                                                     ),
                                                   )
-                                                : Text(userController.welcomeUserModel.surname!, style: Theme.of(context).textTheme.labelLarge),
+                                                : Text(userController.userModelController.surname!, style: Theme.of(context).textTheme.labelLarge),
                                             Row(
                                               children: [
+                                                (userController.userModelController.groups!.any((element) => element.name!.contains("chief")) ||
+                                                        userController.userModelController.groups!.any((element) => element.name!.contains("presidents")) ||
+                                                        userController.userModelController.groups!.any((element) => element.name!.contains("treasurers")) ||
+                                                        userController.userModelController.groups!.any((element) => element.name!.contains("associates")))
+                                                    ? GestureDetector(
+                                                        onTap: () {
+                                                          Get.toNamed(RouteHelper.getAdminPage());
+                                                        },
+                                                        child: Container(
+                                                          padding: EdgeInsets.only(top: Dimensions.height10),
+                                                          width: Dimensions.height45 * 1.2,
+                                                          height: Dimensions.height45 * 1.2,
+                                                          child: Icon(
+                                                            Icons.admin_panel_settings,
+                                                            color: Theme.of(context).colorScheme.surface,
+                                                            size: Dimensions.height20 * 1.5,
+                                                          ),
+                                                        ),
+                                                      )
+                                                    : Container(),
                                                 GestureDetector(
                                                   onTap: () {
                                                     Get.toNamed(RouteHelper.getCartPage());
