@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/data/repository/category_list_repo.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
@@ -11,6 +13,10 @@ class CategoryOfShopController extends GetxController {
   List<dynamic> _categoryOfShopList = [];
 
   List<dynamic> get categoryOfShopList => _categoryOfShopList;
+
+  List<dynamic> _categoryAdminList = [];
+
+  List<dynamic> get categoryAdminList => _categoryAdminList;
 
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
@@ -32,7 +38,27 @@ class CategoryOfShopController extends GetxController {
       }
       _isLoaded = true;
 
-      AppConstants.CAT_LIST_MODULE = _categoryOfShopList;
+      update();
+    } else {}
+  }
+
+  Future<void> getAdminCategoryList(int shopId) async {
+    Response response = await categoryOfShopRepo.getProductList(shopId);
+
+    if (response.statusCode == 200) {
+      _categoryAdminList = [];
+
+      List responseBody = response.body;
+
+      for (var i = 0; i < responseBody.length; i++) {
+        var a = CategoryOfShopModel.fromJson(responseBody[i]);
+
+        if (a.contentType == 20) {
+          _categoryAdminList.add(CategoryOfShopModel.fromJson(responseBody[i]));
+        }
+      }
+
+      _isLoaded = true;
 
       update();
     } else {}

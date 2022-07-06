@@ -46,6 +46,4 @@ class AppConstants {
   static const String BASE_URL = "https://borgia.josue.to";
   static const String CART_LIST = "Cart-list";
   static const String IDENTIFIERS_LIST = "Identifiers-list";
-
-  static List CAT_LIST_MODULE = [];
 }
