@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/data/repository/search_repo.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
@@ -13,6 +15,10 @@ class SearchController extends GetxController {
   List<dynamic> _searchList = [];
 
   List<dynamic> get searchList => _searchList;
+
+  List<dynamic> _adminSearchList = [];
+
+  List<dynamic> get adminSearchList => _adminSearchList;
 
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
@@ -56,6 +62,21 @@ class SearchController extends GetxController {
 
       for (var i = 0; i < responseBody.length; i++) {
         _searchList.add(UserModel.fromJson(responseBody[i]));
+      }
+      _isLoaded = true;
+    } else {}
+
+    update();
+  }
+
+  Future<void> getAdminUserSearchList(String keyword) async {
+    Response responseUsername = await searchRepo.getSearchListUser(keyword);
+    _adminSearchList = [];
+    if (responseUsername.statusCode == 200) {
+      List responseBody = responseUsername.body;
+
+      for (var i = 0; i < responseBody.length; i++) {
+        _adminSearchList.add(UserModel.fromJson(responseBody[i]));
       }
       _isLoaded = true;
     } else {}

@@ -7,6 +7,7 @@ import 'package:borgiaflutterapp/pages/stats/rank_user_products_page.dart';
 import 'package:borgiaflutterapp/pages/user/user_page.dart';
 import 'package:get/get.dart';
 
+import '../admin/pages/admin_search_page.dart';
 import '../pages/cart/last_purchase_page.dart';
 import '../pages/credits/credits_page.dart';
 import '../pages/home/home_page.dart';
@@ -38,6 +39,8 @@ class RouteHelper {
 
   static const String adminPage = "/admin-page";
 
+  static const String adminSearchPage = "/admin-search-page";
+
   //? formalisme pour passer des paramètres
 
   static String getSplashPage() => splashPage;
@@ -60,6 +63,8 @@ class RouteHelper {
   static String getProductRankUserPage(int shopId) => '$productRankUserPage?shopId=$shopId';
 
   static String getAdminPage() => adminPage;
+
+  static String getAdminSearchPage(int shopId) => '$adminSearchPage?shopId=$shopId';
 
   static List<GetPage> routes = [
     GetPage(
@@ -167,6 +172,15 @@ class RouteHelper {
       name: adminPage,
       page: () {
         return const AdminPage();
+      },
+    ),
+    GetPage(
+      name: adminSearchPage,
+      page: () {
+        var shopId = Get.parameters['shopId'];
+        return AdminSearchPage(
+          shopId: int.parse(shopId!),
+        );
       },
     ),
   ];

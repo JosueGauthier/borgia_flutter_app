@@ -8,9 +8,7 @@ import 'package:get/get.dart';
 import '../../controllers/shop_controller.dart';
 import '../../controllers/user_controller.dart';
 import '../../models/shop_model.dart';
-import '../../pages/home/welcome_page.dart';
 import '../../routes/route_helper.dart';
-import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/custom_header.dart';
 
@@ -30,9 +28,9 @@ class _AdminPageState extends State<AdminPage> {
         extendBody: true,
         body: Column(
           children: [
-            CustomHeader(text: "Admin"),
+            const CustomHeader(text: "Admin"),
             Expanded(
-              child: Stack(
+              child: Column(
                 children: [
                   Container(
                     alignment: Alignment.centerLeft,
@@ -69,20 +67,13 @@ class _AdminPageState extends State<AdminPage> {
                                         isChiefIn.add(nameStringSplit[1]);
                                       }
 
-                                      print(isChiefIn);
-
                                       return GetBuilder<ShopController>(builder: (shopController) {
-                                        inspect(shopController.shopList);
-                                        print(isChiefIn[isChiefIn.length - 1]);
-
                                         ShopModel shopModel =
                                             shopController.shopList.firstWhere((element) => (element.name == isChiefIn[isChiefIn.length - 1]));
 
-                                        inspect(shopModel);
-
                                         return GestureDetector(
                                           onTap: () {
-                                            Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
+                                            Get.toNamed(RouteHelper.getAdminSearchPage(shopModel.id!));
                                           },
                                           child: Container(
                                             margin: EdgeInsets.only(bottom: Dimensions.height15),
@@ -105,7 +96,7 @@ class _AdminPageState extends State<AdminPage> {
                                                     imageUrl: shopModel.image!,
                                                     progressIndicatorBuilder: (context, url, downloadProgress) =>
                                                         CircularProgressIndicator(value: downloadProgress.progress),
-                                                    errorWidget: (context, url, error) => Icon(Icons.error),
+                                                    errorWidget: (context, url, error) => const Icon(Icons.error),
                                                   ),
                                                 ),
                                               ),
