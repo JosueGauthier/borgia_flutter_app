@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:borgiaflutterapp/controllers/product_list_controller.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
@@ -7,23 +8,22 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../controllers/sales_controller.dart';
+import '../controllers/sales_controller.dart';
 import '../../routes/route_helper.dart';
 import '../../widget/app_icon.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../models/sales_model.dart';
+import '../models/operator_sales_model.dart';
+import '../models/self_sales_model.dart';
+import '../models/user_model.dart';
 
 class DialogSalePage extends StatefulWidget {
   final ProductModel productModel;
   final ProductListController productListController;
+  final UserModel? buyer;
 
-  const DialogSalePage({
-    Key? key,
-    required this.productListController,
-    required this.productModel,
-  }) : super(key: key);
+  const DialogSalePage({Key? key, required this.productListController, required this.productModel, this.buyer}) : super(key: key);
 
   @override
   DialogSalePageState createState() => DialogSalePageState();
@@ -36,33 +36,68 @@ class DialogSalePageState extends State<DialogSalePage> {
   void _order(
     SalesController salesController,
   ) {
-    String username = AppConstants.USERNAME;
-    String password = AppConstants.PASSWORD;
-    int apiModulePk = widget.productModel.moduleIdParentCategory!;
-    int apiShopPk = widget.productModel.shop!;
-    int apiOrderedQuantity = widget.productListController.inCartItem;
-    int apiCategoryProductId = widget.productModel.idCategoryproductTable!;
+    if (widget.productModel.contentTypeParentCategory == 'selfsalemodule') {
+      String username = AppConstants.USERNAME;
+      String password = AppConstants.PASSWORD;
+      int apiModulePk = widget.productModel.moduleIdParentCategory!;
+      int apiShopPk = widget.productModel.shop!;
+      int apiOrderedQuantity = widget.productListController.inCartItem;
+      int apiCategoryProductId = widget.productModel.idCategoryproductTable!;
 
-    SalesModel salesModel = SalesModel(
-        apiModulePk: apiModulePk,
-        apiShopPk: apiShopPk,
-        apiOrderedQuantity: apiOrderedQuantity,
-        apiCategoryProductId: apiCategoryProductId,
-        username: username,
-        password: password);
+      SelfSalesModel salesModel = SelfSalesModel(
+          apiModulePk: apiModulePk,
+          apiShopPk: apiShopPk,
+          apiOrderedQuantity: apiOrderedQuantity,
+          apiCategoryProductId: apiCategoryProductId,
+          username: username,
+          password: password);
 
-    if (apiOrderedQuantity == 0) {
-      Get.snackbar("Quantité", "Entrer une quantité supérieure à 0");
-    } else {
-      salesController.order(salesModel).then((status) {
-        if (status.isSuccess) {
-          widget.productListController.saleAddItem(widget.productModel);
-          Get.toNamed(RouteHelper.getInitial());
-        } else {
-          Get.snackbar("Error", "Vente non effectuée. Vous n'avez pas été débité.", backgroundColor: Colors.redAccent);
-        }
-      });
+      if (apiOrderedQuantity == 0) {
+        Get.snackbar("Quantité", "Entrer une quantité supérieure à 0");
+      } else {
+        salesController.selfOrder(salesModel).then((status) {
+          if (status.isSuccess) {
+            widget.productListController.saleAddItem(widget.productModel);
+            Get.toNamed(RouteHelper.getInitial());
+          } else {
+            Get.snackbar("Error", "Vente non effectuée. Vous n'avez pas été débité.", backgroundColor: Colors.redAccent);
+          }
+        });
+      }
     }
+    if (widget.productModel.contentTypeParentCategory == 'operatorsalemodule') {
+      String username = AppConstants.USERNAME;
+      String password = AppConstants.PASSWORD;
+      int apiBuyerPk = widget.buyer!.id!;
+      int apiModulePk = widget.productModel.moduleIdParentCategory!;
+      int apiShopPk = widget.productModel.shop!;
+      int apiOrderedQuantity = widget.productListController.inCartItem;
+      int apiCategoryProductId = widget.productModel.idCategoryproductTable!;
+
+      OperatorSalesModel salesModel = OperatorSalesModel(
+          apiModulePk: apiModulePk,
+          apiShopPk: apiShopPk,
+          apiOrderedQuantity: apiOrderedQuantity,
+          apiCategoryProductId: apiCategoryProductId,
+          buyer: apiBuyerPk,
+          username: username,
+          password: password);
+
+      if (apiOrderedQuantity == 0) {
+        Get.snackbar("Quantité", "Entrer une quantité supérieure à 0");
+      } else {
+        inspect(salesModel);
+        salesController.operatorOrder(salesModel).then((status) {
+          if (status.isSuccess) {
+            widget.productListController.saleAddItem(widget.productModel);
+            //! changer below
+            Get.toNamed(RouteHelper.getInitial());
+          } else {
+            Get.snackbar("Error", "Vente non effectuée. Vous n'avez pas été débité.", backgroundColor: Colors.redAccent);
+          }
+        });
+      }
+    } else {}
   }
 
   @override

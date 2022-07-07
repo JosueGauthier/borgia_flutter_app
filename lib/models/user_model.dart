@@ -1,75 +1,3 @@
-/* class UserModel {
-  int? id;
-  String? name;
-  String? lastName;
-  String? firstName;
-  String? password;
-  String? email;
-  String? surname;
-  String? family;
-  String? balance;
-  int? year;
-  String? campus;
-  String? phone;
-  String? avatar;
-  String? theme;
-  String? image;
-
-  UserModel(
-      {this.id,
-      this.name,
-      this.lastName,
-      this.firstName,
-      this.password,
-      this.email,
-      this.surname,
-      this.family,
-      this.balance,
-      this.year,
-      this.campus,
-      this.phone,
-      this.avatar,
-      this.image,
-      this.theme});
-
-  UserModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['username'];
-    lastName = json['last_name'];
-    firstName = json['first_name'];
-    password = json['password'];
-    email = json['email'];
-    surname = json['surname'];
-    family = json['family'];
-    balance = json['balance'];
-    year = json['year'];
-    campus = json['campus'];
-    phone = json['phone'];
-    avatar = json['avatar'];
-    theme = json['theme'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['username'] = name;
-    data['last_name'] = lastName;
-    data['first_name'] = firstName;
-    data['password'] = password;
-    data['email'] = email;
-    data['surname'] = surname;
-    data['family'] = family;
-    data['balance'] = balance;
-    data['year'] = year;
-    data['campus'] = campus;
-    data['phone'] = phone;
-    data['avatar'] = avatar;
-    data['theme'] = theme;
-    return data;
-  }
-}
- */
-
 class UserModel {
   int? id;
   String? password;
@@ -89,7 +17,7 @@ class UserModel {
   int? year;
   String? campus;
   int? phone;
-  String? avatar;
+  String? image;
   String? theme;
   String? jwtIat;
   List<Groups>? groups;
@@ -113,7 +41,7 @@ class UserModel {
       this.year,
       this.campus,
       this.phone,
-      this.avatar,
+      this.image,
       this.theme,
       this.jwtIat,
       this.groups});
@@ -137,7 +65,7 @@ class UserModel {
     year = json['year'];
     campus = json['campus'];
     phone = json['phone'];
-    avatar = json['avatar'];
+    image = json['avatar'];
     theme = json['theme'];
     jwtIat = json['jwt_iat'];
     if (json['groups'] != null) {
@@ -168,7 +96,7 @@ class UserModel {
     data['year'] = year;
     data['campus'] = campus;
     data['phone'] = phone;
-    data['avatar'] = avatar;
+    data['avatar'] = image;
     data['theme'] = theme;
     data['jwt_iat'] = jwtIat;
     if (groups != null) {

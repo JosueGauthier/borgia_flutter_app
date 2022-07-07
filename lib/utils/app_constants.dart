@@ -30,7 +30,8 @@ class AppConstants {
   static const String LOGIN_URI = "/api-links/login/";
 
   //* self-sale endpoint
-  static const String SALES_URI = "/api-links/self-sale/";
+  static const String SELF_SALES_URI = "/api-links/self-sale/";
+  static const String OPERATOR_SALES_URI = "/api-links/operator-sale/";
 
   //* save user info
   static String TOKEN = "DBToken";

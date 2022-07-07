@@ -52,7 +52,7 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
 
                           return GestureDetector(
                             onTap: () {
-                              Get.toNamed(RouteHelper.getProductList(categoryModel.id!, categoryModel.moduleId!, widget.shopId, "home"));
+                              Get.toNamed(RouteHelper.getProductList(categoryModel.id!, categoryModel.contentType!.model!));
                             },
                             child: Container(
                               margin: EdgeInsets.only(right: Dimensions.width20, bottom: Dimensions.height15),

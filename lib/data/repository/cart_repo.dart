@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/cart_product_model.dart';
@@ -32,9 +31,9 @@ class CartRepo {
 
     if (sharedPreferences.containsKey(AppConstants.CART_LIST)) {
       carts = sharedPreferences.getStringList(AppConstants.CART_LIST)!;
-      if (kDebugMode) {
+      /* if (kDebugMode) {
         print("inside cart$carts");
-      }
+      } */
     }
 
     List<CartModel> cartList = [];

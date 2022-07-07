@@ -14,11 +14,9 @@ import '../../utils/dimensions.dart';
 import '../../widget/pop_up_vente.dart';
 
 class ProductListPage extends StatefulWidget {
-  final String pagefrom;
   final int categoryId;
-  final int categoryModuleId;
-  final int shopId;
-  const ProductListPage({Key? key, required this.categoryId, required this.pagefrom, required this.shopId, required this.categoryModuleId}) : super(key: key);
+  final String contentType;
+  const ProductListPage({Key? key, required this.categoryId, required this.contentType}) : super(key: key);
 
   @override
   State<ProductListPage> createState() => _ProductListPageState();
@@ -52,7 +50,6 @@ class _ProductListPageState extends State<ProductListPage> {
                           return GestureDetector(
                             onTap: () {
                               Get.find<ProductListController>().initProduct(productModel, Get.find<CartController>());
-
                               showDialog(
                                   context: context,
                                   builder: (_) {

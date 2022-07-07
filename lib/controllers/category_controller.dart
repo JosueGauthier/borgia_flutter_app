@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:borgiaflutterapp/data/repository/category_list_repo.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
-import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:get/get.dart';
 
 class CategoryOfShopController extends GetxController {
@@ -30,10 +29,10 @@ class CategoryOfShopController extends GetxController {
       List responseBody = response.body;
 
       for (var i = 0; i < responseBody.length; i++) {
-        var a = CategoryOfShopModel.fromJson(responseBody[i]);
+        var categoryShopModel = CategoryOfShopModel.fromJson(responseBody[i]);
 
-        if (a.contentType == 21) {
-          _categoryOfShopList.add(CategoryOfShopModel.fromJson(responseBody[i]));
+        if (categoryShopModel.contentType!.model == 'selfsalemodule') {
+          _categoryOfShopList.add(categoryShopModel);
         }
       }
       _isLoaded = true;
@@ -51,10 +50,10 @@ class CategoryOfShopController extends GetxController {
       List responseBody = response.body;
 
       for (var i = 0; i < responseBody.length; i++) {
-        var a = CategoryOfShopModel.fromJson(responseBody[i]);
+        var categoryShopModel = CategoryOfShopModel.fromJson(responseBody[i]);
 
-        if (a.contentType == 20) {
-          _categoryAdminList.add(CategoryOfShopModel.fromJson(responseBody[i]));
+        if (categoryShopModel.contentType!.model == 'operatorsalemodule') {
+          _categoryAdminList.add(categoryShopModel);
         }
       }
 

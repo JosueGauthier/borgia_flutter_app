@@ -1,12 +1,11 @@
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
 import 'package:borgiaflutterapp/models/user_model.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
-import 'dart:math' as math;
 
 import 'package:get/get.dart';
 
@@ -15,14 +14,13 @@ import '../../controllers/category_controller.dart';
 import '../../controllers/product_list_controller.dart';
 import '../../models/categories_shop_model.dart';
 import '../../models/product_model.dart';
-import '../../routes/route_helper.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/pop_up_vente.dart';
 import '../../widget/product_item_widget.dart';
 
 class AdminSearchPage extends StatefulWidget {
   final int shopId;
-  AdminSearchPage({Key? key, required this.shopId}) : super(key: key);
+  const AdminSearchPage({Key? key, required this.shopId}) : super(key: key);
 
   @override
   State<AdminSearchPage> createState() => _AdminSearchPageState();
@@ -117,7 +115,6 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                   setState(() {
                                     userChoose = true;
                                     userChosen = searchController.adminSearchList[index];
-
                                     FocusScope.of(context).unfocus();
                                     searchTextController.clear();
                                   });
@@ -140,8 +137,8 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                           height: Dimensions.height100 * 0.5,
                                           width: Dimensions.height100 * 0.5,
                                           child: ColorFiltered(
-                                            colorFilter: ColorFilter.mode(
-                                                Color((((math.Random().nextDouble())) * 0xFFFFFF).toInt()).withOpacity(1.0), BlendMode.srcATop),
+                                            colorFilter:
+                                                ColorFilter.mode(Color((((Random().nextDouble())) * 0xFFFFFF).toInt()).withOpacity(1.0), BlendMode.srcATop),
                                             child: Image.asset("assets/image/defaultuserimage.png"),
                                           )),
                                     ),
@@ -224,7 +221,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                           userChoose = true;
                                         });
                                       },
-                                      child: Icon(Icons.arrow_back),
+                                      child: const Icon(Icons.arrow_back),
                                     )
                                   ],
                                 ),
@@ -235,6 +232,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                         ),
                         (categoryChoose == false)
                             ? GetBuilder<CategoryOfShopController>(builder: (categoryOfShopController) {
+                                //inspect(categoryOfShopController.categoryAdminList);
                                 return categoryOfShopController.isLoaded
                                     ? Container(
                                         width: double.maxFinite,
@@ -325,6 +323,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                                       context: context,
                                                       builder: (_) {
                                                         return DialogSalePage(
+                                                          buyer: userChosen,
                                                           productModel: productModel,
                                                           productListController: productListController,
                                                         );

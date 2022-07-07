@@ -11,6 +11,7 @@ class ProductModel {
   String? image;
   int? idParentCategory;
   int? moduleIdParentCategory;
+  String? contentTypeParentCategory;
   int? idCategoryproductTable;
 
   ProductModel(
@@ -26,6 +27,7 @@ class ProductModel {
       this.image,
       this.idParentCategory,
       this.moduleIdParentCategory,
+      this.contentTypeParentCategory,
       this.idCategoryproductTable});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
@@ -41,6 +43,7 @@ class ProductModel {
     image = json['product_image'];
     idParentCategory = json['id_parent_category'];
     moduleIdParentCategory = json['module_id_parent_category'];
+    contentTypeParentCategory = json['contentType_parent_category'];
     idCategoryproductTable = json['id_categoryproduct_table'];
   }
 
@@ -58,6 +61,7 @@ class ProductModel {
     data['product_image'] = image;
     data['id_parent_category'] = idParentCategory;
     data['module_id_parent_category'] = moduleIdParentCategory;
+    data['contentType_parent_category'] = contentTypeParentCategory;
     data['id_categoryproduct_table'] = idCategoryproductTable;
     return data;
   }

@@ -2,32 +2,23 @@ class CategoryOfShopModel {
   int? id;
   String? name;
   int? moduleId;
-  List<String>? products;
+  List<int>? products;
   int? order;
   String? image;
   int? shopId;
-  int? contentType;
+  ContentType? contentType;
 
-  CategoryOfShopModel({
-    this.id,
-    this.name,
-    this.moduleId,
-    this.products,
-    this.order,
-    this.image,
-    this.shopId,
-    this.contentType,
-  });
+  CategoryOfShopModel({this.id, this.name, this.moduleId, this.products, this.order, this.image, this.shopId, this.contentType});
 
   CategoryOfShopModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     moduleId = json['module_id'];
-    products = json['products'].cast<String>();
+    products = json['products'].cast<int>();
     order = json['order'];
     image = json['category_image'];
     shopId = json['shop_id'];
-    contentType = json['content_type'];
+    contentType = json['content_type'] != null ? ContentType.fromJson(json['content_type']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -39,7 +30,31 @@ class CategoryOfShopModel {
     data['order'] = order;
     data['category_image'] = image;
     data['shop_id'] = shopId;
-    data['content_type'] = contentType;
+    if (contentType != null) {
+      data['content_type'] = contentType!.toJson();
+    }
+    return data;
+  }
+}
+
+class ContentType {
+  int? id;
+  String? appLabel;
+  String? model;
+
+  ContentType({this.id, this.appLabel, this.model});
+
+  ContentType.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    appLabel = json['app_label'];
+    model = json['model'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['app_label'] = appLabel;
+    data['model'] = model;
     return data;
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,6 +42,7 @@ class ProductListController extends GetxController {
 
       for (var i = 0; i < listofProd.length; i++) {
         _productList.add(ProductModel.fromJson(listofProd[i]));
+        _productList[i].contentTypeParentCategory = responseBody[0]["content_type"];
       }
       _isLoaded = true;
 

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
@@ -86,7 +88,7 @@ class SearchPage extends StatelessWidget {
                               onTap: () async {
                                 if (searchController.searchList[index].runtimeType == UserModel) {
                                   //!ok
-                                  Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].name, "searchPage"));
+                                  Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].username, "searchPage"));
                                 }
                                 if (searchController.searchList[index].runtimeType == ShopModel) {
                                   //! ok
@@ -95,15 +97,21 @@ class SearchPage extends StatelessWidget {
                                 if (searchController.searchList[index].runtimeType == CategoryOfShopModel) {
                                   //!ok
 
-                                  Get.toNamed(RouteHelper.getProductList(searchController.searchList[index].id, searchController.searchList[index].moduleId,
-                                      searchController.searchList[index].shopId, "searchPage"));
+                                  Get.toNamed(RouteHelper.getProductList(
+                                    searchController.searchList[index].id,
+                                    searchController.searchList[index].contentType.model,
+                                  ));
                                 }
                                 if (searchController.searchList[index].runtimeType == ProductModel) {
                                   //!ok
                                   ProductModel productModel = searchController.searchList[index];
 
                                   Get.toNamed(RouteHelper.getProductList(
-                                      productModel.idParentCategory!, productModel.moduleIdParentCategory!, productModel.shop!, "searchPage"));
+                                    productModel.idParentCategory!,
+                                    searchController.searchList[index].contentTypeParentCategory,
+                                  ));
+
+                                  Get.toNamed(RouteHelper.getProductList(productModel.idParentCategory!, productModel.contentTypeParentCategory!));
                                 }
                               },
                               child: Row(
@@ -126,7 +134,11 @@ class SearchPage extends StatelessWidget {
                                             height: Dimensions.height100 * 0.5,
                                             width: Dimensions.height100 * 0.5,
                                             child: (searchController.searchList[index].image == null)
-                                                ? Image.asset("assets/image/defaultuserimage.png")
+                                                ? ColorFiltered(
+                                                    colorFilter: ColorFilter.mode(
+                                                        Color((((Random().nextDouble())) * 0xFFFFFF).toInt()).withOpacity(1.0), BlendMode.srcATop),
+                                                    child: Image.asset("assets/image/defaultuserimage.png"),
+                                                  )
                                                 : CachedNetworkImage(
                                                     imageUrl: searchController.searchList[index].image,
                                                     progressIndicatorBuilder: (context, url, downloadProgress) =>
@@ -145,10 +157,12 @@ class SearchPage extends StatelessWidget {
                                   (searchController.searchList[index].runtimeType == ProductModel && searchController.searchList[index].isActive == false)
                                       ? Container()
                                       : Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                          Text(
-                                            (searchController.searchList[index].name.toString()).capitalize!,
-                                            style: Theme.of(context).textTheme.bodySmall,
-                                          ),
+                                          (searchController.searchList[index].runtimeType != UserModel)
+                                              ? Text(
+                                                  (searchController.searchList[index].name.toString()).capitalize!,
+                                                  style: Theme.of(context).textTheme.bodySmall,
+                                                )
+                                              : Container(),
                                           (searchController.searchList[index].runtimeType == UserModel)
                                               ? Text(
                                                   "${(searchController.searchList[index].firstName.toString()).capitalize!} ${(searchController.searchList[index].lastName.toString()).capitalize!}",

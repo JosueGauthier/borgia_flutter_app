@@ -57,8 +57,7 @@ class RouteHelper {
 
   static String getCategoryListPage(int shopId, String pagefrom) => '$categoryListPage?shopId=$shopId&page=$pagefrom';
 
-  static String getProductList(int categoryId, int categoryModuleId, int shopId, String pagefrom) =>
-      '$productListFromCategory?categoryId=$categoryId&categoryModuleId=$categoryModuleId&shopId=$shopId&page=$pagefrom';
+  static String getProductList(int categoryId, String contentType) => '$productListFromCategory?categoryId=$categoryId&contentType=$contentType';
 
   static String getProductRankUserPage(int shopId) => '$productRankUserPage?shopId=$shopId';
 
@@ -109,14 +108,10 @@ class RouteHelper {
         name: productListFromCategory,
         page: () {
           var categoryId = Get.parameters['categoryId'];
-          var categoryModuleId = Get.parameters['categoryModuleId'];
-          var shopId = Get.parameters['shopId'];
-          var pagefrom = Get.parameters['page'];
+          var contentType = Get.parameters['contentType'];
           return ProductListPage(
             categoryId: int.parse(categoryId!),
-            categoryModuleId: int.parse(categoryModuleId!),
-            shopId: int.parse(shopId!),
-            pagefrom: pagefrom!,
+            contentType: contentType!,
           );
         },
         transition: Transition.fadeIn),
