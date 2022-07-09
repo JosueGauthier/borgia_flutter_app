@@ -14,9 +14,9 @@ class ProductListController extends GetxController {
 
   ProductListController({required this.productListRepo});
 
-  int _quantity = 0;
+  int quantity = 0;
 
-  int get inCartItem => _quantity;
+  int get inCartItem => quantity;
 
   List<dynamic> _productList = [];
 
@@ -51,16 +51,16 @@ class ProductListController extends GetxController {
   }
 
   void setQuantityToZero() {
-    _quantity = 0;
+    quantity = 0;
 
     update();
   }
 
   void setQuantity(bool isIncrement) {
     if (isIncrement) {
-      _quantity = checkQuantity(_quantity + 1);
-    } else if (isIncrement == false && (_quantity) > 0) {
-      _quantity = checkQuantity(_quantity - 1);
+      quantity = checkQuantity(quantity + 1);
+    } else if (isIncrement == false && (quantity) > 0) {
+      quantity = checkQuantity(quantity - 1);
     }
     update();
   }
@@ -82,10 +82,10 @@ class ProductListController extends GetxController {
   void saleAddItem(
     ProductModel productModel,
   ) {
-    if ((_quantity) > 0) {
-      _cartController.addItem(productModel, _quantity, productModel.shop!);
+    if ((quantity) > 0) {
+      _cartController.addItem(productModel, quantity, productModel.shop!);
 
-      _quantity = 0;
+      quantity = 0;
     } else {}
 
     update();
@@ -93,7 +93,7 @@ class ProductListController extends GetxController {
 
   //? not used
   void initProduct(ProductModel productModel, CartController cartController) {
-    _quantity = 1;
+    quantity = 1;
 
     // get from storage
     _cartController = cartController;

@@ -42,12 +42,24 @@ List<PieChartSectionData> showingSectionsQuantity(List dataList, List colorList,
   return List.generate(dataList.length, (i) {
     var coloor = colorList[colorList.length ~/ dataList.length * i];
 
+    double sum = 0;
+
+    for (var i = 0; i < dataList.length; i++) {
+      if (dataList[i].quantity != null) {
+        sum += dataList[i].quantity;
+      }
+    }
+
     return PieChartSectionData(
       color: coloor,
       //colorList[colorList.length ~/ dataList.length * i],
       //colorList[(i.isEven) ? (colorList.length / dataList.length).toInt() * i : (colorList.length - (colorList.length / dataList.length).toInt() * i)],
       value: dataList[i].quantity.toDouble(),
-      title: isImagePresent ? (dataList[i].quantity.toString()) : dataList[i].shopName + "\n" + dataList[i].quantity.toString(),
+      title: isImagePresent
+          ? ((dataList[i].quantity <= (5 / 100) * sum) ? "" : dataList[i].quantity.toString())
+          : dataList[i].shopName + "\n" + (dataList[i].quantity <= 5)
+              ? ""
+              : dataList[i].quantity.toString(),
       radius: 100,
       titleStyle: TextStyle(fontSize: Dimensions.height10 * 1.6, fontWeight: FontWeight.bold, color: Colors.white),
       badgeWidget: isImagePresent
@@ -66,6 +78,14 @@ List<PieChartSectionData> showingSectionsAmount(List dataList, List colorList, b
   return List.generate(dataList.length, (i) {
     double valeur = (dataList[i].montantAchats == null) ? 0 : dataList[i].montantAchats.toDouble();
 
+    double sum = 0;
+
+    for (var i = 0; i < dataList.length; i++) {
+      if (dataList[i].montantAchats != null) {
+        sum += dataList[i].montantAchats;
+      }
+    }
+
     var coloor = colorList[colorList.length ~/ dataList.length * i];
     //color: (colourLuminance >= 0.5) ? AppColors.titleColor : Colors.white
 
@@ -74,7 +94,7 @@ List<PieChartSectionData> showingSectionsAmount(List dataList, List colorList, b
     return PieChartSectionData(
       color: coloor,
       value: valeur,
-      title: "$valeur€",
+      title: (valeur <= (5 / 100) * sum) ? "" : "$valeur€",
       radius: 100,
       titleStyle: TextStyle(fontSize: Dimensions.height10 * 1.6, fontWeight: FontWeight.bold, color: Colors.white),
       badgeWidget: isImagePresent
@@ -102,7 +122,7 @@ List<PieChartSectionData> showingSectionsPercentage(List dataList, List colorLis
     return PieChartSectionData(
       color: coloor,
       value: valeur.toDouble(),
-      title: "$valeur%",
+      title: (valeur <= 5) ? "" : "$valeur%",
       radius: 100,
       titleStyle: TextStyle(fontSize: Dimensions.height10 * 1.6, fontWeight: FontWeight.bold, color: Colors.white),
       badgeWidget: isImagePresent

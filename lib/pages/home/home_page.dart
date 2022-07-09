@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 import '../../controllers/cart_controller.dart';
 import '../../controllers/shop_controller.dart';
+import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../fav_products/fav_page.dart';
 import '../search/searchpage.dart';
@@ -46,6 +47,7 @@ class _HomePageState extends State<HomePage> {
 
   void _onItemTapped(int index) {
     setState(() {
+      AppConstants.isfinishedRotate = true;
       _selectedIndex = index;
     });
   }

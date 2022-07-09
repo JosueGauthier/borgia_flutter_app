@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../routes/route_helper.dart';
+import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
@@ -54,6 +55,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         ShopModel shopModel = shopController.shopList[index];
                         return GestureDetector(
                           onTap: () {
+                            AppConstants.isfinishedRotate = true;
                             Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
                           },
                           child: Container(

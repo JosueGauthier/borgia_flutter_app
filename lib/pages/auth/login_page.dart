@@ -1,13 +1,9 @@
-// ignore_for_file: unused_import
-
 import 'package:borgiaflutterapp/controllers/auth_controller.dart';
 import 'package:borgiaflutterapp/routes/route_helper.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:borgiaflutterapp/widget/big_text.dart';
-import 'package:borgiaflutterapp/widget/small_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sa3_liquid/liquid/plasma/plasma.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -90,27 +86,8 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
+                              image: DecorationImage(image: AssetImage("assets/image/gradient.png"), fit: BoxFit.cover),
                               borderRadius: BorderRadius.only(bottomRight: Radius.circular(Dimensions.height100 * 4)),
-                              color: AppColors.secondColor,
-                              backgroundBlendMode: BlendMode.srcOver,
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.only(bottomRight: Radius.circular(Dimensions.height100 * 4)),
-                              child: const PlasmaRenderer(
-                                type: PlasmaType.infinity,
-                                particles: 6,
-                                color: AppColors.mainColor,
-                                blur: 0.9,
-                                size: 0.9,
-                                speed: 1,
-                                offset: 0,
-                                blendMode: BlendMode.srcOver,
-                                particleType: ParticleType.atlas,
-                                variation1: 0,
-                                variation2: 0,
-                                variation3: 0,
-                                rotation: 0,
-                              ),
                             ),
                           ),
                           Container(

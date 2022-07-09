@@ -1,4 +1,5 @@
 import 'package:borgiaflutterapp/models/user_model.dart';
+import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,6 +28,16 @@ class _AdminPageState extends State<AdminPage> {
         body: Column(
           children: [
             const CustomHeader(text: "Admin"),
+            Container(
+              height: Dimensions.height100 * 1.5,
+              child: ColorFiltered(
+                colorFilter: ColorFilter.mode(AppColors.mainColor, BlendMode.srcATop),
+                child: Image.asset("assets/image/adminpanel.png"),
+              ),
+            ),
+            SizedBox(
+              height: Dimensions.height10,
+            ),
             Expanded(
               child: Column(
                 children: [

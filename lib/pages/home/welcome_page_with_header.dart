@@ -102,6 +102,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                         userController.userModelController.groups!.any((element) => element.name!.contains("associates")))
                                                     ? GestureDetector(
                                                         onTap: () {
+                                                          AppConstants.isfinishedRotate = true;
                                                           Get.toNamed(RouteHelper.getAdminPage());
                                                         },
                                                         child: Container(
@@ -118,6 +119,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                     : Container(),
                                                 GestureDetector(
                                                   onTap: () {
+                                                    AppConstants.isfinishedRotate = true;
                                                     Get.toNamed(RouteHelper.getCartPage());
                                                   },
                                                   child: Container(
@@ -133,6 +135,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                 ),
                                                 GestureDetector(
                                                   onTap: () {
+                                                    AppConstants.isfinishedRotate = true;
                                                     Get.toNamed(RouteHelper.getProfilepage());
                                                   },
                                                   child: Container(

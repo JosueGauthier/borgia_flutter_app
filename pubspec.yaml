@@ -9,7 +9,6 @@ environment:
   sdk: ">=2.16.2 <3.0.0"
 
 dependencies:
-  sa3_liquid: ^1.0.1
   animated_text_kit: ^4.2.1
   cached_network_image: ^3.2.0
   shared_preferences : ^2.0.11
