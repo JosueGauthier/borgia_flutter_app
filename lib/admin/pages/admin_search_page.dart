@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:math';
 
 import 'package:borgiaflutterapp/controllers/search_controller.dart';

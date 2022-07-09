@@ -32,8 +32,12 @@ class SearchController extends GetxController {
       List responseBody = responseProduct.body;
 
       for (var i = 0; i < responseBody.length; i++) {
-        _searchList.add(ProductModel.fromJson(responseBody[i]));
+        ProductModel productModel = ProductModel.fromJson(responseBody[i]);
+        if (productModel.contentTypeParentCategory != 'operatorsalemodule') {
+          _searchList.add(productModel);
+        }
       }
+
       _isLoaded = true;
     } else {}
 
@@ -41,7 +45,11 @@ class SearchController extends GetxController {
       List responseBody = responseCategory.body;
 
       for (var i = 0; i < responseBody.length; i++) {
-        _searchList.add(CategoryOfShopModel.fromJson(responseBody[i]));
+        CategoryOfShopModel categoryOfShopModel = CategoryOfShopModel.fromJson(responseBody[i]);
+
+        if (categoryOfShopModel.contentType!.model != 'operatorsalemodule') {
+          _searchList.add(categoryOfShopModel);
+        }
       }
       _isLoaded = true;
     } else {}

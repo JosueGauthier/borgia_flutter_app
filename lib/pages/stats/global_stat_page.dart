@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:borgiaflutterapp/widget/stat_widget/piechart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,6 +44,40 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
   refresh() {
     setState(() {});
   }
+
+  late Timer _timer;
+  Color lightColor = Colors.red;
+
+  void startTimer() {
+    const oneSec = Duration(milliseconds: 1000);
+    _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_timer.tick.isEven) {
+          setState(() {
+            lightColor = Colors.transparent;
+          });
+        } else {
+          setState(() {
+            lightColor = Colors.red;
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    startTimer();
+  }
+
+  /* @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  } */
 
   @override
   Widget build(BuildContext context) {
@@ -89,11 +125,23 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
             SizedBox(
               height: Dimensions.height20,
             ),
-            Container(
-                //color: AppColors.titleColor,
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.only(left: Dimensions.width20),
-                child: Text("Live des ventes", style: Theme.of(context).textTheme.titleMedium)),
+            Row(
+              children: [
+                SizedBox(
+                  width: Dimensions.width20,
+                ),
+                Container(
+                  width: Dimensions.width20 * 1,
+                  height: Dimensions.height20 * 1,
+                  decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(Dimensions.height20)),
+                ),
+                Container(
+                    //color: AppColors.titleColor,
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(left: Dimensions.width20),
+                    child: Text("Live des ventes", style: Theme.of(context).textTheme.titleMedium)),
+              ],
+            ),
             SizedBox(
               height: Dimensions.height20,
             ),

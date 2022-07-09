@@ -13,19 +13,30 @@ import 'package:get/get.dart';
 import '../../routes/route_helper.dart';
 import '../../utils/dimensions.dart';
 
-class SearchPage extends StatelessWidget {
+class SearchPage extends StatefulWidget {
   SearchPage({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
   final TextEditingController searchTextController = TextEditingController();
+
+  bool searchWordIsEmpty = true;
 
   void _search(SearchController searchController) {
     var searchController = Get.find<SearchController>();
     String searchWord = searchTextController.text.trim();
 
     if (searchWord.isEmpty) {
+      setState(() {
+        searchWordIsEmpty = true;
+      });
     } else {
+      searchWordIsEmpty = false;
       searchController.getSearchList(searchWord).then((status) {});
     }
   }
@@ -75,7 +86,7 @@ class SearchPage extends StatelessWidget {
                 ],
               ),
             ),
-            (searchController.isLoaded)
+            (searchController.isLoaded && searchWordIsEmpty == false)
                 ? Expanded(
                     child: ListView.builder(
                         padding: EdgeInsets.zero,
@@ -87,14 +98,20 @@ class SearchPage extends StatelessWidget {
                             child: GestureDetector(
                               onTap: () async {
                                 if (searchController.searchList[index].runtimeType == UserModel) {
+                                  FocusScope.of(context).unfocus();
+                                  searchTextController.clear();
                                   //!ok
                                   Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].username, "searchPage"));
                                 }
                                 if (searchController.searchList[index].runtimeType == ShopModel) {
+                                  FocusScope.of(context).unfocus();
+                                  searchTextController.clear();
                                   //! ok
                                   Get.toNamed(RouteHelper.getCategoryListPage(searchController.searchList[index].id, "searchPage"));
                                 }
                                 if (searchController.searchList[index].runtimeType == CategoryOfShopModel) {
+                                  FocusScope.of(context).unfocus();
+                                  searchTextController.clear();
                                   //!ok
 
                                   Get.toNamed(RouteHelper.getProductList(
@@ -103,14 +120,10 @@ class SearchPage extends StatelessWidget {
                                   ));
                                 }
                                 if (searchController.searchList[index].runtimeType == ProductModel) {
+                                  FocusScope.of(context).unfocus();
+                                  searchTextController.clear();
                                   //!ok
                                   ProductModel productModel = searchController.searchList[index];
-
-                                  Get.toNamed(RouteHelper.getProductList(
-                                    productModel.idParentCategory!,
-                                    searchController.searchList[index].contentTypeParentCategory,
-                                  ));
-
                                   Get.toNamed(RouteHelper.getProductList(productModel.idParentCategory!, productModel.contentTypeParentCategory!));
                                 }
                               },
