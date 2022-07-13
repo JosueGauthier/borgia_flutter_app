@@ -12,8 +12,6 @@ class SalesController extends GetxController implements GetxService {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  //String username, String pasword,int api_operator_pk, int api_module_pk, int api_shop_pk, int api_ordered_quantity, int api_category_product_id
-
   Future<ResponseModel> selfOrder(SelfSalesModel salesModel) async {
     _isLoading = true;
 

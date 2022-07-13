@@ -40,7 +40,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                               onTap: () {
                                 compteur += 1;
 
-                                if (compteur > 3) {
+                                if (compteur > 6) {
                                   Get.toNamed(RouteHelper.getNeonPage());
                                 }
                               },

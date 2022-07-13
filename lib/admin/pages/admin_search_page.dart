@@ -27,16 +27,21 @@ class AdminSearchPage extends StatefulWidget {
 
 class _AdminSearchPageState extends State<AdminSearchPage> {
   final TextEditingController searchTextController = TextEditingController();
+  bool searchWordIsEmpty = true;
 
   void _search(SearchController searchController) {
     var searchController = Get.find<SearchController>();
     String searchWord = searchTextController.text.trim();
 
     if (searchWord.isEmpty) {
+      searchWordIsEmpty = true;
     } else {
+      searchWordIsEmpty = false;
       searchController.getAdminUserSearchList(searchWord).then((status) {});
     }
   }
+
+  bool searchBarIsFocused = false;
 
   bool userChoose = false;
 
@@ -65,11 +70,24 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    (searchBarIsFocused && searchWordIsEmpty == false)
+                        ? Container()
+                        : GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: SizedBox(
+                              //height: Dimensions.height20,
+                              width: Dimensions.width30,
+                              child: Icon(Icons.arrow_back_ios, size: Dimensions.height10 * 3, color: Theme.of(context).colorScheme.onPrimary),
+                            ),
+                          ),
                     SizedBox(
                       height: Dimensions.height45 * 2.7,
-                      width: Dimensions.height100 * 3.5,
+                      width: Dimensions.height100 * 3,
                       child: TextFormField(
                         onChanged: (value) {
+                          searchBarIsFocused = true;
                           _search(searchController);
                           setState(() {
                             userChoose = false;
@@ -100,7 +118,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                 ),
               ),
               (userChoose == false)
-                  ? (searchController.isLoaded)
+                  ? (searchController.isLoaded && searchWordIsEmpty == false)
                       ? ListView.builder(
                           shrinkWrap: true,
                           padding: EdgeInsets.zero,
@@ -116,6 +134,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                     userChosen = searchController.adminSearchList[index];
                                     FocusScope.of(context).unfocus();
                                     searchTextController.clear();
+                                    searchBarIsFocused = false;
                                   });
                                 },
                                 child: Row(

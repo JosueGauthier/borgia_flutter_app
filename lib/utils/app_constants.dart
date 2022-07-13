@@ -37,6 +37,9 @@ class AppConstants {
   static String TOKEN = "DBToken";
   static String COOKIE = "";
 
+  //* create product endpoint
+  static const String CREATE_PRODUCT_URI = "/api-links/create-product/";
+
   static Map<String, String>? HEADERS = {};
 
   static String USERNAME = "";
