@@ -5,7 +5,6 @@ import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../controllers/cart_controller.dart';
 import '../../controllers/shop_controller.dart';
@@ -29,12 +28,12 @@ class _HomePageState extends State<HomePage> {
     //await preferences.clear();
 
     await Get.find<ShopController>().getShopList();
-    await Get.find<CartController>().getCartData();
+    Get.find<CartController>().getCartData();
   }
 
   List<Widget> pages = [
     const WelcomePageWithHeader(),
-    SearchPage(),
+    const SearchPage(),
     const FavPage(),
     const RefillLydiaPage(),
     const StatsPage(),

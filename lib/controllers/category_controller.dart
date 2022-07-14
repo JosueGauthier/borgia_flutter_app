@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/data/repository/category_list_repo.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:get/get.dart';

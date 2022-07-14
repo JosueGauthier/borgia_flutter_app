@@ -17,8 +17,8 @@ import '../../widget/custom_header.dart';
 import '../../widget/profile_box.dart';
 
 class CreateProductPage extends StatefulWidget {
-  int shopId;
-  CreateProductPage({Key? key, required this.shopId}) : super(key: key);
+  final int shopId;
+  const CreateProductPage({Key? key, required this.shopId}) : super(key: key);
 
   @override
   State<CreateProductPage> createState() => _CreateProductPageState();
@@ -37,39 +37,31 @@ class _CreateProductPageState extends State<CreateProductPage> {
 
   static Future<String> selectFile() async {
     late CloudinaryResponse response;
-    try {
-      var result = await FilePicker.platform.pickFiles(
-        type: FileType.any,
-        allowMultiple: true,
-      );
+    var result = await FilePicker.platform.pickFiles(
+      type: FileType.any,
+      allowMultiple: true,
+    );
 
-      if (result != null) {
-        for (PlatformFile file in result.files) {
-          if (file.path != null) {
-            response = await uploadFileOnCloudinary(
-              filePath: file.path!,
-              resourceType: CloudinaryResourceType.Auto,
-            );
-          }
+    if (result != null) {
+      for (PlatformFile file in result.files) {
+        if (file.path != null) {
+          response = await uploadFileOnCloudinary(
+            filePath: file.path!,
+            resourceType: CloudinaryResourceType.Auto,
+          );
         }
       }
-    } on PlatformException catch (e, s) {
-    } on Exception catch (e, s) {}
+    }
     return response.secureUrl;
   }
 
   static Future<CloudinaryResponse> uploadFileOnCloudinary({String filePath = "", CloudinaryResourceType resourceType = CloudinaryResourceType.Auto}) async {
-    String result;
     late CloudinaryResponse response;
-    try {
-      var cloudinary = CloudinaryPublic('dxsy9rszs', 'borgia', cache: false);
-      response = await cloudinary.uploadFile(
-        CloudinaryFile.fromFile(filePath, resourceType: resourceType),
-      );
-    } on CloudinaryException catch (e, s) {
-      print(e.message);
-      print(e.request);
-    }
+    var cloudinary = CloudinaryPublic('dxsy9rszs', 'borgia', cache: false);
+    response = await cloudinary.uploadFile(
+      CloudinaryFile.fromFile(filePath, resourceType: resourceType),
+    );
+
     return response;
   }
 
@@ -106,7 +98,6 @@ class _CreateProductPageState extends State<CreateProductPage> {
     } else if (manualPrice <= 0) {
       Get.snackbar("Prix manuel", "Entrer un prix correct");
     } else {
-      print("aze1111");
       inspect(productModel);
       createProductController.createProduct(productModel).then((status) {
         if (status.isSuccess) {
@@ -208,14 +199,14 @@ class _CreateProductPageState extends State<CreateProductPage> {
                           imageOk = true;
                         });
                       },
-                      child: Container(
+                      child: SizedBox(
                         width: double.maxFinite,
 
                         //color: Colors.blueAccent,
                         child: Row(
                           children: [
                             imageOk
-                                ? Container(
+                                ? SizedBox(
                                     width: Dimensions.width45 * 7,
                                     child: ProfileBox(
                                       textColor: Theme.of(context).colorScheme.onPrimary,
@@ -227,7 +218,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                                       isEditable: false,
                                     ),
                                   )
-                                : Container(
+                                : SizedBox(
                                     width: Dimensions.screenWidth,
                                     child: ProfileBox(
                                       textColor: Theme.of(context).colorScheme.onPrimary,
@@ -341,7 +332,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                       onTap: () {
                         _createProduct(createProductController);
                       },
-                      child: Container(
+                      child: SizedBox(
                         width: Dimensions.width45 * 5,
                         child: ProfileBox(
                           textColor: Theme.of(context).colorScheme.onPrimary,

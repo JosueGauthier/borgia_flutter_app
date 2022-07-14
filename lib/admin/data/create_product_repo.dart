@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/admin/models/create_product_model.dart';
 import 'package:borgiaflutterapp/data/api/api_client.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
@@ -13,7 +11,6 @@ class CreateProductRepo {
   });
 
   Future<Response> createProduct(CreateProductModel createProductModel) async {
-    print(createProductModel.toJson());
     return await apiClient.postData(AppConstants.CREATE_PRODUCT_URI, createProductModel.toJson());
   }
 }

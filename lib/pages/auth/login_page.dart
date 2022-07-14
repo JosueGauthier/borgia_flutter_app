@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              image: DecorationImage(image: AssetImage("assets/image/gradient.png"), fit: BoxFit.cover),
+                              image: const DecorationImage(image: AssetImage("assets/image/gradient.png"), fit: BoxFit.cover),
                               borderRadius: BorderRadius.only(bottomRight: Radius.circular(Dimensions.height100 * 4)),
                             ),
                           ),

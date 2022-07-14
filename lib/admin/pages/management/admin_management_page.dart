@@ -8,8 +8,8 @@ import '../../../widget/custom_header.dart';
 import '../../../widget/profile_box.dart';
 
 class ManagementShopPage extends StatefulWidget {
-  int shopId;
-  ManagementShopPage({Key? key, required this.shopId}) : super(key: key);
+  final int shopId;
+  const ManagementShopPage({Key? key, required this.shopId}) : super(key: key);
 
   @override
   State<ManagementShopPage> createState() => _ManagementShopPageState();
@@ -42,7 +42,7 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                     onTap: () {
                       Get.toNamed(RouteHelper.getCreateProductPage(widget.shopId));
                     },
-                    child: Container(
+                    child: SizedBox(
                       width: Dimensions.screenWidth,
                       child: ProfileBox(
                         textColor: Theme.of(context).colorScheme.onPrimary,
@@ -62,7 +62,7 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                     onTap: () {
                       Get.toNamed(RouteHelper.getUpdateProductPage(widget.shopId));
                     },
-                    child: Container(
+                    child: SizedBox(
                       width: Dimensions.screenWidth,
                       child: ProfileBox(
                         textColor: Theme.of(context).colorScheme.onPrimary,
@@ -78,7 +78,7 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                   SizedBox(
                     height: Dimensions.height20,
                   ),
-                  Container(
+                  SizedBox(
                     width: Dimensions.screenWidth,
                     child: ProfileBox(
                       textColor: Theme.of(context).colorScheme.onPrimary,
@@ -104,7 +104,7 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                   SizedBox(
                     height: Dimensions.height10,
                   ),
-                  Container(
+                  SizedBox(
                     width: Dimensions.screenWidth,
                     child: ProfileBox(
                       textColor: Theme.of(context).colorScheme.onPrimary,
@@ -119,7 +119,7 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                   SizedBox(
                     height: Dimensions.height20,
                   ),
-                  Container(
+                  SizedBox(
                     width: Dimensions.screenWidth,
                     child: ProfileBox(
                       textColor: Theme.of(context).colorScheme.onPrimary,
@@ -134,7 +134,7 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                   SizedBox(
                     height: Dimensions.height20,
                   ),
-                  Container(
+                  SizedBox(
                     width: Dimensions.screenWidth,
                     child: ProfileBox(
                       textColor: Theme.of(context).colorScheme.onPrimary,

@@ -14,7 +14,7 @@ import '../../routes/route_helper.dart';
 import '../../utils/dimensions.dart';
 
 class SearchPage extends StatefulWidget {
-  SearchPage({
+  const SearchPage({
     Key? key,
   }) : super(key: key);
 

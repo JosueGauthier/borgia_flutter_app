@@ -195,7 +195,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      userChosen.firstName!.capitalize! + " " + userChosen.lastName!.capitalize!,
+                                      "${userChosen.firstName!.capitalize!} ${userChosen.lastName!.capitalize!}",
                                       style: Theme.of(context).textTheme.titleMedium,
                                     ),
                                   ],
@@ -207,12 +207,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      userChosen.surname!.capitalize! +
-                                          " " +
-                                          userChosen.family! +
-                                          " " +
-                                          (userChosen.campus!).toLowerCase().capitalize! +
-                                          (userChosen.year! - 1800).toString(),
+                                      "${userChosen.surname!.capitalize!} ${userChosen.family!} ${(userChosen.campus!).toLowerCase().capitalize!}${userChosen.year! - 1800}",
                                       style: Theme.of(context).textTheme.titleMedium,
                                     ),
                                   ],
@@ -222,7 +217,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                 ),
                                 Center(
                                   child: Text(
-                                    userChosen.balance! + " €",
+                                    "${userChosen.balance!} €",
                                     style: Theme.of(context).textTheme.labelLarge!.copyWith(color: AppColors.greenEmerald, fontSize: 30),
                                   ),
                                 ),

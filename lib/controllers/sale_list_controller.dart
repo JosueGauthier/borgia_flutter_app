@@ -36,8 +36,6 @@ class SaleListController extends GetxController {
 
       _isLoadedYearList = true;
 
-      print("aaa");
-
       update();
     } else {}
   }

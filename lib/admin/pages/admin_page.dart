@@ -28,10 +28,10 @@ class _AdminPageState extends State<AdminPage> {
         body: Column(
           children: [
             const CustomHeader(text: "Admin"),
-            Container(
+            SizedBox(
               height: Dimensions.height100 * 1.5,
               child: ColorFiltered(
-                colorFilter: ColorFilter.mode(AppColors.mainColor, BlendMode.srcATop),
+                colorFilter: const ColorFilter.mode(AppColors.mainColor, BlendMode.srcATop),
                 child: Image.asset("assets/image/adminpanel.png"),
               ),
             ),
@@ -122,7 +122,7 @@ class _AdminPageState extends State<AdminPage> {
                                                     //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
                                                     alignment: Alignment.center,
                                                     child: Text(
-                                                      "Vente opérateur " + (shopModel.name)!,
+                                                      "Vente opérateur ${(shopModel.name)!}",
                                                       style: Theme.of(context).textTheme.bodySmall,
                                                     ),
                                                   ),
@@ -200,7 +200,7 @@ class _AdminPageState extends State<AdminPage> {
                                                     //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
                                                     alignment: Alignment.center,
                                                     child: Text(
-                                                      "Gestion magasin " + (shopModel.name)!,
+                                                      "Gestion magasin ${(shopModel.name)!}",
                                                       style: Theme.of(context).textTheme.bodySmall,
                                                     ),
                                                   ),
