@@ -42,15 +42,17 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
         children: [
           Row(
             children: [
-              Checkbox(
-                checkColor: Colors.white,
-                //fillColor: MaterialStateProperty.resolveWith(getColor),
-                value: widget.isChecked,
-                onChanged: (bool? value) {
-                  setState(() {
-                    widget.isChecked = value!;
-                  });
-                },
+              Container(
+                child: Checkbox(
+                  checkColor: Colors.white,
+                  //fillColor: MaterialStateProperty.resolveWith(getColor),
+                  value: widget.isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      widget.isChecked = value!;
+                    });
+                  },
+                ),
               ),
               SizedBox(
                 width: Dimensions.width20,

@@ -12,4 +12,9 @@ class ProductListRepo extends GetxService {
     String productListUrl = AppConstants.PRODUCT_LIST_URI + categoryId.toString();
     return await apiClient.getData(productListUrl);
   }
+
+  Future<Response> getShopProductList(int shopId) async {
+    String productListUrl = AppConstants.PRODUCT_LIST_URI_FROM_SHOP + shopId.toString();
+    return await apiClient.getData(productListUrl);
+  }
 }

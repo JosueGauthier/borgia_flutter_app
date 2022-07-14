@@ -22,8 +22,15 @@ class ProductListController extends GetxController {
 
   List<dynamic> get productList => _productList;
 
+  List<dynamic> _shopProductList = [];
+
+  List<dynamic> get shopProductList => _shopProductList;
+
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
+
+  bool _shopProductIsLoaded = false;
+  bool get shopProductIsLoaded => _shopProductIsLoaded;
 
   //* var for cart control
   late CartController _cartController;
@@ -105,5 +112,24 @@ class ProductListController extends GetxController {
 
   List<CartModel> get getItems {
     return _cartController.getItems;
+  }
+
+  Future<void> getShopProduct(int shopId) async {
+    Response response = await productListRepo.getShopProductList(shopId);
+
+    if (response.statusCode == 200) {
+      _shopProductList = [];
+
+      List responseBody = response.body;
+
+      List listofProd = responseBody;
+
+      for (var i = 0; i < listofProd.length; i++) {
+        _shopProductList.add(ProductModel.fromJson(listofProd[i]));
+        _shopProductList[i].contentTypeParentCategory = responseBody[0]["content_type"];
+      }
+      _shopProductIsLoaded = true;
+      update();
+    } else {}
   }
 }

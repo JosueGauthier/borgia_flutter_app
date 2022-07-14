@@ -58,16 +58,21 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                   SizedBox(
                     height: Dimensions.height20,
                   ),
-                  Container(
-                    width: Dimensions.screenWidth,
-                    child: ProfileBox(
-                      textColor: Theme.of(context).colorScheme.onPrimary,
-                      backgroundcolor: AppColors.secondColor,
-                      icon: Icons.edit_note,
-                      text: "Modification d'un produit",
-                      iconcolor: Theme.of(context).colorScheme.onPrimary,
-                      radius: Dimensions.width45,
-                      isEditable: false,
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getUpdateProductPage(widget.shopId));
+                    },
+                    child: Container(
+                      width: Dimensions.screenWidth,
+                      child: ProfileBox(
+                        textColor: Theme.of(context).colorScheme.onPrimary,
+                        backgroundcolor: AppColors.secondColor,
+                        icon: Icons.edit_note,
+                        text: "Modification d'un produit",
+                        iconcolor: Theme.of(context).colorScheme.onPrimary,
+                        radius: Dimensions.width45,
+                        isEditable: false,
+                      ),
                     ),
                   ),
                   SizedBox(

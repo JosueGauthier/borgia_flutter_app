@@ -131,6 +131,9 @@ class _CreateProductPageState extends State<CreateProductPage> {
                 child: SingleChildScrollView(
                     child: Column(
                   children: [
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                       child: TextFormField(

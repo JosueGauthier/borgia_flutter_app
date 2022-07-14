@@ -19,6 +19,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../admin/controller/create_product_controller.dart';
+import '../admin/controller/update_product_controller.dart';
+import '../admin/data/update_product_repo.dart';
 import '../controllers/auth_controller.dart';
 import '../controllers/cart_controller.dart';
 import '../controllers/category_controller.dart';
@@ -72,6 +74,8 @@ Future<void> init() async {
 
   Get.lazyPut(() => CreateProductRepo(apiClient: Get.find()));
 
+  Get.lazyPut(() => UpdateProductRepo(apiClient: Get.find()));
+
   //!controllers
 
   Get.lazyPut(() => CartController(cartRepo: Get.find()), fenix: true);
@@ -99,4 +103,6 @@ Future<void> init() async {
   Get.lazyPut(() => ProductListController(productListRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => CreateProductController(createProductRepo: Get.find()), fenix: true);
+
+  Get.lazyPut(() => UpdateProductController(updateProductRepo: Get.find()), fenix: true);
 }
