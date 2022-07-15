@@ -1,4 +1,3 @@
-import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +8,6 @@ class CheckBoxWidget extends StatefulWidget {
   final String text;
   final Color iconcolor;
   final Color textColor;
-  final bool isEditable;
   final double radius;
   bool isChecked;
 
@@ -19,7 +17,6 @@ class CheckBoxWidget extends StatefulWidget {
       required this.backgroundcolor,
       required this.text,
       required this.iconcolor,
-      this.isEditable = true,
       this.radius = 50,
       required this.isChecked})
       : super(key: key);
@@ -29,8 +26,18 @@ class CheckBoxWidget extends StatefulWidget {
 }
 
 class _CheckBoxWidgetState extends State<CheckBoxWidget> {
+  bool _isCheckBoxChecked = true;
+  bool get isCheckBoxChecked => _isCheckBoxChecked;
+
+  @override
+  void initState() {
+    _isCheckBoxChecked = widget.isChecked;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    _isCheckBoxChecked = widget.isChecked;
     return Container(
       padding: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
       margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
@@ -45,11 +52,12 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
               Checkbox(
                 checkColor: Colors.white,
                 //fillColor: MaterialStateProperty.resolveWith(getColor),
-                value: widget.isChecked,
+                value: _isCheckBoxChecked,
                 onChanged: (bool? value) {
                   setState(() {
-                    widget.isChecked = value!;
+                    _isCheckBoxChecked = value!;
                   });
+                  print(value);
                 },
               ),
               SizedBox(
@@ -63,12 +71,6 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
               ),
             ],
           ),
-          widget.isEditable == true
-              ? const Icon(
-                  Icons.edit,
-                  color: AppColors.titleColor,
-                )
-              : Container(),
         ],
       ),
     );

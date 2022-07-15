@@ -8,11 +8,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../utils/app_constants.dart';
 import '../../utils/dimensions.dart';
+import '../../widget/big_text.dart';
 import '../../widget/custom_header.dart';
 import '../../widget/profile_box.dart';
 
@@ -25,8 +25,6 @@ class CreateProductPage extends StatefulWidget {
 }
 
 class _CreateProductPageState extends State<CreateProductPage> {
-  List isChiefIn = [];
-
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController correctingFactorController = TextEditingController();
@@ -160,7 +158,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                       child: TextFormField(
                         scrollPadding: EdgeInsets.only(bottom: Dimensions.height100),
                         keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
+                        //inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
                         controller: priceController,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -264,14 +262,40 @@ class _CreateProductPageState extends State<CreateProductPage> {
                           isManualPriceChecked = !isManualPriceChecked;
                         });
                       },
-                      child: CheckBoxWidget(
-                        textColor: Theme.of(context).colorScheme.onPrimary,
-                        backgroundcolor: AppColors.mainColor,
-                        text: "Prix manuel ?",
-                        iconcolor: Theme.of(context).colorScheme.onPrimary,
-                        radius: Dimensions.width45,
-                        isEditable: false,
-                        isChecked: isManualPriceChecked,
+                      child: Container(
+                        padding: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                        margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                        height: Dimensions.height45 * 1.7,
+                        width: double.maxFinite,
+                        decoration: BoxDecoration(color: AppColors.mainColor, borderRadius: BorderRadius.all(Radius.circular(Dimensions.width45))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Checkbox(
+                                  checkColor: Colors.white,
+                                  //fillColor: MaterialStateProperty.resolveWith(getColor),
+                                  value: isManualPriceChecked,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isManualPriceChecked = value!;
+                                    });
+                                  },
+                                ),
+                                SizedBox(
+                                  width: Dimensions.width20,
+                                ),
+                                BigText(
+                                  fontTypo: 'Helvetica-Bold',
+                                  text: "Prix manuel ?",
+                                  size: Dimensions.height25 * 0.8,
+                                  color: Theme.of(context).colorScheme.onPrimary,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -283,14 +307,41 @@ class _CreateProductPageState extends State<CreateProductPage> {
                           isActiveChecked = !isActiveChecked;
                         });
                       },
-                      child: CheckBoxWidget(
-                        textColor: Theme.of(context).colorScheme.onPrimary,
-                        backgroundcolor: AppColors.mainColor,
-                        text: "Produit activé ?",
-                        iconcolor: Theme.of(context).colorScheme.onPrimary,
-                        radius: Dimensions.width45,
-                        isEditable: false,
-                        isChecked: isActiveChecked,
+                      child: Container(
+                        padding: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                        margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                        height: Dimensions.height45 * 1.7,
+                        width: double.maxFinite,
+                        decoration: BoxDecoration(color: AppColors.mainColor, borderRadius: BorderRadius.all(Radius.circular(Dimensions.width45))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Checkbox(
+                                  checkColor: Colors.white,
+                                  //fillColor: MaterialStateProperty.resolveWith(getColor),
+                                  value: isActiveChecked,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isActiveChecked = value!;
+                                    });
+                                    print(value);
+                                  },
+                                ),
+                                SizedBox(
+                                  width: Dimensions.width20,
+                                ),
+                                BigText(
+                                  fontTypo: 'Helvetica-Bold',
+                                  text: "Produit activé ?",
+                                  size: Dimensions.height25 * 0.8,
+                                  color: Theme.of(context).colorScheme.onPrimary,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -300,7 +351,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                       margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                       child: TextFormField(
                         keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
+                        //inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
                         scrollPadding: EdgeInsets.only(bottom: Dimensions.height100),
                         controller: correctingFactorController,
                         decoration: InputDecoration(

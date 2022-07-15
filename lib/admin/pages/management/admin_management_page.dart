@@ -78,16 +78,21 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                   SizedBox(
                     height: Dimensions.height20,
                   ),
-                  SizedBox(
-                    width: Dimensions.screenWidth,
-                    child: ProfileBox(
-                      textColor: Theme.of(context).colorScheme.onPrimary,
-                      backgroundcolor: AppColors.mainColor,
-                      icon: Icons.delete,
-                      text: "Supression d'un produit",
-                      iconcolor: Theme.of(context).colorScheme.onPrimary,
-                      radius: Dimensions.width45,
-                      isEditable: false,
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getDeleteProductPage(widget.shopId));
+                    },
+                    child: SizedBox(
+                      width: Dimensions.screenWidth,
+                      child: ProfileBox(
+                        textColor: Theme.of(context).colorScheme.onPrimary,
+                        backgroundcolor: AppColors.mainColor,
+                        icon: Icons.delete,
+                        text: "Supression d'un produit",
+                        iconcolor: Theme.of(context).colorScheme.onPrimary,
+                        radius: Dimensions.width45,
+                        isEditable: false,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -134,16 +139,19 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                   SizedBox(
                     height: Dimensions.height20,
                   ),
-                  SizedBox(
-                    width: Dimensions.screenWidth,
-                    child: ProfileBox(
-                      textColor: Theme.of(context).colorScheme.onPrimary,
-                      backgroundcolor: AppColors.mainColor,
-                      icon: Icons.delete,
-                      text: "Supression d'une catégorie",
-                      iconcolor: Theme.of(context).colorScheme.onPrimary,
-                      radius: Dimensions.width45,
-                      isEditable: false,
+                  GestureDetector(
+                    onTap: () {},
+                    child: SizedBox(
+                      width: Dimensions.screenWidth,
+                      child: ProfileBox(
+                        textColor: Theme.of(context).colorScheme.onPrimary,
+                        backgroundcolor: AppColors.mainColor,
+                        icon: Icons.delete,
+                        text: "Supression d'une catégorie",
+                        iconcolor: Theme.of(context).colorScheme.onPrimary,
+                        radius: Dimensions.width45,
+                        isEditable: false,
+                      ),
                     ),
                   ),
                   SizedBox(

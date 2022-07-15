@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 
 import '../admin/pages/create_product_page.dart';
 import '../admin/pages/admin_search_page.dart';
+import '../admin/pages/delete_product_page.dart';
 import '../admin/pages/management/admin_management_page.dart';
 import '../pages/cart/last_purchase_page.dart';
 import '../pages/credits/credits_page.dart';
@@ -44,9 +45,11 @@ class RouteHelper {
 
   static const String adminSearchPage = "/admin-search-page";
 
+  static const String managementShopPage = "/admin-management-shop-page";
+
   static const String createProductPage = "/admin-create-product-page";
   static const String updateProductPage = "/admin-update-product-page";
-  static const String managementShopPage = "/admin-management-shop-page";
+  static const String deleteProductPage = "/admin-delete-product-page";
 
   //? formalisme pour passer des paramètres
 
@@ -72,11 +75,13 @@ class RouteHelper {
 
   static String getAdminSearchPage(int shopId) => '$adminSearchPage?shopId=$shopId';
 
+  static String getManagementShopPage(int shopId) => '$managementShopPage?shopId=$shopId';
+
   static String getCreateProductPage(int shopId) => '$createProductPage?shopId=$shopId';
 
   static String getUpdateProductPage(int shopId) => '$updateProductPage?shopId=$shopId';
 
-  static String getManagementShopPage(int shopId) => '$managementShopPage?shopId=$shopId';
+  static String getDeleteProductPage(int shopId) => '$deleteProductPage?shopId=$shopId';
 
   static List<GetPage> routes = [
     GetPage(
@@ -214,6 +219,15 @@ class RouteHelper {
       page: () {
         var shopId = Get.parameters['shopId'];
         return UpdateProductPage(
+          shopId: int.parse(shopId!),
+        );
+      },
+    ),
+    GetPage(
+      name: deleteProductPage,
+      page: () {
+        var shopId = Get.parameters['shopId'];
+        return DeleteProductPage(
           shopId: int.parse(shopId!),
         );
       },

@@ -43,6 +43,9 @@ class AppConstants {
   //* update product endpoint
   static const String UPDATE_PRODUCT_URI = "/api-links/update-product/";
 
+  //* delete product endpoint
+  static const String DELETE_PRODUCT_URI = "/api-links/delete-product/";
+
   static const String PRODUCT_LIST_URI_FROM_SHOP = "/api-links/shops/products/?shop=";
 
   static Map<String, String>? HEADERS = {};

@@ -28,7 +28,7 @@ class ProductListController extends GetxController {
   bool get isLoaded => _isLoaded;
 
   bool _shopProductIsLoaded = false;
-  bool get shopProductIsLoaded => _shopProductIsLoaded;
+  bool get shopProductListIsLoaded => _shopProductIsLoaded;
 
   //* var for cart control
   late CartController _cartController;
@@ -46,8 +46,13 @@ class ProductListController extends GetxController {
       List listofProd = responseBody[0]["products"];
 
       for (var i = 0; i < listofProd.length; i++) {
-        _productList.add(ProductModel.fromJson(listofProd[i]));
-        _productList[i].contentTypeParentCategory = responseBody[0]["content_type"];
+        ProductModel produit = ProductModel.fromJson(listofProd[i]);
+
+        if (produit.isActive == true && produit.isRemoved == false) {
+          _productList.add(produit);
+          int index = _shopProductList.indexWhere((element) => element == produit);
+          _productList[index].contentTypeParentCategory = responseBody[0]["content_type"];
+        }
       }
       _isLoaded = true;
 
@@ -123,8 +128,14 @@ class ProductListController extends GetxController {
       List listofProd = responseBody;
 
       for (var i = 0; i < listofProd.length; i++) {
-        _shopProductList.add(ProductModel.fromJson(listofProd[i]));
-        _shopProductList[i].contentTypeParentCategory = responseBody[0]["content_type"];
+        ProductModel produit = ProductModel.fromJson(listofProd[i]);
+
+        if (produit.isRemoved == false) {
+          _shopProductList.add(produit);
+
+          int index = _shopProductList.indexWhere((element) => element == produit);
+          _shopProductList[index].contentTypeParentCategory = responseBody[0]["content_type"];
+        }
       }
       _shopProductIsLoaded = true;
       update();
