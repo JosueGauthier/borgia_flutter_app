@@ -31,7 +31,19 @@ class ProfileBox extends StatelessWidget {
       margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
       height: Dimensions.height45 * 1.7,
       width: double.maxFinite,
-      decoration: BoxDecoration(color: backgroundcolor, borderRadius: BorderRadius.all(Radius.circular(radius))),
+      decoration: BoxDecoration(
+        color: backgroundcolor,
+        borderRadius: BorderRadius.all(Radius.circular(radius)),
+        boxShadow: [
+          BoxShadow(
+            color: backgroundcolor.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 5,
+            blurStyle: BlurStyle.normal,
+            offset: Offset(0, 0), // changes position of shadow
+          ),
+        ],
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

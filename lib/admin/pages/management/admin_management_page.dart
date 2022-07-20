@@ -45,11 +45,11 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                     child: SizedBox(
                       width: Dimensions.screenWidth,
                       child: ProfileBox(
-                        textColor: Theme.of(context).colorScheme.onPrimary,
+                        textColor: Theme.of(context).colorScheme.surface,
                         backgroundcolor: AppColors.greenEmerald,
                         icon: Icons.create,
                         text: "Création d'un produit",
-                        iconcolor: Theme.of(context).colorScheme.onPrimary,
+                        iconcolor: Theme.of(context).colorScheme.surface,
                         radius: Dimensions.width45,
                         isEditable: false,
                       ),
@@ -65,11 +65,11 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                     child: SizedBox(
                       width: Dimensions.screenWidth,
                       child: ProfileBox(
-                        textColor: Theme.of(context).colorScheme.onPrimary,
+                        textColor: Theme.of(context).colorScheme.surface,
                         backgroundcolor: AppColors.secondColor,
                         icon: Icons.edit_note,
                         text: "Modification d'un produit",
-                        iconcolor: Theme.of(context).colorScheme.onPrimary,
+                        iconcolor: Theme.of(context).colorScheme.surface,
                         radius: Dimensions.width45,
                         isEditable: false,
                       ),
@@ -85,11 +85,11 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                     child: SizedBox(
                       width: Dimensions.screenWidth,
                       child: ProfileBox(
-                        textColor: Theme.of(context).colorScheme.onPrimary,
+                        textColor: Theme.of(context).colorScheme.surface,
                         backgroundcolor: AppColors.mainColor,
                         icon: Icons.delete,
                         text: "Supression d'un produit",
-                        iconcolor: Theme.of(context).colorScheme.onPrimary,
+                        iconcolor: Theme.of(context).colorScheme.surface,
                         radius: Dimensions.width45,
                         isEditable: false,
                       ),
@@ -112,11 +112,11 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                   SizedBox(
                     width: Dimensions.screenWidth,
                     child: ProfileBox(
-                      textColor: Theme.of(context).colorScheme.onPrimary,
+                      textColor: Theme.of(context).colorScheme.surface,
                       backgroundcolor: AppColors.greenEmerald,
                       icon: Icons.create,
                       text: "Création d'une catégorie",
-                      iconcolor: Theme.of(context).colorScheme.onPrimary,
+                      iconcolor: Theme.of(context).colorScheme.surface,
                       radius: Dimensions.width45,
                       isEditable: false,
                     ),
@@ -127,11 +127,11 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                   SizedBox(
                     width: Dimensions.screenWidth,
                     child: ProfileBox(
-                      textColor: Theme.of(context).colorScheme.onPrimary,
+                      textColor: Theme.of(context).colorScheme.surface,
                       backgroundcolor: AppColors.secondColor,
                       icon: Icons.edit_note,
                       text: "Modification d'une catégorie",
-                      iconcolor: Theme.of(context).colorScheme.onPrimary,
+                      iconcolor: Theme.of(context).colorScheme.surface,
                       radius: Dimensions.width45,
                       isEditable: false,
                     ),
@@ -144,11 +144,11 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                     child: SizedBox(
                       width: Dimensions.screenWidth,
                       child: ProfileBox(
-                        textColor: Theme.of(context).colorScheme.onPrimary,
+                        textColor: Theme.of(context).colorScheme.surface,
                         backgroundcolor: AppColors.mainColor,
                         icon: Icons.delete,
                         text: "Supression d'une catégorie",
-                        iconcolor: Theme.of(context).colorScheme.onPrimary,
+                        iconcolor: Theme.of(context).colorScheme.surface,
                         radius: Dimensions.width45,
                         isEditable: false,
                       ),

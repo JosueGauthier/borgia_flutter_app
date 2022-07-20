@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:borgiaflutterapp/admin/controller/update_product_controller.dart';
 import 'package:borgiaflutterapp/admin/models/delete_product_model.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -44,6 +41,7 @@ class _DeleteProductPageState extends State<DeleteProductPage> {
       if (status.isSuccess) {
         //! changer below
         Get.back();
+        Get.back();
       } else {
         Get.snackbar("Erreur", "Produit non supprimé. Verifier les informations saisies", backgroundColor: Colors.redAccent);
       }
@@ -53,13 +51,19 @@ class _DeleteProductPageState extends State<DeleteProductPage> {
   showAlertDialog(BuildContext context, DeleteProductController deleteProductController) {
     // set up the buttons
     Widget cancelButton = TextButton(
-      child: Text("Cancel"),
+      child: Text(
+        "Cancel",
+        style: Theme.of(context).textTheme.labelLarge,
+      ),
       onPressed: () {
         Get.back();
       },
     );
     Widget continueButton = TextButton(
-      child: Text("Continue"),
+      child: Text(
+        "Continue",
+        style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Colors.redAccent),
+      ),
       onPressed: () {
         _deleteProduct(deleteProductController);
       },
@@ -67,8 +71,14 @@ class _DeleteProductPageState extends State<DeleteProductPage> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("AlertDialog"),
-      content: Text("Etes vous sur de vouloir ce produit cette action est irréversible ? "),
+      title: Text(
+        productModelChosen.name!.capitalize!,
+        style: Theme.of(context).textTheme.labelLarge,
+      ),
+      content: Text(
+        "Etes vous sur de vouloir supprimer ce produit ?\n\nCette action est irréversible ! ",
+        style: Theme.of(context).textTheme.titleSmall,
+      ),
       actions: [
         cancelButton,
         continueButton,
@@ -108,11 +118,11 @@ class _DeleteProductPageState extends State<DeleteProductPage> {
                                   showAlertDialog(context, deleteProductController);
                                 },
                                 child: SizedBox(
-                                  width: Dimensions.width45 * 5,
+                                  width: Dimensions.width45 * 6,
                                   child: ProfileBox(
                                     textColor: Theme.of(context).colorScheme.onPrimary,
                                     backgroundcolor: Colors.redAccent,
-                                    icon: Icons.check,
+                                    icon: Icons.delete,
                                     text: "Supprimer",
                                     iconcolor: Theme.of(context).colorScheme.onPrimary,
                                     radius: Dimensions.width45,
