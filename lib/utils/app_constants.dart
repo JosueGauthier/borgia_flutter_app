@@ -2,6 +2,10 @@
 
 class AppConstants {
   static const String SHOP_URI = "/api-links/shops/shops/?format=json";
+
+  static const String SELFSALE_MODULE_URI = "/api-links/shops/selfsale-modules/";
+  static const String OPERATOR_MODULE_URI = "/api-links/shops/operatorsale-modules/";
+
   static const String USER_URI = "/api-links/users/users/?username=";
   static const String CATEGORY_URI = "/api-links/category/category/?shop_id=";
 
@@ -45,6 +49,15 @@ class AppConstants {
 
   //* delete product endpoint
   static const String DELETE_PRODUCT_URI = "/api-links/delete-product/";
+
+  //* create product endpoint
+  static const String CREATE_CATEGORY_URI = "/api-links/create-category/";
+
+  //* update product endpoint
+  static const String UPDATE_CATEGORY_URI = "/api-links/update-category/";
+
+  //* delete product endpoint
+  static const String DELETE_CATEGORY_URI = "/api-links/delete-category/";
 
   static const String PRODUCT_LIST_URI_FROM_SHOP = "/api-links/shops/products/?shop=";
 

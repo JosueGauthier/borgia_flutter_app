@@ -6,6 +6,7 @@ import '../../../routes/route_helper.dart';
 import '../../../utils/dimensions.dart';
 import '../../../widget/custom_header.dart';
 import '../../../widget/profile_box.dart';
+import '../../controller/salemodule_controller.dart';
 
 class ManagementShopPage extends StatefulWidget {
   final int shopId;
@@ -88,7 +89,7 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                         textColor: Theme.of(context).colorScheme.surface,
                         backgroundcolor: AppColors.mainColor,
                         icon: Icons.delete,
-                        text: "Supression d'un produit",
+                        text: "Suppression d'un produit",
                         iconcolor: Theme.of(context).colorScheme.surface,
                         radius: Dimensions.width45,
                         isEditable: false,
@@ -109,16 +110,21 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                   SizedBox(
                     height: Dimensions.height10,
                   ),
-                  SizedBox(
-                    width: Dimensions.screenWidth,
-                    child: ProfileBox(
-                      textColor: Theme.of(context).colorScheme.surface,
-                      backgroundcolor: AppColors.greenEmerald,
-                      icon: Icons.create,
-                      text: "Création d'une catégorie",
-                      iconcolor: Theme.of(context).colorScheme.surface,
-                      radius: Dimensions.width45,
-                      isEditable: false,
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getCreateCategoryPage(widget.shopId));
+                    },
+                    child: SizedBox(
+                      width: Dimensions.screenWidth,
+                      child: ProfileBox(
+                        textColor: Theme.of(context).colorScheme.surface,
+                        backgroundcolor: AppColors.greenEmerald,
+                        icon: Icons.create,
+                        text: "Création d'une catégorie",
+                        iconcolor: Theme.of(context).colorScheme.surface,
+                        radius: Dimensions.width45,
+                        isEditable: false,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -147,7 +153,7 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                         textColor: Theme.of(context).colorScheme.surface,
                         backgroundcolor: AppColors.mainColor,
                         icon: Icons.delete,
-                        text: "Supression d'une catégorie",
+                        text: "Suppression d'une catégorie",
                         iconcolor: Theme.of(context).colorScheme.surface,
                         radius: Dimensions.width45,
                         isEditable: false,

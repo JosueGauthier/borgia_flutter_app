@@ -1,5 +1,4 @@
 import 'package:borgiaflutterapp/admin/pages/admin_page.dart';
-import 'package:borgiaflutterapp/admin/pages/update_product_page.dart';
 import 'package:borgiaflutterapp/pages/auth/login_page.dart';
 import 'package:borgiaflutterapp/pages/content/neon.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
@@ -8,10 +7,14 @@ import 'package:borgiaflutterapp/pages/stats/rank_user_products_page.dart';
 import 'package:borgiaflutterapp/pages/user/user_page.dart';
 import 'package:get/get.dart';
 
-import '../admin/pages/create_product_page.dart';
 import '../admin/pages/admin_search_page.dart';
-import '../admin/pages/delete_product_page.dart';
+import '../admin/pages/category/create_category_page.dart';
+import '../admin/pages/category/delete_category_page.dart';
+import '../admin/pages/category/update_category_page.dart';
 import '../admin/pages/management/admin_management_page.dart';
+import '../admin/pages/product/create_product_page.dart';
+import '../admin/pages/product/delete_product_page.dart';
+import '../admin/pages/product/update_product_page.dart';
 import '../pages/cart/last_purchase_page.dart';
 import '../pages/credits/credits_page.dart';
 import '../pages/home/home_page.dart';
@@ -51,6 +54,10 @@ class RouteHelper {
   static const String updateProductPage = "/admin-update-product-page";
   static const String deleteProductPage = "/admin-delete-product-page";
 
+  static const String createCategoryPage = "/admin-create-category-page";
+  static const String updateCategoryPage = "/admin-update-category-page";
+  static const String deleteCategoryPage = "/admin-delete-category-page";
+
   //? formalisme pour passer des paramètres
 
   static String getSplashPage() => splashPage;
@@ -72,16 +79,16 @@ class RouteHelper {
   static String getProductRankUserPage(int shopId) => '$productRankUserPage?shopId=$shopId';
 
   static String getAdminPage() => adminPage;
-
   static String getAdminSearchPage(int shopId) => '$adminSearchPage?shopId=$shopId';
-
   static String getManagementShopPage(int shopId) => '$managementShopPage?shopId=$shopId';
 
   static String getCreateProductPage(int shopId) => '$createProductPage?shopId=$shopId';
-
   static String getUpdateProductPage(int shopId) => '$updateProductPage?shopId=$shopId';
-
   static String getDeleteProductPage(int shopId) => '$deleteProductPage?shopId=$shopId';
+
+  static String getCreateCategoryPage(int shopId) => '$createCategoryPage?shopId=$shopId';
+  static String getUpdateCategoryPage(int shopId) => '$updateCategoryPage?shopId=$shopId';
+  static String getDeleteCategoryPage(int shopId) => '$deleteCategoryPage?shopId=$shopId';
 
   static List<GetPage> routes = [
     GetPage(
@@ -197,19 +204,19 @@ class RouteHelper {
       },
     ),
     GetPage(
-      name: createProductPage,
+      name: managementShopPage,
       page: () {
         var shopId = Get.parameters['shopId'];
-        return CreateProductPage(
+        return ManagementShopPage(
           shopId: int.parse(shopId!),
         );
       },
     ),
     GetPage(
-      name: managementShopPage,
+      name: createProductPage,
       page: () {
         var shopId = Get.parameters['shopId'];
-        return ManagementShopPage(
+        return CreateProductPage(
           shopId: int.parse(shopId!),
         );
       },
@@ -228,6 +235,33 @@ class RouteHelper {
       page: () {
         var shopId = Get.parameters['shopId'];
         return DeleteProductPage(
+          shopId: int.parse(shopId!),
+        );
+      },
+    ),
+    GetPage(
+      name: createCategoryPage,
+      page: () {
+        var shopId = Get.parameters['shopId'];
+        return CreateCategoryPage(
+          shopId: int.parse(shopId!),
+        );
+      },
+    ),
+    GetPage(
+      name: updateCategoryPage,
+      page: () {
+        var shopId = Get.parameters['shopId'];
+        return UpdateCategoryPage(
+          shopId: int.parse(shopId!),
+        );
+      },
+    ),
+    GetPage(
+      name: deleteCategoryPage,
+      page: () {
+        var shopId = Get.parameters['shopId'];
+        return DeleteCategoryPage(
           shopId: int.parse(shopId!),
         );
       },

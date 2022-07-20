@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 
@@ -57,7 +59,6 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
                   setState(() {
                     _isCheckBoxChecked = value!;
                   });
-                  print(value);
                 },
               ),
               SizedBox(

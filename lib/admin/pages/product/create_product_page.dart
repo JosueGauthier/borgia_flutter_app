@@ -3,18 +3,17 @@ import 'dart:developer';
 import 'package:borgiaflutterapp/admin/controller/create_product_controller.dart';
 import 'package:borgiaflutterapp/admin/models/create_product_model.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
-import 'package:borgiaflutterapp/widget/checkbox_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../utils/app_constants.dart';
-import '../../utils/dimensions.dart';
-import '../../widget/big_text.dart';
-import '../../widget/custom_header.dart';
-import '../../widget/profile_box.dart';
+import '../../../utils/app_constants.dart';
+import '../../../utils/dimensions.dart';
+import '../../../widget/big_text.dart';
+import '../../../widget/custom_header.dart';
+import '../../../widget/profile_box.dart';
 
 class CreateProductPage extends StatefulWidget {
   final int shopId;
@@ -326,7 +325,6 @@ class _CreateProductPageState extends State<CreateProductPage> {
                                     setState(() {
                                       isActiveChecked = value!;
                                     });
-                                    print(value);
                                   },
                                 ),
                                 SizedBox(

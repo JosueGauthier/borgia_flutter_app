@@ -4,14 +4,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/product_list_controller.dart';
-import '../../models/product_model.dart';
-import '../../utils/app_constants.dart';
-import '../../utils/dimensions.dart';
-import '../../widget/custom_header.dart';
-import '../../widget/product_item_widget.dart';
-import '../../widget/profile_box.dart';
-import '../controller/delete_product_controller.dart';
+import '../../../controllers/product_list_controller.dart';
+import '../../../models/product_model.dart';
+import '../../../utils/app_constants.dart';
+import '../../../utils/dimensions.dart';
+import '../../../widget/custom_header.dart';
+import '../../../widget/product_item_widget.dart';
+import '../../../widget/profile_box.dart';
+import '../../controller/delete_product_controller.dart';
 
 class DeleteProductPage extends StatefulWidget {
   final int shopId;

@@ -3,31 +3,30 @@ import 'dart:developer';
 import 'package:borgiaflutterapp/admin/controller/update_product_controller.dart';
 import 'package:borgiaflutterapp/admin/models/update_product_model.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
-import 'package:borgiaflutterapp/widget/checkbox_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/product_list_controller.dart';
-import '../../models/product_model.dart';
-import '../../utils/app_constants.dart';
-import '../../utils/dimensions.dart';
-import '../../widget/big_text.dart';
-import '../../widget/custom_header.dart';
-import '../../widget/product_item_widget.dart';
-import '../../widget/profile_box.dart';
+import '../../../controllers/product_list_controller.dart';
+import '../../../models/product_model.dart';
+import '../../../utils/app_constants.dart';
+import '../../../utils/dimensions.dart';
+import '../../../widget/big_text.dart';
+import '../../../widget/custom_header.dart';
+import '../../../widget/product_item_widget.dart';
+import '../../../widget/profile_box.dart';
 
-class UpdateProductPage extends StatefulWidget {
+class UpdateCategoryPage extends StatefulWidget {
   final int shopId;
-  const UpdateProductPage({Key? key, required this.shopId}) : super(key: key);
+  const UpdateCategoryPage({Key? key, required this.shopId}) : super(key: key);
 
   @override
-  State<UpdateProductPage> createState() => _UpdateProductPageState();
+  State<UpdateCategoryPage> createState() => _UpdateCategoryPageState();
 }
 
-class _UpdateProductPageState extends State<UpdateProductPage> {
+class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController correctingFactorController = TextEditingController();
@@ -225,13 +224,7 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                                 onTap: () async {
                                   //_getFromGallery();
 
-                                  print(path);
-
                                   path = await selectFile();
-
-                                  print(path);
-
-                                  inspect(path);
 
                                   setState(() {
                                     path;
@@ -316,7 +309,6 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                                               setState(() {
                                                 isManualPriceChecked = value!;
                                               });
-                                              print(value);
                                             },
                                           ),
                                           SizedBox(
@@ -362,7 +354,6 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                                               setState(() {
                                                 isActiveChecked = value!;
                                               });
-                                              print(value);
                                             },
                                           ),
                                           SizedBox(

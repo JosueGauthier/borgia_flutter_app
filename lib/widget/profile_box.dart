@@ -40,7 +40,7 @@ class ProfileBox extends StatelessWidget {
             spreadRadius: 5,
             blurRadius: 5,
             blurStyle: BlurStyle.normal,
-            offset: Offset(0, 0), // changes position of shadow
+            offset: const Offset(0, 0), // changes position of shadow
           ),
         ],
       ),

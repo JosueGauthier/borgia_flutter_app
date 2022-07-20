@@ -1,4 +1,11 @@
+import 'package:borgiaflutterapp/admin/controller/create_category_controller.dart';
+import 'package:borgiaflutterapp/admin/controller/delete_category_controller.dart';
+import 'package:borgiaflutterapp/admin/controller/update_category_controller.dart';
+import 'package:borgiaflutterapp/admin/data/create_category_repo.dart';
 import 'package:borgiaflutterapp/admin/data/create_product_repo.dart';
+import 'package:borgiaflutterapp/admin/data/delete_category_repo.dart';
+import 'package:borgiaflutterapp/admin/data/salemodule_repo.dart';
+import 'package:borgiaflutterapp/admin/data/update_category_repo.dart';
 import 'package:borgiaflutterapp/controllers/other_users_controller.dart';
 import 'package:borgiaflutterapp/controllers/product_list_controller.dart';
 import 'package:borgiaflutterapp/controllers/rank_user_controller.dart';
@@ -20,6 +27,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../admin/controller/create_product_controller.dart';
 import '../admin/controller/delete_product_controller.dart';
+import '../admin/controller/salemodule_controller.dart';
 import '../admin/controller/update_product_controller.dart';
 import '../admin/data/delete_product_repo.dart';
 import '../admin/data/update_product_repo.dart';
@@ -53,6 +61,8 @@ Future<void> init() async {
   Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
 
   Get.lazyPut(() => ShopRepo(apiClient: Get.find()));
+  Get.lazyPut(() => SaleModuleRepo(apiClient: Get.find()));
+
   Get.lazyPut(() => CategoryOfShopRepo(apiClient: Get.find()));
   Get.lazyPut(() => UserRepo(apiClient: Get.find()));
 
@@ -80,11 +90,19 @@ Future<void> init() async {
 
   Get.lazyPut(() => DeleteProductRepo(apiClient: Get.find()));
 
+  Get.lazyPut(() => CreateCategoryRepo(apiClient: Get.find()));
+
+  Get.lazyPut(() => UpdateCategoryRepo(apiClient: Get.find()));
+
+  Get.lazyPut(() => DeleteCategoryRepo(apiClient: Get.find()));
+
   //!controllers
 
   Get.lazyPut(() => CartController(cartRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => ShopController(shopRepo: Get.find()));
+  Get.lazyPut(() => SaleModuleController(saleModuleRepo: Get.find()));
+
   Get.lazyPut(() => CategoryOfShopController(categoryOfShopRepo: Get.find()), fenix: true);
   Get.lazyPut(() => UserController(userRepo: Get.find()), fenix: true);
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
@@ -107,8 +125,10 @@ Future<void> init() async {
   Get.lazyPut(() => ProductListController(productListRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => CreateProductController(createProductRepo: Get.find()), fenix: true);
-
   Get.lazyPut(() => UpdateProductController(updateProductRepo: Get.find()), fenix: true);
-
   Get.lazyPut(() => DeleteProductController(deleteProductRepo: Get.find()), fenix: true);
+
+  Get.lazyPut(() => CreateCategoryController(createCategoryRepo: Get.find()), fenix: true);
+  Get.lazyPut(() => UpdateCategoryController(updateCategoryRepo: Get.find()), fenix: true);
+  Get.lazyPut(() => DeleteCategoryController(deleteCategoryRepo: Get.find()), fenix: true);
 }
