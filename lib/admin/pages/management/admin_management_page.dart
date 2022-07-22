@@ -130,16 +130,21 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                   SizedBox(
                     height: Dimensions.height20,
                   ),
-                  SizedBox(
-                    width: Dimensions.screenWidth,
-                    child: ProfileBox(
-                      textColor: Theme.of(context).colorScheme.surface,
-                      backgroundcolor: AppColors.secondColor,
-                      icon: Icons.edit_note,
-                      text: "Modification d'une catégorie",
-                      iconcolor: Theme.of(context).colorScheme.surface,
-                      radius: Dimensions.width45,
-                      isEditable: false,
+                  GestureDetector(
+                    onTap: () {
+                      //Get.toNamed(RouteHelper.getGenPage());
+                    },
+                    child: SizedBox(
+                      width: Dimensions.screenWidth,
+                      child: ProfileBox(
+                        textColor: Theme.of(context).colorScheme.surface,
+                        backgroundcolor: AppColors.secondColor,
+                        icon: Icons.edit_note,
+                        text: "Modification d'une catégorie",
+                        iconcolor: Theme.of(context).colorScheme.surface,
+                        radius: Dimensions.width45,
+                        isEditable: false,
+                      ),
                     ),
                   ),
                   SizedBox(

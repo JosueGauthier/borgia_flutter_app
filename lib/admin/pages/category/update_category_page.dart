@@ -126,8 +126,6 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
     } else if (manualPrice <= 0) {
       Get.snackbar("Prix manuel", "Entrer un prix correct");
     } else {
-      inspect(productModel);
-
       updateProductController.updateProduct(productModel).then((status) {
         if (status.isSuccess) {
           //! changer below

@@ -245,7 +245,6 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                         ),
                         (categoryChoose == false)
                             ? GetBuilder<CategoryOfShopController>(builder: (categoryOfShopController) {
-                                //inspect(categoryOfShopController.categoryAdminList);
                                 return categoryOfShopController.isLoaded
                                     ? Container(
                                         width: double.maxFinite,

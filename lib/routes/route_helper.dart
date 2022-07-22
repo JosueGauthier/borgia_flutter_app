@@ -5,6 +5,7 @@ import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 import 'package:borgiaflutterapp/pages/stats/rank_user_products_page.dart';
 import 'package:borgiaflutterapp/pages/user/user_page.dart';
+import 'package:borgiaflutterapp/widget/add_bill.dart';
 import 'package:get/get.dart';
 
 import '../admin/pages/admin_search_page.dart';
@@ -265,6 +266,6 @@ class RouteHelper {
           shopId: int.parse(shopId!),
         );
       },
-    )
+    ),
   ];
 }

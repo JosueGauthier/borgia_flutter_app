@@ -86,7 +86,6 @@ class DialogSalePageState extends State<DialogSalePage> {
       if (apiOrderedQuantity == 0) {
         Get.snackbar("Quantité", "Entrer une quantité supérieure à 0");
       } else {
-        inspect(salesModel);
         salesController.operatorOrder(salesModel).then((status) {
           if (status.isSuccess) {
             widget.productListController.quantity = 0;

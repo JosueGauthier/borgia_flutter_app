@@ -27,8 +27,8 @@ class ProductListController extends GetxController {
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
-  bool _shopProductIsLoaded = false;
-  bool get shopProductListIsLoaded => _shopProductIsLoaded;
+  bool _shopProductListIsLoaded = false;
+  bool get shopProductListIsLoaded => _shopProductListIsLoaded;
 
   //* var for cart control
   late CartController _cartController;
@@ -137,7 +137,7 @@ class ProductListController extends GetxController {
           _shopProductList[index].contentTypeParentCategory = responseBody[0]["content_type"];
         }
       }
-      _shopProductIsLoaded = true;
+      _shopProductListIsLoaded = true;
       update();
     } else {}
   }

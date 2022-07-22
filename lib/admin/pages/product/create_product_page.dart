@@ -95,7 +95,6 @@ class _CreateProductPageState extends State<CreateProductPage> {
     } else if (manualPrice <= 0) {
       Get.snackbar("Prix manuel", "Entrer un prix correct");
     } else {
-      inspect(productModel);
       createProductController.createProduct(productModel).then((status) {
         if (status.isSuccess) {
           //! changer below
@@ -189,8 +188,6 @@ class _CreateProductPageState extends State<CreateProductPage> {
                         //_getFromGallery();
 
                         path = await selectFile();
-
-                        inspect(path);
 
                         setState(() {
                           imageOk = true;
