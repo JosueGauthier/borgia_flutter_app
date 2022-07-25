@@ -1,7 +1,5 @@
-import 'dart:developer';
-
-import 'package:borgiaflutterapp/admin/controller/create_product_controller.dart';
-import 'package:borgiaflutterapp/admin/models/create_product_model.dart';
+import 'package:borgiaflutterapp/admin/controller/create_category_controller.dart';
+import 'package:borgiaflutterapp/admin/models/create_category_model.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
@@ -12,6 +10,7 @@ import 'package:get/get.dart';
 import '../../../controllers/product_list_controller.dart';
 import '../../../utils/app_constants.dart';
 import '../../../utils/dimensions.dart';
+import '../../../widget/big_text.dart';
 import '../../../widget/custom_header.dart';
 import '../../../widget/profile_box.dart';
 import '../../controller/salemodule_controller.dart';
@@ -26,13 +25,21 @@ class CreateCategoryPage extends StatefulWidget {
 
 class _CreateCategoryPageState extends State<CreateCategoryPage> {
   TextEditingController nameController = TextEditingController();
-  TextEditingController priceController = TextEditingController();
-  TextEditingController correctingFactorController = TextEditingController();
-
   var path = "";
-  bool isManualPriceChecked = true;
-  bool isActiveChecked = true;
+  bool imageOk = false;
+  String selectedModule = "Categorie opérateur";
+  Map<String, IconData> mapModule = {
+    "Categorie opérateur": Icons.manage_accounts_rounded,
+    "Categorie selfsale": Icons.man,
+  };
+  List<DynamicWidget> dynamicList = [];
+  List<String> product = [];
+  int numberOfWidgets = 0;
 
+  int selfModuleId = 0;
+  int operatorModuleId = 0;
+
+  //! use to select image
   static Future<String> selectFile() async {
     late CloudinaryResponse response;
     var result = await FilePicker.platform.pickFiles(
@@ -53,6 +60,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
     return response.secureUrl;
   }
 
+  //! use to select image
   static Future<CloudinaryResponse> uploadFileOnCloudinary({String filePath = "", CloudinaryResourceType resourceType = CloudinaryResourceType.Auto}) async {
     late CloudinaryResponse response;
     var cloudinary = CloudinaryPublic('dxsy9rszs', 'borgia', cache: false);
@@ -63,88 +71,81 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
     return response;
   }
 
-  bool imageOk = false;
-
-  void _createProduct(
-    CreateProductController createProductController,
-  ) {
-    String username = AppConstants.USERNAME;
-    String password = AppConstants.PASSWORD;
-
-    String productName = nameController.text.trim();
-    bool priceIsManual = isManualPriceChecked;
-    double manualPrice = double.parse(priceController.text.trim());
-    int shopId = widget.shopId;
-    bool isActive = isActiveChecked;
-    double correctingFactor = double.parse(correctingFactorController.text.trim());
-    String productImage = path;
-
-    CreateProductModel productModel = CreateProductModel(
-      username: username,
-      password: password,
-      correctingFactor: correctingFactor,
-      isActive: isActive,
-      manualPrice: manualPrice,
-      priceIsManual: priceIsManual,
-      productImage: productImage,
-      productName: productName,
-      shopId: shopId,
-    );
-
-    if (productName == '' || productName.length >= 50) {
-      Get.snackbar("Nom", "Nom de produit incorrect");
-    } else if (manualPrice <= 0) {
-      Get.snackbar("Prix manuel", "Entrer un prix correct");
-    } else {
-      //inspect(productModel);
-      createProductController.createProduct(productModel).then((status) {
-        if (status.isSuccess) {
-          //! changer below
-          Get.back();
-        } else {
-          Get.snackbar("Erreur", "Produit non créé. Verifier les informations saisies", backgroundColor: Colors.redAccent);
-        }
-      });
-    }
-  }
-
-  String selectedModule = "Categorie opérateur";
-  Map<String, IconData> mapModule = {
-    "Categorie opérateur": Icons.manage_accounts_rounded,
-    "Categorie selfsale": Icons.man,
-  };
-
-  List<DynamicWidget> dynamicList = [];
-
-  List<String> price = [];
-
-  List<String> product = [];
-
+  //! to add products
   addDynamic() {
     if (product.isNotEmpty) {
-      Icon floatingIcon = const Icon(Icons.add);
-
-      product = [];
-      price = [];
       dynamicList = [];
     }
     setState(() {});
     if (dynamicList.length >= 50) {
       return;
     }
+    numberOfWidgets = numberOfWidgets + 1;
     dynamicList.add(DynamicWidget(
       shopId: widget.shopId,
+      idWidget: numberOfWidgets,
+      productChoose: 0,
     ));
   }
 
-  submitData() {
-    Icon floatingIcon = const Icon(Icons.arrow_back);
-    product = [];
-    price = [];
-    //dynamicList.forEach((widget) => product.add(widget.product.text));
-    //dynamicList.forEach((widget) => price.add(widget.price.text));
-    setState(() {});
-    //sendData();
+  void _createCategory(
+    CreateCategoryController createCategoryController,
+  ) {
+    String username = AppConstants.USERNAME;
+    String password = AppConstants.PASSWORD;
+
+    String categoryName = nameController.text.trim();
+    int shopId = widget.shopId;
+    String categoryImage = path;
+
+    int moduleId;
+
+    int contentTypeId;
+
+    List<ProductList> productList = [];
+
+    for (var i = 0; i < dynamicList.length; i++) {
+      if (dynamicList[i].productChoose != 0) {
+        ProductList productItem = ProductList(quantity: 99999, productId: dynamicList[i].productChoose);
+        productList.add(productItem);
+      }
+    }
+
+    if (selectedModule == "Categorie opérateur") {
+      moduleId = operatorModuleId;
+
+      //! if operatorModule => contentTypeId => 20
+      contentTypeId = 20;
+    } else {
+      moduleId = selfModuleId;
+
+      //! if selfModule => contentTypeId => 21
+      contentTypeId = 21;
+    }
+
+    CreateCategoryModel categoryModel = CreateCategoryModel(
+      username: username,
+      password: password,
+      shopId: shopId,
+      productList: productList,
+      categoryImage: categoryImage,
+      contentTypeId: contentTypeId,
+      moduleId: moduleId,
+      nameCategory: categoryName,
+    );
+
+    if (categoryName == '' || categoryName.length >= 50) {
+      Get.snackbar("Nom", "Nom de produit incorrect");
+    } else {
+      createCategoryController.createCategory(categoryModel).then((status) {
+        if (status.isSuccess) {
+          //! changer below
+          Get.back();
+        } else {
+          Get.snackbar("Erreur", "Catégorie non créée. Verifier les informations saisies", backgroundColor: Colors.redAccent);
+        }
+      });
+    }
   }
 
   @override
@@ -157,6 +158,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    //! To build multiple DropDownMenu
     Widget dynamicTextFieldWidget = ListView.builder(
       shrinkWrap: true,
       padding: EdgeInsets.zero,
@@ -164,41 +166,13 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
       itemCount: dynamicList.length,
       itemBuilder: (_, index) => dynamicList[index],
     );
-    Widget resultWidget = ListView.builder(
-      padding: EdgeInsets.zero,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: product.length,
-      itemBuilder: (_, index) {
-        return Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                margin: const EdgeInsets.only(left: 10.0),
-                child: Text("${index + 1} : ${product[index]}${price[index]}"),
-              ),
-              const Divider()
-            ],
-          ),
-        );
-      },
-    );
 
-    return GetBuilder<CreateProductController>(builder: (createProductController) {
+    return GetBuilder<CreateCategoryController>(builder: (createCategoryController) {
       return GetBuilder<ProductListController>(builder: (productListController) {
         return productListController.shopProductListIsLoaded
             ? Scaffold(
                 extendBody: true,
                 body: GetBuilder<SaleModuleController>(builder: (saleModuleController) {
-                  //inspect(saleModuleController.operatorList);
-                  //inspect(saleModuleController.selfList);
-
-                  int selfModuleId = 0;
-
-                  int operatorModuleId = 0;
-
                   for (var i = 0; i < saleModuleController.selfList.length; i++) {
                     if (saleModuleController.selfList[i].shop == widget.shopId) {
                       selfModuleId = saleModuleController.selfList[i].id;
@@ -322,16 +296,45 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                       child: Row(
                                         children: [
                                           imageOk
-                                              ? SizedBox(
-                                                  width: Dimensions.width45 * 7,
-                                                  child: ProfileBox(
-                                                    textColor: Theme.of(context).colorScheme.onPrimary,
-                                                    backgroundcolor: AppColors.mainColor,
-                                                    icon: Icons.image,
-                                                    text: "Image de la catégorie",
-                                                    iconcolor: Theme.of(context).colorScheme.onPrimary,
-                                                    radius: Dimensions.width45,
-                                                    isEditable: false,
+                                              ? Container(
+                                                  padding: EdgeInsets.only(right: Dimensions.width10, left: Dimensions.width10 * 1.5),
+                                                  margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                                                  height: Dimensions.height45 * 1.7,
+                                                  width: Dimensions.width45 * 6.2,
+                                                  decoration: BoxDecoration(
+                                                    color: AppColors.mainColor,
+                                                    borderRadius: BorderRadius.all(Radius.circular(Dimensions.width45)),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: AppColors.mainColor.withOpacity(0.5),
+                                                        spreadRadius: 5,
+                                                        blurRadius: 5,
+                                                        blurStyle: BlurStyle.normal,
+                                                        offset: const Offset(0, 0), // changes position of shadow
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Icon(
+                                                            Icons.image,
+                                                            color: Theme.of(context).colorScheme.onPrimary,
+                                                          ),
+                                                          SizedBox(
+                                                            width: Dimensions.width10,
+                                                          ),
+                                                          BigText(
+                                                            fontTypo: 'Helvetica-Bold',
+                                                            text: "Image de la catégorie",
+                                                            size: Dimensions.height25 * 0.8,
+                                                            color: Theme.of(context).colorScheme.onPrimary,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
                                                   ),
                                                 )
                                               : SizedBox(
@@ -393,7 +396,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      _createProduct(createProductController);
+                                      _createCategory(createCategoryController);
                                     },
                                     child: SizedBox(
                                       width: Dimensions.width45 * 5,
@@ -426,27 +429,26 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
   }
 }
 
+// ignore: must_be_immutable
 class DynamicWidget extends StatefulWidget {
   final int shopId;
-  const DynamicWidget({Key? key, required this.shopId}) : super(key: key);
+  final int idWidget;
+  int productChoose;
+  DynamicWidget({Key? key, required this.shopId, required this.idWidget, required this.productChoose}) : super(key: key);
 
   @override
   State<DynamicWidget> createState() => _DynamicWidgetState();
 }
 
 class _DynamicWidgetState extends State<DynamicWidget> {
-  TextEditingController product = TextEditingController();
+  Map<int, List> productMap = {};
 
-  TextEditingController price = TextEditingController();
-
-  Map<String, String> productMap = {};
-
-  var initItem = <String, String>{
-    "Choose item":
-        "https://media.istockphoto.com/vectors/typing-text-chat-isolated-vector-icon-modern-geometric-illustration-vector-id1186972006?k=20&m=1186972006&s=612x612&w=0&h=vFGrVHgdRGWyUlDcW5KPfAXy5sfcjLg5Cl231ZF78hM="
+  var initItem = <int, List>{
+    0: [
+      "Choose item",
+      "https://media.istockphoto.com/vectors/typing-text-chat-isolated-vector-icon-modern-geometric-illustration-vector-id1186972006?k=20&m=1186972006&s=612x612&w=0&h=vFGrVHgdRGWyUlDcW5KPfAXy5sfcjLg5Cl231ZF78hM="
+    ]
   };
-
-  String productSelected = "";
 
   @override
   void initState() {
@@ -456,22 +458,23 @@ class _DynamicWidgetState extends State<DynamicWidget> {
 
     productMap.addEntries(initItem.entries);
 
-    productSelected = productMap.keys.toList().first;
+    widget.productChoose = productMap.keys.toList().first;
   }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProductListController>(builder: (productListController) {
       for (var i = 0; i < productListController.shopProductList.length; i++) {
+        int id = productListController.shopProductList[i].id;
         String nom = productListController.shopProductList[i].name;
         String image = productListController.shopProductList[i].image;
 
-        var produit = <String, String>{nom: image};
+        var produit = <int, List>{
+          id: [nom, image]
+        };
 
         productMap.addEntries(produit.entries);
       }
-
-      //inspect(productMap);
 
       return productListController.shopProductListIsLoaded
           ? ListBody(
@@ -482,13 +485,13 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                       width: Dimensions.screenWidth - Dimensions.width20 * 3.4,
                       height: Dimensions.height10 * 7,
                       child: ClipRRect(
-                        child: DropdownButton<String>(
-                          value: productSelected,
+                        child: DropdownButton<int>(
+                          value: widget.productChoose,
                           dropdownColor: AppColors.mainColor,
                           borderRadius: BorderRadius.circular(Dimensions.height10 * 2),
-                          onChanged: (String? newValue) {
+                          onChanged: (int? newValue) {
                             setState(() {
-                              productSelected = newValue!;
+                              widget.productChoose = newValue!;
                             });
                           },
 
@@ -504,11 +507,11 @@ class _DynamicWidgetState extends State<DynamicWidget> {
 
                           // The list of options
                           items: productMap
-                              .map((text, value) {
+                              .map((id, list) {
                                 return MapEntry(
-                                    text,
-                                    DropdownMenuItem<String>(
-                                        value: text,
+                                    id,
+                                    DropdownMenuItem<int>(
+                                        value: id,
                                         child: Container(
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.start,
@@ -524,14 +527,14 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                                 child: SizedBox(
                                                   height: Dimensions.height100 * 0.3,
                                                   width: Dimensions.height100 * 0.3,
-                                                  child: Image.network(value),
+                                                  child: Image.network(list[1]),
                                                 ),
                                               ),
                                               SizedBox(
                                                 width: Dimensions.height10,
                                               ),
                                               Text(
-                                                text,
+                                                list[0],
                                                 style: Theme.of(context).textTheme.bodySmall,
                                               ),
                                             ],
