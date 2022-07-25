@@ -12,6 +12,7 @@ class DeleteCategoryRepo {
   });
 
   Future<Response> deleteCategory(DeleteCategoryModel deleteCategoryModel) async {
+    print(deleteCategoryModel.toJson());
     return await apiClient.postData(AppConstants.DELETE_CATEGORY_URI, deleteCategoryModel.toJson());
   }
 }

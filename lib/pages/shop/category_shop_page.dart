@@ -28,7 +28,7 @@ class CategoryShopPage extends StatefulWidget {
 class _CategoryShopPageState extends State<CategoryShopPage> {
   @override
   Widget build(BuildContext context) {
-    Get.find<CategoryOfShopController>().getCategoryList(widget.shopId);
+    Get.find<CategoryOfShopController>().getSelfSaleCategoryList(widget.shopId);
 
     return Scaffold(
       body: Column(
@@ -38,7 +38,7 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
           const CustomHeader(text: "Catégories"),
 
           Expanded(child: SingleChildScrollView(child: GetBuilder<CategoryOfShopController>(builder: (categoryOfShopController) {
-            return categoryOfShopController.isLoaded
+            return categoryOfShopController.selfSaleCategoryListIsLoaded
                 ? Container(
                     width: double.maxFinite,
                     margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
@@ -46,9 +46,9 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: categoryOfShopController.categoryOfShopList.length,
+                        itemCount: categoryOfShopController.selfSaleCategoryList.length,
                         itemBuilder: (context, index) {
-                          CategoryOfShopModel categoryModel = categoryOfShopController.categoryOfShopList[index];
+                          CategoryOfShopModel categoryModel = categoryOfShopController.selfSaleCategoryList[index];
 
                           return GestureDetector(
                             onTap: () {

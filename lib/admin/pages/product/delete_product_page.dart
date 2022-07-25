@@ -104,7 +104,7 @@ class _DeleteProductPageState extends State<DeleteProductPage> {
             extendBody: true,
             body: Column(
               children: [
-                const CustomHeader(text: "Modification de produit"),
+                const CustomHeader(text: "Suppression de produit"),
                 Expanded(
                   child: SingleChildScrollView(
                     child: (productIsChoose)

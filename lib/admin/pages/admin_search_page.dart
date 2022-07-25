@@ -54,7 +54,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<CategoryOfShopController>().getAdminCategoryList(widget.shopId);
+    Get.find<CategoryOfShopController>().getOperatorCategoryList(widget.shopId);
     return Scaffold(
         extendBody: true,
         body: SingleChildScrollView(
@@ -245,7 +245,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                         ),
                         (categoryChoose == false)
                             ? GetBuilder<CategoryOfShopController>(builder: (categoryOfShopController) {
-                                return categoryOfShopController.isLoaded
+                                return categoryOfShopController.selfSaleCategoryListIsLoaded
                                     ? Container(
                                         width: double.maxFinite,
                                         margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
@@ -253,9 +253,9 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                             padding: EdgeInsets.zero,
                                             shrinkWrap: true,
                                             physics: const NeverScrollableScrollPhysics(),
-                                            itemCount: categoryOfShopController.categoryAdminList.length,
+                                            itemCount: categoryOfShopController.operatorList.length,
                                             itemBuilder: (context, index) {
-                                              CategoryOfShopModel categoryModel = categoryOfShopController.categoryAdminList[index];
+                                              CategoryOfShopModel categoryModel = categoryOfShopController.operatorList[index];
 
                                               return GestureDetector(
                                                 onTap: () {

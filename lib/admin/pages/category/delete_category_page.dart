@@ -1,17 +1,16 @@
-import 'package:borgiaflutterapp/admin/models/delete_product_model.dart';
+import 'package:borgiaflutterapp/admin/controller/delete_category_controller.dart';
+import 'package:borgiaflutterapp/admin/models/delete_category_model.dart';
+import 'package:borgiaflutterapp/controllers/category_controller.dart';
+import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controllers/product_list_controller.dart';
-import '../../../models/product_model.dart';
 import '../../../utils/app_constants.dart';
 import '../../../utils/dimensions.dart';
 import '../../../widget/custom_header.dart';
-import '../../../widget/product_item_widget.dart';
 import '../../../widget/profile_box.dart';
-import '../../controller/delete_product_controller.dart';
 
 class DeleteCategoryPage extends StatefulWidget {
   final int shopId;
@@ -22,22 +21,22 @@ class DeleteCategoryPage extends StatefulWidget {
 }
 
 class _DeleteCategoryPageState extends State<DeleteCategoryPage> {
-  bool productIsChoose = false;
-  late ProductModel productModelChosen;
+  bool categoryIsChoose = false;
+  late CategoryOfShopModel categoryModelChosen;
 
-  void _deleteProduct(
-    DeleteProductController deleteProductController,
+  void _deleteCategory(
+    DeleteCategoryController deleteCategoryController,
   ) {
     String username = AppConstants.USERNAME;
     String password = AppConstants.PASSWORD;
 
-    DeleteProductModel productModel = DeleteProductModel(
+    DeleteCategoryModel categoryModel = DeleteCategoryModel(
       username: username,
       password: password,
-      productId: productModelChosen.id!,
+      categoryId: categoryModelChosen.id!,
     );
 
-    deleteProductController.deleteProduct(productModel).then((status) {
+    deleteCategoryController.deleteCategory(categoryModel).then((status) {
       if (status.isSuccess) {
         //! changer below
         Get.back();
@@ -48,7 +47,7 @@ class _DeleteCategoryPageState extends State<DeleteCategoryPage> {
     });
   }
 
-  showAlertDialog(BuildContext context, DeleteProductController deleteProductController) {
+  showAlertDialog(BuildContext context, DeleteCategoryController deleteCategoryController) {
     // set up the buttons
     Widget cancelButton = TextButton(
       child: Text(
@@ -65,18 +64,18 @@ class _DeleteCategoryPageState extends State<DeleteCategoryPage> {
         style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Colors.redAccent),
       ),
       onPressed: () {
-        _deleteProduct(deleteProductController);
+        _deleteCategory(deleteCategoryController);
       },
     );
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Text(
-        productModelChosen.name!.capitalize!,
+        categoryModelChosen.name!.capitalize!,
         style: Theme.of(context).textTheme.labelLarge,
       ),
       content: Text(
-        "Etes vous sur de vouloir supprimer ce produit ?\n\nCette action est irréversible ! ",
+        "Etes vous sur de vouloir supprimer cette catégorie ?\n\nCette action est irréversible ! ",
         style: Theme.of(context).textTheme.titleSmall,
       ),
       actions: [
@@ -96,18 +95,18 @@ class _DeleteCategoryPageState extends State<DeleteCategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<ProductListController>().getShopProduct(widget.shopId);
+    Get.find<CategoryOfShopController>().getAllCategoryList(widget.shopId);
 
-    return GetBuilder<ProductListController>(builder: (productListController) {
-      return GetBuilder<DeleteProductController>(builder: (deleteProductController) {
+    return GetBuilder<CategoryOfShopController>(builder: (categoryOfShopController) {
+      return GetBuilder<DeleteCategoryController>(builder: (deleteCategoryController) {
         return Scaffold(
             extendBody: true,
             body: Column(
               children: [
-                const CustomHeader(text: "Modification de produit"),
+                const CustomHeader(text: "Suppression d'une catégorie"),
                 Expanded(
                   child: SingleChildScrollView(
-                    child: (productIsChoose)
+                    child: (categoryIsChoose)
                         ? Column(
                             children: [
                               SizedBox(
@@ -115,7 +114,7 @@ class _DeleteCategoryPageState extends State<DeleteCategoryPage> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  showAlertDialog(context, deleteProductController);
+                                  showAlertDialog(context, deleteCategoryController);
                                 },
                                 child: SizedBox(
                                   width: Dimensions.width45 * 6,
@@ -132,7 +131,7 @@ class _DeleteCategoryPageState extends State<DeleteCategoryPage> {
                               )
                             ],
                           )
-                        : (productListController.shopProductListIsLoaded)
+                        : (categoryOfShopController.allCategoriesListIsLoaded)
                             ? Container(
                                 width: double.maxFinite,
                                 margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
@@ -140,27 +139,61 @@ class _DeleteCategoryPageState extends State<DeleteCategoryPage> {
                                     padding: EdgeInsets.zero,
                                     shrinkWrap: true,
                                     physics: const NeverScrollableScrollPhysics(),
-                                    itemCount: productListController.shopProductList.length,
+                                    itemCount: categoryOfShopController.allCategoriesList.length,
                                     itemBuilder: (context, index) {
-                                      ProductModel productModel = productListController.shopProductList[index];
+                                      CategoryOfShopModel categoryOfShopModel = categoryOfShopController.allCategoriesList[index];
+                                      print(categoryOfShopModel.image);
                                       return GestureDetector(
-                                          onTap: () {
-                                            productModelChosen = productModel;
+                                        onTap: () {
+                                          categoryModelChosen = categoryOfShopModel;
 
-                                            setState(() {
-                                              productIsChoose = true;
-                                            });
-                                          },
-                                          child: ProductItemWidget(
-                                            titleText: (productModel.name)!.capitalize!,
-                                            illustImage: CachedNetworkImage(
-                                              imageUrl: productModel.image!,
-                                              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                  CircularProgressIndicator(value: downloadProgress.progress),
-                                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                                          setState(() {
+                                            categoryIsChoose = true;
+                                          });
+                                        },
+                                        child: Container(
+                                          margin: EdgeInsets.only(right: Dimensions.width20, bottom: Dimensions.height15),
+                                          child: Row(children: [
+                                            //! image
+
+                                            Container(
+                                              //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
+                                              height: Dimensions.height100 * 0.7,
+                                              width: Dimensions.height100 * 0.7,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.white,
+                                              ),
+                                              alignment: Alignment.center,
+                                              child: SizedBox(
+                                                height: Dimensions.height100 * 0.5,
+                                                width: Dimensions.height100 * 0.5,
+                                                child: CachedNetworkImage(
+                                                  imageUrl: categoryOfShopModel.image!,
+                                                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                      CircularProgressIndicator(value: downloadProgress.progress),
+                                                  errorWidget: (context, url, error) => Icon(
+                                                    Icons.error,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                            priceProduct: productModel.manualPrice.toString(),
-                                          ));
+
+                                            SizedBox(
+                                              width: Dimensions.width20 * 3,
+                                            ),
+
+                                            //! text section
+
+                                            Expanded(
+                                              child: Padding(
+                                                  padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                                                  child: Text((categoryOfShopModel.name)!.capitalize!, style: Theme.of(context).textTheme.bodySmall)),
+                                            ),
+                                          ]),
+                                        ),
+                                      );
                                     }),
                               )
                             : const Center(

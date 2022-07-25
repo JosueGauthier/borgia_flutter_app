@@ -151,7 +151,9 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                     height: Dimensions.height20,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getDeleteCategoryPage(widget.shopId));
+                    },
                     child: SizedBox(
                       width: Dimensions.screenWidth,
                       child: ProfileBox(

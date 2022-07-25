@@ -7,22 +7,32 @@ class CategoryOfShopController extends GetxController {
 
   CategoryOfShopController({required this.categoryOfShopRepo});
 
-  List<dynamic> _categoryOfShopList = [];
+  List<dynamic> _selfSaleCategoryList = [];
 
-  List<dynamic> get categoryOfShopList => _categoryOfShopList;
+  List<dynamic> get selfSaleCategoryList => _selfSaleCategoryList;
 
-  List<dynamic> _categoryAdminList = [];
+  List<dynamic> _operatorList = [];
 
-  List<dynamic> get categoryAdminList => _categoryAdminList;
+  List<dynamic> get operatorList => _operatorList;
 
-  bool _isLoaded = false;
-  bool get isLoaded => _isLoaded;
+  bool _selfSaleCategoryListIsLoaded = false;
+  bool get selfSaleCategoryListIsLoaded => _selfSaleCategoryListIsLoaded;
 
-  Future<void> getCategoryList(int shopId) async {
+  bool _operatorListIsLoaded = false;
+  bool get operatorListIsLoaded => _operatorListIsLoaded;
+
+  List<dynamic> _allCategoriesList = [];
+
+  List<dynamic> get allCategoriesList => _allCategoriesList;
+
+  bool _allCategoriesListIsLoaded = false;
+  bool get allCategoriesListIsLoaded => _allCategoriesListIsLoaded;
+
+  Future<void> getSelfSaleCategoryList(int shopId) async {
     Response response = await categoryOfShopRepo.getProductList(shopId);
 
     if (response.statusCode == 200) {
-      _categoryOfShopList = [];
+      _selfSaleCategoryList = [];
 
       List responseBody = response.body;
 
@@ -30,20 +40,20 @@ class CategoryOfShopController extends GetxController {
         var categoryShopModel = CategoryOfShopModel.fromJson(responseBody[i]);
 
         if (categoryShopModel.contentType!.model == 'selfsalemodule') {
-          _categoryOfShopList.add(categoryShopModel);
+          _selfSaleCategoryList.add(categoryShopModel);
         }
       }
-      _isLoaded = true;
+      _selfSaleCategoryListIsLoaded = true;
 
       update();
     } else {}
   }
 
-  Future<void> getAdminCategoryList(int shopId) async {
+  Future<void> getOperatorCategoryList(int shopId) async {
     Response response = await categoryOfShopRepo.getProductList(shopId);
 
     if (response.statusCode == 200) {
-      _categoryAdminList = [];
+      _operatorList = [];
 
       List responseBody = response.body;
 
@@ -51,11 +61,31 @@ class CategoryOfShopController extends GetxController {
         var categoryShopModel = CategoryOfShopModel.fromJson(responseBody[i]);
 
         if (categoryShopModel.contentType!.model == 'operatorsalemodule') {
-          _categoryAdminList.add(categoryShopModel);
+          _operatorList.add(categoryShopModel);
         }
       }
 
-      _isLoaded = true;
+      _operatorListIsLoaded = true;
+
+      update();
+    } else {}
+  }
+
+  Future<void> getAllCategoryList(int shopId) async {
+    Response response = await categoryOfShopRepo.getProductList(shopId);
+
+    if (response.statusCode == 200) {
+      _allCategoriesList = [];
+
+      List responseBody = response.body;
+
+      for (var i = 0; i < responseBody.length; i++) {
+        var categoryShopModel = CategoryOfShopModel.fromJson(responseBody[i]);
+
+        _allCategoriesList.add(categoryShopModel);
+      }
+
+      _allCategoriesListIsLoaded = true;
 
       update();
     } else {}

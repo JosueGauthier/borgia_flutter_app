@@ -11,7 +11,7 @@ class DeleteCategoryController extends GetxController implements GetxService {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  Future<ResponseModel> deleteProduct(DeleteCategoryModel deleteCategoryModel) async {
+  Future<ResponseModel> deleteCategory(DeleteCategoryModel deleteCategoryModel) async {
     _isLoading = true;
 
     update();

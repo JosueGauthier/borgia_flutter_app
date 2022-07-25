@@ -337,16 +337,45 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                                     ],
                                                   ),
                                                 )
-                                              : SizedBox(
-                                                  width: Dimensions.screenWidth,
-                                                  child: ProfileBox(
-                                                    textColor: Theme.of(context).colorScheme.onPrimary,
-                                                    backgroundcolor: AppColors.mainColor,
-                                                    icon: Icons.image,
-                                                    text: "Image de la catégorie",
-                                                    iconcolor: Theme.of(context).colorScheme.onPrimary,
-                                                    radius: Dimensions.width45,
-                                                    isEditable: false,
+                                              : Container(
+                                                  padding: EdgeInsets.only(right: Dimensions.width10, left: Dimensions.width10 * 1.5),
+                                                  margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                                                  height: Dimensions.height45 * 1.7,
+                                                  width: Dimensions.screenWidth - Dimensions.width20 * 2,
+                                                  decoration: BoxDecoration(
+                                                    color: AppColors.mainColor,
+                                                    borderRadius: BorderRadius.all(Radius.circular(Dimensions.width45)),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: AppColors.mainColor.withOpacity(0.5),
+                                                        spreadRadius: 5,
+                                                        blurRadius: 5,
+                                                        blurStyle: BlurStyle.normal,
+                                                        offset: const Offset(0, 0), // changes position of shadow
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Icon(
+                                                            Icons.image,
+                                                            color: Theme.of(context).colorScheme.onPrimary,
+                                                          ),
+                                                          SizedBox(
+                                                            width: Dimensions.width10,
+                                                          ),
+                                                          BigText(
+                                                            fontTypo: 'Helvetica-Bold',
+                                                            text: "Image de la catégorie",
+                                                            size: Dimensions.height25 * 0.8,
+                                                            color: Theme.of(context).colorScheme.onPrimary,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
                                           imageOk

@@ -1,19 +1,19 @@
 class DeleteCategoryModel {
   String username;
   String password;
-  int productId;
+  int categoryId;
 
   DeleteCategoryModel({
     required this.username,
     required this.password,
-    required this.productId,
+    required this.categoryId,
   });
 
   Map<String, dynamic> toJson() {
     return {
       "username": username,
       "password": password,
-      "product_id": productId,
+      "category_id": categoryId,
     };
   }
 }
