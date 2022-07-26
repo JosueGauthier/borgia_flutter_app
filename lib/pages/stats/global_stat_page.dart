@@ -54,13 +54,17 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
       oneSec,
       (Timer timer) {
         if (_timer.tick.isEven) {
-          setState(() {
-            lightColor = Colors.transparent;
-          });
+          if (mounted) {
+            setState(() {
+              lightColor = Colors.transparent;
+            });
+          }
         } else {
-          setState(() {
-            lightColor = Colors.red;
-          });
+          if (mounted) {
+            setState(() {
+              lightColor = Colors.red;
+            });
+          }
         }
       },
     );
@@ -73,11 +77,9 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
     startTimer();
   }
 
-  /* @override
   void dispose() {
-    _timer.cancel();
     super.dispose();
-  } */
+  }
 
   @override
   Widget build(BuildContext context) {

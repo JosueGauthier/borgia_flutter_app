@@ -99,7 +99,7 @@ class _UserPageState extends State<UserPage> {
                 SizedBox(
                   height: Dimensions.height20,
                 ),
-                (userController.welcomeUserModel.surname == null)
+                /* (userController.welcomeUserModel.surname == null)
                     ? Container()
                     : ProfileBox(
                         textColor: Theme.of(context).colorScheme.surface,
@@ -110,7 +110,7 @@ class _UserPageState extends State<UserPage> {
                         iconcolor: Theme.of(context).colorScheme.surface),
                 SizedBox(
                   height: Dimensions.height20,
-                ),
+                ), */
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                   decoration: BoxDecoration(color: Theme.of(context).colorScheme.onPrimaryContainer, borderRadius: BorderRadius.circular(Dimensions.width20)),

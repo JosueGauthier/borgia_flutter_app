@@ -20,14 +20,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  String selectedTbk = "Boquette";
-  Map<String, String> mapTbk = {
-    "Boquette": "assets/image/logoAMAngers.jpg",
-    "Kin": "assets/image/aixlogo.png",
-    "Bordel'ss": "assets/image/bdxlogo.png",
-    "Siber'ss": "assets/image/metzlogo.jpg"
-  };
-
   bool isExpand = false;
 
   clearIdentifSharedPref() async {

@@ -107,7 +107,11 @@ class _MyStatPageState extends State<MyStatPage> {
         for (var i = 0; i < saleListController.aListUser.length; i++) {
           var priceSum = saleListController.aListUser[i]['tot_amount_per_sale'];
 
-          if (priceSum != null && priceSum != 0.0) {
+          if (priceSum == null) {
+            priceSum = 0.0;
+
+            listeDesVentes.add({"Date": saleListController.aListUser[i]['format_datetime'], "Sale": priceSum});
+          } else {
             listeDesVentes.add({"Date": saleListController.aListUser[i]['format_datetime'], "Sale": priceSum});
           }
         }

@@ -93,6 +93,7 @@ class _AdminPageState extends State<AdminPage> {
                                           return GestureDetector(
                                             onTap: () {
                                               Get.toNamed(RouteHelper.getAdminSearchPage(shopModel.id!));
+                                              print("aaa");
                                             },
                                             child: Container(
                                               margin: EdgeInsets.only(bottom: Dimensions.height15),

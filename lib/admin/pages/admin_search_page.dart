@@ -83,8 +83,8 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                             ),
                           ),
                     SizedBox(
-                      height: Dimensions.height45 * 2.7,
-                      width: Dimensions.height100 * 3,
+                      //height: Dimensions.height45 * 2,
+                      width: Dimensions.screenWidth - Dimensions.width20 * 3.5,
                       child: TextFormField(
                         onChanged: (value) {
                           searchBarIsFocused = true;
@@ -98,19 +98,20 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                         controller: searchTextController,
                         style: Theme.of(context).textTheme.headlineMedium,
                         decoration: InputDecoration(
+                          isDense: true,
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.circular(5.5),
+                            borderRadius: BorderRadius.circular(50),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.circular(5.5),
+                            borderRadius: BorderRadius.circular(50),
                           ),
                           prefixIcon: Icon(Icons.search, size: Dimensions.height10 * 3, color: Theme.of(context).colorScheme.onPrimary),
-                          hintText: "Recherche...",
-                          hintStyle: Theme.of(context).textTheme.headlineMedium,
+                          hintText: "Nom/bucque acheteur...",
+                          hintStyle: Theme.of(context).textTheme.titleMedium,
                           filled: true,
-                          fillColor: Colors.transparent,
+                          fillColor: Colors.white.withOpacity(0.05),
                         ),
                       ),
                     ),
@@ -245,7 +246,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                         ),
                         (categoryChoose == false)
                             ? GetBuilder<CategoryOfShopController>(builder: (categoryOfShopController) {
-                                return categoryOfShopController.selfSaleCategoryListIsLoaded
+                                return categoryOfShopController.operatorListIsLoaded
                                     ? Container(
                                         width: double.maxFinite,
                                         margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
@@ -340,6 +341,10 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                                           productListController: productListController,
                                                         );
                                                       });
+
+                                                  //! not working
+                                                  /*  Get.find<SearchController>();
+                                                  setState(() {}); */
                                                 },
                                                 child: (productModel.isActive == true)
                                                     ? ProductItemWidget(
