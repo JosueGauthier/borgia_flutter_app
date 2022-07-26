@@ -37,7 +37,7 @@ class _AdminPageState extends State<AdminPage> {
         body: Column(children: [
           const CustomHeader(text: "Admin"),
           SizedBox(
-            height: Dimensions.height100 * 1.5,
+            height: Dimensions.height100 * 1,
             child: ColorFiltered(
               colorFilter: const ColorFilter.mode(AppColors.mainColor, BlendMode.srcATop),
               child: Image.asset("assets/image/adminpanel.png"),

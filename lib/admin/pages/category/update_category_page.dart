@@ -82,12 +82,21 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
     String categoryImage = path;
 
     List<ProductList> productList = [];
+    List<ProductList> productListClean = [];
 
     for (var i = 0; i < dynamicList.length; i++) {
       if (dynamicList[i].productChoose != 0) {
         ProductList productItem = ProductList(quantity: 99999, productId: dynamicList[i].productChoose);
         productList.add(productItem);
       }
+    }
+
+    for (var item in productList) {
+      // If a map with the same name exists don't add the item.
+      if (productListClean.any((e) => e.productId == item.productId)) {
+        continue;
+      }
+      productListClean.add(item);
     }
 
     if (nameController.text.trim() == "") {
@@ -108,7 +117,7 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
       categoryId: categoryModelChosen.id!,
       categoryImage: categoryImage,
       nameCategory: categoryName,
-      productList: productList,
+      productList: productListClean,
     );
 
     if (categoryName == '' || categoryName.length >= 50) {
@@ -116,10 +125,11 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
     } else {
       updateCategoryController.updateCategory(updateCategoryModel).then((status) {
         if (status.isSuccess) {
-          //! changer below
-
           Get.back();
-          //print("sss");
+          //! changer below
+          if (productListClean.length != productList.length) {
+            Get.snackbar("Attention", "Des produits doublons détectés ont été supprimé.", backgroundColor: AppColors.warningColor);
+          }
         } else {
           Get.snackbar("Erreur", "Catégorie non modifiée. Vérifier les informations saisies", backgroundColor: Colors.redAccent);
         }
@@ -153,7 +163,7 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                         ? Column(
                             children: [
                               Container(
-                                margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
+                                margin: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height10),
                                 child: TextFormField(
                                   scrollPadding: EdgeInsets.only(bottom: Dimensions.height100),
                                   controller: nameController,
@@ -184,67 +194,6 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                               ),
                               GestureDetector(
                                 onTap: () async {
-                                  //_getFromGallery();
-
-                                  path = await selectFile();
-
-                                  setState(() {
-                                    path;
-                                  });
-                                },
-                                child: SizedBox(
-                                  width: double.maxFinite,
-
-                                  //color: Colors.blueAccent,
-                                  child: Row(
-                                    children: [
-                                      (categoryModelChosen.image != null)
-                                          ? SizedBox(
-                                              width: Dimensions.width45 * 7,
-                                              child: ProfileBox(
-                                                textColor: Theme.of(context).colorScheme.onPrimary,
-                                                backgroundcolor: AppColors.mainColor,
-                                                icon: Icons.image,
-                                                text: "Image de la catégorie",
-                                                iconcolor: Theme.of(context).colorScheme.onPrimary,
-                                                radius: Dimensions.width45,
-                                                isEditable: false,
-                                              ),
-                                            )
-                                          : SizedBox(
-                                              width: Dimensions.screenWidth,
-                                              child: ProfileBox(
-                                                textColor: Theme.of(context).colorScheme.onPrimary,
-                                                backgroundcolor: AppColors.mainColor,
-                                                icon: Icons.image,
-                                                text: "Image du produit",
-                                                iconcolor: Theme.of(context).colorScheme.onPrimary,
-                                                radius: Dimensions.width45,
-                                                isEditable: false,
-                                              ),
-                                            ),
-                                      (categoryModelChosen.image != null)
-                                          ? Container(
-                                              height: Dimensions.height100 * 0.7,
-                                              width: Dimensions.height100 * 0.7,
-                                              decoration: const BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: Colors.white,
-                                              ),
-                                              alignment: Alignment.center,
-                                              child: SizedBox(
-                                                height: Dimensions.height100 * 0.5,
-                                                width: Dimensions.height100 * 0.5,
-                                                child: Image.network(path),
-                                              ),
-                                            )
-                                          : Container(),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () async {
                                   path = await selectFile();
 
                                   setState(() {
@@ -257,10 +206,9 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                                   child: Row(
                                     children: [
                                       Container(
-                                        padding: EdgeInsets.only(right: Dimensions.width10, left: Dimensions.width10 * 1.5),
+                                        padding: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width10 * 1.5),
                                         margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
                                         height: Dimensions.height45 * 1.7,
-                                        width: Dimensions.width45 * 6.2,
                                         decoration: BoxDecoration(
                                           color: AppColors.mainColor,
                                           borderRadius: BorderRadius.all(Radius.circular(Dimensions.width45)),
@@ -309,7 +257,7 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                                           height: Dimensions.height100 * 0.5,
                                           width: Dimensions.height100 * 0.5,
                                           child: CachedNetworkImage(
-                                            imageUrl: categoryModelChosen.image!,
+                                            imageUrl: path,
                                             progressIndicatorBuilder: (context, url, downloadProgress) =>
                                                 CircularProgressIndicator(value: downloadProgress.progress),
                                             errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
@@ -390,6 +338,7 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
 
                                           setState(() {
                                             categoryIsChoose = true;
+                                            path = categoryModelChosen.image!;
                                           });
                                         },
                                         child: Container(
@@ -471,8 +420,6 @@ class _ListItemState extends State<ListItem> {
       productChoose: 0,
     ));
     setState(() {});
-    print("aa");
-    print(numberOfWidgets);
   }
 
   @override
@@ -487,8 +434,6 @@ class _ListItemState extends State<ListItem> {
         productChoose: widget.listOfOldProd[i].id,
       ));
     }
-
-    //addDynamic();
   }
 
   @override
@@ -505,19 +450,21 @@ class _ListItemState extends State<ListItem> {
             itemBuilder: (_, index) => widget.dynamicList[index],
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            GestureDetector(
-                onTap: () {},
-                child: FloatingActionButton(
-                    onPressed: () {
-                      print("hes");
-                      addDynamic();
-                      setState(() {});
-                    },
-                    child: const Icon(Icons.add))),
-          ],
+        Container(
+          margin: EdgeInsets.only(right: Dimensions.width20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              GestureDetector(
+                  onTap: () {},
+                  child: FloatingActionButton(
+                      onPressed: () {
+                        addDynamic();
+                        setState(() {});
+                      },
+                      child: const Icon(Icons.add))),
+            ],
+          ),
         ),
       ],
     );
@@ -545,6 +492,8 @@ class _DynamicWidgetState extends State<DynamicWidget> {
     ]
   };
 
+  bool isDeleted = false;
+
   @override
   void initState() {
     super.initState();
@@ -556,103 +505,115 @@ class _DynamicWidgetState extends State<DynamicWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProductListController>(builder: (productListController) {
-      for (var i = 0; i < productListController.shopProductList.length; i++) {
-        int id = productListController.shopProductList[i].id;
-        String nom = productListController.shopProductList[i].name;
-        String image = productListController.shopProductList[i].image;
+    return (isDeleted == false)
+        ? GetBuilder<ProductListController>(builder: (productListController) {
+            for (var i = 0; i < productListController.shopProductList.length; i++) {
+              int id = productListController.shopProductList[i].id;
+              String nom = productListController.shopProductList[i].name;
+              String image = productListController.shopProductList[i].image;
 
-        var produit = <int, List>{
-          id: [nom, image]
-        };
+              var produit = <int, List>{
+                id: [nom, image]
+              };
 
-        productMap.addEntries(produit.entries);
-      }
+              productMap.addEntries(produit.entries);
+            }
 
-      return productListController.shopProductListIsLoaded
-          ? ListBody(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      //color: Colors.redAccent,
-                      width: Dimensions.screenWidth - Dimensions.width20 * 5,
-                      height: Dimensions.height10 * 7,
-                      child: ClipRRect(
-                        child: DropdownButton<int>(
-                          value: widget.productChoose,
-                          dropdownColor: AppColors.mainColor,
-                          borderRadius: BorderRadius.circular(Dimensions.height10 * 2),
-                          onChanged: (int? newValue) {
-                            setState(() {
-                              widget.productChoose = newValue!;
-                            });
-                          },
+            return productListController.shopProductListIsLoaded
+                ? ListBody(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            //color: Colors.redAccent,
+                            width: Dimensions.screenWidth - Dimensions.width20 * 5,
+                            height: Dimensions.height10 * 7,
+                            child: ClipRRect(
+                              child: DropdownButton<int>(
+                                value: widget.productChoose,
+                                dropdownColor: AppColors.mainColor,
+                                borderRadius: BorderRadius.circular(Dimensions.height10 * 2),
+                                onChanged: (int? newValue) {
+                                  setState(() {
+                                    widget.productChoose = newValue!;
+                                  });
+                                },
 
-                          // Hide the default underline
-                          underline: Container(),
+                                // Hide the default underline
+                                underline: Container(),
 
-                          icon: Center(
-                            child: Icon(
-                              Icons.arrow_drop_down_rounded,
-                              color: Theme.of(context).colorScheme.onPrimary,
-                              size: Dimensions.height10 * 5,
+                                icon: Center(
+                                  child: Icon(
+                                    Icons.arrow_drop_down_rounded,
+                                    color: Theme.of(context).colorScheme.onPrimary,
+                                    size: Dimensions.height10 * 5,
+                                  ),
+                                ),
+                                isExpanded: true,
+
+                                // The list of options
+                                items: productMap
+                                    .map((id, list) {
+                                      return MapEntry(
+                                          id,
+                                          DropdownMenuItem<int>(
+                                              value: id,
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    height: Dimensions.height100 * 0.5,
+                                                    width: Dimensions.height100 * 0.5,
+                                                    decoration: const BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      color: Colors.white,
+                                                    ),
+                                                    alignment: Alignment.center,
+                                                    child: SizedBox(
+                                                      height: Dimensions.height100 * 0.3,
+                                                      width: Dimensions.height100 * 0.3,
+                                                      child: Image.network(list[1]),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: Dimensions.height10,
+                                                  ),
+                                                  Text(
+                                                    list[0],
+                                                    style: Theme.of(context).textTheme.bodySmall,
+                                                  ),
+                                                ],
+                                              )));
+                                    })
+                                    .values
+                                    .toList(),
+                              ),
                             ),
                           ),
-                          isExpanded: true,
+                          GestureDetector(
+                            onTap: () {
+                              print(widget.productChoose);
+                              widget.productChoose = 0;
 
-                          // The list of options
-                          items: productMap
-                              .map((id, list) {
-                                return MapEntry(
-                                    id,
-                                    DropdownMenuItem<int>(
-                                        value: id,
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              height: Dimensions.height100 * 0.5,
-                                              width: Dimensions.height100 * 0.5,
-                                              decoration: const BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: Colors.white,
-                                              ),
-                                              alignment: Alignment.center,
-                                              child: SizedBox(
-                                                height: Dimensions.height100 * 0.3,
-                                                width: Dimensions.height100 * 0.3,
-                                                child: Image.network(list[1]),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: Dimensions.height10,
-                                            ),
-                                            Text(
-                                              list[0],
-                                              style: Theme.of(context).textTheme.bodySmall,
-                                            ),
-                                          ],
-                                        )));
-                              })
-                              .values
-                              .toList(),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
-                      child: Icon(
-                        Icons.delete,
-                        color: Colors.redAccent,
-                      ),
-                    )
-                  ],
-                )
-              ],
-            )
-          : Container();
-    });
+                              isDeleted = true;
+
+                              setState(() {});
+                            },
+                            child: Container(
+                              margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
+                              child: Icon(
+                                Icons.delete,
+                                color: Colors.redAccent,
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  )
+                : Container();
+          })
+        : Container();
   }
 }

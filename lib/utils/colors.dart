@@ -99,6 +99,7 @@ class AppColors {
   static const Color titleColor = Color(0xFF404040);
   static const Color greyColor = Color(0xFF8B8B8C);
   static const Color whiteGreyColor = Color.fromARGB(255, 243, 243, 243);
+  static const Color warningColor = Color(0xFFFED501);
 
   static const Color darkBackGroundColor = Color(0xFF121212);
 }
