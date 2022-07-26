@@ -108,7 +108,7 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
       categoryId: categoryModelChosen.id!,
       categoryImage: categoryImage,
       nameCategory: categoryName,
-      productList: [],
+      productList: productList,
     );
 
     if (categoryName == '' || categoryName.length >= 50) {
@@ -117,7 +117,9 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
       updateCategoryController.updateCategory(updateCategoryModel).then((status) {
         if (status.isSuccess) {
           //! changer below
+
           Get.back();
+          //print("sss");
         } else {
           Get.snackbar("Erreur", "Catégorie non modifiée. Vérifier les informations saisies", backgroundColor: Colors.redAccent);
         }
@@ -182,10 +184,72 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                               ),
                               GestureDetector(
                                 onTap: () async {
+                                  //_getFromGallery();
+
+                                  path = await selectFile();
+
+                                  setState(() {
+                                    path;
+                                  });
+                                },
+                                child: SizedBox(
+                                  width: double.maxFinite,
+
+                                  //color: Colors.blueAccent,
+                                  child: Row(
+                                    children: [
+                                      (categoryModelChosen.image != null)
+                                          ? SizedBox(
+                                              width: Dimensions.width45 * 7,
+                                              child: ProfileBox(
+                                                textColor: Theme.of(context).colorScheme.onPrimary,
+                                                backgroundcolor: AppColors.mainColor,
+                                                icon: Icons.image,
+                                                text: "Image de la catégorie",
+                                                iconcolor: Theme.of(context).colorScheme.onPrimary,
+                                                radius: Dimensions.width45,
+                                                isEditable: false,
+                                              ),
+                                            )
+                                          : SizedBox(
+                                              width: Dimensions.screenWidth,
+                                              child: ProfileBox(
+                                                textColor: Theme.of(context).colorScheme.onPrimary,
+                                                backgroundcolor: AppColors.mainColor,
+                                                icon: Icons.image,
+                                                text: "Image du produit",
+                                                iconcolor: Theme.of(context).colorScheme.onPrimary,
+                                                radius: Dimensions.width45,
+                                                isEditable: false,
+                                              ),
+                                            ),
+                                      (categoryModelChosen.image != null)
+                                          ? Container(
+                                              height: Dimensions.height100 * 0.7,
+                                              width: Dimensions.height100 * 0.7,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.white,
+                                              ),
+                                              alignment: Alignment.center,
+                                              child: SizedBox(
+                                                height: Dimensions.height100 * 0.5,
+                                                width: Dimensions.height100 * 0.5,
+                                                child: Image.network(path),
+                                              ),
+                                            )
+                                          : Container(),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () async {
                                   path = await selectFile();
 
                                   setState(() {
                                     imageOk = true;
+                                    path;
                                   });
                                 },
                                 child: SizedBox(
@@ -276,6 +340,7 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                                     ? ListItem(
                                         listOfOldProd: productList,
                                         shopId: widget.shopId,
+                                        dynamicList: dynamicList,
                                       )
                                     : const Center(
                                         child: CircularProgressIndicator(
@@ -387,20 +452,20 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
 class ListItem extends StatefulWidget {
   List listOfOldProd;
   int shopId;
+  List<DynamicWidget> dynamicList;
 
-  ListItem({Key? key, required this.listOfOldProd, required this.shopId}) : super(key: key);
+  ListItem({Key? key, required this.listOfOldProd, required this.shopId, required this.dynamicList}) : super(key: key);
 
   @override
   State<ListItem> createState() => _ListItemState();
 }
 
 class _ListItemState extends State<ListItem> {
-  List<DynamicWidget> dynamicList = [];
   int numberOfWidgets = 0;
 
   addDynamic() {
     numberOfWidgets = numberOfWidgets + 1;
-    dynamicList.add(DynamicWidget(
+    widget.dynamicList.add(DynamicWidget(
       shopId: widget.shopId,
       idWidget: numberOfWidgets,
       productChoose: 0,
@@ -416,7 +481,7 @@ class _ListItemState extends State<ListItem> {
 
     for (var i = 0; i < widget.listOfOldProd.length; i++) {
       numberOfWidgets = numberOfWidgets + 1;
-      dynamicList.add(DynamicWidget(
+      widget.dynamicList.add(DynamicWidget(
         shopId: widget.shopId,
         idWidget: numberOfWidgets,
         productChoose: widget.listOfOldProd[i].id,
@@ -430,17 +495,28 @@ class _ListItemState extends State<ListItem> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListView.builder(
-          shrinkWrap: true,
-          padding: EdgeInsets.zero,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: dynamicList.length,
-          itemBuilder: (_, index) => dynamicList[index],
+        Container(
+          margin: EdgeInsets.only(left: Dimensions.width20),
+          child: ListView.builder(
+            shrinkWrap: true,
+            padding: EdgeInsets.zero,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: widget.dynamicList.length,
+            itemBuilder: (_, index) => widget.dynamicList[index],
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            ElevatedButton(onPressed: addDynamic(), child: const Icon(Icons.add)),
+            GestureDetector(
+                onTap: () {},
+                child: FloatingActionButton(
+                    onPressed: () {
+                      print("hes");
+                      addDynamic();
+                      setState(() {});
+                    },
+                    child: const Icon(Icons.add))),
           ],
         ),
       ],
