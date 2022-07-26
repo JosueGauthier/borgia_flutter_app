@@ -115,7 +115,7 @@ class _AdminPageState extends State<AdminPage> {
                                                       imageUrl: shopModel.image!,
                                                       progressIndicatorBuilder: (context, url, downloadProgress) =>
                                                           CircularProgressIndicator(value: downloadProgress.progress),
-                                                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                                                      errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                                     ),
                                                   ),
                                                 ),
@@ -192,7 +192,7 @@ class _AdminPageState extends State<AdminPage> {
                                                       imageUrl: shopModel.image!,
                                                       progressIndicatorBuilder: (context, url, downloadProgress) =>
                                                           CircularProgressIndicator(value: downloadProgress.progress),
-                                                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                                                      errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                                     ),
                                                   ),
                                                 ),

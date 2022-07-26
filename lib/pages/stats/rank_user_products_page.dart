@@ -51,7 +51,7 @@ class _RankUserProductPageState extends State<RankUserProductPage> {
                               child: CachedNetworkImage(
                                 imageUrl: listOfProd[indexProduct].image!,
                                 progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                                errorWidget: (context, url, error) => const Icon(Icons.error),
+                                errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                               ),
                             ),
                             //! text section

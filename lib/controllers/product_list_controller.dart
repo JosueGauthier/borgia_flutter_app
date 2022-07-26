@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,7 +52,7 @@ class ProductListController extends GetxController {
 
         if (produit.isActive == true && produit.isRemoved == false) {
           _productList.add(produit);
-          int index = _shopProductList.indexWhere((element) => element == produit);
+          int index = _productList.indexWhere((element) => element == produit);
           _productList[index].contentTypeParentCategory = responseBody[0]["content_type"];
         }
       }

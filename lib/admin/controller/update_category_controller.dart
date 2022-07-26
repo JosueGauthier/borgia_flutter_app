@@ -11,7 +11,7 @@ class UpdateCategoryController extends GetxController implements GetxService {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  Future<ResponseModel> updateProduct(UpdateCategoryModel updateCategoryModel) async {
+  Future<ResponseModel> updateCategory(UpdateCategoryModel updateCategoryModel) async {
     _isLoading = true;
 
     update();

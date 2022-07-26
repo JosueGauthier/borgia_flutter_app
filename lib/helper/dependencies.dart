@@ -100,13 +100,13 @@ Future<void> init() async {
 
   Get.lazyPut(() => CartController(cartRepo: Get.find()), fenix: true);
 
-  Get.lazyPut(() => ShopController(shopRepo: Get.find()));
-  Get.lazyPut(() => SaleModuleController(saleModuleRepo: Get.find()));
+  Get.lazyPut(() => ShopController(shopRepo: Get.find()), fenix: true);
+  Get.lazyPut(() => SaleModuleController(saleModuleRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => CategoryOfShopController(categoryOfShopRepo: Get.find()), fenix: true);
   Get.lazyPut(() => UserController(userRepo: Get.find()), fenix: true);
-  Get.lazyPut(() => AuthController(authRepo: Get.find()));
-  Get.lazyPut(() => SalesController(salesRepo: Get.find()));
+  Get.lazyPut(() => AuthController(authRepo: Get.find()), fenix: true);
+  Get.lazyPut(() => SalesController(salesRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => SearchController(searchRepo: Get.find()), fenix: true);
 

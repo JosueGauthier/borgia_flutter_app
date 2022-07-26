@@ -65,7 +65,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                     illustImage: CachedNetworkImage(
                                       imageUrl: productModel.image!,
                                       progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                                      errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                     ),
                                     priceProduct: productModel.manualPrice.toString(),
                                   )

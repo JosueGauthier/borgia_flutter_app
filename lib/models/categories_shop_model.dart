@@ -1,4 +1,4 @@
-class CategoryOfShopModel {
+class CategoryModel {
   int? id;
   String? name;
   int? moduleId;
@@ -8,9 +8,9 @@ class CategoryOfShopModel {
   int? shopId;
   ContentType? contentType;
 
-  CategoryOfShopModel({this.id, this.name, this.moduleId, this.products, this.order, this.image, this.shopId, this.contentType});
+  CategoryModel({this.id, this.name, this.moduleId, this.products, this.order, this.image, this.shopId, this.contentType});
 
-  CategoryOfShopModel.fromJson(Map<String, dynamic> json) {
+  CategoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     moduleId = json['module_id'];

@@ -45,7 +45,7 @@ class SearchController extends GetxController {
       List responseBody = responseCategory.body;
 
       for (var i = 0; i < responseBody.length; i++) {
-        CategoryOfShopModel categoryOfShopModel = CategoryOfShopModel.fromJson(responseBody[i]);
+        CategoryModel categoryOfShopModel = CategoryModel.fromJson(responseBody[i]);
 
         if (categoryOfShopModel.contentType!.model != 'operatorsalemodule') {
           _searchList.add(categoryOfShopModel);

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/admin/controller/update_product_controller.dart';
 import 'package:borgiaflutterapp/admin/models/update_product_model.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
@@ -131,7 +129,7 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
           //! changer below
           Get.back();
         } else {
-          Get.snackbar("Erreur", "Produit non modifié. Verifier les informations saisies", backgroundColor: Colors.redAccent);
+          Get.snackbar("Erreur", "Produit non modifié. Vérifier les informations saisies", backgroundColor: Colors.redAccent);
         }
       });
     }

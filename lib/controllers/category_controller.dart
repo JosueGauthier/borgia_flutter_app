@@ -37,7 +37,7 @@ class CategoryOfShopController extends GetxController {
       List responseBody = response.body;
 
       for (var i = 0; i < responseBody.length; i++) {
-        var categoryShopModel = CategoryOfShopModel.fromJson(responseBody[i]);
+        var categoryShopModel = CategoryModel.fromJson(responseBody[i]);
 
         if (categoryShopModel.contentType!.model == 'selfsalemodule') {
           _selfSaleCategoryList.add(categoryShopModel);
@@ -58,7 +58,7 @@ class CategoryOfShopController extends GetxController {
       List responseBody = response.body;
 
       for (var i = 0; i < responseBody.length; i++) {
-        var categoryShopModel = CategoryOfShopModel.fromJson(responseBody[i]);
+        var categoryShopModel = CategoryModel.fromJson(responseBody[i]);
 
         if (categoryShopModel.contentType!.model == 'operatorsalemodule') {
           _operatorList.add(categoryShopModel);
@@ -80,7 +80,7 @@ class CategoryOfShopController extends GetxController {
       List responseBody = response.body;
 
       for (var i = 0; i < responseBody.length; i++) {
-        var categoryShopModel = CategoryOfShopModel.fromJson(responseBody[i]);
+        var categoryShopModel = CategoryModel.fromJson(responseBody[i]);
 
         _allCategoriesList.add(categoryShopModel);
       }

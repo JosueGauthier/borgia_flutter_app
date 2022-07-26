@@ -63,7 +63,7 @@ class LastPurchases extends StatelessWidget {
                             illustImage: CachedNetworkImage(
                               imageUrl: cartList[index].aProduct.image!,
                               progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                              errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                             ),
                             titleText: cartList[index].name!,
                             priceProduct: cartList[index].aProduct.manualPrice.toString(),

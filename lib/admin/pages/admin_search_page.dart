@@ -50,7 +50,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
   bool productChoose = false;
 
   late UserModel userChosen;
-  late CategoryOfShopModel categoryChosen;
+  late CategoryModel categoryChosen;
 
   @override
   Widget build(BuildContext context) {
@@ -255,7 +255,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                             physics: const NeverScrollableScrollPhysics(),
                                             itemCount: categoryOfShopController.operatorList.length,
                                             itemBuilder: (context, index) {
-                                              CategoryOfShopModel categoryModel = categoryOfShopController.operatorList[index];
+                                              CategoryModel categoryModel = categoryOfShopController.operatorList[index];
 
                                               return GestureDetector(
                                                 onTap: () {
@@ -287,7 +287,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                                           imageUrl: categoryModel.image!,
                                                           progressIndicatorBuilder: (context, url, downloadProgress) =>
                                                               CircularProgressIndicator(value: downloadProgress.progress),
-                                                          errorWidget: (context, url, error) => const Icon(Icons.error),
+                                                          errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                                         ),
                                                       ),
                                                     ),
@@ -348,7 +348,7 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                                           imageUrl: productModel.image!,
                                                           progressIndicatorBuilder: (context, url, downloadProgress) =>
                                                               CircularProgressIndicator(value: downloadProgress.progress),
-                                                          errorWidget: (context, url, error) => const Icon(Icons.error),
+                                                          errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                                         ),
                                                         priceProduct: productModel.manualPrice.toString(),
                                                       )

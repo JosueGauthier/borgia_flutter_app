@@ -78,7 +78,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                   child: CachedNetworkImage(
                                     imageUrl: shopModel.image!,
                                     progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                                    errorWidget: (context, url, error) => Icon(Icons.error),
+                                    errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                   ),
                                 ),
                               ),

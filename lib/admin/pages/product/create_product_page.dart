@@ -100,7 +100,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
           //! changer below
           Get.back();
         } else {
-          Get.snackbar("Erreur", "Produit non crée. Verifier les informations saisies", backgroundColor: Colors.redAccent);
+          Get.snackbar("Erreur", "Produit non crée. Vérifier les informations saisies", backgroundColor: Colors.redAccent);
         }
       });
     }
@@ -240,7 +240,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                                         imageUrl: path,
                                         progressIndicatorBuilder: (context, url, downloadProgress) =>
                                             CircularProgressIndicator(value: downloadProgress.progress),
-                                        errorWidget: (context, url, error) => const Icon(Icons.error),
+                                        errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                       ),
                                     ),
                                   )

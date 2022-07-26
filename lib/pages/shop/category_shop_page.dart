@@ -48,7 +48,7 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: categoryOfShopController.selfSaleCategoryList.length,
                         itemBuilder: (context, index) {
-                          CategoryOfShopModel categoryModel = categoryOfShopController.selfSaleCategoryList[index];
+                          CategoryModel categoryModel = categoryOfShopController.selfSaleCategoryList[index];
 
                           return GestureDetector(
                             onTap: () {
@@ -74,7 +74,7 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                                     child: CachedNetworkImage(
                                       imageUrl: categoryModel.image!,
                                       progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                                      errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                     ),
                                   ),
                                 ),

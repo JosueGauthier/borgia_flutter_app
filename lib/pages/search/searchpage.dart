@@ -109,7 +109,7 @@ class _SearchPageState extends State<SearchPage> {
                                   //! ok
                                   Get.toNamed(RouteHelper.getCategoryListPage(searchController.searchList[index].id, "searchPage"));
                                 }
-                                if (searchController.searchList[index].runtimeType == CategoryOfShopModel) {
+                                if (searchController.searchList[index].runtimeType == CategoryModel) {
                                   FocusScope.of(context).unfocus();
                                   searchTextController.clear();
                                   //!ok
@@ -156,7 +156,7 @@ class _SearchPageState extends State<SearchPage> {
                                                     imageUrl: searchController.searchList[index].image,
                                                     progressIndicatorBuilder: (context, url, downloadProgress) =>
                                                         CircularProgressIndicator(value: downloadProgress.progress),
-                                                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                                                    errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                                   ),
                                           ),
                                         ),

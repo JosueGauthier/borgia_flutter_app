@@ -33,7 +33,6 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
     "Categorie selfsale": Icons.man,
   };
   List<DynamicWidget> dynamicList = [];
-  List<String> product = [];
   int numberOfWidgets = 0;
 
   int selfModuleId = 0;
@@ -73,9 +72,6 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
 
   //! to add products
   addDynamic() {
-    if (product.isNotEmpty) {
-      dynamicList = [];
-    }
     setState(() {});
     if (dynamicList.length >= 50) {
       return;
@@ -142,7 +138,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
           //! changer below
           Get.back();
         } else {
-          Get.snackbar("Erreur", "Catégorie non créée. Verifier les informations saisies", backgroundColor: Colors.redAccent);
+          Get.snackbar("Erreur", "Catégorie non créée. Vérifier les informations saisies", backgroundColor: Colors.redAccent);
         }
       });
     }
@@ -394,7 +390,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                                       imageUrl: path,
                                                       progressIndicatorBuilder: (context, url, downloadProgress) =>
                                                           CircularProgressIndicator(value: downloadProgress.progress),
-                                                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                                                      errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                                     ),
                                                   ),
                                                 )
@@ -510,7 +506,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
               children: [
                 Row(
                   children: [
-                    Container(
+                    SizedBox(
                       width: Dimensions.screenWidth - Dimensions.width20 * 3.4,
                       height: Dimensions.height10 * 7,
                       child: ClipRRect(
@@ -527,10 +523,12 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                           // Hide the default underline
                           underline: Container(),
 
-                          icon: Icon(
-                            Icons.arrow_drop_down_rounded,
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            size: Dimensions.height10 * 5,
+                          icon: Center(
+                            child: Icon(
+                              Icons.arrow_drop_down_rounded,
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              size: Dimensions.height10 * 5,
+                            ),
                           ),
                           isExpanded: true,
 

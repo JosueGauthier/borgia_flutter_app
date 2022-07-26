@@ -175,7 +175,7 @@ class _Badge extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: asset,
           progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+          errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
         ),
       ),
     );

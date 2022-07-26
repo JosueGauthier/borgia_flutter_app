@@ -43,7 +43,7 @@ class _DeleteProductPageState extends State<DeleteProductPage> {
         Get.back();
         Get.back();
       } else {
-        Get.snackbar("Erreur", "Produit non supprimé. Verifier les informations saisies", backgroundColor: Colors.redAccent);
+        Get.snackbar("Erreur", "Produit non supprimé. Vérifier les informations saisies", backgroundColor: Colors.redAccent);
       }
     });
   }
@@ -157,7 +157,7 @@ class _DeleteProductPageState extends State<DeleteProductPage> {
                                               imageUrl: productModel.image!,
                                               progressIndicatorBuilder: (context, url, downloadProgress) =>
                                                   CircularProgressIndicator(value: downloadProgress.progress),
-                                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                                              errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                             ),
                                             priceProduct: productModel.manualPrice.toString(),
                                           ));

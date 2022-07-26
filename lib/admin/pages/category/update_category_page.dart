@@ -1,7 +1,7 @@
-import 'dart:developer';
-
-import 'package:borgiaflutterapp/admin/controller/update_product_controller.dart';
-import 'package:borgiaflutterapp/admin/models/update_product_model.dart';
+import 'package:borgiaflutterapp/admin/controller/update_category_controller.dart';
+import 'package:borgiaflutterapp/admin/models/update_category_model.dart';
+import 'package:borgiaflutterapp/controllers/category_controller.dart';
+import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
@@ -10,12 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/product_list_controller.dart';
-import '../../../models/product_model.dart';
 import '../../../utils/app_constants.dart';
 import '../../../utils/dimensions.dart';
 import '../../../widget/big_text.dart';
 import '../../../widget/custom_header.dart';
-import '../../../widget/product_item_widget.dart';
 import '../../../widget/profile_box.dart';
 
 class UpdateCategoryPage extends StatefulWidget {
@@ -28,13 +26,18 @@ class UpdateCategoryPage extends StatefulWidget {
 
 class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
   TextEditingController nameController = TextEditingController();
-  TextEditingController priceController = TextEditingController();
-  TextEditingController correctingFactorController = TextEditingController();
 
-  String path = "";
+  late CategoryModel categoryModelChosen;
 
-  bool isManualPriceChecked = true;
-  bool isActiveChecked = true;
+  bool categoryIsChoose = false;
+
+  bool productinit = false;
+
+  var path = "";
+  bool imageOk = false;
+
+  List<DynamicWidget> dynamicList = [];
+  int numberOfWidgets = 0;
 
   static Future<String> selectFile() async {
     late CloudinaryResponse response;
@@ -68,94 +71,85 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
     return response;
   }
 
-  bool productIsChoose = false;
-  late ProductModel productModelChosen;
-
-  void _updateProduct(
-    UpdateProductController updateProductController,
+  void _updateCategory(
+    UpdateCategoryController updateCategoryController,
   ) {
     String username = AppConstants.USERNAME;
     String password = AppConstants.PASSWORD;
 
-    String productImage = "";
-    String productName = "";
-    double correctingFactor = 0;
-    double manualPrice = 0;
+    String categoryName = "";
+
+    String categoryImage = path;
+
+    List<ProductList> productList = [];
+
+    for (var i = 0; i < dynamicList.length; i++) {
+      if (dynamicList[i].productChoose != 0) {
+        ProductList productItem = ProductList(quantity: 99999, productId: dynamicList[i].productChoose);
+        productList.add(productItem);
+      }
+    }
 
     if (nameController.text.trim() == "") {
-      productName = productModelChosen.name!;
+      categoryName = categoryModelChosen.name!;
     } else {
-      productName = nameController.text.trim();
-    }
-
-    if (priceController.text.trim() == "") {
-      manualPrice = productModelChosen.manualPrice!;
-    } else {
-      manualPrice = double.parse(priceController.text.trim());
-    }
-
-    bool priceIsManual = isManualPriceChecked;
-    bool isActive = isActiveChecked;
-
-    if (correctingFactorController.text.trim() == "") {
-      correctingFactor = productModelChosen.correctingFactor!;
-    } else {
-      correctingFactor = double.parse(correctingFactorController.text.trim());
+      categoryName = nameController.text.trim();
     }
 
     if (path == "") {
-      productImage = productModelChosen.image!;
+      categoryImage = categoryModelChosen.image!;
     } else {
-      productImage = path;
+      categoryImage = path;
     }
 
-    UpdateProductModel productModel = UpdateProductModel(
+    UpdateCategoryModel updateCategoryModel = UpdateCategoryModel(
       username: username,
       password: password,
-      productId: productModelChosen.id!,
-      correctingFactor: correctingFactor,
-      isActive: isActive,
-      manualPrice: manualPrice,
-      priceIsManual: priceIsManual,
-      productImage: productImage,
-      productName: productName,
+      categoryId: categoryModelChosen.id!,
+      categoryImage: categoryImage,
+      nameCategory: categoryName,
+      productList: [],
     );
 
-    if (productName == '' || productName.length >= 50) {
-      Get.snackbar("Nom", "Nom de produit incorrect");
-    } else if (manualPrice <= 0) {
-      Get.snackbar("Prix manuel", "Entrer un prix correct");
+    if (categoryName == '' || categoryName.length >= 50) {
+      Get.snackbar("Nom", "Nom de catégorie incorrect");
     } else {
-      updateProductController.updateProduct(productModel).then((status) {
+      updateCategoryController.updateCategory(updateCategoryModel).then((status) {
         if (status.isSuccess) {
           //! changer below
           Get.back();
         } else {
-          Get.snackbar("Erreur", "Produit non modifié. Verifier les informations saisies", backgroundColor: Colors.redAccent);
+          Get.snackbar("Erreur", "Catégorie non modifiée. Vérifier les informations saisies", backgroundColor: Colors.redAccent);
         }
       });
     }
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+
     Get.find<ProductListController>().getShopProduct(widget.shopId);
 
-    return GetBuilder<ProductListController>(builder: (productListController) {
-      return GetBuilder<UpdateProductController>(builder: (updateProductController) {
+    //! check if no product !
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Get.find<CategoryOfShopController>().getAllCategoryList(widget.shopId);
+
+    return GetBuilder<CategoryOfShopController>(builder: (categoryOfShopController) {
+      return GetBuilder<UpdateCategoryController>(builder: (updateCategoryController) {
         return Scaffold(
             extendBody: true,
             body: Column(
               children: [
-                const CustomHeader(text: "Modification de produit"),
+                const CustomHeader(text: "Modification d'une catégorie"),
                 Expanded(
                   child: SingleChildScrollView(
-                    child: (productIsChoose)
+                    child: (categoryIsChoose)
                         ? Column(
                             children: [
-                              SizedBox(
-                                height: Dimensions.height20,
-                              ),
                               Container(
                                 margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                                 child: TextFormField(
@@ -174,40 +168,8 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                                       Icons.bookmark,
                                       color: Theme.of(context).colorScheme.onPrimary,
                                     ),
-                                    hintText: (productModelChosen.name != null) ? productModelChosen.name : "Nom du produit",
-                                    labelText: (productModelChosen.name != null) ? productModelChosen.name : "Nom du produit",
-                                    labelStyle: Theme.of(context).textTheme.bodySmall,
-                                    hintStyle: Theme.of(context).textTheme.bodySmall,
-                                    filled: true,
-                                    fillColor: Colors.transparent,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: Dimensions.height20,
-                              ),
-                              Container(
-                                margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
-                                child: TextFormField(
-                                  scrollPadding: EdgeInsets.only(bottom: Dimensions.height100),
-                                  keyboardType: TextInputType.number,
-                                  //inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
-                                  controller: priceController,
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(color: AppColors.titleColor),
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(color: AppColors.mainColor),
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    prefixIcon: Icon(
-                                      Icons.money,
-                                      color: Theme.of(context).colorScheme.onPrimary,
-                                    ),
-                                    hintText: (productModelChosen.manualPrice != null) ? productModelChosen.manualPrice.toString() : "Prix manuel en €",
-                                    labelText: (productModelChosen.manualPrice != null) ? productModelChosen.manualPrice.toString() : "Prix manuel en €",
+                                    hintText: categoryModelChosen.name,
+                                    labelText: categoryModelChosen.name,
                                     labelStyle: Theme.of(context).textTheme.bodySmall,
                                     hintStyle: Theme.of(context).textTheme.bodySmall,
                                     filled: true,
@@ -220,151 +182,76 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                               ),
                               GestureDetector(
                                 onTap: () async {
-                                  //_getFromGallery();
-
                                   path = await selectFile();
 
                                   setState(() {
-                                    path;
+                                    imageOk = true;
                                   });
                                 },
                                 child: SizedBox(
                                   width: double.maxFinite,
-
-                                  //color: Colors.blueAccent,
                                   child: Row(
                                     children: [
-                                      (productModelChosen.image != null)
-                                          ? SizedBox(
-                                              width: Dimensions.width45 * 7,
-                                              child: ProfileBox(
-                                                textColor: Theme.of(context).colorScheme.onPrimary,
-                                                backgroundcolor: AppColors.mainColor,
-                                                icon: Icons.image,
-                                                text: "Image du produit",
-                                                iconcolor: Theme.of(context).colorScheme.onPrimary,
-                                                radius: Dimensions.width45,
-                                                isEditable: false,
-                                              ),
-                                            )
-                                          : SizedBox(
-                                              width: Dimensions.screenWidth,
-                                              child: ProfileBox(
-                                                textColor: Theme.of(context).colorScheme.onPrimary,
-                                                backgroundcolor: AppColors.mainColor,
-                                                icon: Icons.image,
-                                                text: "Image du produit",
-                                                iconcolor: Theme.of(context).colorScheme.onPrimary,
-                                                radius: Dimensions.width45,
-                                                isEditable: false,
-                                              ),
+                                      Container(
+                                        padding: EdgeInsets.only(right: Dimensions.width10, left: Dimensions.width10 * 1.5),
+                                        margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                                        height: Dimensions.height45 * 1.7,
+                                        width: Dimensions.width45 * 6.2,
+                                        decoration: BoxDecoration(
+                                          color: AppColors.mainColor,
+                                          borderRadius: BorderRadius.all(Radius.circular(Dimensions.width45)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: AppColors.mainColor.withOpacity(0.5),
+                                              spreadRadius: 5,
+                                              blurRadius: 5,
+                                              blurStyle: BlurStyle.normal,
+                                              offset: const Offset(0, 0), // changes position of shadow
                                             ),
-                                      (productModelChosen.image != null)
-                                          ? Container(
-                                              height: Dimensions.height100 * 0.7,
-                                              width: Dimensions.height100 * 0.7,
-                                              decoration: const BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: Colors.white,
-                                              ),
-                                              alignment: Alignment.center,
-                                              child: SizedBox(
-                                                height: Dimensions.height100 * 0.5,
-                                                width: Dimensions.height100 * 0.5,
-                                                child: Image.network(path),
-                                              ),
-                                            )
-                                          : Container(),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: Dimensions.height20,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isManualPriceChecked = !isManualPriceChecked;
-                                  });
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
-                                  margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
-                                  height: Dimensions.height45 * 1.7,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(color: AppColors.mainColor, borderRadius: BorderRadius.all(Radius.circular(Dimensions.width45))),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Checkbox(
-                                            checkColor: Colors.white,
-                                            //fillColor: MaterialStateProperty.resolveWith(getColor),
-                                            value: isManualPriceChecked,
-                                            onChanged: (bool? value) {
-                                              setState(() {
-                                                isManualPriceChecked = value!;
-                                              });
-                                            },
-                                          ),
-                                          SizedBox(
-                                            width: Dimensions.width20,
-                                          ),
-                                          BigText(
-                                            fontTypo: 'Helvetica-Bold',
-                                            text: "Prix manuel ?",
-                                            size: Dimensions.height25 * 0.8,
-                                            color: Theme.of(context).colorScheme.onPrimary,
-                                          ),
-                                        ],
+                                          ],
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.image,
+                                                  color: Theme.of(context).colorScheme.onPrimary,
+                                                ),
+                                                SizedBox(
+                                                  width: Dimensions.width10,
+                                                ),
+                                                BigText(
+                                                  fontTypo: 'Helvetica-Bold',
+                                                  text: "Image de la catégorie",
+                                                  size: Dimensions.height25 * 0.8,
+                                                  color: Theme.of(context).colorScheme.onPrimary,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: Dimensions.height20,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isActiveChecked = !isActiveChecked;
-                                  });
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
-                                  margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
-                                  height: Dimensions.height45 * 1.7,
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(color: AppColors.mainColor, borderRadius: BorderRadius.all(Radius.circular(Dimensions.width45))),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Checkbox(
-                                            checkColor: Colors.white,
-                                            //fillColor: MaterialStateProperty.resolveWith(getColor),
-                                            value: isActiveChecked,
-                                            onChanged: (bool? value) {
-                                              setState(() {
-                                                isActiveChecked = value!;
-                                              });
-                                            },
+                                      Container(
+                                        height: Dimensions.height100 * 0.7,
+                                        width: Dimensions.height100 * 0.7,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.white,
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          height: Dimensions.height100 * 0.5,
+                                          width: Dimensions.height100 * 0.5,
+                                          child: CachedNetworkImage(
+                                            imageUrl: categoryModelChosen.image!,
+                                            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                CircularProgressIndicator(value: downloadProgress.progress),
+                                            errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                           ),
-                                          SizedBox(
-                                            width: Dimensions.width20,
-                                          ),
-                                          BigText(
-                                            fontTypo: 'Helvetica-Bold',
-                                            text: "Produit activé ?",
-                                            size: Dimensions.height25 * 0.8,
-                                            color: Theme.of(context).colorScheme.onPrimary,
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      )
                                     ],
                                   ),
                                 ),
@@ -373,44 +260,33 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                                 height: Dimensions.height20,
                               ),
                               Container(
-                                margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
-                                child: TextFormField(
-                                  keyboardType: TextInputType.number,
-                                  //inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
-                                  scrollPadding: EdgeInsets.only(bottom: Dimensions.height100),
-                                  controller: correctingFactorController,
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(color: AppColors.titleColor),
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(color: AppColors.mainColor),
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    prefixIcon: Icon(
-                                      Icons.change_circle,
-                                      color: Theme.of(context).colorScheme.onPrimary,
-                                    ),
-                                    hintText: (productModelChosen.correctingFactor != null)
-                                        ? productModelChosen.correctingFactor.toString()
-                                        : "Facteur de correction",
-                                    labelText: (productModelChosen.correctingFactor != null)
-                                        ? productModelChosen.correctingFactor.toString()
-                                        : "Facteur de correction",
-                                    labelStyle: Theme.of(context).textTheme.bodySmall,
-                                    hintStyle: Theme.of(context).textTheme.bodySmall,
-                                    filled: true,
-                                    fillColor: Colors.transparent,
-                                  ),
+                                margin: EdgeInsets.only(left: Dimensions.width20),
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "Modification de la liste des produits",
+                                  style: Theme.of(context).textTheme.titleMedium,
                                 ),
                               ),
                               SizedBox(
-                                height: Dimensions.height20,
+                                height: Dimensions.height10,
                               ),
+                              GetBuilder<ProductListController>(builder: (productListController) {
+                                List productList = productListController.productList;
+                                return (productListController.isLoaded && productListController.shopProductListIsLoaded)
+                                    ? ListItem(
+                                        listOfOldProd: productList,
+                                        shopId: widget.shopId,
+                                      )
+                                    : const Center(
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 4,
+                                          color: Colors.blueAccent,
+                                        ),
+                                      );
+                              }),
                               GestureDetector(
                                 onTap: () {
-                                  _updateProduct(updateProductController);
+                                  _updateCategory(updateCategoryController);
                                 },
                                 child: SizedBox(
                                   width: Dimensions.width45 * 5,
@@ -424,10 +300,13 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                                     isEditable: false,
                                   ),
                                 ),
-                              )
+                              ),
+                              SizedBox(
+                                height: Dimensions.height20,
+                              ),
                             ],
                           )
-                        : (productListController.shopProductListIsLoaded)
+                        : (categoryOfShopController.allCategoriesListIsLoaded)
                             ? Container(
                                 width: double.maxFinite,
                                 margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
@@ -435,31 +314,58 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                                     padding: EdgeInsets.zero,
                                     shrinkWrap: true,
                                     physics: const NeverScrollableScrollPhysics(),
-                                    itemCount: productListController.shopProductList.length,
+                                    itemCount: categoryOfShopController.allCategoriesList.length,
                                     itemBuilder: (context, index) {
-                                      ProductModel productModel = productListController.shopProductList[index];
+                                      CategoryModel categoryOfShopModel = categoryOfShopController.allCategoriesList[index];
                                       return GestureDetector(
-                                          onTap: () {
-                                            productModelChosen = productModel;
+                                        onTap: () {
+                                          categoryModelChosen = categoryOfShopModel;
 
-                                            setState(() {
-                                              productIsChoose = true;
+                                          Get.find<ProductListController>().getProduct(categoryModelChosen.id!);
 
-                                              isManualPriceChecked = productModelChosen.isManual!;
-                                              isActiveChecked = productModelChosen.isActive!;
-                                              path = productModelChosen.image!;
-                                            });
-                                          },
-                                          child: ProductItemWidget(
-                                            titleText: (productModel.name)!.capitalize!,
-                                            illustImage: CachedNetworkImage(
-                                              imageUrl: productModel.image!,
-                                              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                  CircularProgressIndicator(value: downloadProgress.progress),
-                                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                                          setState(() {
+                                            categoryIsChoose = true;
+                                          });
+                                        },
+                                        child: Container(
+                                          margin: EdgeInsets.only(right: Dimensions.width20, bottom: Dimensions.height15),
+                                          child: Row(children: [
+                                            //! image
+
+                                            Container(
+                                              //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
+                                              height: Dimensions.height100 * 0.7,
+                                              width: Dimensions.height100 * 0.7,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.white,
+                                              ),
+                                              alignment: Alignment.center,
+                                              child: SizedBox(
+                                                height: Dimensions.height100 * 0.5,
+                                                width: Dimensions.height100 * 0.5,
+                                                child: CachedNetworkImage(
+                                                    imageUrl: categoryOfShopModel.image!,
+                                                    progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                        CircularProgressIndicator(value: downloadProgress.progress),
+                                                    errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black)),
+                                              ),
                                             ),
-                                            priceProduct: productModel.manualPrice.toString(),
-                                          ));
+
+                                            SizedBox(
+                                              width: Dimensions.width20 * 3,
+                                            ),
+
+                                            //! text section
+
+                                            Expanded(
+                                              child: Padding(
+                                                  padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                                                  child: Text((categoryOfShopModel.name)!.capitalize!, style: Theme.of(context).textTheme.bodySmall)),
+                                            ),
+                                          ]),
+                                        ),
+                                      );
                                     }),
                               )
                             : const Center(
@@ -473,6 +379,204 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
               ],
             ));
       });
+    });
+  }
+}
+
+// ignore: must_be_immutable
+class ListItem extends StatefulWidget {
+  List listOfOldProd;
+  int shopId;
+
+  ListItem({Key? key, required this.listOfOldProd, required this.shopId}) : super(key: key);
+
+  @override
+  State<ListItem> createState() => _ListItemState();
+}
+
+class _ListItemState extends State<ListItem> {
+  List<DynamicWidget> dynamicList = [];
+  int numberOfWidgets = 0;
+
+  addDynamic() {
+    numberOfWidgets = numberOfWidgets + 1;
+    dynamicList.add(DynamicWidget(
+      shopId: widget.shopId,
+      idWidget: numberOfWidgets,
+      productChoose: 0,
+    ));
+    setState(() {});
+    print("aa");
+    print(numberOfWidgets);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    for (var i = 0; i < widget.listOfOldProd.length; i++) {
+      numberOfWidgets = numberOfWidgets + 1;
+      dynamicList.add(DynamicWidget(
+        shopId: widget.shopId,
+        idWidget: numberOfWidgets,
+        productChoose: widget.listOfOldProd[i].id,
+      ));
+    }
+
+    //addDynamic();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ListView.builder(
+          shrinkWrap: true,
+          padding: EdgeInsets.zero,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: dynamicList.length,
+          itemBuilder: (_, index) => dynamicList[index],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            ElevatedButton(onPressed: addDynamic(), child: const Icon(Icons.add)),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class DynamicWidget extends StatefulWidget {
+  final int shopId;
+  final int idWidget;
+  int productChoose;
+  DynamicWidget({Key? key, required this.shopId, required this.idWidget, required this.productChoose}) : super(key: key);
+
+  @override
+  State<DynamicWidget> createState() => _DynamicWidgetState();
+}
+
+class _DynamicWidgetState extends State<DynamicWidget> {
+  Map<int, List> productMap = {};
+
+  var initItem = <int, List>{
+    0: [
+      "Choose item",
+      "https://media.istockphoto.com/vectors/typing-text-chat-isolated-vector-icon-modern-geometric-illustration-vector-id1186972006?k=20&m=1186972006&s=612x612&w=0&h=vFGrVHgdRGWyUlDcW5KPfAXy5sfcjLg5Cl231ZF78hM="
+    ]
+  };
+
+  @override
+  void initState() {
+    super.initState();
+
+    productMap.addEntries(initItem.entries);
+
+    //widget.productChoose = productMap.keys.toList().first;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<ProductListController>(builder: (productListController) {
+      for (var i = 0; i < productListController.shopProductList.length; i++) {
+        int id = productListController.shopProductList[i].id;
+        String nom = productListController.shopProductList[i].name;
+        String image = productListController.shopProductList[i].image;
+
+        var produit = <int, List>{
+          id: [nom, image]
+        };
+
+        productMap.addEntries(produit.entries);
+      }
+
+      return productListController.shopProductListIsLoaded
+          ? ListBody(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      //color: Colors.redAccent,
+                      width: Dimensions.screenWidth - Dimensions.width20 * 5,
+                      height: Dimensions.height10 * 7,
+                      child: ClipRRect(
+                        child: DropdownButton<int>(
+                          value: widget.productChoose,
+                          dropdownColor: AppColors.mainColor,
+                          borderRadius: BorderRadius.circular(Dimensions.height10 * 2),
+                          onChanged: (int? newValue) {
+                            setState(() {
+                              widget.productChoose = newValue!;
+                            });
+                          },
+
+                          // Hide the default underline
+                          underline: Container(),
+
+                          icon: Center(
+                            child: Icon(
+                              Icons.arrow_drop_down_rounded,
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              size: Dimensions.height10 * 5,
+                            ),
+                          ),
+                          isExpanded: true,
+
+                          // The list of options
+                          items: productMap
+                              .map((id, list) {
+                                return MapEntry(
+                                    id,
+                                    DropdownMenuItem<int>(
+                                        value: id,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              height: Dimensions.height100 * 0.5,
+                                              width: Dimensions.height100 * 0.5,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.white,
+                                              ),
+                                              alignment: Alignment.center,
+                                              child: SizedBox(
+                                                height: Dimensions.height100 * 0.3,
+                                                width: Dimensions.height100 * 0.3,
+                                                child: Image.network(list[1]),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: Dimensions.height10,
+                                            ),
+                                            Text(
+                                              list[0],
+                                              style: Theme.of(context).textTheme.bodySmall,
+                                            ),
+                                          ],
+                                        )));
+                              })
+                              .values
+                              .toList(),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.redAccent,
+                      ),
+                    )
+                  ],
+                )
+              ],
+            )
+          : Container();
     });
   }
 }

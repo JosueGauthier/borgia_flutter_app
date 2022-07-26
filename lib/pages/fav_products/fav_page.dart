@@ -51,7 +51,7 @@ class FavPage extends StatelessWidget {
                             illustImage: CachedNetworkImage(
                               imageUrl: favList[index].aProduct.image,
                               progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                              errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                             ),
                             titleText: favList[index].name!,
                             priceProduct: favList[index].aProduct.manualPrice.toString(),

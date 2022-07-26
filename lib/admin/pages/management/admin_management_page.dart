@@ -132,7 +132,7 @@ class _ManagementShopPageState extends State<ManagementShopPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      //Get.toNamed(RouteHelper.getGenPage());
+                      Get.toNamed(RouteHelper.getUpdateCategoryPage(widget.shopId));
                     },
                     child: SizedBox(
                       width: Dimensions.screenWidth,

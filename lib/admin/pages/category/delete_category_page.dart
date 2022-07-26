@@ -22,7 +22,7 @@ class DeleteCategoryPage extends StatefulWidget {
 
 class _DeleteCategoryPageState extends State<DeleteCategoryPage> {
   bool categoryIsChoose = false;
-  late CategoryOfShopModel categoryModelChosen;
+  late CategoryModel categoryModelChosen;
 
   void _deleteCategory(
     DeleteCategoryController deleteCategoryController,
@@ -42,7 +42,7 @@ class _DeleteCategoryPageState extends State<DeleteCategoryPage> {
         Get.back();
         Get.back();
       } else {
-        Get.snackbar("Erreur", "Produit non supprimé. Verifier les informations saisies", backgroundColor: Colors.redAccent);
+        Get.snackbar("Erreur", "Catégorie non supprimée. Vérifier les informations saisies", backgroundColor: Colors.redAccent);
       }
     });
   }
@@ -141,8 +141,7 @@ class _DeleteCategoryPageState extends State<DeleteCategoryPage> {
                                     physics: const NeverScrollableScrollPhysics(),
                                     itemCount: categoryOfShopController.allCategoriesList.length,
                                     itemBuilder: (context, index) {
-                                      CategoryOfShopModel categoryOfShopModel = categoryOfShopController.allCategoriesList[index];
-                                      print(categoryOfShopModel.image);
+                                      CategoryModel categoryOfShopModel = categoryOfShopController.allCategoriesList[index];
                                       return GestureDetector(
                                         onTap: () {
                                           categoryModelChosen = categoryOfShopModel;
@@ -169,14 +168,10 @@ class _DeleteCategoryPageState extends State<DeleteCategoryPage> {
                                                 height: Dimensions.height100 * 0.5,
                                                 width: Dimensions.height100 * 0.5,
                                                 child: CachedNetworkImage(
-                                                  imageUrl: categoryOfShopModel.image!,
-                                                  progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                      CircularProgressIndicator(value: downloadProgress.progress),
-                                                  errorWidget: (context, url, error) => Icon(
-                                                    Icons.error,
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
+                                                    imageUrl: categoryOfShopModel.image!,
+                                                    progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                        CircularProgressIndicator(value: downloadProgress.progress),
+                                                    errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black)),
                                               ),
                                             ),
 
