@@ -11,7 +11,6 @@ class CreateCategoryRepo {
   });
 
   Future<Response> createCategory(CreateCategoryModel createCategoryModel) async {
-    print(createCategoryModel.toJson());
     return await apiClient.postData(AppConstants.CREATE_CATEGORY_URI, createCategoryModel.toJson());
   }
 }

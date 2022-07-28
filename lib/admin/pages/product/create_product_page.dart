@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/admin/controller/create_product_controller.dart';
 import 'package:borgiaflutterapp/admin/models/create_product_model.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';

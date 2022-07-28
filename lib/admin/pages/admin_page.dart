@@ -91,50 +91,119 @@ class _AdminPageState extends State<AdminPage> {
                                               shopController.shopList.firstWhere((element) => (element.name == isChiefIn[isChiefIn.length - 1]));
 
                                           return GestureDetector(
-                                            onTap: () {
-                                              Get.toNamed(RouteHelper.getAdminSearchPage(shopModel.id!));
-                                              print("aaa");
-                                            },
+                                            onTap: () {},
                                             child: Container(
                                               margin: EdgeInsets.only(bottom: Dimensions.height15),
-                                              child: Row(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.center, children: [
-                                                //! image section
-
-                                                Container(
-                                                  //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
-                                                  height: Dimensions.height100 * 0.7,
-                                                  width: Dimensions.height100 * 0.7,
-                                                  decoration: const BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: Colors.white,
+                                              decoration: BoxDecoration(
+                                                //color: Colors.white.withOpacity(0.2),
+                                                borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.white.withOpacity(0.2),
+                                                    spreadRadius: 5,
+                                                    blurRadius: 5,
+                                                    blurStyle: BlurStyle.normal,
+                                                    offset: const Offset(0, 0), // changes position of shadow
                                                   ),
-                                                  alignment: Alignment.center,
-                                                  child: SizedBox(
-                                                    height: Dimensions.height100 * 0.5,
-                                                    width: Dimensions.height100 * 0.5,
-                                                    child: CachedNetworkImage(
-                                                      imageUrl: shopModel.image!,
-                                                      progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                          CircularProgressIndicator(value: downloadProgress.progress),
-                                                      errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
+                                                ],
+                                              ),
+                                              padding: EdgeInsets.all(Dimensions.height10),
+                                              child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    //! image section
+
+                                                    GestureDetector(
+                                                      onTap: () {},
+                                                      child: Stack(children: [
+                                                        Container(
+                                                          //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
+                                                          height: Dimensions.height100 * 1.5,
+                                                          width: Dimensions.height100 * 1,
+                                                          decoration: const BoxDecoration(
+                                                            shape: BoxShape.circle,
+                                                            color: Colors.white,
+                                                          ),
+                                                          alignment: Alignment.center,
+                                                          child: SizedBox(
+                                                            height: Dimensions.height100 * 0.6,
+                                                            width: Dimensions.height100 * 0.6,
+                                                            child: CachedNetworkImage(
+                                                              imageUrl: shopModel.image!,
+                                                              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                                  CircularProgressIndicator(value: downloadProgress.progress),
+                                                              errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Positioned(
+                                                          bottom: Dimensions.height20 * 1.2,
+                                                          right: 0,
+                                                          child: Container(
+                                                            height: Dimensions.height30 * 1,
+                                                            width: Dimensions.height30 * 1,
+                                                            decoration: const BoxDecoration(
+                                                              shape: BoxShape.circle,
+                                                              color: Colors.white,
+                                                            ),
+                                                            child: Icon(
+                                                              Icons.settings,
+                                                              color: AppColors.mainColor,
+                                                            ),
+                                                          ),
+                                                        )
+                                                      ]),
                                                     ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: Dimensions.width20 * 3,
-                                                ),
 
-                                                //! text section
+                                                    //! text section
 
-                                                Container(
-                                                  //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
-                                                  alignment: Alignment.center,
-                                                  child: Text(
-                                                    "Vente opérateur ${(shopModel.name)!}",
-                                                    style: Theme.of(context).textTheme.bodySmall,
-                                                  ),
-                                                ),
-                                              ]),
+                                                    SizedBox(
+                                                      //color: Colors.blueAccent,
+                                                      height: Dimensions.height100 * 1.3,
+                                                      child: Column(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        children: [
+                                                          TextButton(
+                                                            style: ButtonStyle(
+                                                              backgroundColor: MaterialStateProperty.all<Color>(AppColors.greenEmerald),
+                                                              //foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                                                            ),
+                                                            onPressed: () {
+                                                              Get.toNamed(RouteHelper.getAdminSearchPage(shopModel.id!));
+                                                            },
+                                                            child: Container(
+                                                              margin:
+                                                                  EdgeInsets.symmetric(horizontal: Dimensions.width10 / 2, vertical: Dimensions.height10 / 2),
+                                                              child: Text(
+                                                                "Vente opérateur ${(shopModel.name)!}",
+                                                                style: Theme.of(context).textTheme.bodySmall,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          (userModel.groups![index].name!.contains("chiefs"))
+                                                              ? TextButton(
+                                                                  style: ButtonStyle(
+                                                                    backgroundColor: MaterialStateProperty.all<Color>(AppColors.secondColor),
+                                                                    //foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                                                                  ),
+                                                                  onPressed: () {
+                                                                    Get.toNamed(RouteHelper.getManagementShopPage(shopModel.id!));
+                                                                  },
+                                                                  child: Container(
+                                                                    margin: EdgeInsets.symmetric(
+                                                                        horizontal: Dimensions.width10 / 2, vertical: Dimensions.height10 / 2),
+                                                                    child: Text(
+                                                                      "Gestion magasin ${(shopModel.name)!}",
+                                                                      style: Theme.of(context).textTheme.bodySmall,
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              : Container(),
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ]),
                                             ),
                                           );
 
@@ -145,83 +214,6 @@ class _AdminPageState extends State<AdminPage> {
                                       }
                                     }),
                               ),
-                              Container(
-                                width: double.maxFinite,
-                                margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20 * 1.5, top: Dimensions.height10),
-                                child: ListView.builder(
-                                    padding: EdgeInsets.zero,
-                                    shrinkWrap: true,
-                                    physics: const NeverScrollableScrollPhysics(),
-                                    itemCount: userModel.groups!.length,
-                                    itemBuilder: (context, index) {
-                                      if (userModel.groups![index].name!.contains("chiefs") || userModel.groups![index].name!.contains("associates")) {
-                                        String? nameString = userModel.groups![index].name;
-
-                                        List nameStringSplit = nameString!.split("-");
-
-                                        if (isChiefIn.contains(nameStringSplit[1])) {
-                                        } else {
-                                          isChiefIn.add(nameStringSplit[1]);
-                                        }
-
-                                        return GetBuilder<ShopController>(builder: (shopController) {
-                                          ShopModel shopModel =
-                                              shopController.shopList.firstWhere((element) => (element.name == isChiefIn[isChiefIn.length - 1]));
-
-                                          return GestureDetector(
-                                            onTap: () {
-                                              Get.toNamed(RouteHelper.getManagementShopPage(shopModel.id!));
-                                            },
-                                            child: Container(
-                                              margin: EdgeInsets.only(bottom: Dimensions.height15),
-                                              child: Row(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.center, children: [
-                                                //! image section
-
-                                                Container(
-                                                  //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
-                                                  height: Dimensions.height100 * 0.7,
-                                                  width: Dimensions.height100 * 0.7,
-                                                  decoration: const BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: Colors.white,
-                                                  ),
-                                                  alignment: Alignment.center,
-                                                  child: SizedBox(
-                                                    height: Dimensions.height100 * 0.5,
-                                                    width: Dimensions.height100 * 0.5,
-                                                    child: CachedNetworkImage(
-                                                      imageUrl: shopModel.image!,
-                                                      progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                          CircularProgressIndicator(value: downloadProgress.progress),
-                                                      errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: Dimensions.width20 * 3,
-                                                ),
-
-                                                //! text section
-
-                                                Container(
-                                                  //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
-                                                  alignment: Alignment.center,
-                                                  child: Text(
-                                                    "Gestion magasin ${(shopModel.name)!}",
-                                                    style: Theme.of(context).textTheme.bodySmall,
-                                                  ),
-                                                ),
-                                              ]),
-                                            ),
-                                          );
-
-                                          //ShopModel shopModel = shopController.shopList[];
-                                        });
-                                      } else {
-                                        return Container();
-                                      }
-                                    }),
-                              )
                             ],
                           )
                         : Container();

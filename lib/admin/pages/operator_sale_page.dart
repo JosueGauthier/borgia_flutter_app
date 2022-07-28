@@ -17,15 +17,15 @@ import '../../utils/dimensions.dart';
 import '../../widget/pop_up_vente.dart';
 import '../../widget/product_item_widget.dart';
 
-class AdminSearchPage extends StatefulWidget {
+class OpearatorSalePage extends StatefulWidget {
   final int shopId;
-  const AdminSearchPage({Key? key, required this.shopId}) : super(key: key);
+  const OpearatorSalePage({Key? key, required this.shopId}) : super(key: key);
 
   @override
-  State<AdminSearchPage> createState() => _AdminSearchPageState();
+  State<OpearatorSalePage> createState() => _OpearatorSalePageState();
 }
 
-class _AdminSearchPageState extends State<AdminSearchPage> {
+class _OpearatorSalePageState extends State<OpearatorSalePage> {
   final TextEditingController searchTextController = TextEditingController();
   bool searchWordIsEmpty = true;
 
@@ -74,7 +74,19 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                         ? Container()
                         : GestureDetector(
                             onTap: () {
-                              Get.back();
+                              if (categoryChoose == true) {
+                                setState(() {
+                                  categoryChoose = false;
+                                  userChoose = true;
+                                });
+                              } else if (userChoose == true && categoryChoose == false) {
+                                setState(() {
+                                  categoryChoose = false;
+                                  userChoose = false;
+                                });
+                              } else {
+                                Get.back();
+                              }
                             },
                             child: SizedBox(
                               //height: Dimensions.height20,
@@ -188,29 +200,64 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                             margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                             padding: EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height20),
                             decoration: BoxDecoration(
-                                color: AppColors.greyColor.withOpacity(0.5), borderRadius: BorderRadius.all(Radius.circular(Dimensions.height20))),
+                                //color: Colors.white.withOpacity(0.2),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white.withOpacity(0.2),
+                                    spreadRadius: 5,
+                                    blurRadius: 5,
+                                    blurStyle: BlurStyle.normal,
+                                    offset: const Offset(0, 0), // changes position of shadow
+                                  ),
+                                ], borderRadius: BorderRadius.all(Radius.circular(Dimensions.height20))),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
-                                    Text(
-                                      "${userChosen.firstName!.capitalize!} ${userChosen.lastName!.capitalize!}",
-                                      style: Theme.of(context).textTheme.titleMedium,
+                                    Container(
+                                      height: Dimensions.height100 * 0.7,
+                                      width: Dimensions.height100 * 0.7,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.white,
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: SizedBox(
+                                          height: Dimensions.height100 * 0.5,
+                                          width: Dimensions.height100 * 0.5,
+                                          child: ColorFiltered(
+                                            colorFilter:
+                                                ColorFilter.mode(Color((((Random().nextDouble())) * 0xFFFFFF).toInt()).withOpacity(1.0), BlendMode.srcATop),
+                                            child: Image.asset("assets/image/defaultuserimage.png"),
+                                          )),
                                     ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: Dimensions.height10 / 2,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "${userChosen.surname!.capitalize!} ${userChosen.family!} ${(userChosen.campus!).toLowerCase().capitalize!}${userChosen.year! - 1800}",
-                                      style: Theme.of(context).textTheme.titleMedium,
-                                    ),
+                                    Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "${userChosen.firstName!.capitalize!} ${userChosen.lastName!.capitalize!}",
+                                              style: Theme.of(context).textTheme.titleMedium,
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: Dimensions.height10 / 2,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "${userChosen.surname!.capitalize!} ${userChosen.family!} ${(userChosen.campus!).toLowerCase().capitalize!}${userChosen.year! - 1800}",
+                                              style: Theme.of(context).textTheme.titleMedium,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    )
                                   ],
                                 ),
                                 SizedBox(
@@ -224,20 +271,6 @@ class _AdminSearchPageState extends State<AdminSearchPage> {
                                 ),
                                 SizedBox(
                                   height: Dimensions.height10 / 2,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          categoryChoose = false;
-                                          userChoose = true;
-                                        });
-                                      },
-                                      child: const Icon(Icons.arrow_back),
-                                    )
-                                  ],
                                 ),
                               ],
                             )),

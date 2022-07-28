@@ -6,7 +6,6 @@ import '../../../routes/route_helper.dart';
 import '../../../utils/dimensions.dart';
 import '../../../widget/custom_header.dart';
 import '../../../widget/profile_box.dart';
-import '../../controller/salemodule_controller.dart';
 
 class ManagementShopPage extends StatefulWidget {
   final int shopId;

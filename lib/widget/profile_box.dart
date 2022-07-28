@@ -32,7 +32,7 @@ class ProfileBox extends StatelessWidget {
       height: Dimensions.height45 * 1.7,
       width: double.maxFinite,
       decoration: BoxDecoration(
-        color: backgroundcolor,
+        color: backgroundcolor.withOpacity(0.7),
         borderRadius: BorderRadius.all(Radius.circular(radius)),
         boxShadow: [
           BoxShadow(

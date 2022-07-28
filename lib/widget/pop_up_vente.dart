@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:borgiaflutterapp/controllers/product_list_controller.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
@@ -92,7 +91,7 @@ class DialogSalePageState extends State<DialogSalePage> {
             //! changer below
             Get.back();
           } else {
-            Get.snackbar("Error", "Vente non effectuée. Vous n'avez pas été débité.", backgroundColor: Colors.redAccent);
+            Get.snackbar("Error", "Vente non effectuée. L'acheteur n'a pas été débité.", backgroundColor: Colors.redAccent);
           }
         });
       }

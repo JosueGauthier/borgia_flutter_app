@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/controllers/user_shop_stat_controller.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:borgiaflutterapp/widget/stat_widget/circular_indicator.dart';

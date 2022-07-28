@@ -189,7 +189,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                               child: SingleChildScrollView(
                                   child: Column(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: Dimensions.screenWidth - Dimensions.width20 * 3.4,
                                     child: ClipRRect(
                                       child: DropdownButton<String>(
@@ -219,22 +219,20 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                                   text,
                                                   DropdownMenuItem<String>(
                                                       value: text,
-                                                      child: Container(
-                                                        child: Row(
-                                                          mainAxisAlignment: MainAxisAlignment.start,
-                                                          children: [
-                                                            Icon(
-                                                              value,
-                                                            ),
-                                                            SizedBox(
-                                                              width: Dimensions.height10,
-                                                            ),
-                                                            Text(
-                                                              text,
-                                                              style: Theme.of(context).textTheme.bodySmall,
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        children: [
+                                                          Icon(
+                                                            value,
+                                                          ),
+                                                          SizedBox(
+                                                            width: Dimensions.height10,
+                                                          ),
+                                                          Text(
+                                                            text,
+                                                            style: Theme.of(context).textTheme.bodySmall,
+                                                          ),
+                                                        ],
                                                       )));
                                             })
                                             .values
@@ -539,33 +537,31 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                     id,
                                     DropdownMenuItem<int>(
                                         value: id,
-                                        child: Container(
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                height: Dimensions.height100 * 0.5,
-                                                width: Dimensions.height100 * 0.5,
-                                                decoration: const BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: Colors.white,
-                                                ),
-                                                alignment: Alignment.center,
-                                                child: SizedBox(
-                                                  height: Dimensions.height100 * 0.3,
-                                                  width: Dimensions.height100 * 0.3,
-                                                  child: Image.network(list[1]),
-                                                ),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              height: Dimensions.height100 * 0.5,
+                                              width: Dimensions.height100 * 0.5,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.white,
                                               ),
-                                              SizedBox(
-                                                width: Dimensions.height10,
+                                              alignment: Alignment.center,
+                                              child: SizedBox(
+                                                height: Dimensions.height100 * 0.3,
+                                                width: Dimensions.height100 * 0.3,
+                                                child: Image.network(list[1]),
                                               ),
-                                              Text(
-                                                list[0],
-                                                style: Theme.of(context).textTheme.bodySmall,
-                                              ),
-                                            ],
-                                          ),
+                                            ),
+                                            SizedBox(
+                                              width: Dimensions.height10,
+                                            ),
+                                            Text(
+                                              list[0],
+                                              style: Theme.of(context).textTheme.bodySmall,
+                                            ),
+                                          ],
                                         )));
                               })
                               .values

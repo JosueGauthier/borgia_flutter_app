@@ -525,7 +525,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
+                          SizedBox(
                             //color: Colors.redAccent,
                             width: Dimensions.screenWidth - Dimensions.width20 * 5,
                             height: Dimensions.height10 * 7,
@@ -593,7 +593,6 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              print(widget.productChoose);
                               widget.productChoose = 0;
 
                               isDeleted = true;
@@ -602,7 +601,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                             },
                             child: Container(
                               margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.delete,
                                 color: Colors.redAccent,
                               ),
