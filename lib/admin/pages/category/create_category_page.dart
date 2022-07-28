@@ -137,6 +137,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
         if (status.isSuccess) {
           //! changer below
           Get.back();
+          Get.back();
         } else {
           Get.snackbar("Erreur", "Catégorie non créée. Vérifier les informations saisies", backgroundColor: Colors.redAccent);
         }

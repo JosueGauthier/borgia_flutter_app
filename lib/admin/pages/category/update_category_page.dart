@@ -1,5 +1,6 @@
 import 'package:borgiaflutterapp/admin/controller/update_category_controller.dart';
 import 'package:borgiaflutterapp/admin/models/update_category_model.dart';
+import 'package:borgiaflutterapp/admin/pages/category/category_management_page.dart';
 import 'package:borgiaflutterapp/controllers/category_controller.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
@@ -126,6 +127,7 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
       updateCategoryController.updateCategory(updateCategoryModel).then((status) {
         if (status.isSuccess) {
           Get.back();
+          Get.back();
           //! changer below
           if (productListClean.length != productList.length) {
             Get.snackbar("Attention", "Des produits doublons détectés ont été supprimé.", backgroundColor: AppColors.warningColor);
@@ -141,6 +143,10 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
   void initState() {
     super.initState();
 
+    categoryModelChosen = categoryModelChoose;
+
+    path = categoryModelChosen.image!;
+
     Get.find<ProductListController>().getShopProduct(widget.shopId);
 
     //! check if no product !
@@ -150,249 +156,175 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
   Widget build(BuildContext context) {
     Get.find<CategoryOfShopController>().getAllCategoryList(widget.shopId);
 
-    return GetBuilder<CategoryOfShopController>(builder: (categoryOfShopController) {
-      return GetBuilder<UpdateCategoryController>(builder: (updateCategoryController) {
-        return Scaffold(
-            extendBody: true,
-            body: Column(
-              children: [
-                const CustomHeader(text: "Modification d'une catégorie"),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: (categoryIsChoose)
-                        ? Column(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height10),
-                                child: TextFormField(
-                                  scrollPadding: EdgeInsets.only(bottom: Dimensions.height100),
-                                  controller: nameController,
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(color: AppColors.titleColor),
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(color: AppColors.mainColor),
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    prefixIcon: Icon(
-                                      Icons.bookmark,
-                                      color: Theme.of(context).colorScheme.onPrimary,
-                                    ),
-                                    hintText: categoryModelChosen.name,
-                                    labelText: categoryModelChosen.name,
-                                    labelStyle: Theme.of(context).textTheme.bodySmall,
-                                    hintStyle: Theme.of(context).textTheme.bodySmall,
-                                    filled: true,
-                                    fillColor: Colors.transparent,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: Dimensions.height20,
-                              ),
-                              GestureDetector(
-                                onTap: () async {
-                                  path = await selectFile();
+    return GetBuilder<UpdateCategoryController>(builder: (updateCategoryController) {
+      return Scaffold(
+          extendBody: true,
+          body: Column(
+            children: [
+              const CustomHeader(text: "Modification"),
+              Expanded(
+                child: SingleChildScrollView(
+                    child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height10),
+                      child: TextFormField(
+                        scrollPadding: EdgeInsets.only(bottom: Dimensions.height100),
+                        controller: nameController,
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: AppColors.titleColor),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: AppColors.mainColor),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.bookmark,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                          hintText: categoryModelChosen.name,
+                          labelText: categoryModelChosen.name,
+                          labelStyle: Theme.of(context).textTheme.bodySmall,
+                          hintStyle: Theme.of(context).textTheme.bodySmall,
+                          filled: true,
+                          fillColor: Colors.transparent,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    GestureDetector(
+                      onTap: () async {
+                        path = await selectFile();
 
-                                  setState(() {
-                                    imageOk = true;
-                                    path;
-                                  });
-                                },
-                                child: SizedBox(
-                                  width: double.maxFinite,
-                                  child: Row(
+                        setState(() {
+                          imageOk = true;
+                          path;
+                        });
+                      },
+                      child: SizedBox(
+                        width: double.maxFinite,
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width10 * 1.5),
+                              margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                              height: Dimensions.height45 * 1.7,
+                              decoration: BoxDecoration(
+                                color: AppColors.mainColor,
+                                borderRadius: BorderRadius.all(Radius.circular(Dimensions.width45)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.mainColor.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 5,
+                                    blurStyle: BlurStyle.normal,
+                                    offset: const Offset(0, 0), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
                                     children: [
-                                      Container(
-                                        padding: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width10 * 1.5),
-                                        margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
-                                        height: Dimensions.height45 * 1.7,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.mainColor,
-                                          borderRadius: BorderRadius.all(Radius.circular(Dimensions.width45)),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: AppColors.mainColor.withOpacity(0.5),
-                                              spreadRadius: 5,
-                                              blurRadius: 5,
-                                              blurStyle: BlurStyle.normal,
-                                              offset: const Offset(0, 0), // changes position of shadow
-                                            ),
-                                          ],
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.image,
-                                                  color: Theme.of(context).colorScheme.onPrimary,
-                                                ),
-                                                SizedBox(
-                                                  width: Dimensions.width10,
-                                                ),
-                                                BigText(
-                                                  fontTypo: 'Helvetica-Bold',
-                                                  text: "Image de la catégorie",
-                                                  size: Dimensions.height25 * 0.8,
-                                                  color: Theme.of(context).colorScheme.onPrimary,
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                      Icon(
+                                        Icons.image,
+                                        color: Theme.of(context).colorScheme.onPrimary,
                                       ),
-                                      Container(
-                                        height: Dimensions.height100 * 0.7,
-                                        width: Dimensions.height100 * 0.7,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white,
-                                        ),
-                                        alignment: Alignment.center,
-                                        child: SizedBox(
-                                          height: Dimensions.height100 * 0.5,
-                                          width: Dimensions.height100 * 0.5,
-                                          child: CachedNetworkImage(
-                                            imageUrl: path,
-                                            progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                CircularProgressIndicator(value: downloadProgress.progress),
-                                            errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
-                                          ),
-                                        ),
-                                      )
+                                      SizedBox(
+                                        width: Dimensions.width10,
+                                      ),
+                                      BigText(
+                                        fontTypo: 'Helvetica-Bold',
+                                        text: "Image de la catégorie",
+                                        size: Dimensions.height25 * 0.8,
+                                        color: Theme.of(context).colorScheme.onPrimary,
+                                      ),
                                     ],
                                   ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: Dimensions.height100 * 0.7,
+                              width: Dimensions.height100 * 0.7,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                              ),
+                              alignment: Alignment.center,
+                              child: SizedBox(
+                                height: Dimensions.height100 * 0.5,
+                                width: Dimensions.height100 * 0.5,
+                                child: CachedNetworkImage(
+                                  imageUrl: path,
+                                  progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                                  errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                 ),
                               ),
-                              SizedBox(
-                                height: Dimensions.height20,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: Dimensions.width20),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Modification de la liste des produits",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height10,
+                    ),
+                    GetBuilder<ProductListController>(builder: (productListController) {
+                      List productList = productListController.productList;
+                      return (productListController.isLoaded && productListController.shopProductListIsLoaded)
+                          ? ListItem(
+                              listOfOldProd: productList,
+                              shopId: widget.shopId,
+                              dynamicList: dynamicList,
+                            )
+                          : const Center(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 4,
+                                color: Colors.blueAccent,
                               ),
-                              Container(
-                                margin: EdgeInsets.only(left: Dimensions.width20),
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "Modification de la liste des produits",
-                                  style: Theme.of(context).textTheme.titleMedium,
-                                ),
-                              ),
-                              SizedBox(
-                                height: Dimensions.height10,
-                              ),
-                              GetBuilder<ProductListController>(builder: (productListController) {
-                                List productList = productListController.productList;
-                                return (productListController.isLoaded && productListController.shopProductListIsLoaded)
-                                    ? ListItem(
-                                        listOfOldProd: productList,
-                                        shopId: widget.shopId,
-                                        dynamicList: dynamicList,
-                                      )
-                                    : const Center(
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 4,
-                                          color: Colors.blueAccent,
-                                        ),
-                                      );
-                              }),
-                              GestureDetector(
-                                onTap: () {
-                                  _updateCategory(updateCategoryController);
-                                },
-                                child: SizedBox(
-                                  width: Dimensions.width45 * 5,
-                                  child: ProfileBox(
-                                    textColor: Theme.of(context).colorScheme.onPrimary,
-                                    backgroundcolor: AppColors.greenEmerald,
-                                    icon: Icons.check,
-                                    text: "Valider",
-                                    iconcolor: Theme.of(context).colorScheme.onPrimary,
-                                    radius: Dimensions.width45,
-                                    isEditable: false,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: Dimensions.height20,
-                              ),
-                            ],
-                          )
-                        : (categoryOfShopController.allCategoriesListIsLoaded)
-                            ? Container(
-                                width: double.maxFinite,
-                                margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
-                                child: ListView.builder(
-                                    padding: EdgeInsets.zero,
-                                    shrinkWrap: true,
-                                    physics: const NeverScrollableScrollPhysics(),
-                                    itemCount: categoryOfShopController.allCategoriesList.length,
-                                    itemBuilder: (context, index) {
-                                      CategoryModel categoryOfShopModel = categoryOfShopController.allCategoriesList[index];
-                                      return GestureDetector(
-                                        onTap: () {
-                                          categoryModelChosen = categoryOfShopModel;
-
-                                          Get.find<ProductListController>().getProduct(categoryModelChosen.id!);
-
-                                          setState(() {
-                                            categoryIsChoose = true;
-                                            path = categoryModelChosen.image!;
-                                          });
-                                        },
-                                        child: Container(
-                                          margin: EdgeInsets.only(right: Dimensions.width20, bottom: Dimensions.height15),
-                                          child: Row(children: [
-                                            //! image
-
-                                            Container(
-                                              //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
-                                              height: Dimensions.height100 * 0.7,
-                                              width: Dimensions.height100 * 0.7,
-                                              decoration: const BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: Colors.white,
-                                              ),
-                                              alignment: Alignment.center,
-                                              child: SizedBox(
-                                                height: Dimensions.height100 * 0.5,
-                                                width: Dimensions.height100 * 0.5,
-                                                child: CachedNetworkImage(
-                                                    imageUrl: categoryOfShopModel.image!,
-                                                    progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                        CircularProgressIndicator(value: downloadProgress.progress),
-                                                    errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black)),
-                                              ),
-                                            ),
-
-                                            SizedBox(
-                                              width: Dimensions.width20 * 3,
-                                            ),
-
-                                            //! text section
-
-                                            Expanded(
-                                              child: Padding(
-                                                  padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                                  child: Text((categoryOfShopModel.name)!.capitalize!, style: Theme.of(context).textTheme.bodySmall)),
-                                            ),
-                                          ]),
-                                        ),
-                                      );
-                                    }),
-                              )
-                            : const Center(
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 4,
-                                  color: AppColors.mainColor,
-                                ),
-                              ),
-                  ),
-                ),
-              ],
-            ));
-      });
+                            );
+                    }),
+                    GestureDetector(
+                      onTap: () {
+                        _updateCategory(updateCategoryController);
+                      },
+                      child: SizedBox(
+                        width: Dimensions.width45 * 5,
+                        child: ProfileBox(
+                          textColor: Theme.of(context).colorScheme.onPrimary,
+                          backgroundcolor: AppColors.greenEmerald,
+                          icon: Icons.check,
+                          text: "Valider",
+                          iconcolor: Theme.of(context).colorScheme.onPrimary,
+                          radius: Dimensions.width45,
+                          isEditable: false,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                  ],
+                )),
+              ),
+            ],
+          ));
     });
   }
 }
