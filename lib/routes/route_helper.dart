@@ -11,7 +11,7 @@ import '../admin/pages/operator_sale_page.dart';
 import '../admin/pages/category/create_category_page.dart';
 import '../admin/pages/category/delete_category_page.dart';
 import '../admin/pages/category/update_category_page.dart';
-import '../admin/pages/management/admin_management_page.dart';
+import '../admin/pages/management/management_shop_page.dart';
 import '../admin/pages/product/create_product_page.dart';
 import '../admin/pages/product/delete_product_page.dart';
 import '../admin/pages/product/update_product_page.dart';
@@ -225,6 +225,7 @@ class RouteHelper {
       name: updateProductPage,
       page: () {
         var shopId = Get.parameters['shopId'];
+
         return UpdateProductPage(
           shopId: int.parse(shopId!),
         );

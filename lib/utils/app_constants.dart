@@ -15,6 +15,7 @@ class AppConstants {
 
   static const String PRODUCT_LIST_URI = "/api-links/category/categoryv2/?id=";
   static const String PRODUCT_URI_NAME = "/api-links/shops/productsv2/?name="; //via name
+  static const String PRODUCT_URI_ID = "/api-links/shops/productsv2/?id="; //via id
 
   //* Stat uri
   static const String YEAR_SALELIST_URI = "/api-links/history/";

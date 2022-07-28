@@ -97,6 +97,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
         if (status.isSuccess) {
           //! changer below
           Get.back();
+          Get.back();
         } else {
           Get.snackbar("Erreur", "Produit non crée. Vérifier les informations saisies", backgroundColor: Colors.redAccent);
         }

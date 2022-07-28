@@ -13,7 +13,8 @@ class ProductItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: Dimensions.width10, bottom: Dimensions.height15),
+      //height: Dimensions.height100 * 0.7,
+      margin: EdgeInsets.only(right: Dimensions.width10),
       child: Row(children: [
         //! image section
 

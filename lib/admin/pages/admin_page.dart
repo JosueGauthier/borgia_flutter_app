@@ -147,7 +147,7 @@ class _AdminPageState extends State<AdminPage> {
                                                               shape: BoxShape.circle,
                                                               color: Colors.white,
                                                             ),
-                                                            child: Icon(
+                                                            child: const Icon(
                                                               Icons.settings,
                                                               color: AppColors.mainColor,
                                                             ),

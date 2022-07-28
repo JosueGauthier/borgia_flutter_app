@@ -60,6 +60,34 @@ class ProductListController extends GetxController {
     } else {}
   }
 
+  List<dynamic> _productByIdList = [];
+
+  List<dynamic> get productByIdList => _productByIdList;
+
+  bool _isLoadedProductId = false;
+  bool get isLoadedProductId => _isLoadedProductId;
+
+  Future<void> getProductById(int id) async {
+    Response response = await productListRepo.getProductById(id);
+
+    if (response.statusCode == 200) {
+      _productByIdList = [];
+
+      List responseBody = response.body;
+
+      for (var i = 0; i < responseBody.length; i++) {
+        ProductModel produit = ProductModel.fromJson(responseBody[i]);
+
+        _productByIdList.add(produit);
+        int index = _productByIdList.indexWhere((element) => element == produit);
+        _productByIdList[index].contentTypeParentCategory = responseBody[0]["content_type"];
+      }
+      _isLoadedProductId = true;
+
+      update();
+    } else {}
+  }
+
   void setQuantityToZero() {
     quantity = 0;
 
