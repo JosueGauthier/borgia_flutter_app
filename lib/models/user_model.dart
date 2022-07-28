@@ -16,7 +16,7 @@ class UserModel {
   String? virtualBalance;
   int? year;
   String? campus;
-  int? phone;
+  String? phone;
   String? image;
   String? theme;
   String? jwtIat;

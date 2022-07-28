@@ -4,7 +4,7 @@ import 'package:borgiaflutterapp/pages/content/neon.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 import 'package:borgiaflutterapp/pages/stats/rank_user_products_page.dart';
-import 'package:borgiaflutterapp/pages/user/user_page.dart';
+import 'package:borgiaflutterapp/pages/user/other_user_page.dart';
 import 'package:get/get.dart';
 
 import '../admin/pages/operator_sale_page.dart';
@@ -159,7 +159,7 @@ class RouteHelper {
       page: () {
         var username = Get.parameters['username'];
         var pagefrom = Get.parameters['page'];
-        return UserPage(
+        return OtherUsersPage(
           userUsername: username!,
           pagefrom: pagefrom!,
         );

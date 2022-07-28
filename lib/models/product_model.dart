@@ -11,7 +11,7 @@ class ProductModel {
   String? image;
   int? idParentCategory;
   int? moduleIdParentCategory;
-  String? contentTypeParentCategory;
+  var contentTypeParentCategory;
   int? idCategoryproductTable;
 
   ProductModel(

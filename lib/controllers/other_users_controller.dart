@@ -12,7 +12,7 @@ class OtherUserController extends GetxController {
 
   List<dynamic> _userList = [];
 
-  late UserModel welcomeUserModel;
+  late UserModel userModel;
 
   List<dynamic> get userList => _userList;
 
@@ -35,9 +35,33 @@ class OtherUserController extends GetxController {
         _userList.add(UserModel.fromJson(responseBody[i]));
       }
 
-      welcomeUserModel = userList[0];
+      userModel = userList[0];
 
       _isLoaded = true;
+      update();
+    } else {}
+  }
+
+  List<dynamic> _otherUserList = [];
+
+  List<dynamic> get otherUserList => _otherUserList;
+
+  bool _otherUserListIsLoaded = false;
+  bool get otherUserListIsLoaded => _otherUserListIsLoaded;
+
+  Future<void> getOtherUserList(String username) async {
+    Response response = await userRepo.getOtherUserList(username);
+
+    if (response.statusCode == 200) {
+      _otherUserList = [];
+
+      List responseBody = response.body;
+
+      for (var i = 0; i < responseBody.length; i++) {
+        _otherUserList.add(UserModel.fromJson(responseBody[i]));
+      }
+
+      _otherUserListIsLoaded = true;
       update();
     } else {}
   }

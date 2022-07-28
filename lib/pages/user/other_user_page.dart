@@ -1,38 +1,52 @@
 // ignore_for_file: unused_import
 
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/controllers/other_users_controller.dart';
+import 'package:borgiaflutterapp/models/user_model.dart';
 import 'package:borgiaflutterapp/widget/profile_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';
 
-class UserPage extends StatefulWidget {
+class OtherUsersPage extends StatefulWidget {
   final String userUsername;
   final String pagefrom;
 
-  const UserPage({
+  const OtherUsersPage({
     Key? key,
     required this.userUsername,
     required this.pagefrom,
   }) : super(key: key);
 
   @override
-  State<UserPage> createState() => _UserPageState();
+  State<OtherUsersPage> createState() => _OtherUsersPageState();
 }
 
-class _UserPageState extends State<UserPage> {
+class _OtherUsersPageState extends State<OtherUsersPage> {
   bool pressed = true;
+
+  late UserModel userModel;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Get.find<OtherUserController>().getOtherUserList(widget.userUsername);
+  }
 
   @override
   Widget build(BuildContext context) {
-    Get.put(OtherUserController);
-    Get.find<OtherUserController>().getUserList(widget.userUsername);
-
     return Scaffold(body: GetBuilder<OtherUserController>(builder: (userController) {
-      return userController.isLoaded
+      if (userController.otherUserListIsLoaded) {
+        userModel = userController.otherUserList[0];
+      }
+
+      return userController.otherUserListIsLoaded
           ? SingleChildScrollView(
               child: Column(children: [
                 Container(
@@ -68,13 +82,9 @@ class _UserPageState extends State<UserPage> {
                       ),
                       Container(
                           padding: EdgeInsets.only(right: Dimensions.width20),
-                          child: (userController.welcomeUserModel.surname == null ||
-                                  userController.welcomeUserModel.family == null ||
-                                  userController.welcomeUserModel.campus == null ||
-                                  userController.welcomeUserModel.year == null)
+                          child: (userModel.surname == null || userModel.family == null || userModel.campus == null || userModel.year == null)
                               ? Text("Profil", style: Theme.of(context).textTheme.headlineMedium)
-                              : Text("${userController.welcomeUserModel.surname.toString().capitalize!} ${userController.welcomeUserModel.family}",
-                                  style: Theme.of(context).textTheme.headlineMedium)),
+                              : Text("${userModel.surname.toString().capitalize!} ${userModel.family}", style: Theme.of(context).textTheme.headlineMedium)),
                     ],
                   ),
                 ),
@@ -116,68 +126,89 @@ class _UserPageState extends State<UserPage> {
                   decoration: BoxDecoration(color: Theme.of(context).colorScheme.onPrimaryContainer, borderRadius: BorderRadius.circular(Dimensions.width20)),
                   child: Column(
                     children: [
-                      (userController.welcomeUserModel.username == null)
+                      (userModel.username == null)
                           ? Container()
                           : ProfileBox(
                               textColor: Theme.of(context).colorScheme.onPrimary,
                               backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
                               iconcolor: Theme.of(context).colorScheme.onPrimary,
                               icon: Icons.login,
-                              text: "Identifiant : ${userController.welcomeUserModel.username}",
+                              text: "Identifiant : ${userModel.username}",
                               isEditable: false,
                             ),
                       const SizedBox(
                         height: 0,
                       ),
-                      (userController.welcomeUserModel.firstName == null || userController.welcomeUserModel.lastName == null)
+                      (userModel.firstName == null || userModel.lastName == null)
                           ? Container()
                           : ProfileBox(
                               textColor: Theme.of(context).colorScheme.onPrimary,
                               backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
                               iconcolor: Theme.of(context).colorScheme.onPrimary,
                               icon: Icons.person,
-                              text: "Nom : ${(userController.welcomeUserModel.firstName)?.capitalize} ${userController.welcomeUserModel.lastName?.capitalize}",
+                              text: "Nom : ${(userModel.firstName)?.capitalize} ${userModel.lastName?.capitalize}",
                               isEditable: false,
                             ),
                       const SizedBox(
                         height: 0,
                       ),
-                      (userController.welcomeUserModel.surname == null)
+                      (userModel.surname == null)
                           ? Container()
                           : ProfileBox(
                               textColor: Theme.of(context).colorScheme.onPrimary,
                               backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
                               iconcolor: Theme.of(context).colorScheme.onPrimary,
                               icon: Icons.person_pin,
-                              text: "Bucque : ${userController.welcomeUserModel.surname?.capitalize}",
+                              text: "Bucque : ${userModel.surname?.capitalize}",
                               isEditable: false,
                             ),
                       const SizedBox(
                         height: 0,
                       ),
-                      (userController.welcomeUserModel.family == null)
+                      (userModel.family == null)
                           ? Container()
                           : ProfileBox(
                               textColor: Theme.of(context).colorScheme.onPrimary,
                               backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
                               iconcolor: Theme.of(context).colorScheme.onPrimary,
                               icon: Icons.group,
-                              text: "Fam'ss : ${userController.welcomeUserModel.family}",
+                              text: "Fam'ss : ${userModel.family}",
                               isEditable: false,
                             ),
                       const SizedBox(
                         height: 0,
                       ),
-                      (userController.welcomeUserModel.campus == null || userController.welcomeUserModel.year == null)
+                      (userModel.campus == null || userModel.year == null)
                           ? Container()
                           : ProfileBox(
                               textColor: Theme.of(context).colorScheme.onPrimary,
                               backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
                               iconcolor: Theme.of(context).colorScheme.onPrimary,
                               icon: Icons.group_work,
-                              text:
-                                  "Prom'ss : ${userController.welcomeUserModel.campus!.toLowerCase().capitalize} ${userController.welcomeUserModel.year! - 1800}",
+                              text: "Prom'ss : ${userModel.campus!.toLowerCase().capitalize} ${userModel.year! - 1800}",
                               isEditable: false,
+                            ),
+                      const SizedBox(
+                        height: 0,
+                      ),
+                      (userModel.phone == null)
+                          ? Container()
+                          : GestureDetector(
+                              onTap: () async {
+                                var phoneNumber = userModel.phone;
+
+                                Uri emailUrl = Uri.parse("tel://$phoneNumber");
+
+                                launchUrl(emailUrl);
+                              },
+                              child: ProfileBox(
+                                textColor: Theme.of(context).colorScheme.onPrimary,
+                                backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                                iconcolor: Theme.of(context).colorScheme.onPrimary,
+                                icon: Icons.phone,
+                                text: "Téléphone : ${userModel.phone}",
+                                isEditable: false,
+                              ),
                             ),
                       const SizedBox(
                         height: 0,
