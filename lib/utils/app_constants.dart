@@ -19,7 +19,8 @@ class AppConstants {
   //* Stat uri
   static const String YEAR_SALELIST_URI = "/api-links/history/";
   static const String HOUR_SALELIST_URI = "/api-links/live-sales/";
-  static const String USER_SALELIST_URI = "/api-links/sale/user-history-allsale/?sender=";
+  static const String USER_SALELIST_URI = "/api-links/sale/user-history-allsale/?username=";
+
   static const String SHOP_STAT_URI = "/api-links/shops/shop-stat/";
   static const String USER_SHOP_STAT_URI = "/api-links/sale/stat-user/?username=";
   static const String RANK_USER_SHOP_STAT_URI = "/api-links/sale/rank-user-shop/";

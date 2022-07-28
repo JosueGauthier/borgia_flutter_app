@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/controllers/user_shop_stat_controller.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:borgiaflutterapp/widget/stat_widget/circular_indicator.dart';
@@ -101,18 +103,20 @@ class _MyStatPageState extends State<MyStatPage> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SaleListController>(builder: (saleListController) {
-      if (saleListController.isLoadedUser) {
+      if (saleListController.userHistoryListIsLoaded) {
         List<Map<String, Object>> listeDesVentes = [];
 
-        for (var i = 0; i < saleListController.aListUser.length; i++) {
-          var priceSum = saleListController.aListUser[i]['tot_amount_per_sale'];
+        for (var i = 0; i < saleListController.userHistoryList.length; i++) {
+          var priceSum = saleListController.userHistoryList[i]['price_sum'];
 
           if (priceSum == null) {
             priceSum = 0.0;
 
-            listeDesVentes.add({"Date": saleListController.aListUser[i]['format_datetime'], "Sale": priceSum});
-          } else {
-            listeDesVentes.add({"Date": saleListController.aListUser[i]['format_datetime'], "Sale": priceSum});
+            listeDesVentes.add({"Date": saleListController.userHistoryList[i]['format_day'], "Sale": priceSum});
+          }
+
+          if (priceSum != null) {
+            listeDesVentes.add({"Date": saleListController.userHistoryList[i]['format_day'], "Sale": priceSum});
           }
         }
 

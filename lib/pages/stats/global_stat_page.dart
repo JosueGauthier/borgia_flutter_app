@@ -11,8 +11,6 @@ import '../../utils/dimensions.dart';
 import '../../widget/stat_widget/custom_button_stat.dart';
 import '../../widget/stat_widget/custom_linechart.dart';
 
-Map datetimeMap = {};
-
 class GlobalStatPage extends StatefulWidget {
   const GlobalStatPage({Key? key}) : super(key: key);
 
@@ -77,9 +75,9 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
     startTimer();
   }
 
-  void dispose() {
+  /* void dispose() {
     super.dispose();
-  }
+  } */
 
   @override
   Widget build(BuildContext context) {

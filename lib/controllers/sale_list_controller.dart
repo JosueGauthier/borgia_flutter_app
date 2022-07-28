@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 
 import '../data/repository/sale_list_repo.dart';
@@ -7,9 +9,12 @@ class SaleListController extends GetxController {
 
   SaleListController({required this.saleListRepo});
 
-  List<dynamic> _aListUser = [];
+  List<dynamic> _userHistoryList = [];
 
-  List<dynamic> get aListUser => _aListUser;
+  List<dynamic> get userHistoryList => _userHistoryList;
+
+  bool _userHistoryListIsLoaded = false;
+  bool get userHistoryListIsLoaded => _userHistoryListIsLoaded;
 
   bool _isLoadedYearList = false;
   bool get isLoadedYearList => _isLoadedYearList;
@@ -20,9 +25,6 @@ class SaleListController extends GetxController {
   bool get isLoadedHourList => _isLoadedHourList;
   List<dynamic> _hourList = [];
   List<dynamic> get hourList => _hourList;
-
-  bool _isLoadedUser = false;
-  bool get isLoadedUser => _isLoadedUser;
 
   Future<void> getMapListYearHistory() async {
     Response response = await saleListRepo.getYearSaleList();
@@ -43,6 +45,8 @@ class SaleListController extends GetxController {
   Future<void> getMapListTwoHours() async {
     Response responseLive = await saleListRepo.getHourSaleList();
 
+    inspect(responseLive.body);
+
     if (responseLive.statusCode == 200) {
       _hourList = [];
       List responseBody = responseLive.body;
@@ -58,14 +62,16 @@ class SaleListController extends GetxController {
   Future<void> getUserSaleList() async {
     Response response = await saleListRepo.getSaleUserList();
 
+    inspect(response.body);
+
     if (response.statusCode == 200) {
-      _aListUser = [];
+      _userHistoryList = [];
 
       List responseBody = response.body;
 
-      _aListUser = responseBody;
+      _userHistoryList = responseBody;
 
-      _isLoadedUser = true;
+      _userHistoryListIsLoaded = true;
 
       update();
     } else {}
