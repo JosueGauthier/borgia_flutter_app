@@ -1,7 +1,3 @@
-// ignore_for_file: unused_import
-
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/controllers/other_users_controller.dart';
 import 'package:borgiaflutterapp/models/user_model.dart';
 import 'package:borgiaflutterapp/widget/profile_box.dart';
@@ -11,7 +7,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../../widget/big_text.dart';
 
 class OtherUsersPage extends StatefulWidget {
   final String userUsername;

@@ -1,14 +1,10 @@
-// ignore_for_file: unused_import
-
 import 'package:borgiaflutterapp/widget/product_item_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/cart_controller.dart';
 import '../../routes/route_helper.dart';
-import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../../widget/big_text.dart';
 
 class FavPage extends StatelessWidget {
   const FavPage({

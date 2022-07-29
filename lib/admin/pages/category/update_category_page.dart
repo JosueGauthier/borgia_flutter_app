@@ -543,7 +543,12 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                       )
                     ],
                   )
-                : Container();
+                : const Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 4,
+                      color: AppColors.mainColor,
+                    ),
+                  );
           })
         : Container();
   }

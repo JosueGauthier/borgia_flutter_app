@@ -1,4 +1,5 @@
 import 'package:borgiaflutterapp/admin/pages/admin_page.dart';
+import 'package:borgiaflutterapp/admin/pages/management/edit_shop_page.dart';
 import 'package:borgiaflutterapp/pages/auth/login_page.dart';
 import 'package:borgiaflutterapp/pages/content/neon.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
@@ -49,6 +50,7 @@ class RouteHelper {
   static const String adminSearchPage = "/admin-search-page";
 
   static const String managementShopPage = "/admin-management-shop-page";
+  static const String editShopPage = "/admin-edit-shop-page";
 
   static const String createProductPage = "/admin-create-product-page";
   static const String updateProductPage = "/admin-update-product-page";
@@ -81,7 +83,7 @@ class RouteHelper {
   static String getAdminPage() => adminPage;
   static String getAdminSearchPage(int shopId) => '$adminSearchPage?shopId=$shopId';
   static String getManagementShopPage(int shopId) => '$managementShopPage?shopId=$shopId';
-
+  static String getEditShopPage(int shopId) => '$editShopPage?shopId=$shopId';
   static String getCreateProductPage(int shopId) => '$createProductPage?shopId=$shopId';
   static String getUpdateProductPage(int shopId) => '$updateProductPage?shopId=$shopId';
   static String getDeleteProductPage(int shopId) => '$deleteProductPage?shopId=$shopId';
@@ -208,6 +210,15 @@ class RouteHelper {
       page: () {
         var shopId = Get.parameters['shopId'];
         return ManagementShopPage(
+          shopId: int.parse(shopId!),
+        );
+      },
+    ),
+    GetPage(
+      name: editShopPage,
+      page: () {
+        var shopId = Get.parameters['shopId'];
+        return EditShopPage(
           shopId: int.parse(shopId!),
         );
       },

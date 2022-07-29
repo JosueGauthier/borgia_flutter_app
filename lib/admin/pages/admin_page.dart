@@ -114,48 +114,70 @@ class _AdminPageState extends State<AdminPage> {
                                                   children: [
                                                     //! image section
 
-                                                    GestureDetector(
-                                                      onTap: () {},
-                                                      child: Stack(children: [
-                                                        Container(
-                                                          //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
-                                                          height: Dimensions.height100 * 1.5,
-                                                          width: Dimensions.height100 * 1,
-                                                          decoration: const BoxDecoration(
-                                                            shape: BoxShape.circle,
-                                                            color: Colors.white,
-                                                          ),
-                                                          alignment: Alignment.center,
-                                                          child: SizedBox(
-                                                            height: Dimensions.height100 * 0.6,
-                                                            width: Dimensions.height100 * 0.6,
-                                                            child: CachedNetworkImage(
-                                                              imageUrl: shopModel.image!,
-                                                              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                                  CircularProgressIndicator(value: downloadProgress.progress),
-                                                              errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Positioned(
-                                                          bottom: Dimensions.height20 * 1.2,
-                                                          right: 0,
-                                                          child: Container(
-                                                            height: Dimensions.height30 * 1,
-                                                            width: Dimensions.height30 * 1,
+                                                    (userModel.groups![index].name!.contains("chiefs"))
+                                                        ? GestureDetector(
+                                                            onTap: () {
+                                                              Get.toNamed(RouteHelper.getEditShopPage(shopModel.id!));
+                                                            },
+                                                            child: Stack(children: [
+                                                              Container(
+                                                                //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
+                                                                height: Dimensions.height100 * 1.5,
+                                                                width: Dimensions.height100 * 1,
+                                                                decoration: const BoxDecoration(
+                                                                  shape: BoxShape.circle,
+                                                                  color: Colors.white,
+                                                                ),
+                                                                alignment: Alignment.center,
+                                                                child: SizedBox(
+                                                                  height: Dimensions.height100 * 0.6,
+                                                                  width: Dimensions.height100 * 0.6,
+                                                                  child: CachedNetworkImage(
+                                                                    imageUrl: shopModel.image!,
+                                                                    progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                                        CircularProgressIndicator(value: downloadProgress.progress),
+                                                                    errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Positioned(
+                                                                bottom: Dimensions.height20 * 1.2,
+                                                                right: 0,
+                                                                child: Container(
+                                                                  height: Dimensions.height30 * 1,
+                                                                  width: Dimensions.height30 * 1,
+                                                                  decoration: const BoxDecoration(
+                                                                    shape: BoxShape.circle,
+                                                                    color: Colors.white,
+                                                                  ),
+                                                                  child: const Icon(
+                                                                    Icons.settings,
+                                                                    color: AppColors.mainColor,
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            ]),
+                                                          )
+                                                        : Container(
+                                                            //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
+                                                            height: Dimensions.height100 * 1.5,
+                                                            width: Dimensions.height100 * 1,
                                                             decoration: const BoxDecoration(
                                                               shape: BoxShape.circle,
                                                               color: Colors.white,
                                                             ),
-                                                            child: const Icon(
-                                                              Icons.settings,
-                                                              color: AppColors.mainColor,
+                                                            alignment: Alignment.center,
+                                                            child: SizedBox(
+                                                              height: Dimensions.height100 * 0.6,
+                                                              width: Dimensions.height100 * 0.6,
+                                                              child: CachedNetworkImage(
+                                                                imageUrl: shopModel.image!,
+                                                                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                                    CircularProgressIndicator(value: downloadProgress.progress),
+                                                                errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
+                                                              ),
                                                             ),
                                                           ),
-                                                        )
-                                                      ]),
-                                                    ),
-
                                                     //! text section
 
                                                     SizedBox(
@@ -216,7 +238,12 @@ class _AdminPageState extends State<AdminPage> {
                               ),
                             ],
                           )
-                        : Container();
+                        : const Center(
+                            child: CircularProgressIndicator(
+                              strokeWidth: 4,
+                              color: AppColors.mainColor,
+                            ),
+                          );
                   }),
                 ),
               ],

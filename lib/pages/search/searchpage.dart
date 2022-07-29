@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../routes/route_helper.dart';
+import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
 class SearchPage extends StatefulWidget {
@@ -188,7 +189,12 @@ class _SearchPageState extends State<SearchPage> {
                             ),
                           );
                         })))
-                : Container(),
+                : const Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 4,
+                      color: AppColors.mainColor,
+                    ),
+                  ),
             Container(
               color: Colors.transparent,
               height: Dimensions.height10 * 3,

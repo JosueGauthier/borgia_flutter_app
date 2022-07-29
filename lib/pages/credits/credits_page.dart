@@ -1,9 +1,5 @@
-// ignore_for_file: unused_import
-
 import 'package:borgiaflutterapp/widget/custom_header.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 import '../../widget/big_text.dart';

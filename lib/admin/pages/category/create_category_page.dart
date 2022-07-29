@@ -443,11 +443,21 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                             ),
                           ],
                         )
-                      : Container();
+                      : const Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 4,
+                            color: AppColors.mainColor,
+                          ),
+                        );
                 }),
                 floatingActionButton: FloatingActionButton(onPressed: addDynamic, child: const Icon(Icons.add)),
               )
-            : Container();
+            : const Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 4,
+                  color: AppColors.mainColor,
+                ),
+              );
       });
     });
   }
@@ -574,7 +584,12 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                 )
               ],
             )
-          : Container();
+          : const Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 4,
+                color: AppColors.mainColor,
+              ),
+            );
     });
   }
 }

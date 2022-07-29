@@ -1,11 +1,8 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../big_text.dart';
 
 class CustomCircularIndicator extends StatelessWidget {
   final String text;
