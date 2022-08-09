@@ -60,14 +60,18 @@ class _ProductListPageState extends State<ProductListPage> {
                                   });
                             },
                             child: (productModel.isActive == true)
-                                ? ProductItemWidget(
-                                    titleText: (productModel.name)!.capitalize!,
-                                    illustImage: CachedNetworkImage(
-                                      imageUrl: productModel.image!,
-                                      progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                                      errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
+                                ? Container(
+                                    margin: EdgeInsets.only(bottom: Dimensions.height10),
+                                    child: ProductItemWidget(
+                                      titleText: (productModel.name)!.capitalize!,
+                                      illustImage: CachedNetworkImage(
+                                        imageUrl: productModel.image!,
+                                        progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                            CircularProgressIndicator(value: downloadProgress.progress),
+                                        errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
+                                      ),
+                                      priceProduct: productModel.manualPrice.toString(),
                                     ),
-                                    priceProduct: productModel.manualPrice.toString(),
                                   )
                                 : Container(),
                           );

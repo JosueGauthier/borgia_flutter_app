@@ -42,7 +42,7 @@ class FavPage extends StatelessWidget {
                         child: Container(
                           width: double.maxFinite,
                           //color: Colors.green,
-                          margin: EdgeInsets.only(left: Dimensions.width20),
+                          margin: EdgeInsets.only(left: Dimensions.width20, bottom: Dimensions.height10),
                           child: ProductItemWidget(
                             illustImage: CachedNetworkImage(
                               imageUrl: favList[index].aProduct.image,

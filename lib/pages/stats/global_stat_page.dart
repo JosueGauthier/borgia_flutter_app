@@ -45,6 +45,7 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
 
   late Timer _timer;
   Color lightColor = Colors.red;
+  var redLight = "🔴";
 
   void startTimer() {
     const oneSec = Duration(milliseconds: 1000);
@@ -54,12 +55,14 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
         if (_timer.tick.isEven) {
           if (mounted) {
             setState(() {
+              redLight = "";
               lightColor = Colors.transparent;
             });
           }
         } else {
           if (mounted) {
             setState(() {
+              redLight = "🔴";
               lightColor = Colors.red;
             });
           }
@@ -133,7 +136,8 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                 Container(
                   width: Dimensions.width20 * 1,
                   height: Dimensions.height20 * 1,
-                  decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(Dimensions.height20)),
+                  //decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(Dimensions.height20)),
+                  child: Text(redLight),
                 ),
                 Container(
                     //color: AppColors.titleColor,

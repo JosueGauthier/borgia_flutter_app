@@ -191,11 +191,8 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                               ),
                             );
                           }))
-                      : const Center(
-                          child: CircularProgressIndicator(
-                            strokeWidth: 4,
-                            color: AppColors.mainColor,
-                          ),
+                      : Center(
+                          child: Container(),
                         )
                   : Column(
                       children: [

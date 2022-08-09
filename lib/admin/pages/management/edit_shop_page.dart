@@ -4,7 +4,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../models/product_model.dart';
 import '../../../utils/app_constants.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/dimensions.dart';

@@ -25,6 +25,12 @@ class CategoryOfShopController extends GetxController {
 
   List<dynamic> get allCategoriesList => _allCategoriesList;
 
+  List<dynamic> _allCategoriesListOp = [];
+  List<dynamic> get allCategoriesListOp => _allCategoriesListOp;
+
+  List<dynamic> _allCategoriesListSelf = [];
+  List<dynamic> get allCategoriesListSelf => _allCategoriesListSelf;
+
   bool _allCategoriesListIsLoaded = false;
   bool get allCategoriesListIsLoaded => _allCategoriesListIsLoaded;
 
@@ -81,6 +87,14 @@ class CategoryOfShopController extends GetxController {
 
       for (var i = 0; i < responseBody.length; i++) {
         var categoryShopModel = CategoryModel.fromJson(responseBody[i]);
+
+        if (categoryShopModel.contentType!.id == 20) {
+          _allCategoriesListOp.add(categoryShopModel);
+        }
+
+        if (categoryShopModel.contentType!.id == 21) {
+          _allCategoriesListSelf.add(categoryShopModel);
+        }
 
         _allCategoriesList.add(categoryShopModel);
       }
