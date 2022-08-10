@@ -6,6 +6,7 @@ import 'package:borgiaflutterapp/admin/data/create_product_repo.dart';
 import 'package:borgiaflutterapp/admin/data/delete_category_repo.dart';
 import 'package:borgiaflutterapp/admin/data/salemodule_repo.dart';
 import 'package:borgiaflutterapp/admin/data/update_category_repo.dart';
+import 'package:borgiaflutterapp/controllers/lydia_controller.dart';
 import 'package:borgiaflutterapp/controllers/other_users_controller.dart';
 import 'package:borgiaflutterapp/controllers/product_list_controller.dart';
 import 'package:borgiaflutterapp/controllers/rank_user_controller.dart';
@@ -14,6 +15,7 @@ import 'package:borgiaflutterapp/controllers/sale_list_controller.dart';
 import 'package:borgiaflutterapp/controllers/search_controller.dart';
 import 'package:borgiaflutterapp/controllers/shop_stat_controller.dart';
 import 'package:borgiaflutterapp/controllers/user_shop_stat_controller.dart';
+import 'package:borgiaflutterapp/data/repository/lydia_repo.dart';
 import 'package:borgiaflutterapp/data/repository/other_user_repo.dart';
 import 'package:borgiaflutterapp/data/repository/product_list_repo.dart';
 import 'package:borgiaflutterapp/data/repository/rank_user_product_repo.dart';
@@ -69,6 +71,8 @@ Future<void> init() async {
   Get.lazyPut(() => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find())); // Get.find() permet de trouver automatiquement l'api client....
   Get.lazyPut(() => SalesRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
+  Get.lazyPut(() => LydiaRepo(apiClient: Get.find()));
+
   Get.lazyPut(() => SearchRepo(apiClient: Get.find()));
   Get.lazyPut(() => OtherUserRepo(apiClient: Get.find()));
 
@@ -107,6 +111,8 @@ Future<void> init() async {
   Get.lazyPut(() => UserController(userRepo: Get.find()), fenix: true);
   Get.lazyPut(() => AuthController(authRepo: Get.find()), fenix: true);
   Get.lazyPut(() => SalesController(salesRepo: Get.find()), fenix: true);
+
+  Get.lazyPut(() => LydiaController(lydiaRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => SearchController(searchRepo: Get.find()), fenix: true);
 

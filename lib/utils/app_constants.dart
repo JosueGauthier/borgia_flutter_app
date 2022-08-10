@@ -17,6 +17,8 @@ class AppConstants {
   static const String PRODUCT_URI_NAME = "/api-links/shops/productsv2/?name="; //via name
   static const String PRODUCT_URI_ID = "/api-links/shops/productsv2/?id="; //via id
 
+  static const String LYDIA_DO_REQUEST_URI = "/api-links/lydia/";
+
   //* Stat uri
   static const String YEAR_SALELIST_URI = "/api-links/history/";
   static const String HOUR_SALELIST_URI = "/api-links/live-sales/";
