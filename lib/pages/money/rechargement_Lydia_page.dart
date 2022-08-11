@@ -33,8 +33,36 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
     }
   }
 
+  int _lydiaCheckState(
+    LydiaStateRequestController lydiaStateRequestController,
+  ) {
+    int state = 0;
+
+    String username = AppConstants.USERNAME;
+    String password = AppConstants.PASSWORD;
+
+    String requestUuid = "";
+
+    LydiaModelStateRequestModel lydiaModel = LydiaModelStateRequestModel(
+      username: username,
+      password: password,
+      requestUuid: requestUuid,
+    );
+
+    lydiaStateRequestController.lydiaAPIStateRequest(lydiaModel).then((status) async {
+      if (status.isSuccess) {
+        state = lydiaStateRequestController.state;
+      } else {
+        state = 99;
+        Get.snackbar("Erreur", ". Vérifier les informations saisies", backgroundColor: Colors.redAccent);
+      }
+    });
+    return state;
+  }
+
   void _lydiaRefill(
-    LydiaController lydiaController,
+    LydiaDoRequestController lydiaController,
+    LydiaStateRequestController lydiaStateController,
   ) {
     String username = AppConstants.USERNAME;
     String password = AppConstants.PASSWORD;
@@ -42,7 +70,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
     String phoneNumber = phoneController.text.trim();
     String amount = amountController.text.trim();
 
-    LydiaModel lydiaModel = LydiaModel(
+    LydiaModelDoRequestModel lydiaModel = LydiaModelDoRequestModel(
       username: username,
       password: password,
       amount: amount,
@@ -55,7 +83,9 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
 
         var isAppInstalled = await LaunchApp.isAppInstalled(androidPackageName: 'com.lydia', iosUrlScheme: 'pulsesecure://');
 
-        if (isAppInstalled == false) {
+        // This callback modify the given value to even number.
+
+        if (isAppInstalled == true) {
           await LaunchApp.openApp(
             androidPackageName: 'com.lydia',
             // openStore: false
@@ -64,6 +94,23 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
           Uri url = Uri.parse(lydiaController.collectPageLydiaUrl);
           _launchInBrowser(url);
         }
+
+        int callback(int value) {
+          return (value + 1) * 2;
+        }
+
+        // asynchronous data
+        test() async {
+          Duration interval = Duration(seconds: 2);
+
+          Stream<int> stream = Stream<int>.periodic(interval, _lydiaCheckState(lydiaStateController));
+
+          await for (int i in stream) {
+            print(i);
+          }
+        }
+
+        test();
 
         //Get.toNamed(RouteHelper.getLydiaWebPage(lydiaController.collectPageLydiaUrl));
       } else {
@@ -91,7 +138,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LydiaController>(builder: (lydiaController) {
+    return GetBuilder<LydiaDoRequestController>(builder: (lydiaController) {
       return Scaffold(
         body: SingleChildScrollView(
           child: Column(

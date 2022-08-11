@@ -4,14 +4,26 @@ import 'package:borgiaflutterapp/models/lydia_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
 import 'package:get/get.dart';
 
-class LydiaRepo {
+class LydiaDoRequestRepo {
   final ApiClient apiClient;
 
-  LydiaRepo({
+  LydiaDoRequestRepo({
     required this.apiClient,
   });
 
-  Future<Response> lydiaAPIDoRequest(LydiaModel lydiaModel) async {
-    return await apiClient.postData(AppConstants.LYDIA_DO_REQUEST_URI, lydiaModel.toJson());
+  Future<Response> lydiaAPIDoRequest(LydiaModelDoRequestModel lydiaDoModel) async {
+    return await apiClient.postData(AppConstants.LYDIA_DO_REQUEST_URI, lydiaDoModel.toJson());
+  }
+}
+
+class LydiaStateRequestRepo {
+  final ApiClient apiClient;
+
+  LydiaStateRequestRepo({
+    required this.apiClient,
+  });
+
+  Future<Response> lydiaAPIStateRequest(LydiaModelStateRequestModel lydiaStateModel) async {
+    return await apiClient.postData(AppConstants.LYDIA_DO_REQUEST_URI, lydiaStateModel.toJson());
   }
 }

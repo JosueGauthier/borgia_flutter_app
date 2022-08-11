@@ -71,7 +71,7 @@ Future<void> init() async {
   Get.lazyPut(() => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find())); // Get.find() permet de trouver automatiquement l'api client....
   Get.lazyPut(() => SalesRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
-  Get.lazyPut(() => LydiaRepo(apiClient: Get.find()));
+  Get.lazyPut(() => LydiaDoRequestRepo(apiClient: Get.find()));
 
   Get.lazyPut(() => SearchRepo(apiClient: Get.find()));
   Get.lazyPut(() => OtherUserRepo(apiClient: Get.find()));
@@ -112,7 +112,7 @@ Future<void> init() async {
   Get.lazyPut(() => AuthController(authRepo: Get.find()), fenix: true);
   Get.lazyPut(() => SalesController(salesRepo: Get.find()), fenix: true);
 
-  Get.lazyPut(() => LydiaController(lydiaRepo: Get.find()), fenix: true);
+  Get.lazyPut(() => LydiaDoRequestController(lydiaDoRequestRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => SearchController(searchRepo: Get.find()), fenix: true);
 

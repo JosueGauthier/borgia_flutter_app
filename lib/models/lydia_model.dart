@@ -1,10 +1,10 @@
-class LydiaModel {
+class LydiaModelDoRequestModel {
   String username;
   String password;
   String phoneNumber;
   String amount;
 
-  LydiaModel({
+  LydiaModelDoRequestModel({
     required this.username,
     required this.password,
     required this.phoneNumber,
@@ -17,6 +17,22 @@ class LydiaModel {
       "password": password,
       "phone_number": phoneNumber,
       "amount": amount,
+    };
+  }
+}
+
+class LydiaModelStateRequestModel {
+  String username;
+  String password;
+  String requestUuid;
+
+  LydiaModelStateRequestModel({required this.username, required this.password, required this.requestUuid});
+
+  Map<String, dynamic> toJson() {
+    return {
+      "username": username,
+      "password": password,
+      "request_uuid": requestUuid,
     };
   }
 }
