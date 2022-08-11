@@ -2,6 +2,7 @@ import 'package:borgiaflutterapp/admin/pages/admin_page.dart';
 import 'package:borgiaflutterapp/admin/pages/management/edit_shop_page.dart';
 import 'package:borgiaflutterapp/pages/auth/login_page.dart';
 import 'package:borgiaflutterapp/pages/content/neon.dart';
+import 'package:borgiaflutterapp/pages/money/lydia_webpage.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 import 'package:borgiaflutterapp/pages/stats/rank_user_products_page.dart';
@@ -34,6 +35,8 @@ class RouteHelper {
   static const String cartPage = "/cart-page";
 
   static const String refillLydia = "/lydia-page";
+  static const String lydiaCollectWebPage = "/lydia-webpage";
+
   static const String profilePage = "/profile-page";
 
   static const String userPage = "/user-page";
@@ -63,7 +66,10 @@ class RouteHelper {
   //? formalisme pour passer des paramètres
 
   static String getSplashPage() => splashPage;
+
   static String getLydiaPage() => refillLydia;
+  static String getLydiaWebPage(String lydiaUrl) => '$lydiaCollectWebPage?lydiaUrl=$lydiaUrl';
+
   static String getNeonPage() => neonPage;
   static String getCreditsPage() => creditsPage;
   static String getProfilepage() => profilePage;
@@ -146,6 +152,17 @@ class RouteHelper {
       name: refillLydia,
       page: () {
         return const RefillLydiaPage();
+      },
+      //transition: Transition.fadeIn
+    ),
+    GetPage(
+      name: lydiaCollectWebPage,
+      page: () {
+        var lydiaUrl = Get.parameters['lydiaUrl'];
+
+        return LydiaWebPage(
+          lydiaUrl: lydiaUrl!,
+        );
       },
       //transition: Transition.fadeIn
     ),

@@ -12,7 +12,6 @@ class LydiaRepo {
   });
 
   Future<Response> lydiaAPIDoRequest(LydiaModel lydiaModel) async {
-    print(lydiaModel.toJson());
     return await apiClient.postData(AppConstants.LYDIA_DO_REQUEST_URI, lydiaModel.toJson());
   }
 }

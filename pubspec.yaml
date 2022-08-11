@@ -19,6 +19,10 @@ dependencies:
   percent_indicator: ^4.2.2
   file_picker: ^5.0.0
   cloudinary_public: ^0.11.1
+  webview_flutter: ^3.0.4
+  loading_indicator: ^3.1.0
+  flutter_inappwebview: ^5.4.3+7
+  external_app_launcher: ^3.1.0
 
   flutter:
     sdk: flutter

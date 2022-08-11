@@ -13,6 +13,9 @@ class LydiaController extends GetxController implements GetxService {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  late String _collectPageLydiaUrl;
+  String get collectPageLydiaUrl => _collectPageLydiaUrl;
+
   Future<ResponseModel> lydiaAPIDoRequest(LydiaModel lydiaModel) async {
     _isLoading = true;
 
@@ -21,11 +24,12 @@ class LydiaController extends GetxController implements GetxService {
     Response response = await lydiaRepo.lydiaAPIDoRequest(lydiaModel);
     late ResponseModel responseModel;
 
-    inspect(response);
+    inspect(response.body);
 
     if (response.statusCode == 202) {
       responseModel = ResponseModel(true, "Succes");
-      print(responseModel);
+
+      _collectPageLydiaUrl = response.body;
     } else {
       responseModel = ResponseModel(false, response.statusText!);
     }
