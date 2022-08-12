@@ -16,6 +16,9 @@ class LydiaDoRequestController extends GetxController implements GetxService {
   late String _collectPageLydiaUrl;
   String get collectPageLydiaUrl => _collectPageLydiaUrl;
 
+  late String _requestUuid;
+  String get requestUuid => _requestUuid;
+
   Future<ResponseModel> lydiaAPIDoRequest(LydiaModelDoRequestModel lydiaModelDoRequest) async {
     _isLoading = true;
 
@@ -29,7 +32,8 @@ class LydiaDoRequestController extends GetxController implements GetxService {
     if (response.statusCode == 202) {
       responseModel = ResponseModel(true, "Succes");
 
-      _collectPageLydiaUrl = response.body;
+      _collectPageLydiaUrl = response.body[0];
+      _requestUuid = response.body[1];
     } else {
       responseModel = ResponseModel(false, response.statusText!);
     }
@@ -47,21 +51,25 @@ class LydiaStateRequestController extends GetxController implements GetxService 
 
   LydiaStateRequestController({required this.lydiaStateRequestRepo});
 
-  //! State Request
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
 
-  bool _isLoadedStateRequest = false;
-  bool get isLoadedStateRequest => _isLoadedStateRequest;
+  late String _collectPageLydiaUrl;
+  String get collectPageLydiaUrl => _collectPageLydiaUrl;
 
-  late int _state;
-  int get state => _state;
+  late String _state = "0";
+  get state => _state;
 
   Future<ResponseModel> lydiaAPIStateRequest(LydiaModelStateRequestModel lydiaModelStateRequestModel) async {
+    _isLoading = true;
+
     update();
 
     Response response = await lydiaStateRequestRepo.lydiaAPIStateRequest(lydiaModelStateRequestModel);
     late ResponseModel responseModel;
 
-    inspect(response.body);
+    print("response.status " + response.statusCode.toString());
+    inspect(response);
 
     if (response.statusCode == 202) {
       responseModel = ResponseModel(true, "Succes");
@@ -71,7 +79,7 @@ class LydiaStateRequestController extends GetxController implements GetxService 
       responseModel = ResponseModel(false, response.statusText!);
     }
 
-    _isLoadedStateRequest = true;
+    _isLoading = false;
 
     update();
 

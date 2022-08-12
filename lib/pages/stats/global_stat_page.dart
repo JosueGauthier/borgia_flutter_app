@@ -133,7 +133,7 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                 SizedBox(
                   width: Dimensions.width20,
                 ),
-                Container(
+                SizedBox(
                   width: Dimensions.width20 * 1,
                   height: Dimensions.height20 * 1,
                   //decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(Dimensions.height20)),

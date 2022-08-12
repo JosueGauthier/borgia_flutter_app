@@ -34,7 +34,6 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   getIdentifiersSharedpref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List? identifiersList = prefs.getStringList(AppConstants.IDENTIFIERS_LIST);
-    print(identifiersList);
     final AuthController authController;
 
     Get.find<AuthController>();
@@ -113,7 +112,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                   opacity: opacity,
                   duration: const Duration(milliseconds: 500),
                   // The green box must be a child of the AnimatedOpacity widget.
-                  child: Container(
+                  child: SizedBox(
                     height: Dimensions.height100,
                     width: Dimensions.width10 * 10,
                     child: LoadingIndicator(

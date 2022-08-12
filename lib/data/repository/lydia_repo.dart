@@ -1,4 +1,3 @@
-import 'package:borgiaflutterapp/admin/models/create_product_model.dart';
 import 'package:borgiaflutterapp/data/api/api_client.dart';
 import 'package:borgiaflutterapp/models/lydia_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
@@ -24,6 +23,7 @@ class LydiaStateRequestRepo {
   });
 
   Future<Response> lydiaAPIStateRequest(LydiaModelStateRequestModel lydiaStateModel) async {
-    return await apiClient.postData(AppConstants.LYDIA_DO_REQUEST_URI, lydiaStateModel.toJson());
+    print(lydiaStateModel.toJson());
+    return await apiClient.postData(AppConstants.LYDIA_STATE_REQUEST_URI, lydiaStateModel.toJson());
   }
 }

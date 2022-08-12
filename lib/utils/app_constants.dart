@@ -18,6 +18,7 @@ class AppConstants {
   static const String PRODUCT_URI_ID = "/api-links/shops/productsv2/?id="; //via id
 
   static const String LYDIA_DO_REQUEST_URI = "/api-links/lydia/";
+  static const String LYDIA_STATE_REQUEST_URI = "/api-links/lydia-state-request/";
 
   //* Stat uri
   static const String YEAR_SALELIST_URI = "/api-links/history/";

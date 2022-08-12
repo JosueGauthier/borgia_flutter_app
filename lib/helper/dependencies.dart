@@ -72,6 +72,7 @@ Future<void> init() async {
   Get.lazyPut(() => SalesRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
   Get.lazyPut(() => LydiaDoRequestRepo(apiClient: Get.find()));
+  Get.lazyPut(() => LydiaStateRequestRepo(apiClient: Get.find()));
 
   Get.lazyPut(() => SearchRepo(apiClient: Get.find()));
   Get.lazyPut(() => OtherUserRepo(apiClient: Get.find()));
@@ -113,6 +114,7 @@ Future<void> init() async {
   Get.lazyPut(() => SalesController(salesRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => LydiaDoRequestController(lydiaDoRequestRepo: Get.find()), fenix: true);
+  Get.lazyPut(() => LydiaStateRequestController(lydiaStateRequestRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => SearchController(searchRepo: Get.find()), fenix: true);
 

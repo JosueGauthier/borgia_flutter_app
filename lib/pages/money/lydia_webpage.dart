@@ -2,10 +2,7 @@ import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
 class LydiaWebPage extends StatefulWidget {
   final String lydiaUrl;
