@@ -98,5 +98,8 @@ flutter:
     - family: NeonSans
       fonts:
         - asset: assets/font/NeonSans.ttf
+    - family: lydiaicon
+      fonts:
+        - asset: assets/font/lydiaicon.ttf
           
 

@@ -4,6 +4,7 @@ import 'package:borgiaflutterapp/controllers/lydia_controller.dart';
 import 'package:borgiaflutterapp/models/lydia_model.dart';
 import 'package:borgiaflutterapp/utils/colors.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
+import 'package:borgiaflutterapp/widget/loading_indicator.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +25,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
   TextEditingController amountController = TextEditingController();
 
   bool paymentAccepted = false;
-  bool isInProcess = true;
+  bool isInProcess = false;
 
   Future<void> _launchInBrowser(Uri url) async {
     if (!await launchUrl(
@@ -54,6 +55,9 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
 
         if (lydiaStateRequestController.state == "1") {
           stopCheck = true;
+          setState(() {
+            isInProcess = false;
+          });
         }
       } else {
         print("status.nonsucces");
@@ -229,6 +233,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                       ),
                       child: ElevatedButton(
                           onPressed: () {
+                            FocusScope.of(context).unfocus();
                             _lydiaRefill(lydiaDoRequestController, lydiaStateRequestController);
                             setState(() {
                               isInProcess = true;
@@ -252,37 +257,18 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                   ],
                 ),
                 isInProcess
-                    ? Container(
-                        height: Dimensions.screenHeight,
-                        width: Dimensions.screenWidth,
-                        color: Colors.greenAccent,
+                    ? Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            height: Dimensions.screenHeight,
+                            width: Dimensions.screenWidth,
+                            color: Colors.black.withOpacity(0.7),
+                          ),
+                          const CustomLoadingIndicator(),
+                        ],
                       )
                     : Container(),
-                Container(
-                    height: Dimensions.screenHeight,
-                    width: Dimensions.screenWidth,
-                    color: Colors.black.withOpacity(0.7),
-                    child: SizedBox(
-                      height: Dimensions.height100,
-                      width: Dimensions.width10 * 10,
-                      child: LoadingIndicator(
-                          indicatorType: Indicator.pacman,
-
-                          /// Required, The loading type of the widget
-                          colors: [AppColors.mainColor, Theme.of(context).colorScheme.surface, AppColors.greenEmerald],
-
-                          /// Optional, The color collections
-                          strokeWidth: 2,
-
-                          /// Optional, The stroke of the line, only applicable to widget which contains line
-                          backgroundColor: Colors.transparent,
-
-                          /// Optional, Background of the widget
-                          pathBackgroundColor: Colors.black
-
-                          /// Optional, the stroke backgroundColor
-                          ),
-                    ))
               ],
             ),
           ),

@@ -1,3 +1,4 @@
+import 'package:borgiaflutterapp/icon/lydiaicon_icons.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
 import 'package:borgiaflutterapp/pages/stats/stats_page.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
@@ -83,7 +84,12 @@ class _HomePageState extends State<HomePage> {
               BottomNavigationBarItem(icon: Icon(CupertinoIcons.house_alt), label: 'Home'),
               BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
               BottomNavigationBarItem(icon: Icon(CupertinoIcons.heart), label: 'Cart'),
-              BottomNavigationBarItem(icon: Icon(Icons.currency_exchange_sharp), label: 'Lydia'),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Lydiaicon.lydia,
+                    size: 23,
+                  ),
+                  label: 'Lydia'),
               BottomNavigationBarItem(icon: Icon(Icons.show_chart), label: 'Stat'),
             ],
           )),

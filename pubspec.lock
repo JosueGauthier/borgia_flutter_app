@@ -309,7 +309,7 @@ packages:
       name: path_provider_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.18"
+    version: "2.0.19"
   path_provider_ios:
     dependency: transitive
     description:
@@ -601,7 +601,7 @@ packages:
       name: webview_flutter_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.9.3"
+    version: "2.9.5"
   webview_flutter_platform_interface:
     dependency: transitive
     description:
