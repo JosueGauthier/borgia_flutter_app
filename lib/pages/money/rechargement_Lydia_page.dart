@@ -8,8 +8,8 @@ import 'package:borgiaflutterapp/widget/loading_indicator.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../controllers/user_controller.dart';
 import '../../utils/app_constants.dart';
 import '../../widget/big_text.dart';
 
@@ -27,6 +27,9 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
   bool paymentAccepted = false;
   bool isInProcess = false;
 
+  var success = false;
+  bool done = false;
+
   Future<void> _launchInBrowser(Uri url) async {
     if (!await launchUrl(
       url,
@@ -41,7 +44,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
     String password = AppConstants.PASSWORD;
     String requestUuid = requestUuidString;
 
-    bool stopCheck = false;
+    bool success = false;
 
     LydiaModelStateRequestModel lydiaStateRequestModel = LydiaModelStateRequestModel(
       username: username,
@@ -51,21 +54,22 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
 
     await lydiaStateRequestController.lydiaAPIStateRequest(lydiaStateRequestModel).then((status) {
       if (status.isSuccess) {
-        print("status.isSuccess");
-
         if (lydiaStateRequestController.state == "1") {
-          stopCheck = true;
+          success = true;
           setState(() {
             isInProcess = false;
+            Get.find<UserController>().getUserList(AppConstants.USERNAME);
+            phoneController.clear();
+            amountController.clear();
+            Get.snackbar("Succès", "Vous avez bien été crédité", backgroundColor: AppColors.greenEmerald);
           });
         }
       } else {
-        print("status.nonsucces");
-        //Get.snackbar("Erreur", ". Vérifier les informations saisies", backgroundColor: Colors.redAccent);
+        Get.snackbar("Erreur", "Vérifier les informations saisies \n Vous n'avez pas été débité", backgroundColor: Colors.redAccent);
       }
     });
 
-    return stopCheck;
+    return success;
   }
 
   void _lydiaRefill(
@@ -87,33 +91,27 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
 
     lydiaDoController.lydiaAPIDoRequest(lydiaModel).then((status) async {
       if (status.isSuccess) {
-        print(lydiaDoController.collectPageLydiaUrl);
-
         //Todo check ios
         var isAppInstalled = await LaunchApp.isAppInstalled(androidPackageName: 'com.lydia', iosUrlScheme: 'lydia//');
 
         if (isAppInstalled == true) {
-          /* await LaunchApp.openApp(
+          await LaunchApp.openApp(
             androidPackageName: 'com.lydia',
             // openStore: false
-          ); */
-
+          );
         } else {
           Uri url = Uri.parse(lydiaDoController.collectPageLydiaUrl);
           _launchInBrowser(url);
         }
+
+        Stream.periodic(const Duration(seconds: 2)).takeWhile((_) => !done).forEach((_) async {
+          success = await _lydiaCheckState(lydiaStateController, lydiaDoController.requestUuid);
+          done = success; // only if you want to finish the function earlier
+          setState(() {});
+        });
       } else {
-        Get.snackbar("Erreur", ". Vérifier les informations saisies", backgroundColor: Colors.redAccent);
+        Get.snackbar("Erreur", "Vérifier les informations saisies \n Vous n'avez pas été débité", backgroundColor: Colors.redAccent);
       }
-
-      var success = false;
-      bool done = false;
-
-      await Stream.periodic(const Duration(seconds: 2)).takeWhile((_) => !done).forEach((_) async {
-        success = await _lydiaCheckState(lydiaStateController, lydiaDoController.requestUuid);
-        print(lydiaStateController.state);
-        done = success; // only if you want to finish the function earlier
-      });
     });
 
     //todo faire un regex
@@ -265,64 +263,23 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                             width: Dimensions.screenWidth,
                             color: Colors.black.withOpacity(0.7),
                           ),
-                          const CustomLoadingIndicator(),
+                          Column(
+                            children: [
+                              Text(
+                                "Confirmation de l'operation en attente",
+                                style: Theme.of(context).textTheme.titleMedium,
+                                maxLines: 2,
+                                textAlign: TextAlign.center,
+                              ),
+                              const CustomLoadingIndicator(),
+                            ],
+                          ),
                         ],
                       )
                     : Container(),
               ],
             ),
           ),
-          /* bottomNavigationBar: SizedBox(
-        height: Dimensions.height20 * 23,
-        child: Column(
-          children: [
-            Container(
-              height: Dimensions.height20 * 3,
-              color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
-              child: Padding(
-                padding: EdgeInsets.all(Dimensions.height10),
-                child: SizedBox(
-                  height: Dimensions.height10,
-                  child: Center(
-                      child: TextField(
-                    controller: _myController,
-                    textAlign: TextAlign.center,
-                    showCursor: false,
-                    style: Theme.of(context).textTheme.labelLarge,
-                    keyboardType: TextInputType.none,
-                  )),
-                ),
-              ),
-            ),
-            NumPad(
-              buttonSize: Dimensions.height10 * 6,
-              buttonColor: AppColors.secondColor,
-              iconColor: AppColors.mainColor,
-              controller: _myController,
-              delete: () {
-                if ((_myController.text).isNotEmpty) {
-                  _myController.text = _myController.text.substring(0, _myController.text.length - 1);
-                }
-              },
-              onSubmit: () {
-                debugPrint('Your code: ${_myController.text}');
-                showDialog(
-                    context: context,
-                    builder: (_) => AlertDialog(
-                          content: Text(
-                            "You code is ${_myController.text}",
-                            style: const TextStyle(fontSize: 30),
-                          ),
-                        ));
-              },
-            ),
-            SizedBox(
-              height: Dimensions.height20,
-            )
-          ],
-        ),
-      ),
-     */
         );
       });
     });

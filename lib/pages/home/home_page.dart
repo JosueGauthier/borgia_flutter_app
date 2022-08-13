@@ -16,7 +16,8 @@ import '../search/searchpage.dart';
 import 'welcome_page_with_header.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  int selectedPage;
+  HomePage({Key? key, required this.selectedPage}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {});
   }
 
-  void _onItemTapped(int index) {
+  void onItemTapped(int index) {
     setState(() {
       AppConstants.isfinishedRotate = true;
       _selectedIndex = index;
@@ -58,6 +59,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     _loadRessources();
+    _selectedIndex = widget.selectedPage;
   }
 
   @override
@@ -76,7 +78,7 @@ class _HomePageState extends State<HomePage> {
             unselectedItemColor: Theme.of(context).colorScheme.onPrimary,
             type: BottomNavigationBarType.fixed,
             currentIndex: _selectedIndex,
-            onTap: _onItemTapped,
+            onTap: onItemTapped,
             iconSize: Dimensions.height30,
             showSelectedLabels: false,
             showUnselectedLabels: false,

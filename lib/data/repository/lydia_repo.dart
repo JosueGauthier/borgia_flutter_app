@@ -23,7 +23,6 @@ class LydiaStateRequestRepo {
   });
 
   Future<Response> lydiaAPIStateRequest(LydiaModelStateRequestModel lydiaStateModel) async {
-    print(lydiaStateModel.toJson());
     return await apiClient.postData(AppConstants.LYDIA_STATE_REQUEST_URI, lydiaStateModel.toJson());
   }
 }

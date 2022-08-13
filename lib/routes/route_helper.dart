@@ -114,7 +114,7 @@ class RouteHelper {
     GetPage(
       name: initial,
       page: () {
-        return const HomePage();
+        return HomePage(selectedPage: 0);
       },
       //transition: Transition.fadeIn
     ),

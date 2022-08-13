@@ -27,8 +27,6 @@ class LydiaDoRequestController extends GetxController implements GetxService {
     Response response = await lydiaDoRequestRepo.lydiaAPIDoRequest(lydiaModelDoRequest);
     late ResponseModel responseModel;
 
-    inspect(response.body);
-
     if (response.statusCode == 202) {
       responseModel = ResponseModel(true, "Succes");
 
@@ -67,9 +65,6 @@ class LydiaStateRequestController extends GetxController implements GetxService 
 
     Response response = await lydiaStateRequestRepo.lydiaAPIStateRequest(lydiaModelStateRequestModel);
     late ResponseModel responseModel;
-
-    print("response.status " + response.statusCode.toString());
-    inspect(response);
 
     if (response.statusCode == 202) {
       responseModel = ResponseModel(true, "Succes");
