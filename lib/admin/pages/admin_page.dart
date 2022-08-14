@@ -36,7 +36,7 @@ class _AdminPageState extends State<AdminPage> {
         extendBody: true,
         body: Column(children: [
           const CustomHeader(text: "Admin"),
-          SizedBox(
+          Container(
             height: Dimensions.height100 * 1,
             child: ColorFiltered(
               colorFilter: const ColorFilter.mode(AppColors.mainColor, BlendMode.srcATop),
@@ -44,7 +44,7 @@ class _AdminPageState extends State<AdminPage> {
             ),
           ),
           SizedBox(
-            height: Dimensions.height10,
+            height: Dimensions.height20,
           ),
           Expanded(
             child: Column(
@@ -191,6 +191,7 @@ class _AdminPageState extends State<AdminPage> {
                                                           TextButton(
                                                             style: ButtonStyle(
                                                               backgroundColor: MaterialStateProperty.all<Color>(AppColors.greenEmerald),
+
                                                               shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                                                                 borderRadius: BorderRadius.circular(Dimensions.width20),
                                                                 //side: BorderSide(color: Colors.red)
@@ -205,7 +206,7 @@ class _AdminPageState extends State<AdminPage> {
                                                                   EdgeInsets.symmetric(horizontal: Dimensions.width10 / 2, vertical: Dimensions.height10 / 2),
                                                               child: Text(
                                                                 "Vente opérateur ${(shopModel.name)!}",
-                                                                style: Theme.of(context).textTheme.bodySmall,
+                                                                style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white),
                                                               ),
                                                             ),
                                                           ),
@@ -227,7 +228,7 @@ class _AdminPageState extends State<AdminPage> {
                                                                         horizontal: Dimensions.width10 / 2, vertical: Dimensions.height10 / 2),
                                                                     child: Text(
                                                                       "Gestion magasin ${(shopModel.name)!}",
-                                                                      style: Theme.of(context).textTheme.bodySmall,
+                                                                      style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white),
                                                                     ),
                                                                   ),
                                                                 )

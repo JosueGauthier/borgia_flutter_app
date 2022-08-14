@@ -16,8 +16,8 @@ class FavPage extends StatelessWidget {
     return Scaffold(
       body: Column(children: [
         Container(
-          height: Dimensions.height45 * 2.7,
-          padding: EdgeInsets.only(top: Dimensions.height30 * 1.3, left: Dimensions.width20 * 2, right: Dimensions.width20),
+          height: Dimensions.height20 * 6,
+          padding: EdgeInsets.only(top: Dimensions.height10 * 3, left: Dimensions.width20 * 2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -42,14 +42,14 @@ class FavPage extends StatelessWidget {
                         child: Container(
                           width: double.maxFinite,
                           //color: Colors.green,
-                          margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height10),
+                          margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20),
                           child: ProductItemWidget(
                             illustImage: CachedNetworkImage(
                               imageUrl: favList[index].aProduct.image,
                               progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
                               errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                             ),
-                            titleText: favList[index].name!,
+                            titleText: (favList[index].name)!,
                             priceProduct: favList[index].aProduct.manualPrice.toString(),
                           ),
                         ),

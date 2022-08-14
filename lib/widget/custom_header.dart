@@ -10,8 +10,8 @@ class CustomHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Dimensions.height45 * 2.7,
-      margin: EdgeInsets.only(bottom: Dimensions.height10),
+      height: Dimensions.height20 * 6,
+      //margin: EdgeInsets.only(bottom: Dimensions.height10),
       padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

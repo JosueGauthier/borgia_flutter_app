@@ -77,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   ProfileBox(
                     textColor: Theme.of(context).colorScheme.onPrimary,
-                    backgroundcolor: Theme.of(context).colorScheme.background,
+                    backgroundcolor: Theme.of(context).appBarTheme.backgroundColor!,
                     iconcolor: Theme.of(context).colorScheme.onPrimary,
                     icon: Icons.person,
                     text: "Bucque : ${userModel.surname}",
@@ -87,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   ProfileBox(
                     textColor: Theme.of(context).colorScheme.onPrimary,
-                    backgroundcolor: Theme.of(context).colorScheme.background,
+                    backgroundcolor: Theme.of(context).appBarTheme.backgroundColor!,
                     icon: Icons.group,
                     text: "Fam'ss : ${userModel.family}",
                     iconcolor: Theme.of(context).colorScheme.onPrimary,
@@ -99,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   ProfileBox(
                     textColor: Theme.of(context).colorScheme.onPrimary,
-                    backgroundcolor: Theme.of(context).colorScheme.background,
+                    backgroundcolor: Theme.of(context).appBarTheme.backgroundColor!,
                     icon: Icons.group_work,
                     text: "Prom'ss : ${(userModel.campus!).toLowerCase().capitalize} ${userModel.year! - 1800}",
                     iconcolor: Theme.of(context).colorScheme.onPrimary,
@@ -123,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ), */
                   ProfileBox(
                     textColor: Theme.of(context).colorScheme.onPrimary,
-                    backgroundcolor: Theme.of(context).colorScheme.background,
+                    backgroundcolor: Theme.of(context).appBarTheme.backgroundColor!,
                     icon: Icons.phone,
                     text: userModel.phone.toString(),
                     iconcolor: Theme.of(context).colorScheme.onPrimary,

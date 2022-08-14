@@ -77,27 +77,30 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                       Container(
                                         height: Dimensions.height45 * 2.7,
                                         width: double.maxFinite,
-                                        decoration: const BoxDecoration(),
                                         padding: EdgeInsets.only(top: Dimensions.height30 * 1.3, left: Dimensions.width20 * 1.5, right: Dimensions.width20),
                                         child: Center(
                                           child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                                             (AppConstants.isfinishedRotate == false)
-                                                ? DefaultTextStyle(
-                                                    style: Theme.of(context).textTheme.labelLarge!,
-                                                    child: AnimatedTextKit(
-                                                      animatedTexts: [
-                                                        RotateAnimatedText('', duration: const Duration(milliseconds: 300)),
-                                                        RotateAnimatedText('Bonjour,'),
-                                                        RotateAnimatedText(userController.userModelController.surname!, rotateOut: false),
-                                                      ],
-                                                      isRepeatingAnimation: false,
-                                                      onFinished: () {
-                                                        AppConstants.isfinishedRotate = true;
-                                                        setState(() {});
-                                                      },
+                                                ? Container(
+                                                    //color: Colors.greenAccent,
+                                                    child: DefaultTextStyle(
+                                                      style: Theme.of(context).textTheme.labelLarge!,
+                                                      child: AnimatedTextKit(
+                                                        animatedTexts: [
+                                                          RotateAnimatedText('', duration: const Duration(milliseconds: 300)),
+                                                          RotateAnimatedText('Bonjour,'),
+                                                          RotateAnimatedText(userController.userModelController.surname!, rotateOut: false),
+                                                        ],
+                                                        isRepeatingAnimation: false,
+                                                        onFinished: () {
+                                                          AppConstants.isfinishedRotate = true;
+                                                          setState(() {});
+                                                        },
+                                                      ),
                                                     ),
                                                   )
-                                                : Text(userController.userModelController.surname!, style: Theme.of(context).textTheme.labelLarge),
+                                                : Container(
+                                                    child: Text(userController.userModelController.surname!, style: Theme.of(context).textTheme.labelLarge)),
                                             Row(
                                               children: [
                                                 (userController.userModelController.groups!.any((element) => element.name!.contains("chief")) ||
@@ -110,7 +113,6 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                           Get.toNamed(RouteHelper.getAdminPage());
                                                         },
                                                         child: Container(
-                                                          padding: EdgeInsets.only(top: Dimensions.height10),
                                                           width: Dimensions.height45 * 1.2,
                                                           height: Dimensions.height45 * 1.2,
                                                           child: Icon(
@@ -127,9 +129,8 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                     Get.toNamed(RouteHelper.getCartPage());
                                                   },
                                                   child: Container(
-                                                    padding: EdgeInsets.only(top: Dimensions.height10),
                                                     width: Dimensions.height45 * 1.2,
-                                                    height: Dimensions.height45 * 1.2,
+                                                    height: Dimensions.height10 * 3,
                                                     child: Icon(
                                                       Icons.history_rounded,
                                                       color: Theme.of(context).colorScheme.surface,
@@ -143,7 +144,6 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                     Get.toNamed(RouteHelper.getProfilepage());
                                                   },
                                                   child: Container(
-                                                    padding: EdgeInsets.only(top: Dimensions.height10),
                                                     width: Dimensions.height45 * 1.2,
                                                     height: Dimensions.height45 * 1.2,
                                                     child: Icon(

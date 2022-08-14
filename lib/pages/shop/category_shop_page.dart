@@ -54,16 +54,43 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                             onTap: () {
                               Get.toNamed(RouteHelper.getProductList(categoryModel.id!, categoryModel.contentType!.model!));
                             },
-                            child: Container(
-                              padding: EdgeInsets.all(Dimensions.height10),
-                              decoration: BoxDecoration(
-                                color: AppColors.cardDarkColor,
-                                borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
-                                //border: Border.all(color: AppColors.borderDarkColor)
-                              ),
-                              margin: EdgeInsets.only(bottom: Dimensions.height15),
-                              child: Row(children: [
-                                //! image
+                            child: Stack(
+                              //alignment: Alignment.,
+                              children: [
+                                Container(
+                                  //padding: EdgeInsets.all(Dimensions.height10),
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).appBarTheme.surfaceTintColor,
+                                    borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                                    //border: Border.all(color: AppColors.borderDarkColor)
+                                  ),
+                                  margin: EdgeInsets.only(bottom: Dimensions.height15, left: Dimensions.width20),
+                                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
+                                    //! image section
+
+                                    //! text section
+
+                                    Container(
+                                      height: Dimensions.height100 * 0.7,
+                                      margin: EdgeInsets.only(left: Dimensions.height10 * 7),
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        (categoryModel.name)!.capitalize!,
+                                        style: Theme.of(context).textTheme.bodySmall,
+                                      ),
+                                    ),
+                                    /*  SizedBox(
+                                    width: Dimensions.width20 * 3,
+                                  ), */
+
+                                    Container(
+                                      width: Dimensions.height100 * 0.7,
+                                      child: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.onPrimary),
+                                    ),
+                                  ]),
+                                ),
+
+                                //! image section
 
                                 Container(
                                   //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
@@ -84,19 +111,11 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                                     ),
                                   ),
                                 ),
-
-                                SizedBox(
-                                  width: Dimensions.width20 * 3,
-                                ),
-
-                                //! text section
-
-                                Expanded(
-                                  child: Padding(
-                                      padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                      child: Text((categoryModel.name)!.capitalize!, style: Theme.of(context).textTheme.bodySmall)),
-                                ),
-                              ]),
+                                /*  SizedBox(
+                                width: Dimensions.width20 * 3,
+                              ),
+                               */
+                              ],
                             ),
                           );
                         }),

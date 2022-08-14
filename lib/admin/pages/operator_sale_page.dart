@@ -120,10 +120,10 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                             borderRadius: BorderRadius.circular(50),
                           ),
                           prefixIcon: Icon(Icons.search, size: Dimensions.height10 * 3, color: Theme.of(context).colorScheme.onPrimary),
-                          hintText: "Nom/bucque acheteur...",
+                          hintText: "Nom/bucque...",
                           hintStyle: Theme.of(context).textTheme.titleMedium,
                           filled: true,
-                          fillColor: Colors.white.withOpacity(0.05),
+                          fillColor: Theme.of(context).appBarTheme.surfaceTintColor,
                         ),
                       ),
                     ),
@@ -203,7 +203,7 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                             padding: EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height20),
                             decoration: BoxDecoration(
                                 //color: Colors.white.withOpacity(0.2),
-                                boxShadow: [
+                                /* boxShadow: [
                                   BoxShadow(
                                     color: Colors.white.withOpacity(0.2),
                                     spreadRadius: 5,
@@ -211,7 +211,9 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                                     blurStyle: BlurStyle.normal,
                                     offset: const Offset(0, 0), // changes position of shadow
                                   ),
-                                ], borderRadius: BorderRadius.all(Radius.circular(Dimensions.height20))),
+                                ], */
+                                border: Border.all(color: AppColors.borderDarkColor),
+                                borderRadius: BorderRadius.all(Radius.circular(Dimensions.height20))),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -302,10 +304,46 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                                                     categoryChosen = categoryModel;
                                                   });
                                                 },
-                                                child: Container(
-                                                  margin: EdgeInsets.only(right: Dimensions.width20, bottom: Dimensions.height15),
-                                                  child: Row(children: [
-                                                    //! image
+                                                child: Stack(
+                                                  //alignment: Alignment.,
+                                                  children: [
+                                                    Container(
+                                                      //padding: EdgeInsets.all(Dimensions.height10),
+                                                      decoration: BoxDecoration(
+                                                        color: Theme.of(context).appBarTheme.surfaceTintColor,
+                                                        borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                                                        //border: Border.all(color: AppColors.borderDarkColor)
+                                                      ),
+                                                      margin: EdgeInsets.only(bottom: Dimensions.height15, left: Dimensions.width20),
+                                                      child: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                          children: [
+                                                            //! image section
+
+                                                            //! text section
+
+                                                            Container(
+                                                              height: Dimensions.height100 * 0.7,
+                                                              margin: EdgeInsets.only(left: Dimensions.height10 * 7),
+                                                              alignment: Alignment.center,
+                                                              child: Text(
+                                                                (categoryModel.name)!.capitalize!,
+                                                                style: Theme.of(context).textTheme.bodySmall,
+                                                              ),
+                                                            ),
+                                                            /*  SizedBox(
+                                    width: Dimensions.width20 * 3,
+                                  ), */
+
+                                                            Container(
+                                                              width: Dimensions.height100 * 0.7,
+                                                              child: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.onPrimary),
+                                                            ),
+                                                          ]),
+                                                    ),
+
+                                                    //! image section
 
                                                     Container(
                                                       //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
@@ -327,19 +365,11 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                                                         ),
                                                       ),
                                                     ),
-
-                                                    SizedBox(
-                                                      width: Dimensions.width20 * 3,
-                                                    ),
-
-                                                    //! text section
-
-                                                    Expanded(
-                                                      child: Padding(
-                                                          padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                                          child: Text((categoryModel.name)!.capitalize!, style: Theme.of(context).textTheme.bodySmall)),
-                                                    ),
-                                                  ]),
+                                                    /*  SizedBox(
+                                width: Dimensions.width20 * 3,
+                              ),
+                               */
+                                                  ],
                                                 ),
                                               );
                                             }),

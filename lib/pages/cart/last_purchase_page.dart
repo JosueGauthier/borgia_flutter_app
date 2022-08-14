@@ -58,7 +58,7 @@ class LastPurchases extends StatelessWidget {
                         },
                         child: Container(
                           width: double.maxFinite,
-                          margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height10),
+                          margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20),
                           child: ProductItemWidget(
                             illustImage: CachedNetworkImage(
                               imageUrl: cartList[index].aProduct.image!,

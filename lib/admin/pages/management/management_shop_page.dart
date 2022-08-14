@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../utils/dimensions.dart';
 
+import '../../../utils/theme.dart';
 import '../category/category_management_page.dart';
 import '../product/product_management_page.dart';
 

@@ -131,7 +131,7 @@ class _ProductManagementPageState extends State<ProductManagementPage> {
                                 itemBuilder: (context, index) {
                                   ProductModel productModel = productListController.shopProductList[index];
                                   return Container(
-                                    margin: EdgeInsets.only(bottom: Dimensions.height20),
+                                    margin: EdgeInsets.only(bottom: Dimensions.height15),
                                     child: Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
@@ -139,49 +139,103 @@ class _ProductManagementPageState extends State<ProductManagementPage> {
                                           child: Container(
                                             alignment: Alignment.center,
                                             child: GestureDetector(
-                                                onTap: () {
-                                                  productModelChoose = productModel;
-                                                  Get.toNamed(RouteHelper.getUpdateProductPage(widget.shopId));
-                                                },
-                                                child: ProductItemWidget(
-                                                  titleText: (productModel.name)!.capitalize!,
-                                                  illustImage: CachedNetworkImage(
-                                                    imageUrl: productModel.image!,
-                                                    progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                        CircularProgressIndicator(value: downloadProgress.progress),
-                                                    errorWidget: (context, url, error) => const Icon(Icons.error),
-                                                  ),
-                                                  priceProduct: productModel.manualPrice.toString(),
-                                                )),
-                                          ),
-                                        ),
-                                        Row(
-                                          children: [
-                                            GestureDetector(
                                               onTap: () {
                                                 productModelChoose = productModel;
                                                 Get.toNamed(RouteHelper.getUpdateProductPage(widget.shopId));
                                               },
-                                              child: const Icon(
-                                                Icons.edit,
-                                                color: AppColors.greenEmerald,
+                                              child: Stack(
+                                                //alignment: Alignment.,
+                                                children: [
+                                                  Container(
+                                                    padding: EdgeInsets.only(right: Dimensions.height10),
+                                                    decoration: BoxDecoration(
+                                                      color: Theme.of(context).appBarTheme.surfaceTintColor,
+                                                      borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                                                      //border: Border.all(color: AppColors.borderDarkColor)
+                                                    ),
+                                                    margin: EdgeInsets.only(left: Dimensions.width20),
+                                                    child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                                        children: [
+                                                          //! image section
+
+                                                          //! text section
+
+                                                          Container(
+                                                            height: Dimensions.height100 * 0.7,
+                                                            margin: EdgeInsets.only(left: Dimensions.height10 * 7),
+                                                            alignment: Alignment.center,
+                                                            child: Text(
+                                                              (productModel.name)!.capitalize!,
+                                                              style: Theme.of(context).textTheme.bodySmall,
+                                                            ),
+                                                          ),
+                                                          /*  SizedBox(
+                                    width: Dimensions.width20 * 3,
+                                  ), */
+
+                                                          Row(
+                                                            children: [
+                                                              GestureDetector(
+                                                                onTap: () {
+                                                                  productModelChoose = productModel;
+                                                                  Get.toNamed(RouteHelper.getUpdateProductPage(widget.shopId));
+                                                                },
+                                                                child: const Icon(
+                                                                  Icons.edit,
+                                                                  color: AppColors.greenEmerald,
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                width: Dimensions.width20,
+                                                              ),
+                                                              GestureDetector(
+                                                                onTap: () {
+                                                                  productModelChoose = productModel;
+                                                                  showAlertDialog(context, deleteProductController);
+                                                                },
+                                                                child: const Icon(
+                                                                  Icons.delete,
+                                                                  color: Colors.redAccent,
+                                                                ),
+                                                              )
+                                                            ],
+                                                          )
+                                                        ]),
+                                                  ),
+
+                                                  //! image section
+
+                                                  Container(
+                                                    //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
+                                                    height: Dimensions.height100 * 0.7,
+                                                    width: Dimensions.height100 * 0.7,
+                                                    decoration: const BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      color: Colors.white,
+                                                    ),
+                                                    alignment: Alignment.center,
+                                                    child: SizedBox(
+                                                      height: Dimensions.height100 * 0.5,
+                                                      width: Dimensions.height100 * 0.5,
+                                                      child: CachedNetworkImage(
+                                                        imageUrl: productModel.image!,
+                                                        progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                            CircularProgressIndicator(value: downloadProgress.progress),
+                                                        errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  /*  SizedBox(
+                                width: Dimensions.width20 * 3,
+                              ),
+                               */
+                                                ],
                                               ),
                                             ),
-                                            SizedBox(
-                                              width: Dimensions.width20,
-                                            ),
-                                            GestureDetector(
-                                              onTap: () {
-                                                productModelChoose = productModel;
-                                                showAlertDialog(context, deleteProductController);
-                                              },
-                                              child: const Icon(
-                                                Icons.delete,
-                                                color: Colors.redAccent,
-                                              ),
-                                            )
-                                          ],
-                                        )
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   );

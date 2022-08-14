@@ -13,19 +13,49 @@ class ProductItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(Dimensions.height10),
-      decoration: BoxDecoration(
-        color: AppColors.cardDarkColor,
-        borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
-        //border: Border.all(color: AppColors.borderDarkColor)
-      ),
-      //margin: EdgeInsets.only(right: Dimensions.width10),
-      //height: Dimensions.height100 * 0.7,
-      child: Row(children: [
+    return Stack(
+      //alignment: Alignment.,
+      children: [
+        Container(
+          //padding: EdgeInsets.all(Dimensions.height10),
+          decoration: BoxDecoration(
+            color: Theme.of(context).appBarTheme.surfaceTintColor,
+            borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+            //border: Border.all(color: AppColors.borderDarkColor)
+          ),
+          margin: EdgeInsets.only(bottom: Dimensions.height15, left: Dimensions.width20),
+          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
+            //! image section
+
+            //! text section
+
+            Container(
+              height: Dimensions.height100 * 0.7,
+              margin: EdgeInsets.only(left: Dimensions.height10 * 7),
+              alignment: Alignment.center,
+              child: Text(
+                titleText,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
+            /*  SizedBox(
+                                    width: Dimensions.width20 * 3,
+                                  ), */
+
+            Container(
+              margin: EdgeInsets.only(right: Dimensions.width10),
+              child: Text(
+                "$priceProduct €",
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColors.mainColor),
+              ),
+            ),
+          ]),
+        ),
+
         //! image section
 
         Container(
+          //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
           height: Dimensions.height100 * 0.7,
           width: Dimensions.height100 * 0.7,
           decoration: const BoxDecoration(
@@ -33,59 +63,13 @@ class ProductItemWidget extends StatelessWidget {
             color: Colors.white,
           ),
           alignment: Alignment.center,
-          child: SizedBox(
-            height: Dimensions.height100 * 0.5,
-            width: Dimensions.height100 * 0.5,
-            child: illustImage,
-          ),
+          child: SizedBox(height: Dimensions.height100 * 0.5, width: Dimensions.height100 * 0.5, child: illustImage),
         ),
-
-        SizedBox(
-          width: Dimensions.width20 * 1,
-        ),
-
-        //! text section
-
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.only(right: Dimensions.width10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Flexible(
-                  child: Text(
-                    titleText,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-
-                  /* SmallText(
-                    fontTypo: 'Helvetica-Bold',
-                    text: titleText,
-                    size: Dimensions.height25 * 0.8,
-                    color: AppColors.titleColor,
-                    allowOverFlow: true,
-                    maxLines: 1,
-                  ), */
-                ),
-                SizedBox(
-                  height: Dimensions.height10,
-                ),
-                Text(
-                  "$priceProduct €",
-                  style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColors.mainColor),
-                ),
-                /* BigText(
-                  fontTypo: 'Montserrat-Bold',
-                  size: Dimensions.height20 * 1.2,
-                  text: "$priceProduct €",
-                  color: AppColors.secondColor,
-                ), */
-              ],
-            ),
-          ),
-        ),
-      ]),
+        /*  SizedBox(
+                                width: Dimensions.width20 * 3,
+                              ),
+                               */
+      ],
     );
   }
 }

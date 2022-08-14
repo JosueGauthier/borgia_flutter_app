@@ -80,7 +80,8 @@ class _SearchPageState extends State<SearchPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      Container(
+                        padding: EdgeInsets.only(top: Dimensions.height10 / 2),
                         height: Dimensions.height45 * 2.7,
                         width: Dimensions.height100 * 3.5,
                         child: TextFormField(
@@ -90,19 +91,20 @@ class _SearchPageState extends State<SearchPage> {
                           controller: searchTextController,
                           style: Theme.of(context).textTheme.headlineMedium,
                           decoration: InputDecoration(
+                            isDense: true,
                             enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: Colors.transparent),
-                              borderRadius: BorderRadius.circular(5.5),
+                              borderRadius: BorderRadius.circular(Dimensions.width45),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: Colors.transparent),
-                              borderRadius: BorderRadius.circular(5.5),
+                              borderRadius: BorderRadius.circular(Dimensions.width45),
                             ),
                             prefixIcon: Icon(Icons.search, size: Dimensions.height10 * 3, color: Theme.of(context).colorScheme.onPrimary),
                             hintText: "Recherche...",
-                            hintStyle: Theme.of(context).textTheme.headlineMedium,
+                            hintStyle: Theme.of(context).textTheme.titleMedium,
                             filled: true,
-                            fillColor: Colors.transparent,
+                            fillColor: Theme.of(context).appBarTheme.surfaceTintColor,
                           ),
                         ),
                       ),

@@ -58,24 +58,52 @@ class _WelcomePageState extends State<WelcomePage> {
                             AppConstants.isfinishedRotate = true;
                             Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
                           },
-                          child: Container(
-                            padding: EdgeInsets.all(Dimensions.height10),
-                            decoration: BoxDecoration(
-                              color: AppColors.cardDarkColor,
-                              borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
-                              //border: Border.all(color: AppColors.borderDarkColor)
-                            ),
-                            margin: EdgeInsets.only(bottom: Dimensions.height15),
-                            child: Row(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.center, children: [
+                          child: Stack(
+                            //alignment: Alignment.,
+                            children: [
+                              Container(
+                                //padding: EdgeInsets.all(Dimensions.height10),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).appBarTheme.surfaceTintColor,
+                                  borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                                  //border: Border.all(color: AppColors.borderDarkColor)
+                                ),
+                                margin: EdgeInsets.only(bottom: Dimensions.height15, left: Dimensions.width20),
+                                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
+                                  //! text section
+
+                                  Container(
+                                    height: Dimensions.height100 * 0.7,
+                                    margin: EdgeInsets.only(left: Dimensions.height10 * 7),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      (shopModel.name)!.capitalize!,
+                                      style: Theme.of(context).textTheme.bodySmall,
+                                    ),
+                                  ),
+                                  /*  SizedBox(
+                                    width: Dimensions.width20 * 3,
+                                  ), */
+
+                                  Container(
+                                    width: Dimensions.height100 * 0.7,
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: Theme.of(context).colorScheme.onPrimary,
+                                    ),
+                                  ),
+                                ]),
+                              ),
+
                               //! image section
 
                               Container(
                                 //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
                                 height: Dimensions.height100 * 0.7,
                                 width: Dimensions.height100 * 0.7,
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.white,
+                                  color: Colors.white, /* border: Border.all(color: AppColors.borderDarkColor) */
                                 ),
                                 alignment: Alignment.center,
                                 child: SizedBox(
@@ -92,28 +120,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                 width: Dimensions.width20 * 3,
                               ),
                                */
-
-                              SizedBox(
-                                width: Dimensions.width20 * 3,
-                              ),
-
-                              //! text section
-
-                              Container(
-                                //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  (shopModel.name)!.capitalize!,
-                                  style: Theme.of(context).textTheme.bodySmall,
-                                ),
-                              ),
-                              /*  SizedBox(
-                                width: Dimensions.width20 * 3,
-                              ), */
-                              Container(
-                                width: Dimensions.height100 * 0.7,
-                              ),
-                            ]),
+                            ],
                           ),
                         );
                       }),

@@ -173,9 +173,12 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                             borderSide: const BorderSide(color: AppColors.mainColor),
                             borderRadius: BorderRadius.circular(50),
                           ),
-                          prefixIcon: Icon(
-                            Icons.bookmark,
-                            color: Theme.of(context).colorScheme.onPrimary,
+                          prefixIcon: Container(
+                            //padding: EdgeInsets.only(left: Dimensions.width20*1.5),
+                            child: Icon(
+                              Icons.bookmark,
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
                           ),
                           hintText: (productModelChosen.name != null) ? productModelChosen.name : "Nom du produit",
                           labelText: (productModelChosen.name != null) ? productModelChosen.name : "Nom du produit",
@@ -241,11 +244,11 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                                 ? SizedBox(
                                     width: Dimensions.width45 * 7,
                                     child: ProfileBox(
-                                      textColor: Theme.of(context).colorScheme.onPrimary,
+                                      textColor: Colors.white,
                                       backgroundcolor: AppColors.mainColor,
                                       icon: Icons.image,
                                       text: "Image du produit",
-                                      iconcolor: Theme.of(context).colorScheme.onPrimary,
+                                      iconcolor: Colors.white,
                                       radius: Dimensions.width45,
                                       isEditable: false,
                                     ),
@@ -253,11 +256,11 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                                 : SizedBox(
                                     width: Dimensions.screenWidth,
                                     child: ProfileBox(
-                                      textColor: Theme.of(context).colorScheme.onPrimary,
+                                      textColor: Colors.white,
                                       backgroundcolor: AppColors.mainColor,
                                       icon: Icons.image,
                                       text: "Image du produit",
-                                      iconcolor: Theme.of(context).colorScheme.onPrimary,
+                                      iconcolor: Colors.white,
                                       radius: Dimensions.width45,
                                       isEditable: false,
                                     ),
@@ -319,7 +322,7 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                                   fontTypo: 'Helvetica-Bold',
                                   text: "Prix manuel ?",
                                   size: Dimensions.height25 * 0.8,
-                                  color: Theme.of(context).colorScheme.onPrimary,
+                                  color: Colors.white,
                                 ),
                               ],
                             ),
@@ -364,7 +367,7 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                                   fontTypo: 'Helvetica-Bold',
                                   text: "Produit activé ?",
                                   size: Dimensions.height25 * 0.8,
-                                  color: Theme.of(context).colorScheme.onPrimary,
+                                  color: Colors.white,
                                 ),
                               ],
                             ),
@@ -414,11 +417,11 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                       child: SizedBox(
                         width: Dimensions.width45 * 5,
                         child: ProfileBox(
-                          textColor: Theme.of(context).colorScheme.onPrimary,
+                          textColor: Colors.white,
                           backgroundcolor: AppColors.greenEmerald,
                           icon: Icons.check,
                           text: "Valider",
-                          iconcolor: Theme.of(context).colorScheme.onPrimary,
+                          iconcolor: Colors.white,
                           radius: Dimensions.width45,
                           isEditable: false,
                         ),

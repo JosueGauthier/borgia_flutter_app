@@ -1,59 +1,5 @@
 import 'package:flutter/material.dart';
 
-const TextTheme customTextLightTheme = TextTheme(
-//* for money amount
-  titleLarge: TextStyle(color: Color(0xFF404040), fontFamily: 'OpenSansExtraBold', fontSize: 50, letterSpacing: 2),
-
-  //* for Bonjour, white
-  labelLarge: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 2),
-
-  //* for Liste des magasins
-  titleMedium: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 20),
-
-  //* for all title of page -> Recherche..., Statistiques ...
-  headlineMedium: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 1.5),
-
-  //* for Solde, item List
-  bodySmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 16),
-
-  //* for price
-  labelSmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 20),
-
-  //* for mdp and other very small text
-  displaySmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 12),
-);
-
-const TextTheme customTextDarkTheme = TextTheme(
-  //* for money amount
-  titleLarge: TextStyle(
-    color: Color.fromARGB(255, 220, 220, 220),
-    fontFamily: 'OpenSansExtraBold',
-    fontSize: 50,
-    letterSpacing: 2,
-    overflow: TextOverflow.ellipsis,
-  ),
-
-  //* for Bonjour, white
-  labelLarge:
-      TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 2, overflow: TextOverflow.ellipsis),
-
-  //* for Liste des magasins
-  titleMedium: TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 20, overflow: TextOverflow.ellipsis),
-
-  //* for all title of page -> Recherche..., Statistiques ...
-  headlineMedium:
-      TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 1.5, overflow: TextOverflow.ellipsis),
-
-  //* for Solde, item List
-  bodySmall: TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 16, overflow: TextOverflow.ellipsis),
-
-  //* for price
-  labelSmall: TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 20, overflow: TextOverflow.ellipsis),
-
-  //* for mdp and other very small text
-  displaySmall: TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 12, overflow: TextOverflow.ellipsis),
-);
-
 final ColorScheme customLightTheme = const ColorScheme.dark().copyWith(
   primary: const Color(0xFFCD5C5C),
   secondary: const Color(0xFF012E40),
@@ -72,26 +18,6 @@ final ColorScheme customDarkTheme = const ColorScheme.dark().copyWith(
   surface: const Color.fromARGB(255, 220, 220, 220),
 );
 
-class ThemeClass {
-  static ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    colorScheme: customLightTheme,
-    appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.white,
-    ),
-    textTheme: customTextLightTheme,
-  );
-
-  static ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: AppColors.darkBackGroundColor,
-    colorScheme: customDarkTheme,
-    appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.darkBackGroundColor,
-    ),
-    textTheme: customTextDarkTheme,
-  );
-}
-
 class AppColors {
   static const Color mainColor = Color.fromARGB(255, 205, 92, 92);
   static const Color lightMainColor = Color.fromARGB(255, 205, 140, 140);
@@ -100,6 +26,7 @@ class AppColors {
   static const Color titleColor = Color(0xFF404040);
   static const Color borderDarkColor = Color.fromARGB(255, 64, 64, 64);
   static const Color cardDarkColor = Color.fromARGB(255, 35, 35, 35);
+  static const Color cardLightColor = Color.fromARGB(255, 243, 243, 243);
   static const Color greyColor = Color(0xFF8B8B8C);
   static const Color whiteGreyColor = Color.fromARGB(255, 243, 243, 243);
   static const Color warningColor = Color(0xFFFED501);

@@ -168,7 +168,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                           ),
                           prefixIcon: Icon(
                             Icons.money,
-                            color: Theme.of(context).colorScheme.onPrimary,
+                            color: Colors.white,
                           ),
                           hintText: "Prix manuel en €",
                           labelText: "Prix manuel en €",

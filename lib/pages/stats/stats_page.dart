@@ -10,6 +10,7 @@ import '../../controllers/rank_user_controller.dart';
 import '../../controllers/user_shop_stat_controller.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
+import '../../utils/theme.dart';
 
 class StatsPage extends StatefulWidget {
   const StatsPage({Key? key}) : super(key: key);
@@ -55,9 +56,7 @@ class _StatsPageState extends State<StatsPage> {
             toolbarHeight: Dimensions.height20 * 3,
             title: //! header
                 Container(
-              height: Dimensions.height45 * 1.2,
-              margin: EdgeInsets.only(bottom: Dimensions.height10),
-              padding: EdgeInsets.only(top: Dimensions.height30 * 0.5, left: Dimensions.width20, right: Dimensions.width20),
+              padding: EdgeInsets.only(left: Dimensions.width20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
