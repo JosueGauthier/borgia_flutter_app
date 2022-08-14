@@ -53,17 +53,31 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: Dimensions.height20,
-            ),
+            SizedBox(height: Dimensions.height20 //,Dimensions.height10,
+                ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
-              decoration: BoxDecoration(color: Theme.of(context).colorScheme.onPrimaryContainer, borderRadius: BorderRadius.circular(Dimensions.width20)),
+              decoration: BoxDecoration(
+                  //color: AppColors.mainColor.withOpacity(1),
+                  borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                  border: Border.all(color: AppColors.borderDarkColor)
+                  /* boxShadow: [
+                                                  BoxShadow(
+                                                    color: AppColors.mainColor.withOpacity(0.2),
+                                                    spreadRadius: 5,
+                                                    blurRadius: 5,
+                                                    blurStyle: BlurStyle.normal,
+                                                    offset: const Offset(0, 0), // changes position of shadow
+                                                  ),
+                                                ], */
+                  ),
+              //padding: EdgeInsets.all(Dimensions.height10),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ProfileBox(
                     textColor: Theme.of(context).colorScheme.onPrimary,
-                    backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                    backgroundcolor: Theme.of(context).colorScheme.background,
                     iconcolor: Theme.of(context).colorScheme.onPrimary,
                     icon: Icons.person,
                     text: "Bucque : ${userModel.surname}",
@@ -71,11 +85,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
                     radius: 0, //Dimensions.width20,
                   ),
-                  const SizedBox(height: 0 //,Dimensions.height10,
-                      ),
                   ProfileBox(
                     textColor: Theme.of(context).colorScheme.onPrimary,
-                    backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                    backgroundcolor: Theme.of(context).colorScheme.background,
                     icon: Icons.group,
                     text: "Fam'ss : ${userModel.family}",
                     iconcolor: Theme.of(context).colorScheme.onPrimary,
@@ -87,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   ProfileBox(
                     textColor: Theme.of(context).colorScheme.onPrimary,
-                    backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                    backgroundcolor: Theme.of(context).colorScheme.background,
                     icon: Icons.group_work,
                     text: "Prom'ss : ${(userModel.campus!).toLowerCase().capitalize} ${userModel.year! - 1800}",
                     iconcolor: Theme.of(context).colorScheme.onPrimary,
@@ -111,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ), */
                   ProfileBox(
                     textColor: Theme.of(context).colorScheme.onPrimary,
-                    backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                    backgroundcolor: Theme.of(context).colorScheme.background,
                     icon: Icons.phone,
                     text: userModel.phone.toString(),
                     iconcolor: Theme.of(context).colorScheme.onPrimary,
@@ -121,9 +133,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: Dimensions.height20,
-            ),
+
             /* ProfileBox(
               textColor: Theme.of(context).colorScheme.surface,
               backgroundcolor: (userModel.theme.toString() == "dark") ? AppColors.titleColor : AppColors.mainColor,

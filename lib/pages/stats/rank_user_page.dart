@@ -43,211 +43,241 @@ class _RankUserPageState extends State<RankUserPage> {
                     onTap: () {
                       Get.toNamed(RouteHelper.getProductRankUserPage(indexShop + 1));
                     },
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: Dimensions.width20, bottom: Dimensions.height10),
-                              height: Dimensions.height100 * 0.6,
-                              width: Dimensions.height100 * 0.6,
-                              child: CachedNetworkImage(
-                                imageUrl: rankUserShopModel.image!,
-                                progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                                errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
-                              ),
-                            ),
-                            Flexible(
-                              child: Container(
-                                margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                                child: Text(
-                                  (rankUserShopModel.name)!.capitalize!,
-                                  style: Theme.of(context).textTheme.titleMedium,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: Dimensions.height100 * 0.6,
-                              height: Dimensions.height100 * 0.6,
-                              //color: Colors.redAccent,
-                              child: Icon(
-                                Icons.arrow_forward_rounded,
-                                color: Theme.of(context).colorScheme.onPrimary,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: Dimensions.height100 * 2,
-                          //color: Colors.amber,
-                          child: Stack(
-                            alignment: Alignment.bottomCenter,
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height10),
+                      padding: EdgeInsets.symmetric(vertical: Dimensions.height10 * 2),
+                      decoration: BoxDecoration(
+                          //color: AppColors.mainColor.withOpacity(1),
+                          borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                          border: Border.all(color: AppColors.borderDarkColor)
+                          /* boxShadow: [
+                                                  BoxShadow(
+                                                    color: AppColors.mainColor.withOpacity(0.2),
+                                                    spreadRadius: 5,
+                                                    blurRadius: 5,
+                                                    blurStyle: BlurStyle.normal,
+                                                    offset: const Offset(0, 0), // changes position of shadow
+                                                  ),
+                                                ], */
+                          ),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              //! image
+
                               Container(
-                                height: Dimensions.height100 * 1.3,
-                                margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20),
-                                child: Image.asset(
-                                  "assets/image/podium_medals.png",
-                                  fit: BoxFit.contain,
+                                margin: EdgeInsets.only(left: Dimensions.width20),
+                                height: Dimensions.height100 * 0.7,
+                                width: Dimensions.height100 * 0.7,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.white,
+                                ),
+                                alignment: Alignment.center,
+                                child: SizedBox(
+                                  height: Dimensions.height100 * 0.5,
+                                  width: Dimensions.height100 * 0.5,
+                                  child: CachedNetworkImage(
+                                    imageUrl: rankUserShopModel.image!,
+                                    progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                                    errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
+                                  ),
                                 ),
                               ),
-                              Positioned(
-                                top: Dimensions.height10 * 5,
-                                left: Dimensions.width10 * 2,
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      //color: Colors.greenAccent,
-                                      height: Dimensions.height10 * 6,
-                                      width: Dimensions.width10 * 7.2,
-                                      child: Center(
-                                        child: Column(
-                                          children: [
-                                            BigText(
-                                                fontTypo: 'Helvetica-Bold',
-                                                text: (userTopTenList![1].surname)!.capitalize!,
-                                                size: ((Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[1].surname!.length)) * 0.14) >=
-                                                        Dimensions.height10)
-                                                    ? Dimensions.height10 * 1.7
-                                                    : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[1].surname!.length)) * 0.14,
-                                                color: Theme.of(context).colorScheme.onPrimary),
-                                            SizedBox(
-                                              height: Dimensions.height10 / 2,
-                                            ),
-                                            BigText(
-                                              fontTypo: 'Helvetica-Bold',
-                                              text:
-                                                  ("${userTopTenList[1].family!} ${userTopTenList[1].campus!.toLowerCase().capitalize!}${userTopTenList[1].promotion! - 1800}")
-                                                      .capitalize!,
-                                              size: Dimensions.height10 * 1.3,
-                                              color: AppColors.greyColor,
-                                            ),
-                                            SizedBox(
-                                              height: Dimensions.height10 / 2,
-                                            ),
-                                            BigText(
-                                              fontTypo: 'Helvetica-Bold',
-                                              text: "${userTopTenList[1].montantAchatsParShop}€",
-                                              size: Dimensions.height10 * 1.5,
-                                              color: Theme.of(context).colorScheme.onPrimary, //Color.fromRGBO(105, 105, 105, 0),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+
+                              Flexible(
+                                child: Container(
+                                  margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                                  child: Text(
+                                    (rankUserShopModel.name)!.capitalize!,
+                                    style: Theme.of(context).textTheme.titleMedium,
+                                  ),
                                 ),
                               ),
-                              Positioned(
-                                top: Dimensions.height10, //Dimensions.height10 * 2,
-                                left: Dimensions.width10 * 9.5,
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      //color: Colors.greenAccent,
-                                      height: Dimensions.height10 * 6,
-                                      width: Dimensions.width10 * 7.2,
-                                      child: Center(
-                                        child: Column(
-                                          children: [
-                                            BigText(
-                                              fontTypo: 'Helvetica-Bold',
-                                              text: (userTopTenList[0].surname)!.capitalize!,
-                                              size: ((Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[0].surname!.length)) * 0.14) >=
-                                                      Dimensions.height10)
-                                                  ? Dimensions.height10 * 1.7
-                                                  : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[0].surname!.length)) * 0.14,
-                                              color: Theme.of(context).colorScheme.onPrimary,
-                                            ),
-                                            SizedBox(
-                                              height: Dimensions.height10 / 2,
-                                            ),
-                                            BigText(
-                                              fontTypo: 'Helvetica-Bold',
-                                              text:
-                                                  ("${userTopTenList[0].family!} ${userTopTenList[0].campus!.toLowerCase().capitalize!}${userTopTenList[0].promotion! - 1800}")
-                                                      .capitalize!,
-                                              size: Dimensions.height10 * 1.3,
-                                              color: AppColors.greyColor,
-                                            ),
-                                            SizedBox(
-                                              height: Dimensions.height10 / 2,
-                                            ),
-                                            BigText(
-                                              fontTypo: 'Helvetica-Bold',
-                                              text: "${userTopTenList[0].montantAchatsParShop}€",
-                                              size: Dimensions.height10 * 1.5,
-                                              color: Theme.of(context).colorScheme.onPrimary,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                top: Dimensions.height10 * 8.5,
-                                left: Dimensions.width10 * 17,
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      //color: Colors.greenAccent,
-                                      height: Dimensions.height10 * 6,
-                                      width: Dimensions.width10 * 7.2,
-                                      child: Center(
-                                        child: Column(
-                                          children: [
-                                            BigText(
-                                              fontTypo: 'Helvetica-Bold',
-                                              text: (userTopTenList[2].surname)!.capitalize!,
-                                              size: ((Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[2].surname!.length)) * 0.14) >=
-                                                      Dimensions.height10)
-                                                  ? Dimensions.height10 * 1.7
-                                                  : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[2].surname!.length)) * 0.14,
-                                              color: Theme.of(context).colorScheme.onPrimary,
-                                            ),
-                                            SizedBox(
-                                              height: Dimensions.height10 / 2,
-                                            ),
-                                            BigText(
-                                              fontTypo: 'Helvetica-Bold',
-                                              text:
-                                                  ("${userTopTenList[2].family!} ${userTopTenList[2].campus!.toLowerCase().capitalize!}${userTopTenList[2].promotion! - 1800}")
-                                                      .capitalize!,
-                                              size: Dimensions.height10 * 1.3,
-                                              color: AppColors.greyColor,
-                                            ),
-                                            SizedBox(
-                                              height: Dimensions.height10 / 2,
-                                            ),
-                                            BigText(
-                                              fontTypo: 'Helvetica-Bold',
-                                              text: "${userTopTenList[2].montantAchatsParShop}€",
-                                              size: Dimensions.height10 * 1.5,
-                                              color: Theme.of(context).colorScheme.onPrimary,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                              SizedBox(
+                                width: Dimensions.height100 * 0.6,
+                                height: Dimensions.height100 * 0.6,
+                                //color: Colors.redAccent,
+                                child: Icon(
+                                  Icons.arrow_forward_rounded,
+                                  color: Theme.of(context).colorScheme.onPrimary,
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                        SizedBox(
-                          height: Dimensions.height20,
-                        ),
-                      ],
+                          SizedBox(
+                            height: Dimensions.height100 * 2,
+                            //color: Colors.amber,
+                            child: Stack(
+                              alignment: Alignment.bottomCenter,
+                              children: [
+                                Container(
+                                  height: Dimensions.height100 * 1.3,
+                                  margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20),
+                                  child: Image.asset(
+                                    "assets/image/podium_medals.png",
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                                Positioned(
+                                  top: Dimensions.height10 * 5,
+                                  left: Dimensions.width10 * 2,
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        //color: Colors.greenAccent,
+                                        height: Dimensions.height10 * 6,
+                                        width: Dimensions.width10 * 7.2,
+                                        child: Center(
+                                          child: Column(
+                                            children: [
+                                              BigText(
+                                                  fontTypo: 'Helvetica-Bold',
+                                                  text: (userTopTenList![1].surname)!.capitalize!,
+                                                  size: ((Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[1].surname!.length)) * 0.14) >=
+                                                          Dimensions.height10)
+                                                      ? Dimensions.height10 * 1.7
+                                                      : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[1].surname!.length)) * 0.14,
+                                                  color: Theme.of(context).colorScheme.onPrimary),
+                                              SizedBox(
+                                                height: Dimensions.height10 / 2,
+                                              ),
+                                              BigText(
+                                                fontTypo: 'Helvetica-Bold',
+                                                text:
+                                                    ("${userTopTenList[1].family!} ${userTopTenList[1].campus!.toLowerCase().capitalize!}${userTopTenList[1].promotion! - 1800}")
+                                                        .capitalize!,
+                                                size: Dimensions.height10 * 1.3,
+                                                color: AppColors.greyColor,
+                                              ),
+                                              SizedBox(
+                                                height: Dimensions.height10 / 2,
+                                              ),
+                                              BigText(
+                                                fontTypo: 'Helvetica-Bold',
+                                                text: "${userTopTenList[1].montantAchatsParShop}€",
+                                                size: Dimensions.height10 * 1.5,
+                                                color: Theme.of(context).colorScheme.onPrimary, //Color.fromRGBO(105, 105, 105, 0),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Positioned(
+                                  top: Dimensions.height10, //Dimensions.height10 * 2,
+                                  left: Dimensions.width10 * 9.5,
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        //color: Colors.greenAccent,
+                                        height: Dimensions.height10 * 6,
+                                        width: Dimensions.width10 * 7.2,
+                                        child: Center(
+                                          child: Column(
+                                            children: [
+                                              BigText(
+                                                fontTypo: 'Helvetica-Bold',
+                                                text: (userTopTenList[0].surname)!.capitalize!,
+                                                size: ((Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[0].surname!.length)) * 0.14) >=
+                                                        Dimensions.height10)
+                                                    ? Dimensions.height10 * 1.7
+                                                    : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[0].surname!.length)) * 0.14,
+                                                color: Theme.of(context).colorScheme.onPrimary,
+                                              ),
+                                              SizedBox(
+                                                height: Dimensions.height10 / 2,
+                                              ),
+                                              BigText(
+                                                fontTypo: 'Helvetica-Bold',
+                                                text:
+                                                    ("${userTopTenList[0].family!} ${userTopTenList[0].campus!.toLowerCase().capitalize!}${userTopTenList[0].promotion! - 1800}")
+                                                        .capitalize!,
+                                                size: Dimensions.height10 * 1.3,
+                                                color: AppColors.greyColor,
+                                              ),
+                                              SizedBox(
+                                                height: Dimensions.height10 / 2,
+                                              ),
+                                              BigText(
+                                                fontTypo: 'Helvetica-Bold',
+                                                text: "${userTopTenList[0].montantAchatsParShop}€",
+                                                size: Dimensions.height10 * 1.5,
+                                                color: Theme.of(context).colorScheme.onPrimary,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Positioned(
+                                  top: Dimensions.height10 * 8.5,
+                                  left: Dimensions.width10 * 17,
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        //color: Colors.greenAccent,
+                                        height: Dimensions.height10 * 6,
+                                        width: Dimensions.width10 * 7.2,
+                                        child: Center(
+                                          child: Column(
+                                            children: [
+                                              BigText(
+                                                fontTypo: 'Helvetica-Bold',
+                                                text: (userTopTenList[2].surname)!.capitalize!,
+                                                size: ((Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[2].surname!.length)) * 0.14) >=
+                                                        Dimensions.height10)
+                                                    ? Dimensions.height10 * 1.7
+                                                    : Dimensions.height10 * ((Dimensions.width10 * 7.2) / (userTopTenList[2].surname!.length)) * 0.14,
+                                                color: Theme.of(context).colorScheme.onPrimary,
+                                              ),
+                                              SizedBox(
+                                                height: Dimensions.height10 / 2,
+                                              ),
+                                              BigText(
+                                                fontTypo: 'Helvetica-Bold',
+                                                text:
+                                                    ("${userTopTenList[2].family!} ${userTopTenList[2].campus!.toLowerCase().capitalize!}${userTopTenList[2].promotion! - 1800}")
+                                                        .capitalize!,
+                                                size: Dimensions.height10 * 1.3,
+                                                color: AppColors.greyColor,
+                                              ),
+                                              SizedBox(
+                                                height: Dimensions.height10 / 2,
+                                              ),
+                                              BigText(
+                                                fontTypo: 'Helvetica-Bold',
+                                                text: "${userTopTenList[2].montantAchatsParShop}€",
+                                                size: Dimensions.height10 * 1.5,
+                                                color: Theme.of(context).colorScheme.onPrimary,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: Dimensions.height20,
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }),
 
             SizedBox(
-              height: Dimensions.height10 * 5,
+              height: Dimensions.height10 * 7,
             )
           ]),
         );

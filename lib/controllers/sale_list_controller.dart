@@ -45,8 +45,6 @@ class SaleListController extends GetxController {
   Future<void> getMapListTwoHours() async {
     Response responseLive = await saleListRepo.getHourSaleList();
 
-    inspect(responseLive.body);
-
     if (responseLive.statusCode == 200) {
       _hourList = [];
       List responseBody = responseLive.body;
@@ -61,8 +59,6 @@ class SaleListController extends GetxController {
 
   Future<void> getUserSaleList() async {
     Response response = await saleListRepo.getSaleUserList();
-
-    inspect(response.body);
 
     if (response.statusCode == 200) {
       _userHistoryList = [];

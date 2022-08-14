@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/colors.dart';
 import '../utils/dimensions.dart';
 
 class ProductItemWidget extends StatelessWidget {
@@ -13,8 +14,14 @@ class ProductItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(Dimensions.height10),
+      decoration: BoxDecoration(
+        color: AppColors.cardDarkColor,
+        borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+        //border: Border.all(color: AppColors.borderDarkColor)
+      ),
+      //margin: EdgeInsets.only(right: Dimensions.width10),
       //height: Dimensions.height100 * 0.7,
-      margin: EdgeInsets.only(right: Dimensions.width10),
       child: Row(children: [
         //! image section
 
@@ -66,7 +73,7 @@ class ProductItemWidget extends StatelessWidget {
                 ),
                 Text(
                   "$priceProduct €",
-                  style: Theme.of(context).textTheme.labelSmall,
+                  style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColors.mainColor),
                 ),
                 /* BigText(
                   fontTypo: 'Montserrat-Bold',

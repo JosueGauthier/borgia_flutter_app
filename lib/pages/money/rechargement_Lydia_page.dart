@@ -104,6 +104,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
           _launchInBrowser(url);
         }
 
+        //todo on dispose kill stream
         Stream.periodic(const Duration(seconds: 2)).takeWhile((_) => !done).forEach((_) async {
           success = await _lydiaCheckState(lydiaStateController, lydiaDoController.requestUuid);
           done = success; // only if you want to finish the function earlier

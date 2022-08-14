@@ -94,7 +94,7 @@ class _OtherUsersPageState extends State<OtherUsersPage> {
                           width: Dimensions.height100 * 2.5,
                           height: Dimensions.height100 * 2.5,
                           decoration: BoxDecoration(
-                              border: Border.all(width: 3, color: AppColors.secondColor),
+                              border: Border.all(width: 3, color: Theme.of(context).colorScheme.onPrimary),
                               color: Theme.of(context).colorScheme.surface,
                               shape: BoxShape.circle,
                               image: const DecorationImage(fit: BoxFit.contain, image: AssetImage("assets/image/logoAMAngers.jpg")))),
@@ -116,16 +116,37 @@ class _OtherUsersPageState extends State<OtherUsersPage> {
                 SizedBox(
                   height: Dimensions.height20,
                 ), */
+
+                Container(
+                  child: Column(
+                    children: [],
+                  ),
+                ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
-                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.onPrimaryContainer, borderRadius: BorderRadius.circular(Dimensions.width20)),
+                  decoration: BoxDecoration(
+                      //color: AppColors.mainColor.withOpacity(1),
+                      borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                      border: Border.all(color: AppColors.borderDarkColor)
+                      /* boxShadow: [
+                                                  BoxShadow(
+                                                    color: AppColors.mainColor.withOpacity(0.2),
+                                                    spreadRadius: 5,
+                                                    blurRadius: 5,
+                                                    blurStyle: BlurStyle.normal,
+                                                    offset: const Offset(0, 0), // changes position of shadow
+                                                  ),
+                                                ], */
+                      ),
+                  //margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
+                  //decoration: BoxDecoration(color: Theme.of(context).colorScheme.onPrimaryContainer, borderRadius: BorderRadius.circular(Dimensions.width20)),
                   child: Column(
                     children: [
                       (userModel.username == null)
                           ? Container()
                           : ProfileBox(
                               textColor: Theme.of(context).colorScheme.onPrimary,
-                              backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                              backgroundcolor: Theme.of(context).colorScheme.background,
                               iconcolor: Theme.of(context).colorScheme.onPrimary,
                               icon: Icons.login,
                               text: "Identifiant : ${userModel.username}",
@@ -138,7 +159,7 @@ class _OtherUsersPageState extends State<OtherUsersPage> {
                           ? Container()
                           : ProfileBox(
                               textColor: Theme.of(context).colorScheme.onPrimary,
-                              backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                              backgroundcolor: Theme.of(context).colorScheme.background,
                               iconcolor: Theme.of(context).colorScheme.onPrimary,
                               icon: Icons.person,
                               text: "Nom : ${(userModel.firstName)?.capitalize} ${userModel.lastName?.capitalize}",
@@ -151,7 +172,7 @@ class _OtherUsersPageState extends State<OtherUsersPage> {
                           ? Container()
                           : ProfileBox(
                               textColor: Theme.of(context).colorScheme.onPrimary,
-                              backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                              backgroundcolor: Theme.of(context).colorScheme.background,
                               iconcolor: Theme.of(context).colorScheme.onPrimary,
                               icon: Icons.person_pin,
                               text: "Bucque : ${userModel.surname?.capitalize}",
@@ -164,7 +185,7 @@ class _OtherUsersPageState extends State<OtherUsersPage> {
                           ? Container()
                           : ProfileBox(
                               textColor: Theme.of(context).colorScheme.onPrimary,
-                              backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                              backgroundcolor: Theme.of(context).colorScheme.background,
                               iconcolor: Theme.of(context).colorScheme.onPrimary,
                               icon: Icons.group,
                               text: "Fam'ss : ${userModel.family}",
@@ -177,7 +198,7 @@ class _OtherUsersPageState extends State<OtherUsersPage> {
                           ? Container()
                           : ProfileBox(
                               textColor: Theme.of(context).colorScheme.onPrimary,
-                              backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                              backgroundcolor: Theme.of(context).colorScheme.background,
                               iconcolor: Theme.of(context).colorScheme.onPrimary,
                               icon: Icons.group_work,
                               text: "Prom'ss : ${userModel.campus!.toLowerCase().capitalize} ${userModel.year! - 1800}",
@@ -198,7 +219,7 @@ class _OtherUsersPageState extends State<OtherUsersPage> {
                               },
                               child: ProfileBox(
                                 textColor: Theme.of(context).colorScheme.onPrimary,
-                                backgroundcolor: Theme.of(context).colorScheme.onPrimaryContainer,
+                                backgroundcolor: Theme.of(context).colorScheme.background,
                                 iconcolor: Theme.of(context).colorScheme.onPrimary,
                                 icon: Icons.phone,
                                 text: "Téléphone : ${userModel.phone}",

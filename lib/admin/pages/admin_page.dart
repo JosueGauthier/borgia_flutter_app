@@ -95,18 +95,19 @@ class _AdminPageState extends State<AdminPage> {
                                             child: Container(
                                               margin: EdgeInsets.only(bottom: Dimensions.height15),
                                               decoration: BoxDecoration(
-                                                //color: Colors.white.withOpacity(0.2),
-                                                borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
-                                                boxShadow: [
+                                                  //color: AppColors.mainColor.withOpacity(1),
+                                                  borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                                                  border: Border.all(color: AppColors.borderDarkColor)
+                                                  /* boxShadow: [
                                                   BoxShadow(
-                                                    color: Colors.white.withOpacity(0.2),
+                                                    color: AppColors.mainColor.withOpacity(0.2),
                                                     spreadRadius: 5,
                                                     blurRadius: 5,
                                                     blurStyle: BlurStyle.normal,
                                                     offset: const Offset(0, 0), // changes position of shadow
                                                   ),
-                                                ],
-                                              ),
+                                                ], */
+                                                  ),
                                               padding: EdgeInsets.all(Dimensions.height10),
                                               child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -180,7 +181,8 @@ class _AdminPageState extends State<AdminPage> {
                                                           ),
                                                     //! text section
 
-                                                    SizedBox(
+                                                    Container(
+                                                      //decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20))),
                                                       //color: Colors.blueAccent,
                                                       height: Dimensions.height100 * 1.3,
                                                       child: Column(
@@ -189,6 +191,10 @@ class _AdminPageState extends State<AdminPage> {
                                                           TextButton(
                                                             style: ButtonStyle(
                                                               backgroundColor: MaterialStateProperty.all<Color>(AppColors.greenEmerald),
+                                                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                                                borderRadius: BorderRadius.circular(Dimensions.width20),
+                                                                //side: BorderSide(color: Colors.red)
+                                                              )),
                                                               //foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
                                                             ),
                                                             onPressed: () {
@@ -206,6 +212,10 @@ class _AdminPageState extends State<AdminPage> {
                                                           (userModel.groups![index].name!.contains("chiefs"))
                                                               ? TextButton(
                                                                   style: ButtonStyle(
+                                                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(Dimensions.width20),
+                                                                      //side: BorderSide(color: Colors.red)
+                                                                    )),
                                                                     backgroundColor: MaterialStateProperty.all<Color>(AppColors.secondColor),
                                                                     //foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
                                                                   ),

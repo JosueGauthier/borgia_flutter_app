@@ -17,6 +17,10 @@ class WelcomePageWithHeader extends StatefulWidget {
 }
 
 class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
+  bool isLight = false;
+  String backImageNight = "assets/image/cloitreNuit.png";
+  String backImageDay = "assets/image/cloitre.png";
+
   @override
   Widget build(BuildContext context) {
     Get.find<UserController>().getUserList(AppConstants.USERNAME);
@@ -40,7 +44,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                               onTap: () {
                                 compteur += 1;
 
-                                if (compteur > 6) {
+                                if (compteur > 73) {
                                   Get.toNamed(RouteHelper.getNeonPage());
                                 }
                               },
@@ -57,11 +61,11 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                     blendMode: BlendMode.dstIn,
                                     child: (isLightTheme == false)
                                         ? Image.asset(
-                                            "assets/image/cloitreNuit.png",
+                                            backImageNight,
                                             fit: BoxFit.contain,
                                           )
                                         : Image.asset(
-                                            "assets/image/cloitre.png",
+                                            backImageDay,
                                             fit: BoxFit.contain,
                                           ),
                                   ),
@@ -201,7 +205,25 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                         height: Dimensions.height100 * 0.5,
                                       ),
                                     ],
-                                  )
+                                  ),
+                                  Positioned(
+                                    right: Dimensions.width20 * 2.4,
+                                    top: Dimensions.height20 * 8.2,
+                                    child: GestureDetector(
+                                      onDoubleTap: () {
+                                        setState(() {
+                                          //isLight = true;
+                                          backImageDay = "assets/image/promss220.jpg";
+                                          backImageNight = "assets/image/promss220.jpg";
+                                        });
+                                      },
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        height: Dimensions.height15 * 2,
+                                        width: Dimensions.width10 * 2,
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             )

@@ -55,7 +55,13 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                               Get.toNamed(RouteHelper.getProductList(categoryModel.id!, categoryModel.contentType!.model!));
                             },
                             child: Container(
-                              margin: EdgeInsets.only(right: Dimensions.width20, bottom: Dimensions.height15),
+                              padding: EdgeInsets.all(Dimensions.height10),
+                              decoration: BoxDecoration(
+                                color: AppColors.cardDarkColor,
+                                borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                                //border: Border.all(color: AppColors.borderDarkColor)
+                              ),
+                              margin: EdgeInsets.only(bottom: Dimensions.height15),
                               child: Row(children: [
                                 //! image
 

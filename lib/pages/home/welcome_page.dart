@@ -59,6 +59,12 @@ class _WelcomePageState extends State<WelcomePage> {
                             Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
                           },
                           child: Container(
+                            padding: EdgeInsets.all(Dimensions.height10),
+                            decoration: BoxDecoration(
+                              color: AppColors.cardDarkColor,
+                              borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                              //border: Border.all(color: AppColors.borderDarkColor)
+                            ),
                             margin: EdgeInsets.only(bottom: Dimensions.height15),
                             child: Row(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.center, children: [
                               //! image section
@@ -82,6 +88,11 @@ class _WelcomePageState extends State<WelcomePage> {
                                   ),
                                 ),
                               ),
+                              /*  SizedBox(
+                                width: Dimensions.width20 * 3,
+                              ),
+                               */
+
                               SizedBox(
                                 width: Dimensions.width20 * 3,
                               ),
@@ -95,6 +106,12 @@ class _WelcomePageState extends State<WelcomePage> {
                                   (shopModel.name)!.capitalize!,
                                   style: Theme.of(context).textTheme.bodySmall,
                                 ),
+                              ),
+                              /*  SizedBox(
+                                width: Dimensions.width20 * 3,
+                              ), */
+                              Container(
+                                width: Dimensions.height100 * 0.7,
                               ),
                             ]),
                           ),

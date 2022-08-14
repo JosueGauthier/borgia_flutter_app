@@ -93,15 +93,18 @@ class ThemeClass {
 }
 
 class AppColors {
-  static const Color mainColor = Color(0xFFCD5C5C);
-  static const Color secondColor = Color(0xFF012E40);
-  static const Color greenEmerald = Color.fromARGB(200, 1, 152, 117);
+  static const Color mainColor = Color.fromARGB(255, 205, 92, 92);
+  static const Color lightMainColor = Color.fromARGB(255, 205, 140, 140);
+  static const Color secondColor = Color.fromARGB(255, 1, 46, 64);
+  static const Color greenEmerald = Color.fromARGB(255, 1, 152, 117);
   static const Color titleColor = Color(0xFF404040);
+  static const Color borderDarkColor = Color.fromARGB(255, 64, 64, 64);
+  static const Color cardDarkColor = Color.fromARGB(255, 35, 35, 35);
   static const Color greyColor = Color(0xFF8B8B8C);
   static const Color whiteGreyColor = Color.fromARGB(255, 243, 243, 243);
   static const Color warningColor = Color(0xFFFED501);
 
-  static const Color darkBackGroundColor = Color(0xFF121212);
+  static const Color darkBackGroundColor = Color.fromARGB(255, 18, 18, 18);
 }
 
 class ListStatColors {
