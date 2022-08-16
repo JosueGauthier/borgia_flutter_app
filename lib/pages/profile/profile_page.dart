@@ -60,17 +60,7 @@ class _ProfilePageState extends State<ProfilePage> {
               decoration: BoxDecoration(
                   //color: AppColors.mainColor.withOpacity(1),
                   borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
-                  border: Border.all(color: AppColors.borderDarkColor)
-                  /* boxShadow: [
-                                                  BoxShadow(
-                                                    color: AppColors.mainColor.withOpacity(0.2),
-                                                    spreadRadius: 5,
-                                                    blurRadius: 5,
-                                                    blurStyle: BlurStyle.normal,
-                                                    offset: const Offset(0, 0), // changes position of shadow
-                                                  ),
-                                                ], */
-                  ),
+                  border: Border.all(color: AppColors.borderDarkColor)),
               //padding: EdgeInsets.all(Dimensions.height10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

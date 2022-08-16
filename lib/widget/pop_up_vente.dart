@@ -14,6 +14,7 @@ import '../../widget/app_icon.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
+import '../controllers/user_controller.dart';
 import '../models/operator_sales_model.dart';
 import '../models/self_sales_model.dart';
 import '../models/user_model.dart';
@@ -89,8 +90,13 @@ class DialogSalePageState extends State<DialogSalePage> {
         salesController.operatorOrder(salesModel).then((status) {
           if (status.isSuccess) {
             widget.productListController.quantity = 0;
+
             //! changer below
             Get.back();
+
+            Get.back();
+
+            //Get.toNamed(RouteHelper.getAdminSearchPage(apiShopPk));
           } else {
             Get.snackbar("Error", "Vente non effectuée. L'acheteur n'a pas été débité.", backgroundColor: Colors.redAccent);
           }

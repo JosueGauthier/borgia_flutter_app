@@ -216,15 +216,6 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                               decoration: BoxDecoration(
                                 color: AppColors.mainColor,
                                 borderRadius: BorderRadius.all(Radius.circular(Dimensions.width45)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppColors.mainColor.withOpacity(0.5),
-                                    spreadRadius: 5,
-                                    blurRadius: 5,
-                                    blurStyle: BlurStyle.normal,
-                                    offset: const Offset(0, 0), // changes position of shadow
-                                  ),
-                                ],
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -233,7 +224,7 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                                     children: [
                                       Icon(
                                         Icons.image,
-                                        color: Theme.of(context).colorScheme.onPrimary,
+                                        color: Colors.white,
                                       ),
                                       SizedBox(
                                         width: Dimensions.width10,
@@ -242,7 +233,7 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                                         fontTypo: 'Helvetica-Bold',
                                         text: "Image de la catégorie",
                                         size: Dimensions.height25 * 0.8,
-                                        color: Theme.of(context).colorScheme.onPrimary,
+                                        color: Colors.white,
                                       ),
                                     ],
                                   ),
@@ -296,7 +287,7 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                           : const Center(
                               child: CircularProgressIndicator(
                                 strokeWidth: 4,
-                                color: Colors.blueAccent,
+                                color: AppColors.mainColor,
                               ),
                             );
                     }),
@@ -307,11 +298,11 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                       child: SizedBox(
                         width: Dimensions.width45 * 5,
                         child: ProfileBox(
-                          textColor: Theme.of(context).colorScheme.onPrimary,
+                          textColor: Colors.white,
                           backgroundcolor: AppColors.greenEmerald,
                           icon: Icons.check,
                           text: "Valider",
-                          iconcolor: Theme.of(context).colorScheme.onPrimary,
+                          iconcolor: Colors.white,
                           radius: Dimensions.width45,
                           isEditable: false,
                         ),
@@ -377,7 +368,7 @@ class _ListItemState extends State<ListItem> {
           child: ListView.builder(
             shrinkWrap: true,
             padding: EdgeInsets.zero,
-            physics: const NeverScrollableScrollPhysics(),
+            //physics: const NeverScrollableScrollPhysics(),
             itemCount: widget.dynamicList.length,
             itemBuilder: (_, index) => widget.dynamicList[index],
           ),
@@ -394,7 +385,10 @@ class _ListItemState extends State<ListItem> {
                         addDynamic();
                         setState(() {});
                       },
-                      child: const Icon(Icons.add))),
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ))),
             ],
           ),
         ),
@@ -464,7 +458,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                             child: ClipRRect(
                               child: DropdownButton<int>(
                                 value: widget.productChoose,
-                                dropdownColor: AppColors.mainColor,
+                                dropdownColor: Theme.of(context).colorScheme.primary,
                                 borderRadius: BorderRadius.circular(Dimensions.height10 * 2),
                                 onChanged: (int? newValue) {
                                   setState(() {

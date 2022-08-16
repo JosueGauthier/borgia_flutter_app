@@ -48,42 +48,8 @@ class _ProductManagementPageState extends State<ProductManagementPage> {
 
   showAlertDialog(BuildContext context, DeleteProductController deleteProductController) {
     // set up the buttons
-    Widget cancelButton = TextButton(
-      child: Text(
-        "Cancel",
-        style: Theme.of(context).textTheme.labelLarge,
-      ),
-      onPressed: () {
-        Get.back();
-      },
-    );
-    Widget continueButton = TextButton(
-      child: Text(
-        "Continue",
-        style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Colors.redAccent),
-      ),
-      onPressed: () {
-        _deleteProduct(deleteProductController);
-      },
-    );
 
     // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.height20)),
-      title: Text(
-        productModelChoose.name!.capitalize!,
-        style: Theme.of(context).textTheme.labelSmall,
-      ),
-      content: Text(
-        "Etes vous sur de vouloir supprimer ce produit ?\n\nCette action est irréversible ! ",
-        style: Theme.of(context).textTheme.titleSmall,
-      ),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
 
     AlertDialog alert2 = AlertDialog(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -245,8 +211,6 @@ class _ProductManagementPageState extends State<ProductManagementPage> {
                                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                         crossAxisAlignment: CrossAxisAlignment.center,
                                                         children: [
-                                                          //! image section
-
                                                           //! text section
 
                                                           Container(
@@ -258,9 +222,6 @@ class _ProductManagementPageState extends State<ProductManagementPage> {
                                                               style: Theme.of(context).textTheme.bodySmall,
                                                             ),
                                                           ),
-                                                          /*  SizedBox(
-                                    width: Dimensions.width20 * 3,
-                                  ), */
 
                                                           Row(
                                                             children: [

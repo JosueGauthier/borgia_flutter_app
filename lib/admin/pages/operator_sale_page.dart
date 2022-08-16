@@ -202,18 +202,7 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                             margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                             padding: EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height20),
                             decoration: BoxDecoration(
-                                //color: Colors.white.withOpacity(0.2),
-                                /* boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.white.withOpacity(0.2),
-                                    spreadRadius: 5,
-                                    blurRadius: 5,
-                                    blurStyle: BlurStyle.normal,
-                                    offset: const Offset(0, 0), // changes position of shadow
-                                  ),
-                                ], */
-                                border: Border.all(color: AppColors.borderDarkColor),
-                                borderRadius: BorderRadius.all(Radius.circular(Dimensions.height20))),
+                                border: Border.all(color: AppColors.borderDarkColor), borderRadius: BorderRadius.all(Radius.circular(Dimensions.height20))),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [

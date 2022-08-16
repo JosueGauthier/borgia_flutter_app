@@ -34,15 +34,6 @@ class ProfileBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundcolor.withOpacity(1),
         borderRadius: BorderRadius.all(Radius.circular(radius)),
-        /* boxShadow: [
-          BoxShadow(
-            color: backgroundcolor.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 5,
-            blurStyle: BlurStyle.normal,
-            offset: const Offset(0, 0), // changes position of shadow
-          ),
-        ], */
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -225,6 +225,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                                         children: [
                                                           Icon(
                                                             value,
+                                                            color: Theme.of(context).colorScheme.onPrimary,
                                                           ),
                                                           SizedBox(
                                                             width: Dimensions.height10,
@@ -299,15 +300,6 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                                   decoration: BoxDecoration(
                                                     color: AppColors.mainColor,
                                                     borderRadius: BorderRadius.all(Radius.circular(Dimensions.width45)),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: AppColors.mainColor.withOpacity(0.5),
-                                                        spreadRadius: 5,
-                                                        blurRadius: 5,
-                                                        blurStyle: BlurStyle.normal,
-                                                        offset: const Offset(0, 0), // changes position of shadow
-                                                      ),
-                                                    ],
                                                   ),
                                                   child: Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -316,7 +308,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                                         children: [
                                                           Icon(
                                                             Icons.image,
-                                                            color: Theme.of(context).colorScheme.onPrimary,
+                                                            color: Colors.white,
                                                           ),
                                                           SizedBox(
                                                             width: Dimensions.width10,
@@ -325,7 +317,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                                             fontTypo: 'Helvetica-Bold',
                                                             text: "Image de la catégorie",
                                                             size: Dimensions.height25 * 0.8,
-                                                            color: Theme.of(context).colorScheme.onPrimary,
+                                                            color: Colors.white,
                                                           ),
                                                         ],
                                                       ),
@@ -340,15 +332,6 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                                   decoration: BoxDecoration(
                                                     color: AppColors.mainColor,
                                                     borderRadius: BorderRadius.all(Radius.circular(Dimensions.width45)),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: AppColors.mainColor.withOpacity(0.5),
-                                                        spreadRadius: 5,
-                                                        blurRadius: 5,
-                                                        blurStyle: BlurStyle.normal,
-                                                        offset: const Offset(0, 0), // changes position of shadow
-                                                      ),
-                                                    ],
                                                   ),
                                                   child: Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -357,7 +340,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                                         children: [
                                                           Icon(
                                                             Icons.image,
-                                                            color: Theme.of(context).colorScheme.onPrimary,
+                                                            color: Colors.white,
                                                           ),
                                                           SizedBox(
                                                             width: Dimensions.width10,
@@ -366,7 +349,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                                             fontTypo: 'Helvetica-Bold',
                                                             text: "Image de la catégorie",
                                                             size: Dimensions.height25 * 0.8,
-                                                            color: Theme.of(context).colorScheme.onPrimary,
+                                                            color: Colors.white,
                                                           ),
                                                         ],
                                                       ),
@@ -425,11 +408,11 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                     child: SizedBox(
                                       width: Dimensions.width45 * 5,
                                       child: ProfileBox(
-                                        textColor: Theme.of(context).colorScheme.onPrimary,
+                                        textColor: Colors.white,
                                         backgroundcolor: AppColors.greenEmerald,
                                         icon: Icons.check,
                                         text: "Valider",
-                                        iconcolor: Theme.of(context).colorScheme.onPrimary,
+                                        iconcolor: Colors.white,
                                         radius: Dimensions.width45,
                                         isEditable: false,
                                       ),
@@ -450,7 +433,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                           ),
                         );
                 }),
-                floatingActionButton: FloatingActionButton(onPressed: addDynamic, child: const Icon(Icons.add)),
+                floatingActionButton: FloatingActionButton(onPressed: addDynamic, child: const Icon(Icons.add, color: Colors.white)),
               )
             : const Center(
                 child: CircularProgressIndicator(

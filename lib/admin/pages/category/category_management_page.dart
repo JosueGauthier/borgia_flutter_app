@@ -48,46 +48,100 @@ class _CategoryManagementPageState extends State<CategoryManagementPage> {
 
   showAlertDialog(BuildContext context, DeleteCategoryController deleteCategoryController) {
     // set up the buttons
-    Widget cancelButton = TextButton(
-      child: Text(
-        "Cancel",
-        style: Theme.of(context).textTheme.labelLarge,
-      ),
-      onPressed: () {
-        Get.back();
-      },
-    );
-    Widget continueButton = TextButton(
-      child: Text(
-        "Continue",
-        style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Colors.redAccent),
-      ),
-      onPressed: () {
-        _deleteCategory(deleteCategoryController);
-      },
-    );
 
     // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text(
-        categoryModelChoose.name!.capitalize!,
-        style: Theme.of(context).textTheme.labelLarge,
-      ),
-      content: Text(
-        "Etes vous sur de vouloir supprimer cette catégorie ?\n\nCette action est irréversible ! ",
-        style: Theme.of(context).textTheme.titleSmall,
-      ),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
+
+    AlertDialog alert2 = AlertDialog(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.height45)),
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
+              height: Dimensions.height100 * 0.9,
+              width: Dimensions.height100 * 0.9,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+              ),
+              alignment: Alignment.center,
+              child: SizedBox(
+                height: Dimensions.height100 * 0.6,
+                width: Dimensions.height100 * 0.6,
+                child: CachedNetworkImage(
+                  imageUrl: categoryModelChoose.image!,
+                  progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                  errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: Dimensions.height10,
+            ),
+            Text(categoryModelChoose.name!.capitalize!.toString(), style: Theme.of(context).textTheme.labelSmall),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: Dimensions.width45 * 6,
+              child: Text(
+                "Etes vous sur de vouloir supprimer cette catégorie ?\n\nCette action est irréversible ! ",
+                style: Theme.of(context).textTheme.bodySmall,
+                maxLines: 5,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _deleteCategory(deleteCategoryController);
+                  });
+                },
+                style: ButtonStyle(
+                    padding: MaterialStateProperty.all(EdgeInsets.all(Dimensions.height10 * 2)),
+                    elevation: MaterialStateProperty.all(0),
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                      return AppColors.greenEmerald;
+                    })),
+                child: Text(
+                  "Oui",
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.surface,
+                      fontFamily: 'Montserrat-Bold',
+                      fontSize: 16,
+                      letterSpacing: 1,
+                      overflow: TextOverflow.ellipsis),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Icon(
+                  Icons.cancel_rounded,
+                  color: AppColors.mainColor,
+                  size: Dimensions.height20 * 3,
+                ),
+              )
+            ],
+          )
+        ]);
 
     // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return alert;
+        return alert2;
       },
     );
   }
@@ -144,19 +198,77 @@ class _CategoryManagementPageState extends State<CategoryManagementPage> {
                                     itemCount: categoryOfShopController.allCategoriesListOp.length,
                                     itemBuilder: (context, index) {
                                       CategoryModel categoryOfShopModel = categoryOfShopController.allCategoriesListOp[index];
-                                      return Container(
-                                        margin: EdgeInsets.only(bottom: Dimensions.height15),
-                                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                          //! image
+                                      return GestureDetector(
+                                        onTap: () {
+                                          categoryModelChoose = categoryOfShopModel;
 
-                                          GestureDetector(
-                                            onTap: () {
-                                              categoryModelChoose = categoryOfShopModel;
+                                          Get.find<ProductListController>().getProduct(categoryModelChoose.id!);
+                                          Get.toNamed(RouteHelper.getUpdateCategoryPage(widget.shopId));
+                                        },
+                                        child: Stack(
+                                          //alignment: Alignment.,
+                                          children: [
+                                            Container(
+                                              padding: EdgeInsets.only(right: Dimensions.height10),
+                                              decoration: BoxDecoration(
+                                                color: Theme.of(context).appBarTheme.surfaceTintColor,
+                                                borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                                                //border: Border.all(color: AppColors.borderDarkColor)
+                                              ),
+                                              margin: EdgeInsets.only(left: Dimensions.width20, bottom: Dimensions.height15),
+                                              child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    //! text section
 
-                                              Get.find<ProductListController>().getProduct(categoryModelChoose.id!);
-                                              Get.toNamed(RouteHelper.getUpdateCategoryPage(widget.shopId));
-                                            },
-                                            child: Container(
+                                                    Container(
+                                                      height: Dimensions.height100 * 0.7,
+                                                      margin: EdgeInsets.only(left: Dimensions.height10 * 7),
+                                                      alignment: Alignment.center,
+                                                      child: Text(
+                                                        (categoryOfShopModel.name)!.capitalize!,
+                                                        style: Theme.of(context).textTheme.bodySmall,
+                                                      ),
+                                                    ),
+
+                                                    Row(
+                                                      children: [
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            categoryModelChoose = categoryOfShopModel;
+
+                                                            Get.find<ProductListController>().getProduct(categoryModelChoose.id!);
+                                                            Get.toNamed(RouteHelper.getUpdateCategoryPage(widget.shopId));
+                                                          },
+                                                          child: const Icon(
+                                                            Icons.edit,
+                                                            color: AppColors.greenEmerald,
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: Dimensions.width20,
+                                                        ),
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            categoryModelChoose = categoryOfShopModel;
+
+                                                            showAlertDialog(context, deleteCategoryController);
+                                                          },
+                                                          child: const Icon(
+                                                            Icons.delete,
+                                                            color: Colors.redAccent,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    )
+                                                  ]),
+                                            ),
+
+                                            //! image section
+
+                                            Container(
+                                              //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
                                               height: Dimensions.height100 * 0.7,
                                               width: Dimensions.height100 * 0.7,
                                               decoration: const BoxDecoration(
@@ -168,55 +280,19 @@ class _CategoryManagementPageState extends State<CategoryManagementPage> {
                                                 height: Dimensions.height100 * 0.5,
                                                 width: Dimensions.height100 * 0.5,
                                                 child: CachedNetworkImage(
-                                                    imageUrl: categoryOfShopModel.image!,
-                                                    progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                        CircularProgressIndicator(value: downloadProgress.progress),
-                                                    errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black)),
+                                                  imageUrl: categoryOfShopModel.image!,
+                                                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                      CircularProgressIndicator(value: downloadProgress.progress),
+                                                  errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
+                                                ),
                                               ),
                                             ),
-                                          ),
-
-                                          //! text section
-                                          GestureDetector(
-                                            onTap: () {
-                                              categoryModelChoose = categoryOfShopModel;
-
-                                              Get.find<ProductListController>().getProduct(categoryModelChoose.id!);
-                                            },
-                                            child: SizedBox(
-                                                height: Dimensions.height100 * 0.7,
-                                                child:
-                                                    Center(child: Text((categoryOfShopModel.name)!.capitalize!, style: Theme.of(context).textTheme.bodySmall))),
-                                          ),
-
-                                          Row(
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  categoryModelChoose = categoryOfShopModel;
-
-                                                  Get.find<ProductListController>().getProduct(categoryModelChoose.id!);
-                                                },
-                                                child: const Icon(
-                                                  Icons.edit,
-                                                  color: AppColors.greenEmerald,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: Dimensions.width20,
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  showAlertDialog(context, deleteCategoryController);
-                                                },
-                                                child: const Icon(
-                                                  Icons.delete,
-                                                  color: Colors.redAccent,
-                                                ),
-                                              )
-                                            ],
-                                          )
-                                        ]),
+                                            /*  SizedBox(
+                                width: Dimensions.width20 * 3,
+                              ),
+                               */
+                                          ],
+                                        ),
                                       );
                                     }),
                                 Container(
@@ -234,19 +310,77 @@ class _CategoryManagementPageState extends State<CategoryManagementPage> {
                                     itemCount: categoryOfShopController.allCategoriesListSelf.length,
                                     itemBuilder: (context, index) {
                                       CategoryModel categoryOfShopModel = categoryOfShopController.allCategoriesListSelf[index];
-                                      return Container(
-                                        margin: EdgeInsets.only(bottom: Dimensions.height15),
-                                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                          //! image
+                                      return GestureDetector(
+                                        onTap: () {
+                                          categoryModelChoose = categoryOfShopModel;
 
-                                          GestureDetector(
-                                            onTap: () {
-                                              categoryModelChoose = categoryOfShopModel;
+                                          Get.find<ProductListController>().getProduct(categoryModelChoose.id!);
+                                          Get.toNamed(RouteHelper.getUpdateCategoryPage(widget.shopId));
+                                        },
+                                        child: Stack(
+                                          //alignment: Alignment.,
+                                          children: [
+                                            Container(
+                                              padding: EdgeInsets.only(right: Dimensions.height10),
+                                              decoration: BoxDecoration(
+                                                color: Theme.of(context).appBarTheme.surfaceTintColor,
+                                                borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                                                //border: Border.all(color: AppColors.borderDarkColor)
+                                              ),
+                                              margin: EdgeInsets.only(left: Dimensions.width20, bottom: Dimensions.height15),
+                                              child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    //! text section
 
-                                              Get.find<ProductListController>().getProduct(categoryModelChoose.id!);
-                                              Get.toNamed(RouteHelper.getUpdateCategoryPage(widget.shopId));
-                                            },
-                                            child: Container(
+                                                    Container(
+                                                      height: Dimensions.height100 * 0.7,
+                                                      margin: EdgeInsets.only(left: Dimensions.height10 * 7),
+                                                      alignment: Alignment.center,
+                                                      child: Text(
+                                                        (categoryOfShopModel.name)!.capitalize!,
+                                                        style: Theme.of(context).textTheme.bodySmall,
+                                                      ),
+                                                    ),
+
+                                                    Row(
+                                                      children: [
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            categoryModelChoose = categoryOfShopModel;
+
+                                                            Get.find<ProductListController>().getProduct(categoryModelChoose.id!);
+                                                            Get.toNamed(RouteHelper.getUpdateCategoryPage(widget.shopId));
+                                                          },
+                                                          child: const Icon(
+                                                            Icons.edit,
+                                                            color: AppColors.greenEmerald,
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: Dimensions.width20,
+                                                        ),
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            categoryModelChoose = categoryOfShopModel;
+
+                                                            showAlertDialog(context, deleteCategoryController);
+                                                          },
+                                                          child: const Icon(
+                                                            Icons.delete,
+                                                            color: Colors.redAccent,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    )
+                                                  ]),
+                                            ),
+
+                                            //! image section
+
+                                            Container(
+                                              //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
                                               height: Dimensions.height100 * 0.7,
                                               width: Dimensions.height100 * 0.7,
                                               decoration: const BoxDecoration(
@@ -258,55 +392,19 @@ class _CategoryManagementPageState extends State<CategoryManagementPage> {
                                                 height: Dimensions.height100 * 0.5,
                                                 width: Dimensions.height100 * 0.5,
                                                 child: CachedNetworkImage(
-                                                    imageUrl: categoryOfShopModel.image!,
-                                                    progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                        CircularProgressIndicator(value: downloadProgress.progress),
-                                                    errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black)),
+                                                  imageUrl: categoryOfShopModel.image!,
+                                                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                      CircularProgressIndicator(value: downloadProgress.progress),
+                                                  errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
+                                                ),
                                               ),
                                             ),
-                                          ),
-
-                                          //! text section
-                                          GestureDetector(
-                                            onTap: () {
-                                              categoryModelChoose = categoryOfShopModel;
-
-                                              Get.find<ProductListController>().getProduct(categoryModelChoose.id!);
-                                            },
-                                            child: SizedBox(
-                                                height: Dimensions.height100 * 0.7,
-                                                child:
-                                                    Center(child: Text((categoryOfShopModel.name)!.capitalize!, style: Theme.of(context).textTheme.bodySmall))),
-                                          ),
-
-                                          Row(
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  categoryModelChoose = categoryOfShopModel;
-
-                                                  Get.find<ProductListController>().getProduct(categoryModelChoose.id!);
-                                                },
-                                                child: const Icon(
-                                                  Icons.edit,
-                                                  color: AppColors.greenEmerald,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: Dimensions.width20,
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  showAlertDialog(context, deleteCategoryController);
-                                                },
-                                                child: const Icon(
-                                                  Icons.delete,
-                                                  color: Colors.redAccent,
-                                                ),
-                                              )
-                                            ],
-                                          )
-                                        ]),
+                                            /*  SizedBox(
+                                width: Dimensions.width20 * 3,
+                              ),
+                               */
+                                          ],
+                                        ),
                                       );
                                     }),
                               ],
