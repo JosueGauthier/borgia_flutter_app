@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:borgiaflutterapp/controllers/product_list_controller.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -110,15 +111,42 @@ class DialogSalePageState extends State<DialogSalePage> {
     return GetBuilder<SalesController>(builder: (salesController) {
       return AlertDialog(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.height20)),
-          title: Text(widget.productModel.name.toString(), style: Theme.of(context).textTheme.labelSmall),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.height45)),
+          title: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
+                height: Dimensions.height100 * 0.9,
+                width: Dimensions.height100 * 0.9,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                alignment: Alignment.center,
+                child: SizedBox(
+                  height: Dimensions.height100 * 0.6,
+                  width: Dimensions.height100 * 0.6,
+                  child: CachedNetworkImage(
+                    imageUrl: widget.productModel.image!,
+                    progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                    errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: Dimensions.height10,
+              ),
+              Text(widget.productModel.name.toString(), style: Theme.of(context).textTheme.labelSmall),
+            ],
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 width: Dimensions.width45 * 6,
-                padding: EdgeInsets.only(top: Dimensions.height10, bottom: Dimensions.height10),
+                padding: EdgeInsets.only(),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -185,67 +213,55 @@ class DialogSalePageState extends State<DialogSalePage> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: Dimensions.height20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  _order(salesController);
-
-                  setState(() {
-                    txtbuttonpressed = !txtbuttonpressed;
-                  });
-
-                  Timer(
-                      const Duration(seconds: 3),
-                      (() => setState(() {
-                            txtbuttonpressed = !txtbuttonpressed;
-                          })));
-                },
-                style: ButtonStyle(
-                    elevation: MaterialStateProperty.all(0),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-                      return AppColors.greenEmerald;
-                    })),
-                child: Text(
-                  "Je me bucque !",
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.surface,
-                      fontFamily: 'Montserrat-Bold',
-                      fontSize: 16,
-                      letterSpacing: 1,
-                      overflow: TextOverflow.ellipsis),
-                ),
-              ),
             ],
           ),
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: Dimensions.height10 * 3),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                style: ButtonStyle(
-                    elevation: MaterialStateProperty.all(0),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
-                    padding: MaterialStateProperty.all(
-                        EdgeInsets.only(left: Dimensions.width45, right: Dimensions.width45, top: Dimensions.height10, bottom: Dimensions.height10)),
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-                      return AppColors.greyColor;
-                    })),
-                child: Text(
-                  "Retour",
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.surface,
-                      fontFamily: 'Montserrat-Bold',
-                      fontSize: 16,
-                      overflow: TextOverflow.ellipsis,
-                      letterSpacing: 1),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    _order(salesController);
+
+                    setState(() {
+                      txtbuttonpressed = !txtbuttonpressed;
+                    });
+
+                    Timer(
+                        const Duration(seconds: 3),
+                        (() => setState(() {
+                              txtbuttonpressed = !txtbuttonpressed;
+                            })));
+                  },
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all(EdgeInsets.all(Dimensions.height10 * 2)),
+                      elevation: MaterialStateProperty.all(0),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                        return AppColors.greenEmerald;
+                      })),
+                  child: Text(
+                    "Je me bucque !",
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.surface,
+                        fontFamily: 'Montserrat-Bold',
+                        fontSize: 16,
+                        letterSpacing: 1,
+                        overflow: TextOverflow.ellipsis),
+                  ),
                 ),
-              ),
-            ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Icon(
+                    Icons.cancel_rounded,
+                    color: AppColors.mainColor,
+                    size: Dimensions.height20 * 3,
+                  ),
+                )
+              ],
+            )
           ]);
     });
   }

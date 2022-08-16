@@ -11,11 +11,9 @@ import 'package:get/get.dart';
 
 import '../admin/pages/operator_sale_page.dart';
 import '../admin/pages/category/create_category_page.dart';
-import '../admin/pages/category/delete_category_page.dart';
 import '../admin/pages/category/update_category_page.dart';
 import '../admin/pages/management/management_shop_page.dart';
 import '../admin/pages/product/create_product_page.dart';
-import '../admin/pages/product/delete_product_page.dart';
 import '../admin/pages/product/update_product_page.dart';
 import '../pages/cart/last_purchase_page.dart';
 import '../pages/credits/credits_page.dart';
@@ -57,11 +55,9 @@ class RouteHelper {
 
   static const String createProductPage = "/admin-create-product-page";
   static const String updateProductPage = "/admin-update-product-page";
-  static const String deleteProductPage = "/admin-delete-product-page";
 
   static const String createCategoryPage = "/admin-create-category-page";
   static const String updateCategoryPage = "/admin-update-category-page";
-  static const String deleteCategoryPage = "/admin-delete-category-page";
 
   //? formalisme pour passer des paramètres
 
@@ -92,11 +88,9 @@ class RouteHelper {
   static String getEditShopPage(int shopId) => '$editShopPage?shopId=$shopId';
   static String getCreateProductPage(int shopId) => '$createProductPage?shopId=$shopId';
   static String getUpdateProductPage(int shopId) => '$updateProductPage?shopId=$shopId';
-  static String getDeleteProductPage(int shopId) => '$deleteProductPage?shopId=$shopId';
 
   static String getCreateCategoryPage(int shopId) => '$createCategoryPage?shopId=$shopId';
   static String getUpdateCategoryPage(int shopId) => '$updateCategoryPage?shopId=$shopId';
-  static String getDeleteCategoryPage(int shopId) => '$deleteCategoryPage?shopId=$shopId';
 
   static List<GetPage> routes = [
     GetPage(
@@ -260,15 +254,6 @@ class RouteHelper {
       },
     ),
     GetPage(
-      name: deleteProductPage,
-      page: () {
-        var shopId = Get.parameters['shopId'];
-        return DeleteProductPage(
-          shopId: int.parse(shopId!),
-        );
-      },
-    ),
-    GetPage(
       name: createCategoryPage,
       page: () {
         var shopId = Get.parameters['shopId'];
@@ -282,15 +267,6 @@ class RouteHelper {
       page: () {
         var shopId = Get.parameters['shopId'];
         return UpdateCategoryPage(
-          shopId: int.parse(shopId!),
-        );
-      },
-    ),
-    GetPage(
-      name: deleteCategoryPage,
-      page: () {
-        var shopId = Get.parameters['shopId'];
-        return DeleteCategoryPage(
           shopId: int.parse(shopId!),
         );
       },
