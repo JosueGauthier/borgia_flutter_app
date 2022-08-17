@@ -4,14 +4,9 @@ class ShopModel {
   String? description;
   String? color;
   String? image;
+  bool? correctingFactorActivated;
 
-  ShopModel({
-    this.id,
-    this.name,
-    this.description,
-    this.color,
-    this.image,
-  });
+  ShopModel({this.id, this.name, this.description, this.color, this.image, this.correctingFactorActivated});
 
   ShopModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -19,6 +14,7 @@ class ShopModel {
     description = json['description'];
     color = json['color'];
     image = json['image'];
+    correctingFactorActivated = json['correcting_factor_activated'];
   }
 
   Map<String, dynamic> toJson() {

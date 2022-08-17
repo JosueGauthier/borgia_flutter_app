@@ -268,15 +268,19 @@ class _CreateProductPageState extends State<CreateProductPage> {
                           children: [
                             Row(
                               children: [
-                                Checkbox(
-                                  checkColor: Colors.white,
-                                  //fillColor: MaterialStateProperty.resolveWith(getColor),
-                                  value: isManualPriceChecked,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isManualPriceChecked = value!;
-                                    });
-                                  },
+                                Transform.scale(
+                                  scale: 1.2,
+                                  child: Checkbox(
+                                    checkColor: AppColors.mainColor,
+                                    shape: CircleBorder(),
+                                    fillColor: MaterialStateProperty.all(Colors.white),
+                                    value: isManualPriceChecked,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        isManualPriceChecked = value!;
+                                      });
+                                    },
+                                  ),
                                 ),
                                 SizedBox(
                                   width: Dimensions.width20,
@@ -313,15 +317,19 @@ class _CreateProductPageState extends State<CreateProductPage> {
                           children: [
                             Row(
                               children: [
-                                Checkbox(
-                                  checkColor: Colors.white,
-                                  //fillColor: MaterialStateProperty.resolveWith(getColor),
-                                  value: isActiveChecked,
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isActiveChecked = value!;
-                                    });
-                                  },
+                                Transform.scale(
+                                  scale: 1.2,
+                                  child: Checkbox(
+                                    checkColor: AppColors.mainColor,
+                                    shape: CircleBorder(),
+                                    fillColor: MaterialStateProperty.all(Colors.white),
+                                    value: isActiveChecked,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        isActiveChecked = value!;
+                                      });
+                                    },
+                                  ),
                                 ),
                                 SizedBox(
                                   width: Dimensions.width20,

@@ -66,6 +66,9 @@ class AppConstants {
 
   static const String PRODUCT_LIST_URI_FROM_SHOP = "/api-links/shops/products/?shop=";
 
+  //* update shop endpoint
+  static const String UPDATE_SHOP_URI = "/api-links/update-shop/";
+
   static Map<String, String>? HEADERS = {};
 
   static String USERNAME = "";

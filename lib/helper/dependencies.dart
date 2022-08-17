@@ -1,11 +1,13 @@
 import 'package:borgiaflutterapp/admin/controller/create_category_controller.dart';
 import 'package:borgiaflutterapp/admin/controller/delete_category_controller.dart';
 import 'package:borgiaflutterapp/admin/controller/update_category_controller.dart';
+import 'package:borgiaflutterapp/admin/controller/update_shop_controller.dart';
 import 'package:borgiaflutterapp/admin/data/create_category_repo.dart';
 import 'package:borgiaflutterapp/admin/data/create_product_repo.dart';
 import 'package:borgiaflutterapp/admin/data/delete_category_repo.dart';
 import 'package:borgiaflutterapp/admin/data/salemodule_repo.dart';
 import 'package:borgiaflutterapp/admin/data/update_category_repo.dart';
+import 'package:borgiaflutterapp/admin/data/update_shop_repo.dart';
 import 'package:borgiaflutterapp/controllers/lydia_controller.dart';
 import 'package:borgiaflutterapp/controllers/other_users_controller.dart';
 import 'package:borgiaflutterapp/controllers/product_list_controller.dart';
@@ -101,6 +103,8 @@ Future<void> init() async {
 
   Get.lazyPut(() => DeleteCategoryRepo(apiClient: Get.find()));
 
+  Get.lazyPut(() => UpdateShopRepo(apiClient: Get.find()));
+
   //!controllers
 
   Get.lazyPut(() => CartController(cartRepo: Get.find()), fenix: true);
@@ -139,4 +143,6 @@ Future<void> init() async {
   Get.lazyPut(() => CreateCategoryController(createCategoryRepo: Get.find()), fenix: true);
   Get.lazyPut(() => UpdateCategoryController(updateCategoryRepo: Get.find()), fenix: true);
   Get.lazyPut(() => DeleteCategoryController(deleteCategoryRepo: Get.find()), fenix: true);
+
+  Get.lazyPut(() => UpdateShopController(updateShopRepo: Get.find()), fenix: true);
 }
