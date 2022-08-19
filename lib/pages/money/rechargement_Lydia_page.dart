@@ -90,28 +90,31 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
     );
 
     lydiaDoController.lydiaAPIDoRequest(lydiaModel).then((status) async {
-      if (status.isSuccess) {
-        //Todo check ios
-        var isAppInstalled = await LaunchApp.isAppInstalled(androidPackageName: 'com.lydia', iosUrlScheme: 'lydia//');
+      if (mounted) {
+        if (status.isSuccess) {
+          //Todo check ios
+          var isAppInstalled = await LaunchApp.isAppInstalled(androidPackageName: 'com.lydia', iosUrlScheme: 'lydia//');
 
-        if (isAppInstalled == true) {
-          await LaunchApp.openApp(
-            androidPackageName: 'com.lydia',
-            // openStore: false
-          );
+          //! warning set true !
+          if (isAppInstalled == false) {
+            await LaunchApp.openApp(
+              androidPackageName: 'com.lydia',
+              // openStore: false
+            );
+          } else {
+            Uri url = Uri.parse(lydiaDoController.collectPageLydiaUrl);
+            _launchInBrowser(url);
+          }
+
+          //todo on dispose kill stream
+          Stream.periodic(const Duration(seconds: 2)).takeWhile((_) => !done).forEach((_) async {
+            success = await _lydiaCheckState(lydiaStateController, lydiaDoController.requestUuid);
+            done = success; // only if you want to finish the function earlier
+            setState(() {});
+          });
         } else {
-          Uri url = Uri.parse(lydiaDoController.collectPageLydiaUrl);
-          _launchInBrowser(url);
+          Get.snackbar("Erreur", "Vérifier les informations saisies \n Vous n'avez pas été débité", backgroundColor: Colors.redAccent);
         }
-
-        //todo on dispose kill stream
-        Stream.periodic(const Duration(seconds: 2)).takeWhile((_) => !done).forEach((_) async {
-          success = await _lydiaCheckState(lydiaStateController, lydiaDoController.requestUuid);
-          done = success; // only if you want to finish the function earlier
-          setState(() {});
-        });
-      } else {
-        Get.snackbar("Erreur", "Vérifier les informations saisies \n Vous n'avez pas été débité", backgroundColor: Colors.redAccent);
       }
     });
 
