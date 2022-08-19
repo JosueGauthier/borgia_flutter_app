@@ -1,4 +1,4 @@
-import 'package:borgiaflutterapp/utils/dimensions.dart';
+/* import 'package:borgiaflutterapp/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -42,3 +42,4 @@ class _LydiaWebPageState extends State<LydiaWebPage> {
     );
   }
 }
+ */

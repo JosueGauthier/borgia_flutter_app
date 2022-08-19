@@ -2,7 +2,6 @@ import 'package:borgiaflutterapp/admin/pages/admin_page.dart';
 import 'package:borgiaflutterapp/admin/pages/management/edit_shop_page.dart';
 import 'package:borgiaflutterapp/pages/auth/login_page.dart';
 import 'package:borgiaflutterapp/pages/content/neon.dart';
-import 'package:borgiaflutterapp/pages/money/lydia_webpage.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
 import 'package:borgiaflutterapp/pages/profile/profile_page.dart';
 import 'package:borgiaflutterapp/pages/stats/rank_user_products_page.dart';
@@ -146,17 +145,6 @@ class RouteHelper {
       name: refillLydia,
       page: () {
         return const RefillLydiaPage();
-      },
-      //transition: Transition.fadeIn
-    ),
-    GetPage(
-      name: lydiaCollectWebPage,
-      page: () {
-        var lydiaUrl = Get.parameters['lydiaUrl'];
-
-        return LydiaWebPage(
-          lydiaUrl: lydiaUrl!,
-        );
       },
       //transition: Transition.fadeIn
     ),
