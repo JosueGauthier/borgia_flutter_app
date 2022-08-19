@@ -66,7 +66,7 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                   color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7),
                 ),
                 margin: EdgeInsets.only(bottom: Dimensions.height10),
-                padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
+                padding: EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.7, left: Dimensions.width20, right: Dimensions.width20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -95,6 +95,7 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                             ),
                           ),
                     SizedBox(
+                      //color: Colors.greenAccent,
                       //height: Dimensions.height45 * 2,
                       width: Dimensions.screenWidth - Dimensions.width20 * 3.5,
                       child: TextFormField(
@@ -325,7 +326,7 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                                     width: Dimensions.width20 * 3,
                                   ), */
 
-                                                            Container(
+                                                            SizedBox(
                                                               width: Dimensions.height100 * 0.7,
                                                               child: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.onPrimary),
                                                             ),

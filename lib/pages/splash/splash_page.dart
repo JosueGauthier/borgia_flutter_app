@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
         if (status.isSuccess) {
           AppConstants.USERNAME = identifiersList[0];
           AppConstants.PASSWORD = identifiersList[1];
-          AppConstants.isfinishedRotate = false;
+          AppConstants.bienvenueUsernameisfinishedRotate = false;
           Get.find<UserController>().getUserList(AppConstants.USERNAME);
 
           Get.toNamed(RouteHelper.getInitial());

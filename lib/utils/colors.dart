@@ -21,7 +21,7 @@ final ColorScheme customDarkTheme = const ColorScheme.dark().copyWith(
 class AppColors {
   static const Color mainColor = Color.fromARGB(255, 205, 92, 92);
   static const Color lightMainColor = Color.fromARGB(255, 205, 140, 140);
-  static const Color secondColor = Color.fromARGB(255, 1, 46, 64);
+  static const Color secondColor = Color.fromARGB(255, 22, 45, 64);
   static const Color greenEmerald = Color.fromARGB(255, 1, 152, 117);
   static const Color titleColor = Color(0xFF404040);
   static const Color borderDarkColor = Color.fromARGB(255, 64, 64, 64);

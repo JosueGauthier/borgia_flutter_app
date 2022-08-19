@@ -36,7 +36,7 @@ class _AdminPageState extends State<AdminPage> {
         extendBody: true,
         body: Column(children: [
           const CustomHeader(text: "Admin"),
-          Container(
+          SizedBox(
             height: Dimensions.height100 * 1,
             child: ColorFiltered(
               colorFilter: const ColorFilter.mode(AppColors.mainColor, BlendMode.srcATop),
@@ -171,59 +171,62 @@ class _AdminPageState extends State<AdminPage> {
                                                           ),
                                                     //! text section
 
-                                                    Container(
-                                                      //decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20))),
-                                                      //color: Colors.blueAccent,
-                                                      height: Dimensions.height100 * 1.3,
-                                                      child: Column(
-                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                        children: [
-                                                          TextButton(
-                                                            style: ButtonStyle(
-                                                              backgroundColor: MaterialStateProperty.all<Color>(AppColors.greenEmerald),
+                                                    Padding(
+                                                      padding: const EdgeInsets.all(8.0),
+                                                      child: SizedBox(
+                                                        //decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20))),
+                                                        //color: Colors.blueAccent,
+                                                        height: Dimensions.height100 * 1.3,
+                                                        child: Column(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            TextButton(
+                                                              style: ButtonStyle(
+                                                                backgroundColor: MaterialStateProperty.all<Color>(AppColors.greenEmerald),
 
-                                                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                                                                borderRadius: BorderRadius.circular(Dimensions.width20),
-                                                                //side: BorderSide(color: Colors.red)
-                                                              )),
-                                                              //foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                                                            ),
-                                                            onPressed: () {
-                                                              Get.toNamed(RouteHelper.getAdminSearchPage(shopModel.id!));
-                                                            },
-                                                            child: Container(
-                                                              margin:
-                                                                  EdgeInsets.symmetric(horizontal: Dimensions.width10 / 2, vertical: Dimensions.height10 / 2),
-                                                              child: Text(
-                                                                "Vente opérateur ${(shopModel.name)!}",
-                                                                style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white),
+                                                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.circular(Dimensions.width20),
+                                                                  //side: BorderSide(color: Colors.red)
+                                                                )),
+                                                                //foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                                                              ),
+                                                              onPressed: () {
+                                                                Get.toNamed(RouteHelper.getAdminSearchPage(shopModel.id!));
+                                                              },
+                                                              child: Container(
+                                                                margin:
+                                                                    EdgeInsets.symmetric(horizontal: Dimensions.width10 / 2, vertical: Dimensions.height10 / 2),
+                                                                child: Text(
+                                                                  "Vente opérateur ${(shopModel.name)!}",
+                                                                  style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white),
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
-                                                          (userModel.groups![index].name!.contains("chiefs"))
-                                                              ? TextButton(
-                                                                  style: ButtonStyle(
-                                                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                                                                      borderRadius: BorderRadius.circular(Dimensions.width20),
-                                                                      //side: BorderSide(color: Colors.red)
-                                                                    )),
-                                                                    backgroundColor: MaterialStateProperty.all<Color>(AppColors.secondColor),
-                                                                    //foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                                                                  ),
-                                                                  onPressed: () {
-                                                                    Get.toNamed(RouteHelper.getManagementShopPage(shopModel.id!));
-                                                                  },
-                                                                  child: Container(
-                                                                    margin: EdgeInsets.symmetric(
-                                                                        horizontal: Dimensions.width10 / 2, vertical: Dimensions.height10 / 2),
-                                                                    child: Text(
-                                                                      "Gestion magasin ${(shopModel.name)!}",
-                                                                      style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white),
+                                                            (userModel.groups![index].name!.contains("chiefs"))
+                                                                ? TextButton(
+                                                                    style: ButtonStyle(
+                                                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.circular(Dimensions.width20),
+                                                                        //side: BorderSide(color: Colors.red)
+                                                                      )),
+                                                                      backgroundColor: MaterialStateProperty.all<Color>(AppColors.secondColor),
+                                                                      //foregroundColor: MaterialStateProperty.all<Color>(Colors.red),
                                                                     ),
-                                                                  ),
-                                                                )
-                                                              : Container(),
-                                                        ],
+                                                                    onPressed: () {
+                                                                      Get.toNamed(RouteHelper.getManagementShopPage(shopModel.id!));
+                                                                    },
+                                                                    child: Container(
+                                                                      margin: EdgeInsets.symmetric(
+                                                                          horizontal: Dimensions.width10 / 2, vertical: Dimensions.height10 / 2),
+                                                                      child: Text(
+                                                                        "Gestion magasin ${(shopModel.name)!}",
+                                                                        style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white),
+                                                                      ),
+                                                                    ),
+                                                                  )
+                                                                : Container(),
+                                                          ],
+                                                        ),
                                                       ),
                                                     )
                                                   ]),

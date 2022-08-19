@@ -14,7 +14,6 @@ import '../../widget/app_icon.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../controllers/user_controller.dart';
 import '../models/operator_sales_model.dart';
 import '../models/self_sales_model.dart';
 import '../models/user_model.dart';
@@ -150,9 +149,9 @@ class DialogSalePageState extends State<DialogSalePage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 width: Dimensions.width45 * 6,
-                padding: EdgeInsets.only(),
+                //padding: const EdgeInsets.only(),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

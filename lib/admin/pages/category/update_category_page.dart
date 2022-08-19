@@ -222,7 +222,7 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.image,
                                         color: Colors.white,
                                       ),

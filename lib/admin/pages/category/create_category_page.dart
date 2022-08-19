@@ -306,7 +306,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                                     children: [
                                                       Row(
                                                         children: [
-                                                          Icon(
+                                                          const Icon(
                                                             Icons.image,
                                                             color: Colors.white,
                                                           ),
@@ -338,7 +338,7 @@ class _CreateCategoryPageState extends State<CreateCategoryPage> {
                                                     children: [
                                                       Row(
                                                         children: [
-                                                          Icon(
+                                                          const Icon(
                                                             Icons.image,
                                                             color: Colors.white,
                                                           ),

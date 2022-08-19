@@ -255,7 +255,7 @@ class _EditShopPageState extends State<EditShopPage> {
                                         scale: 1.2,
                                         child: Checkbox(
                                           checkColor: AppColors.mainColor,
-                                          shape: CircleBorder(),
+                                          shape: const CircleBorder(),
 
                                           fillColor: MaterialStateProperty.all(Colors.white),
                                           //fillColor: MaterialStateProperty.resolveWith(getColor),

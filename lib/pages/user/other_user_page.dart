@@ -118,11 +118,6 @@ class _OtherUsersPageState extends State<OtherUsersPage> {
                 ), */
 
                 Container(
-                  child: Column(
-                    children: [],
-                  ),
-                ),
-                Container(
                   margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                   decoration: BoxDecoration(
                       //color: AppColors.mainColor.withOpacity(1),

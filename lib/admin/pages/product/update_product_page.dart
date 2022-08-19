@@ -173,12 +173,9 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                             borderSide: const BorderSide(color: AppColors.mainColor),
                             borderRadius: BorderRadius.circular(50),
                           ),
-                          prefixIcon: Container(
-                            //padding: EdgeInsets.only(left: Dimensions.width20*1.5),
-                            child: Icon(
-                              Icons.bookmark,
-                              color: Theme.of(context).colorScheme.onPrimary,
-                            ),
+                          prefixIcon: Icon(
+                            Icons.bookmark,
+                            color: Theme.of(context).colorScheme.onPrimary,
                           ),
                           hintText: (productModelChosen.name != null) ? productModelChosen.name : "Nom du produit",
                           labelText: (productModelChosen.name != null) ? productModelChosen.name : "Nom du produit",
@@ -309,7 +306,7 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                                   scale: 1.2,
                                   child: Checkbox(
                                     checkColor: AppColors.mainColor,
-                                    shape: CircleBorder(),
+                                    shape: const CircleBorder(),
                                     fillColor: MaterialStateProperty.all(Colors.white),
                                     value: isManualPriceChecked,
                                     onChanged: (bool? value) {
@@ -358,7 +355,7 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                                   scale: 1.2,
                                   child: Checkbox(
                                     checkColor: AppColors.mainColor,
-                                    shape: CircleBorder(),
+                                    shape: const CircleBorder(),
                                     fillColor: MaterialStateProperty.all(Colors.white),
                                     value: isActiveChecked,
                                     onChanged: (bool? value) {

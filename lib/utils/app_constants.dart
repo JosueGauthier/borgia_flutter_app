@@ -32,7 +32,7 @@ class AppConstants {
   static const String RANK_USER_PRODUCT_STAT_URI = "/api-links/sale/rank-user-product/?id=";
 
   //* for end rotation of name on WelcomePageWithHeader
-  static bool isfinishedRotate = false;
+  static bool bienvenueUsernameisfinishedRotate = false;
 
   //* auth endpoints
   static const String REGISTRATION_URI = "/api-links/auth/";

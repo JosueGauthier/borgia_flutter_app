@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/admin/data/delete_category_repo.dart';
 import 'package:borgiaflutterapp/admin/models/delete_category_model.dart';
 import 'package:borgiaflutterapp/models/response_model.dart';
@@ -17,6 +19,7 @@ class DeleteCategoryController extends GetxController implements GetxService {
     update();
 
     Response response = await deleteCategoryRepo.deleteCategory(deleteCategoryModel);
+    inspect(response);
     late ResponseModel responseModel;
 
     if (response.statusCode == 202) {

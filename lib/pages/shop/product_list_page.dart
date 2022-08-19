@@ -39,7 +39,7 @@ class _ProductListPageState extends State<ProductListPage> {
             return productListController.isLoaded
                 ? Container(
                     width: double.maxFinite,
-                    margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                    margin: EdgeInsets.only(right: Dimensions.width10, left: Dimensions.width10),
                     child: ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,

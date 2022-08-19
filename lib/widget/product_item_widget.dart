@@ -31,22 +31,52 @@ class ProductItemWidget extends StatelessWidget {
 
             Container(
               height: Dimensions.height100 * 0.7,
+              width: Dimensions.width10 * 20,
+              //color: Colors.greenAccent,
+              margin: EdgeInsets.only(left: Dimensions.height10 * 6),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                titleText,
+                style: Theme.of(context).textTheme.bodySmall,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3,
+              ),
+            ),
+
+            /* Flexible(
+                child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Container(
+                color: Colors.greenAccent,
+                height: Dimensions.height100 * 0.7,
+                margin: EdgeInsets.only(left: Dimensions.height10 * 7),
+                alignment: Alignment.center,
+                child: Text(
+                  titleText,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ),
+            )), */
+
+/*             Container(
+              height: Dimensions.height100 * 0.7,
               margin: EdgeInsets.only(left: Dimensions.height10 * 7),
               alignment: Alignment.center,
               child: Text(
                 titleText,
                 style: Theme.of(context).textTheme.bodySmall,
               ),
-            ),
+            ), */
             /*  SizedBox(
                                     width: Dimensions.width20 * 3,
                                   ), */
 
             Container(
+              //color: Colors.greenAccent,
               margin: EdgeInsets.only(right: Dimensions.width10),
               child: Text(
-                "$priceProduct €",
-                style: Theme.of(context).textTheme.labelSmall!.copyWith(color: AppColors.mainColor),
+                "$priceProduct€",
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColors.mainColor),
               ),
             ),
           ]),

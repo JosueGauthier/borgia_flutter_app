@@ -33,7 +33,7 @@ class SearchController extends GetxController {
 
       for (var i = 0; i < responseBody.length; i++) {
         ProductModel productModel = ProductModel.fromJson(responseBody[i]);
-        if (productModel.contentTypeParentCategory != 'operatorsalemodule') {
+        if (productModel.contentTypeParentCategory != 'operatorsalemodule' && productModel.isRemoved != true) {
           _searchList.add(productModel);
         }
       }

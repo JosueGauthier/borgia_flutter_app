@@ -80,27 +80,23 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                         padding: EdgeInsets.only(top: Dimensions.height30 * 1.3, left: Dimensions.width20 * 1.5, right: Dimensions.width20),
                                         child: Center(
                                           child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                            (AppConstants.isfinishedRotate == false)
-                                                ? Container(
-                                                    //color: Colors.greenAccent,
-                                                    child: DefaultTextStyle(
-                                                      style: Theme.of(context).textTheme.labelLarge!,
-                                                      child: AnimatedTextKit(
-                                                        animatedTexts: [
-                                                          RotateAnimatedText('', duration: const Duration(milliseconds: 300)),
-                                                          RotateAnimatedText('Bonjour,'),
-                                                          RotateAnimatedText(userController.userModelController.surname!, rotateOut: false),
-                                                        ],
-                                                        isRepeatingAnimation: false,
-                                                        onFinished: () {
-                                                          AppConstants.isfinishedRotate = true;
-                                                          setState(() {});
-                                                        },
-                                                      ),
+                                            (AppConstants.bienvenueUsernameisfinishedRotate == false)
+                                                ? DefaultTextStyle(
+                                                    style: Theme.of(context).textTheme.labelLarge!,
+                                                    child: AnimatedTextKit(
+                                                      animatedTexts: [
+                                                        RotateAnimatedText('', duration: const Duration(milliseconds: 300)),
+                                                        RotateAnimatedText('Bonjour,'),
+                                                        RotateAnimatedText(userController.userModelController.surname!, rotateOut: false),
+                                                      ],
+                                                      isRepeatingAnimation: false,
+                                                      onFinished: () {
+                                                        AppConstants.bienvenueUsernameisfinishedRotate = true;
+                                                        setState(() {});
+                                                      },
                                                     ),
                                                   )
-                                                : Container(
-                                                    child: Text(userController.userModelController.surname!, style: Theme.of(context).textTheme.labelLarge)),
+                                                : Text(userController.userModelController.surname!, style: Theme.of(context).textTheme.labelLarge),
                                             Row(
                                               children: [
                                                 (userController.userModelController.groups!.any((element) => element.name!.contains("chief")) ||
@@ -109,10 +105,10 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                         userController.userModelController.groups!.any((element) => element.name!.contains("associates")))
                                                     ? GestureDetector(
                                                         onTap: () {
-                                                          AppConstants.isfinishedRotate = true;
+                                                          AppConstants.bienvenueUsernameisfinishedRotate = true;
                                                           Get.toNamed(RouteHelper.getAdminPage());
                                                         },
-                                                        child: Container(
+                                                        child: SizedBox(
                                                           width: Dimensions.height45 * 1.2,
                                                           height: Dimensions.height45 * 1.2,
                                                           child: Icon(
@@ -125,10 +121,10 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                     : Container(),
                                                 GestureDetector(
                                                   onTap: () {
-                                                    AppConstants.isfinishedRotate = true;
+                                                    AppConstants.bienvenueUsernameisfinishedRotate = true;
                                                     Get.toNamed(RouteHelper.getCartPage());
                                                   },
-                                                  child: Container(
+                                                  child: SizedBox(
                                                     width: Dimensions.height45 * 1.2,
                                                     height: Dimensions.height10 * 3,
                                                     child: Icon(
@@ -140,10 +136,10 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                 ),
                                                 GestureDetector(
                                                   onTap: () {
-                                                    AppConstants.isfinishedRotate = true;
+                                                    AppConstants.bienvenueUsernameisfinishedRotate = true;
                                                     Get.toNamed(RouteHelper.getProfilepage());
                                                   },
-                                                  child: Container(
+                                                  child: SizedBox(
                                                     width: Dimensions.height45 * 1.2,
                                                     height: Dimensions.height45 * 1.2,
                                                     child: Icon(
@@ -172,7 +168,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                           ),
                                           Positioned(
                                             top: Dimensions.height10 * 2,
-                                            left: Dimensions.height10 * 2 * 1.5,
+                                            left: Dimensions.height10,
                                             child: Text(
                                               "Solde:",
                                               style: Theme.of(context).textTheme.bodySmall,

@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
 
           addToSharedPref(username, password);
 
-          AppConstants.isfinishedRotate = false;
+          AppConstants.bienvenueUsernameisfinishedRotate = false;
           Get.find<UserController>().getUserList(AppConstants.USERNAME);
 
           Get.toNamed(RouteHelper.getInitial());
@@ -86,7 +86,15 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              image: const DecorationImage(image: AssetImage("assets/image/gradient.png"), fit: BoxFit.cover),
+                              /* image: const DecorationImage(
+                                image: AssetImage("assets/image/gradient.png"),
+                                fit: BoxFit.cover,
+                                colorFilter: ColorFilter.mode(
+                                  AppColors.secondColor,
+                                  BlendMode.srcOver,
+                                ),
+                              ), */
+                              color: AppColors.secondColor,
                               borderRadius: BorderRadius.only(bottomRight: Radius.circular(Dimensions.height100 * 4)),
                             ),
                           ),
@@ -256,13 +264,13 @@ class _LoginPageState extends State<LoginPage> {
           },
         ),
       ),
-      bottomNavigationBar: SizedBox(
+      /* bottomNavigationBar: SizedBox(
         //  color: Colors.greenAccent,
         height: Dimensions.height20 * 3,
         child: CustomPaint(
           painter: CurvedPainter(),
         ),
-      ),
+      ), */
     );
   }
 }
@@ -271,7 +279,7 @@ class CurvedPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
-      ..color = AppColors.secondColor
+      ..color = Colors.black
       ..strokeWidth = 15;
 
     var path = Path();

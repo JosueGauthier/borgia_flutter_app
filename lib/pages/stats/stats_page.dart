@@ -55,14 +55,11 @@ class _StatsPageState extends State<StatsPage> {
             elevation: 0,
             toolbarHeight: Dimensions.height20 * 3,
             title: //! header
-                Container(
-              padding: EdgeInsets.only(left: Dimensions.width20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("Statistiques", style: Theme.of(context).textTheme.headlineMedium),
-                ],
-              ),
+                Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text("Statistiques", style: Theme.of(context).textTheme.headlineMedium),
+              ],
             ),
             bottom: TabBar(
               indicatorColor: AppColors.mainColor,

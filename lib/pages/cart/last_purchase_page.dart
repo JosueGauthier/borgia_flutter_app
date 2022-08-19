@@ -36,7 +36,8 @@ class LastPurchases extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: [
+        body: SingleChildScrollView(
+      child: Column(children: [
         const CustomHeader(text: "Historique"),
         GetBuilder<CartController>(
           builder: (cartController) {
@@ -44,36 +45,37 @@ class LastPurchases extends StatelessWidget {
 
             cartList.sort((b, a) => (a.time).compareTo(b.time));
 
-            return Expanded(
-                child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    itemCount: cartList.length,
-                    itemBuilder: ((context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Get.toNamed(RouteHelper.getProductList(
-                            cartList[index].aProduct.idParentCategory!,
-                            cartList[index].aProduct.contentTypeParentCategory!,
-                          ));
-                        },
-                        child: Container(
-                          width: double.maxFinite,
-                          margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20),
-                          child: ProductItemWidget(
-                            illustImage: CachedNetworkImage(
-                              imageUrl: cartList[index].aProduct.image!,
-                              progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                              errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
-                            ),
-                            titleText: cartList[index].name!,
-                            priceProduct: cartList[index].aProduct.manualPrice.toString(),
-                          ),
+            return ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                itemCount: cartList.length,
+                itemBuilder: ((context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getProductList(
+                        cartList[index].aProduct.idParentCategory!,
+                        cartList[index].aProduct.contentTypeParentCategory!,
+                      ));
+                    },
+                    child: Container(
+                      width: double.maxFinite,
+                      margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                      child: ProductItemWidget(
+                        illustImage: CachedNetworkImage(
+                          imageUrl: cartList[index].aProduct.image!,
+                          progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                          errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                         ),
-                      );
-                    })));
+                        titleText: cartList[index].name!,
+                        priceProduct: cartList[index].aProduct.manualPrice.toString(),
+                      ),
+                    ),
+                  );
+                }));
           },
         )
       ]),
-    );
+    ));
   }
 }

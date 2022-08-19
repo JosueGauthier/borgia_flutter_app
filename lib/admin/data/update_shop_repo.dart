@@ -1,4 +1,3 @@
-import 'package:borgiaflutterapp/admin/models/update_product_model.dart';
 import 'package:borgiaflutterapp/admin/models/update_shop_model.dart';
 import 'package:borgiaflutterapp/data/api/api_client.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';

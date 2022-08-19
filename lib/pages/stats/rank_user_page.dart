@@ -41,7 +41,7 @@ class _RankUserPageState extends State<RankUserPage> {
                   List<UserTopTen>? userTopTenList = rankUserShopModel.userTopTen;
                   return GestureDetector(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getProductRankUserPage(indexShop + 1));
+                      Get.toNamed(RouteHelper.getProductRankUserPage(rankUserShopModel.id!));
                     },
                     child: Container(
                       margin: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height10),

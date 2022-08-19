@@ -86,7 +86,7 @@ class _ProductManagementPageState extends State<ProductManagementPage> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               width: Dimensions.width45 * 6,
               child: Text(
                 "Etes vous sur de vouloir supprimer ce produit ?\n\nCette action est irréversible ! ",

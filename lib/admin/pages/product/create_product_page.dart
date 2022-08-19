@@ -166,7 +166,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                             borderSide: const BorderSide(color: AppColors.mainColor),
                             borderRadius: BorderRadius.circular(50),
                           ),
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.money,
                             color: Colors.white,
                           ),
@@ -272,7 +272,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                                   scale: 1.2,
                                   child: Checkbox(
                                     checkColor: AppColors.mainColor,
-                                    shape: CircleBorder(),
+                                    shape: const CircleBorder(),
                                     fillColor: MaterialStateProperty.all(Colors.white),
                                     value: isManualPriceChecked,
                                     onChanged: (bool? value) {
@@ -321,7 +321,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                                   scale: 1.2,
                                   child: Checkbox(
                                     checkColor: AppColors.mainColor,
-                                    shape: CircleBorder(),
+                                    shape: const CircleBorder(),
                                     fillColor: MaterialStateProperty.all(Colors.white),
                                     value: isActiveChecked,
                                     onChanged: (bool? value) {

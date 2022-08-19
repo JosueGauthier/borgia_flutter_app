@@ -61,6 +61,10 @@ class ThemeClass {
     colorScheme: customLightTheme,
     appBarTheme: const AppBarTheme(backgroundColor: Colors.white, surfaceTintColor: AppColors.cardLightColor),
     textTheme: customTextLightTheme,
+    textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: AppColors.mainColor, //<-- SEE HERE
+        selectionHandleColor: AppColors.mainColor,
+        selectionColor: AppColors.mainColor),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -68,5 +72,9 @@ class ThemeClass {
     colorScheme: customDarkTheme,
     appBarTheme: const AppBarTheme(backgroundColor: AppColors.darkBackGroundColor, surfaceTintColor: AppColors.cardDarkColor),
     textTheme: customTextDarkTheme,
+    textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: AppColors.mainColor, //<-- SEE HERE
+        selectionHandleColor: AppColors.mainColor,
+        selectionColor: AppColors.mainColor),
   );
 }

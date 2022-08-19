@@ -41,7 +41,7 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
             return categoryOfShopController.selfSaleCategoryListIsLoaded
                 ? Container(
                     width: double.maxFinite,
-                    margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
+                    margin: EdgeInsets.only(right: Dimensions.width10, left: Dimensions.width10),
                     child: ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
@@ -72,7 +72,7 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
 
                                     Container(
                                       height: Dimensions.height100 * 0.7,
-                                      margin: EdgeInsets.only(left: Dimensions.height10 * 7),
+                                      margin: EdgeInsets.only(left: Dimensions.height10 * 6),
                                       alignment: Alignment.center,
                                       child: Text(
                                         (categoryModel.name)!.capitalize!,
@@ -83,7 +83,7 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                                     width: Dimensions.width20 * 3,
                                   ), */
 
-                                    Container(
+                                    SizedBox(
                                       width: Dimensions.height100 * 0.7,
                                       child: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.onPrimary),
                                     ),

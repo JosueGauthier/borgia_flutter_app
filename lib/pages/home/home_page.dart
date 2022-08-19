@@ -16,8 +16,7 @@ import '../search/searchpage.dart';
 import 'welcome_page_with_header.dart';
 
 class HomePage extends StatefulWidget {
-  int selectedPage;
-  HomePage({Key? key, required this.selectedPage}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -42,6 +41,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   var _selectedIndex = 0;
+  late PageController _pageController;
 
   void onTapNav(int index) {
     setState(() {});
@@ -49,17 +49,26 @@ class _HomePageState extends State<HomePage> {
 
   void onItemTapped(int index) {
     setState(() {
-      AppConstants.isfinishedRotate = true;
+      AppConstants.bienvenueUsernameisfinishedRotate = true;
       _selectedIndex = index;
+
+      //_pageController.animateToPage(index, duration: Duration(milliseconds: 200), curve: Curves.ease);
+      _pageController.jumpToPage(index);
     });
   }
 
   @override
   void initState() {
     super.initState();
+    _pageController = PageController();
 
     _loadRessources();
-    _selectedIndex = widget.selectedPage;
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -68,9 +77,18 @@ class _HomePageState extends State<HomePage> {
       onWillPop: () async => false,
       child: Scaffold(
           extendBody: true,
-          body: Center(
-            child: pages.elementAt(_selectedIndex),
+          body: SizedBox.expand(
+            child: PageView(
+                controller: _pageController,
+                onPageChanged: (index) {
+                  setState(() => _selectedIndex = index);
+                },
+                children: pages),
           ),
+
+          /*  Center(
+            child: pages.elementAt(_selectedIndex),
+          ), */
           bottomNavigationBar: BottomNavigationBar(
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor!.withOpacity(0.85),
             elevation: 0,

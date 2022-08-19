@@ -130,7 +130,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                   children: [
                     Container(
                       height: Dimensions.height20 * 6,
-                      padding: EdgeInsets.only(top: Dimensions.height10 * 3, left: Dimensions.width20 * 2),
+                      padding: EdgeInsets.only(top: Dimensions.height10 * 3, left: Dimensions.width20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [

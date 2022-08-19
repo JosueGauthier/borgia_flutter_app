@@ -28,7 +28,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
         Container(
           alignment: Alignment.centerLeft,
-          margin: EdgeInsets.only(left: Dimensions.width20 * 1.5),
+          margin: EdgeInsets.only(left: Dimensions.width10),
           child: Text(
             "Liste des magasins",
             style: Theme.of(context).textTheme.titleMedium,
@@ -45,7 +45,7 @@ class _WelcomePageState extends State<WelcomePage> {
           return shopController.isLoaded
               ? Container(
                   width: double.maxFinite,
-                  margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20 * 1.5, top: Dimensions.height10),
+                  margin: EdgeInsets.only(right: Dimensions.width10, left: Dimensions.width10, top: Dimensions.height10),
                   child: ListView.builder(
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
@@ -55,7 +55,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         ShopModel shopModel = shopController.shopList[index];
                         return GestureDetector(
                           onTap: () {
-                            AppConstants.isfinishedRotate = true;
+                            AppConstants.bienvenueUsernameisfinishedRotate = true;
                             Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
                           },
                           child: Stack(
@@ -74,7 +74,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
                                   Container(
                                     height: Dimensions.height100 * 0.7,
-                                    margin: EdgeInsets.only(left: Dimensions.height10 * 7),
+                                    margin: EdgeInsets.only(left: Dimensions.height10 * 6),
                                     alignment: Alignment.center,
                                     child: Text(
                                       (shopModel.name)!.capitalize!,
@@ -85,7 +85,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                     width: Dimensions.width20 * 3,
                                   ), */
 
-                                  Container(
+                                  SizedBox(
                                     width: Dimensions.height100 * 0.7,
                                     child: Icon(
                                       Icons.arrow_forward_ios,

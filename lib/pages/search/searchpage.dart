@@ -48,26 +48,6 @@ class _SearchPageState extends State<SearchPage> {
         body: GetBuilder<SearchController>(builder: (searchController) {
           return Stack(
             children: [
-              /* Container(
-                //color: Colors.greenAccent,
-                height: Dimensions.screenHeight,
-                child: ShaderMask(
-                    shaderCallback: (rect) {
-                      return LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Theme.of(context).colorScheme.surface.withOpacity(0.1), Colors.transparent],
-                      ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
-                    },
-                    blendMode: BlendMode.dstIn,
-                    child: Image.asset(
-                      "assets/image/amtradssmotif.png",
-                      fit: BoxFit.cover,
-                    )),
-              ), */
-              /* Container(
-                decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/image/amtradssmotif.png"), fit: BoxFit.cover)),
-              ), */
               Column(children: [
                 Container(
                   height: Dimensions.height45 * 2.7,
@@ -75,10 +55,12 @@ class _SearchPageState extends State<SearchPage> {
                     color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7),
                   ),
                   margin: EdgeInsets.only(bottom: Dimensions.height10),
-                  padding:
-                      EdgeInsets.only(bottom: Dimensions.height10 / 2, top: Dimensions.height30 * 1.3, left: Dimensions.width20, right: Dimensions.width20),
+                  padding: EdgeInsets.only(
+                    bottom: Dimensions.height10 / 2,
+                    top: Dimensions.height30 * 1.7,
+                  ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         padding: EdgeInsets.only(top: Dimensions.height10 / 2),

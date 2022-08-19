@@ -86,7 +86,7 @@ class _CategoryManagementPageState extends State<CategoryManagementPage> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               width: Dimensions.width45 * 6,
               child: Text(
                 "Etes vous sur de vouloir supprimer cette catégorie ?\n\nCette action est irréversible ! ",

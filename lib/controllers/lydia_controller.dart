@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/data/repository/lydia_repo.dart';
 import 'package:borgiaflutterapp/models/lydia_model.dart';
 import 'package:borgiaflutterapp/models/response_model.dart';
