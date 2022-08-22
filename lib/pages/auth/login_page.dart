@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/controllers/auth_controller.dart';
 import 'package:borgiaflutterapp/routes/route_helper.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
@@ -60,7 +62,8 @@ class _LoginPageState extends State<LoginPage> {
 
           Get.toNamed(RouteHelper.getInitial());
         } else {
-          Get.snackbar("Error", "Mot de passe erroné");
+          //inspect(status);
+          Get.snackbar("Error", status.message.toString() /* "Mot de passe erroné" */);
         }
       });
     }

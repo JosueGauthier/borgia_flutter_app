@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/data/repository/auth_repo.dart';
 import 'package:borgiaflutterapp/models/response_model.dart';
 import 'package:borgiaflutterapp/utils/app_constants.dart';
@@ -18,6 +20,8 @@ class AuthController extends GetxController implements GetxService {
 
     Response response = await authRepo.login(username, password);
     late ResponseModel responseModel;
+
+    inspect(response);
 
     if (response.statusCode == 202) {
       String setcookie = response.headers!["set-cookie"].toString();
