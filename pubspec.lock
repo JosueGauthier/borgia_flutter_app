@@ -126,7 +126,7 @@ packages:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   external_app_launcher:
     dependency: "direct main"
     description:
