@@ -13,6 +13,11 @@ Licence : [GNU GPL version 3](./license.txt)
 #### The backend part (Django) can be found [here.](https://github.com/JosueGauthier/borgia-serv)
 
 
+App available on Google Play : https://play.google.com/store/apps/details?id=to.josue.borgia
+
+    Demo username : 00An200
+    Demo password : demo
+
 Borgia is a software to help you manage your student association. 
 With it, you can sell products, organize events, keep track of your stocks, etc...
 It will be your best ally to develop your possibilities for your student association.
@@ -29,6 +34,13 @@ Several possibilities are available to you:
     - Sale by operator: A responsible operator registers on the application the person buying and the product purchased. (Functionality under deployment). 
 
 ![borgiatradesysyt](https://user-images.githubusercontent.com/20337589/175981298-09230652-1a3d-4558-bda6-2598f3321de7.png)
+
+
+Admin features : 
+
+- Possibility for administrators to create, modify, delete products and categories.
+- Possibility for administrators to modify existing stores.
+- Possibility to set up product sales by operator (an operator with authorizations can sell a product to a user)
 
 
 but also : 
