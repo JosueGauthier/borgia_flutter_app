@@ -6,9 +6,6 @@
 
 # ![Illustration](https://user-images.githubusercontent.com/20337589/175976110-09a1718b-78cb-4316-ac4f-560b2d168a69.png)
 
-
-The roadmap of Borgia app : https://josue-gauthier.notion.site/Roadmap-Borgia-dd0bb947f5444ea198af76f6c90f2aee
-
 Current Version : 1.0.x   
 Licence : [GNU GPL version 3](./license.txt)
 
