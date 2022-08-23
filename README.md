@@ -78,13 +78,31 @@ A big thank you to the Borgia team for the development of the original Borgia ap
 
 And to Mael Bourreau for the illustrations. 
 
-# Dependency
+# Dependencies
 
-Borgia base dependency :
+Borgia app Flutter dependencies :
+
+- animated_text_kit : Animated text widget
+- cached_network_image : To store images inside shared_preferences
+- shared_preferences: To store some informations inside user smartphone (can be deleted)
+- intl: Provides internationalization facilities, plurals and genders, date/number formatting and parsing,...
+- graphic: Used to create stats charts
+- get: GetX is a microframework combined with route management and dependency injection. It aims to deliver top-of-the-line development experience in an extra lightweight but powerful solution for Flutter.
+- fl_chart: Used to create stats charts
+- percent_indicator: Percent indicator widget
+- file_picker: To load asser from smartphone
+- cloudinary_public: For hosting shop, coategories and product image on cloud
+- loading_indicator: For custom loading_indicator
+- external_app_launcher: To launch Lydia app
+- url_launcher: To launch url on browser (forget password page, mail, phone, lydia page...)
+- flutter_launcher_icons: To update launcher icon on app
+- cupertino_icons: For icons
+
+Borgia base dependencies :
 
 -   Django : Borgia run with the django framework
--   django-bootstrap-form : To use bootstrap with django
--   django-static-precompiler : For static files
+-   django-bootstrap-form : To use bootstrap with django (Borgia web)
+-   django-static-precompiler : For static files (Borgia web)
 -   openpyxl : For excel manipulation
 -   Pillow : For users images
 -   Django Rest Framework : For REST API endpoints
