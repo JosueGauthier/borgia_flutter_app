@@ -246,7 +246,7 @@ class DialogSalePageState extends State<DialogSalePage> {
                         return AppColors.greenEmerald;
                       })),
                   child: Text(
-                    "Je me bucque !",
+                    "Valider",
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.surface,
                         fontFamily: 'Montserrat-Bold',

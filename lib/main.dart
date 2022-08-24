@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeClass.lightTheme,
       darkTheme: ThemeClass.darkTheme,
       defaultTransition: Transition.fadeIn,
-      title: 'Flutter Demo',
+      title: 'Borgia',
       initialRoute: RouteHelper.getSplashPage(),
       getPages: RouteHelper.routes,
     );

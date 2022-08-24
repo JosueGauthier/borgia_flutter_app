@@ -462,7 +462,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
 
   var initItem = <int, List>{
     0: [
-      "Choose item",
+      "Choisir un item",
       "https://media.istockphoto.com/vectors/typing-text-chat-isolated-vector-icon-modern-geometric-illustration-vector-id1186972006?k=20&m=1186972006&s=612x612&w=0&h=vFGrVHgdRGWyUlDcW5KPfAXy5sfcjLg5Cl231ZF78hM="
     ]
   };
