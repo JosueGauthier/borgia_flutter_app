@@ -111,7 +111,6 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                   // If the widget is hidden, animate to 1.0 (fully visible).
                   opacity: opacity,
                   duration: const Duration(milliseconds: 500),
-                  // The green box must be a child of the AnimatedOpacity widget.
                   child: SizedBox(
                     height: Dimensions.height100,
                     width: Dimensions.width10 * 10,

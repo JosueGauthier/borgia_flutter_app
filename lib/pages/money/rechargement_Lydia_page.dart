@@ -35,7 +35,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
       url,
       mode: LaunchMode.externalApplication,
     )) {
-      throw 'Could not launch $url';
+      throw 'Impossible de lancer $url';
     }
   }
 
@@ -270,7 +270,7 @@ class _RefillLydiaPageState extends State<RefillLydiaPage> {
                           Column(
                             children: [
                               Text(
-                                "Confirmation de l'operation en attente",
+                                "Confirmation de l'opération en attente",
                                 style: Theme.of(context).textTheme.titleMedium,
                                 maxLines: 2,
                                 textAlign: TextAlign.center,

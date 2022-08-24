@@ -99,18 +99,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   const SizedBox(
                     height: 0,
                   ),
-                  /* ProfileBox(
-                            textColor: AppColors.titleColor,
-                            backgroundcolor: AppTheme.of(context).colorScheme.surfaceGreyColor,
-                            icon: Icons.email,
-                            text: userModel.email.toString(),
-                            iconcolor: AppColors.titleColor,
-                            radius: 0,
-                            isEditable: false,
-                          ),
-                          SizedBox(
-                            height: 0,
-                          ), */
                   ProfileBox(
                     textColor: Theme.of(context).colorScheme.onPrimary,
                     backgroundcolor: Theme.of(context).appBarTheme.backgroundColor!,
@@ -123,103 +111,13 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-
-            /* ProfileBox(
-              textColor: Theme.of(context).colorScheme.surface,
-              backgroundcolor: (userModel.theme.toString() == "dark") ? AppColors.titleColor : AppColors.mainColor,
-              icon: (userModel.theme.toString() == "dark") ? Icons.dark_mode : Icons.light_mode,
-              text: userModel.theme.toString().capitalize!,
-              iconcolor: Theme.of(context).colorScheme.surface,
-              isEditable: false,
-            ), */
             SizedBox(
               height: Dimensions.height20,
             ),
-            /* Container(
-                  margin: EdgeInsets.only(right: Dimensions.width20, left: Dimensions.width20),
-                  height: Dimensions.height45 * 1.7,
-                  width: double.maxFinite,
-                  decoration: BoxDecoration(color: AppColors.mainColor, borderRadius: BorderRadius.all(Radius.circular(Dimensions.height10 * 5))),
-                  child: Stack(
-                    children: [
-                      SizedBox(
-                        //color: Colors.redAccent,
-                        height: double.maxFinite,
-                        child: Center(
-                          child: DropdownButton<String>(
-                            value: selectedTbk,
-                            dropdownColor: AppColors.mainColor,
-
-                            borderRadius: BorderRadius.circular(Dimensions.height10 * 2),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedTbk = newValue!;
-                              });
-                            },
-
-                            // Hide the default underline
-                            underline: Container(),
-
-                            icon: Icon(
-                              Icons.arrow_drop_down_rounded,
-                              color: Colors.transparent,
-                              size: Dimensions.height10 * 5,
-                            ),
-                            isExpanded: true,
-
-                            // The list of options
-                            items: mapTbk
-                                .map((text, value) {
-                                  return MapEntry(
-                                      text,
-                                      DropdownMenuItem<String>(
-                                          value: text,
-                                          child: Row(
-                                            children: [
-                                              SizedBox(
-                                                width: Dimensions.width10,
-                                              ),
-                                              CircleAvatar(
-                                                foregroundImage: AssetImage(value),
-                                              ),
-                                              SizedBox(
-                                                width: Dimensions.height10,
-                                              ),
-                                              BigText(
-                                                fontTypo: 'Helvetica-Bold',
-                                                text: text,
-                                                size: Dimensions.height25 * 0.8,
-                                                color: AppTheme.of(context).colorScheme.surface,
-                                              ),
-                                            ],
-                                          )));
-                                })
-                                .values
-                                .toList(),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: Dimensions.height20 * 1,
-                ),
-                const ProfileBox(
-                  textColor: Theme.of(context).colorScheme.surface,
-                  backgroundcolor: AppColors.mainColor,
-                  icon: Icons.notifications,
-                  text: "Notifications",
-                  iconcolor: Theme.of(context).colorScheme.surface,
-                  isEditable: false,
-                ),
-                SizedBox(
-                  height: Dimensions.height20,
-                ), */
             GestureDetector(
               onTap: () async {
                 String email = 'josue.gauthier@gmail.com';
-                String subject = 'Problem/Request';
+                String subject = 'Problème/demande';
                 String body = 'Entrez ci dessous votre problème/demande. \n \n N\'hésitez pas à ajouter des captures d\'écrans pour illustrer';
 
                 Uri emailUrl = Uri.parse("mailto:$email?subject=$subject&body=$body");
@@ -227,14 +125,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 if (await canLaunchUrl(emailUrl)) {
                   await launchUrl(emailUrl);
                 } else {
-                  throw "Error occured sending an email";
+                  throw "Une erreur s'est produite lors de l'envoi d'un courriel";
                 }
               },
               child: ProfileBox(
                 textColor: Theme.of(context).colorScheme.surface,
                 backgroundcolor: AppColors.mainColor,
                 icon: Icons.help,
-                text: "Send a problem or request",
+                text: "Envoyer un problème ou une demande",
                 iconcolor: Theme.of(context).colorScheme.surface,
                 isEditable: false,
               ),
@@ -267,7 +165,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 textColor: Theme.of(context).colorScheme.surface,
                 backgroundcolor: AppColors.mainColor,
                 icon: Icons.logout,
-                text: "Log out",
+                text: "Se déconnecter",
                 iconcolor: Theme.of(context).colorScheme.surface,
                 isEditable: false,
               ),

@@ -10,12 +10,10 @@ import '../../utils/dimensions.dart';
 
 class OtherUsersPage extends StatefulWidget {
   final String userUsername;
-  final String pagefrom;
 
   const OtherUsersPage({
     Key? key,
     required this.userUsername,
-    required this.pagefrom,
   }) : super(key: key);
 
   @override
@@ -104,27 +102,10 @@ class _OtherUsersPageState extends State<OtherUsersPage> {
                 SizedBox(
                   height: Dimensions.height20,
                 ),
-                /* (userController.welcomeUserModel.surname == null)
-                    ? Container()
-                    : ProfileBox(
-                        textColor: Theme.of(context).colorScheme.surface,
-                        backgroundcolor: AppColors.mainColor,
-                        icon: Icons.attach_money,
-                        text: "Transfert vers : ${(userController.welcomeUserModel.surname)?.capitalize!}",
-                        isEditable: false,
-                        iconcolor: Theme.of(context).colorScheme.surface),
-                SizedBox(
-                  height: Dimensions.height20,
-                ), */
-
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
-                  decoration: BoxDecoration(
-                      //color: AppColors.mainColor.withOpacity(1),
-                      borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
-                      border: Border.all(color: AppColors.borderDarkColor)),
-                  //margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
-                  //decoration: BoxDecoration(color: Theme.of(context).colorScheme.onPrimaryContainer, borderRadius: BorderRadius.circular(Dimensions.width20)),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)), border: Border.all(color: AppColors.borderDarkColor)),
                   child: Column(
                     children: [
                       (userModel.username == null)

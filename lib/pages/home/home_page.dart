@@ -51,8 +51,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       AppConstants.bienvenueUsernameisfinishedRotate = true;
       _selectedIndex = index;
-
-      //_pageController.animateToPage(index, duration: Duration(milliseconds: 200), curve: Curves.ease);
       _pageController.jumpToPage(index);
     });
   }
@@ -85,10 +83,6 @@ class _HomePageState extends State<HomePage> {
                 },
                 children: pages),
           ),
-
-          /*  Center(
-            child: pages.elementAt(_selectedIndex),
-          ), */
           bottomNavigationBar: BottomNavigationBar(
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor!.withOpacity(0.85),
             elevation: 0,

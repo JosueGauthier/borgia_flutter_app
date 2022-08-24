@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
       url,
       mode: LaunchMode.externalApplication,
     )) {
-      throw 'Could not launch $url';
+      throw 'Impossible de lancer $url';
     }
   }
 
@@ -46,9 +46,9 @@ class _LoginPageState extends State<LoginPage> {
     String password = passwordController.text.trim();
 
     if (username.isEmpty) {
-      Get.snackbar("Username empty", "Enter a valid username");
+      Get.snackbar("Username empty", "Entrez un nom d'utilisateur valide");
     } else if (password.isEmpty) {
-      Get.snackbar("Password empty", "Enter a valid password");
+      Get.snackbar("Mot de passe vide", "Entrez un mot de passe valide");
     } else {
       authController.login(username, password).then((status) {
         if (status.isSuccess) {
@@ -62,8 +62,7 @@ class _LoginPageState extends State<LoginPage> {
 
           Get.toNamed(RouteHelper.getInitial());
         } else {
-          //inspect(status);
-          Get.snackbar("Error", status.message.toString() /* "Mot de passe erroné" */);
+          Get.snackbar("Erreur", status.message.toString());
         }
       });
     }
@@ -89,14 +88,6 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              /* image: const DecorationImage(
-                                image: AssetImage("assets/image/gradient.png"),
-                                fit: BoxFit.cover,
-                                colorFilter: ColorFilter.mode(
-                                  AppColors.secondColor,
-                                  BlendMode.srcOver,
-                                ),
-                              ), */
                               color: AppColors.secondColor,
                               borderRadius: BorderRadius.only(bottomRight: Radius.circular(Dimensions.height100 * 4)),
                             ),
@@ -161,8 +152,8 @@ class _LoginPageState extends State<LoginPage> {
                                 Icons.person,
                                 color: Theme.of(context).colorScheme.onPrimary,
                               ),
-                              hintText: "Enter your username",
-                              labelText: "Enter your username",
+                              hintText: "Entrez votre nom d'utilisateur",
+                              labelText: "Entrez votre nom d'utilisateur",
                               labelStyle: Theme.of(context).textTheme.bodySmall,
                               hintStyle: Theme.of(context).textTheme.bodySmall,
                               filled: true,
@@ -199,8 +190,8 @@ class _LoginPageState extends State<LoginPage> {
                                   Icons.password,
                                   color: Theme.of(context).colorScheme.onPrimary,
                                 ),
-                                labelText: 'Enter your password',
-                                hintText: "Enter your password",
+                                labelText: "Entrez votre mot de passe",
+                                hintText: "Entrez votre mot de passe",
                                 labelStyle: Theme.of(context).textTheme.bodySmall,
                                 hintStyle: Theme.of(context).textTheme.bodySmall,
                                 filled: true,
@@ -267,41 +258,6 @@ class _LoginPageState extends State<LoginPage> {
           },
         ),
       ),
-      /* bottomNavigationBar: SizedBox(
-        //  color: Colors.greenAccent,
-        height: Dimensions.height20 * 3,
-        child: CustomPaint(
-          painter: CurvedPainter(),
-        ),
-      ), */
     );
-  }
-}
-
-class CurvedPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    var paint = Paint()
-      ..color = Colors.black
-      ..strokeWidth = 15;
-
-    var path = Path();
-
-    path.moveTo(0, size.height * 0.4);
-    path.quadraticBezierTo(size.width * 0.25, size.height * 0.9, size.width * 0.5, size.height * 0.5);
-    path.quadraticBezierTo(size.width * 0.75, size.height * 0.1, size.width * 1.0, size.height * .2);
-
-    //path.quadraticBezierTo(size.width * 0.25, size.height * 0.1, size.width * 0.5, size.height * 0.5);
-    //path.quadraticBezierTo(size.width * 0.75, size.height * 0.9, size.width * 1.0, size.height * 0.4);
-
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
   }
 }

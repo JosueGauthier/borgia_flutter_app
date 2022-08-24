@@ -108,13 +108,13 @@ class _SearchPageState extends State<SearchPage> {
                                       FocusScope.of(context).unfocus();
                                       searchTextController.clear();
                                       //!ok
-                                      Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].username, "searchPage"));
+                                      Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].username));
                                     }
                                     if (searchController.searchList[index].runtimeType == ShopModel) {
                                       FocusScope.of(context).unfocus();
                                       searchTextController.clear();
                                       //! ok
-                                      Get.toNamed(RouteHelper.getCategoryListPage(searchController.searchList[index].id, "searchPage"));
+                                      Get.toNamed(RouteHelper.getCategoryListPage(searchController.searchList[index].id));
                                     }
                                     if (searchController.searchList[index].runtimeType == CategoryModel) {
                                       FocusScope.of(context).unfocus();

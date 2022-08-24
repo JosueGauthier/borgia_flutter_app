@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 
 class AppConstants {
+  //* Base Uri
   static const String SHOP_URI = "/api-links/shops/shops/?format=json";
 
   static const String SELFSALE_MODULE_URI = "/api-links/shops/selfsale-modules/";
@@ -17,6 +18,7 @@ class AppConstants {
   static const String PRODUCT_URI_NAME = "/api-links/shops/productsv2/?name="; //via name
   static const String PRODUCT_URI_ID = "/api-links/shops/productsv2/?id="; //via id
 
+  //* Lydia uri
   static const String LYDIA_DO_REQUEST_URI = "/api-links/lydia/";
   static const String LYDIA_STATE_REQUEST_URI = "/api-links/lydia-state-request/";
 

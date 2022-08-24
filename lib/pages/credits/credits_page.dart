@@ -14,7 +14,6 @@ class CreditsPage extends StatelessWidget {
         child: Column(children: [
           const CustomHeader(text: "Crédits"),
           Container(
-            //height: Dimensions.height100 * 1.2,
             width: double.maxFinite,
             margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
             child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -55,7 +54,6 @@ class CreditsPage extends StatelessWidget {
             height: Dimensions.height20,
           ),
           Container(
-            //height: Dimensions.height100 * 1.2,
             width: double.maxFinite,
             margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
             child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -97,7 +95,6 @@ class CreditsPage extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
-            //height: Dimensions.height100 * 1.2,
             width: double.maxFinite,
             child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
               BigText(

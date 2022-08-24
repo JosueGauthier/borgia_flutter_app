@@ -13,12 +13,10 @@ import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
 class CategoryShopPage extends StatefulWidget {
-  final String pagefrom;
   final int shopId;
   const CategoryShopPage({
     Key? key,
     required this.shopId,
-    required this.pagefrom,
   }) : super(key: key);
 
   @override

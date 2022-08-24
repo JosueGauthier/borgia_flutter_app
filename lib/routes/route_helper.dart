@@ -73,9 +73,9 @@ class RouteHelper {
 
   static String getCartPage() => cartPage;
 
-  static String getUserPage(String username, String pagefrom) => '$userPage?username=$username&page=$pagefrom';
+  static String getUserPage(String username) => '$userPage?username=$username';
 
-  static String getCategoryListPage(int shopId, String pagefrom) => '$categoryListPage?shopId=$shopId&page=$pagefrom';
+  static String getCategoryListPage(int shopId) => '$categoryListPage?shopId=$shopId';
 
   static String getProductList(int categoryId, String contentType) => '$productListFromCategory?categoryId=$categoryId&contentType=$contentType';
 
@@ -122,10 +122,8 @@ class RouteHelper {
       name: categoryListPage,
       page: () {
         var shopId = Get.parameters['shopId'];
-        var pagefrom = Get.parameters['page'];
         return CategoryShopPage(
           shopId: int.parse(shopId!),
-          pagefrom: pagefrom!,
         );
       },
       //transition: Transition.fadeIn
@@ -159,10 +157,8 @@ class RouteHelper {
       name: userPage,
       page: () {
         var username = Get.parameters['username'];
-        var pagefrom = Get.parameters['page'];
         return OtherUsersPage(
           userUsername: username!,
-          pagefrom: pagefrom!,
         );
       },
       //transition: Transition.fadeIn

@@ -56,17 +56,14 @@ class _WelcomePageState extends State<WelcomePage> {
                         return GestureDetector(
                           onTap: () {
                             AppConstants.bienvenueUsernameisfinishedRotate = true;
-                            Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!, "home"));
+                            Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!));
                           },
                           child: Stack(
-                            //alignment: Alignment.,
                             children: [
                               Container(
-                                //padding: EdgeInsets.all(Dimensions.height10),
                                 decoration: BoxDecoration(
                                   color: Theme.of(context).appBarTheme.surfaceTintColor,
                                   borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
-                                  //border: Border.all(color: AppColors.borderDarkColor)
                                 ),
                                 margin: EdgeInsets.only(bottom: Dimensions.height15, left: Dimensions.width20),
                                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -81,9 +78,6 @@ class _WelcomePageState extends State<WelcomePage> {
                                       style: Theme.of(context).textTheme.bodySmall,
                                     ),
                                   ),
-                                  /*  SizedBox(
-                                    width: Dimensions.width20 * 3,
-                                  ), */
 
                                   SizedBox(
                                     width: Dimensions.height100 * 0.7,
@@ -98,12 +92,11 @@ class _WelcomePageState extends State<WelcomePage> {
                               //! image section
 
                               Container(
-                                //margin: EdgeInsets.only(bottom: Dimensions.height10 * 2),
                                 height: Dimensions.height100 * 0.7,
                                 width: Dimensions.height100 * 0.7,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.white, /* border: Border.all(color: AppColors.borderDarkColor) */
+                                  color: Colors.white,
                                 ),
                                 alignment: Alignment.center,
                                 child: SizedBox(

@@ -44,7 +44,6 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
   }
 
   late Timer _timer;
-  Color lightColor = Colors.red;
   var redLight = "🔴";
 
   void startTimer() {
@@ -56,14 +55,12 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
           if (mounted) {
             setState(() {
               redLight = "";
-              lightColor = Colors.transparent;
             });
           }
         } else {
           if (mounted) {
             setState(() {
               redLight = "🔴";
-              lightColor = Colors.red;
             });
           }
         }
@@ -77,10 +74,6 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
 
     startTimer();
   }
-
-  /* void dispose() {
-    super.dispose();
-  } */
 
   @override
   Widget build(BuildContext context) {
@@ -136,11 +129,9 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                 SizedBox(
                   width: Dimensions.width20 * 1,
                   height: Dimensions.height20 * 1,
-                  //decoration: BoxDecoration(color: lightColor, borderRadius: BorderRadius.circular(Dimensions.height20)),
                   child: Text(redLight),
                 ),
                 Container(
-                    //color: AppColors.titleColor,
                     alignment: Alignment.centerLeft,
                     margin: EdgeInsets.only(left: Dimensions.width20),
                     child: Text("Live des ventes", style: Theme.of(context).textTheme.titleMedium)),
@@ -160,7 +151,6 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
               height: Dimensions.height20,
             ),
             Container(
-              //color: AppColors.titleColor,
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.only(left: Dimensions.width20),
               child: Text(
