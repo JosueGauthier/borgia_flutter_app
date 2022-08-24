@@ -1,5 +1,7 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 
+import 'package:cloudinary_public/cloudinary_public.dart';
+
 class AppConstants {
   //* Base Uri
   static const String SHOP_URI = "/api-links/shops/shops/?format=json";
@@ -75,6 +77,8 @@ class AppConstants {
 
   static String USERNAME = "";
   static String PASSWORD = "";
+
+  static CloudinaryPublic CLOUDINARY_PUBLIC_VAR = CloudinaryPublic('dxsy9rszs', 'borgia', cache: false);
 
   static const String APP_NAME = "BorgiaApp";
   static const int APP_VERSION = 1;

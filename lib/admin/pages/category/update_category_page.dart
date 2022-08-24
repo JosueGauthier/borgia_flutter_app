@@ -65,7 +65,7 @@ class _UpdateCategoryPageState extends State<UpdateCategoryPage> {
   static Future<CloudinaryResponse> uploadFileOnCloudinary({String filePath = "", CloudinaryResourceType resourceType = CloudinaryResourceType.Auto}) async {
     late CloudinaryResponse response;
 
-    var cloudinary = CloudinaryPublic('dxsy9rszs', 'borgia', cache: false);
+    var cloudinary = AppConstants.CLOUDINARY_PUBLIC_VAR;
     response = await cloudinary.uploadFile(
       CloudinaryFile.fromFile(filePath, resourceType: resourceType),
     );
