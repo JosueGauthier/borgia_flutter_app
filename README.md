@@ -22,7 +22,11 @@ Borgia is a software to help you manage your student association.
 With it, you can sell products, organize events, keep track of your stocks, etc...
 It will be your best ally to develop your possibilities for your student association.
 
-https://user-images.githubusercontent.com/20337589/175973686-dc7cb745-832b-4948-a60f-bd0ca4d71bc5.mp4
+
+
+
+https://user-images.githubusercontent.com/20337589/189542815-bb41c4a0-f0d1-4b99-93f5-84f10f13bf68.mp4
+
 
 Sales features: 
 
