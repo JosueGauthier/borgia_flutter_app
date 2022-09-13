@@ -74,7 +74,7 @@ Documentation are currently in writing-phase. Some ressources are available
 
 # Acknowledgements
 
-A big thank you to the Borgia team for the development of the original Borgia application: 
+A big thank you to the Borgia team for the development of the original Borgia website: 
 - Vincent Keppens
 - Alexandre Palo
 - Mael Lacour
