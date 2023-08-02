@@ -34,17 +34,7 @@ class CustomLineChartWidget extends StatelessWidget {
             accessor: (Map map) => (map['Sale'] ?? double.nan) as num,
           ),
         },
-        marks: [
-          // AreaElement(
-          //   shape: ShapeAttr(value: BasicAreaShape(smooth: true)),
-          //   color: ColorAttr(value: areacolor), //.withAlpha(80)
-          // ),
-          // LineElement(
-          //   color: ColorAttr(value: linecolor),
-          //   shape: ShapeAttr(value: BasicLineShape(smooth: true)),
-          //   size: SizeAttr(value: 0.5),
-          // ),
-        ],
+        marks: [LineMark()],
         axes: [
           Defaults.horizontalAxis,
           Defaults.verticalAxis,

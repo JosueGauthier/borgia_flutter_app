@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:borgiaflutterapp/widget/stat_widget/piechart.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
   late Timer _timer;
   var redLight = "🔴";
 
-  void startTimer() {
+/*   void startTimer() {
     const oneSec = Duration(milliseconds: 1000);
     _timer = Timer.periodic(
       oneSec,
@@ -66,19 +67,20 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
         }
       },
     );
-  }
+  } */
 
   @override
   void initState() {
     super.initState();
 
-    startTimer();
+    //startTimer();
   }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SaleListController>(builder: (saleListController) {
-      if (saleListController.isLoadedYearList && saleListController.isLoadedHourList) {
+      if (saleListController.isLoadedYearList &&
+          saleListController.isLoadedHourList) {
         bool deleteZeros = true;
         List<Map<String, Object>> listeDesVentes = [];
 
@@ -88,13 +90,19 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
           if (priceSum == null && deleteZeros == false) {
             priceSum = 0.0;
 
-            listeDesVentes.add({"Date": saleListController.yearList[i]['format_day'], "Sale": priceSum});
+            listeDesVentes.add({
+              "Date": saleListController.yearList[i]['format_day'],
+              "Sale": priceSum
+            });
           }
 
           if (priceSum != null) {
             deleteZeros = false;
 
-            listeDesVentes.add({"Date": saleListController.yearList[i]['format_day'], "Sale": priceSum});
+            listeDesVentes.add({
+              "Date": saleListController.yearList[i]['format_day'],
+              "Sale": priceSum
+            });
           }
         }
 
@@ -106,12 +114,20 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
           if (priceSum == null) {
             priceSum = 0.0;
 
-            hourList.add({"Date": saleListController.hourList[i]['time'], "Sale": priceSum});
+            hourList.add({
+              "Date": saleListController.hourList[i]['time'],
+              "Sale": priceSum
+            });
           } else {
-            hourList.add({"Date": saleListController.hourList[i]['time'], "Sale": priceSum});
+            hourList.add({
+              "Date": saleListController.hourList[i]['time'],
+              "Sale": priceSum
+            });
           }
         }
         List colorTheme = ListStatColors.colors12list15;
+
+        inspect(listeDesVentes);
 
         return SingleChildScrollView(
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -134,7 +150,8 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                 Container(
                     alignment: Alignment.centerLeft,
                     margin: EdgeInsets.only(left: Dimensions.width20),
-                    child: Text("Live des ventes", style: Theme.of(context).textTheme.titleMedium)),
+                    child: Text("Live des ventes",
+                        style: Theme.of(context).textTheme.titleMedium)),
               ],
             ),
             SizedBox(
@@ -170,6 +187,7 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
             //!Pie chart
 
             GetBuilder<ShopStatController>(builder: (shopStatController) {
+              inspect(shopStatController.shopStatList);
               if (shopStatController.isLoaded) {
                 return Container(
                   margin: EdgeInsets.only(
@@ -184,28 +202,30 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                       SizedBox(
                         height: double.maxFinite,
                         width: Dimensions.width10 * 12,
-                        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                          CustomButtonStat(
-                            notifyParent: refresh,
-                            id: 1,
-                            size: const Size(50, 30),
-                            buttonColor: colorTheme[0],
-                          ),
-                          CustomButtonStat(
-                            notifyParent: refresh,
-                            id: 2,
-                            iconData: Icons.euro,
-                            size: const Size(50, 30),
-                            buttonColor: colorTheme[6],
-                          ),
-                          CustomButtonStat(
-                            notifyParent: refresh,
-                            id: 3,
-                            iconData: Icons.percent,
-                            size: const Size(50, 30),
-                            buttonColor: colorTheme[9],
-                          ),
-                        ]),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CustomButtonStat(
+                                notifyParent: refresh,
+                                id: 1,
+                                size: const Size(50, 30),
+                                buttonColor: colorTheme[0],
+                              ),
+                              CustomButtonStat(
+                                notifyParent: refresh,
+                                id: 2,
+                                iconData: Icons.euro,
+                                size: const Size(50, 30),
+                                buttonColor: colorTheme[6],
+                              ),
+                              CustomButtonStat(
+                                notifyParent: refresh,
+                                id: 3,
+                                iconData: Icons.percent,
+                                size: const Size(50, 30),
+                                buttonColor: colorTheme[9],
+                              ),
+                            ]),
                       ),
                       Expanded(
                         child: Column(
@@ -220,13 +240,15 @@ class _GlobalStatPageState extends State<GlobalStatPage> {
                                   )
                                 : (eurosButton == true)
                                     ? CustomPiechartWigdet(
-                                        statList: shopStatController.shopStatList,
+                                        statList:
+                                            shopStatController.shopStatList,
                                         colorList: colorTheme,
                                         isImagePresent: true,
                                         typeOfData: "amount",
                                       )
                                     : CustomPiechartWigdet(
-                                        statList: shopStatController.shopStatList,
+                                        statList:
+                                            shopStatController.shopStatList,
                                         colorList: colorTheme,
                                         isImagePresent: true,
                                         typeOfData: "percent",
