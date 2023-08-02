@@ -4,7 +4,7 @@ import 'package:cloudinary_public/cloudinary_public.dart';
 
 class AppConstants {
   //* Base Uri
-  static const String SHOP_URI = "/api-links/shops/shops/?format=json";
+  static const String SHOP_URI = "/api-links/self-sale-list/shops/";
 
   static const String SELFSALE_MODULE_URI =
       "/api-links/shops/selfsale-modules/";

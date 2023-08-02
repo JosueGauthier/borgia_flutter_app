@@ -12,8 +12,6 @@ import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
-import 'package:flutter/foundation.dart';
-
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
 
@@ -44,11 +42,6 @@ class _WelcomePageState extends State<WelcomePage> {
         //! List of shops scroll view
 
         GetBuilder<ShopController>(builder: (shopController) {
-          print("shopController.shopList");
-          print("shopController.shopList");
-          print("shopController.shopList");
-          print("shopController.shopList");
-
           //print(shopController.shopList[0]);
           return shopController.isLoaded
               ? Container(

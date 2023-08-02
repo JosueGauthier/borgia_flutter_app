@@ -60,15 +60,25 @@ class LastPurchases extends StatelessWidget {
                     },
                     child: Container(
                       width: double.maxFinite,
-                      margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                      margin: EdgeInsets.only(
+                          left: Dimensions.width10, right: Dimensions.width10),
                       child: ProductItemWidget(
-                        illustImage: CachedNetworkImage(
-                          imageUrl: cartList[index].aProduct.image!,
-                          progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                          errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
-                        ),
+                        illustImage: (cartList[index].aProduct.image != null)
+                            ? CachedNetworkImage(
+                                imageUrl: cartList[index].aProduct.image!,
+                                progressIndicatorBuilder:
+                                    (context, url, downloadProgress) =>
+                                        CircularProgressIndicator(
+                                            value: downloadProgress.progress),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error,
+                                        color: Colors.black),
+                              )
+                            : const Icon(Icons.image_not_supported,
+                                color: Colors.black),
                         titleText: cartList[index].name!,
-                        priceProduct: cartList[index].aProduct.manualPrice.toString(),
+                        priceProduct:
+                            cartList[index].aProduct.manualPrice.toString(),
                       ),
                     ),
                   );

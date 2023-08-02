@@ -18,11 +18,13 @@ class FavPage extends StatelessWidget {
         child: Column(children: [
           Container(
             height: Dimensions.height20 * 6,
-            padding: EdgeInsets.only(top: Dimensions.height10 * 3, left: Dimensions.width20),
+            padding: EdgeInsets.only(
+                top: Dimensions.height10 * 3, left: Dimensions.width20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text("Produits favoris", style: Theme.of(context).textTheme.headlineMedium),
+                Text("Produits favoris",
+                    style: Theme.of(context).textTheme.headlineMedium),
               ],
             ),
           ),
@@ -40,21 +42,38 @@ class FavPage extends StatelessWidget {
                       itemBuilder: ((context, index) {
                         return GestureDetector(
                           onTap: () {
-                            Get.toNamed(
-                                RouteHelper.getProductList(favList[index].aProduct.idParentCategory!, favList[index].aProduct.contentTypeParentCategory!));
+                            Get.toNamed(RouteHelper.getProductList(
+                                favList[index].aProduct.idParentCategory!,
+                                favList[index]
+                                    .aProduct
+                                    .contentTypeParentCategory!));
                           },
                           child: Container(
                             width: double.maxFinite,
                             //color: Colors.green,
-                            margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
+                            margin: EdgeInsets.only(
+                                left: Dimensions.width10,
+                                right: Dimensions.width10),
                             child: ProductItemWidget(
-                              illustImage: CachedNetworkImage(
-                                imageUrl: favList[index].aProduct.image,
-                                progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                                errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
-                              ),
+                              illustImage: (favList[index].aProduct.image !=
+                                      null)
+                                  ? CachedNetworkImage(
+                                      imageUrl: favList[index].aProduct.image!,
+                                      progressIndicatorBuilder: (context, url,
+                                              downloadProgress) =>
+                                          CircularProgressIndicator(
+                                              value: downloadProgress.progress),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error,
+                                              color: Colors.black),
+                                    )
+                                  : const Icon(Icons.image_not_supported,
+                                      color: Colors.black),
                               titleText: (favList[index].name)!,
-                              priceProduct: favList[index].aProduct.manualPrice.toString(),
+                              priceProduct: favList[index]
+                                  .aProduct
+                                  .manualPrice
+                                  .toString(),
                             ),
                           ),
                         );

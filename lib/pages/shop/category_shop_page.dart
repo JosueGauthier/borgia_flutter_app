@@ -123,35 +123,20 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                                   child: SizedBox(
                                     height: Dimensions.height100 * 0.5,
                                     width: Dimensions.height100 * 0.5,
-                                    child: categoryModel.image != null
-                                        ? Image.network(
-                                            categoryModel.image ??
-                                                '', // Utilisez l'URL ou une chaîne vide
-                                            errorBuilder:
-                                                (context, error, stackTrace) {
-                                              print(
-                                                  'Error loading image: $error');
-                                              return Icon(
-                                                  Icons.image_not_supported,
-                                                  color: Colors.black);
-                                            },
-                                            loadingBuilder: (context, child,
-                                                loadingProgress) {
-                                              if (loadingProgress == null)
-                                                return child;
-                                              return CircularProgressIndicator(
-                                                value: loadingProgress
-                                                            .expectedTotalBytes !=
-                                                        null
-                                                    ? loadingProgress
-                                                            .cumulativeBytesLoaded /
-                                                        loadingProgress
-                                                            .expectedTotalBytes!
-                                                    : null,
-                                              );
-                                            },
+                                    child: (categoryModel.image != null)
+                                        ? CachedNetworkImage(
+                                            imageUrl: categoryModel.image!,
+                                            progressIndicatorBuilder: (context,
+                                                    url, downloadProgress) =>
+                                                CircularProgressIndicator(
+                                                    value: downloadProgress
+                                                        .progress),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    const Icon(Icons.error,
+                                                        color: Colors.black),
                                           )
-                                        : Icon(Icons.image_not_supported,
+                                        : const Icon(Icons.image_not_supported,
                                             color: Colors.black),
                                   ),
                                 ),

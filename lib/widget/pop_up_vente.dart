@@ -23,7 +23,12 @@ class DialogSalePage extends StatefulWidget {
   final ProductListController productListController;
   final UserModel? buyer;
 
-  const DialogSalePage({Key? key, required this.productListController, required this.productModel, this.buyer}) : super(key: key);
+  const DialogSalePage(
+      {Key? key,
+      required this.productListController,
+      required this.productModel,
+      this.buyer})
+      : super(key: key);
 
   @override
   DialogSalePageState createState() => DialogSalePageState();
@@ -60,7 +65,9 @@ class DialogSalePageState extends State<DialogSalePage> {
             widget.productListController.saleAddItem(widget.productModel);
             Get.toNamed(RouteHelper.getInitial());
           } else {
-            Get.snackbar("Error", "Vente non effectuée. Vous n'avez pas été débité.", backgroundColor: Colors.redAccent);
+            Get.snackbar(
+                "Error", "Vente non effectuée. Vous n'avez pas été débité.",
+                backgroundColor: Colors.redAccent);
           }
         });
       }
@@ -97,7 +104,9 @@ class DialogSalePageState extends State<DialogSalePage> {
 
             //Get.toNamed(RouteHelper.getAdminSearchPage(apiShopPk));
           } else {
-            Get.snackbar("Error", "Vente non effectuée. L'acheteur n'a pas été débité.", backgroundColor: Colors.redAccent);
+            Get.snackbar(
+                "Error", "Vente non effectuée. L'acheteur n'a pas été débité.",
+                backgroundColor: Colors.redAccent);
           }
         });
       }
@@ -116,7 +125,8 @@ class DialogSalePageState extends State<DialogSalePage> {
     return GetBuilder<SalesController>(builder: (salesController) {
       return AlertDialog(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.height45)),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(Dimensions.height45)),
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -132,17 +142,25 @@ class DialogSalePageState extends State<DialogSalePage> {
                 child: SizedBox(
                   height: Dimensions.height100 * 0.6,
                   width: Dimensions.height100 * 0.6,
-                  child: CachedNetworkImage(
-                    imageUrl: widget.productModel.image!,
-                    progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                    errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
-                  ),
+                  child: (widget.productModel.image != null)
+                      ? CachedNetworkImage(
+                          imageUrl: widget.productModel.image!,
+                          progressIndicatorBuilder:
+                              (context, url, downloadProgress) =>
+                                  CircularProgressIndicator(
+                                      value: downloadProgress.progress),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error, color: Colors.black),
+                        )
+                      : const Icon(Icons.image_not_supported,
+                          color: Colors.black),
                 ),
               ),
               SizedBox(
                 height: Dimensions.height10,
               ),
-              Text(widget.productModel.name.toString(), style: Theme.of(context).textTheme.labelSmall),
+              Text(widget.productModel.name.toString(),
+                  style: Theme.of(context).textTheme.labelSmall),
             ],
           ),
           content: Column(
@@ -189,9 +207,14 @@ class DialogSalePageState extends State<DialogSalePage> {
                     ),
                     Row(
                       children: [
-                        Text("${widget.productModel.manualPrice}€ x ", style: Theme.of(context).textTheme.labelSmall),
+                        Text("${widget.productModel.manualPrice}€ x ",
+                            style: Theme.of(context).textTheme.labelSmall),
                         Text(widget.productListController.inCartItem.toString(),
-                            style: TextStyle(color: quantityColor, fontFamily: 'Montserrat-Bold', fontSize: 20, overflow: TextOverflow.ellipsis)),
+                            style: TextStyle(
+                                color: quantityColor,
+                                fontFamily: 'Montserrat-Bold',
+                                fontSize: 20,
+                                overflow: TextOverflow.ellipsis)),
                       ],
                     ),
                     GestureDetector(
@@ -239,10 +262,13 @@ class DialogSalePageState extends State<DialogSalePage> {
                             })));
                   },
                   style: ButtonStyle(
-                      padding: MaterialStateProperty.all(EdgeInsets.all(Dimensions.height10 * 2)),
+                      padding: MaterialStateProperty.all(
+                          EdgeInsets.all(Dimensions.height10 * 2)),
                       elevation: MaterialStateProperty.all(0),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50))),
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
                         return AppColors.greenEmerald;
                       })),
                   child: Text(
