@@ -13,7 +13,7 @@ dependencies:
   cached_network_image: ^3.2.0
   shared_preferences: ^2.0.11
   intl: ^0.17.0
-  graphic: ^0.10.4
+  graphic: ^2.2.0
   get: ^4.6.1
   fl_chart: ^0.55.0
   percent_indicator: ^4.2.2

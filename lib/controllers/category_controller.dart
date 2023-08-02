@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:borgiaflutterapp/data/repository/category_list_repo.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:get/get.dart';
@@ -36,6 +38,8 @@ class CategoryOfShopController extends GetxController {
 
   Future<void> getSelfSaleCategoryList(int shopId) async {
     Response response = await categoryOfShopRepo.getProductList(shopId);
+
+    inspect(response);
 
     if (response.statusCode == 200) {
       _selfSaleCategoryList = [];

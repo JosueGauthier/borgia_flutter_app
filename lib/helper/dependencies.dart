@@ -120,7 +120,7 @@ Future<void> init() async {
   Get.lazyPut(() => LydiaDoRequestController(lydiaDoRequestRepo: Get.find()), fenix: true);
   Get.lazyPut(() => LydiaStateRequestController(lydiaStateRequestRepo: Get.find()), fenix: true);
 
-  Get.lazyPut(() => SearchController(searchRepo: Get.find()), fenix: true);
+  Get.lazyPut(() => SearchControllerCustom(searchRepo: Get.find()), fenix: true);
 
   Get.lazyPut(() => OtherUserController(userRepo: Get.find()), fenix: true);
 

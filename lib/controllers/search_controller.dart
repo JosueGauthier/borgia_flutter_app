@@ -5,10 +5,10 @@ import 'package:borgiaflutterapp/models/shop_model.dart';
 import 'package:borgiaflutterapp/models/user_model.dart';
 import 'package:get/get.dart';
 
-class SearchController extends GetxController {
+class SearchControllerCustom extends GetxController {
   final SearchRepo searchRepo;
 
-  SearchController({required this.searchRepo});
+  SearchControllerCustom({required this.searchRepo});
 
   List<dynamic> _searchList = [];
 

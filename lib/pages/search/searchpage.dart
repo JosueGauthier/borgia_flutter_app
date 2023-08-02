@@ -27,8 +27,8 @@ class _SearchPageState extends State<SearchPage> {
 
   bool searchWordIsEmpty = true;
 
-  void _search(SearchController searchController) {
-    var searchController = Get.find<SearchController>();
+  void _search(SearchControllerCustom searchController) {
+    var searchController = Get.find<SearchControllerCustom>();
     String searchWord = searchTextController.text.trim();
 
     if (searchWord.isEmpty) {
@@ -45,7 +45,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBody: true,
-        body: GetBuilder<SearchController>(builder: (searchController) {
+        body: GetBuilder<SearchControllerCustom>(builder: (searchController) {
           return Stack(
             children: [
               Column(children: [

@@ -17,12 +17,14 @@ class LydiaDoRequestController extends GetxController implements GetxService {
   late String _requestUuid;
   String get requestUuid => _requestUuid;
 
-  Future<ResponseModel> lydiaAPIDoRequest(LydiaModelDoRequestModel lydiaModelDoRequest) async {
+  Future<ResponseModel> lydiaAPIDoRequest(
+      LydiaModelDoRequestModel lydiaModelDoRequest) async {
     _isLoading = true;
 
     update();
 
-    Response response = await lydiaDoRequestRepo.lydiaAPIDoRequest(lydiaModelDoRequest);
+    Response response =
+        await lydiaDoRequestRepo.lydiaAPIDoRequest(lydiaModelDoRequest);
     late ResponseModel responseModel;
 
     if (response.statusCode == 202) {
@@ -42,7 +44,8 @@ class LydiaDoRequestController extends GetxController implements GetxService {
   }
 }
 
-class LydiaStateRequestController extends GetxController implements GetxService {
+class LydiaStateRequestController extends GetxController
+    implements GetxService {
   final LydiaStateRequestRepo lydiaStateRequestRepo;
 
   LydiaStateRequestController({required this.lydiaStateRequestRepo});
@@ -56,12 +59,14 @@ class LydiaStateRequestController extends GetxController implements GetxService 
   late String _state = "0";
   get state => _state;
 
-  Future<ResponseModel> lydiaAPIStateRequest(LydiaModelStateRequestModel lydiaModelStateRequestModel) async {
+  Future<ResponseModel> lydiaAPIStateRequest(
+      LydiaModelStateRequestModel lydiaModelStateRequestModel) async {
     _isLoading = true;
 
     update();
 
-    Response response = await lydiaStateRequestRepo.lydiaAPIStateRequest(lydiaModelStateRequestModel);
+    Response response = await lydiaStateRequestRepo
+        .lydiaAPIStateRequest(lydiaModelStateRequestModel);
     late ResponseModel responseModel;
 
     if (response.statusCode == 202) {

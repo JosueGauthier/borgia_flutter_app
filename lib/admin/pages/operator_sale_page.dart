@@ -29,8 +29,8 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
   final TextEditingController searchTextController = TextEditingController();
   bool searchWordIsEmpty = true;
 
-  void _search(SearchController searchController) {
-    var searchController = Get.find<SearchController>();
+  void _search(SearchControllerCustom searchController) {
+    var searchController = Get.find<SearchControllerCustom>();
     String searchWord = searchTextController.text.trim();
 
     if (searchWord.isEmpty) {
@@ -58,7 +58,7 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
     return Scaffold(
         extendBody: true,
         body: SingleChildScrollView(
-          child: GetBuilder<SearchController>(builder: (searchController) {
+          child: GetBuilder<SearchControllerCustom>(builder: (searchController) {
             return Column(children: [
               Container(
                 height: Dimensions.height45 * 2.7,

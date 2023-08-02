@@ -12,6 +12,8 @@ import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
 
+import 'package:flutter/foundation.dart';
+
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
 
@@ -42,10 +44,19 @@ class _WelcomePageState extends State<WelcomePage> {
         //! List of shops scroll view
 
         GetBuilder<ShopController>(builder: (shopController) {
+          print("shopController.shopList");
+          print("shopController.shopList");
+          print("shopController.shopList");
+          print("shopController.shopList");
+
+          //print(shopController.shopList[0]);
           return shopController.isLoaded
               ? Container(
                   width: double.maxFinite,
-                  margin: EdgeInsets.only(right: Dimensions.width10, left: Dimensions.width10, top: Dimensions.height10),
+                  margin: EdgeInsets.only(
+                      right: Dimensions.width10,
+                      left: Dimensions.width10,
+                      top: Dimensions.height10),
                   child: ListView.builder(
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
@@ -55,38 +66,55 @@ class _WelcomePageState extends State<WelcomePage> {
                         ShopModel shopModel = shopController.shopList[index];
                         return GestureDetector(
                           onTap: () {
-                            AppConstants.bienvenueUsernameisfinishedRotate = true;
-                            Get.toNamed(RouteHelper.getCategoryListPage(shopModel.id!));
+                            AppConstants.bienvenueUsernameisfinishedRotate =
+                                true;
+                            Get.toNamed(
+                                RouteHelper.getCategoryListPage(shopModel.id!));
                           },
                           child: Stack(
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                  color: Theme.of(context).appBarTheme.surfaceTintColor,
-                                  borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                                  color: Theme.of(context)
+                                      .appBarTheme
+                                      .surfaceTintColor,
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(Dimensions.width20)),
                                 ),
-                                margin: EdgeInsets.only(bottom: Dimensions.height15, left: Dimensions.width20),
-                                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
-                                  //! text section
+                                margin: EdgeInsets.only(
+                                    bottom: Dimensions.height15,
+                                    left: Dimensions.width20),
+                                child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      //! text section
 
-                                  Container(
-                                    height: Dimensions.height100 * 0.7,
-                                    margin: EdgeInsets.only(left: Dimensions.height10 * 6),
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      (shopModel.name)!.capitalize!,
-                                      style: Theme.of(context).textTheme.bodySmall,
-                                    ),
-                                  ),
+                                      Container(
+                                        height: Dimensions.height100 * 0.7,
+                                        margin: EdgeInsets.only(
+                                            left: Dimensions.height10 * 6),
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          (shopModel.name)!.capitalize!,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall,
+                                        ),
+                                      ),
 
-                                  SizedBox(
-                                    width: Dimensions.height100 * 0.7,
-                                    child: Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Theme.of(context).colorScheme.onPrimary,
-                                    ),
-                                  ),
-                                ]),
+                                      SizedBox(
+                                        width: Dimensions.height100 * 0.7,
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onPrimary,
+                                        ),
+                                      ),
+                                    ]),
                               ),
 
                               //! image section
@@ -102,11 +130,20 @@ class _WelcomePageState extends State<WelcomePage> {
                                 child: SizedBox(
                                   height: Dimensions.height100 * 0.5,
                                   width: Dimensions.height100 * 0.5,
-                                  child: CachedNetworkImage(
-                                    imageUrl: shopModel.image!,
-                                    progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                                    errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
-                                  ),
+                                  child: shopModel.image != null
+                                      ? CachedNetworkImage(
+                                          imageUrl: shopModel.image!,
+                                          progressIndicatorBuilder: (context,
+                                                  url, downloadProgress) =>
+                                              CircularProgressIndicator(
+                                                  value: downloadProgress
+                                                      .progress),
+                                          errorWidget: (context, url, error) =>
+                                              const Icon(Icons.error,
+                                                  color: Colors.black),
+                                        )
+                                      : Icon(Icons.image_not_supported,
+                                          color: Colors.black),
                                 ),
                               ),
                               /*  SizedBox(

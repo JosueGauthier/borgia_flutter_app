@@ -35,22 +35,29 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
 
           const CustomHeader(text: "Catégories"),
 
-          Expanded(child: SingleChildScrollView(child: GetBuilder<CategoryOfShopController>(builder: (categoryOfShopController) {
+          Expanded(child: SingleChildScrollView(child:
+              GetBuilder<CategoryOfShopController>(
+                  builder: (categoryOfShopController) {
             return categoryOfShopController.selfSaleCategoryListIsLoaded
                 ? Container(
                     width: double.maxFinite,
-                    margin: EdgeInsets.only(right: Dimensions.width10, left: Dimensions.width10),
+                    margin: EdgeInsets.only(
+                        right: Dimensions.width10, left: Dimensions.width10),
                     child: ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: categoryOfShopController.selfSaleCategoryList.length,
+                        itemCount: categoryOfShopController
+                            .selfSaleCategoryList.length,
                         itemBuilder: (context, index) {
-                          CategoryModel categoryModel = categoryOfShopController.selfSaleCategoryList[index];
+                          CategoryModel categoryModel = categoryOfShopController
+                              .selfSaleCategoryList[index];
 
                           return GestureDetector(
                             onTap: () {
-                              Get.toNamed(RouteHelper.getProductList(categoryModel.id!, categoryModel.contentType!.model!));
+                              Get.toNamed(RouteHelper.getProductList(
+                                  categoryModel.id!,
+                                  categoryModel.contentType!.model!));
                             },
                             child: Stack(
                               //alignment: Alignment.,
@@ -58,34 +65,48 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                                 Container(
                                   //padding: EdgeInsets.all(Dimensions.height10),
                                   decoration: BoxDecoration(
-                                    color: Theme.of(context).appBarTheme.surfaceTintColor,
-                                    borderRadius: BorderRadius.all(Radius.circular(Dimensions.width20)),
+                                    color: Theme.of(context)
+                                        .appBarTheme
+                                        .surfaceTintColor,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(Dimensions.width20)),
                                     //border: Border.all(color: AppColors.borderDarkColor)
                                   ),
-                                  margin: EdgeInsets.only(bottom: Dimensions.height15, left: Dimensions.width20),
-                                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
-                                    //! image section
+                                  margin: EdgeInsets.only(
+                                      bottom: Dimensions.height15,
+                                      left: Dimensions.width20),
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        //! text section
 
-                                    //! text section
-
-                                    Container(
-                                      height: Dimensions.height100 * 0.7,
-                                      margin: EdgeInsets.only(left: Dimensions.height10 * 6),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        (categoryModel.name)!.capitalize!,
-                                        style: Theme.of(context).textTheme.bodySmall,
-                                      ),
-                                    ),
-                                    /*  SizedBox(
+                                        Container(
+                                          height: Dimensions.height100 * 0.7,
+                                          margin: EdgeInsets.only(
+                                              left: Dimensions.height10 * 6),
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            (categoryModel.name)!.capitalize!,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall,
+                                          ),
+                                        ),
+                                        /*  SizedBox(
                                     width: Dimensions.width20 * 3,
                                   ), */
 
-                                    SizedBox(
-                                      width: Dimensions.height100 * 0.7,
-                                      child: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.onPrimary),
-                                    ),
-                                  ]),
+                                        SizedBox(
+                                          width: Dimensions.height100 * 0.7,
+                                          child: Icon(Icons.arrow_forward_ios,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onPrimary),
+                                        ),
+                                      ]),
                                 ),
 
                                 //! image section
@@ -102,11 +123,36 @@ class _CategoryShopPageState extends State<CategoryShopPage> {
                                   child: SizedBox(
                                     height: Dimensions.height100 * 0.5,
                                     width: Dimensions.height100 * 0.5,
-                                    child: CachedNetworkImage(
-                                      imageUrl: categoryModel.image!,
-                                      progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                                      errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
-                                    ),
+                                    child: categoryModel.image != null
+                                        ? Image.network(
+                                            categoryModel.image ??
+                                                '', // Utilisez l'URL ou une chaîne vide
+                                            errorBuilder:
+                                                (context, error, stackTrace) {
+                                              print(
+                                                  'Error loading image: $error');
+                                              return Icon(
+                                                  Icons.image_not_supported,
+                                                  color: Colors.black);
+                                            },
+                                            loadingBuilder: (context, child,
+                                                loadingProgress) {
+                                              if (loadingProgress == null)
+                                                return child;
+                                              return CircularProgressIndicator(
+                                                value: loadingProgress
+                                                            .expectedTotalBytes !=
+                                                        null
+                                                    ? loadingProgress
+                                                            .cumulativeBytesLoaded /
+                                                        loadingProgress
+                                                            .expectedTotalBytes!
+                                                    : null,
+                                              );
+                                            },
+                                          )
+                                        : Icon(Icons.image_not_supported,
+                                            color: Colors.black),
                                   ),
                                 ),
                                 /*  SizedBox(

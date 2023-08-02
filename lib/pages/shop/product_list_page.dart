@@ -16,7 +16,9 @@ import '../../widget/pop_up_vente.dart';
 class ProductListPage extends StatefulWidget {
   final int categoryId;
   final String contentType;
-  const ProductListPage({Key? key, required this.categoryId, required this.contentType}) : super(key: key);
+  const ProductListPage(
+      {Key? key, required this.categoryId, required this.contentType})
+      : super(key: key);
 
   @override
   State<ProductListPage> createState() => _ProductListPageState();
@@ -35,39 +37,56 @@ class _ProductListPageState extends State<ProductListPage> {
           const CustomHeader(text: "Produits"),
 
           //! Scroll list des produits de la categorie asociée
-          Expanded(child: SingleChildScrollView(child: GetBuilder<ProductListController>(builder: (productListController) {
+          Expanded(child: SingleChildScrollView(child:
+              GetBuilder<ProductListController>(
+                  builder: (productListController) {
             return productListController.isLoaded
                 ? Container(
                     width: double.maxFinite,
-                    margin: EdgeInsets.only(right: Dimensions.width10, left: Dimensions.width10),
+                    margin: EdgeInsets.only(
+                        right: Dimensions.width10, left: Dimensions.width10),
                     child: ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: productListController.productList.length,
                         itemBuilder: (context, index) {
-                          ProductModel productModel = productListController.productList[index];
+                          ProductModel productModel =
+                              productListController.productList[index];
                           return GestureDetector(
                             onTap: () {
-                              Get.find<ProductListController>().initProduct(productModel, Get.find<CartController>());
+                              Get.find<ProductListController>().initProduct(
+                                  productModel, Get.find<CartController>());
                               showDialog(
                                   context: context,
                                   builder: (_) {
                                     return DialogSalePage(
                                       productModel: productModel,
-                                      productListController: productListController,
+                                      productListController:
+                                          productListController,
                                     );
                                   });
                             },
                             child: (productModel.isActive == true)
                                 ? ProductItemWidget(
                                     titleText: (productModel.name)!.capitalize!,
-                                    illustImage: CachedNetworkImage(
-                                      imageUrl: productModel.image!,
-                                      progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
-                                      errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
-                                    ),
-                                    priceProduct: productModel.manualPrice.toString(),
+                                    illustImage: (productModel.image != null)
+                                        ? CachedNetworkImage(
+                                            imageUrl: productModel.image!,
+                                            progressIndicatorBuilder: (context,
+                                                    url, downloadProgress) =>
+                                                CircularProgressIndicator(
+                                                    value: downloadProgress
+                                                        .progress),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    const Icon(Icons.error,
+                                                        color: Colors.black),
+                                          )
+                                        : const Icon(Icons.image_not_supported,
+                                            color: Colors.black),
+                                    priceProduct:
+                                        productModel.manualPrice.toString(),
                                   )
                                 : Container(),
                           );
