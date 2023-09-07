@@ -31,7 +31,7 @@ class _SearchPageState extends State<SearchPage> {
     var searchController = Get.find<SearchControllerCustom>();
     String searchWord = searchTextController.text.trim();
 
-    if (searchWord.isEmpty) {
+    if (searchWord.isEmpty || searchWord.length < 3) {
       setState(() {
         searchWordIsEmpty = true;
       });
@@ -104,12 +104,12 @@ class _SearchPageState extends State<SearchPage> {
                                 margin: EdgeInsets.only(left: Dimensions.width20, bottom: Dimensions.height20),
                                 child: GestureDetector(
                                   onTap: () async {
-                                    if (searchController.searchList[index].runtimeType == UserModel) {
-                                      FocusScope.of(context).unfocus();
-                                      searchTextController.clear();
-                                      //!ok
-                                      Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].username));
-                                    }
+                                    // if (searchController.searchList[index].runtimeType == UserModel) {
+                                    //   FocusScope.of(context).unfocus();
+                                    //   searchTextController.clear();
+                                    //   //!ok
+                                    //   Get.toNamed(RouteHelper.getUserPage(searchController.searchList[index].username));
+                                    // }
                                     if (searchController.searchList[index].runtimeType == ShopModel) {
                                       FocusScope.of(context).unfocus();
                                       searchTextController.clear();
@@ -155,21 +155,19 @@ class _SearchPageState extends State<SearchPage> {
                                                 width: Dimensions.height100 * 0.5,
                                                 child: (searchController.searchList[index].image == null)
                                                     ? ColorFiltered(
-                                                        colorFilter: ColorFilter.mode(
-                                                            Color((((Random().nextDouble())) * 0xFFFFFF).toInt()).withOpacity(1.0), BlendMode.srcATop),
-                                                        child: Image.asset("assets/image/defaultuserimage.png"),
+                                                        colorFilter: ColorFilter.mode(Color((((Random().nextDouble())) * 0xFFFFFF).toInt()).withOpacity(1.0), BlendMode.srcATop),
+                                                        child: Image.asset("assets/image/emptybox.png"),
                                                       )
                                                     : CachedNetworkImage(
                                                         imageUrl: searchController.searchList[index].image,
-                                                        progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                            CircularProgressIndicator(value: downloadProgress.progress),
+                                                        progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
                                                         errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                                       ),
                                               ),
                                             ),
 
                                       SizedBox(
-                                        width: Dimensions.width20 * 3,
+                                        width: Dimensions.width20 * 1,
                                       ),
 
                                       //! text section
@@ -177,18 +175,13 @@ class _SearchPageState extends State<SearchPage> {
                                       (searchController.searchList[index].runtimeType == ProductModel && searchController.searchList[index].isActive == false)
                                           ? Container()
                                           : Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                              (searchController.searchList[index].runtimeType != UserModel)
-                                                  ? Text(
-                                                      (searchController.searchList[index].name.toString()).capitalize!,
-                                                      style: Theme.of(context).textTheme.bodySmall,
-                                                    )
-                                                  : Container(),
-                                              (searchController.searchList[index].runtimeType == UserModel)
-                                                  ? Text(
-                                                      "${(searchController.searchList[index].firstName.toString()).capitalize!} ${(searchController.searchList[index].lastName.toString()).capitalize!}",
-                                                      style: Theme.of(context).textTheme.bodySmall,
-                                                    )
-                                                  : Container(),
+                                              Container(
+                                                  width: MediaQuery.of(context).size.width * 0.7,
+                                                  child: Text(
+                                                    (searchController.searchList[index].name.toString()).capitalize!,
+                                                    style: Theme.of(context).textTheme.bodySmall,
+                                                    overflow: TextOverflow.ellipsis,
+                                                  ))
                                             ]),
                                     ],
                                   ),

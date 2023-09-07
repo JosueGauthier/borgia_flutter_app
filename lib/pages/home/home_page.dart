@@ -37,7 +37,6 @@ class _HomePageState extends State<HomePage> {
     const SearchPage(),
     const FavPage(),
     const RefillLydiaPage(),
-    const StatsPage(),
   ];
 
   var _selectedIndex = 0;
@@ -103,8 +102,7 @@ class _HomePageState extends State<HomePage> {
                     Lydiaicon.lydia,
                     size: 23,
                   ),
-                  label: 'Lydia'),
-              BottomNavigationBarItem(icon: Icon(Icons.show_chart), label: 'Stat'),
+                  label: 'Lydia')
             ],
           )),
     );

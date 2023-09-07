@@ -99,26 +99,6 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                 : Text(userController.userModelController.surname!, style: Theme.of(context).textTheme.labelLarge),
                                             Row(
                                               children: [
-                                                (userController.userModelController.groups!.any((element) => element.name!.contains("chief")) ||
-                                                        userController.userModelController.groups!.any((element) => element.name!.contains("presidents")) ||
-                                                        userController.userModelController.groups!.any((element) => element.name!.contains("treasurers")) ||
-                                                        userController.userModelController.groups!.any((element) => element.name!.contains("associates")))
-                                                    ? GestureDetector(
-                                                        onTap: () {
-                                                          AppConstants.bienvenueUsernameisfinishedRotate = true;
-                                                          Get.toNamed(RouteHelper.getAdminPage());
-                                                        },
-                                                        child: SizedBox(
-                                                          width: Dimensions.height45 * 1.2,
-                                                          height: Dimensions.height45 * 1.2,
-                                                          child: Icon(
-                                                            Icons.admin_panel_settings,
-                                                            color: Theme.of(context).colorScheme.surface,
-                                                            size: Dimensions.height20 * 1.5,
-                                                          ),
-                                                        ),
-                                                      )
-                                                    : Container(),
                                                 GestureDetector(
                                                   onTap: () {
                                                     AppConstants.bienvenueUsernameisfinishedRotate = true;
@@ -162,9 +142,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                           Container(
                                             height: Dimensions.height20 * 10,
                                             width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                color: Theme.of(context).scaffoldBackgroundColor,
-                                                borderRadius: const BorderRadius.only(topRight: Radius.circular(50))),
+                                            decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor, borderRadius: const BorderRadius.only(topRight: Radius.circular(50))),
                                           ),
                                           Positioned(
                                             top: Dimensions.height10 * 2,

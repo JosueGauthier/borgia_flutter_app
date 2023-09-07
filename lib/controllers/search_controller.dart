@@ -25,7 +25,7 @@ class SearchControllerCustom extends GetxController {
     Response responseProduct = await searchRepo.getSearchListProduct(keyword);
     Response responseCategory = await searchRepo.getSearchListCategory(keyword);
     Response responseShop = await searchRepo.getSearchListShop(keyword);
-    Response responseUsername = await searchRepo.getSearchListUser(keyword);
+    //Response responseUsername = await searchRepo.getSearchListUser(keyword);
     _searchList = [];
 
     if (responseProduct.statusCode == 200) {
@@ -63,30 +63,30 @@ class SearchControllerCustom extends GetxController {
       _isLoaded = true;
     } else {}
 
-    if (responseUsername.statusCode == 200) {
-      List responseBody = responseUsername.body;
+    // if (responseUsername.statusCode == 200) {
+    //   List responseBody = responseUsername.body;
 
-      for (var i = 0; i < responseBody.length; i++) {
-        _searchList.add(UserModel.fromJson(responseBody[i]));
-      }
-      _isLoaded = true;
-    } else {}
+    //   for (var i = 0; i < responseBody.length; i++) {
+    //     _searchList.add(UserModel.fromJson(responseBody[i]));
+    //   }
+    //   _isLoaded = true;
+    // } else {}
 
     update();
   }
 
   Future<void> getAdminUserSearchList(String keyword) async {
-    Response responseUsername = await searchRepo.getSearchListUser(keyword);
-    _adminSearchList = [];
-    if (responseUsername.statusCode == 200) {
-      List responseBody = responseUsername.body;
+    //Response responseUsername = await searchRepo.getSearchListUser(keyword);
+    // _adminSearchList = [];
+    // if (responseUsername.statusCode == 200) {
+    //   List responseBody = responseUsername.body;
 
-      for (var i = 0; i < responseBody.length; i++) {
-        _adminSearchList.add(UserModel.fromJson(responseBody[i]));
-      }
-      _isLoaded = true;
-    } else {}
+    //   for (var i = 0; i < responseBody.length; i++) {
+    //     _adminSearchList.add(UserModel.fromJson(responseBody[i]));
+    //   }
+    //   _isLoaded = true;
+    // } else {}
 
-    update();
+    // update();
   }
 }
