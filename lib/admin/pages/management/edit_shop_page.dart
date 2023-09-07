@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:borgiaflutterapp/admin/controller/update_shop_controller.dart';
 import 'package:borgiaflutterapp/admin/models/update_shop_model.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
@@ -113,7 +111,6 @@ class _EditShopPageState extends State<EditShopPage> {
     return GetBuilder<UpdateShopController>(builder: (updateShopController) {
       return GetBuilder<ShopController>(builder: (shopController) {
         List shopList = shopController.shopList;
-        inspect((shopList.firstWhere((element) => element.id == widget.shopId)));
 
         shopModel = (shopList.where((element) => element.id == widget.shopId)).single;
 

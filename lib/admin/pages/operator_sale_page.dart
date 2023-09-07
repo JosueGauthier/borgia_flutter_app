@@ -169,8 +169,7 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                                           height: Dimensions.height100 * 0.5,
                                           width: Dimensions.height100 * 0.5,
                                           child: ColorFiltered(
-                                            colorFilter:
-                                                ColorFilter.mode(Color((((Random().nextDouble())) * 0xFFFFFF).toInt()).withOpacity(1.0), BlendMode.srcATop),
+                                            colorFilter: ColorFilter.mode(Color((((Random().nextDouble())) * 0xFFFFFF).toInt()).withOpacity(1.0), BlendMode.srcATop),
                                             child: Image.asset("assets/image/defaultuserimage.png"),
                                           )),
                                     ),
@@ -202,8 +201,7 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                             width: double.maxFinite,
                             margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                             padding: EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height20),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: AppColors.borderDarkColor), borderRadius: BorderRadius.all(Radius.circular(Dimensions.height20))),
+                            decoration: BoxDecoration(border: Border.all(color: AppColors.borderDarkColor), borderRadius: BorderRadius.all(Radius.circular(Dimensions.height20))),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -222,8 +220,7 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                                           height: Dimensions.height100 * 0.5,
                                           width: Dimensions.height100 * 0.5,
                                           child: ColorFiltered(
-                                            colorFilter:
-                                                ColorFilter.mode(Color((((Random().nextDouble())) * 0xFFFFFF).toInt()).withOpacity(1.0), BlendMode.srcATop),
+                                            colorFilter: ColorFilter.mode(Color((((Random().nextDouble())) * 0xFFFFFF).toInt()).withOpacity(1.0), BlendMode.srcATop),
                                             child: Image.asset("assets/image/defaultuserimage.png"),
                                           )),
                                     ),
@@ -260,7 +257,7 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                                 Center(
                                   child: Text(
                                     "${userChosen.balance!} €",
-                                    style: Theme.of(context).textTheme.labelLarge!.copyWith(color: AppColors.greenEmerald, fontSize: 30),
+                                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.greenEmerald, fontSize: 30),
                                   ),
                                 ),
                                 SizedBox(
@@ -305,32 +302,29 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                                                         //border: Border.all(color: AppColors.borderDarkColor)
                                                       ),
                                                       margin: EdgeInsets.only(bottom: Dimensions.height15, left: Dimensions.width20),
-                                                      child: Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                                          children: [
-                                                            //! image section
+                                                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
+                                                        //! image section
 
-                                                            //! text section
+                                                        //! text section
 
-                                                            Container(
-                                                              height: Dimensions.height100 * 0.7,
-                                                              margin: EdgeInsets.only(left: Dimensions.height10 * 7),
-                                                              alignment: Alignment.center,
-                                                              child: Text(
-                                                                (categoryModel.name)!.capitalize!,
-                                                                style: Theme.of(context).textTheme.bodySmall,
-                                                              ),
-                                                            ),
-                                                            /*  SizedBox(
+                                                        Container(
+                                                          height: Dimensions.height100 * 0.7,
+                                                          margin: EdgeInsets.only(left: Dimensions.height10 * 7),
+                                                          alignment: Alignment.center,
+                                                          child: Text(
+                                                            (categoryModel.name)!.capitalize!,
+                                                            style: Theme.of(context).textTheme.bodySmall,
+                                                          ),
+                                                        ),
+                                                        /*  SizedBox(
                                     width: Dimensions.width20 * 3,
                                   ), */
 
-                                                            SizedBox(
-                                                              width: Dimensions.height100 * 0.7,
-                                                              child: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.onPrimary),
-                                                            ),
-                                                          ]),
+                                                        SizedBox(
+                                                          width: Dimensions.height100 * 0.7,
+                                                          child: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.onPrimary),
+                                                        ),
+                                                      ]),
                                                     ),
 
                                                     //! image section
@@ -349,8 +343,7 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                                                         width: Dimensions.height100 * 0.5,
                                                         child: CachedNetworkImage(
                                                           imageUrl: categoryModel.image!,
-                                                          progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                              CircularProgressIndicator(value: downloadProgress.progress),
+                                                          progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
                                                           errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                                         ),
                                                       ),
@@ -406,8 +399,7 @@ class _OpearatorSalePageState extends State<OpearatorSalePage> {
                                                         titleText: (productModel.name)!.capitalize!,
                                                         illustImage: CachedNetworkImage(
                                                           imageUrl: productModel.image!,
-                                                          progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                              CircularProgressIndicator(value: downloadProgress.progress),
+                                                          progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
                                                           errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.black),
                                                         ),
                                                         priceProduct: productModel.manualPrice.toString(),

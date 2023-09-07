@@ -4,7 +4,6 @@ import 'package:borgiaflutterapp/controllers/search_controller.dart';
 import 'package:borgiaflutterapp/models/categories_shop_model.dart';
 import 'package:borgiaflutterapp/models/product_model.dart';
 import 'package:borgiaflutterapp/models/shop_model.dart';
-import 'package:borgiaflutterapp/models/user_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -156,7 +155,7 @@ class _SearchPageState extends State<SearchPage> {
                                                 child: (searchController.searchList[index].image == null)
                                                     ? ColorFiltered(
                                                         colorFilter: ColorFilter.mode(Color((((Random().nextDouble())) * 0xFFFFFF).toInt()).withOpacity(1.0), BlendMode.srcATop),
-                                                        child: Image.asset("assets/image/emptybox.png"),
+                                                        child: const Icon(Icons.image_not_supported, color: Colors.black),
                                                       )
                                                     : CachedNetworkImage(
                                                         imageUrl: searchController.searchList[index].image,

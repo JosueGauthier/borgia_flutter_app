@@ -6,7 +6,9 @@ const TextTheme customTextLightTheme = TextTheme(
   titleLarge: TextStyle(color: Color(0xFF404040), fontFamily: 'OpenSansExtraBold', fontSize: 50, letterSpacing: 2),
 
   //* for Bonjour, white
-  labelLarge: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 2),
+  labelLarge: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 15, letterSpacing: 2),
+
+  bodyLarge: TextStyle(color: Colors.white, fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 2),
 
   //* for Liste des magasins
   titleMedium: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 20),
@@ -15,7 +17,7 @@ const TextTheme customTextLightTheme = TextTheme(
   headlineMedium: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 22, letterSpacing: 1.5),
 
   //* for Solde, item List
-  bodySmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 16),
+  bodySmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-SemiBold', fontSize: 16),
 
   //* for price
   labelSmall: TextStyle(color: Color(0xFF404040), fontFamily: 'Montserrat-Bold', fontSize: 20),
@@ -35,15 +37,15 @@ const TextTheme customTextDarkTheme = TextTheme(
   ),
 
   //* for Bonjour, white
-  labelLarge:
-      TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 2, overflow: TextOverflow.ellipsis),
+  labelLarge: TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 15, letterSpacing: 2, overflow: TextOverflow.ellipsis),
+
+  bodyLarge: TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 25, letterSpacing: 2, overflow: TextOverflow.ellipsis),
 
   //* for Liste des magasins
   titleMedium: TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 20, overflow: TextOverflow.ellipsis),
 
   //* for all title of page -> Recherche..., Statistiques ...
-  headlineMedium:
-      TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 22, letterSpacing: 1.5, overflow: TextOverflow.ellipsis),
+  headlineMedium: TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 22, letterSpacing: 1.5, overflow: TextOverflow.ellipsis),
 
   //* for Solde, item List
   bodySmall: TextStyle(color: Color.fromARGB(255, 220, 220, 220), fontFamily: 'Montserrat-Bold', fontSize: 16, overflow: TextOverflow.ellipsis),

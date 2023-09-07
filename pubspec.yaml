@@ -63,9 +63,9 @@ flutter:
         - asset: assets/font/OpenSansExtraBold.ttf
     - family: Nunito
       fonts:
-        - asset: fonts/Nunito-Regular.ttf
+        - asset: assets/font/Nunito-Regular.ttf
           weight: 400
-        - asset: fonts/Nunito-ExtraBold.ttf
+        - asset: assets/font/Nunito-ExtraBold.ttf
           weight: 700
     - family: Montserrat-Bold
       fonts:
@@ -78,7 +78,7 @@ flutter:
         - asset: assets/font/Helvetica-Bold.ttf
     - family: Nunito-SemiBold
       fonts:
-        - asset: fonts/Nunito-SemiBold.ttf
+        - asset: assets/font/Nunito-SemiBold.ttf
     - family: Montserrat-ExtraBold
       fonts:
         - asset: assets/font/Montserrat-ExtraBold.ttf

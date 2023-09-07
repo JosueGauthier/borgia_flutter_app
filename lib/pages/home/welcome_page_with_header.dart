@@ -56,7 +56,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                         begin: Alignment.center,
                                         end: Alignment.bottomCenter,
                                         colors: [Theme.of(context).colorScheme.surface, Colors.transparent],
-                                      ).createShader(Rect.fromLTRB(0, Dimensions.height20 * 7, rect.width, rect.height));
+                                      ).createShader(Rect.fromLTRB(0, Dimensions.height20 * 9, rect.width, rect.height));
                                     },
                                     blendMode: BlendMode.dstIn,
                                     child: (isLightTheme == false)
@@ -82,7 +82,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                           child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                                             (AppConstants.bienvenueUsernameisfinishedRotate == false)
                                                 ? DefaultTextStyle(
-                                                    style: Theme.of(context).textTheme.labelLarge!,
+                                                    style: Theme.of(context).textTheme.bodyLarge!,
                                                     child: AnimatedTextKit(
                                                       animatedTexts: [
                                                         RotateAnimatedText('', duration: const Duration(milliseconds: 300)),
@@ -96,7 +96,7 @@ class _WelcomePageWithHeaderState extends State<WelcomePageWithHeader> {
                                                       },
                                                     ),
                                                   )
-                                                : Text(userController.userModelController.surname!, style: Theme.of(context).textTheme.labelLarge),
+                                                : Text(userController.userModelController.surname!, style: Theme.of(context).textTheme.bodyLarge),
                                             Row(
                                               children: [
                                                 GestureDetector(

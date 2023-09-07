@@ -1,6 +1,5 @@
 import 'package:borgiaflutterapp/icon/lydiaicon_icons.dart';
 import 'package:borgiaflutterapp/pages/money/rechargement_lydia_page.dart';
-import 'package:borgiaflutterapp/pages/stats/stats_page.dart';
 import 'package:borgiaflutterapp/utils/dimensions.dart';
 
 import 'package:flutter/cupertino.dart';
